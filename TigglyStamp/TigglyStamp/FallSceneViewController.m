@@ -622,6 +622,19 @@ bool bStartStopRecorder = YES;
     img = [self changeImageColor:newImg withColor:color];
     layer.contents = (id) img.CGImage;
     if (!isWithShape) {
+        
+        if(midPoint.x < img.size.width/4)
+            midPoint = CGPointMake(img.size.width/4,midPoint.y);
+        
+        if (midPoint.x > 1024-img.size.width/4)
+            midPoint = CGPointMake(1024-img.size.width/4,midPoint.y);
+        
+        if (midPoint.y> 768-img.size.height/4)
+            midPoint = CGPointMake(midPoint.x,768-img.size.height/4);
+        
+        if (midPoint.y< img.size.height/4)
+            midPoint = CGPointMake(midPoint.x,img.size.height/4);
+        
         layer.position = midPoint;
         
     }

@@ -43,6 +43,10 @@ int swipeTxtCnt;
 {
     DebugLog(@"");
     [super viewDidLoad];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+
+    
     // Do any additional setup after loading the view from its nib.
     imgScrollView.frame = CGRectMake(0,768 - (RECT_THUMBNAIL_FRAME.size.height + 80), 1024, RECT_THUMBNAIL_FRAME.size.height + 40);
     

@@ -38,6 +38,14 @@
 @property (nonatomic, strong) IBOutlet UIView *backgroundView;
 @property (nonatomic, strong) IBOutlet UILabel *lblLunguageTest;
 
+@property (nonatomic, strong) IBOutlet UILabel *lbl1;
+@property (nonatomic, strong) IBOutlet UILabel *lbl2;
+@property (nonatomic, strong) IBOutlet UILabel *lbl3;
+@property (nonatomic, strong) IBOutlet UILabel *lbl4;
+@property (nonatomic, strong) IBOutlet UILabel *lbl5;
+@property (nonatomic, strong) IBOutlet UILabel *lbl6;
+
+
 -(IBAction)actionSwitchValueChanged:(id)sender;
 -(IBAction)onButtonClicked:(id)sender;
 -(IBAction)languageButtonClicked:(id)sender;

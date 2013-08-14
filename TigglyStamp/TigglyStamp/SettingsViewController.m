@@ -20,6 +20,7 @@
 @synthesize lblLunguage;
 @synthesize backgroundView;
 @synthesize lblLunguageTest;
+@synthesize lbl1,lbl2,lbl3,lbl4,lbl5,lbl6;
 
 #pragma mark - Activity LifeCycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -243,6 +244,20 @@
 	NSBundle* languageBundle = [NSBundle bundleWithPath:path];
 	NSString* str=[languageBundle localizedStringForKey:key value:@"" table:nil];
 	return str;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    return  (orientation == UIInterfaceOrientationLandscapeRight);
+}
+-(BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscape;
 }
 
 #pragma mark - Memory Managment

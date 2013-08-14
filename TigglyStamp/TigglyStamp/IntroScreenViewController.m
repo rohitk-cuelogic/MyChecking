@@ -87,7 +87,7 @@
 //    [btnWithoutShape setHidden:false];
 //    [btnWithShape setHidden:false];
     
-    [self displayLanguageSelectionView];
+//    [self displayLanguageSelectionView];
 
     
 //    // Language selection shows only onces when app launch first time
@@ -95,7 +95,23 @@
 //        [self displayLanguageSelectionView];
 //        
 //    }
+    
+    
+    // Language selection shows only onces when app launch first time
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
+        
+        [self displayLanguageSelectionView];
+        
+        [btnWithoutShape setHidden:false];
+        [btnWithShape setHidden:false];
+                
+    }else{
+        TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];
+        [self.navigationController pushViewController:homeViewController animated:YES];
+    }
+    
 }
+
 
 - (void) displayLanguageSelectionView
 {
@@ -127,7 +143,7 @@
 
     UIButton *btn = (UIButton *) sender;
     TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];
-
+    
     
     if (btn.tag == TAG_BTN_WITHSHAPE) {
         [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:I_HAVE_SHAPE];
@@ -146,17 +162,17 @@
 {
     [self.languageView removeFromSuperview];
     
-    // Language selection shows only onces when app launch first time
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
-        [btnWithoutShape setHidden:false];
-        [btnWithShape setHidden:false];
-                
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
-
-    }else{
-        TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];
-        [self.navigationController pushViewController:homeViewController animated:YES];
-    }
+//    // Language selection shows only onces when app launch first time
+//    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
+//        [btnWithoutShape setHidden:false];
+//        [btnWithShape setHidden:false];
+//                
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+//
+//    }else{
+//        TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];
+//        [self.navigationController pushViewController:homeViewController animated:YES];
+//    }
 }
 
 -(IBAction)languageButtonClicked:(id)sender

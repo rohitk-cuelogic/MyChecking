@@ -341,24 +341,24 @@ static TigglyStampUtils *sharedInstance = nil;
     NSString *path = [[TigglyStampUtils sharedInstance]getDocumentDirPath];
     path = [path stringByAppendingPathComponent:filePath];
     NSURL *url = [NSURL fileURLWithPath:path];
-//    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:url options:nil];
-//    AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
-//    gen.appliesPreferredTrackTransform = YES;
-//    CMTime time = CMTimeMakeWithSeconds(0.0, HUGE_VAL);
-//    NSError *error = nil;
-//    CMTime actualTime;
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:url options:nil];
+    AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    gen.appliesPreferredTrackTransform = YES;
+    CMTime time = CMTimeMakeWithSeconds(0.0, HUGE_VAL);
+    NSError *error = nil;
+    CMTime actualTime;
+    
+    CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+    UIImage *thumb = [[UIImage alloc] initWithCGImage:image];
+    CGImageRelease(image);
+    
+//    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:url];
+//    UIImage *thumbnail = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
+//    //Player autoplays audio on init
+//    [player stop];
 //    
-//    CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
-//    UIImage *thumb = [[UIImage alloc] initWithCGImage:image];
-//    CGImageRelease(image);
     
-    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:url];
-    UIImage *thumbnail = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
-    //Player autoplays audio on init
-    [player stop];
-    
-    
-    return thumbnail;
+    return thumb;
 }
 
 @end

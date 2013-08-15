@@ -1128,13 +1128,16 @@ bool bStartStopRecorder = YES;
     fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
     [cameraButton setHidden:YES];
     [videoButton setHidden:YES];
+    [RigthTickButton setHidden:YES];
+
 }
- 
+
 
 -(void) onHomeButtonClicked:(CapturedImageView *)cImageView{
     DebugLog(@"");
-    [cImageView removeFromSuperview];
+    
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+    [cImageView removeFromSuperview];
 }
  
 -(void) onPlayButtonClicked:(CapturedImageView *)cImageView
@@ -1152,7 +1155,7 @@ bool bStartStopRecorder = YES;
     [cameraButton setHidden:YES];
     [videoButton setHidden:YES];
     [garbageCan setHidden:YES];
-    [curlButton setHidden:YES];
+//    [curlButton setHidden:YES];
     
     NSString *imageStr = [NSString stringWithFormat:@"%@",screenCapture.exportUrl];
     
@@ -1176,11 +1179,12 @@ bool bStartStopRecorder = YES;
 - (void) recordingFinished:(NSString*)outputPathOrNil
 {    
     NSURL *url = screenCapture.exportUrl;
-    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:url];
-    UIImage *thumbnail = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
+    //mplayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
+    // UIImage *thumbnail = [mplayer thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
     //Player autoplays audio on init
-    [player stop];
+    // [mplayer stop];
     
+    UIImage *thumbnail = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[url lastPathComponent]];
     ccImageView.imageView.image = thumbnail;
     [activityIndicator removeFromSuperview];
 }

@@ -35,6 +35,7 @@
     MPMoviePlayerController *moviePlayer;
     CapturedImageView *ccImageView;
     UIActivityIndicatorView *activityIndicator;
+    MPMoviePlayerController *mplayer;
     
 }
 @property(nonatomic,strong) ScreenCaptureView *screenCapture;

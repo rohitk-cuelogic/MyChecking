@@ -260,10 +260,10 @@ bool bStartStopRecorder = YES;
 #pragma mark Landscape Orientation
 #pragma mark======================
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
-    return  (orientation == UIInterfaceOrientationLandscapeRight);
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
- 
+
 -(BOOL)shouldAutorotate {
     return YES;
 }

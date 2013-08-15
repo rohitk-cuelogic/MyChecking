@@ -94,10 +94,8 @@ int swipeTxtCnt;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
-{
-    DebugLog(@"");
-    return  (orientation == UIInterfaceOrientationLandscapeRight);
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 -(BOOL)shouldAutorotate
 {

@@ -125,9 +125,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
-{
-    return  (orientation == UIInterfaceOrientationLandscapeRight);
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+         return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 -(BOOL)shouldAutorotate
 {
@@ -136,7 +135,7 @@
 
 -(NSUInteger)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationMaskLandscape;
+    return UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
 }
 
 -(IBAction) onButtonTouched:(id)sender{

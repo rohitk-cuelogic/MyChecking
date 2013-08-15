@@ -77,6 +77,19 @@
     
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+}
+-(BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -134,6 +134,9 @@
 		C082922117A7F4270023F08A /* recordingStarted@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C082922017A7F4260023F08A /* recordingStarted@2x~ipad.png */; };
 		C082922317A80B7F0023F08A /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C082922217A80B7F0023F08A /* SettingsViewController.xib */; };
 		C082922717A80D490023F08A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C082922917A80D490023F08A /* Localizable.strings */; };
+		C0A4E61517BA6490008EB0C9 /* Fall_Btn.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A4E61317BA6490008EB0C9 /* Fall_Btn.png */; };
+		C0A4E61617BA6490008EB0C9 /* Winter_Btn.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A4E61417BA6490008EB0C9 /* Winter_Btn.png */; };
+		C0A4E61817BA6A89008EB0C9 /* fallView@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A4E61717BA6A89008EB0C9 /* fallView@2x~ipad.png */; };
 		C0DDFCBF17A6384D001F846D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C00C973617A292A300224283 /* SettingsViewController.m */; };
 		C0DDFCC317A66E4C001F846D /* FallSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDFCC117A66E4C001F846D /* FallSceneViewController.m */; };
 		C0DDFCC417A66E4C001F846D /* FallSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0DDFCC217A66E4C001F846D /* FallSceneViewController.xib */; };
@@ -438,6 +441,9 @@
 		C082922217A80B7F0023F08A /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		C082922817A80D490023F08A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C082922A17A80D580023F08A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C0A4E61317BA6490008EB0C9 /* Fall_Btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fall_Btn.png; sourceTree = "<group>"; };
+		C0A4E61417BA6490008EB0C9 /* Winter_Btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Winter_Btn.png; sourceTree = "<group>"; };
+		C0A4E61717BA6A89008EB0C9 /* fallView@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fallView@2x~ipad.png"; sourceTree = "<group>"; };
 		C0DDFCC017A66E4C001F846D /* FallSceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FallSceneViewController.h; sourceTree = "<group>"; };
 		C0DDFCC117A66E4C001F846D /* FallSceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FallSceneViewController.m; sourceTree = "<group>"; };
 		C0DDFCC217A66E4C001F846D /* FallSceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FallSceneViewController.xib; sourceTree = "<group>"; };
@@ -978,6 +984,8 @@
 		EB6F339517819E2200FC479F /* iPadImages */ = {
 			isa = PBXGroup;
 			children = (
+				C0A4E61317BA6490008EB0C9 /* Fall_Btn.png */,
+				C0A4E61417BA6490008EB0C9 /* Winter_Btn.png */,
 				EB1A593317ABD138001749D2 /* pattern_0_1.png */,
 				63019DD517A2B54B005B8CA3 /* deletebtn.png */,
 				BC31D62E17A8F555008C5361 /* square_blue.png */,
@@ -1103,6 +1111,7 @@
 				EBF284471786A06D00082F64 /* triangle@2x~ipad.png */,
 				EBF2843A17869FAB00082F64 /* logo.png */,
 				EBF2842A17869F7700082F64 /* Tiggly_stamp_Winter_BG@2x~ipad.png */,
+				C0A4E61717BA6A89008EB0C9 /* fallView@2x~ipad.png */,
 			);
 			path = iPadRetinaImages;
 			sourceTree = "<group>";
@@ -1379,6 +1388,9 @@
 				C074892A17A952C0001943E0 /* play_btn.png in Resources */,
 				EB1A593417ABD138001749D2 /* pattern_0_1.png in Resources */,
 				C03C64D417B280E8006666F4 /* PinterestSDKResources.bundle in Resources */,
+				C0A4E61517BA6490008EB0C9 /* Fall_Btn.png in Resources */,
+				C0A4E61617BA6490008EB0C9 /* Winter_Btn.png in Resources */,
+				C0A4E61817BA6A89008EB0C9 /* fallView@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -52,6 +52,7 @@
     
     NSString *audioPath;
     NSString *videoPath;
+    NSURL *exportUrl;
 }
 
 //for recording video
@@ -62,5 +63,7 @@
 @property(strong) UIImage* currentScreen;
 @property(assign) float frameRate;
 @property(nonatomic, assign) id<ScreenCaptureViewDelegate> delegate;
+@property(nonatomic, strong) NSURL *exportUrl;
+
 
 @end

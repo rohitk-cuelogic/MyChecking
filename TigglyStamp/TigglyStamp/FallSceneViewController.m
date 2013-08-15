@@ -41,6 +41,8 @@ AVAudioRecorder *recorder;
 @synthesize isWithShape,introView,imageView,RigthTickButton,curlButton,mainView,backView;
 @synthesize screenCapture;
 @synthesize backButton;
+@synthesize isCameraClick;
+
 NSString *shapeToDraw,*prevShape;
 bool bShouldShapeDetected = YES;
 float centerX,centerY;
@@ -955,12 +957,14 @@ bool bStartStopRecorder = YES;
         isRecording = NO;
         [videoButton setBackgroundImage:[UIImage imageNamed:@"recording"] forState:UIControlStateNormal];
         cameraButton.hidden = NO;
-        [screenCapture stopRecording];        
+        [screenCapture stopRecording];
+        [self screenVideoShotStop];
         
     }else{
         isRecording = YES;
         [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted"] forState:UIControlStateNormal];
         cameraButton.hidden = YES;
+        screenCapture.delegate = self;
         [screenCapture startRecording];
         [screenCapture setNeedsDisplay];
         
@@ -969,6 +973,9 @@ bool bStartStopRecorder = YES;
 }
 
 -(IBAction)screenShot:(id)sender {
+    
+    isCameraClick = YES;
+
     DebugLog(@"");
     UIButton *btn = sender;
     
@@ -1103,13 +1110,14 @@ bool bStartStopRecorder = YES;
 #pragma mark- ===============================
 #pragma mark- CapturedImageView Delegates
 #pragma mark- ===============================
- 
-
 -(void) onImageClicked:(CapturedImageView *)cImageView{
     DebugLog(@"");
-    [cImageView removeFromSuperview];
+    if(isCameraClick == YES) {
+        [cImageView removeFromSuperview];
+        isCameraClick = NO;
+    }
 }
- 
+
 
 -(void) onNextButtonClicked:(CapturedImageView *)cImageView{
     DebugLog(@"");
@@ -1129,7 +1137,112 @@ bool bStartStopRecorder = YES;
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
 }
  
+-(void) onPlayButtonClicked:(CapturedImageView *)cImageView
+{
+    [self actionPlayVideo];
+    
+}
 
+//================================================================================================================
+#pragma mark- ===============================
+#pragma mark- Play Button Action
+#pragma mark- ===============================
+-(void)screenVideoShotStop {
+    DebugLog(@"");
+    [cameraButton setHidden:YES];
+    [videoButton setHidden:YES];
+    [garbageCan setHidden:YES];
+    [curlButton setHidden:YES];
+    
+    NSString *imageStr = [NSString stringWithFormat:@"%@",screenCapture.exportUrl];
+    
+    ccImageView = [[CapturedImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768) ImageName:imageStr];
+    ccImageView.delegate = self;
+    
+    [self.mainView addSubview:ccImageView];
+    [self.mainView bringSubviewToFront:ccImageView];
+    
+    //Create and add the Activity Indicator to splashView
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityIndicator.alpha = 1.0;
+    activityIndicator.color = [UIColor blackColor];
+    activityIndicator.center = self.view.center;
+    activityIndicator.hidesWhenStopped = NO;
+    [self.mainView addSubview:activityIndicator];
+    [activityIndicator startAnimating];
+    
+}
+
+- (void) recordingFinished:(NSString*)outputPathOrNil
+{    
+    NSURL *url = screenCapture.exportUrl;
+    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:url];
+    UIImage *thumbnail = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
+    //Player autoplays audio on init
+    [player stop];
+    
+    ccImageView.imageView.image = thumbnail;
+    [activityIndicator removeFromSuperview];
+}
+
+-(void)actionPlayVideo {
+    NSString *editImgName = [NSString stringWithFormat:@"%@",screenCapture.exportUrl];
+    if([[[editImgName lastPathComponent] pathExtension]isEqualToString:@"mov"]) {
+        [self playVideoWithURL:screenCapture.exportUrl];
+    }
+}
+
+-(void) playVideoWithURL:(NSURL *) videoUrl{
+    DebugLog(@"");
+    
+    moviePlayer = [[MPMoviePlayerController alloc]
+                   initWithContentURL:videoUrl];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(moviePlayBackDidFinish:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:moviePlayer];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didExitFullScreen:)
+                                                 name:MPMoviePlayerDidExitFullscreenNotification
+                                               object:nil];
+    
+    moviePlayer.controlStyle = MPMovieControlStyleDefault;
+    moviePlayer.shouldAutoplay = YES;
+    [self.view addSubview:moviePlayer.view];
+    [moviePlayer setFullscreen:YES animated:YES];
+    
+    double delayInSeconds = 0.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        
+    });
+    
+    
+}
+
+- (void) moviePlayBackDidFinish:(NSNotification*)notification {
+    DebugLog(@"");
+    
+    moviePlayer = [notification object];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification
+                                                  object:moviePlayer];
+    
+    if ([moviePlayer    respondsToSelector:@selector(setFullscreen:animated:)])
+    {
+        
+        [moviePlayer.view removeFromSuperview];
+    }
+    
+}
+
+-(void)didExitFullScreen:(id)sender{
+    DebugLog(@"");
+    
+}
 
 
 @end

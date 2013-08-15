@@ -13,6 +13,7 @@
 #import "FHSTwitterEngine.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <Pinterest/Pinterest.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface ParentScreenViewController : UIViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate>
 {

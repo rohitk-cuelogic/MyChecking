@@ -13,6 +13,8 @@
 -(void) onImageClicked:(CapturedImageView *)cImageView;
 -(void) onNextButtonClicked:(CapturedImageView *)cImageView;
 -(void) onHomeButtonClicked:(CapturedImageView *)cImageView;
+-(void) onPlayButtonClicked:(CapturedImageView *)cImageView;
+
 @end
 
 @interface CapturedImageView : UIView
@@ -20,7 +22,11 @@
     UIImageView *imageView ;
     UIButton *btnHome;
     UIButton *btnNext;
+    UIButton *btnPlay;
+
 }
 @property(nonatomic,strong) id<CapturedImageViewDelegate>delegate;
+@property (nonatomic,strong) UIImageView *imageView;
+
 -(id) initWithFrame:(CGRect )rect ImageName:(NSString *) imgName;
 @end

@@ -15,8 +15,9 @@
 #import "CapturedImageView.h"
 #import "XBCurlView.h"
 #import "ScreenCaptureView.h"
+#import <MediaPlayer/MediaPlayer.h>
 
-@interface FallSceneViewController : KTViewController<UITouchVerificationViewDelegate,FallSceneShapeToDrawProtocol,FruitViewProtocol,AVAudioRecorderDelegate,CapturedImageViewDelegate> {
+@interface FallSceneViewController : KTViewController<UITouchVerificationViewDelegate,FallSceneShapeToDrawProtocol,FruitViewProtocol,AVAudioRecorderDelegate,CapturedImageViewDelegate,ScreenCaptureViewDelegate> {
     //    IBOutlet UITouchVerificationView * touchView;
     FallScene *fallSceneObject;
     CGPoint touchLocation;
@@ -30,6 +31,9 @@
     BOOL isRecording;
     
     IBOutlet ScreenCaptureView *screenCapture;
+    MPMoviePlayerController *moviePlayer;
+    CapturedImageView *ccImageView;
+    UIActivityIndicatorView *activityIndicator;
     
 }
 @property(nonatomic,strong) ScreenCaptureView *screenCapture;
@@ -53,6 +57,7 @@
 @property (nonatomic,strong) IntroScreenViewController *introView;
 @property (nonatomic, retain) XBCurlView *curlView;
 @property (nonatomic, retain) IBOutlet UIButton *backButton;
+@property (nonatomic)  BOOL isCameraClick;
 
 -(IBAction)screenShot:(id)sender;
 -(IBAction)onBackButtonClicked:(id)sender;

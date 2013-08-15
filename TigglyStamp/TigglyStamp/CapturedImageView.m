@@ -8,9 +8,11 @@
 
 #import "CapturedImageView.h"
 #import "TConstant.h"
+#import "TigglyStampUtils.h"
 
 @implementation CapturedImageView
 @synthesize delegate;
+@synthesize imageView;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -29,15 +31,34 @@
         [self setUserInteractionEnabled:YES];
         
         [self setBackgroundColor:[UIColor whiteColor]];
-        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imgName]]];
-        UIGraphicsBeginImageContext(CGSizeMake(800, 600));
-        [image drawInRect:CGRectMake(0, 0, 800, 600)];
-        UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        imageView = [[UIImageView alloc] initWithImage:thumbnailImage];
-        imageView.frame = CGRectMake(100, 80, imageView.frame.size.width, imageView.frame.size.height);
-        [self addSubview:imageView];
+        
+        if([[[imgName lastPathComponent]pathExtension] isEqualToString:@"mov"]) {
+            NSString *strFile = [imgName lastPathComponent];
+            UIImage *thumb = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:strFile];
+            imageView = [[UIImageView alloc] initWithImage:thumb];
+            imageView.frame = CGRectMake(100, 80,800,600);
+            [self addSubview:imageView];
+            
+            btnPlay = [UIButton buttonWithType:UIButtonTypeCustom];
+            [btnPlay setBackgroundImage:[UIImage imageNamed:@"play_btn.png"] forState:UIControlStateNormal];
+            [btnPlay setBackgroundImage:[UIImage imageNamed:@"play_btn.png"] forState:UIControlStateSelected];
+            [btnPlay addTarget:self action:@selector(btnPlayClicked)forControlEvents:UIControlEventTouchUpInside];
+            btnPlay.frame = CGRectMake(imageView.frame.size.width/2 - 25, imageView.frame.size.height/2 - 25,100, 100);
+            btnPlay.center = imageView.center;
+            [self addSubview:btnPlay];
+            
+        }else{
+        
+            NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imgName]]];
+            UIGraphicsBeginImageContext(CGSizeMake(800, 600));
+            [image drawInRect:CGRectMake(0, 0, 800, 600)];
+            UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            imageView = [[UIImageView alloc] initWithImage:thumbnailImage];
+            imageView.frame = CGRectMake(100, 80, imageView.frame.size.width, imageView.frame.size.height);
+            [self addSubview:imageView];
+        }
         
         //adding home button and next scene button
         
@@ -85,6 +106,12 @@
     DebugLog(@"");
     //call delegate
     [delegate onHomeButtonClicked:self];
+}
+
+-(void)btnPlayClicked{
+    DebugLog(@"");
+    //call delegate
+    [delegate onPlayButtonClicked:self];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

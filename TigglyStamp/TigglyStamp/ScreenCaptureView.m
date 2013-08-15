@@ -10,6 +10,7 @@
 @implementation ScreenCaptureView
 
 @synthesize currentScreen, frameRate, delegate;
+@synthesize exportUrl;
 
 - (void) initialize {
     DebugLog(@"");
@@ -83,7 +84,7 @@
     DebugLog(@"Image Name : %@",videoName);
 
     NSString *exportPath = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], videoName];
-    NSURL *exportUrl = [NSURL fileURLWithPath:exportPath];
+    exportUrl = [NSURL fileURLWithPath:exportPath];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:exportPath])
     {
@@ -99,6 +100,8 @@
             case AVAssetExportSessionStatusCompleted:
             {
                 DebugLog(@"Completed video");
+                [self.delegate recordingFinished:exportPath];
+
             }
         }}];
 
@@ -473,6 +476,5 @@
 	}
 	
 }
-
 
 @end

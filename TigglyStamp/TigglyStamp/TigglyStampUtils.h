@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TConstant.h"
 #import <AVFoundation/AVFoundation.h>
-
+#import <MediaPlayer/MediaPlayer.h>
 @interface TigglyStampUtils : NSObject
 
 + (id)sharedInstance;

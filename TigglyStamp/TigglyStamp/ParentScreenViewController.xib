@@ -384,6 +384,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{386, 329}, {164, 26}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -1169,7 +1170,7 @@
 			<string key="box.png">{600, 700}</string>
 			<string key="fb_login.png">{82, 82}</string>
 			<string key="greentick.png">{243, 243}</string>
-			<string key="home-icon.png">{276, 275}</string>
+			<string key="home-icon.png">{200, 199}</string>
 			<string key="logo.png">{1334, 1334}</string>
 			<string key="path_logo.png">{113, 114}</string>
 			<string key="pattern_0_1.png">{270, 267}</string>

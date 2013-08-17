@@ -279,6 +279,7 @@
 		EBF351FD179D2DBD004A1C14 /* camera@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF351FB179D2DBD004A1C14 /* camera@2x~ipad.png */; };
 		EBF351FE179D2DBD004A1C14 /* videocamera@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF351FC179D2DBD004A1C14 /* videocamera@2x~ipad.png */; };
 		EBF42C96178A9480004FECEE /* FruitView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF42C95178A9480004FECEE /* FruitView.m */; };
+		EBF797A317BE0317003C7888 /* camera_click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EBF797A217BE0317003C7888 /* camera_click.mp3 */; };
 		EBFCF29217942329003C82CC /* trashsweep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EBFCF29117942329003C82CC /* trashsweep.mp3 */; };
 /* End PBXBuildFile section */
 
@@ -601,6 +602,7 @@
 		EBF351FC179D2DBD004A1C14 /* videocamera@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocamera@2x~ipad.png"; sourceTree = "<group>"; };
 		EBF42C94178A9480004FECEE /* FruitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FruitView.h; sourceTree = "<group>"; };
 		EBF42C95178A9480004FECEE /* FruitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FruitView.m; sourceTree = "<group>"; };
+		EBF797A217BE0317003C7888 /* camera_click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = camera_click.mp3; sourceTree = "<group>"; };
 		EBFCF29117942329003C82CC /* trashsweep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = trashsweep.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1119,6 +1121,7 @@
 		EBFCF29017942329003C82CC /* tiggly_stamp_audio */ = {
 			isa = PBXGroup;
 			children = (
+				EBF797A217BE0317003C7888 /* camera_click.mp3 */,
 				EBFCF29117942329003C82CC /* trashsweep.mp3 */,
 			);
 			path = tiggly_stamp_audio;
@@ -1391,6 +1394,7 @@
 				C0A4E61517BA6490008EB0C9 /* Fall_Btn.png in Resources */,
 				C0A4E61617BA6490008EB0C9 /* Winter_Btn.png in Resources */,
 				C0A4E61817BA6A89008EB0C9 /* fallView@2x~ipad.png in Resources */,
+				EBF797A317BE0317003C7888 /* camera_click.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

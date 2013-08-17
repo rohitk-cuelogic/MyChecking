@@ -80,12 +80,13 @@ int swipeTxtCnt;
         [thumbnail removeFromSuperview];
     }
     
-    [self loadThumbnails];
-    
     swipeTxtArray = [[NSMutableArray alloc] initWithObjects:@"right with 2", @"right with 3", @"left with 2", @"left with 3", @"up with 2", @"up with 3", @"down with 2", @"down with 3", nil];
+
 }
 -(void) viewDidAppear:(BOOL)animated{
-    DebugLog(@"");
+    
+    [self loadThumbnails];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -154,6 +155,7 @@ int swipeTxtCnt;
    
     int xPos = 10;
     for (NSString *file in allFiles) {
+            
         ThumbnailView *thumbnail = [[ThumbnailView alloc] initWithFrame:CGRectMake(xPos,0, RECT_THUMBNAIL_FRAME.size.width, RECT_THUMBNAIL_FRAME.size.height) withThumbnailImagePath:file];
         thumbnail.delegate = self;
         [imgScrollView addSubview:thumbnail];

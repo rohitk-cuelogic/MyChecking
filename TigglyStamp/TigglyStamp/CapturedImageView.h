@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KTViewController.h"
+
 @class CapturedImageView;
 
 @protocol CapturedImageViewDelegate <NSObject>
@@ -27,6 +29,7 @@
 }
 @property(nonatomic,strong) id<CapturedImageViewDelegate>delegate;
 @property (nonatomic,strong) UIImageView *imageView;
+@property (nonatomic,strong) UIButton *btnPlay;
 
 -(id) initWithFrame:(CGRect )rect ImageName:(NSString *) imgName;
 @end

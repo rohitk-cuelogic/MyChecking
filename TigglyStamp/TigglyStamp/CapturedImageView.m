@@ -13,6 +13,7 @@
 @implementation CapturedImageView
 @synthesize delegate;
 @synthesize imageView;
+@synthesize btnPlay;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -45,38 +46,32 @@
             [btnPlay addTarget:self action:@selector(btnPlayClicked)forControlEvents:UIControlEventTouchUpInside];
             btnPlay.frame = CGRectMake(imageView.frame.size.width/2 - 25, imageView.frame.size.height/2 - 25,100, 100);
             btnPlay.center = imageView.center;
+            btnPlay.hidden = YES;
             [self addSubview:btnPlay];
             
+            //adding home button and next scene button
+            btnNext = [UIButton buttonWithType:UIButtonTypeCustom];
+            [btnNext setBackgroundImage:[UIImage imageNamed:@"back_btn@2x~ipad.png"] forState:UIControlStateNormal];
+            [btnNext setBackgroundImage:[UIImage imageNamed:@"back_btn@2x~ipad.png"] forState:UIControlStateSelected];
+            [btnNext addTarget:self action:@selector(btnNextClicked)forControlEvents:UIControlEventTouchUpInside];
+            btnNext.frame = CGRectMake(900, 10, 80, 80);
+           // btnNext.transform=CGAffineTransformMakeRotation(M_PI);
+            [self addSubview:btnNext];
+            
+            btnHome = [UIButton buttonWithType:UIButtonTypeCustom];
+            [btnHome setBackgroundImage:[UIImage imageNamed:@"home-icon.png"] forState:UIControlStateNormal];
+            [btnHome setBackgroundImage:[UIImage imageNamed:@"home-icon.png"] forState:UIControlStateSelected];
+            [btnHome addTarget:self action:@selector(btnHomeClicked)forControlEvents:UIControlEventTouchUpInside];
+            btnHome.frame = CGRectMake(05, 05, 75, 75);
+            [self addSubview:btnHome];
+            
         }else{
-        
-            NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
-            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imgName]]];
-            UIGraphicsBeginImageContext(CGSizeMake(800, 600));
-            [image drawInRect:CGRectMake(0, 0, 800, 600)];
-            UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            imageView = [[UIImageView alloc] initWithImage:thumbnailImage];
-            imageView.frame = CGRectMake(100, 80, imageView.frame.size.width, imageView.frame.size.height);
-            [self addSubview:imageView];
+    
+//            [self showFlashEffect:imgName];
+            
+            [self showPhotoPreview:imgName];
+
         }
-        
-        //adding home button and next scene button
-        
-        btnNext = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btnNext setBackgroundImage:[UIImage imageNamed:@"back_btn.png"] forState:UIControlStateNormal];
-        [btnNext setBackgroundImage:[UIImage imageNamed:@"back_btn.png"] forState:UIControlStateSelected];
-        [btnNext addTarget:self action:@selector(btnNextClicked)forControlEvents:UIControlEventTouchUpInside];
-        btnNext.frame = CGRectMake(900, 10, 100, 60);
-        btnNext.transform=CGAffineTransformMakeRotation(M_PI);
-        [self addSubview:btnNext];
-        
-        btnHome = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btnHome setBackgroundImage:[UIImage imageNamed:@"home-icon.png"] forState:UIControlStateNormal];
-        [btnHome setBackgroundImage:[UIImage imageNamed:@"home-icon.png"] forState:UIControlStateSelected];
-        [btnHome addTarget:self action:@selector(btnHomeClicked)forControlEvents:UIControlEventTouchUpInside];
-        btnHome.frame = CGRectMake(05, 05, 75, 75);
-        [self addSubview:btnHome];
-        
     }
     
     return self;
@@ -113,13 +108,54 @@
     //call delegate
     [delegate onPlayButtonClicked:self];
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+
+
+-(void)showPhotoPreview:(NSString *)imgName {
+    DebugLog(@"");
+    
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imgName]]];
+    UIGraphicsBeginImageContext(CGSizeMake(800, 600));
+    [image drawInRect:CGRectMake(0, 0, 800, 600)];
+    UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    imageView = [[UIImageView alloc] initWithImage:thumbnailImage];
+    imageView.frame = CGRectMake(0, 0, 700, 430);
+    imageView.center = CGPointMake(512, 1000);
+    [self addSubview:imageView];
+    
+    imageView.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
+    
+    imageView.layer.shadowColor = [UIColor grayColor].CGColor;
+    imageView.layer.shadowOffset = CGSizeMake(-3.0, 3.0);
+    imageView.layer.shadowOpacity = 1.0;
+    imageView.layer.shadowRadius = 3.0;
+    
+    [UIView animateWithDuration:1.2
+                     animations:^{
+                         imageView.center = CGPointMake(512, 384);
+                     }
+                     completion:^(BOOL finished){
+                     }];
+
+    //adding home button and next scene button
+    btnNext = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnNext setBackgroundImage:[UIImage imageNamed:@"back_btn@2x~ipad.png"] forState:UIControlStateNormal];
+    [btnNext setBackgroundImage:[UIImage imageNamed:@"back_btn@2x~ipad.png"] forState:UIControlStateSelected];
+    [btnNext addTarget:self action:@selector(btnNextClicked)forControlEvents:UIControlEventTouchUpInside];
+    btnNext.frame = CGRectMake(900, 10, 80, 80);
+    //btnNext.transform=CGAffineTransformMakeRotation(M_PI);
+    [self addSubview:btnNext];
+    
+    btnHome = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnHome setBackgroundImage:[UIImage imageNamed:@"home-icon.png"] forState:UIControlStateNormal];
+    [btnHome setBackgroundImage:[UIImage imageNamed:@"home-icon.png"] forState:UIControlStateSelected];
+    [btnHome addTarget:self action:@selector(btnHomeClicked)forControlEvents:UIControlEventTouchUpInside];
+    btnHome.frame = CGRectMake(05, 05, 75, 75);
+    [self addSubview:btnHome];
+    
 }
-*/
+
+
 
 @end

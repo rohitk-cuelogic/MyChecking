@@ -121,22 +121,10 @@
 
 #pragma mark- IBAction handling
 -(IBAction)onButtonClicked:(id)sender{
-    DebugLog(@"");
     
     UIButton *btn = sender;
     if ([btn tag] == TAG_HOME_BTN) {
-        
-        CATransition *animation=[CATransition animation];
-        [animation setDelegate:self];
-        [animation setDuration:0.5];
-        //[animation setTimingFunction:UIViewAnimationCurveEaseIn];
-        [animation setType:@"rippleEffect"];
-         
-        [animation setFillMode:kCAFillModeRemoved];
-        animation.endProgress=0.50;
-        [animation setRemovedOnCompletion:NO];
-        [btn.layer addAnimation:animation forKey:nil];
-        
+            
         [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
         
     }

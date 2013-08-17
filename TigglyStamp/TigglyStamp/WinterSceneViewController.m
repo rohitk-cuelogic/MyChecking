@@ -146,8 +146,7 @@ bool StartStopRecorder = YES;
      winterSceneObject.delegate = self;    
     fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
     increaseSize = 0;
-    UIImage *trashImg= [UIImage imageNamed:[NSString stringWithFormat:@"trashcan_icon.png"]];
-    garbageCan.frame = CGRectMake(1024 - trashImg.size.width, 748 - trashImg.size.height, trashImg.size.width, trashImg.size.height);
+    garbageCan.frame = CGRectMake(924,644,100,100);
     [self.mainView bringSubviewToFront:garbageCan];
     //new drwan image
     multiTouchForFruitObject = [[NSMutableArray alloc]init];
@@ -779,7 +778,7 @@ bool StartStopRecorder = YES;
             shouldShapeDetected = NO;
             [self buildShape:shape];
         }
-        int64_t delayInSecondsTodetect = 1.0;
+        int64_t delayInSecondsTodetect = 0.8f;
         dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
         dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
             shouldShapeDetected = YES;
@@ -882,8 +881,6 @@ bool StartStopRecorder = YES;
     if (isWithShape) {
         [touchView touchesMoved:touches withEvent:nil];
     }
-    
-     
 }
 
 //================================================================================================================
@@ -896,7 +893,7 @@ bool StartStopRecorder = YES;
     if(CGRectIntersectsRect(fruit.frame, garbageCan.frame)){
         //called delete Object method
         DebugLog(@"Delete Object");
-        fruit.layer.position = CGPointMake(1024 - garbageCan.frame.size.width/2, 748 - garbageCan.frame.size.height/2);
+        fruit.layer.position = CGPointMake(1024 - garbageCan.frame.size.width/2, 768 - garbageCan.frame.size.height/2);
         DebugLog(@"Frame is %@",NSStringFromCGRect(fruit.frame));
         dispatch_time_t playAudioIn = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
         dispatch_after(playAudioIn, dispatch_get_main_queue(), ^(void){
@@ -1001,14 +998,36 @@ bool StartStopRecorder = YES;
     [videoButton setHidden:NO];
     [garbageCan setHidden:NO];
     [curlButton setHidden:NO];
+
+    [KTViewController playMusic:@"camera_click" withFormat:@"mp3"];
     
-    CapturedImageView *cImageView = [[CapturedImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768) ImageName:imgName];
-    cImageView.delegate = self;
-    
-    [self.mainView addSubview:cImageView];
-    [self.mainView bringSubviewToFront:cImageView];
+    UIView *flashView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+    flashView.backgroundColor = [UIColor whiteColor];
+    flashView.alpha = 0;
+    [self.view addSubview:flashView];
+    [UIView animateWithDuration:0.1
+                     animations:^{
+                         flashView.alpha = 1;
+                     }
+                     completion:^(BOOL finished){
+                         [UIView animateWithDuration:0.2
+                                          animations:^{
+                                              flashView.alpha = 0;
+                                          }
+                                          completion:^(BOOL finished){
+                                              [flashView removeFromSuperview];
+                                              
+                                              CapturedImageView *cImageView = [[CapturedImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768) ImageName:imgName];
+                                              cImageView.delegate = self;
+                                              [self.mainView addSubview:cImageView];
+                                              [self.mainView bringSubviewToFront:cImageView];
+                                              
+                                          }];
+                     }];
     
 }
+
+
 //================================================================================================================
 
 -(IBAction)onBackButtonClicked:(id)sender{
@@ -1121,7 +1140,6 @@ bool StartStopRecorder = YES;
 }
 
 -(IBAction)actionBack {
-    DebugLog(@"");
     introView.isShowLogo = NO;
  
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
@@ -1136,12 +1154,20 @@ bool StartStopRecorder = YES;
 //================================================================================================================
 
 -(void) onImageClicked:(CapturedImageView *)cImageView{
+//    if(isCameraClick == YES) {
+//        [cImageView removeFromSuperview];
+//        isCameraClick = NO;
+//    }
+    
     DebugLog(@"");
-
-    if(isCameraClick == YES) {
-        [cImageView removeFromSuperview];
-        isCameraClick = NO;
+    [cImageView removeFromSuperview];
+    for(FruitView *fruit in fruitObjectArray){
+        [fruit removeFromSuperview];
     }
+    fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
+    [cameraButton setHidden:YES];
+    [videoButton setHidden:YES];
+    [RigthTickButton setHidden:YES];
     
 }
 //================================================================================================================
@@ -1160,7 +1186,6 @@ bool StartStopRecorder = YES;
 //================================================================================================================
 
 -(void) onHomeButtonClicked:(CapturedImageView *)cImageView{
-    DebugLog(@"");
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
     [cImageView removeFromSuperview];
 }
@@ -1204,14 +1229,12 @@ bool StartStopRecorder = YES;
 - (void) recordingFinished:(NSString*)outputPathOrNil{
     DebugLog(@"");
     NSURL *url = screenCapture.exportUrl;
-    //mplayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
-   // UIImage *thumbnail = [mplayer thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
-    //Player autoplays audio on init
-   // [mplayer stop];
     
     UIImage *thumbnail = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[url lastPathComponent]];
     ccImageView.imageView.image = thumbnail;
     [activityIndicator removeFromSuperview];
+    ccImageView.btnPlay.hidden = NO;
+
 }
 
 -(void)actionPlayVideo {

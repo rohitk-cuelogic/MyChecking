@@ -93,6 +93,18 @@ int swipeTextCnt;
 -(void)viewDidAppear:(BOOL)animated {
     DebugLog(@"");
      [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    
+    CATransition *animation=[CATransition animation];
+    [animation setDelegate:self];
+    [animation setDuration:1.90];
+    [animation setType:@"rippleEffect"];
+    
+    [animation setFillMode:kCAFillModeBoth];
+    animation.endProgress=0.70;
+    animation.repeatCount = HUGE_VAL;
+    animation.repeatDuration = HUGE_VAL;
+    [animation setRemovedOnCompletion:NO];
+    [homeBtn.layer addAnimation:animation forKey:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

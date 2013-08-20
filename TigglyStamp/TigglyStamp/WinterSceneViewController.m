@@ -65,7 +65,6 @@ bool StartStopRecorder = YES;
 {
     [super viewDidAppear:YES];
      DebugLog(@"");
-
 }
 //================================================================================================================
 - (void)viewDidLoad
@@ -201,6 +200,17 @@ bool StartStopRecorder = YES;
 //    recorder.delegate = self;
 //    recorder.meteringEnabled = YES;
 //    [recorder prepareToRecord];
+    
+//    CABasicAnimation *theAnimation;
+//    
+//    theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+//    theAnimation.duration=1.0;
+//    theAnimation.repeatCount=HUGE_VALF;
+//    theAnimation.autoreverses=YES;
+//    theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
+//    theAnimation.toValue=[NSNumber numberWithFloat:0.2];
+//    [RigthTickButton.layer addAnimation:theAnimation forKey:@"animateLayer"]; //animateOpacity
+
     
 }
 - (void)clearScreen:(UITapGestureRecognizer *)sender {
@@ -720,7 +730,17 @@ bool StartStopRecorder = YES;
 -(void)needToShowRightTickButton
 {
     if ([fruitObjectArray count] > 0 && [videoButton isHidden]) {
-        RigthTickButton.hidden = NO;
+        [RigthTickButton setHidden:NO];
+        CATransition *animation=[CATransition animation];
+        [animation setDuration:1.90];
+        [animation setType:@"rippleEffect"];
+        
+        [animation setFillMode:kCAFillModeBoth];
+        animation.endProgress=0.70;
+        animation.repeatCount = HUGE_VAL;
+        animation.repeatDuration = HUGE_VAL;
+        [animation setRemovedOnCompletion:NO];
+        [RigthTickButton.layer addAnimation:animation forKey:nil];
     }
 }
 //================================================================================================================
@@ -742,7 +762,7 @@ bool StartStopRecorder = YES;
 -(void)touchVerificationViewTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     
     DebugLog(@"TouchBegan");
-    RigthTickButton.hidden = YES;
+    [RigthTickButton setHidden:YES];
     [showSeasonsTimer invalidate];
     
     if (event != nil) {
@@ -841,7 +861,7 @@ bool StartStopRecorder = YES;
 -(void) onFruitView:(FruitView *)fruit touchesBegan:(NSSet *)touches {
     DebugLog(@"");
     DebugLog(@"FruitTouchBegan");
-    RigthTickButton.hidden = YES;
+    [RigthTickButton setHidden:YES];
     [showSeasonsTimer invalidate];
 //    [multiTouchForFruitObject addObject:touches];
     for (UITouch * touch in touches) {
@@ -1107,19 +1127,29 @@ bool StartStopRecorder = YES;
     DebugLog(@"");
     if(isRecording) {
         isRecording = NO;
-        [videoButton setBackgroundImage:[UIImage imageNamed:@"recording"] forState:UIControlStateNormal];
+        [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted@2x~ipad"] forState:UIControlStateNormal];
         cameraButton.hidden = NO;
         [screenCapture stopRecording];
         [self screenVideoShotStop];
+        [videoButton.layer removeAllAnimations];
 
         
     }else{
         isRecording = YES;
-        [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted"] forState:UIControlStateNormal];
+        [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted@2x~ipad"] forState:UIControlStateNormal];
         cameraButton.hidden = YES;
         screenCapture.delegate = self;
         [screenCapture startRecording];
         [screenCapture setNeedsDisplay];
+        
+        CABasicAnimation *theAnimation;
+        theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+        theAnimation.duration=1.0;
+        theAnimation.repeatCount=HUGE_VALF;
+        theAnimation.autoreverses=YES;
+        theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
+        theAnimation.toValue=[NSNumber numberWithFloat:0.1];
+        [videoButton.layer addAnimation:theAnimation forKey:@"animateLayer"]; //animateOpacity
         
     }
 }

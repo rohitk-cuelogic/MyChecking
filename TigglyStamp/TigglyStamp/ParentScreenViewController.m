@@ -46,9 +46,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view from its nib.
-    
-    
+
     [subscribeBTN setTag:TAG_SUBSCRIBE_BTN];
     [settingsBTN setTag:TAG_SETTINGS_BTN];
     [faceBookBTN setTag:TAG_FACEBOOK_BTN];
@@ -75,6 +75,36 @@
     skipBTN.layer.cornerRadius = 10.0f;
     skipBTN.layer.masksToBounds = YES;
     
+    
+    //////////////////////////////
+//    CABasicAnimation *theAnimation;
+//    
+//    theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+//    theAnimation.duration=1.0;
+//    theAnimation.repeatCount=HUGE_VALF;
+//    theAnimation.autoreverses=YES;
+//    theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
+//    theAnimation.toValue=[NSNumber numberWithFloat:0.0];
+//    [homeBTN.layer addAnimation:theAnimation forKey:@"animateLayer"]; //animateOpacity
+    
+
+
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    CATransition *animation=[CATransition animation];
+    [animation setDelegate:self];
+    [animation setDuration:1.90];
+    [animation setType:@"rippleEffect"];
+    
+    [animation setFillMode:kCAFillModeBoth];
+    animation.endProgress=0.70;
+    animation.repeatCount = HUGE_VAL;
+    animation.repeatDuration = HUGE_VAL;
+    [animation setRemovedOnCompletion:NO];
+    [self.homeBTN.layer addAnimation:animation forKey:nil];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -125,7 +155,19 @@
     UIButton *btn = sender;
     if ([btn tag] == TAG_HOME_BTN) {
             
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+       // [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+        
+        
+//        CATransition *animation=[CATransition animation];
+//        [animation setDelegate:self];
+//        [animation setDuration:1.50];
+//        //[animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut] ];
+//        [animation setType:@"rippleEffect"];
+//        
+//        [animation setFillMode:kCAFillModeBoth];
+//        animation.endProgress=0.99;
+//        [animation setRemovedOnCompletion:NO];
+//        [self.homeBTN.layer addAnimation:animation forKey:nil];
         
     }
     if ([btn tag] == TAG_SUBSCRIBE_BTN) {

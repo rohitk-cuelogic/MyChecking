@@ -204,6 +204,15 @@ bool bStartStopRecorder = YES;
 //    [recorder prepareToRecord];
     
 
+    CABasicAnimation *theAnimation;
+    
+    theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+    theAnimation.duration=1.0;
+    theAnimation.repeatCount=HUGE_VALF;
+    theAnimation.autoreverses=YES;
+    theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
+    theAnimation.toValue=[NSNumber numberWithFloat:0.2];
+    [RigthTickButton.layer addAnimation:theAnimation forKey:@"animateLayer"]; //animateOpacity
 }
 
 - (void)clearScreen:(UITapGestureRecognizer *)sender {
@@ -963,6 +972,8 @@ bool bStartStopRecorder = YES;
         [screenCapture stopRecording];
         [self screenVideoShotStop];
         
+        [videoButton.layer removeAllAnimations];
+        
     }else{
         isRecording = YES;
         [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted"] forState:UIControlStateNormal];
@@ -970,6 +981,15 @@ bool bStartStopRecorder = YES;
         screenCapture.delegate = self;
         [screenCapture startRecording];
         [screenCapture setNeedsDisplay];
+        
+        CABasicAnimation *theAnimation;
+        theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+        theAnimation.duration=1.0;
+        theAnimation.repeatCount=HUGE_VALF;
+        theAnimation.autoreverses=YES;
+        theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
+        theAnimation.toValue=[NSNumber numberWithFloat:0.1];
+        [videoButton.layer addAnimation:theAnimation forKey:@"animateLayer"]; //animateOpacity
         
     }
     

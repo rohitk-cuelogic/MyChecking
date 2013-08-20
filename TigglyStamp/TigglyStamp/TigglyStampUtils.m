@@ -13,6 +13,7 @@
 
 #define KEY_BOOLEAN_ISWITH_SHAPE @"withShape"
 #define KEY_WRITE_KEYS_INCSV @"keyincsv"
+#define KEY_IS_SEND_MAIL @"keyissendmail"
 
 @implementation TigglyStampUtils
 static TigglyStampUtils *sharedInstance = nil;
@@ -384,6 +385,18 @@ static TigglyStampUtils *sharedInstance = nil;
     return isWithShape;
 }
 
+-(void)setSendMailOn:(BOOL) isOn{
+    DebugLog(@"setsendMailOn :%d",isOn);
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:isOn forKey:KEY_IS_SEND_MAIL];
+    
+}
+-(BOOL)getsendMailOn{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    BOOL isWithShape = [userDefaults boolForKey:KEY_IS_SEND_MAIL];
+    DebugLog(@"getsendMailOn :%d",isWithShape);
+    return isWithShape;
+}
 
 - (void) saveCSVFileData {
     DebugLog(@"");

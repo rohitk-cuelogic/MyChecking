@@ -15,7 +15,7 @@
 @implementation SettingsViewController
 
 
-@synthesize swtchArt,swtchHaveShapes,swtchLimitGallery,swtchMusic,swtchNoShapes,swtdebugMode,btnClearData;
+@synthesize swtchArt,swtchHaveShapes,swtchLimitGallery,swtchMusic,swtchNoShapes,swtdebugMode,btnClearData,swtSendMail;
 @synthesize arrLanguage;
 @synthesize lblLunguage;
 @synthesize backgroundView;
@@ -76,6 +76,12 @@
         [swtdebugMode setOn:NO];
         btnClearData.hidden = YES;
     }
+    if ([[TigglyStampUtils sharedInstance]getSendMailOn] == YES) {
+        [swtSendMail setOn:YES];
+    }else{
+        [swtSendMail setOn:NO];
+    }
+    
 }
 
 #pragma mark - Button Action 
@@ -146,6 +152,14 @@
                 btnClearData.hidden=YES;
             }
             break;
+        case TAG_SEND_MAIL:
+            if ([swtSendMail isOn] == YES) {
+                [[TigglyStampUtils sharedInstance]setSendMailOn:YES];
+            }else{
+                [[TigglyStampUtils sharedInstance]setSendMailOn:NO];
+            }
+            break;
+            
             
 
         default:

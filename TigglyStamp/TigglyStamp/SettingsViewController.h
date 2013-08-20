@@ -19,6 +19,7 @@
 #define TAG_SWITCH_LIMIT_GALLERY 5
 #define TAG_BUTTON_CLOSE 6
 #define TAG_SWITCH_DEBUG_MODE 9
+#define TAG_SEND_MAIL 10
 
 @interface SettingsViewController : UIViewController<UIPopoverControllerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
@@ -48,6 +49,7 @@
 
 @property (nonatomic, strong) IBOutlet UIButton *btnClearData;
 @property (nonatomic, strong) IBOutlet UISwitch *swtdebugMode;
+@property (nonatomic, strong) IBOutlet UISwitch *swtSendMail;
 
 -(IBAction)actionSwitchValueChanged:(id)sender;
 -(IBAction)onButtonClicked:(id)sender;

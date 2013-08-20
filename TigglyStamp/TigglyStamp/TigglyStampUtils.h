@@ -36,4 +36,6 @@
 -(void)appendKeyDatatoString:(NSString *)str;
 - (BOOL) isMailSupported;
 -(NSString *)getCsvKeys;
+-(BOOL)getSendMailOn;
+-(void)setSendMailOn:(BOOL) isOn;
 @end

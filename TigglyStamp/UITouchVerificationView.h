@@ -40,6 +40,9 @@
     NSMutableArray *detectedPoints;
     BOOL isContaintSelfPoint;
     
+    UIView *testView;
+    NSMutableArray *allTestViews;
+    
 }
 @property (nonatomic,strong) NSMutableArray * touchCache;
 @property (nonatomic, unsafe_unretained)BOOL renderShapesToSelf, captureTouchesBegin, captureTouchesMoved, captureTouchesEnded, stampShapes, fadeShapes, writeMode, activated;

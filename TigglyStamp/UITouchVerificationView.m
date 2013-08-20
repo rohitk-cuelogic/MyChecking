@@ -142,6 +142,7 @@ int previousTouchCount = 0;
     
     allTouchPoints = [[NSMutableArray alloc]initWithCapacity:1];
     distanceArr = [[NSMutableArray alloc]initWithCapacity:1];
+    allTestViews = [[NSMutableArray alloc] initWithCapacity:1];
 }
 
 //=====================================================================================================================================//
@@ -481,7 +482,7 @@ int previousTouchCount = 0;
         [key appendFormat:@"%@ ", i];
     }
     
-    DebugLog(@"Final key is :%@",key);
+    NSLog(@"Final key is :%@",key);
     
     //Check the key in all plist
     for (UITouchShapeRecognizer *UIT in shapeDataCache) {
@@ -489,14 +490,17 @@ int previousTouchCount = 0;
         //if the key is present in any of the plist ==> success
         if ([recordedShapes objectForKey:key]) {
             isKeyPresent = YES;
-            DebugLog(@"Shape Detected With Original Key:  %@",UIT.label);
+            NSLog(@"Shape Detected With Original Key:  %@",UIT.label);
             DebugLog(@"Found %@ Shape: %@ Key: %@", UIT.label,[recordedShapes valueForKey:key], key);
             detectedPoints = [NSArray arrayWithArray:allTouchPoints];
             [distanceArr removeAllObjects];
             [allTouchPoints removeAllObjects];
             if (delegate && [delegate respondsToSelector:@selector(shapeDetected: inView:)]) {
+                NSLog(@"Came in delegate");
                 [delegate shapeDetected:UIT inView:self];
-                            }
+            }else{
+                NSLog(@"Didnt go in delegate");
+            }
             isKeyPresent = YES;
             return;
         }else{
@@ -533,14 +537,16 @@ int previousTouchCount = 0;
                         for (UITouchShapeRecognizer *UIT in shapeDataCache) {
                             recordedShapes = UIT.shapeData;
                             if ([recordedShapes objectForKey:tempKey]) {
-                                DebugLog(@"Shape Detected with Modified Key :  %@",UIT.label);
+                                NSLog(@"Shape Detected with Modified Key :  %@",UIT.label);
                                 DebugLog(@"Found %@ Shape: %@ Key: %@", UIT.label,[recordedShapes valueForKey:key], key);
                                 detectedPoints = [NSArray arrayWithArray:allTouchPoints];
                                 [distanceArr removeAllObjects];
                                 [allTouchPoints removeAllObjects];
                                 if (delegate && [delegate respondsToSelector:@selector(shapeDetected: inView:)]) {
-                                    [delegate shapeDetected:UIT inView:self];
-                                     
+                                    NSLog(@"Came in delegate");
+                                    [delegate shapeDetected:UIT inView:self];                                     
+                                }else{
+                                    NSLog(@"Didnt go in delegate");
                                 }
                                 return;
                             }
@@ -820,243 +826,148 @@ int previousTouchCount = 0;
 #pragma mark Touches Handlers
 #pragma mark======================
 
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    DebugLog(@"");
+
+        for (UITouch *touch  in touches) {
+            if(allTouchPoints.count < 3)
+               [allTouchPoints addObject:touch];
+        }
+
+    NSLog(@"touchesBegan : AllTouchpoints : %d",allTouchPoints.count);
+}
+
+//======================================================================================================================//
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+
+    for (UITouch *touch  in touches) {
+        if(allTouchPoints.count < 3)
+            [allTouchPoints addObject:touch];
+    }
+
+    NSLog(@"touchesMoved : AllTouchpoints : %d",allTouchPoints.count);
+}
+
+
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    isContaintSelfPoint = NO;
+
+    for(UITouch *touch in allTouchPoints) {
+        CGPoint pt  = [touch locationInView:self];
+        testView= [[UIView alloc] initWithFrame:CGRectMake(pt.x, pt.y, 20, 20)];
+        testView.backgroundColor = [UIColor blackColor];
+        [self addSubview:testView];
+        [allTestViews addObject:testView];
+
+    }
+    double delayInSeconds = 1.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        for(UIView *vw in allTestViews) {
+            [vw removeFromSuperview];
+        }
+        [allTestViews removeAllObjects];
+    });
+
+    NSLog(@"touchesEnded : AllTouchpoints : %d " ,allTouchPoints.count);
+    [self performCalculations];
+
+}
+
+
+
+//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+//    DebugLog(@"");
+//
+//    if(delegate && [delegate respondsToSelector:@selector(touchVerificationViewTouchesBegan:withEvent:)]) {
+//        [self.delegate touchVerificationViewTouchesBegan:touches withEvent:event];
+//    }
+//    
+//    if (!isWithShape) {
+//        return;
+//    }
+//    
+//    DebugLog(@"Total Touches : %d",touches.count);
+//    for (UITouch *touch  in touches) {
+//        [allTouchPoints addObject:touch];
+//        if (event != NULL) {
+//            isContaintSelfPoint = YES;
+//        }
+//    }
+//
+//    DebugLog(@"AllTouchPoints Count : %d",allTouchPoints.count);
+//    if(allTouchPoints.count == 2 || allTouchPoints.count == 3) {
+//
+//        if (isContaintSelfPoint) {
+//            [self performCalculations];
+//        }
+//        
+//    }else{
+//        if (allTouchPoints.count > 3) {
+//            [allTouchPoints removeAllObjects];
+//        }
+//        
+//    }
+//    
 //#ifdef IS_RUN_WITHOUT_SHAPE_FOR_TESTING
 //    for (UITouchShapeRecognizer *UIT in shapeDataCache) {
 //        if (delegate && [delegate respondsToSelector:@selector(shapeDetected: inView:)]) {
 //            [delegate shapeDetected:UIT inView:self];
-//            activated = YES;
 //        }
-//        
 //    }
 //#endif
-    if(delegate && [delegate respondsToSelector:@selector(touchVerificationViewTouchesBegan:withEvent:)]) {
-        [self.delegate touchVerificationViewTouchesBegan:touches withEvent:event];
-    }
-    
-    if (!isWithShape) {
-        return;
-    }
-    
-    DebugLog(@"Total Touches : %d",touches.count);
-    for (UITouch *touch  in touches) {
-        [allTouchPoints addObject:touch];
-        if (event != NULL) {
-            isContaintSelfPoint = YES;
-        }
-    }
-//    //newly added
+//    
+//}
+//
+//-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+//    DebugLog(@"");
+//    if(delegate && [delegate respondsToSelector:@selector(touchVerificationViewTouchesBegan:withEvent:)]) {
+//        [self.delegate touchVerificationViewTouchesMoved:touches withEvent:event];
+//    }
 //    for (UITouch *touch  in touches) {
-//        
-//        
-//        for (UITouchGroup *group in touchGroups) {
-//            if ([group.groupCache count] < 3 && ![UITouchGroup touchBelongsToGroup:touch]) {
-//                ////DebugLog(@"TouchGroup %i Count %i",group.groupTag, [group.groupCache count]);
-//                [group addTouch:touch];
-//            }
+//        [allTouchPoints addObject:touch];
+//    }
+//    
+//    if (!isWithShape) {
+//        return;
+//    }
+//    DebugLog(@"AllTouchPoints Count : %d",allTouchPoints.count);
+//    if(allTouchPoints.count == 2 || allTouchPoints.count == 3) {
+//        if (isContaintSelfPoint) {
+//            [self performCalculations];
+//        }
+//    }else{
+//        if (allTouchPoints.count > 3) {
+//            [allTouchPoints removeAllObjects];
 //        }
 //    }
-    //
-    
-    DebugLog(@"AllTouchPoints Count : %d",allTouchPoints.count);
-    if(allTouchPoints.count == 2 || allTouchPoints.count == 3) {
-//        for (UITouchGroup *group in touchGroups) {
-//            touchCache = group.groupCache;
-//            cachedGroup = group;
-//            [self performCalculations:cachedGroup];
-//            break;
-//        }
-        
-        if (isContaintSelfPoint) {
-            [self performCalculations];
-        }
-        
-    }else{
-        if (allTouchPoints.count > 3) {
-            [allTouchPoints removeAllObjects];
-        }
-        
-    }
-#ifdef IS_RUN_WITHOUT_SHAPE_FOR_TESTING
-    for (UITouchShapeRecognizer *UIT in shapeDataCache) {
-        if (delegate && [delegate respondsToSelector:@selector(shapeDetected: inView:)]) {
-            [delegate shapeDetected:UIT inView:self];
-        }
-    }
-#endif
-    
-    //    if (!self.captureTouchesBegin || ![mode isEqualToString:vVerificationMode3Point]) {
-    //        return;
-    //    }
-    //    //DebugLog(@"method name: %@", NSStringFromSelector(_cmd));
-    //
-    //    for (UITouch *touch  in touches) {
-    //        CGPoint touchLocation = [touch locationInView:self];
-    //        DebugLog(@"touchesBegan touchLocation :%f %f",touchLocation.x,touchLocation.y);
-    //
-    //        for (UITouchGroup *group in touchGroups) {
-    //            //Rohit : this will store max 3 touchs in groupCache THis means only 3+3+3 touches will be store in all elements of UITouchGroup->touchGroupSet and all 9 touches are different
-    //            if ([group.groupCache count] < 3 && ![UITouchGroup touchBelongsToGroup:touch]) {
-    //                DebugLog(@"TouchGroup %i Count %i",group.groupTag, [group.groupCache count]);
-    //
-    //                [group addTouch:touch];
-    //            }
-    //        }
-    //    }
-    //
-    //    for (UITouchGroup *group in touchGroups) {
-    //        touchCache = group.groupCache;
-    //        DebugLog(@"touchCache count :%d",[touchCache count]);
-    //        [self calculateShape:group];
-    //    }
-    //
-    //#ifdef IS_RUN_WITHOUT_SHAPE_FOR_TESTING
-    //    for (UITouchShapeRecognizer *UIT in shapeDataCache) {
-    //        if (delegate && [delegate respondsToSelector:@selector(shapeDetected: inView:)]) {
-    //            [delegate shapeDetected:UIT inView:self];
-    //            activated = YES;
-    //        }
-    //
-    //    }
-    //#endif
-    //
-    
-}
+//
+//}
+//
+//-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+//    DebugLog(@"");
+//    isContaintSelfPoint = NO;
+//    
+//    if (event == nil) {
+//        [allTouchPoints removeAllObjects];
+//        return;
+//    }
+//    if (isWithShape) {
+//        [allTouchPoints removeAllObjects];
+//    }
+//    if(delegate && [delegate respondsToSelector:@selector(touchVerificationViewTouchesEnded:withEvent:)]) {
+//        [self.delegate touchVerificationViewTouchesEnded:touches withEvent:event];
+//    }
+//}
+//
+//
+//-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
+//    DebugLog(@"");
+//    DebugLog(@"Total Touches : %d",touches.count);
+//  
+//}
 
-//=====================================================================================================================================//
-
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    DebugLog(@"");
-    if(delegate && [delegate respondsToSelector:@selector(touchVerificationViewTouchesBegan:withEvent:)]) {
-        [self.delegate touchVerificationViewTouchesMoved:touches withEvent:event];
-    }
-    for (UITouch *touch  in touches) {
-        [allTouchPoints addObject:touch];
-    }
-    
-    if (!isWithShape) {
-        return;
-    }
-    DebugLog(@"AllTouchPoints Count : %d",allTouchPoints.count);
-    if(allTouchPoints.count == 2 || allTouchPoints.count == 3) {
-//        for (UITouchGroup *group in touchGroups) {
-//            touchCache = group.groupCache;
-//            [self performCalculations:group];
-//            break;
-//        }
-        if (isContaintSelfPoint) {
-            [self performCalculations];
-        }
-    }else{
-        if (allTouchPoints.count > 3) {
-            [allTouchPoints removeAllObjects];
-        }
-    }
-    
-    //
-    //    DebugLog(@"Total Touches : %d",touches.count);
-    //    if (!self.captureTouchesMoved || ![mode isEqualToString:vVerificationMode3Point]) {
-    //        return;
-    //    }
-    //    for (UITouchGroup *group in touchGroups) {
-    //        touchCache = group.groupCache;
-    //        //DebugLog(@"TouchGroup %i Count %i",group.groupTag, [group.groupCache count]);
-    //        [self calculateShape:group];
-    //    }
-}
-
-//=====================================================================================================================================//
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    DebugLog(@"");
-    isContaintSelfPoint = NO;
-    
-    if (event == nil) {
-        [allTouchPoints removeAllObjects];
-        return;
-    }
-    if (isWithShape) {
-        [allTouchPoints removeAllObjects];
-    }
-    if(delegate && [delegate respondsToSelector:@selector(touchVerificationViewTouchesEnded:withEvent:)]) {
-        [self.delegate touchVerificationViewTouchesEnded:touches withEvent:event];
-    }
-    
-    
-    ////    captureTouchesEnded is always YES
-    ////    mode is always vVerificationMode3Point
-    //    if (!self.captureTouchesEnded || ![mode isEqualToString:vVerificationMode3Point]) {
-    //        DebugLog(@"stampShapes set to YES");
-    //        self.stampShapes = YES;
-    //        return;
-    //    } else {//self.stampShapes = NO; }
-    //    }
-    //
-    //    //DebugLog(@"method name: %@", NSStringFromSelector(_cmd));
-    //    for (UITouch *touch  in touches) {
-    //        for (UITouchGroup *group in touchGroups) {
-    //            if ([group.groupCache containsObject:touch]) {
-    //                [group.groupCache removeObject:touch];
-    //                if (group.groupCache.count <=1) {
-    //                    if (group.groupShape && !stampShapes) {
-    //
-    //                        [group.groupShape removeFromSuperlayer];
-    //
-    //                        group.groupShape = nil;
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-    //    if ([touches count]== 0) {
-    //        for (UITouchGroup *group in touchGroups) {
-    //            [group.groupCache removeAllObjects];
-    //
-    //        }
-    //    }
-    //    shapeDicionary = [recordedShapes mutableCopy];
-    //    if (writeMode) {
-    //        NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    //        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"starData6.plist"];
-    //        [shapeDicionary writeToFile:filePath atomically:YES];
-    //        DebugLog(@"shapeDicionary  values:%@ \n\n\n count  :%d \n\n\n\n\n ",recordedShapes,[recordedShapes count]);
-    //
-    //    }
-    //
-    //    
-}
-//=====================================================================================================================================//
-
--(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
-    DebugLog(@"");
-    DebugLog(@"Total Touches : %d",touches.count);
-    //    //DebugLog(@"method name: %@", NSStringFromSelector(_cmd));
-    //
-    //    for (UITouch *touch  in touches ) {
-    //        for (UITouchGroup *group in touchGroups) {
-    //            if ([group.groupCache containsObject:touch]) {
-    //                [group.groupCache removeObject:touch];
-    //                if (group.groupCache.count <=1) {
-    //                    if (group.groupShape && !stampShapes) {
-    //                        
-    //                        [group.groupShape removeFromSuperlayer];
-    //                        
-    //                        group.groupShape = nil;
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-    //    if ([touches count]== 0) {
-    //        for (UITouchGroup *group in touchGroups) {
-    //            [group.groupCache removeAllObjects];
-    //            
-    //        }
-    //    }
-    //    
-    
-}
-//=====================================================================================================================================//
 
 @end

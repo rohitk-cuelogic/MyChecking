@@ -282,6 +282,7 @@ bool bStartStopRecorder = YES;
 -(void)shapeDetected:(UITouchShapeRecognizer *)UIT inView:(UITouchVerificationView*)view{
     DebugLog(@"");
     if(!bShouldShapeDetected){
+        NSLog(@"I got the shape but i am returning");
         return;
     }
     shapeToDraw = nil;
@@ -296,9 +297,12 @@ bool bStartStopRecorder = YES;
     }
     if(bShouldShapeDetected){
         bShouldShapeDetected = NO;
+        NSLog(@"I got the shape i am displaying");
         [self buildShape:UIT.label];
+    }else{
+        NSLog(@"I got the shape but dont wanna display");
     }
-    int64_t delayInSecondsTodetect = 1.0f;
+    int64_t delayInSecondsTodetect = 0.0f;
     dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
     dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
         bShouldShapeDetected = YES;

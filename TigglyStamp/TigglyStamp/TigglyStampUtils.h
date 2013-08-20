@@ -10,7 +10,9 @@
 #import "TConstant.h"
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
-@interface TigglyStampUtils : NSObject
+@interface TigglyStampUtils : NSObject{
+    NSMutableString *strCsvKyes;
+}
 
 + (id)sharedInstance;
 -(UIColor *)getRGBValueForShape:(NSString *)shapeToDraw withBasicShape:(NSString *)basicShape;
@@ -23,4 +25,15 @@
 
 -(UIImage *) getThumbnailImageOfMovieFile:(NSString *) filePath;
 
+
+//for writing csv for keys
+-(BOOL)getDebugModeForWriteKeyInCsvOn;
+    
+-(void)setDebugModeForWriteKeyInCsvOn:(BOOL) isOn;
+
+- (void) saveCSVFileData;
+- (void) deleteCSVFile;
+-(void)appendKeyDatatoString:(NSString *)str;
+- (BOOL) isMailSupported;
+-(NSString *)getCsvKeys;
 @end

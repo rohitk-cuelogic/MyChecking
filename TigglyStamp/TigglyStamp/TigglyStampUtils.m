@@ -8,7 +8,11 @@
 
 #import "TigglyStampUtils.h"
 
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+
 #define KEY_BOOLEAN_ISWITH_SHAPE @"withShape"
+#define KEY_WRITE_KEYS_INCSV @"keyincsv"
 
 @implementation TigglyStampUtils
 static TigglyStampUtils *sharedInstance = nil;
@@ -360,5 +364,76 @@ static TigglyStampUtils *sharedInstance = nil;
     
     return thumb;
 }
+
+#pragma mark -
+#pragma mark =============================================
+#pragma mark Writing csv file for key of shape detection
+#pragma mark =============================================
+
+-(void)setDebugModeForWriteKeyInCsvOn:(BOOL) isOn{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:isOn forKey:KEY_WRITE_KEYS_INCSV];
+    
+}
+-(BOOL)getDebugModeForWriteKeyInCsvOn{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    BOOL isWithShape = [userDefaults boolForKey:KEY_WRITE_KEYS_INCSV];
+    return isWithShape;
+}
+
+
+- (void) saveCSVFileData {
+    DebugLog(@"");
+    
+	NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+					  stringByAppendingPathComponent:@"keycsvfile.csv"];
+	[strCsvKyes writeToFile:path atomically:NO encoding:NSStringEncodingConversionAllowLossy error:NULL];
+
+	DebugLog(@"File saved at path : %@", path);
+}
+
+- (void) deleteCSVFile{
+    DebugLog(@"");
+    NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+					  stringByAppendingPathComponent:@"keycsvfile.csv"];
+    NSError *error = nil;
+    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+    if (error != nil) {
+        DebugLog(@"Error deleting file: %@ withError:%@", path, [error localizedDescription]);
+    }
+    strCsvKyes = NULL;
+}
+
+-(void)appendKeyDatatoString:(NSString *)str {
+    if ([self getDebugModeForWriteKeyInCsvOn]==NO) {
+        return;
+    }
+    if (strCsvKyes==NULL) {
+        strCsvKyes = [[NSMutableString alloc]initWithString:@"D1,D2,D3,AD1,AD2,AD3,SHAPE\n"];
+    }
+    [strCsvKyes appendString:str];
+    DebugLog(@"Final Key Data String is :\n%@",strCsvKyes);
+    [self saveCSVFileData];
+}
+- (BOOL) isMailSupported {
+	Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
+	if (mailClass != nil) {
+		// We must always check whether the current device is configured for sending emails
+		if ([mailClass canSendMail]) {
+			return YES;
+		}
+		else {
+			return NO;
+		}
+	}
+	else {
+		return NO;
+	}
+}
+
+-(NSString *)getCsvKeys {
+    return strCsvKyes;
+}
+
 
 @end

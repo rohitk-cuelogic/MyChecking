@@ -18,6 +18,7 @@
 #define TAG_SWITCH_MISS_SWITCH 4
 #define TAG_SWITCH_LIMIT_GALLERY 5
 #define TAG_BUTTON_CLOSE 6
+#define TAG_SWITCH_DEBUG_MODE 9
 
 @interface SettingsViewController : UIViewController<UIPopoverControllerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
@@ -45,10 +46,13 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbl5;
 @property (nonatomic, strong) IBOutlet UILabel *lbl6;
 
+@property (nonatomic, strong) IBOutlet UIButton *btnClearData;
+@property (nonatomic, strong) IBOutlet UISwitch *swtdebugMode;
 
 -(IBAction)actionSwitchValueChanged:(id)sender;
 -(IBAction)onButtonClicked:(id)sender;
 -(IBAction)languageButtonClicked:(id)sender;
 -(IBAction)buyShapesButtonClicked:(id)sender;
+-(IBAction)actionclearData;
 
 @end

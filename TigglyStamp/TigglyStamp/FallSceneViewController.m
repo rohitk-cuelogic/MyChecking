@@ -1092,6 +1092,7 @@ bool bStartStopRecorder = YES;
     DebugLog(@"");
     UIButton *btn = sender;
     if ([btn tag] == TAG_RIGHT_TICK_BTN) {
+        [self sendEmail];
         if (![btn isHidden]) {
             [RigthTickButton setHidden:YES];
             [cameraButton setHidden:NO];

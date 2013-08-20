@@ -11,6 +11,7 @@
 #import "CALayer+CALayer_Fade.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
+#include "TigglyStampUtils.h"
 
 @implementation UITouchVerificationView
 @synthesize touchCache,shapeRequest, delegate, renderShapesToSelf, captureTouchesBegin, captureTouchesEnded, captureTouchesMoved, stampShapes, fadeShapes, mode, writeMode, activated, recognitionPoint,detectedPoints;
@@ -475,13 +476,19 @@ int previousTouchCount = 0;
     DebugLog(@"");
     BOOL isKeyPresent = NO;
     NSArray *sortedT = [distanceArr sortedArrayUsingSelector:@selector(compare:)];
-    
+    NSMutableString *csvString = [[NSMutableString alloc]init];
+    BOOL isDataWrite = NO;
     //Generate the key from the distances calculated
     NSMutableString *key = [[NSMutableString alloc]init];
     for (NSNumber *i in sortedT) {
         [key appendFormat:@"%@ ", i];
+        [csvString appendFormat:@"%@,", i];
     }
-    
+    if (sortedT.count!=3) {
+        for (int i=0; i<(3-sortedT.count); i++) {
+            [csvString appendFormat:@"-,"];
+        }
+    }
     NSLog(@"Final key is :%@",key);
     
     //Check the key in all plist
@@ -490,6 +497,8 @@ int previousTouchCount = 0;
         //if the key is present in any of the plist ==> success
         if ([recordedShapes objectForKey:key]) {
             isKeyPresent = YES;
+            isDataWrite = YES;
+            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@%@%@\n",csvString,csvString,UIT.label]];
             NSLog(@"Shape Detected With Original Key:  %@",UIT.label);
             DebugLog(@"Found %@ Shape: %@ Key: %@", UIT.label,[recordedShapes valueForKey:key], key);
             detectedPoints = [NSArray arrayWithArray:allTouchPoints];
@@ -538,6 +547,17 @@ int previousTouchCount = 0;
                             recordedShapes = UIT.shapeData;
                             if ([recordedShapes objectForKey:tempKey]) {
                                 NSLog(@"Shape Detected with Modified Key :  %@",UIT.label);
+//                                //Not needed because we checked sortedT.count == 3
+//                                NSMutableString *tempKeyStore = [[NSMutableString alloc]initWithString:tempKey];
+//
+//                                if (sortedT.count!=3) {
+//                                    for (int i=0; i<(3-sortedT.count); i++) {
+//                                        [tempKeyStore appendFormat:@"-,"];
+//                                    }
+//                                }
+                                isDataWrite = YES;
+                                [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@%d,%d,%d,%@\n",csvString,x,y,z,UIT.label]];
+
                                 DebugLog(@"Found %@ Shape: %@ Key: %@", UIT.label,[recordedShapes valueForKey:key], key);
                                 detectedPoints = [NSArray arrayWithArray:allTouchPoints];
                                 [distanceArr removeAllObjects];
@@ -556,7 +576,13 @@ int previousTouchCount = 0;
             }
         }
     }
-    
+    if (isDataWrite==NO) {
+        for (int i=0; i<(3); i++) {
+            [csvString appendFormat:@"-,"];
+        }
+        [csvString appendFormat:@"NoShape"];
+        [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@\n",csvString]];
+    }
     [allTouchPoints removeAllObjects];
     [distanceArr removeAllObjects];
     

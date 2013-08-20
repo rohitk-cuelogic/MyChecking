@@ -15,7 +15,7 @@
 @implementation SettingsViewController
 
 
-@synthesize swtchArt,swtchHaveShapes,swtchLimitGallery,swtchMusic,swtchNoShapes;
+@synthesize swtchArt,swtchHaveShapes,swtchLimitGallery,swtchMusic,swtchNoShapes,swtdebugMode,btnClearData;
 @synthesize arrLanguage;
 @synthesize lblLunguage;
 @synthesize backgroundView;
@@ -69,10 +69,22 @@
     }else{
         [swtchLimitGallery setOn:NO];
     }
-    
+    if ([[TigglyStampUtils sharedInstance]getDebugModeForWriteKeyInCsvOn] == YES) {
+        [swtdebugMode setOn:YES];
+        btnClearData.hidden = NO;
+    }else{
+        [swtdebugMode setOn:NO];
+        btnClearData.hidden = YES;
+    }
 }
 
 #pragma mark - Button Action 
+-(IBAction)actionclearData {
+    DebugLog(@"");
+    [[TigglyStampUtils sharedInstance]deleteCSVFile];
+}
+
+
 -(IBAction)actionSwitchValueChanged:(id)sender {
     DebugLog(@"");
     
@@ -125,6 +137,16 @@
                 [[NSUserDefaults standardUserDefaults] setValue:@"no" forKey:LIMIT_GALLERY];
             }
             break;
+        case TAG_SWITCH_DEBUG_MODE:
+            if ([swtdebugMode isOn] == YES) {
+                [[TigglyStampUtils sharedInstance]setDebugModeForWriteKeyInCsvOn:YES];
+                btnClearData.hidden=NO;
+            }else{
+                [[TigglyStampUtils sharedInstance]setDebugModeForWriteKeyInCsvOn:NO];
+                btnClearData.hidden=YES;
+            }
+            break;
+            
 
         default:
             break;

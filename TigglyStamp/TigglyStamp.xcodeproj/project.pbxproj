@@ -48,6 +48,7 @@
 		63CEE1E117A14DB80060DC42 /* XBPageDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CEE1D017A14DB80060DC42 /* XBPageDragView.m */; };
 		63CEE1E217A14DB80060DC42 /* XBSnappingPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CEE1D217A14DB80060DC42 /* XBSnappingPoint.m */; };
 		63CEE1E417A14EEF0060DC42 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63CEE1E317A14EEF0060DC42 /* OpenGLES.framework */; };
+		B1D4077117C3727600E26814 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D4077017C3727600E26814 /* MessageUI.framework */; };
 		BC31D62D17A8F047008C5361 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = BC31D62C17A8F047008C5361 /* cross.png */; };
 		BC31D62F17A8F556008C5361 /* square_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = BC31D62E17A8F555008C5361 /* square_blue.png */; };
 		C0034ABA17B36C9900C2ED96 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0034AB917B36C9900C2ED96 /* FacebookSDK.framework */; };
@@ -338,6 +339,7 @@
 		63CEE1D117A14DB80060DC42 /* XBSnappingPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XBSnappingPoint.h; path = XBPageCurl/XBSnappingPoint.h; sourceTree = SOURCE_ROOT; };
 		63CEE1D217A14DB80060DC42 /* XBSnappingPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XBSnappingPoint.m; path = XBPageCurl/XBSnappingPoint.m; sourceTree = SOURCE_ROOT; };
 		63CEE1E317A14EEF0060DC42 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		B1D4077017C3727600E26814 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		BC31D62C17A8F047008C5361 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 		BC31D62E17A8F555008C5361 /* square_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_blue.png; sourceTree = "<group>"; };
 		BC31D64317A94CE1008C5361 /* IntroScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroScreenViewController.xib; sourceTree = "<group>"; };
@@ -611,6 +613,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1D4077117C3727600E26814 /* MessageUI.framework in Frameworks */,
 				C00B871517AA2CD700823454 /* SystemConfiguration.framework in Frameworks */,
 				C074892C17A95817001943E0 /* MediaPlayer.framework in Frameworks */,
 				C074892817A947CD001943E0 /* CoreVideo.framework in Frameworks */,
@@ -833,6 +836,7 @@
 		EB6F33151781867900FC479F = {
 			isa = PBXGroup;
 			children = (
+				B1D4077017C3727600E26814 /* MessageUI.framework */,
 				C00B873917AA2EED00823454 /* FHSTwitterEngine */,
 				EBFCF29017942329003C82CC /* tiggly_stamp_audio */,
 				EBD0F92B1782CE3900339BB7 /* iPadRetinaImages */,

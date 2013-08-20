@@ -1071,6 +1071,7 @@ bool StartStopRecorder = YES;
     UIButton *btn = sender;
     if ([btn tag] == TAG_RIGHT_TICK_BTN) {
         if (![btn isHidden]) {
+            [self sendEmail];
             [RigthTickButton setHidden:YES];
           
             if ([[[NSUserDefaults standardUserDefaults] valueForKey:SAVE_ART] isEqualToString:@"yes"]) {

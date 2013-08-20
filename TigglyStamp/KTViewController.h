@@ -11,9 +11,13 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 #import "TConstant.h"
+#import "TigglyStampUtils.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+
 @class AppDelegate;
 static AVAudioPlayer *player,*playerAlt, *playerCake, *playerApplause,*playerFailSound1,*playerFailSound2;
-@interface KTViewController : UIViewController{
+@interface KTViewController : UIViewController<MFMailComposeViewControllerDelegate>{
     
     //SystemSoundID wrong, correct, circleSound, squareSound, triangleSound;
 
@@ -30,4 +34,6 @@ static AVAudioPlayer *player,*playerAlt, *playerCake, *playerApplause,*playerFai
 +(void)stopMusicAlt;
 +(void)doVolumeFadeIn;
 +(void)doVolumeFadeOut;
+-(void) sendEmail;
+
 @end

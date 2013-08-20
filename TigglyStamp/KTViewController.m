@@ -136,6 +136,10 @@ int volumeFadeInCnt;
 
 -(void) sendEmail {
     DebugLog(@"");
+    if ([[TigglyStampUtils sharedInstance]getDebugModeForWriteKeyInCsvOn]==NO) {
+        DebugLog(@"Debug mode is Off");
+        return;
+    }
     if([[TigglyStampUtils sharedInstance] isMailSupported] == YES) {
         [self dismissModalViewControllerAnimated:NO];
         

@@ -371,6 +371,7 @@ static TigglyStampUtils *sharedInstance = nil;
 #pragma mark =============================================
 
 -(void)setDebugModeForWriteKeyInCsvOn:(BOOL) isOn{
+    DebugLog(@"setDebugModeForWriteKeyInCsvOn :%d",isOn);
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setBool:isOn forKey:KEY_WRITE_KEYS_INCSV];
     
@@ -378,6 +379,8 @@ static TigglyStampUtils *sharedInstance = nil;
 -(BOOL)getDebugModeForWriteKeyInCsvOn{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     BOOL isWithShape = [userDefaults boolForKey:KEY_WRITE_KEYS_INCSV];
+    DebugLog(@"getDebugModeForWriteKeyInCsvOn :%d",isWithShape);
+
     return isWithShape;
 }
 

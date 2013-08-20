@@ -155,7 +155,7 @@
     UIButton *btn = sender;
     if ([btn tag] == TAG_HOME_BTN) {
             
-       // [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
         
         
 //        CATransition *animation=[CATransition animation];

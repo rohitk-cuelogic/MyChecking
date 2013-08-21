@@ -249,8 +249,6 @@
                                           NSError *error) {
                           // if login fails for any reason, we alert
                           if (error) {
-
-                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tiggly" message:@"Do you want to try again?" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                               
                               // if otherwise we check to see if the session is open, an alternative to
                               // to the FB_ISSESSIONOPENWITHSTATE helper-macro would be to check the isOpen

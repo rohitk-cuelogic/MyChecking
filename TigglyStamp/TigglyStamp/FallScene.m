@@ -249,10 +249,10 @@ int currentObject;
 }
 
 -(void)removeDrawnShapeObject:(NSString *)typeOfShape  objectToRemove:(NSString *)objectDrawn{
-    DebugLog(@"triangls=%@",fallTriangleObjects.description);
-    DebugLog(@"squr=%@",fallSquareObjects.description);
-    DebugLog(@"star=%@",fallStarObjects.description);
-    DebugLog(@"shape type %@, to remove %@",typeOfShape,objectDrawn);
+//    DebugLog(@"triangls=%@",fallTriangleObjects.description);
+//    DebugLog(@"squr=%@",fallSquareObjects.description);
+//    DebugLog(@"star=%@",fallStarObjects.description);
+//    DebugLog(@"shape type %@, to remove %@",typeOfShape,objectDrawn);
     
     if([typeOfShape isEqualToString:@"triangle"]){
         [fallTriangleObjects removeObjectIdenticalTo:objectDrawn];

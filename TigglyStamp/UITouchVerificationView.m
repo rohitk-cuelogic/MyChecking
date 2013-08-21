@@ -548,19 +548,11 @@ int previousTouchCount = 0;
                             recordedShapes = UIT.shapeData;
                             if ([recordedShapes objectForKey:tempKey]) {
                                 NSLog(@"Shape Detected with Modified Key :  %@",UIT.label);
-//                                //Not needed because we checked sortedT.count == 3
-//                                NSMutableString *tempKeyStore = [[NSMutableString alloc]initWithString:tempKey];
-//
-//                                if (sortedT.count!=3) {
-//                                    for (int i=0; i<(3-sortedT.count); i++) {
-//                                        [tempKeyStore appendFormat:@"-,"];
-//                                    }
-//                                }
+
                                 isDataWrite = YES;
-//                                [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@%d,%d,%d,%@\n",csvString,x,y,z,UIT.label]];
                                 [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@%@\n",csvString,UIT.label]];
 
-                                DebugLog(@"Found %@ Shape: %@ Key: %@", UIT.label,[recordedShapes valueForKey:key], key);
+                                DebugLog(@"Found %@ Shape: %@ Key: %@", UIT.label,[recordedShapes valueForKey:tempKey], tempKey);
                                 detectedPoints = [NSArray arrayWithArray:allTouchPoints];
                                 [distanceArr removeAllObjects];
                                 [allTouchPoints removeAllObjects];
@@ -716,6 +708,8 @@ int previousTouchCount = 0;
             if([[TigglyStampUtils sharedInstance] getDebugModeForWriteKeyInCsvOn]) {
                     UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x, touchLocation.y, 20, 20)];
                     testView.backgroundColor = [UIColor blueColor];
+                    testView.layer.cornerRadius = 10.0f;
+                    testView.layer.masksToBounds=YES;
                     [self addSubview:testView];
            
                     double delayInSeconds = 0.3;
@@ -762,6 +756,8 @@ int previousTouchCount = 0;
                     UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x, touchLocation.y, 20, 20)];
                     testView.backgroundColor = [UIColor redColor];
                     [self addSubview:testView];
+                    testView.layer.cornerRadius = 10.0f;
+                    testView.layer.masksToBounds=YES;
                     [allTestViews addObject:testView];
 
                     double delayInSeconds = 0.3;
@@ -888,6 +884,10 @@ int previousTouchCount = 0;
 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+
+    if(delegate && [delegate respondsToSelector:@selector(touchVerificationViewTouchesBegan:withEvent:)]) {
+        [self.delegate touchVerificationViewTouchesBegan:touches withEvent:event];
+    }
     
     for (UITouch *touch  in touches) {
         if(allTouchPoints.count < 3)
@@ -905,6 +905,10 @@ int previousTouchCount = 0;
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     
+    if(delegate && [delegate respondsToSelector:@selector(touchVerificationViewTouchesBegan:withEvent:)]) {
+        [self.delegate touchVerificationViewTouchesMoved:touches withEvent:event];
+    }
+    
     for (UITouch *touch  in touches) {
         if(allTouchPoints.count < 3)
             [allTouchPoints addObject:touch];
@@ -921,6 +925,10 @@ int previousTouchCount = 0;
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     isContaintSelfPoint = NO;
+    
+    if(delegate && [delegate respondsToSelector:@selector(touchVerificationViewTouchesEnded:withEvent:)]) {
+        [self.delegate touchVerificationViewTouchesEnded:touches withEvent:event];
+    }
 
     NSLog(@"touchesEnded : AllTouchpoints : %d " ,allTouchPoints.count);
     [self performCalculations];

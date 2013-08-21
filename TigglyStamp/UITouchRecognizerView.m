@@ -45,7 +45,7 @@ NSMutableDictionary *calculationHash;
 
 BOOL calculateShape(UITouchGroup *group, UITouchRecognizerView *view){
     DebugLog(@"");
-    int len = [group.groupCache count];
+
     if (calculationHash == nil) {
         calculationHash = [[NSMutableDictionary alloc]init];
     }

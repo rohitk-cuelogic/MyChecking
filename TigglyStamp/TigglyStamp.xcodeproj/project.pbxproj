@@ -1562,8 +1562,8 @@
 		EB6F334C1781867900FC479F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Nikhil Ambekar (RAARKWRAJS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nikhil Ambekar (RAARKWRAJS)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Vikrant Labde (FQWVPRQEN6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Vikrant Labde (FQWVPRQEN6)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/cuelogic/Documents/FacebookSDK,

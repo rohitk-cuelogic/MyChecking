@@ -715,16 +715,18 @@ int previousTouchCount = 0;
             
             [distanceArr addObject:[NSNumber numberWithInt:distance]];
             
-            UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x, touchLocation.y, 20, 20)];
-            testView.backgroundColor = [UIColor blueColor];
-            [self addSubview:testView];
-   
-            double delayInSeconds = 0.3;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [testView removeFromSuperview];
-                
-            });
+            if([[TigglyStampUtils sharedInstance] getDebugModeForWriteKeyInCsvOn]) {
+                    UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x, touchLocation.y, 20, 20)];
+                    testView.backgroundColor = [UIColor blueColor];
+                    [self addSubview:testView];
+           
+                    double delayInSeconds = 0.3;
+                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                        [testView removeFromSuperview];
+                        
+                    });
+            }
             
         }
          [self detectShape];
@@ -758,18 +760,19 @@ int previousTouchCount = 0;
             
             [distanceArr addObject:[NSNumber numberWithInt:distance]];
             
-            UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x, touchLocation.y, 20, 20)];
-            testView.backgroundColor = [UIColor redColor];
-            [self addSubview:testView];
-            [allTestViews addObject:testView];
+            if([[TigglyStampUtils sharedInstance] getDebugModeForWriteKeyInCsvOn]) {
+                    UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x, touchLocation.y, 20, 20)];
+                    testView.backgroundColor = [UIColor redColor];
+                    [self addSubview:testView];
+                    [allTestViews addObject:testView];
 
-            double delayInSeconds = 0.3;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [testView removeFromSuperview];
-                
-            });
-            
+                    double delayInSeconds = 0.3;
+                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                        [testView removeFromSuperview];
+                        
+                    });
+            }
         }
         
          [self detectShape];

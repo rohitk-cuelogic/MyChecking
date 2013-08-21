@@ -15,6 +15,7 @@
 #define KEY_WRITE_KEYS_INCSV @"keyincsv"
 #define KEY_IS_SEND_MAIL @"keyissendmail"
 #define KEY_SHAPE_STORE_KEY @"keyshapestore"
+#define KEY_FIRST_TIME_LAUNCH @"firsttimelaunch"
 
 @implementation TigglyStampUtils
 static TigglyStampUtils *sharedInstance = nil;
@@ -380,6 +381,12 @@ static TigglyStampUtils *sharedInstance = nil;
 }
 -(BOOL)getDebugModeForWriteKeyInCsvOn{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *strfirstTime = [userDefaults stringForKey:KEY_FIRST_TIME_LAUNCH];
+    if (strfirstTime==NULL||[strfirstTime isEqualToString:@""] ) {
+        [self setDebugModeForWriteKeyInCsvOn:YES];
+        [self setSendMailOn:YES];
+        [userDefaults setObject:@"YES" forKey:KEY_FIRST_TIME_LAUNCH];
+    }
     BOOL isWithShape = [userDefaults boolForKey:KEY_WRITE_KEYS_INCSV];
     DebugLog(@"getDebugModeForWriteKeyInCsvOn :%d",isWithShape);
 

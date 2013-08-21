@@ -39,8 +39,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *lblLunguage;
 @property (nonatomic, strong) IBOutlet UIView *backgroundView;
 @property (nonatomic, strong) IBOutlet UILabel *lblLunguageTest;
-@property (nonatomic, strong) IBOutlet UILabel *lblShape;
-@property (nonatomic, strong) IBOutlet UIButton *btnShape;
+@property (nonatomic, strong) IBOutlet UILabel *lblSendMail;
+@property (nonatomic, strong) IBOutlet UILabel *lblClearPrevData;
 
 @property (nonatomic, strong) IBOutlet UILabel *lbl1;
 @property (nonatomic, strong) IBOutlet UILabel *lbl2;

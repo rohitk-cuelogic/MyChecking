@@ -140,6 +140,10 @@ int volumeFadeInCnt;
         DebugLog(@"getSendMailOn mode is Off");
         return;
     }
+    if ([[TigglyStampUtils sharedInstance]getDebugModeForWriteKeyInCsvOn]==NO) {
+        DebugLog(@"getDebugModeForWriteKeyInCsvOn mode is Off");
+        return;
+    }
     if([[TigglyStampUtils sharedInstance] isMailSupported] == YES) {
         [self dismissModalViewControllerAnimated:NO];
         
@@ -150,27 +154,31 @@ int volumeFadeInCnt;
         NSString *sub;
         NSString *body;
         NSString *filename = NULL;
-        ShapeType sType = [[TigglyStampUtils sharedInstance] getCurrentSahpeForStoringKeys];
-        if (sType == kShapeTypeCircle) {
-            filename = [NSString stringWithFormat:@"CircleShape.csv"];
-            sub = [NSString stringWithFormat:@"[Tiggly]: Circle touch points"];
-            body =  [NSString stringWithFormat:@"In this we have attached the file which contains distance of circle shape from shape detection algorithm"];
-        }
-        if (sType == kShapeTypeSquare) {
-            filename = [NSString stringWithFormat:@"SquareShape.csv"];
-            sub = [NSString stringWithFormat:@"[Tiggly]: Square touch points"];
-            body =  [NSString stringWithFormat:@"In this we have attached the file which contains distance of square shape from shape detection algorithm"];
-        }
-        if (sType == kShapeTypeStar) {
-            filename = [NSString stringWithFormat:@"StarShape.csv"];
-            sub = [NSString stringWithFormat:@"[Tiggly]: Star touch points"];
-            body =  [NSString stringWithFormat:@"In this we have attached the file which contains distance of star shape from shape detection algorithm"];
-        }
-        if (sType == kShapeTypeTriangle) {
-            filename = [NSString stringWithFormat:@"TriangleShape.csv"];
-            sub = [NSString stringWithFormat:@"[Tiggly]: Triangle touch points"];
-            body =  [NSString stringWithFormat:@"In this we have attached the file which contains distance of triangle shape from shape detection algorithm"];
-        }
+//        ShapeType sType = [[TigglyStampUtils sharedInstance] getCurrentSahpeForStoringKeys];
+//        if (sType == kShapeTypeCircle) {
+//            filename = [NSString stringWithFormat:@"CircleShape.csv"];
+//            sub = [NSString stringWithFormat:@"[Tiggly]: Circle touch points"];
+//            body =  [NSString stringWithFormat:@"In this we have attached the file which contains distance of circle shape from shape detection algorithm"];
+//        }
+//        if (sType == kShapeTypeSquare) {
+//            filename = [NSString stringWithFormat:@"SquareShape.csv"];
+//            sub = [NSString stringWithFormat:@"[Tiggly]: Square touch points"];
+//            body =  [NSString stringWithFormat:@"In this we have attached the file which contains distance of square shape from shape detection algorithm"];
+//        }
+//        if (sType == kShapeTypeStar) {
+//            filename = [NSString stringWithFormat:@"StarShape.csv"];
+//            sub = [NSString stringWithFormat:@"[Tiggly]: Star touch points"];
+//            body =  [NSString stringWithFormat:@"In this we have attached the file which contains distance of star shape from shape detection algorithm"];
+//        }
+//        if (sType == kShapeTypeTriangle) {
+//            filename = [NSString stringWithFormat:@"TriangleShape.csv"];
+//            sub = [NSString stringWithFormat:@"[Tiggly]: Triangle touch points"];
+//            body =  [NSString stringWithFormat:@"In this we have attached the file which contains distance of triangle shape from shape detection algorithm"];
+//        }
+            filename = [NSString stringWithFormat:@"ShapeTouchPoints.csv"];
+            sub = [NSString stringWithFormat:@"[Tiggly]: Touch points"];
+            body =  [NSString stringWithFormat:@"In this we have attached the file which contains distance of shape detection algorithm"];
+        
         DebugLog(@"Email Subject: %@",sub);
         DebugLog(@"Email Body: %@",body);
         

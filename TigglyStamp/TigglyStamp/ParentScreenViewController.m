@@ -135,7 +135,7 @@
     [self presentModalViewController:settingsView animated:YES];
 
     [settingsView.view.superview setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
-    [settingsView.view.superview setFrame:CGRectMake(128, 128, 768, 513)];
+    [settingsView.view.superview setFrame:CGRectMake(128, 141, 768, 487)];
     settingsView.view.superview.layer.cornerRadius = 25.0f;
     settingsView.view.superview.layer.masksToBounds = YES;
 //    settingsView.view.superview.frame = CGRectMake(0, 0, 768, 414);//it's important to do this after

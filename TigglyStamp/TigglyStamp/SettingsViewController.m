@@ -17,7 +17,7 @@
 
 @synthesize swtchArt,swtchHaveShapes,swtchLimitGallery,swtchMusic,swtchNoShapes,swtdebugMode,btnClearData,swtSendMail;
 @synthesize arrLanguage;
-@synthesize lblLunguage,lblShape,btnShape;
+@synthesize lblLunguage,lblSendMail,lblClearPrevData;
 @synthesize backgroundView;
 @synthesize lblLunguageTest;
 @synthesize lbl1,lbl2,lbl3,lbl4,lbl5,lbl6;
@@ -41,19 +41,19 @@
     }else{
         lblLunguage.text = [[NSUserDefaults standardUserDefaults] valueForKey:LANGUAGE_SELECTED];
     }
-    ShapeType stype =   [[TigglyStampUtils sharedInstance]getCurrentSahpeForStoringKeys];
-    if (stype== kShapeTypeCircle) {
-        lblShape.text = @"Circle";
-    }
-    if (stype== kShapeTypeTriangle) {
-        lblShape.text = @"Triangle";
-    }
-    if (stype== kShapeTypeStar) {
-        lblShape.text = @"Star";
-    }
-    if (stype== kShapeTypeSquare) {
-        lblShape.text = @"Square";
-    }
+//    ShapeType stype =   [[TigglyStampUtils sharedInstance]getCurrentSahpeForStoringKeys];
+//    if (stype== kShapeTypeCircle) {
+//        lblShape.text = @"Circle";
+//    }
+//    if (stype== kShapeTypeTriangle) {
+//        lblShape.text = @"Triangle";
+//    }
+//    if (stype== kShapeTypeStar) {
+//        lblShape.text = @"Star";
+//    }
+//    if (stype== kShapeTypeSquare) {
+//        lblShape.text = @"Square";
+//    }
     
     if ([[[NSUserDefaults standardUserDefaults] valueForKey:MUSIC] isEqualToString:@"yes"]) {
         [swtchMusic setOn:YES];
@@ -86,14 +86,18 @@
     if ([[TigglyStampUtils sharedInstance]getDebugModeForWriteKeyInCsvOn] == YES) {
         [swtdebugMode setOn:YES];
         btnClearData.hidden = NO;
-        btnShape.hidden = NO;
-        lblShape.hidden = NO;
-        
+        lblClearPrevData.hidden = NO;
+        swtSendMail.hidden = NO;
+        lblSendMail.hidden = NO;
+        lblLunguageTest.frame = CGRectMake(lblLunguageTest.frame.origin.x, 440, lblLunguageTest.frame.size.width, lblLunguageTest.frame.size.height);
     }else{
         [swtdebugMode setOn:NO];
         btnClearData.hidden = YES;
-        btnShape.hidden = YES;
-        lblShape.hidden = YES;
+        lblClearPrevData.hidden = YES;
+        swtSendMail.hidden = YES;
+        lblSendMail.hidden = YES;
+        lblLunguageTest.frame = CGRectMake(lblLunguageTest.frame.origin.x, 360, lblLunguageTest.frame.size.width, lblLunguageTest.frame.size.height);
+
     }
     if ([[TigglyStampUtils sharedInstance]getSendMailOn] == YES) {
         [swtSendMail setOn:YES];
@@ -171,13 +175,19 @@
             if ([swtdebugMode isOn] == YES) {
                 [[TigglyStampUtils sharedInstance]setDebugModeForWriteKeyInCsvOn:YES];
                 btnClearData.hidden=NO;
-                btnShape.hidden = NO;
-                lblShape.hidden = NO;
+                lblClearPrevData.hidden = NO;
+                swtSendMail.hidden = NO;
+                lblSendMail.hidden = NO;
+                lblLunguageTest.frame = CGRectMake(lblLunguageTest.frame.origin.x, 440, lblLunguageTest.frame.size.width, lblLunguageTest.frame.size.height);
+
             }else{
                 [[TigglyStampUtils sharedInstance]setDebugModeForWriteKeyInCsvOn:NO];
                 btnClearData.hidden=YES;
-                btnShape.hidden = YES;
-                lblShape.hidden = YES;
+                lblClearPrevData.hidden = YES;
+                swtSendMail.hidden = YES;
+                lblSendMail.hidden = YES;
+                lblLunguageTest.frame = CGRectMake(lblLunguageTest.frame.origin.x, 360, lblLunguageTest.frame.size.width, lblLunguageTest.frame.size.height);
+
             }
             break;
         case TAG_SEND_MAIL:
@@ -308,20 +318,21 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if (isShapePopView == YES) {
-        lblShape.text = [self.arrLanguage objectAtIndex:row];
-        if ([lblShape.text isEqualToString:@"Circle"]) {
-            [[TigglyStampUtils sharedInstance]setCurrentSahpeForStoringKeys:kShapeTypeCircle];
-        }
-        if ([lblShape.text isEqualToString:@"Triangle"]) {
-            [[TigglyStampUtils sharedInstance]setCurrentSahpeForStoringKeys:kShapeTypeTriangle];
-        }
-        if ([lblShape.text isEqualToString:@"Star"]) {
-            [[TigglyStampUtils sharedInstance]setCurrentSahpeForStoringKeys:kShapeTypeStar];
-        }
-        if ([lblShape.text isEqualToString:@"Square"]) {
-            [[TigglyStampUtils sharedInstance]setCurrentSahpeForStoringKeys:kShapeTypeSquare];
-        }
+//        lblShape.text = [self.arrLanguage objectAtIndex:row];
+//        if ([lblShape.text isEqualToString:@"Circle"]) {
+//            [[TigglyStampUtils sharedInstance]setCurrentSahpeForStoringKeys:kShapeTypeCircle];
+//        }
+//        if ([lblShape.text isEqualToString:@"Triangle"]) {
+//            [[TigglyStampUtils sharedInstance]setCurrentSahpeForStoringKeys:kShapeTypeTriangle];
+//        }
+//        if ([lblShape.text isEqualToString:@"Star"]) {
+//            [[TigglyStampUtils sharedInstance]setCurrentSahpeForStoringKeys:kShapeTypeStar];
+//        }
+//        if ([lblShape.text isEqualToString:@"Square"]) {
+//            [[TigglyStampUtils sharedInstance]setCurrentSahpeForStoringKeys:kShapeTypeSquare];
+//        }
     }else {
+        
         lblLunguage.text = [self.arrLanguage objectAtIndex:row];
         [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
         if ([lblLunguage.text isEqualToString:@"English"]) {

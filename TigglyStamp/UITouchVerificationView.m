@@ -855,6 +855,14 @@ int previousTouchCount = 0;
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 
+    #ifdef IS_RUN_WITHOUT_SHAPE_FOR_TESTING
+       for (UITouchShapeRecognizer *UIT in shapeDataCache) {
+            if (delegate && [delegate respondsToSelector:@selector(shapeDetected: inView:)]) {
+                [delegate shapeDetected:UIT inView:self];
+            }
+        }
+    #endif
+    
         for (UITouch *touch  in touches) {
             if(allTouchPoints.count < 3)
                [allTouchPoints addObject:touch];

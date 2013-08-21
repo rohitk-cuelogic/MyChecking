@@ -65,6 +65,8 @@ bool StartStopRecorder = YES;
 {
     [super viewDidAppear:YES];
      DebugLog(@"");
+    
+    
 }
 //================================================================================================================
 - (void)viewDidLoad
@@ -731,16 +733,7 @@ bool StartStopRecorder = YES;
 {
     if ([fruitObjectArray count] > 0 && [videoButton isHidden]) {
         [RigthTickButton setHidden:NO];
-        CATransition *animation=[CATransition animation];
-        [animation setDuration:1.90];
-        [animation setType:@"rippleEffect"];
-        
-        [animation setFillMode:kCAFillModeBoth];
-        animation.endProgress=0.70;
-        animation.repeatCount = HUGE_VAL;
-        animation.repeatDuration = HUGE_VAL;
-        [animation setRemovedOnCompletion:NO];
-        [RigthTickButton.layer addAnimation:animation forKey:nil];
+
     }
 }
 //================================================================================================================

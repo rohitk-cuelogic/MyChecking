@@ -38,6 +38,15 @@
 #define kOAuthConsumerKey           @"M3Nq5aWit1KMvxMiK3Vng"
 #define kOAuthConsumerSecret		@"4MhzodK7wiAves9vWFn4qbWIQX77lwS2fkajlJVqNmY"
 
+//Do not change the sequence
+typedef enum {
+    kShapeTypeCircle,
+    kShapeTypeTriangle,
+    kShapeTypeStar,
+    kShapeTypeSquare
+    
+} ShapeType;
+
 @interface TConstant : NSObject
 
 @end

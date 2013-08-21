@@ -25,7 +25,7 @@
 {
     UIPickerView *pickerView;
     UIPopoverController *popoverController;
-    
+    BOOL isShapePopView;
 }
 
 @property (nonatomic, strong) IBOutlet UISwitch *swtchMusic;
@@ -39,6 +39,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *lblLunguage;
 @property (nonatomic, strong) IBOutlet UIView *backgroundView;
 @property (nonatomic, strong) IBOutlet UILabel *lblLunguageTest;
+@property (nonatomic, strong) IBOutlet UILabel *lblShape;
+@property (nonatomic, strong) IBOutlet UIButton *btnShape;
 
 @property (nonatomic, strong) IBOutlet UILabel *lbl1;
 @property (nonatomic, strong) IBOutlet UILabel *lbl2;
@@ -56,5 +58,6 @@
 -(IBAction)languageButtonClicked:(id)sender;
 -(IBAction)buyShapesButtonClicked:(id)sender;
 -(IBAction)actionclearData;
+-(IBAction)shapeButtonClicked:(id)sender;
 
 @end

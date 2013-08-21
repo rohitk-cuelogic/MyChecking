@@ -146,18 +146,39 @@ int volumeFadeInCnt;
         //Shows the email composer view
         MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
         picker.mailComposeDelegate = self;
-        
+        [picker setToRecipients:[[NSArray alloc]initWithObjects:[NSString stringWithFormat:@"rohit.kale@cuelogic.co.in"], nil] ];
         NSString *sub;
         NSString *body;
-        
-        sub = [NSString stringWithFormat:@"[Tiggly]: Touch points"];
-        body =  [NSString stringWithFormat:@"In this we have attached the file which contains shape detection distance"];
+        NSString *filename = NULL;
+        ShapeType sType = [[TigglyStampUtils sharedInstance] getCurrentSahpeForStoringKeys];
+        if (sType == kShapeTypeCircle) {
+            filename = [NSString stringWithFormat:@"CircleShape.csv"];
+            sub = [NSString stringWithFormat:@"[Tiggly]: Circle touch points"];
+            body =  [NSString stringWithFormat:@"In this we have attached the file which contains distance of circle shape from shape detection algorithm"];
+        }
+        if (sType == kShapeTypeSquare) {
+            filename = [NSString stringWithFormat:@"SquareShape.csv"];
+            sub = [NSString stringWithFormat:@"[Tiggly]: Square touch points"];
+            body =  [NSString stringWithFormat:@"In this we have attached the file which contains distance of square shape from shape detection algorithm"];
+        }
+        if (sType == kShapeTypeStar) {
+            filename = [NSString stringWithFormat:@"StarShape.csv"];
+            sub = [NSString stringWithFormat:@"[Tiggly]: Star touch points"];
+            body =  [NSString stringWithFormat:@"In this we have attached the file which contains distance of star shape from shape detection algorithm"];
+        }
+        if (sType == kShapeTypeTriangle) {
+            filename = [NSString stringWithFormat:@"TriangleShape.csv"];
+            sub = [NSString stringWithFormat:@"[Tiggly]: Triangle touch points"];
+            body =  [NSString stringWithFormat:@"In this we have attached the file which contains distance of triangle shape from shape detection algorithm"];
+        }
         DebugLog(@"Email Subject: %@",sub);
         DebugLog(@"Email Body: %@",body);
         
         [picker setSubject:sub];
+
+        
         [picker addAttachmentData: [[[TigglyStampUtils sharedInstance]getCsvKeys] dataUsingEncoding: NSUTF8StringEncoding]
-                         mimeType:@"text/csv" fileName:[NSString stringWithFormat:@"keycsvfile.csv"]];
+                         mimeType:@"text/csv" fileName:filename];
         [picker setMessageBody:body isHTML:NO];
         [self presentModalViewController:picker animated:YES];
         

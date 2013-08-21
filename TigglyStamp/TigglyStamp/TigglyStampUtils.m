@@ -14,6 +14,7 @@
 #define KEY_BOOLEAN_ISWITH_SHAPE @"withShape"
 #define KEY_WRITE_KEYS_INCSV @"keyincsv"
 #define KEY_IS_SEND_MAIL @"keyissendmail"
+#define KEY_SHAPE_STORE_KEY @"keyshapestore"
 
 @implementation TigglyStampUtils
 static TigglyStampUtils *sharedInstance = nil;
@@ -398,11 +399,39 @@ static TigglyStampUtils *sharedInstance = nil;
     return isWithShape;
 }
 
+
+-(void)setCurrentSahpeForStoringKeys:(ShapeType)sType {
+    DebugLog(@"setCurrentSahpeForStoringKeys :%d",sType);
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setInteger:sType forKey:KEY_SHAPE_STORE_KEY];
+}
+-(ShapeType)getCurrentSahpeForStoringKeys {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    ShapeType sType = [userDefaults integerForKey:KEY_SHAPE_STORE_KEY];
+    DebugLog(@"getCurrentSahpeForStoringKeys :%d",sType);
+    return sType;
+}
+
+
 - (void) saveCSVFileData {
     DebugLog(@"");
     
+    NSString *filename = NULL;
+    ShapeType sType = [self getCurrentSahpeForStoringKeys];
+    if (sType == kShapeTypeCircle) {
+        filename = [NSString stringWithFormat:@"CircleShape.csv"];
+    }
+    if (sType == kShapeTypeSquare) {
+        filename = [NSString stringWithFormat:@"SquareShape.csv"];
+    }
+    if (sType == kShapeTypeStar) {
+        filename = [NSString stringWithFormat:@"StarShape.csv"];
+    }
+    if (sType == kShapeTypeTriangle) {
+        filename = [NSString stringWithFormat:@"TriangleShape.csv"];
+    }
 	NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
-					  stringByAppendingPathComponent:@"keycsvfile.csv"];
+					  stringByAppendingPathComponent:filename];
 	[strCsvKyes writeToFile:path atomically:NO encoding:NSStringEncodingConversionAllowLossy error:NULL];
 
 	DebugLog(@"File saved at path : %@", path);
@@ -410,13 +439,34 @@ static TigglyStampUtils *sharedInstance = nil;
 
 - (void) deleteCSVFile{
     DebugLog(@"");
-    NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
-					  stringByAppendingPathComponent:@"keycsvfile.csv"];
-    NSError *error = nil;
-    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
-    if (error != nil) {
-        DebugLog(@"Error deleting file: %@ withError:%@", path, [error localizedDescription]);
-    }
+        NSString *pathCircle = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+                          stringByAppendingPathComponent:@"CircleShape.csv"];
+        NSError *errorCircle = nil;
+        [[NSFileManager defaultManager] removeItemAtPath:pathCircle error:&errorCircle];
+        if (errorCircle != nil) {
+            DebugLog(@"Error deleting file: %@ withError:%@", pathCircle, [errorCircle localizedDescription]);
+        }
+        NSString *pathSquare = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+                          stringByAppendingPathComponent:@"SquareShape.csv"];
+        NSError *errorShape = nil;
+        [[NSFileManager defaultManager] removeItemAtPath:pathSquare error:&errorShape];
+        if (errorShape != nil) {
+            DebugLog(@"Error deleting file: %@ withError:%@", pathSquare, [errorShape localizedDescription]);
+        }
+        NSString *pathStar = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+                          stringByAppendingPathComponent:@"StarShape.csv"];
+        NSError *errorStar = nil;
+        [[NSFileManager defaultManager] removeItemAtPath:pathStar error:&errorStar];
+        if (errorStar != nil) {
+            DebugLog(@"Error deleting file: %@ withError:%@", pathStar, [errorStar localizedDescription]);
+        }
+        NSString *pathTriangle = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+                          stringByAppendingPathComponent:@"TriangleShape.csv"];
+        NSError *errorTriangle = nil;
+        [[NSFileManager defaultManager] removeItemAtPath:pathTriangle error:&errorTriangle];
+        if (errorTriangle != nil) {
+            DebugLog(@"Error deleting file: %@ withError:%@", pathTriangle, [errorTriangle localizedDescription]);
+        }
     strCsvKyes = NULL;
 }
 
@@ -425,7 +475,7 @@ static TigglyStampUtils *sharedInstance = nil;
         return;
     }
     if (strCsvKyes==NULL) {
-        strCsvKyes = [[NSMutableString alloc]initWithString:@"D1,D2,D3,AD1,AD2,AD3,SHAPE\n"];
+        strCsvKyes = [[NSMutableString alloc]initWithString:@"D1,D2,D3,SHAPE\n"];
     }
     [strCsvKyes appendString:str];
     DebugLog(@"Final Key Data String is :\n%@",strCsvKyes);
@@ -450,6 +500,5 @@ static TigglyStampUtils *sharedInstance = nil;
 -(NSString *)getCsvKeys {
     return strCsvKyes;
 }
-
 
 @end

@@ -498,7 +498,7 @@ int previousTouchCount = 0;
         if ([recordedShapes objectForKey:key]) {
             isKeyPresent = YES;
             isDataWrite = YES;
-            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@%@%@\n",csvString,csvString,UIT.label]];
+            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@%@\n",csvString,UIT.label]];
             NSLog(@"Shape Detected With Original Key:  %@",UIT.label);
             DebugLog(@"Found %@ Shape: %@ Key: %@", UIT.label,[recordedShapes valueForKey:key], key);
             detectedPoints = [NSArray arrayWithArray:allTouchPoints];
@@ -557,7 +557,8 @@ int previousTouchCount = 0;
 //                                    }
 //                                }
                                 isDataWrite = YES;
-                                [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@%d,%d,%d,%@\n",csvString,x,y,z,UIT.label]];
+//                                [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@%d,%d,%d,%@\n",csvString,x,y,z,UIT.label]];
+                                [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@%@\n",csvString,UIT.label]];
 
                                 DebugLog(@"Found %@ Shape: %@ Key: %@", UIT.label,[recordedShapes valueForKey:key], key);
                                 detectedPoints = [NSArray arrayWithArray:allTouchPoints];
@@ -580,9 +581,6 @@ int previousTouchCount = 0;
         }
     }
     if (isDataWrite==NO) {
-        for (int i=0; i<(3); i++) {
-            [csvString appendFormat:@"-,"];
-        }
         [csvString appendFormat:@"NoShape"];
         [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@\n",csvString]];
     }

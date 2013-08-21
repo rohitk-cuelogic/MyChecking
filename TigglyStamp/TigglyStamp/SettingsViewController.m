@@ -17,7 +17,7 @@
 
 @synthesize swtchArt,swtchHaveShapes,swtchLimitGallery,swtchMusic,swtchNoShapes,swtdebugMode,btnClearData,swtSendMail;
 @synthesize arrLanguage;
-@synthesize lblLunguage;
+@synthesize lblLunguage,lblShape,btnShape;
 @synthesize backgroundView;
 @synthesize lblLunguageTest;
 @synthesize lbl1,lbl2,lbl3,lbl4,lbl5,lbl6;
@@ -33,12 +33,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    arrLanguage = NULL;
+    isShapePopView = NO;
     NSString *lung = [[NSUserDefaults standardUserDefaults] valueForKey:LANGUAGE_SELECTED];
     if (lung.length==0) {
         lblLunguage.text = @"English";
     }else{
         lblLunguage.text = [[NSUserDefaults standardUserDefaults] valueForKey:LANGUAGE_SELECTED];
+    }
+    ShapeType stype =   [[TigglyStampUtils sharedInstance]getCurrentSahpeForStoringKeys];
+    if (stype== kShapeTypeCircle) {
+        lblShape.text = @"Circle";
+    }
+    if (stype== kShapeTypeTriangle) {
+        lblShape.text = @"Triangle";
+    }
+    if (stype== kShapeTypeStar) {
+        lblShape.text = @"Star";
+    }
+    if (stype== kShapeTypeSquare) {
+        lblShape.text = @"Square";
     }
     
     if ([[[NSUserDefaults standardUserDefaults] valueForKey:MUSIC] isEqualToString:@"yes"]) {
@@ -72,9 +86,14 @@
     if ([[TigglyStampUtils sharedInstance]getDebugModeForWriteKeyInCsvOn] == YES) {
         [swtdebugMode setOn:YES];
         btnClearData.hidden = NO;
+        btnShape.hidden = NO;
+        lblShape.hidden = NO;
+        
     }else{
         [swtdebugMode setOn:NO];
         btnClearData.hidden = YES;
+        btnShape.hidden = YES;
+        lblShape.hidden = YES;
     }
     if ([[TigglyStampUtils sharedInstance]getSendMailOn] == YES) {
         [swtSendMail setOn:YES];
@@ -88,6 +107,11 @@
 -(IBAction)actionclearData {
     DebugLog(@"");
     [[TigglyStampUtils sharedInstance]deleteCSVFile];
+    NSString *alertTitle = @"Data clear";
+    NSString *alertMsg = @"All shape data is cleared.";
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMsg
+                                                   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+    [alert show];
 }
 
 
@@ -147,9 +171,13 @@
             if ([swtdebugMode isOn] == YES) {
                 [[TigglyStampUtils sharedInstance]setDebugModeForWriteKeyInCsvOn:YES];
                 btnClearData.hidden=NO;
+                btnShape.hidden = NO;
+                lblShape.hidden = NO;
             }else{
                 [[TigglyStampUtils sharedInstance]setDebugModeForWriteKeyInCsvOn:NO];
                 btnClearData.hidden=YES;
+                btnShape.hidden = YES;
+                lblShape.hidden = YES;
             }
             break;
         case TAG_SEND_MAIL:
@@ -193,10 +221,29 @@
 -(IBAction)languageButtonClicked:(id)sender
 {
     // Shows the drop down menu for language
+    if (arrLanguage!=NULL) {
+        [arrLanguage removeAllObjects];
+        arrLanguage = NULL;
+    }
+    isShapePopView = NO;
+
     arrLanguage = [[NSMutableArray alloc] initWithObjects:@"English",@"Spanish",@"Italian",@"Portuguese",@"Russian",@"French",@"German", nil];
     [self popOverUIPicker:sender];
     
 }
+
+-(IBAction)shapeButtonClicked:(id)sender {
+    DebugLog(@"");
+    if (arrLanguage!=NULL) {
+        [arrLanguage removeAllObjects];
+        arrLanguage = NULL;
+    }
+    isShapePopView = YES;
+
+    arrLanguage = [[NSMutableArray alloc] initWithObjects:@"Circle",@"Triangle",@"Star",@"Square", nil];
+    [self popOverUIPicker:sender];
+}
+
 
 #pragma mark- PickerView delegate
 -(void) popOverUIPicker:(id)sender
@@ -223,7 +270,11 @@
     [lbl setTextColor:[UIColor whiteColor]];
     [lbl setTextAlignment:UITextAlignmentCenter];
     [lbl setFont:[UIFont boldSystemFontOfSize:18.0f]];
-    [lbl setText:@"Language"];
+    if (isShapePopView==YES) {
+        [lbl setText:@"Shape"];
+    }else {
+        [lbl setText:@"Language"];
+    }
 
     //Set the toolbar to fit the width of the app.
     [toolbar addSubview:lbl];
@@ -253,17 +304,37 @@
     return titleString;
 }
 
+
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    lblLunguage.text = [self.arrLanguage objectAtIndex:row];
-    [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
-    if ([lblLunguage.text isEqualToString:@"English"]) {
-        lblLunguageTest.text=[self languageSelectedStringForKey:@"Welcome to Advance Localization" withSelectedLanguage:[self.arrLanguage objectAtIndex:row]];
-    }else if ([lblLunguage.text isEqualToString:@"French"]){
-        lblLunguageTest.text=[self languageSelectedStringForKey:@"Welcome to Advance Localization" withSelectedLanguage:[self.arrLanguage objectAtIndex:row]];
-    }else if ([lblLunguage.text isEqualToString:@"Italian"]){
-        lblLunguageTest.text=[self languageSelectedStringForKey:@"Welcome to Advance Localization" withSelectedLanguage:[self.arrLanguage objectAtIndex:row]];
+    if (isShapePopView == YES) {
+        lblShape.text = [self.arrLanguage objectAtIndex:row];
+        if ([lblShape.text isEqualToString:@"Circle"]) {
+            [[TigglyStampUtils sharedInstance]setCurrentSahpeForStoringKeys:kShapeTypeCircle];
+        }
+        if ([lblShape.text isEqualToString:@"Triangle"]) {
+            [[TigglyStampUtils sharedInstance]setCurrentSahpeForStoringKeys:kShapeTypeTriangle];
+        }
+        if ([lblShape.text isEqualToString:@"Star"]) {
+            [[TigglyStampUtils sharedInstance]setCurrentSahpeForStoringKeys:kShapeTypeStar];
+        }
+        if ([lblShape.text isEqualToString:@"Square"]) {
+            [[TigglyStampUtils sharedInstance]setCurrentSahpeForStoringKeys:kShapeTypeSquare];
+        }
+    }else {
+        lblLunguage.text = [self.arrLanguage objectAtIndex:row];
+        [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
+        if ([lblLunguage.text isEqualToString:@"English"]) {
+            lblLunguageTest.text=[self languageSelectedStringForKey:@"Welcome to Advance Localization" withSelectedLanguage:[self.arrLanguage objectAtIndex:row]];
+        }else if ([lblLunguage.text isEqualToString:@"French"]){
+            lblLunguageTest.text=[self languageSelectedStringForKey:@"Welcome to Advance Localization" withSelectedLanguage:[self.arrLanguage objectAtIndex:row]];
+        }else if ([lblLunguage.text isEqualToString:@"Italian"]){
+            lblLunguageTest.text=[self languageSelectedStringForKey:@"Welcome to Advance Localization" withSelectedLanguage:[self.arrLanguage objectAtIndex:row]];
+        }
     }
+
+    
+
     
 }
 

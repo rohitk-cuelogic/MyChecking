@@ -38,4 +38,9 @@
 -(NSString *)getCsvKeys;
 -(BOOL)getSendMailOn;
 -(void)setSendMailOn:(BOOL) isOn;
+
+-(ShapeType)getCurrentSahpeForStoringKeys;
+-(void)setCurrentSahpeForStoringKeys:(ShapeType)sType;
+
+
 @end

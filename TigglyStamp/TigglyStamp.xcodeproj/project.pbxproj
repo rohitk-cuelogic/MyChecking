@@ -1553,8 +1553,8 @@
 				INFOPLIST_FILE = "TigglyStamp/TigglyStamp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0B7EE4BA-6AFD-4628-B6F3-2E0947E01523";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0B7EE4BA-6AFD-4628-B6F3-2E0947E01523";
+				PROVISIONING_PROFILE = "B86FA6D2-76AB-4271-B023-DD6B35E8AA1D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B86FA6D2-76AB-4271-B023-DD6B35E8AA1D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1562,8 +1562,8 @@
 		EB6F334C1781867900FC479F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Vikrant Labde (FQWVPRQEN6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Vikrant Labde (FQWVPRQEN6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Nikhil Ambekar (RAARKWRAJS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nikhil Ambekar (RAARKWRAJS)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/cuelogic/Documents/FacebookSDK,
@@ -1576,8 +1576,8 @@
 				INFOPLIST_FILE = "TigglyStamp/TigglyStamp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5269B694-82B4-4B2F-B03D-203E9223774C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5269B694-82B4-4B2F-B03D-203E9223774C";
+				PROVISIONING_PROFILE = "B86FA6D2-76AB-4271-B023-DD6B35E8AA1D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B86FA6D2-76AB-4271-B023-DD6B35E8AA1D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

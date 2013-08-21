@@ -143,7 +143,7 @@ int previousTouchCount = 0;
     
     allTouchPoints = [[NSMutableArray alloc]initWithCapacity:1];
     distanceArr = [[NSMutableArray alloc]initWithCapacity:1];
-    allTestViews = [[NSMutableArray alloc] initWithCapacity:1];
+    
 }
 
 //=====================================================================================================================================//
@@ -511,6 +511,7 @@ int previousTouchCount = 0;
                 NSLog(@"Didnt go in delegate");
             }
             isKeyPresent = YES;
+            
             return;
         }else{
             isKeyPresent = NO;
@@ -568,6 +569,8 @@ int previousTouchCount = 0;
                                 }else{
                                     NSLog(@"Didnt go in delegate");
                                 }
+
+                                
                                 return;
                             }
                         }
@@ -585,6 +588,8 @@ int previousTouchCount = 0;
     }
     [allTouchPoints removeAllObjects];
     [distanceArr removeAllObjects];
+    
+    
     
     
 }
@@ -681,6 +686,8 @@ int previousTouchCount = 0;
 -(void) performCalculations{
     DebugLog(@"");
     
+    NSLog(@"PerformCalculations allTouchCount : %d",allTouchPoints.count);
+    
     if(allTouchPoints.count == 2) {
         for(int i = 0;i<allTouchPoints.count - 1;i++){
             UITouch *touch = [allTouchPoints objectAtIndex:i];
@@ -708,8 +715,19 @@ int previousTouchCount = 0;
             
             [distanceArr addObject:[NSNumber numberWithInt:distance]];
             
+            UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x, touchLocation.y, 20, 20)];
+            testView.backgroundColor = [UIColor blueColor];
+            [self addSubview:testView];
+   
+            double delayInSeconds = 0.3;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [testView removeFromSuperview];
+                
+            });
+            
         }
-        
+         [self detectShape];
     }
     
     if(allTouchPoints.count == 3) {
@@ -740,10 +758,25 @@ int previousTouchCount = 0;
             
             [distanceArr addObject:[NSNumber numberWithInt:distance]];
             
+            UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x, touchLocation.y, 20, 20)];
+            testView.backgroundColor = [UIColor redColor];
+            [self addSubview:testView];
+            [allTestViews addObject:testView];
+
+            double delayInSeconds = 0.3;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [testView removeFromSuperview];
+                
+            });
+            
         }
+        
+         [self detectShape];
     }
     
-    [self detectShape];
+    [allTouchPoints removeAllObjects];
+    [distanceArr removeAllObjects];
     
 }
 
@@ -854,19 +887,15 @@ int previousTouchCount = 0;
 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-
-    #ifdef IS_RUN_WITHOUT_SHAPE_FOR_TESTING
-       for (UITouchShapeRecognizer *UIT in shapeDataCache) {
-            if (delegate && [delegate respondsToSelector:@selector(shapeDetected: inView:)]) {
-                [delegate shapeDetected:UIT inView:self];
-            }
-        }
-    #endif
     
-        for (UITouch *touch  in touches) {
-            if(allTouchPoints.count < 3)
-               [allTouchPoints addObject:touch];
-        }
+    for (UITouch *touch  in touches) {
+        if(allTouchPoints.count < 3)
+           [allTouchPoints addObject:touch];
+    }
+    
+    if(allTouchPoints.count ==  2) {
+        [self performCalculations];
+    }
 
     NSLog(@"touchesBegan : AllTouchpoints : %d",allTouchPoints.count);
 }
@@ -874,10 +903,14 @@ int previousTouchCount = 0;
 //======================================================================================================================//
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-
+    
     for (UITouch *touch  in touches) {
         if(allTouchPoints.count < 3)
             [allTouchPoints addObject:touch];
+    }
+    
+    if(allTouchPoints.count ==  2) {
+        [self performCalculations];
     }
 
     NSLog(@"touchesMoved : AllTouchpoints : %d",allTouchPoints.count);
@@ -888,25 +921,16 @@ int previousTouchCount = 0;
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     isContaintSelfPoint = NO;
 
-    for(UITouch *touch in allTouchPoints) {
-        CGPoint pt  = [touch locationInView:self];
-        testView= [[UIView alloc] initWithFrame:CGRectMake(pt.x, pt.y, 20, 20)];
-        testView.backgroundColor = [UIColor blackColor];
-        [self addSubview:testView];
-        [allTestViews addObject:testView];
-
-    }
-    double delayInSeconds = 1.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        for(UIView *vw in allTestViews) {
-            [vw removeFromSuperview];
-        }
-        [allTestViews removeAllObjects];
-    });
-
     NSLog(@"touchesEnded : AllTouchpoints : %d " ,allTouchPoints.count);
     [self performCalculations];
+    
+#ifdef IS_RUN_WITHOUT_SHAPE_FOR_TESTING
+    for (UITouchShapeRecognizer *UIT in shapeDataCache) {
+        if (delegate && [delegate respondsToSelector:@selector(shapeDetected: inView:)]) {
+            [delegate shapeDetected:UIT inView:self];
+        }
+    }
+#endif
 
 }
 

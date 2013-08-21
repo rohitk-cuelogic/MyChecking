@@ -391,7 +391,7 @@ static TigglyStampUtils *sharedInstance = nil;
     [userDefaults setBool:isOn forKey:KEY_IS_SEND_MAIL];
     
 }
--(BOOL)getsendMailOn{
+-(BOOL)getSendMailOn{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     BOOL isWithShape = [userDefaults boolForKey:KEY_IS_SEND_MAIL];
     DebugLog(@"getsendMailOn :%d",isWithShape);

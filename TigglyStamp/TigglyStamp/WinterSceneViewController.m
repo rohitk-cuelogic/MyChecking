@@ -306,7 +306,7 @@ bool StartStopRecorder = YES;
         shouldShapeDetected = NO;
         [self buildShape:UIT.label];
     }
-    int64_t delayInSecondsTodetect = 1.0f;
+    int64_t delayInSecondsTodetect = 0.0f;
     dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
     dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
         shouldShapeDetected = YES;
@@ -675,7 +675,7 @@ bool StartStopRecorder = YES;
     }
     
     //To build the actual shape
-    int64_t delayInSeconds = 1;
+    int64_t delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         int64_t d = 1;

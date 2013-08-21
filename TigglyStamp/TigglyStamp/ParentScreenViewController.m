@@ -156,14 +156,7 @@
     if ([btn tag] == TAG_HOME_BTN) {
             
      [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
-        
-        [animation setFillMode:kCAFillModeBoth];
-        animation.endProgress=0.99;
-        [animation setRemovedOnCompletion:NO];
-        [self.homeBTN.layer addAnimation:animation forKey:nil];
-        
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
-        
+                
     }
     if ([btn tag] == TAG_SUBSCRIBE_BTN) {
         if (emailidTextField.text.length != 0) {

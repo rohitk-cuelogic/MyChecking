@@ -40,7 +40,7 @@
     NSMutableArray *detectedPoints;
     BOOL isContaintSelfPoint;
     
-    UIView *testView;
+//    UIView *testView;
     NSMutableArray *allTestViews;
     
 }

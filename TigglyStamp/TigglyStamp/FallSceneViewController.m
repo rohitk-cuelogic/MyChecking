@@ -691,10 +691,10 @@ bool bStartStopRecorder = YES;
     }
     
     //To build the actual shape
-    int64_t delayInSeconds = 1;
+    int64_t delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        int64_t d = 1;
+        int64_t d = 1.0;
         dispatch_time_t p = dispatch_time(DISPATCH_TIME_NOW, d * NSEC_PER_SEC);
         dispatch_after(p, dispatch_get_main_queue(), ^(void){
             [layer removeFromSuperlayer];
@@ -967,7 +967,7 @@ bool bStartStopRecorder = YES;
     DebugLog(@"");
     if(isRecording) {
         isRecording = NO;
-        [videoButton setBackgroundImage:[UIImage imageNamed:@"recording"] forState:UIControlStateNormal];
+        [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted"] forState:UIControlStateNormal];
         cameraButton.hidden = NO;
         [screenCapture stopRecording];
         [self screenVideoShotStop];
@@ -1202,9 +1202,9 @@ bool bStartStopRecorder = YES;
 #pragma mark- ===============================
 -(void)screenVideoShotStop {
     DebugLog(@"");
-    [cameraButton setHidden:YES];
-    [videoButton setHidden:YES];
-    [garbageCan setHidden:YES];
+//    [cameraButton setHidden:YES];
+//    [videoButton setHidden:YES];
+//    [garbageCan setHidden:YES];
 //    [curlButton setHidden:YES];
     
     NSString *imageStr = [NSString stringWithFormat:@"%@",screenCapture.exportUrl];

@@ -150,7 +150,7 @@ int volumeFadeInCnt;
         //Shows the email composer view
         MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
         picker.mailComposeDelegate = self;
-        [picker setToRecipients:[[NSArray alloc]initWithObjects:[NSString stringWithFormat:@"sachin.patil@cuelogic.co.in"], nil] ];
+        [picker setToRecipients:[[NSArray alloc]initWithObjects:@"ninad@cuelogic.co.in",@"amarsinh.asagekar@cuelogic.co.in",@"azi@tiggly.com",@"phyl@tiggly.com", nil]];
         NSString *sub;
         NSString *body;
         NSString *filename = NULL;
@@ -177,7 +177,7 @@ int volumeFadeInCnt;
 //        }
             filename = [NSString stringWithFormat:@"ShapeTouchPoints.csv"];
             sub = [NSString stringWithFormat:@"[Tiggly]: Touch points"];
-            body =  [NSString stringWithFormat:@"In this we have attached the file which contains distance of shape detection algorithm"];
+            body =  [NSString stringWithFormat:@"Please find the attachment for the file containing distances of shape detection algorithm"];
         
         DebugLog(@"Email Subject: %@",sub);
         DebugLog(@"Email Body: %@",body);

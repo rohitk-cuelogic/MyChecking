@@ -75,19 +75,6 @@
     skipBTN.layer.cornerRadius = 10.0f;
     skipBTN.layer.masksToBounds = YES;
     
-    
-    //////////////////////////////
-//    CABasicAnimation *theAnimation;
-//    
-//    theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
-//    theAnimation.duration=1.0;
-//    theAnimation.repeatCount=HUGE_VALF;
-//    theAnimation.autoreverses=YES;
-//    theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
-//    theAnimation.toValue=[NSNumber numberWithFloat:0.0];
-//    [homeBTN.layer addAnimation:theAnimation forKey:@"animateLayer"]; //animateOpacity
-    
-
 
 
 }

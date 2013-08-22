@@ -204,15 +204,15 @@ bool bStartStopRecorder = YES;
 //    [recorder prepareToRecord];
     
 
-    CABasicAnimation *theAnimation;
-    
-    theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
-    theAnimation.duration=1.0;
-    theAnimation.repeatCount=HUGE_VALF;
-    theAnimation.autoreverses=YES;
-    theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
-    theAnimation.toValue=[NSNumber numberWithFloat:0.2];
-    [RigthTickButton.layer addAnimation:theAnimation forKey:@"animateLayer"]; //animateOpacity
+//    CABasicAnimation *theAnimation;
+//    
+//    theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+//    theAnimation.duration=1.0;
+//    theAnimation.repeatCount=HUGE_VALF;
+//    theAnimation.autoreverses=YES;
+//    theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
+//    theAnimation.toValue=[NSNumber numberWithFloat:0.2];
+//    [RigthTickButton.layer addAnimation:theAnimation forKey:@"animateLayer"]; //animateOpacity
 }
 
 - (void)clearScreen:(UITapGestureRecognizer *)sender {
@@ -755,6 +755,24 @@ bool bStartStopRecorder = YES;
         RigthTickButton.hidden = NO;
         videoButton.hidden = YES;
         cameraButton.hidden = YES;
+        
+        
+//        NSArray *arr = [NSArray arrayWithObjects:
+//                        (id) [UIImage imageNamed:@"tick"].CGImage,
+//                        (id) [UIImage imageNamed:@"tick1"].CGImage,
+//                        (id) [UIImage imageNamed:@"tick2"].CGImage,
+//                        nil];
+//        
+//        CAKeyframeAnimation *animation3 = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+//        animation3.calculationMode = kCAAnimationDiscrete;
+//        animation3.removedOnCompletion = NO;
+//        animation3.duration =0.8;
+//        animation3.repeatCount = HUGE_VAL;
+//        animation3.values = arr;
+//        animation3.autoreverses = YES;
+//        [RigthTickButton.layer addAnimation: animation3 forKey: @"contents"];
+        
+
     }
 }
  

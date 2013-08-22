@@ -712,7 +712,7 @@ int previousTouchCount = 0;
                     testView.layer.masksToBounds=YES;
                     [self addSubview:testView];
            
-                    double delayInSeconds = 0.3;
+                    double delayInSeconds = 0.2;
                     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
                     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                         [testView removeFromSuperview];
@@ -760,7 +760,7 @@ int previousTouchCount = 0;
                     testView.layer.masksToBounds=YES;
                     [allTestViews addObject:testView];
 
-                    double delayInSeconds = 0.3;
+                    double delayInSeconds = 0.2;
                     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
                     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                         [testView removeFromSuperview];

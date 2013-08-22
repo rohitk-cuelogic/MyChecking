@@ -550,7 +550,7 @@ int previousTouchCount = 0;
                                 NSLog(@"Shape Detected with Modified Key :  %@",UIT.label);
 
                                 isDataWrite = YES;
-                                [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@%@\n",csvString,UIT.label]];
+                                [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%d,%d,%d,%@\n",x,y,z,UIT.label]];
 
                                 DebugLog(@"Found %@ Shape: %@ Key: %@", UIT.label,[recordedShapes valueForKey:tempKey], tempKey);
                                 detectedPoints = [NSArray arrayWithArray:allTouchPoints];

@@ -176,8 +176,8 @@ int volumeFadeInCnt;
 //            body =  [NSString stringWithFormat:@"In this we have attached the file which contains distance of triangle shape from shape detection algorithm"];
 //        }
             filename = [NSString stringWithFormat:@"ShapeTouchPoints.csv"];
-            sub = [NSString stringWithFormat:@"[Tiggly]: Touch points"];
-            body =  [NSString stringWithFormat:@"Please find the attachment for the file containing distances of shape detection algorithm"];
+            sub = [NSString stringWithFormat:@"[Tiggly]: Touch points in debug mode"];
+            body =  [NSString stringWithFormat:@"Please find the attachment for the file containing points of shape detection algorithm"];
         
         DebugLog(@"Email Subject: %@",sub);
         DebugLog(@"Email Body: %@",body);

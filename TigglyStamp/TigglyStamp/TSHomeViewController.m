@@ -18,7 +18,7 @@
 
 @implementation TSHomeViewController
 @synthesize imgScrollView;
-
+@synthesize bkgImageView;
 
 UISwipeGestureRecognizer *mSwpeRecognizer;
 BOOL readyToParentScreen, readyToNewsScreen;
@@ -86,18 +86,20 @@ int swipeTxtCnt;
 
 - (void)viewDidAppear:(BOOL)animated {
     
+
      [self loadThumbnails];
     
+    
+    
     CATransition *animation=[CATransition animation];
-    [animation setDelegate:self];
-    [animation setDuration:1.90];
+    [animation setDuration:2.0];
     [animation setType:@"rippleEffect"];
     
     [animation setFillMode:kCAFillModeBoth];
-    animation.endProgress=0.70;
+    animation.endProgress=0.8;
     animation.repeatCount = HUGE_VAL;
-    animation.repeatDuration = HUGE_VAL;
     [animation setRemovedOnCompletion:NO];
+    animation.autoreverses = YES;
     [self.view.layer addAnimation:animation forKey:nil];
 }
 

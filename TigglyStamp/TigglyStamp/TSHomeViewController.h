@@ -22,10 +22,12 @@
     IBOutlet UITextView *txtView;
     IBOutlet UIButton *notConfirm;
     NSMutableArray *diskImages;
+    IBOutlet UIImageView *bkgImageView;
     
 }
 
 @property(nonatomic, strong)UIScrollView *imgScrollView;
+@property(nonatomic, strong)UIImageView *bkgImageView;
 
 -(IBAction)playGame:(id)sender;
 -(IBAction)goToParentsScreen:(id)sender;

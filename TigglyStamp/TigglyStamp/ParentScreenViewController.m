@@ -91,7 +91,7 @@
 //    animation.repeatCount = HUGE_VAL;
 //    animation.repeatDuration = HUGE_VAL;
 //    [animation setRemovedOnCompletion:NO];
-//    [self.homeBTN.layer addAnimation:animation forKey:nil];
+//    [self.view.layer addAnimation:animation forKey:nil];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

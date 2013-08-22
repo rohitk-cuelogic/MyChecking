@@ -83,11 +83,24 @@ int swipeTxtCnt;
     swipeTxtArray = [[NSMutableArray alloc] initWithObjects:@"right with 2", @"right with 3", @"left with 2", @"left with 3", @"up with 2", @"up with 3", @"down with 2", @"down with 3", nil];
 
 }
--(void) viewDidAppear:(BOOL)animated{
+
+- (void)viewDidAppear:(BOOL)animated {
     
-    [self loadThumbnails];
+     [self loadThumbnails];
     
+    CATransition *animation=[CATransition animation];
+    [animation setDelegate:self];
+    [animation setDuration:1.90];
+    [animation setType:@"rippleEffect"];
+    
+    [animation setFillMode:kCAFillModeBoth];
+    animation.endProgress=0.70;
+    animation.repeatCount = HUGE_VAL;
+    animation.repeatDuration = HUGE_VAL;
+    [animation setRemovedOnCompletion:NO];
+    [self.view.layer addAnimation:animation forKey:nil];
 }
+
 
 - (void)didReceiveMemoryWarning
 {

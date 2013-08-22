@@ -144,6 +144,8 @@
 		C0FF762A17A78FA500FF084A /* TigglyStamp-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F332C1781867900FC479F /* TigglyStamp-Info.plist */; };
 		EB11AF8117AA36FE0013B1B4 /* IntroScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC31D64317A94CE1008C5361 /* IntroScreenViewController.xib */; };
 		EB1A593417ABD138001749D2 /* pattern_0_1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB1A593317ABD138001749D2 /* pattern_0_1.png */; };
+		EB2B02C717C4DE9F00340A20 /* tick@2x~ipad2.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2B02C517C4DE9F00340A20 /* tick@2x~ipad2.png */; };
+		EB2B02C817C4DE9F00340A20 /* tick@2x~ipad1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2B02C617C4DE9F00340A20 /* tick@2x~ipad1.png */; };
 		EB6F33251781867900FC479F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6F33241781867900FC479F /* UIKit.framework */; };
 		EB6F33271781867900FC479F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6F33261781867900FC479F /* Foundation.framework */; };
 		EB6F33291781867900FC479F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6F33281781867900FC479F /* CoreGraphics.framework */; };
@@ -451,6 +453,8 @@
 		C0DDFCC117A66E4C001F846D /* FallSceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FallSceneViewController.m; sourceTree = "<group>"; };
 		C0DDFCC217A66E4C001F846D /* FallSceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FallSceneViewController.xib; sourceTree = "<group>"; };
 		EB1A593317ABD138001749D2 /* pattern_0_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pattern_0_1.png; sourceTree = "<group>"; };
+		EB2B02C517C4DE9F00340A20 /* tick@2x~ipad2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick@2x~ipad2.png"; sourceTree = "<group>"; };
+		EB2B02C617C4DE9F00340A20 /* tick@2x~ipad1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick@2x~ipad1.png"; sourceTree = "<group>"; };
 		EB6F33201781867900FC479F /* TigglyStamp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TigglyStamp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB6F33241781867900FC479F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EB6F33261781867900FC479F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1069,6 +1073,8 @@
 				C08291AA17A793C50023F08A /* blueBtn@2x~ipad.png */,
 				C08291A417A793640023F08A /* lock@2x~ipad.png */,
 				C08291A517A793640023F08A /* recording@2x~ipad.png */,
+				EB2B02C517C4DE9F00340A20 /* tick@2x~ipad2.png */,
+				EB2B02C617C4DE9F00340A20 /* tick@2x~ipad1.png */,
 				C08291A617A793640023F08A /* tick@2x~ipad.png */,
 				EBF351FB179D2DBD004A1C14 /* camera@2x~ipad.png */,
 				EBF351FC179D2DBD004A1C14 /* videocamera@2x~ipad.png */,
@@ -1399,6 +1405,8 @@
 				C0A4E61617BA6490008EB0C9 /* Winter_Btn.png in Resources */,
 				C0A4E61817BA6A89008EB0C9 /* fallView@2x~ipad.png in Resources */,
 				EBF797A317BE0317003C7888 /* camera_click.mp3 in Resources */,
+				EB2B02C717C4DE9F00340A20 /* tick@2x~ipad2.png in Resources */,
+				EB2B02C817C4DE9F00340A20 /* tick@2x~ipad1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1576,8 +1584,8 @@
 				INFOPLIST_FILE = "TigglyStamp/TigglyStamp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0B7EE4BA-6AFD-4628-B6F3-2E0947E01523";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0B7EE4BA-6AFD-4628-B6F3-2E0947E01523";
+				PROVISIONING_PROFILE = "5269B694-82B4-4B2F-B03D-203E9223774C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5269B694-82B4-4B2F-B03D-203E9223774C";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

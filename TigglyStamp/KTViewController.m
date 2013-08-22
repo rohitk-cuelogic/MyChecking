@@ -150,7 +150,7 @@ int volumeFadeInCnt;
         //Shows the email composer view
         MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
         picker.mailComposeDelegate = self;
-        [picker setToRecipients:[[NSArray alloc]initWithObjects:[NSString stringWithFormat:@"rohit.kale@cuelogic.co.in"], nil] ];
+        [picker setToRecipients:[[NSArray alloc]initWithObjects:[NSString stringWithFormat:@"sachin.patil@cuelogic.co.in"], nil] ];
         NSString *sub;
         NSString *body;
         NSString *filename = NULL;

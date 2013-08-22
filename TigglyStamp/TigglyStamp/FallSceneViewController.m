@@ -294,6 +294,11 @@ bool bStartStopRecorder = YES;
         NSLog(@"I got the shape but i am returning");
         return;
     }
+    if(!videoButton.hidden || !cameraButton.hidden) {
+        videoButton.hidden = YES;
+        cameraButton.hidden=YES;
+    }
+    
     shapeToDraw = nil;
     self.shapes = [[NSMutableArray alloc]initWithArray:[fallSceneObject shapeForObject:UIT.label]];
     centerX = 0;
@@ -746,8 +751,10 @@ bool bStartStopRecorder = YES;
  */
 -(void)needToShowRightTickButton{
     DebugLog(@"");
-    if ([fruitObjectArray count] > 0 && [videoButton isHidden]) {
+    if ([fruitObjectArray count] > 0) {
         RigthTickButton.hidden = NO;
+        videoButton.hidden = YES;
+        cameraButton.hidden = YES;
     }
 }
  

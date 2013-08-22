@@ -292,6 +292,12 @@ bool StartStopRecorder = YES;
     if(!shouldShapeDetected){
         return;
     }
+    
+    if(!videoButton.hidden || !cameraButton.hidden) {
+        videoButton.hidden = YES;
+        cameraButton.hidden=YES;
+    }
+    
     shapeToDraw = nil;
     self.shapes = [[NSMutableArray alloc]initWithArray:[winterSceneObject shapeForObject:UIT.label]];  
     centerX = 0;
@@ -1066,7 +1072,9 @@ bool StartStopRecorder = YES;
         if (![btn isHidden]) {
             [self sendEmail];
             [RigthTickButton setHidden:YES];
-          
+            [cameraButton setHidden:NO];
+            [videoButton setHidden:NO];
+            
             if ([[[NSUserDefaults standardUserDefaults] valueForKey:SAVE_ART] isEqualToString:@"yes"]) {
                 [cameraButton setHidden:NO];
                 [videoButton setHidden:NO];

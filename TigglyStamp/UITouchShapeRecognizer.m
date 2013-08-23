@@ -45,6 +45,7 @@
 -(void)loadShapDataWithFile:(NSString*)fileName{
     //DebugLog(@"fileName :%@",fileName);
     shapeData = [[NSMutableDictionary alloc]initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"plist"]];
+//    DebugLog(@"shapeData :%@",shapeData);
 }
 //=====================================================================================================================================//
 #pragma mark-

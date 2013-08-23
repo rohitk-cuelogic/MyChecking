@@ -212,7 +212,7 @@ int swipeTextCnt;
         
         editorImgView.frame = RECT_MAIN_SCREEN_FRAME;
         editorImgView.center = CGPointMake(512, 384);
-
+        
         
     }else{
         homeBtn.hidden = NO;
@@ -332,8 +332,8 @@ int swipeTextCnt;
                                      }];
 }
 
--(void)swippedLeftEditorImage{
-    DebugLog(@"");
+-(void)swippedLeftEditorImage
+{
     
     DebugLog(@"Saved Image Array : %@",savedImgArry);
     
@@ -390,6 +390,7 @@ int swipeTextCnt;
             UIImage *img = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[savedImgArry objectAtIndex:cnt]];
             imageToBeEdit = img;
             playBtn.hidden = NO;
+        
         }else{
             imageToBeEdit = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:[savedImgArry objectAtIndex:cnt]]]];
             playBtn.hidden = YES;
@@ -406,13 +407,18 @@ int swipeTextCnt;
         if(readyToZoom){
             goingView.center = CGPointMake(512, 400);
             comingView.center = CGPointMake(1500, 400);
-            
+            if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
+                playBtn.hidden = YES;
+            }
             [UIView animateWithDuration:1
                              animations:^{
                                  goingView.center = CGPointMake(-700, 400);
                                  comingView.center = CGPointMake(512, 400);
                              }
                              completion:^(BOOL finished){
+                                 if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
+                                     playBtn.hidden = NO;
+                                 }
                                  [goingView removeFromSuperview];
                                  [comingView removeFromSuperview];
                                  editorImgView.image = imageToBeEdit;
@@ -422,13 +428,18 @@ int swipeTextCnt;
         }else{
             goingView.center = CGPointMake(512, 384);
             comingView.center = CGPointMake(1700, 384);
-            
+            if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
+                playBtn.hidden = YES;
+            }
             [UIView animateWithDuration:1
                              animations:^{
                                  goingView.center = CGPointMake(-700, 384);
                                  comingView.center = CGPointMake(512, 384);
                              }
                              completion:^(BOOL finished){
+                                 if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
+                                     playBtn.hidden = NO;
+                                 }
                                  [goingView removeFromSuperview];
                                  [comingView removeFromSuperview];
                                  editorImgView.image = imageToBeEdit;
@@ -511,13 +522,18 @@ int swipeTextCnt;
         if(readyToZoom){
             goingView.center = CGPointMake(512, 400);
             comingView.center = CGPointMake(-500, 400);
-            
+            if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
+                playBtn.hidden = YES;
+            }
             [UIView animateWithDuration:1
                              animations:^{
                                  goingView.center = CGPointMake(1500, 400);
                                  comingView.center = CGPointMake(512, 400);
                              }
                              completion:^(BOOL finished){
+                                 if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
+                                     playBtn.hidden = NO;
+                                 }
                                  [goingView removeFromSuperview];
                                  [comingView removeFromSuperview];
                                  editorImgView.image = imageToBeEdit;
@@ -527,19 +543,23 @@ int swipeTextCnt;
         }else{
             goingView.center = CGPointMake(512, 384);
             comingView.center = CGPointMake(-700, 384);
-            
-            [UIView animateWithDuration:1
-                             animations:^{
-                                 goingView.center = CGPointMake(1700, 384);
-                                 comingView.center = CGPointMake(512, 384);
-                             }
-                             completion:^(BOOL finished){
-                                 [goingView removeFromSuperview];
-                                 [comingView removeFromSuperview];
-                                 editorImgView.image = imageToBeEdit;
-                                 editorImgView.hidden = NO;
-                                 editorImgView.userInteractionEnabled = YES;
-                             }];
+            if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
+                playBtn.hidden = YES;
+            }            [UIView animateWithDuration:1
+                                          animations:^{
+                                              goingView.center = CGPointMake(1700, 384);
+                                              comingView.center = CGPointMake(512, 384);
+                                          }
+                                          completion:^(BOOL finished){
+                                              if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
+                                                  playBtn.hidden = NO;
+                                              }
+                                              [goingView removeFromSuperview];
+                                              [comingView removeFromSuperview];
+                                              editorImgView.image = imageToBeEdit;
+                                              editorImgView.hidden = NO;
+                                              editorImgView.userInteractionEnabled = YES;
+                                          }];
         }
     }
 }
@@ -561,24 +581,34 @@ int swipeTextCnt;
                                                  name:MPMoviePlayerDidExitFullscreenNotification
                                                object:nil];
     
+    
+    if (readyToZoom == NO) {
+        [moviePlayer.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.x, self.view.frame.size.width, self.view.frame.size.height)];
+
+    }else{
+        [moviePlayer.view setFrame:CGRectMake(512-(735/2), 400-(551/2), 735, 551)];
+    }
+    
     moviePlayer.controlStyle = MPMovieControlStyleDefault;
     moviePlayer.shouldAutoplay = YES;
     [self.view addSubview:moviePlayer.view];
-    [moviePlayer setFullscreen:YES animated:YES];
-    
-    double delayInSeconds = 0.5;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        
-        homeBtn.hidden = NO;
-        saveImageBtn.hidden = NO;
-        deleteBtn.hidden = NO;
-        upperPanel.hidden = NO;
-        
-        editorImgView.frame = RECT_THUMBNAIL_EDITOR_FRAME;
-        editorImgView.center = CGPointMake(512, 400);
+    [moviePlayer prepareToPlay];
+    [moviePlayer play];
 
-    });
+    
+//    double delayInSeconds = 0.5;
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//        
+//        homeBtn.hidden = NO;
+//        saveImageBtn.hidden = NO;
+//        deleteBtn.hidden = NO;
+//        upperPanel.hidden = NO;
+//        
+//        editorImgView.frame = RECT_THUMBNAIL_EDITOR_FRAME;
+//        editorImgView.center = CGPointMake(512, 400);
+//
+//    });
 
     
 }
@@ -586,7 +616,8 @@ int swipeTextCnt;
 
 - (void) moviePlayBackDidFinish:(NSNotification*)notification {
     DebugLog(@"");
-    
+    playBtn.hidden = NO;
+
     moviePlayer = [notification object];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -603,8 +634,10 @@ int swipeTextCnt;
 
 -(void)didExitFullScreen:(id)sender{
     DebugLog(@"");
+    playBtn.hidden = YES;
 
 }
+
 
 #pragma mark-
 #pragma mark======================
@@ -621,6 +654,7 @@ int swipeTextCnt;
 }
 
 -(IBAction)goToHomeScreen:(id)sender{
+    [moviePlayer stop];
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
 }
 
@@ -677,6 +711,9 @@ int swipeTextCnt;
 }
 
 -(IBAction)deleteImage:(id)sender{
+    
+    [moviePlayer stop];
+
     DebugLog(@"");
     upperPanel.alpha = 0.5;
     editorImgView.alpha = 0.3;

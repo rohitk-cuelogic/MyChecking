@@ -26,6 +26,8 @@
     MPMoviePlayerController *moviePlayer;
 }
 
+
+
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withImage:(UIImage *)img imageName:(NSString *)imgName;
 -(IBAction) goToHomeScreen:(id)sender;
 -(IBAction) saveImageToGallary:(id)sender;

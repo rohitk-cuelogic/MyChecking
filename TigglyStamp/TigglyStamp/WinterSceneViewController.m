@@ -66,8 +66,21 @@ bool StartStopRecorder = YES;
     [super viewDidAppear:YES];
      DebugLog(@"");
     
-    
+    [self addCurlAnimation];
 }
+
+- (void) addCurlAnimation
+{
+    CATransition *animation = [CATransition animation];
+    [animation setDuration:HUGE_VAL];
+    animation.type = @"pageUnCurl";
+    animation.subtype = kCATransitionFromRight;
+    animation.fillMode = kCAFillModeBackwards;
+    animation.startProgress = 0.85;
+    [animation setRemovedOnCompletion:NO];
+    [[[self view] layer] addAnimation:animation forKey:@"pageCurlAnimation"];
+}
+
 //================================================================================================================
 - (void)viewDidLoad
 {
@@ -264,6 +277,7 @@ bool StartStopRecorder = YES;
 {
     [super didReceiveMemoryWarning];
 }
+
 //================================================================================================================
 #pragma mark-
 #pragma mark======================
@@ -1085,6 +1099,8 @@ bool StartStopRecorder = YES;
     }
     if ([btn tag] == TAG_CURL_BTN) {
         
+        [[[self view] layer] removeAllAnimations];
+        
         CGRect r = self.imageView.frame;
         [self.view bringSubviewToFront:backView];
         
@@ -1110,7 +1126,11 @@ bool StartStopRecorder = YES;
         fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
         [RigthTickButton setHidden:YES];
         
-        
+        int64_t delayInSecondsTodetect = 1.0f;
+        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
+        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
+            [self addCurlAnimation];
+        });
         /*
         CGRect r = self.imageView.frame;
         self.curlView = [[XBCurlView alloc] initWithFrame:r];
@@ -1206,18 +1226,24 @@ bool StartStopRecorder = YES;
 
 -(void) onNextButtonClicked:(CapturedImageView *)cImageView{
     DebugLog(@"");
+//    [cImageView removeFromSuperview];
+//    for(FruitView *fruit in fruitObjectArray){
+//        [fruit removeFromSuperview];
+//    }
+//    fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
+//    [cameraButton setHidden:YES];
+//    [videoButton setHidden:YES];
+//    [RigthTickButton setHidden:YES];
+    [moviePlayer stop];
+
+    [self.navigationController popViewControllerAnimated:YES];
     [cImageView removeFromSuperview];
-    for(FruitView *fruit in fruitObjectArray){
-        [fruit removeFromSuperview];
-    }
-    fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
-    [cameraButton setHidden:YES];
-    [videoButton setHidden:YES];
-    [RigthTickButton setHidden:YES];
 }
 //================================================================================================================
 
 -(void) onHomeButtonClicked:(CapturedImageView *)cImageView{
+    [moviePlayer stop];
+
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
     [cImageView removeFromSuperview];
 }
@@ -1291,18 +1317,12 @@ bool StartStopRecorder = YES;
                                              selector:@selector(didExitFullScreen:)
                                                  name:MPMoviePlayerDidExitFullscreenNotification
                                                object:nil];
-    
+    [moviePlayer.view setFrame:CGRectMake(100, 80,800,600)];
     moviePlayer.controlStyle = MPMovieControlStyleDefault;
     moviePlayer.shouldAutoplay = YES;
     [self.view addSubview:moviePlayer.view];
-    [moviePlayer setFullscreen:YES animated:YES];
-    
-    double delayInSeconds = 0.5;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        
-    });
-    
+    [moviePlayer prepareToPlay];
+    [moviePlayer play];    
     
 }
 

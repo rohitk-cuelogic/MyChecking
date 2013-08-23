@@ -201,6 +201,7 @@
 								<string key="NSFrame">{{919, 664}, {100, 100}}</string>
 								<reference key="NSSuperview" ref="517430245"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -237,10 +238,6 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="379036874"/>
-								<object class="NSCustomResource" key="IBUINormalImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">curlImage.png</string>
-								</object>
 								<reference key="IBUIFontDescription" ref="24435954"/>
 								<reference key="IBUIFont" ref="659358699"/>
 							</object>
@@ -669,7 +666,6 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="Tiggly_stamp_Winter_BG.png">{1024, 768}</string>
 			<string key="camera@2x~ipad.png">{200, 199}</string>
-			<string key="curlImage.png">{153, 136}</string>
 			<string key="recordingStarted@2x~ipad.png">{200, 200}</string>
 			<string key="tick@2x~ipad.png">{178, 178}</string>
 			<string key="trashcan_icon@2x~ipad.png">{200, 199}</string>

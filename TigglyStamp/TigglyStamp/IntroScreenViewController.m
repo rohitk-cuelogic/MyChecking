@@ -212,7 +212,6 @@
     
     popoverController = [[UIPopoverController alloc] initWithContentViewController:popoverContent] ;
     popoverController.popoverContentSize = CGSizeMake(320, 264);
-    
     //present the popover view
     UIButton* senderButton = (UIButton*)sender;
     [popoverController presentPopoverFromRect:senderButton.frame inView:self.languageSubView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];

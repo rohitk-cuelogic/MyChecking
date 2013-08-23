@@ -188,10 +188,6 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="856985407"/>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">curlImage.png</string>
-								</object>
 								<reference key="IBUIFontDescription" ref="932187827"/>
 								<reference key="IBUIFont" ref="280982549"/>
 							</object>
@@ -660,7 +656,6 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="camera@2x~ipad.png">{200, 199}</string>
-			<string key="curlImage.png">{153, 136}</string>
 			<string key="fallView.png">{1024, 768}</string>
 			<string key="recordingStarted@2x~ipad.png">{200, 200}</string>
 			<string key="tick@2x~ipad.png">{178, 178}</string>

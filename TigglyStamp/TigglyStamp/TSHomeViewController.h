@@ -23,11 +23,13 @@
     IBOutlet UIButton *notConfirm;
     NSMutableArray *diskImages;
     IBOutlet UIImageView *bkgImageView;
-    
+    NSMutableArray *arrMovingObj;
+    IBOutlet UIView *containerView;
 }
 
 @property(nonatomic, strong)UIScrollView *imgScrollView;
 @property(nonatomic, strong)UIImageView *bkgImageView;
+@property (nonatomic, strong) UIView *containerView;
 
 -(IBAction)playGame:(id)sender;
 -(IBAction)goToParentsScreen:(id)sender;

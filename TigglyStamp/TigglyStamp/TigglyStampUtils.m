@@ -383,8 +383,8 @@ static TigglyStampUtils *sharedInstance = nil;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *strfirstTime = [userDefaults stringForKey:KEY_FIRST_TIME_LAUNCH];
     if (strfirstTime==NULL||[strfirstTime isEqualToString:@""] ) {
-        [self setDebugModeForWriteKeyInCsvOn:YES];
-        [self setSendMailOn:YES];
+        [self setDebugModeForWriteKeyInCsvOn:NO];
+        [self setSendMailOn:NO];
         [userDefaults setObject:@"YES" forKey:KEY_FIRST_TIME_LAUNCH];
     }
     BOOL isWithShape = [userDefaults boolForKey:KEY_WRITE_KEYS_INCSV];

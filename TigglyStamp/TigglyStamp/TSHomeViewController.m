@@ -10,7 +10,7 @@
 #import "TSThumbnailEditController.h"
 #import "SeasonSelectionViewController.h"
 #import "ParentScreenViewController.h"
-
+#import "MovingView.h"
 
 @interface TSHomeViewController ()
 
@@ -19,6 +19,7 @@
 @implementation TSHomeViewController
 @synthesize imgScrollView;
 @synthesize bkgImageView;
+@synthesize containerView;
 
 UISwipeGestureRecognizer *mSwpeRecognizer;
 BOOL readyToParentScreen, readyToNewsScreen;
@@ -68,6 +69,8 @@ int swipeTxtCnt;
     //    haveShapesBtn.layer.masksToBounds = YES;
     
     
+    
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -85,22 +88,13 @@ int swipeTxtCnt;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    
 
-     [self loadThumbnails];
+     [self loadThumbnails];    
     
+    [self addMovingObjects];
     
-    
-    CATransition *animation=[CATransition animation];
-    [animation setDuration:2.0];
-    [animation setType:@"rippleEffect"];
-    
-    [animation setFillMode:kCAFillModeBoth];
-    animation.endProgress=0.8;
-    animation.repeatCount = HUGE_VAL;
-    [animation setRemovedOnCompletion:NO];
-    animation.autoreverses = YES;
-    [self.view.layer addAnimation:animation forKey:nil];
+    [self performSelector:@selector(addRippleEffect) withObject:nil afterDelay:1.0];
+ 
 }
 
 
@@ -123,6 +117,98 @@ int swipeTxtCnt;
 {
     DebugLog(@"");
     return UIInterfaceOrientationMaskLandscape;
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Animation
+#pragma mark =======================================
+
+-(void) animationDidStart:(CAAnimation *)anim {
+    DebugLog(@"");
+    
+}
+
+-(void) animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    DebugLog(@"");
+
+    
+    
+}
+
+
+-(void) addRippleEffect {
+    DebugLog(@"");
+    
+    CATransition *animation=[CATransition animation];
+    [animation setDuration:2.0];
+    [animation setType:@"rippleEffect"];
+    animation.delegate = self;
+    [animation setFillMode:kCAFillModeBoth];
+    animation.endProgress=0.8;
+    animation.repeatCount = HUGE_VAL;
+    [animation setRemovedOnCompletion:NO];
+    animation.autoreverses = NO;
+    [animation setTimingFunction: [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
+    [containerView.layer addAnimation:animation forKey:nil];
+    
+}
+
+-(void) addMovingObjects{
+    DebugLog(@"");
+    arrMovingObj = [[NSMutableArray alloc] initWithCapacity:1];
+    NSString *strImgName;
+    CGRect rect;
+    for(int i =0; i<4;i++) {
+        switch (i) {
+            case 0:
+                strImgName = @"circle_shape";
+                rect = CGRectMake(70, 70, 200, 200);
+                break;
+                
+            case 1:
+                strImgName = @"triangle_shape";
+                rect = CGRectMake(800, 250, 200, 200);
+                break;
+                
+            case 2:
+                strImgName = @"square_shape";
+                rect = CGRectMake(512, 90, 200, 200);
+                break;
+                
+            case 3:
+                strImgName = @"star_shape";
+                rect = CGRectMake(200, 300, 200, 200);
+                break;
+                
+            default:
+                break;
+        }
+      
+        MovingView *movingView = [[MovingView alloc] initWithFrame:rect withImageName:strImgName];
+        [self.containerView addSubview:movingView];
+        [arrMovingObj addObject:movingView];
+        
+        [UIView beginAnimations:@"rippleEffect" context:NULL];
+        [UIView setAnimationDuration:1.0];
+        [UIView setAnimationRepeatCount:HUGE_VAL];
+        [UIView setAnimationTransition:110 forView:movingView cache:NO];
+        [UIView commitAnimations];
+
+//       [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(moveObjects :) userInfo:movingView repeats:YES];
+        
+    }
+    
+
+    
+}
+
+-(void) moveObjects: (MovingView *) mv {
+    DebugLog(@"");
+    
+//    mv.frame = CGRectMake(mv.frame.origin.x + 2, mv.frame.origin.y, mv.frame.size.width, mv.frame.size.height);
+
+    
 }
 
 #pragma mark-

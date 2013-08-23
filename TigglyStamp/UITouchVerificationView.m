@@ -741,9 +741,9 @@ int previousTouchCount = 0;
             }
             
             if([[TigglyStampUtils sharedInstance] getDebugModeForWriteKeyInCsvOn]) {
-                    UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x, touchLocation.y, 20, 20)];
+                    UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x, touchLocation.y, 40, 40)];
                     testView.backgroundColor = [UIColor blueColor];
-                    testView.layer.cornerRadius = 10.0f;
+                    testView.layer.cornerRadius = 20.0f;
                     testView.layer.masksToBounds=YES;
                     [self addSubview:testView];
            
@@ -790,10 +790,10 @@ int previousTouchCount = 0;
             }
             
             if([[TigglyStampUtils sharedInstance] getDebugModeForWriteKeyInCsvOn]) {
-                    UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x, touchLocation.y, 20, 20)];
+                    UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x, touchLocation.y, 40, 40)];
                     testView.backgroundColor = [UIColor redColor];
                     [self addSubview:testView];
-                    testView.layer.cornerRadius = 10.0f;
+                    testView.layer.cornerRadius = 20.0f;
                     testView.layer.masksToBounds=YES;
                     [allTestViews addObject:testView];
 

@@ -28,6 +28,8 @@
 @property (nonatomic,retain) NSMutableArray *arrLanguage;
 @property (nonatomic, strong) IBOutlet UILabel *lblLunguage;
 @property (nonatomic, strong) IBOutlet UILabel *lblLunguageTest;
+@property (nonatomic, strong) IBOutlet UIImageView *bkgImageView;
+@property (nonatomic, strong) IBOutlet UIImageView *bkgImageViewlang;
 
 -(IBAction)onButtonTouched:(id)sender;
 -(IBAction)languageButtonClicked:(id)sender;

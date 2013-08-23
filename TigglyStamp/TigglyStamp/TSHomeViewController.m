@@ -49,7 +49,7 @@ int swipeTxtCnt;
 
     
     // Do any additional setup after loading the view from its nib.
-    imgScrollView.frame = CGRectMake(0,768 - (RECT_THUMBNAIL_FRAME.size.height + 80), 1024, RECT_THUMBNAIL_FRAME.size.height + 40);
+    imgScrollView.frame = CGRectMake(0,768 - (RECT_THUMBNAIL_FRAME.size.height + 40), 1024, RECT_THUMBNAIL_FRAME.size.height + 40);
     
     mSwpeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swippedforConfirmation)];
     [mSwpeRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
@@ -59,17 +59,8 @@ int swipeTxtCnt;
     confirmationView.layer.cornerRadius = 20.0f;
     confirmationView.layer.masksToBounds = YES;
     
-    newsBtn.layer.cornerRadius = 20.0f;
-    newsBtn.layer.masksToBounds = YES;
-    
-    //    confirmationView.layer.borderColor = [UIColor blueColor].CGColor;
-    //    confirmationView.layer.borderWidth = 2.0f;
-    
-    //    haveShapesBtn.layer.cornerRadius = 30.0f;
-    //    haveShapesBtn.layer.masksToBounds = YES;
-    
-    
-    
+//    newsBtn.layer.cornerRadius = 20.0f;
+//    newsBtn.layer.masksToBounds = YES;
     
 }
 
@@ -88,18 +79,18 @@ int swipeTxtCnt;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-
-     [self loadThumbnails];    
+    DebugLog(@"");
     
-    [self addMovingObjects];
+    [self loadThumbnails];
     
-    [self performSelector:@selector(addRippleEffect) withObject:nil afterDelay:0.5f];
+//    [self addMovingObjects];
+//    
+//    [self performSelector:@selector(addRippleEffect) withObject:nil afterDelay:0.5f];
  
 }
 
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     DebugLog(@"");
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -107,14 +98,13 @@ int swipeTxtCnt;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
--(BOOL)shouldAutorotate
-{
+
+-(BOOL)shouldAutorotate {
     DebugLog(@"");
     return YES;
 }
 
--(NSUInteger)supportedInterfaceOrientations
-{
+-(NSUInteger)supportedInterfaceOrientations {
     DebugLog(@"");
     return UIInterfaceOrientationMaskLandscape;
 }
@@ -188,22 +178,14 @@ int swipeTxtCnt;
         MovingView *movingView = [[MovingView alloc] initWithFrame:rect withImageName:strImgName];
         [self.containerView addSubview:movingView];
         [arrMovingObj addObject:movingView];
-
-//       [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(moveObjects :) userInfo:movingView repeats:YES];
         
     }
-    
-
-    
+        
 }
 
 -(void) moveObjects : (NSTimer*)theTimer {
     DebugLog(@"");
-//    
-//    MovingView *mv = (MovingView *)[theTimer userInfo];
-//    mv.frame = CGRectMake(mv.frame.origin.x + 2, mv.frame.origin.y, mv.frame.size.width, mv.frame.size.height);
 
-    
 }
 
 #pragma mark-
@@ -249,7 +231,7 @@ int swipeTxtCnt;
     NSArray *allFiles = [[TigglyStampUtils sharedInstance] getAllImagesAndMovies];
     allFiles = [[allFiles reverseObjectEnumerator] allObjects];
    
-    int xPos = 10;
+    int xPos = 20;
     for (NSString *file in allFiles) {
             
         ThumbnailView *thumbnail = [[ThumbnailView alloc] initWithFrame:CGRectMake(xPos,0, RECT_THUMBNAIL_FRAME.size.width, RECT_THUMBNAIL_FRAME.size.height) withThumbnailImagePath:file];

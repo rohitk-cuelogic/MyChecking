@@ -11,6 +11,8 @@
 //#define DEBUG_MODE
 //#define IS_RUN_WITHOUT_SHAPE_FOR_TESTING 1
 
+#define TEST_MODE 1
+
 #ifdef DEBUG_MODE
 #define DebugLog( s, ... ) NSLog( @"<%s (%d)> %@", __FUNCTION__, __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
 #else
@@ -24,7 +26,7 @@
 #define RECT_MAIN_SCREEN_FRAME CGRectMake(0, 0, 1024, 768)
 
 #define RECT_THUMBNAIL_FRAME CGRectMake(0, 0, 200, 184)
-#define RECT_ACTUAL_THUMBNAIL_IMAGE_FRAME CGRectMake(0, 0, 180, 110)
+#define RECT_ACTUAL_THUMBNAIL_IMAGE_FRAME CGRectMake(0, 0, 200, 184)
 
 // Setting screen 
 #define LANGUAGE_SELECTED @"language"

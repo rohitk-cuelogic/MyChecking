@@ -19,14 +19,23 @@
     self = [super initWithFrame:frame];
     if (self) {
         
+        self.backgroundColor = [UIColor whiteColor];
+        self.layer.cornerRadius = 30.0f;
+        self.layer.masksToBounds = YES;
+        
+        UIActivityIndicatorView *busyView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        busyView.frame = CGRectMake(self.frame.size.width/2 - 20, self.frame.size.height/2 - 20, 40, 40);
+        [self addSubview:busyView];
+        [busyView startAnimating];
+        
         imageName = imgePath;
         
-        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(10,10, frame.size.width -20, frame.size.height -20)];
+        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, frame.size.width, frame.size.height)];
         [imgView setContentMode:UIViewContentModeScaleAspectFit];
         
-        UIImageView *imgViewFrame = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,frame.size.width, frame.size.height)];
-        imgViewFrame.image = [UIImage imageNamed:@"frame.png"];
-        [self addSubview:imgViewFrame];
+//        UIImageView *imgViewFrame = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,frame.size.width, frame.size.height)];
+//        imgViewFrame.image = [UIImage imageNamed:@"frame.png"];
+//        [self addSubview:imgViewFrame];
         
         UIImageView *playBtn = [[UIImageView alloc] initWithFrame:CGRectMake(imgView.frame.size.width/2 - 25, imgView.frame.size.height/2 - 25,50, 50)];
         playBtn.image = [UIImage imageNamed:@"play_btn.png"];
@@ -51,7 +60,8 @@
             imgView.image = thumb;
             actulaImage = thumb;
             playBtn.hidden = NO;
-        }       
+        }
+        
         [self addSubview:imgView];
         
         

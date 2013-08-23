@@ -30,6 +30,8 @@
 @synthesize arrLanguage;
 @synthesize lblLunguage;
 @synthesize lblLunguageTest;
+@synthesize bkgImageView;
+@synthesize bkgImageViewlang;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,11 +42,13 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+    DebugLog(@"");
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = YES;
     // Do any additional setup after loading the view from its nib.
+    bkgImageViewlang.alpha = 0.0;
+    bkgImageView.alpha = 0.0;
     CALayer * logo = [CALayer layer];
     [logo setAnchorPoint:CGPointMake(0.5, 0.5)];
     logo.frame = CGRectMake(self.view.center.x - 300,self.view.center.y - 300, 600, 600);
@@ -75,53 +79,52 @@
     [btnWithoutShape setHidden:true];
     [btnWithShape setHidden:true];
     
-//    [btnWithoutShape setBackgroundColor:[UIColor colorWithRed:150 green:186 blue:242 alpha:1]];
-//    [btnWithShape setBackgroundColor:[UIColor colorWithRed:150 green:186 blue:242 alpha:1]];
-    
     [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:LIMIT_GALLERY];
     [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:SAVE_ART];
-    
+        
 }
 
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
-//    [btnWithoutShape setHidden:false];
-//    [btnWithShape setHidden:false];
-    
-//    [self displayLanguageSelectionView];
-
-    
-//    // Language selection shows only onces when app launch first time
-//    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
-//        [self displayLanguageSelectionView];
-//        
-//    }
-    
-    
     // Language selection shows only onces when app launch first time
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
+        [UIView animateWithDuration:0.3 animations:^{
+            bkgImageViewlang.alpha = 1.0;
+            bkgImageView.alpha = 1.0;
+            [self displayLanguageSelectionView];
+            [btnWithoutShape setHidden:false];
+            [btnWithShape setHidden:false];
+        }];
         
-        [self displayLanguageSelectionView];
-        
-        [btnWithoutShape setHidden:false];
-        [btnWithShape setHidden:false];
-                
     }else{
+        
+#ifdef TEST_MODE
+        [UIView animateWithDuration:0.3 animations:^{
+            bkgImageViewlang.alpha = 1.0;
+            bkgImageView.alpha = 1.0;
+            [self displayLanguageSelectionView];
+            [btnWithoutShape setHidden:false];
+            [btnWithShape setHidden:false];
+        }];
+        return;
+#endif
         TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];
-        [self.navigationController pushViewController:homeViewController animated:YES];
+        [self.navigationController pushViewController:homeViewController animated:NO];
     }
+    
+
     
 }
 
 
-- (void) displayLanguageSelectionView
-{
-    self.languageSubView.layer.cornerRadius = 30.0f;
-    self.languageSubView.layer.masksToBounds = YES;
-    [self.view addSubview:self.languageView];
+- (void) displayLanguageSelectionView {
+    DebugLog(@"");
+        self.languageSubView.layer.cornerRadius = 30.0f;
+        self.languageSubView.layer.masksToBounds = YES;
+        [self.view addSubview:self.languageView]; 
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
+    DebugLog(@"");
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

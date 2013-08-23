@@ -93,7 +93,7 @@ int swipeTxtCnt;
     
     [self addMovingObjects];
     
-    [self performSelector:@selector(addRippleEffect) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(addRippleEffect) withObject:nil afterDelay:0.5f];
  
 }
 

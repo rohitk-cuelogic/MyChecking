@@ -7,6 +7,7 @@
 //
 
 #import "MovingView.h"
+#import "TConstant.h"
 
 @implementation MovingView
 
@@ -17,17 +18,26 @@
         UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         imgView.image= [UIImage imageNamed:imgName];
         [self addSubview:imgView];
+        
+        [self performSelector:@selector(addRippleEffect) withObject:nil afterDelay:0.5];
 
-        
-        [UIView beginAnimations:@"rippleEffect" context:NULL];
-        [UIView setAnimationDuration:1.0];
-        [UIView setAnimationRepeatCount:HUGE_VAL];
-        [UIView setAnimationTransition:110 forView:self cache:NO];
-        [UIView commitAnimations];
-        
     }
     return self;
 }
 
+-(void) addRippleEffect {
+    DebugLog(@"");
+    CATransition *animation=[CATransition animation];
+    [animation setDuration:2.0];
+    [animation setType:@"rippleEffect"];
+    animation.delegate = self;
+    [animation setFillMode:kCAFillModeBoth];
+    animation.endProgress=0.8;
+    animation.repeatCount = HUGE_VAL;
+    [animation setRemovedOnCompletion:NO];
+    animation.autoreverses = YES;
+    [animation setTimingFunction: [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [self.layer addAnimation:animation forKey:nil];
+}
 
 @end

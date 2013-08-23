@@ -141,13 +141,13 @@ int swipeTxtCnt;
     DebugLog(@"");
     
     CATransition *animation=[CATransition animation];
-    [animation setDuration:2.0];
+    [animation setDuration:1.9];
     [animation setType:@"rippleEffect"];
     animation.delegate = self;
     [animation setFillMode:kCAFillModeBoth];
     animation.endProgress=0.8;
     animation.repeatCount = HUGE_VAL;
-    [animation setRemovedOnCompletion:NO];
+    [animation setRemovedOnCompletion:YES];
     animation.autoreverses = NO;
     [animation setTimingFunction: [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
     [containerView.layer addAnimation:animation forKey:nil];
@@ -188,12 +188,6 @@ int swipeTxtCnt;
         MovingView *movingView = [[MovingView alloc] initWithFrame:rect withImageName:strImgName];
         [self.containerView addSubview:movingView];
         [arrMovingObj addObject:movingView];
-        
-        [UIView beginAnimations:@"rippleEffect" context:NULL];
-        [UIView setAnimationDuration:1.0];
-        [UIView setAnimationRepeatCount:HUGE_VAL];
-        [UIView setAnimationTransition:110 forView:movingView cache:NO];
-        [UIView commitAnimations];
 
 //       [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(moveObjects :) userInfo:movingView repeats:YES];
         
@@ -203,9 +197,10 @@ int swipeTxtCnt;
     
 }
 
--(void) moveObjects: (MovingView *) mv {
+-(void) moveObjects : (NSTimer*)theTimer {
     DebugLog(@"");
-    
+//    
+//    MovingView *mv = (MovingView *)[theTimer userInfo];
 //    mv.frame = CGRectMake(mv.frame.origin.x + 2, mv.frame.origin.y, mv.frame.size.width, mv.frame.size.height);
 
     

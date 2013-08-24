@@ -237,7 +237,9 @@ bool bStartStopRecorder = YES;
     [super viewDidAppear:YES];
     DebugLog(@"");
     
-    [self addCurlAnimation];
+//    [self addCurlAnimation];
+    
+    
 }
 
 - (void) addCurlAnimation
@@ -249,7 +251,7 @@ bool bStartStopRecorder = YES;
     animation.fillMode = kCAFillModeBackwards;
     animation.startProgress = 0.85;
     [animation setRemovedOnCompletion:NO];
-    [[[self view] layer] addAnimation:animation forKey:@"pageCurlAnimation"];
+    [mainView.layer addAnimation:animation forKey:@"pageCurlAnimation"];
 }
 
 - (void)clearScreen:(UITapGestureRecognizer *)sender {
@@ -1034,10 +1036,15 @@ bool bStartStopRecorder = YES;
         [screenCapture stopRecording];
         [self screenVideoShotStop];
         
+        garbageCan.hidden = NO;
+        curlButton.hidden = NO;
+        
         [videoButton.layer removeAllAnimations];
         
     }else{
         isRecording = YES;
+        garbageCan.hidden = YES;
+        curlButton.hidden = YES;
         [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted"] forState:UIControlStateNormal];
         cameraButton.hidden = YES;
         screenCapture.delegate = self;
@@ -1190,11 +1197,11 @@ bool bStartStopRecorder = YES;
         fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
         //[RigthTickButton setHidden:YES];
         
-        int64_t delayInSecondsTodetect = 1.0f;
-        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
-        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
-            [self addCurlAnimation];
-        });
+//        int64_t delayInSecondsTodetect = 1.0f;
+//        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
+//        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
+//            [self addCurlAnimation];
+//        });
 
     }
 }

@@ -32,9 +32,9 @@
 @synthesize lblLunguageTest;
 @synthesize bkgImageView;
 @synthesize bkgImageViewlang;
+@synthesize tblView;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -81,7 +81,25 @@
     
     [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:LIMIT_GALLERY];
     [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:SAVE_ART];
-        
+    
+    arrLanguage = [[NSMutableArray alloc] initWithObjects:@"English",@"Spanish",@"Italian",@"Portuguese",@"Russian",@"French",@"German", nil];
+    
+    tblView.layer.cornerRadius = 30;
+    tblView.layer.masksToBounds = YES;
+    
+    
+    NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:LANGUAGE_SELECTED];
+    lblLunguage.text = str;
+    int count=0;
+    for(int i=0; i< arrLanguage.count;i++){
+        NSString *lang = [arrLanguage objectAtIndex:i];
+        if([str isEqualToString:lang]) {
+            count = i;
+        }
+    }
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:count inSection:0];
+    [tblView selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionNone];
 }
 
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
@@ -90,6 +108,9 @@
         [UIView animateWithDuration:0.3 animations:^{
             bkgImageViewlang.alpha = 1.0;
             bkgImageView.alpha = 1.0;
+            
+             [[NSUserDefaults standardUserDefaults] setValue:@"English" forKey:LANGUAGE_SELECTED];
+            lblLunguage.text = @"English";
             [self displayLanguageSelectionView];
             [btnWithoutShape setHidden:false];
             [btnWithShape setHidden:false];
@@ -158,27 +179,15 @@
     
 }
 
--(IBAction)closeButtonClicked:(id)sender
-{
+-(IBAction)closeButtonClicked:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
     [self.languageView removeFromSuperview];
     
-//    // Language selection shows only onces when app launch first time
-//    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
-//        [btnWithoutShape setHidden:false];
-//        [btnWithShape setHidden:false];
-//                
-//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
-//
-//    }else{
-//        TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];
-//        [self.navigationController pushViewController:homeViewController animated:YES];
-//    }
 }
 
 -(IBAction)languageButtonClicked:(id)sender
 {
     // Shows the drop down menu for language
-    arrLanguage = [[NSMutableArray alloc] initWithObjects:@"English",@"Spanish",@"Italian",@"Portuguese",@"Russian",@"French",@"German", nil];
     [self popOverUIPicker:sender];
 }
 
@@ -265,27 +274,51 @@
 	return str;
 }
 
+#pragma mark -
+#pragma mark =======================================
+#pragma mark TableView Delegates
+#pragma mark =======================================
 
-//-(IBAction)winterScene:(id)sender
-//{
-//    DebugLog(@"Winter scene background");
-//    AppDelegate * del = [self appDelegate];
-//    [del.window setRootViewController:[[WinterSceneViewController alloc]initWithNibName:@"WinterSceneViewController" bundle:nil]];
-//    
-//}
-//-(IBAction)springScene:(id)sender
-//{
-//    DebugLog(@"Spring scene background");
-//}
-//-(IBAction)summerScene:(id)sender
-//{
-//    DebugLog(@"Summer scene background");
-//}
-//-(IBAction)fallScene:(id)sender
-//{
-//    DebugLog(@"Fall scene background");
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    DebugLog(@"");
+    
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    DebugLog(@"");
+    
+    return [self.arrLanguage count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 60.0f;
+    
+}
 
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //DebugLog(@"");
+    NSString *reuseIdentifier = @"cell";
+    UITableViewCell *cell;
+   
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    }
+    
+    cell.textLabel.text = [self.arrLanguage objectAtIndex:indexPath.row];
+    cell.textLabel.textAlignment = UITextAlignmentCenter;
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:24.0f];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DebugLog(@"");
+    
+    lblLunguage.text = [self.arrLanguage objectAtIndex:indexPath.row];
+    
+}
 
 @end

@@ -25,6 +25,9 @@
     IBOutlet UIImageView *bkgImageView;
     NSMutableArray *arrMovingObj;
     IBOutlet UIView *containerView;
+    NSTimer *playBtnTimer;
+    CALayer *bkgLayer;
+    BOOL isFirstTimePlay;
 }
 
 @property(nonatomic, strong)UIScrollView *imgScrollView;

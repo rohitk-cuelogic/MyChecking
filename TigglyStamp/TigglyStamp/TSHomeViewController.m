@@ -83,9 +83,16 @@ int swipeTxtCnt;
     
     [self loadThumbnails];
     
-//    [self addMovingObjects];
-//    
-//    [self performSelector:@selector(addRippleEffect) withObject:nil afterDelay:0.5f];
+    bkgLayer=[CALayer layer];
+    bkgLayer.name = @"btnLayer";
+    bkgLayer.frame = CGRectMake(360,210, 300, 300);
+    bkgLayer.opacity = 1.0;
+    [self.view.layer addSublayer:bkgLayer];
+    
+    isFirstTimePlay = YES;
+    playBtnTimer = [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(animatePlayButton) userInfo:nil repeats:NO];
+    
+
  
 }
 
@@ -114,6 +121,44 @@ int swipeTxtCnt;
 #pragma mark Animation
 #pragma mark =======================================
 
+-(void) animatePlayButton {
+    DebugLog(@"");
+    
+    CATransition *animation=[CATransition animation];
+    [animation setDuration:1.5];
+    [animation setType:@"rippleEffect"];
+    [animation setFillMode:kCAFillModeBoth];
+    animation.endProgress=0.6;
+    animation.repeatCount = HUGE_VAL;
+    [animation setRemovedOnCompletion:YES];
+    animation.autoreverses = NO;
+    animation.delegate=self;
+    [animation setTimingFunction: [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
+    [playBtn.layer addAnimation:animation forKey:nil];
+    
+
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithCapacity:1];
+    
+    for(int i = 2 ; i <= 5 ; i++ ) {
+        NSString *imgName = [NSString stringWithFormat:@"play_btn_circle_%d.png",i];
+        DebugLog(@"Img Name : %@",imgName);
+        UIImage *img =  [UIImage imageNamed:imgName];
+        [arr addObject:(id) img.CGImage];
+        
+    }
+    
+    CAKeyframeAnimation *animation2 = [CAKeyframeAnimation animationWithKeyPath: @"contents"];
+    animation2.calculationMode = kCAAnimationDiscrete;
+    animation2.beginTime = 1.2;
+    animation2.duration =1.2;
+    animation2.repeatCount = HUGE_VAL;
+    animation2.values = arr;
+    animation2.removedOnCompletion = YES;
+    [bkgLayer addAnimation: animation2 forKey: @"contents"];
+    
+}
+
+
 -(void) animationDidStart:(CAAnimation *)anim {
     DebugLog(@"");
     
@@ -121,8 +166,6 @@ int swipeTxtCnt;
 
 -(void) animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     DebugLog(@"");
-
-    
     
 }
 
@@ -130,17 +173,7 @@ int swipeTxtCnt;
 -(void) addRippleEffect {
     DebugLog(@"");
     
-    CATransition *animation=[CATransition animation];
-    [animation setDuration:1.9];
-    [animation setType:@"rippleEffect"];
-    animation.delegate = self;
-    [animation setFillMode:kCAFillModeBoth];
-    animation.endProgress=0.8;
-    animation.repeatCount = HUGE_VAL;
-    [animation setRemovedOnCompletion:YES];
-    animation.autoreverses = NO;
-    [animation setTimingFunction: [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
-    [containerView.layer addAnimation:animation forKey:nil];
+
     
 }
 
@@ -258,6 +291,7 @@ int swipeTxtCnt;
         [imgScrollView setUserInteractionEnabled:YES];
         readyToParentScreen = NO;
         
+        [playBtnTimer invalidate];
         ParentScreenViewController *parentViewCOntroller = [[ParentScreenViewController alloc] initWithNibName:@"ParentScreenViewController" bundle:nil];
         [self.navigationController pushViewController:parentViewCOntroller animated:YES];
     }
@@ -332,6 +366,9 @@ int swipeTxtCnt;
 
 -(void)playGame:(id)sender{
     DebugLog(@"");
+    
+    [playBtnTimer invalidate];
+    
     SeasonSelectionViewController *hmView = [[SeasonSelectionViewController alloc]initWithNibName:@"SeasonSelectionViewController" bundle:nil];
     [self.navigationController pushViewController:hmView animated:YES];
 }
@@ -344,6 +381,7 @@ int swipeTxtCnt;
     newsBtn.alpha = 0.3;
     playBtn.alpha = 0.3;
     imgScrollView.alpha = 0.3;
+    bkgLayer.opacity = 0.0;
     
     forParentsBtn.enabled = NO;
     newsBtn.enabled = NO;
@@ -361,6 +399,7 @@ int swipeTxtCnt;
     newsBtn.alpha = 0.3;
     playBtn.alpha = 0.3;
     imgScrollView.alpha = 0.3;
+    bkgLayer.opacity = 0.0;
     
     forParentsBtn.enabled = NO;
     playBtn.enabled = NO;
@@ -380,6 +419,7 @@ int swipeTxtCnt;
     newsBtn.alpha = 1;
     playBtn.alpha = 1;
     imgScrollView.alpha = 1;
+    bkgLayer.opacity = 1.0;
     
     forParentsBtn.enabled = YES;
     newsBtn.enabled = YES;
@@ -394,6 +434,8 @@ int swipeTxtCnt;
 
 -(void) thumbnailViewTapped:(ThumbnailView *)thumbnail{
     DebugLog(@"");
+    
+    [playBtnTimer invalidate];
     
     DebugLog(@"Tapped Thumbnail Name: %@",thumbnail.imageName);
     

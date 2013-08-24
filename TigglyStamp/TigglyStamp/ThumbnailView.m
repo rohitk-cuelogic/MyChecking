@@ -23,10 +23,10 @@
         self.layer.cornerRadius = 30.0f;
         self.layer.masksToBounds = YES;
         
-        UIActivityIndicatorView *busyView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        busyView.frame = CGRectMake(self.frame.size.width/2 - 20, self.frame.size.height/2 - 20, 40, 40);
-        [self addSubview:busyView];
-        [busyView startAnimating];
+//        UIActivityIndicatorView *busyView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+//        busyView.frame = CGRectMake(self.frame.size.width/2 - 20, self.frame.size.height/2 - 20, 40, 40);
+//        [self addSubview:busyView];
+//        [busyView startAnimating];
         
         imageName = imgePath;
         

@@ -30,6 +30,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *lblLunguageTest;
 @property (nonatomic, strong) IBOutlet UIImageView *bkgImageView;
 @property (nonatomic, strong) IBOutlet UIImageView *bkgImageViewlang;
+@property (nonatomic, strong) IBOutlet UITableView *tblView;
 
 -(IBAction)onButtonTouched:(id)sender;
 -(IBAction)languageButtonClicked:(id)sender;

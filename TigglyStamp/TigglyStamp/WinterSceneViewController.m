@@ -71,14 +71,14 @@ bool StartStopRecorder = YES;
 
 - (void) addCurlAnimation
 {
-    CATransition *animation = [CATransition animation];
-    [animation setDuration:HUGE_VAL];
-    animation.type = @"pageUnCurl";
-    animation.subtype = kCATransitionFromRight;
-    animation.fillMode = kCAFillModeBackwards;
-    animation.startProgress = 0.85;
-    [animation setRemovedOnCompletion:NO];
-    [[[self view] layer] addAnimation:animation forKey:@"pageCurlAnimation"];
+//    CATransition *animation = [CATransition animation];
+//    [animation setDuration:HUGE_VAL];
+//    animation.type = @"pageUnCurl";
+//    animation.subtype = kCATransitionFromRight;
+//    animation.fillMode = kCAFillModeBackwards;
+//    animation.startProgress = 0.85;
+//    [animation setRemovedOnCompletion:NO];
+//    [[[self view] layer] addAnimation:animation forKey:@"pageCurlAnimation"];
 }
 
 //================================================================================================================
@@ -1174,6 +1174,9 @@ bool StartStopRecorder = YES;
         [videoButton.layer removeAllAnimations];
 
         
+        garbageCan.hidden = NO;
+        curlButton.hidden = NO;
+        
     }else{
         isRecording = YES;
         [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted@2x~ipad"] forState:UIControlStateNormal];
@@ -1181,6 +1184,9 @@ bool StartStopRecorder = YES;
         screenCapture.delegate = self;
         [screenCapture startRecording];
         [screenCapture setNeedsDisplay];
+        
+        garbageCan.hidden = YES;
+        curlButton.hidden = YES;
         
         CABasicAnimation *theAnimation;
         theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
@@ -1310,6 +1316,7 @@ bool StartStopRecorder = YES;
     ccImageView.imageView.image = thumbnail;
     [activityIndicator removeFromSuperview];
     ccImageView.btnPlay.hidden = NO;
+
 
 }
 

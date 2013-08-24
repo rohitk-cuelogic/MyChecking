@@ -43,6 +43,12 @@
 //    UIView *testView;
     NSMutableArray *allTestViews;
     
+    int circleShpDetected;
+    int triangleShpDetected;
+    int starShpDetected;
+    int squareShpDetected;
+    
+    
 }
 @property (nonatomic,strong) NSMutableArray * touchCache;
 @property (nonatomic, unsafe_unretained)BOOL renderShapesToSelf, captureTouchesBegin, captureTouchesMoved, captureTouchesEnded, stampShapes, fadeShapes, writeMode, activated;

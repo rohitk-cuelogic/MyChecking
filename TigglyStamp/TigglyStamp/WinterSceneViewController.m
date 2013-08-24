@@ -117,45 +117,64 @@ bool StartStopRecorder = YES;
   
     [touchView configure];
     [touchView.layer setZPosition:1];
-    UITouchShapeRecognizer* squareRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"squareData"];
-    [squareRecognizer setLabel:@"square"];    
-    UITouchShapeRecognizer* square2Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"square2Data"];
-    [square2Recognizer setLabel:@"square"];    
-    UITouchShapeRecognizer* square3Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"squareTwoPointData"];
-    [square3Recognizer setLabel:@"square"]; 
-    UITouchShapeRecognizer* starRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"starData"];
-    [starRecognizer setLabel:@"star"];
-    UITouchShapeRecognizer* star3Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"star5Data"];
-    [star3Recognizer setLabel:@"star"];    
-    UITouchShapeRecognizer* circleRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"circleData"];
-    [circleRecognizer setLabel:@"circle"];
-    UITouchShapeRecognizer* circle2Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"circle2Data"];
-    [circleRecognizer setLabel:@"circle"];
-    UITouchShapeRecognizer* circle3Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"circleData3"];
-    [circle3Recognizer setLabel:@"circle"];    
-    UITouchShapeRecognizer* triangle2Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"triangle2Data"];
-    [triangle2Recognizer setLabel:@"triangle"];    
-    UITouchShapeRecognizer* triangle3Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"triangleData3"];
-    [triangle3Recognizer setLabel:@"triangle"];    
-    UITouchShapeRecognizer* triangleRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"triangleData"];
-    [triangleRecognizer setLabel:@"triangle"];    
-    UITouchShapeRecognizer* strForWringMode = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"starData6"];
-    [strForWringMode setLabel:@"star"];
-    // for old star
-    [touchView loadShape:starRecognizer];
-    [touchView loadShape:star3Recognizer];    
-    // for new star
-    [touchView loadShape:strForWringMode];    
-    //[touchView loadShape:triangleRecognizer];
-    //[self.touchView loadShape:triangle2Recognizer];
-    [touchView loadShape:triangle3Recognizer];    
-    [touchView loadShape:circleRecognizer];
-    [touchView loadShape:circle2Recognizer];
-    [touchView loadShape:circle3Recognizer];    
-    //[touchView loadShape:squareRecognizer];
-    //[self.touchView loadShape:square2Recognizer];
-    [touchView loadShape:square3Recognizer];    
-    [touchView setDelegate:self]; 
+//    UITouchShapeRecognizer* squareRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"squareData"];
+//    [squareRecognizer setLabel:@"square"];    
+//    UITouchShapeRecognizer* square2Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"square2Data"];
+//    [square2Recognizer setLabel:@"square"];    
+//    UITouchShapeRecognizer* square3Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"squareTwoPointData"];
+//    [square3Recognizer setLabel:@"square"]; 
+//    UITouchShapeRecognizer* starRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"starData"];
+//    [starRecognizer setLabel:@"star"];
+//    UITouchShapeRecognizer* star3Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"star5Data"];
+//    [star3Recognizer setLabel:@"star"];    
+//    UITouchShapeRecognizer* circleRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"circleData"];
+//    [circleRecognizer setLabel:@"circle"];
+//    UITouchShapeRecognizer* circle2Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"circle2Data"];
+//    [circleRecognizer setLabel:@"circle"];
+//    UITouchShapeRecognizer* circle3Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"circleData3"];
+//    [circle3Recognizer setLabel:@"circle"];    
+//    UITouchShapeRecognizer* triangle2Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"triangle2Data"];
+//    [triangle2Recognizer setLabel:@"triangle"];    
+//    UITouchShapeRecognizer* triangle3Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"triangleData3"];
+//    [triangle3Recognizer setLabel:@"triangle"];    
+//    UITouchShapeRecognizer* triangleRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"triangleData"];
+//    [triangleRecognizer setLabel:@"triangle"];    
+//    UITouchShapeRecognizer* strForWringMode = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"starData6"];
+//    [strForWringMode setLabel:@"star"];
+//    
+//    
+//    // for old star
+//    [touchView loadShape:starRecognizer];
+//    [touchView loadShape:star3Recognizer];    
+//    // for new star
+//    [touchView loadShape:strForWringMode];    
+//    //[touchView loadShape:triangleRecognizer];
+//    //[self.touchView loadShape:triangle2Recognizer];
+//    [touchView loadShape:triangle3Recognizer];    
+//    [touchView loadShape:circleRecognizer];
+//    [touchView loadShape:circle2Recognizer];
+//    [touchView loadShape:circle3Recognizer];    
+//    //[touchView loadShape:squareRecognizer];
+//    //[self.touchView loadShape:square2Recognizer];
+//    [touchView loadShape:square3Recognizer];
+    
+//    ////No use as we are taking integer value to check key
+//    UITouchShapeRecognizer* triangle1Dist = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"Dist1triangle"];
+//    [triangle1Dist setLabel:@"triangle"];
+//    UITouchShapeRecognizer* circle1Dist = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"Dist1circle"];
+//    [circle1Dist setLabel:@"circle"];
+//    UITouchShapeRecognizer* square1Dist = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"Dist1square"];
+//    [square1Dist setLabel:@"square"];
+//    UITouchShapeRecognizer* star1Dist = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"Dist1star"];
+//    [star1Dist setLabel:@"star"];
+//    
+//    [touchView loadShape:triangle1Dist];
+//    [touchView loadShape:circle1Dist];
+//    [touchView loadShape:square1Dist];
+//    [touchView loadShape:star1Dist];
+    
+    
+    [touchView setDelegate:self];
      winterSceneObject = [[WinterScene alloc]init];
      winterSceneObject.delegate = self;    
     fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];

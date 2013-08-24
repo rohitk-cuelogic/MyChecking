@@ -55,6 +55,10 @@ int previousTouchCount = 0;
        // DebugLog(@"");
         // Initialization code
         
+        circleShpDetected = 0;
+        triangleShpDetected = 0;
+        starShpDetected = 0;
+        squareShpDetected = 0;
         mode = vVerificationMode3Point;
         activated = NO;
         writeMode = NO;
@@ -84,7 +88,10 @@ int previousTouchCount = 0;
     self = [super initWithFrame:frame];
     if (self) {
         DebugLog(@"");
-        
+         circleShpDetected = 0;
+         triangleShpDetected = 0;
+         starShpDetected = 0;
+         squareShpDetected = 0;
         // Initialization code
         mode = vVerificationMode3Point;
         activated = NO;
@@ -481,115 +488,111 @@ int previousTouchCount = 0;
     NSMutableString *csvString = [[NSMutableString alloc]init];
     BOOL isDataWrite = NO;
     //Generate the key from the distances calculated
-    NSMutableString *key = [[NSMutableString alloc]init];
+    DebugLog(@"distanceArr count :%d",distanceArr.count);
     for (NSNumber *i in sortedT) {
         if (i==0) {
             DebugLog(@"Error we get 0 distance detectShape");
         }
-        [key appendFormat:@"%@ ", i];
-        [csvString appendFormat:@"%@,", i];
-    }
-    if (sortedT.count!=3) {
-        for (int i=0; i<(3-sortedT.count); i++) {
-            [csvString appendFormat:@"-,"];
+        NSMutableString *key = [[NSMutableString alloc]init];
+        [key appendFormat:@"%@", i];
+        int keyint = key.intValue;
+        DebugLog(@"keyint :%d",keyint);
+
+        if (keyint>= 152 && keyint<=173) {
+            // triangle shape
+            triangleShpDetected++;
         }
-    }
-    NSLog(@"detectShape Final key is :%@",key);
-    
-    //Check the key in all plist
-    for (UITouchShapeRecognizer *UIT in shapeDataCache) {
-        recordedShapes = UIT.shapeData;
-        //if the key is present in any of the plist ==> success
-        if ([recordedShapes objectForKey:key]) {
-            isKeyPresent = YES;
-            isDataWrite = YES;
-            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@%@\n",csvString,UIT.label]];
-            NSLog(@"Shape Detected With Original Key:  %@",UIT.label);
-            DebugLog(@"Found %@ Shape: %@ Key: %@", UIT.label,[recordedShapes valueForKey:key], key);
-            detectedPoints = [NSArray arrayWithArray:allTouchPoints];
-            
-            @synchronized(distanceArr) {
-                [distanceArr removeAllObjects];
-            }
-            @synchronized(allTouchPoints) {
-                [allTouchPoints removeAllObjects];
-            }
-            if (delegate && [delegate respondsToSelector:@selector(shapeDetected: inView:)]) {
-                NSLog(@"Came in delegate");
-                [delegate shapeDetected:UIT inView:self];
-            }else{
-                NSLog(@"Didnt go in delegate");
-            }
-            isKeyPresent = YES;
-            
-            return;
-        }else{
-            isKeyPresent = NO;
+        if (keyint>= 182 && keyint<=244) {
+            // circle shape
+            starShpDetected++;
         }
-    }
-    
-    //if the key is not present in any of the plist the adjust the key values (+3 and -3)
-    if(!isKeyPresent) {
+        if (keyint>= 245 && keyint<=300) {
+            // star shape
+            circleShpDetected++;
+
+        }
+        if (keyint>= 330 && keyint<=342) {
+            // square shape
+            squareShpDetected++;
+        }
+
+//        if (i>=[NSNumber numberWithInt:152] && i<=[NSNumber numberWithInt:173]) {
+//            // triangle shape
+//            triangleShpDetected++;
+//        }
+//        if (i>=[NSNumber numberWithInt:182] && i<=[NSNumber numberWithInt:244]) {
+//            // circle shape
+//            circleShpDetected++;
+//        }
+//        if (i>=[NSNumber numberWithInt:245] && i<=[NSNumber numberWithInt:275]) {
+//            // star shape
+//            starShpDetected++;
+//        }
+//        if (i>=[NSNumber numberWithInt:330] && i<=[NSNumber numberWithInt:342]) {
+//            // square shape
+//            squareShpDetected++;
+//        }
         
-        DebugLog(@"Key generated but not present. Hence modifyng");
-        if (sortedT.count == 3) {
-            
-            int n1 = [[sortedT objectAtIndex:0] intValue];
-            int n2 = [[sortedT objectAtIndex:1] intValue];
-            int n3 = [[sortedT objectAtIndex:2] intValue];
-            
-            //As we are modifying the keys by considering 3 values before and 3 values after the original key values
-            n1 = n1 - 3;
-            n2 = n2 - 3;
-            n3 = n3 - 3;
-            int count = 0;
-            for(int i = 0; i < 6 ; i++) {
-                int x = n1 + i;
-                for(int j=0;j < 6; j++) {
-                    int y = n2 + j;
-                    for(int k=0; k <6 ; k++) {
-                        int z = n3 + k;
-                        NSMutableString *tempKey = [[NSMutableString alloc]init];
-                        [tempKey appendFormat:@"%d %d %d ",x,y,z]; // there is a space after the last value
-                        
-                        //DebugLog(@"Temp key (%d) :%@",count,tempKey);
-                        count++;
-                        for (UITouchShapeRecognizer *UIT in shapeDataCache) {
-                            recordedShapes = UIT.shapeData;
-                            if ([recordedShapes objectForKey:tempKey]) {
-                                NSLog(@"Shape Detected with Modified Key :  %@",UIT.label);
+        NSLog(@"tri :%d cir :%d star :%d squ :%d ",triangleShpDetected,circleShpDetected,starShpDetected,squareShpDetected);
 
-                                isDataWrite = YES;
-                                [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%d,%d,%d,%@\n",x,y,z,UIT.label]];
+    }
+    NSLog(@"Final tri :%d cir :%d star :%d squ :%d ",triangleShpDetected,circleShpDetected,starShpDetected,squareShpDetected);
 
-                                DebugLog(@"Found %@ Shape: %@ Key: %@", UIT.label,[recordedShapes valueForKey:tempKey], tempKey);
-                                detectedPoints = [NSArray arrayWithArray:allTouchPoints];
-                                @synchronized(distanceArr) {
-                [distanceArr removeAllObjects];
+
+    UITouchShapeRecognizer *UITShape = NULL;
+    int totlsreqshape = 2;
+    if (triangleShpDetected>=totlsreqshape) {
+        DebugLog(@"Triangle Detected....");
+        for (UITouchShapeRecognizer *UIT in shapeDataCache) {
+            if ([UIT.label isEqualToString:@"triangle"]) {
+                UITShape = UIT;
             }
-                                @synchronized(allTouchPoints) {
-                                    [allTouchPoints removeAllObjects];
-                                }
-                                if (delegate && [delegate respondsToSelector:@selector(shapeDetected: inView:)]) {
-                                    NSLog(@"Came in delegate");
-                                    [delegate shapeDetected:UIT inView:self];                                     
-                                }else{
-                                    NSLog(@"Didnt go in delegate");
-                                }
-
-                                
-                                return;
-                            }
-                        }
-                    }
-                }
+        }
+    }else if (circleShpDetected>=totlsreqshape) {
+        DebugLog(@"circle Detected....");
+        for (UITouchShapeRecognizer *UIT in shapeDataCache) {
+            if ([UIT.label isEqualToString:@"circle"]) {
+                UITShape = UIT;
+            }
+        }
+    }else if (starShpDetected>=totlsreqshape) {
+        DebugLog(@"Star Detected....");
+        for (UITouchShapeRecognizer *UIT in shapeDataCache) {
+            if ([UIT.label isEqualToString:@"star"]) {
+                UITShape = UIT;
+            }
+        }
+    }else if (squareShpDetected>=1) {
+        DebugLog(@"Square Detected....");
+        for (UITouchShapeRecognizer *UIT in shapeDataCache) {
+            if ([UIT.label isEqualToString:@"square"]) {
+                UITShape = UIT;
             }
         }
     }
-    if (isDataWrite==NO) {
-        [csvString appendFormat:@"NoShape"];
-        [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@\n",csvString]];
+    
+    if (UITShape!=NULL) {
+        circleShpDetected = 0;
+        triangleShpDetected = 0;
+        starShpDetected = 0;
+        squareShpDetected = 0;
+        detectedPoints = [NSArray arrayWithArray:allTouchPoints];
+        @synchronized(distanceArr) {
+            [distanceArr removeAllObjects];
+        }
+        @synchronized(allTouchPoints) {
+            [allTouchPoints removeAllObjects];
+        }
+        if (delegate && [delegate respondsToSelector:@selector(shapeDetected: inView:)]) {
+            NSLog(@"Came in delegate");
+            [delegate shapeDetected:UITShape inView:self];
+        }else{
+            NSLog(@"Didnt go in delegate");
+        }
     }
+
+       
+
     @synchronized(allTouchPoints) {
         [allTouchPoints removeAllObjects];
     }
@@ -601,109 +604,6 @@ int previousTouchCount = 0;
     
     
 }
--(void) detectShape:(UITouchGroup *)group {
-    DebugLog(@"");
-    BOOL isKeyPresent = NO;
-    NSArray *sortedT = [distanceArr sortedArrayUsingSelector:@selector(compare:)];
-    
-    //Generate the key from the distances calculated
-    NSMutableString *key = [[NSMutableString alloc]init];
-    for (NSNumber *i in sortedT) {
-        if (i==0) {
-            DebugLog(@"Error we get 0 distance detectShape:");
-        }
-        [key appendFormat:@"%@ ", i];
-    }
-    
-    DebugLog(@"detectShape: Final key is :%@",key);
-    
-    //Check the key in all plist
-    for (UITouchShapeRecognizer *UIT in shapeDataCache) {
-        recordedShapes = UIT.shapeData;
-        //if the key is present in any of the plist ==> success
-        if ([recordedShapes objectForKey:key]) {
-            isKeyPresent = YES;
-            DebugLog(@"Shape Detected With Original Key:  %@",UIT.label);
-            DebugLog(@"Found %@ Shape: %@ Key: %@", UIT.label,[recordedShapes valueForKey:key], key);
-            detectedPoints = [NSArray arrayWithArray:allTouchPoints];
-            @synchronized(distanceArr) {
-                [distanceArr removeAllObjects];
-            }
-            @synchronized(allTouchPoints) {
-                [allTouchPoints removeAllObjects];
-            }
-            if (delegate && [delegate respondsToSelector:@selector(shapeDetected: inView:)]) {
-                //                [delegate shapeDetected:UIT inView:self];
-                [delegate visualizeShapeFromData:detectedPoints andRecognizer:UIT withTouchGroup:group];
-            }
-            isKeyPresent = YES;
-            return;
-        }else{
-            isKeyPresent = NO;
-        }
-    }
-    
-    //if the key is not present in any of the plist the adjust the key values (+3 and -3)
-    if(!isKeyPresent) {
-        
-        DebugLog(@"Key generated but not present. Hence modifyng");
-        if (sortedT.count == 3) {
-            
-            int n1 = [[sortedT objectAtIndex:0] intValue];
-            int n2 = [[sortedT objectAtIndex:1] intValue];
-            int n3 = [[sortedT objectAtIndex:2] intValue];
-            
-            //As we are modifying the keys by considering 3 values before and 3 values after the original key values
-            n1 = n1 - 3;
-            n2 = n2 - 3;
-            n3 = n3 - 3;
-            int count = 0;
-            for(int i = 0; i < 6 ; i++) {
-                int x = n1 + i;
-                for(int j=0;j < 6; j++) {
-                    int y = n2 + j;
-                    for(int k=0; k <6 ; k++) {
-                        int z = n3 + k;
-                        NSMutableString *tempKey = [[NSMutableString alloc]init];
-                        [tempKey appendFormat:@"%d %d %d ",x,y,z]; // there is a space after the last value
-                        
-                        //DebugLog(@"Temp key (%d) :%@",count,tempKey);
-                        count++;
-                        for (UITouchShapeRecognizer *UIT in shapeDataCache) {
-                            recordedShapes = UIT.shapeData;
-                            if ([recordedShapes objectForKey:tempKey]) {
-                                DebugLog(@"Shape Detected with Modified Key :  %@",UIT.label);
-                                DebugLog(@"Found %@ Shape: %@ Key: %@", UIT.label,[recordedShapes valueForKey:key], key);
-                                detectedPoints = [NSArray arrayWithArray:allTouchPoints];
-                                @synchronized(distanceArr) {
-                [distanceArr removeAllObjects];
-            }
-                                @synchronized(allTouchPoints) {
-                                    [allTouchPoints removeAllObjects];
-                                }
-                                if (delegate && [delegate respondsToSelector:@selector(shapeDetected: inView:)]) {
-                                    //[delegate shapeDetected:UIT inView:self];
-//                                    [delegate visualizeShapeFromData:detectedPoints andRecognizer:UIT withTouchGroup:group];
-                                }
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    @synchronized(allTouchPoints) {
-        [allTouchPoints removeAllObjects];
-    }
-    @synchronized(distanceArr) {
-                [distanceArr removeAllObjects];
-            }
-    
-    
-}
-
 //=====================================================================================================================================//
 
 -(void) performCalculations{
@@ -711,104 +611,49 @@ int previousTouchCount = 0;
     
     NSLog(@"PerformCalculations allTouchCount : %d",allTouchPoints.count);
     
-    if(allTouchPoints.count == 2) {
-        for(int i = 0;i<allTouchPoints.count - 1;i++){
-            UITouch *touch = [allTouchPoints objectAtIndex:i];
-            CGPoint touchLocation = [touch locationInView:self];
-            
-            int compareLocationX,compareLocationY;
-            compareLocationX = touchLocation.x;
-            compareLocationY = touchLocation.y;
-            int touchLocationX,touchLocationY;
-            
-            if(i == allTouchPoints.count - 1){
-                UITouch *touch2 = [allTouchPoints objectAtIndex:0];
-                CGPoint touchLocation2 = [touch2 locationInView:self];
-                touchLocationX = touchLocation2.x;
-                touchLocationY = touchLocation2.y;
-            }
-            else{
-                UITouch *touch3 = [allTouchPoints objectAtIndex:i+1];
-                CGPoint touchLocation3 = [touch3 locationInView:self];
-                touchLocationX = touchLocation3.x;
-                touchLocationY = touchLocation3.y;
-            }
-            
-            int distance = (sqrt(pow((compareLocationY - touchLocationY),2) + pow((compareLocationX - touchLocationX), 2))*scale);
-            
-            @synchronized(distanceArr) {
-                [distanceArr addObject:[NSNumber numberWithInt:distance]];
-            }
-            
-            if([[TigglyStampUtils sharedInstance] getDebugModeForWriteKeyInCsvOn]) {
-                    UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x, touchLocation.y, 40, 40)];
-                    testView.backgroundColor = [UIColor blueColor];
-                    testView.layer.cornerRadius = 20.0f;
-                    testView.layer.masksToBounds=YES;
-                    [self addSubview:testView];
-           
-                    double delayInSeconds = 0.2;
-                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                        [testView removeFromSuperview];
-                        
-                    });
-            }
-            
-        }
-         [self detectShape];
-    }
-    
-    if(allTouchPoints.count == 3) {
-        DebugLog(@"allTouchPoints :%@",allTouchPoints);
-        for(int i = 0;i<allTouchPoints.count;i++){
-            UITouch *touch = [allTouchPoints objectAtIndex:i];
-            CGPoint touchLocation = [touch locationInView:self];
-            
-            int compareLocationX,compareLocationY;
-            compareLocationX = touchLocation.x;
-            compareLocationY = touchLocation.y;
-            int touchLocationX,touchLocationY;
-            
-            if(i == allTouchPoints.count - 1){
-                UITouch *touch2 = [allTouchPoints objectAtIndex:0];
-                CGPoint touchLocation2 = [touch2 locationInView:self];
-                touchLocationX = touchLocation2.x;
-                touchLocationY = touchLocation2.y;
-            }
-            else{
-                UITouch *touch3 = [allTouchPoints objectAtIndex:i+1];
-                CGPoint touchLocation3 = [touch3 locationInView:self];
-                touchLocationX = touchLocation3.x;
-                touchLocationY = touchLocation3.y;
-            }
-            
-            int distance = (sqrt(pow((compareLocationY - touchLocationY),2) + pow((compareLocationX - touchLocationX), 2))*scale);
-            
-            @synchronized(distanceArr) {
-                [distanceArr addObject:[NSNumber numberWithInt:distance]];
-            }
-            
-            if([[TigglyStampUtils sharedInstance] getDebugModeForWriteKeyInCsvOn]) {
-                    UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x, touchLocation.y, 40, 40)];
-                    testView.backgroundColor = [UIColor redColor];
-                    [self addSubview:testView];
-                    testView.layer.cornerRadius = 20.0f;
-                    testView.layer.masksToBounds=YES;
-                    [allTestViews addObject:testView];
 
-                    double delayInSeconds = 0.2;
-                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                        [testView removeFromSuperview];
-                        
-                    });
-            }
-        }
-        
-         [self detectShape];
-    }
     
+    for(int i = 0;i<allTouchPoints.count;i++){
+        UITouch *touch = [allTouchPoints objectAtIndex:i];
+        CGPoint touchLocation = [touch locationInView:self];
+        int touchLocationX,touchLocationY;
+        touchLocationX = touchLocation.x;
+        touchLocationY = touchLocation.y;
+        
+        for(int j = i;j<allTouchPoints.count;j++){
+            UITouch *touchcomplare = [allTouchPoints objectAtIndex:j];
+            CGPoint touchLocationcomplare = [touchcomplare locationInView:self];
+            int compareLocationX,compareLocationY;
+            compareLocationX = touchLocationcomplare.x;
+            compareLocationY = touchLocationcomplare.y;
+            
+            int distance = (sqrt(pow((compareLocationY - touchLocationY),2) + pow((compareLocationX - touchLocationX), 2))*scale);
+            
+            @synchronized(distanceArr) {
+                [distanceArr addObject:[NSNumber numberWithInt:distance]];
+            }
+            
+        }
+        if([[TigglyStampUtils sharedInstance] getDebugModeForWriteKeyInCsvOn]) {
+            UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x, touchLocation.y, 40, 40)];
+            testView.backgroundColor = [UIColor blueColor];
+            testView.layer.cornerRadius = 20.0f;
+            testView.layer.masksToBounds=YES;
+            [self addSubview:testView];
+            
+            double delayInSeconds = 0.2;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [testView removeFromSuperview];
+                
+            });
+        }
+    
+    [self detectShape];
+    
+    }
+   
+       
     @synchronized(allTouchPoints) {
         [allTouchPoints removeAllObjects];
     }
@@ -818,78 +663,6 @@ int previousTouchCount = 0;
     
 }
 
--(void) performCalculations:(UITouchGroup *)group{
-    DebugLog(@"");
-    
-    if(allTouchPoints.count == 2) {
-        for(int i = 0;i<allTouchPoints.count - 1;i++){
-            UITouch *touch = [allTouchPoints objectAtIndex:i];
-            CGPoint touchLocation = [touch locationInView:self];
-            
-            int compareLocationX,compareLocationY;
-            compareLocationX = touchLocation.x;
-            compareLocationY = touchLocation.y;
-            int touchLocationX,touchLocationY;
-            
-            if(i == allTouchPoints.count - 1){
-                UITouch *touch2 = [allTouchPoints objectAtIndex:0];
-                CGPoint touchLocation2 = [touch2 locationInView:self];
-                touchLocationX = touchLocation2.x;
-                touchLocationY = touchLocation2.y;
-            }
-            else{
-                UITouch *touch3 = [allTouchPoints objectAtIndex:i+1];
-                CGPoint touchLocation3 = [touch3 locationInView:self];
-                touchLocationX = touchLocation3.x;
-                touchLocationY = touchLocation3.y;
-            }
-            
-            int distance = (sqrt(pow((compareLocationY - touchLocationY),2) + pow((compareLocationX - touchLocationX), 2))*scale);
-            
-            @synchronized(distanceArr) {
-                [distanceArr addObject:[NSNumber numberWithInt:distance]];
-            }
-            
-        }
-        
-    }
-    
-    if(allTouchPoints.count == 3) {
-        
-        for(int i = 0;i<allTouchPoints.count;i++){
-            UITouch *touch = [allTouchPoints objectAtIndex:i];
-            CGPoint touchLocation = [touch locationInView:self];
-            
-            int compareLocationX,compareLocationY;
-            compareLocationX = touchLocation.x;
-            compareLocationY = touchLocation.y;
-            int touchLocationX,touchLocationY;
-            
-            if(i == allTouchPoints.count - 1){
-                UITouch *touch2 = [allTouchPoints objectAtIndex:0];
-                CGPoint touchLocation2 = [touch2 locationInView:self];
-                touchLocationX = touchLocation2.x;
-                touchLocationY = touchLocation2.y;
-            }
-            else{
-                UITouch *touch3 = [allTouchPoints objectAtIndex:i+1];
-                CGPoint touchLocation3 = [touch3 locationInView:self];
-                touchLocationX = touchLocation3.x;
-                touchLocationY = touchLocation3.y;
-            }
-            
-            int distance = (sqrt(pow((compareLocationY - touchLocationY),2) + pow((compareLocationX - touchLocationX), 2))*scale);
-            
-            @synchronized(distanceArr) {
-                [distanceArr addObject:[NSNumber numberWithInt:distance]];
-            }
-            
-        }
-    }
-    
-    [self detectShape:group];
-    
-}
 
 //=====================================================================================================================================//
 #pragma mark-
@@ -935,18 +708,17 @@ int previousTouchCount = 0;
     }
     
     for (UITouch *touch  in touches) {
-        if(allTouchPoints.count < 3)
-        @synchronized(allTouchPoints) {
+        if(allTouchPoints.count < 10){
             if (![allTouchPoints containsObject:touch]) {
                 [allTouchPoints addObject:touch];
 
             }
         }
     }
-    
-    if(allTouchPoints.count ==  2) {
-        [self performCalculations];
-    }
+//    
+//    if(allTouchPoints.count >=  2) {
+//        [self performCalculations];
+//    }
 
     NSLog(@"touchesBegan : AllTouchpoints : %d",allTouchPoints.count);
 }
@@ -960,17 +732,16 @@ int previousTouchCount = 0;
     }
     
     for (UITouch *touch  in touches) {
-        if(allTouchPoints.count < 3)
-            @synchronized(allTouchPoints) {
+        if(allTouchPoints.count < 10){
                 if (![allTouchPoints containsObject:touch]) {
                     [allTouchPoints addObject:touch];
                 }
             }
     }
-    
-    if(allTouchPoints.count ==  2) {
-        [self performCalculations];
-    }
+//    
+//    if(allTouchPoints.count >=  2) {
+//        [self performCalculations];
+//    }
 
     NSLog(@"touchesMoved : AllTouchpoints : %d",allTouchPoints.count);
 }
@@ -986,6 +757,10 @@ int previousTouchCount = 0;
 
     NSLog(@"touchesEnded : AllTouchpoints : %d " ,allTouchPoints.count);
     [self performCalculations];
+    circleShpDetected = 0;
+    triangleShpDetected = 0;
+    starShpDetected = 0;
+    squareShpDetected = 0;
     
 #ifdef IS_RUN_WITHOUT_SHAPE_FOR_TESTING
     for (UITouchShapeRecognizer *UIT in shapeDataCache) {

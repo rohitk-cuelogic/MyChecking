@@ -145,20 +145,19 @@ bool bStartStopRecorder = YES;
 //    //[self.touchView loadShape:square2Recognizer];
 //    [touchView loadShape:square3Recognizer];
     
-    ////No use as we are taking integer value to check key
-//    UITouchShapeRecognizer* triangle1Dist = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"Dist1triangle"];
-//    [triangle1Dist setLabel:@"triangle"];
-//    UITouchShapeRecognizer* circle1Dist = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"Dist1circle"];
-//    [circle1Dist setLabel:@"circle"];
-//    UITouchShapeRecognizer* square1Dist = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"Dist1square"];
-//    [square1Dist setLabel:@"square"];
-//    UITouchShapeRecognizer* star1Dist = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"Dist1star"];
-//    [star1Dist setLabel:@"star"];
-//    
-//    [touchView loadShape:triangle1Dist];
-//    [touchView loadShape:circle1Dist];
-//    [touchView loadShape:square1Dist];
-//    [touchView loadShape:star1Dist];
+    UITouchShapeRecognizer* triangle1Dist = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"Dist1triangle"];
+    [triangle1Dist setLabel:@"triangle"];
+    UITouchShapeRecognizer* circle1Dist = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"Dist1circle"];
+    [circle1Dist setLabel:@"circle"];
+    UITouchShapeRecognizer* square1Dist = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"Dist1square"];
+    [square1Dist setLabel:@"square"];
+    UITouchShapeRecognizer* star1Dist = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"Dist1star"];
+    [star1Dist setLabel:@"star"];
+    
+    [touchView loadShape:triangle1Dist];
+    [touchView loadShape:circle1Dist];
+    [touchView loadShape:square1Dist];
+    [touchView loadShape:star1Dist];
     
     
     

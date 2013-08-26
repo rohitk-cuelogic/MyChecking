@@ -87,7 +87,7 @@ bool bStartStopRecorder = YES;
         
     isMoveObject = YES;
     
-//    self.btnView = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+    self.btnView.frame = CGRectMake(-1024, 0, 1024, 100);
     
     [self.mainView addSubview:touchView];
     [self.mainView bringSubviewToFront:touchView];
@@ -1032,6 +1032,7 @@ bool bStartStopRecorder = YES;
 
 -(IBAction)actionRecording:(id)sender {
     DebugLog(@"");
+    
     if(isRecording) {
         isRecording = NO;
         [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted"] forState:UIControlStateNormal];
@@ -1045,6 +1046,12 @@ bool bStartStopRecorder = YES;
         [videoButton.layer removeAllAnimations];
         
     }else{
+        for(CALayer *layer in btnView.layer.sublayers) {
+            [layer removeAllAnimations];
+        }
+        
+        btnView.frame = CGRectMake(-1024, 0, 1024, 100);
+        
         isRecording = YES;
         garbageCan.hidden = YES;
         curlButton.hidden = YES;
@@ -1068,6 +1075,13 @@ bool bStartStopRecorder = YES;
 }
 
 -(IBAction)screenShot:(id)sender {
+    DebugLog(@"");
+    
+    for(CALayer *layer in btnView.layer.sublayers) {
+        [layer removeAllAnimations];
+    }
+    
+    btnView.frame = CGRectMake(-1024, 0, 1024, 100);
     
     isCameraClick = YES;
 
@@ -1167,8 +1181,15 @@ bool bStartStopRecorder = YES;
         [self sendEmail];
         if (![btn isHidden]) {
             [RigthTickButton setHidden:YES];
-            [cameraButton setHidden:NO];
-            [videoButton setHidden:NO];
+            
+            [UIView animateWithDuration:0.8 animations:^{
+                btnView.frame = CGRectMake(0, 0, 1024, 100);
+                [cameraButton setHidden:NO];
+                [videoButton setHidden:NO];
+            }];
+            
+            videoBtnTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(pulseButtons) userInfo:nil repeats:NO];
+
         }
         
     }
@@ -1282,16 +1303,45 @@ bool bStartStopRecorder = YES;
 }
 
 //================================================================================================================
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Video and Camera Buttons Handling
+#pragma mark =======================================
+
+
+-(void) pulseButtons {
+    DebugLog(@"");
+    
+    CABasicAnimation *animation4a = nil;
+    animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    [animation4a setToValue:[NSNumber numberWithDouble:1.7]];
+    [animation4a setFromValue:[NSNumber numberWithDouble:1]];
+    [animation4a setAutoreverses:YES];
+    [animation4a setDuration:1.5f];
+    [animation4a setBeginTime:0.0f];
+    [animation4a setRepeatCount:HUGE_VAL];
+    [videoButton.layer addAnimation:animation4a forKey:@"transform.scale"];
+    
+    CABasicAnimation *animation4a2 = nil;
+    animation4a2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    [animation4a2 setToValue:[NSNumber numberWithDouble:1.7]];
+    [animation4a2 setFromValue:[NSNumber numberWithDouble:1]];
+    [animation4a2 setAutoreverses:YES];
+    [animation4a2 setDuration:1.5f];
+    [animation4a2 setBeginTime:0.0f];
+    [animation4a2 setRepeatCount:HUGE_VAL];
+    [cameraButton.layer addAnimation:animation4a2 forKey:@"transform.scale"];
+}
+
+
 #pragma mark- ===============================
 #pragma mark- Play Button Action
 #pragma mark- ===============================
+
 -(void)screenVideoShotStop {
     DebugLog(@"");
-//    [cameraButton setHidden:YES];
-//    [videoButton setHidden:YES];
-//    [garbageCan setHidden:YES];
-//    [curlButton setHidden:YES];
-    
+   
     NSString *imageStr = [NSString stringWithFormat:@"%@",screenCapture.exportUrl];
     
     ccImageView = [[CapturedImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768) ImageName:imageStr];

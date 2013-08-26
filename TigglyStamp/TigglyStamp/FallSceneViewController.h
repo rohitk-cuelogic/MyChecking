@@ -36,6 +36,8 @@
     UIActivityIndicatorView *activityIndicator;
     MPMoviePlayerController *mplayer;
     
+    NSTimer *videoBtnTimer;
+    
 }
 @property(nonatomic,strong) ScreenCaptureView *screenCapture;
 @property (nonatomic, strong) IBOutlet UITouchVerificationView * touchView;

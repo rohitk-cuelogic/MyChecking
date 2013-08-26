@@ -47,6 +47,8 @@ AVAudioRecorder *recorder;
 NSString *shapeToDraw,*prevShape;
 bool bShouldShapeDetected = YES;
 float centerX,centerY;
+int numOfTouchPts;
+
 UITouchVerificationView * touchView;
 int movedObjectAtTime;
 NSTimer *showSeasonsTimer;
@@ -346,6 +348,8 @@ bool bStartStopRecorder = YES;
     centerX = 0;
     centerY = 0;
     pointComparison = [[NSArray alloc]initWithArray:view.detectedPoints];
+    numOfTouchPts = pointComparison.count;
+
     for(UITouch *touch in view.detectedPoints){
         CGPoint tochLocation = [touch locationInView:touchView];
         centerX = centerX + tochLocation.x;
@@ -473,7 +477,7 @@ bool bStartStopRecorder = YES;
     double angleDiff = 0.0;
     CGPoint midPoint;
     if (isWithShape) {
-        midPoint = CGPointMake(((centerX/3)),((centerY/3)));
+        midPoint = CGPointMake(((centerX/numOfTouchPts)),((centerY/numOfTouchPts)));
         
         if([shape isEqualToString:@"triangle"]){
             //DebugLog(@"triangle");
@@ -676,7 +680,7 @@ bool bStartStopRecorder = YES;
     if([shape isEqualToString:@"square"]){
         layer.frame = CGRectMake(((centerX/2) - (img.size.width/4)),((centerY/2) - (img.size.height/4)), img.size.width/2, img.size.height/2);
     }else{
-        layer.frame = CGRectMake(((centerX/3) - (img.size.width/4)),((centerY/3) - (img.size.height/4)), img.size.width/2, img.size.height/2);
+        layer.frame = CGRectMake(((centerX/numOfTouchPts) - (img.size.width/4)),((centerY/numOfTouchPts) - (img.size.height/4)), img.size.width/2, img.size.height/2);
         
     }
     UIImage *newImg = [self changeImageColor:img withColor:color];

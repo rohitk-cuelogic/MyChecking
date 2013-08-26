@@ -486,6 +486,15 @@ int previousTouchCount = 0;
     NSArray *sortedT = [distanceArr sortedArrayUsingSelector:@selector(compare:)];
     //Generate the key from the distances calculated
     DebugLog(@"distanceArr count :%d",distanceArr.count);
+    NSMutableString *keyAllTouchPts = [[NSMutableString alloc]init];
+
+    for (NSNumber *j in sortedT) {
+        [keyAllTouchPts appendFormat:@",%@", j];
+    }
+    for (int k=0;k<3-sortedT.count; k++) {
+        [keyAllTouchPts appendFormat:@",-"];
+
+    }
     for (NSNumber *i in sortedT) {
         if (i==0) {
             DebugLog(@"Error we get 0 distance detectShape");
@@ -498,44 +507,33 @@ int previousTouchCount = 0;
         if (keyint>= 152 && keyint<=173) {
             // triangle shape
             triangleShpDetected++;
-            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@,triangle\n",i] ];
+//            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"-%@,%@,triangle\n",keyAllTouchPts,i] ];
+            
+        }else if (keyint>= 182 && keyint<=205) {
+            // circle shape
+            circleShpDetected++;
+//            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"-%@,%@,circle\n",keyAllTouchPts,i] ];
 
-        }else if (keyint>= 182 && keyint<=244) {
+        }else if (keyint>= 217 && keyint<=244) {
             // circle shape
             starShpDetected++;
-            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@,star\n",i] ];
+//            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"-%@,%@,star\n",keyAllTouchPts,i] ];
 
-        }else if (keyint>= 245 && keyint<=300) {
+        }else if (keyint>= 245 && keyint<=278) {
             // star shape
             circleShpDetected++;
-            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@,circle\n",i] ];
+//            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"-%@,%@,circle\n",keyAllTouchPts,i] ];
 
         }else if (keyint>= 330 && keyint<=342) {
             // square shape
             squareShpDetected++;
-            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@,square\n",i] ];
+//            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"-%@,%@,square\n",keyAllTouchPts,i] ];
 
         }else {
-            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@,noshape\n",i] ];
+//            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"-%@,%@,noshape\n",keyAllTouchPts,i] ];
         }
 
 
-//        if (i>=[NSNumber numberWithInt:152] && i<=[NSNumber numberWithInt:173]) {
-//            // triangle shape
-//            triangleShpDetected++;
-//        }
-//        if (i>=[NSNumber numberWithInt:182] && i<=[NSNumber numberWithInt:244]) {
-//            // circle shape
-//            circleShpDetected++;
-//        }
-//        if (i>=[NSNumber numberWithInt:245] && i<=[NSNumber numberWithInt:275]) {
-//            // star shape
-//            starShpDetected++;
-//        }
-//        if (i>=[NSNumber numberWithInt:330] && i<=[NSNumber numberWithInt:342]) {
-//            // square shape
-//            squareShpDetected++;
-//        }
         
         NSLog(@"tri :%d cir :%d star :%d squ :%d ",triangleShpDetected,circleShpDetected,starShpDetected,squareShpDetected);
 
@@ -544,11 +542,12 @@ int previousTouchCount = 0;
 
 
     UITouchShapeRecognizer *UITShape = NULL;
-    int totlsreqshape = 2;
+    int totlsreqshape = 1;
     if (triangleShpDetected>=totlsreqshape) {
         DebugLog(@"Triangle Detected....");
         for (UITouchShapeRecognizer *UIT in shapeDataCache) {
             if ([UIT.label isEqualToString:@"triangle"]) {
+                [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"-%@,triangle\n",keyAllTouchPts] ];
                 UITShape = UIT;
             }
         }
@@ -557,6 +556,7 @@ int previousTouchCount = 0;
         for (UITouchShapeRecognizer *UIT in shapeDataCache) {
             if ([UIT.label isEqualToString:@"circle"]) {
                 UITShape = UIT;
+                [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"-%@,circle\n",keyAllTouchPts] ];
             }
         }
     }else if (starShpDetected>=totlsreqshape) {
@@ -564,6 +564,7 @@ int previousTouchCount = 0;
         for (UITouchShapeRecognizer *UIT in shapeDataCache) {
             if ([UIT.label isEqualToString:@"star"]) {
                 UITShape = UIT;
+                [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"-%@,star\n",keyAllTouchPts] ];
             }
         }
     }else if (squareShpDetected>=1) {
@@ -571,8 +572,11 @@ int previousTouchCount = 0;
         for (UITouchShapeRecognizer *UIT in shapeDataCache) {
             if ([UIT.label isEqualToString:@"square"]) {
                 UITShape = UIT;
+                [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"-%@,square\n",keyAllTouchPts] ];
             }
         }
+    }else {
+        [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"-%@,noshape\n",keyAllTouchPts] ];
     }
     
     if (UITShape!=NULL) {
@@ -615,8 +619,6 @@ int previousTouchCount = 0;
     
     NSLog(@"PerformCalculations allTouchCount : %d",allTouchPoints.count);
     
-
-    
     for(int i = 0;i<allTouchPoints.count;i++){
         UITouch *touch = [allTouchPoints objectAtIndex:i];
         CGPoint touchLocation = [touch locationInView:self];
@@ -632,7 +634,7 @@ int previousTouchCount = 0;
             compareLocationY = touchLocationcomplare.y;
             
             int distance = (sqrt(pow((compareLocationY - touchLocationY),2) + pow((compareLocationX - touchLocationX), 2))*scale);
-            
+            DebugLog(@"i j :%d :%d :%d",i,j,distance);
             @synchronized(distanceArr) {
                 [distanceArr addObject:[NSNumber numberWithInt:distance]];
             }
@@ -653,11 +655,21 @@ int previousTouchCount = 0;
             });
         }
     
-    [self detectShape];
-    
     }
-   
-       
+    DebugLog(@" allTouchCount a: %d distanceArr :%d",allTouchPoints.count,distanceArr.count);
+    if (allTouchPoints.count==1) {
+        UITouch *touch = [allTouchPoints objectAtIndex:0];
+        CGPoint touchLocation = [touch locationInView:self];
+        int touchLocationX,touchLocationY;
+        touchLocationX = touchLocation.x;
+        touchLocationY = touchLocation.y;
+        [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"(%d:%d),-,-,-,-\n",touchLocationX,touchLocationY] ];
+    }
+    if (distanceArr.count >=1) {
+        [self detectShape];
+    }
+
+    
     @synchronized(allTouchPoints) {
         [allTouchPoints removeAllObjects];
     }
@@ -712,7 +724,7 @@ int previousTouchCount = 0;
     }
     
     for (UITouch *touch  in touches) {
-        if(allTouchPoints.count < 10){
+        if(allTouchPoints.count < 3){
             if (![allTouchPoints containsObject:touch]) {
                 [allTouchPoints addObject:touch];
 
@@ -736,7 +748,7 @@ int previousTouchCount = 0;
     }
     
     for (UITouch *touch  in touches) {
-        if(allTouchPoints.count < 10){
+        if(allTouchPoints.count < 3){
                 if (![allTouchPoints containsObject:touch]) {
                     [allTouchPoints addObject:touch];
                 }

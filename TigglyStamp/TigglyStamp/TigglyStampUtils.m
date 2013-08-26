@@ -491,7 +491,7 @@ static TigglyStampUtils *sharedInstance = nil;
         return;
     }
     if (strCsvKyes==NULL) {
-        strCsvKyes = [[NSMutableString alloc]initWithString:@"D1,SHAPE\n"];
+        strCsvKyes = [[NSMutableString alloc]initWithString:@"SingleTouch,D1,D2,D3,SHAPE\n"];
     }
     [strCsvKyes appendString:str];
     DebugLog(@"Final Key Data String is :\n%@",strCsvKyes);

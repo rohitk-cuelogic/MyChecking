@@ -42,6 +42,7 @@ AVAudioRecorder *recorder;
 @synthesize screenCapture;
 @synthesize backButton;
 @synthesize isCameraClick;
+@synthesize btnView;
 
 NSString *shapeToDraw,*prevShape;
 bool bShouldShapeDetected = YES;
@@ -85,6 +86,8 @@ bool bStartStopRecorder = YES;
     
         
     isMoveObject = YES;
+    
+//    self.btnView = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
     
     [self.mainView addSubview:touchView];
     [self.mainView bringSubviewToFront:touchView];
@@ -890,7 +893,7 @@ bool bStartStopRecorder = YES;
     DebugLog(@"");
     [showSeasonsTimer invalidate];
     isTouchesOnTouchLayer = NO;
-    showSeasonsTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(needToShowRightTickButton) userInfo:nil repeats:NO];
+    showSeasonsTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(needToShowRightTickButton) userInfo:nil repeats:NO];
 }
 
 #pragma mark-

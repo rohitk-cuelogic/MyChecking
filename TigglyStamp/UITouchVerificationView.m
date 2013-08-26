@@ -483,10 +483,7 @@ int previousTouchCount = 0;
 
 -(void) detectShape {
     DebugLog(@"");
-    BOOL isKeyPresent = NO;
     NSArray *sortedT = [distanceArr sortedArrayUsingSelector:@selector(compare:)];
-    NSMutableString *csvString = [[NSMutableString alloc]init];
-    BOOL isDataWrite = NO;
     //Generate the key from the distances calculated
     DebugLog(@"distanceArr count :%d",distanceArr.count);
     for (NSNumber *i in sortedT) {
@@ -501,20 +498,27 @@ int previousTouchCount = 0;
         if (keyint>= 152 && keyint<=173) {
             // triangle shape
             triangleShpDetected++;
-        }
-        if (keyint>= 182 && keyint<=244) {
+            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@,triangle\n",i] ];
+
+        }else if (keyint>= 182 && keyint<=244) {
             // circle shape
             starShpDetected++;
-        }
-        if (keyint>= 245 && keyint<=300) {
+            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@,star\n",i] ];
+
+        }else if (keyint>= 245 && keyint<=300) {
             // star shape
             circleShpDetected++;
+            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@,circle\n",i] ];
 
-        }
-        if (keyint>= 330 && keyint<=342) {
+        }else if (keyint>= 330 && keyint<=342) {
             // square shape
             squareShpDetected++;
+            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@,square\n",i] ];
+
+        }else {
+            [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"%@,noshape\n",i] ];
         }
+
 
 //        if (i>=[NSNumber numberWithInt:152] && i<=[NSNumber numberWithInt:173]) {
 //            // triangle shape
@@ -620,7 +624,7 @@ int previousTouchCount = 0;
         touchLocationX = touchLocation.x;
         touchLocationY = touchLocation.y;
         
-        for(int j = i;j<allTouchPoints.count;j++){
+        for(int j = i+1;j<allTouchPoints.count;j++){
             UITouch *touchcomplare = [allTouchPoints objectAtIndex:j];
             CGPoint touchLocationcomplare = [touchcomplare locationInView:self];
             int compareLocationX,compareLocationY;

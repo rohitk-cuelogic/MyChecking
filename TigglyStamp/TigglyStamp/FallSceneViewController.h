@@ -56,9 +56,10 @@
 @property (nonatomic,strong) IBOutlet UIView *mainView;
 @property (nonatomic,strong) IBOutlet UIView *backView;
 @property (nonatomic,strong) IntroScreenViewController *introView;
-@property (nonatomic, retain) XBCurlView *curlView;
-@property (nonatomic, retain) IBOutlet UIButton *backButton;
+@property (nonatomic, strong) XBCurlView *curlView;
+@property (nonatomic, strong) IBOutlet UIButton *backButton;
 @property (nonatomic)  BOOL isCameraClick;
+@property (nonatomic, strong) IBOutlet UIView *btnView;
 
 -(IBAction)screenShot:(id)sender;
 -(IBAction)onBackButtonClicked:(id)sender;

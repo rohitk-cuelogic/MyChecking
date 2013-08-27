@@ -150,7 +150,7 @@ int volumeFadeInCnt;
         //Shows the email composer view
         MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
         picker.mailComposeDelegate = self;
-        [picker setToRecipients:[[NSArray alloc]initWithObjects:@"amarsinh.asagekar@cuelogic.co.in",@"phyl@tiggly.com", nil]];
+        [picker setToRecipients:[[NSArray alloc]initWithObjects:@"rohit.kale@cuelogic.co.in",@"amarsinh.asagekar@cuelogic.co.in",@"phyl@tiggly.com", nil]];
 //        [picker setToRecipients:[[NSArray alloc]initWithObjects:@"ninad@cuelogic.co.in",@"amarsinh.asagekar@cuelogic.co.in",@"azi@tiggly.com",@"phyl@tiggly.com", nil]];
 //        [picker setToRecipients:[[NSArray alloc]initWithObjects:@"rohit.kale@cuelogic.co.in", nil]];
 

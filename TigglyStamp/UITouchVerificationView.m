@@ -761,6 +761,8 @@ int previousTouchCount = 0;
 
     if(allTouchPoints.count >=  2) {
         [self performCalculations];
+    }else {
+        [self showTouchPoints];
     }
 
     DebugLog(@"touchesBegan : AllTouchpoints : %d",allTouchPoints.count);
@@ -774,13 +776,14 @@ int previousTouchCount = 0;
         [self.delegate touchVerificationViewTouchesMoved:touches withEvent:event];
     }
     
-    for (UITouch *touch  in touches) {
-        if(allTouchPoints.count < 3){
-                if (![allTouchPoints containsObject:touch]) {
-                    [allTouchPoints addObject:touch];
-                }
-            }
-    }
+//    for (UITouch *touch  in touches) {
+//        if(allTouchPoints.count < 3){
+//                if (![allTouchPoints containsObject:touch]) {
+//                    [allTouchPoints addObject:touch];
+//                }
+//            }
+//    }
+    
 //    
 //    if(allTouchPoints.count >=  2) {
 //        [self performCalculations];
@@ -798,6 +801,15 @@ int previousTouchCount = 0;
         [self.delegate touchVerificationViewTouchesEnded:touches withEvent:event];
     }
 
+    if (allTouchPoints.count==1) {
+        UITouch *touch = [allTouchPoints objectAtIndex:0];
+        CGPoint touchLocation = [touch locationInView:self];
+        int touchLocationX,touchLocationY;
+        touchLocationX = touchLocation.x;
+        touchLocationY = touchLocation.y;
+        [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"(%d:%d),-,-,-,-\n",touchLocationX,touchLocationY] ];
+    }
+    
     DebugLog(@"touchesEnded : AllTouchpoints : %d " ,allTouchPoints.count);
 //    [self performCalculations];
     @synchronized(allTouchPoints) {

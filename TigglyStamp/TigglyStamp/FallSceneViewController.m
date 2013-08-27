@@ -1166,7 +1166,7 @@ NSTimer *tickBtnTimer;
     DebugLog(@"");
     UIButton *btn = sender;
     if ([btn tag] == TAG_RIGHT_TICK_BTN) {
-        //[self sendEmail];
+        [self sendEmail];
         if (![btn isHidden]) {
             [self showVideoCameraButtons];
             [tickBtnTimer invalidate];

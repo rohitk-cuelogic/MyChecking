@@ -81,6 +81,8 @@ int swipeTxtCnt;
 - (void)viewDidAppear:(BOOL)animated {
     DebugLog(@"");
     
+    isThumbnailLongPressed = NO;
+    allThumbnails = [[NSMutableArray alloc] initWithCapacity:1];
     [self loadThumbnails];
     
     bkgLayer=[CALayer layer];
@@ -260,15 +262,30 @@ int swipeTxtCnt;
 
 -(void) loadThumbnails {
     DebugLog(@"");
-    
+  
     NSArray *allFiles = [[TigglyStampUtils sharedInstance] getAllImagesAndMovies];
     allFiles = [[allFiles reverseObjectEnumerator] allObjects];
    
     int xPos = 20;
     for (NSString *file in allFiles) {
             
-        ThumbnailView *thumbnail = [[ThumbnailView alloc] initWithFrame:CGRectMake(xPos,0, RECT_THUMBNAIL_FRAME.size.width, RECT_THUMBNAIL_FRAME.size.height) withThumbnailImagePath:file];
+        ThumbnailView *thumbnail = [[ThumbnailView alloc] initWithFrame:CGRectMake(xPos,10, RECT_THUMBNAIL_FRAME.size.width, RECT_THUMBNAIL_FRAME.size.height) withThumbnailImagePath:file];
         thumbnail.delegate = self;
+        [imgScrollView addSubview:thumbnail];
+        [allThumbnails addObject:thumbnail];
+        
+        xPos = xPos + RECT_THUMBNAIL_FRAME.size.width + 60;
+        [imgScrollView setContentSize:CGSizeMake(xPos, 0)];
+    }
+}
+
+-(void) reloadThumbnails {
+    DebugLog(@"");
+
+    int xPos = 20;
+    for (ThumbnailView *thumbnail in allThumbnails) {
+        
+        thumbnail.frame =  CGRectMake(xPos,10, RECT_THUMBNAIL_FRAME.size.width, RECT_THUMBNAIL_FRAME.size.height);
         [imgScrollView addSubview:thumbnail];
         
         xPos = xPos + RECT_THUMBNAIL_FRAME.size.width + 60;
@@ -427,10 +444,40 @@ int swipeTxtCnt;
     [imgScrollView setUserInteractionEnabled:YES];
 }
 
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Touch Hnadling
+#pragma mark =======================================
+
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    DebugLog(@"");
+    
+    for(ThumbnailView *thumbnail in allThumbnails) {
+        [thumbnail stopAnimation];
+    }
+    isThumbnailLongPressed = NO;
+}
+
 #pragma mark-
 #pragma mark======================
 #pragma mark thumbnailView Delegates
 #pragma mark======================
+
+-(void) thumbnailViewCloseBtnClicked:(ThumbnailView *)thumbnail {
+    DebugLog(@"");
+    DebugLog(@"ImageName : %@",thumbnail.imageName);
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+  
+    [fileManager removeItemAtPath:thumbnail.imageName error:nil];
+     
+    [thumbnail removeFromSuperview];
+    [allThumbnails removeObject:thumbnail];
+    for(ThumbnailView *thumbnail in allThumbnails) {
+        [thumbnail removeFromSuperview];
+    }
+    [self reloadThumbnails];
+}
+
 
 -(void) thumbnailViewTapped:(ThumbnailView *)thumbnail{
     DebugLog(@"");
@@ -442,4 +489,19 @@ int swipeTxtCnt;
     TSThumbnailEditController *thumbnailEditor = [[TSThumbnailEditController alloc] initWithNibName:@"TSThumbnailEditController" bundle:nil withImage:thumbnail.actulaImage imageName:thumbnail.imageName];
     [self.navigationController pushViewController:thumbnailEditor animated:YES];
 }
+
+-(void) thumbnailViewLongPressed {
+    DebugLog(@"");
+    DebugLog(@"All Thumbnail View Count : %d",allThumbnails.count);
+    if(!isThumbnailLongPressed) {
+        isThumbnailLongPressed = YES;
+       
+        for(ThumbnailView *thumbnail in allThumbnails) {
+            [thumbnail startAnimation];
+        }
+        
+    }
+    
+}
+
 @end

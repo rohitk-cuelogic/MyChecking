@@ -51,10 +51,8 @@ int numOfTouchPts;
 
 UITouchVerificationView * touchView;
 int movedObjectAtTime;
-NSTimer *showSeasonsTimer;
 NSTimer *unCurlTimer;
-NSTimer *removeCurlTimer;
-bool bStartStopRecorder = YES;
+NSTimer *tickBtnTimer;
 
 #pragma mark -
 #pragma mark =======================================
@@ -86,10 +84,12 @@ bool bStartStopRecorder = YES;
     touchView = [[UITouchVerificationView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
     touchView.isWithShape = [self isWithShape];
     
+    isRecording = NO;
         
     isMoveObject = YES;
     
-    self.btnView.frame = CGRectMake(-1024, 0, 1024, 100);
+    isBtnViewHidden = YES;
+    self.btnView.frame = CGRectMake(-700, 0, 700, 100);
     
     [self.mainView addSubview:touchView];
     [self.mainView bringSubviewToFront:touchView];
@@ -266,43 +266,17 @@ bool bStartStopRecorder = YES;
             [f removeFromSuperview];
         }
         fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
+        
+        RigthTickButton.hidden = YES;
+        [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+        
     }
     else{
         
     }
 }
 - (void)handleDoubleTap:(UITapGestureRecognizer *)sender {
-//    if (sender.state == UIGestureRecognizerStateRecognized) {
-//        if(bStartStopRecorder){
-//            DebugLog(@"double tapped");
-//            DebugLog(@"Recording on");
-//            bStartStopRecorder = NO;
-//            if (player.playing) {
-//                [player stop];
-//            }
-//            
-//            if (!recorder.recording) {
-//                AVAudioSession *session = [AVAudioSession sharedInstance];
-//                [session setActive:YES error:nil];
-//                
-//                // Start recording
-//                [recorder record];
-//                //            [recordPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
-//                
-//            } else {
-//                
-//                // Pause recording
-//                [recorder pause];
-//                //            [recordPauseButton setTitle:@"Record" forState:UIControlStateNormal];
-//            }
-//        }else{
-//            [recorder stop];
-//            DebugLog(@"Recording off");
-//            bStartStopRecorder = YES;
-//            AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-//            [audioSession setActive:NO error:nil];
-//        }
-//    }
+
 }
  
 - (void)didReceiveMemoryWarning {
@@ -338,10 +312,7 @@ bool bStartStopRecorder = YES;
         NSLog(@"I got the shape but i am returning");
         return;
     }
-    if(!videoButton.hidden || !cameraButton.hidden) {
-        videoButton.hidden = YES;
-        cameraButton.hidden=YES;
-    }
+
     
     shapeToDraw = nil;
     self.shapes = [[NSMutableArray alloc]initWithArray:[fallSceneObject shapeForObject:UIT.label]];
@@ -375,6 +346,18 @@ bool bStartStopRecorder = YES;
 #pragma mark======================
 
 -(void)buildShape:(NSString *)shape {
+    DebugLog(@"");
+    
+    if(!isRecording && RigthTickButton.hidden) {
+        RigthTickButton.hidden = NO;
+    }
+    [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+    [tickBtnTimer invalidate];
+    tickBtnTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(pulseTickButton) userInfo:nil repeats:NO];
+    
+    if(!isBtnViewHidden) {
+        [self hideVideoCameraButtons];
+    }
     [self reorientationOfShape:(NSString *)shape];
 }
 
@@ -797,7 +780,7 @@ bool bStartStopRecorder = YES;
  */
 -(void)needToShowRightTickButton{
     DebugLog(@"");
-    if ([fruitObjectArray count] > 0) {
+    if ([fruitObjectArray count] > 0 ) {
         RigthTickButton.hidden = NO;
         videoButton.hidden = YES;
         cameraButton.hidden = YES;
@@ -842,9 +825,7 @@ bool bStartStopRecorder = YES;
 -(void)touchVerificationViewTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     
     DebugLog(@"TouchBegan");
-    RigthTickButton.hidden = YES;
-    [showSeasonsTimer invalidate];
-    
+
     if (event != nil) {
         // if touch count is greater than 1
         if ([touches count]>0) {
@@ -895,9 +876,8 @@ bool bStartStopRecorder = YES;
  
 -(void)touchVerificationViewTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     DebugLog(@"");
-    [showSeasonsTimer invalidate];
+
     isTouchesOnTouchLayer = NO;
-    showSeasonsTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(needToShowRightTickButton) userInfo:nil repeats:NO];
 }
 
 #pragma mark-
@@ -923,14 +903,10 @@ bool bStartStopRecorder = YES;
 -(void) onFruitView:(FruitView *)fruit touchesBegan:(NSSet *)touches {
     DebugLog(@"");
     DebugLog(@"FruitTouchBegan");
-    RigthTickButton.hidden = YES;
-    [showSeasonsTimer invalidate];
-    //    [multiTouchForFruitObject addObject:touches];
+
     for (UITouch * touch in touches) {
     }
-    //    if([multiTouchForFruitObject count]==1){
-    //        [self.view sendSubviewToBack:touchView];
-    //    }
+   
     if (isWithShape) {
         [touchView touchesBegan:touches withEvent:nil];
     }
@@ -997,8 +973,6 @@ bool bStartStopRecorder = YES;
         });
         
     }
-    [showSeasonsTimer invalidate];
-    showSeasonsTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(needToShowRightTickButton) userInfo:nil repeats:NO];
     
     if (isWithShape) {
         [touchView touchesEnded:touches withEvent:nil];
@@ -1033,11 +1007,28 @@ bool bStartStopRecorder = YES;
 #pragma mark- ===============================
 #pragma mark- button touch handling functions
 #pragma mark- ===============================
+-(void) hideButtons{
+    cameraButton.hidden = YES;
+    RigthTickButton.hidden = YES;
+
+    garbageCan.hidden = YES;
+    curlButton.hidden = YES;
+    cameraButton.hidden = YES;
+    
+    for(CALayer *layer in btnView.layer.sublayers) {
+        [layer removeAnimationForKey:@"transform.scale"];
+        [layer removeAllAnimations];
+    }
+    
+    [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted"] forState:UIControlStateNormal];
+    
+}
 
 -(IBAction)actionRecording:(id)sender {
     DebugLog(@"");
     
     if(isRecording) {
+
         isRecording = NO;
         [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted"] forState:UIControlStateNormal];
         cameraButton.hidden = NO;
@@ -1047,20 +1038,17 @@ bool bStartStopRecorder = YES;
         garbageCan.hidden = NO;
         curlButton.hidden = NO;
         
+        [videoButton.layer removeAnimationForKey:@"opacity"];
         [videoButton.layer removeAllAnimations];
         
+        [self hideVideoCameraButtons];
+        
     }else{
-        for(CALayer *layer in btnView.layer.sublayers) {
-            [layer removeAllAnimations];
-        }
-        
-        btnView.frame = CGRectMake(-1024, 0, 1024, 100);
-        
+
         isRecording = YES;
-        garbageCan.hidden = YES;
-        curlButton.hidden = YES;
-        [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted"] forState:UIControlStateNormal];
-        cameraButton.hidden = YES;
+
+        [NSThread detachNewThreadSelector:@selector(hideButtons) toTarget:self withObject:nil];
+        
         screenCapture.delegate = self;
         [screenCapture startRecording];
         [screenCapture setNeedsDisplay];
@@ -1069,10 +1057,10 @@ bool bStartStopRecorder = YES;
         theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
         theAnimation.duration=1.0;
         theAnimation.repeatCount=HUGE_VALF;
-        theAnimation.autoreverses=YES;
+        theAnimation.autoreverses=NO;
         theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
-        theAnimation.toValue=[NSNumber numberWithFloat:0.1];
-        [videoButton.layer addAnimation:theAnimation forKey:@"animateLayer"]; //animateOpacity
+        theAnimation.toValue=[NSNumber numberWithFloat:0.5];
+        [videoButton.layer addAnimation:theAnimation forKey:@"opacity"]; //animateOpacity
         
     }
     
@@ -1081,11 +1069,7 @@ bool bStartStopRecorder = YES;
 -(IBAction)screenShot:(id)sender {
     DebugLog(@"");
     
-    for(CALayer *layer in btnView.layer.sublayers) {
-        [layer removeAllAnimations];
-    }
-    
-    btnView.frame = CGRectMake(-1024, 0, 1024, 100);
+    [self hideVideoCameraButtons];
     
     isCameraClick = YES;
 
@@ -1095,7 +1079,7 @@ bool bStartStopRecorder = YES;
     if ([btn isHidden]) {
         return;
     }
-    
+    [RigthTickButton setHidden:YES];
     [cameraButton setHidden:YES];
     [videoButton setHidden:YES];
     [garbageCan setHidden:YES];
@@ -1182,18 +1166,12 @@ bool bStartStopRecorder = YES;
     DebugLog(@"");
     UIButton *btn = sender;
     if ([btn tag] == TAG_RIGHT_TICK_BTN) {
-        [self sendEmail];
+        //[self sendEmail];
         if (![btn isHidden]) {
-            [RigthTickButton setHidden:YES];
+            [self showVideoCameraButtons];
+            [tickBtnTimer invalidate];
+            [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
             
-            [UIView animateWithDuration:0.8 animations:^{
-                btnView.frame = CGRectMake(0, 0, 1024, 100);
-                [cameraButton setHidden:NO];
-                [videoButton setHidden:NO];
-            }];
-            
-            videoBtnTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(pulseButtons) userInfo:nil repeats:NO];
-
         }
         
     }
@@ -1313,8 +1291,69 @@ bool bStartStopRecorder = YES;
 #pragma mark Video and Camera Buttons Handling
 #pragma mark =======================================
 
+-(void) showVideoCameraButtons {
+    DebugLog(@"");
+    
+    isBtnViewHidden = NO;
+    videoButton.hidden = NO;
+    cameraButton.hidden = NO;
+    RigthTickButton.hidden = YES;
+    
+    [UIView animateWithDuration:0.8 animations:^{
+        btnView.frame = CGRectMake(162, 0, 700,100);
+    }completion:^(BOOL finished) {
+        double delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            CABasicAnimation *animation4a = nil;
+            animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+            [animation4a setToValue:[NSNumber numberWithDouble:1.7]];
+            [animation4a setFromValue:[NSNumber numberWithDouble:1]];
+            [animation4a setAutoreverses:YES];
+            [animation4a setDuration:1.5f];
+            [animation4a setBeginTime:0.0f];
+            [animation4a setRepeatCount:HUGE_VAL];
+            [videoButton.layer addAnimation:animation4a forKey:@"transform.scale"];
+            
+            CABasicAnimation *animation4a2 = nil;
+            animation4a2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+            [animation4a2 setToValue:[NSNumber numberWithDouble:1.7]];
+            [animation4a2 setFromValue:[NSNumber numberWithDouble:1]];
+            [animation4a2 setAutoreverses:YES];
+            [animation4a2 setDuration:1.5f];
+            [animation4a2 setBeginTime:0.0f];
+            [animation4a2 setRepeatCount:HUGE_VAL];
+            [cameraButton.layer addAnimation:animation4a2 forKey:@"transform.scale"];
+        });
+    }];
+    
 
--(void) pulseButtons {
+}
+
+-(void) hideVideoCameraButtons {
+    DebugLog(@"");
+    
+    if(!isRecording) {
+            RigthTickButton.hidden = NO;
+            
+            for(CALayer *layer in btnView.layer.sublayers) {
+                [layer removeAnimationForKey:@"transform.scale"];
+                [layer removeAllAnimations];
+            }
+            isBtnViewHidden = YES;
+            [UIView animateWithDuration:0.3 animations:^{
+                btnView.frame = CGRectMake(162, -100, 700,100);
+            }completion:^(BOOL finished) {
+                videoButton.hidden = YES;
+                cameraButton.hidden = YES;
+                btnView.frame = CGRectMake(-700, 0, 700,100);
+            }];
+    }
+    
+
+}
+
+-(void) pulseTickButton {
     DebugLog(@"");
     
     CABasicAnimation *animation4a = nil;
@@ -1325,17 +1364,8 @@ bool bStartStopRecorder = YES;
     [animation4a setDuration:1.5f];
     [animation4a setBeginTime:0.0f];
     [animation4a setRepeatCount:HUGE_VAL];
-    [videoButton.layer addAnimation:animation4a forKey:@"transform.scale"];
-    
-    CABasicAnimation *animation4a2 = nil;
-    animation4a2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    [animation4a2 setToValue:[NSNumber numberWithDouble:1.7]];
-    [animation4a2 setFromValue:[NSNumber numberWithDouble:1]];
-    [animation4a2 setAutoreverses:YES];
-    [animation4a2 setDuration:1.5f];
-    [animation4a2 setBeginTime:0.0f];
-    [animation4a2 setRepeatCount:HUGE_VAL];
-    [cameraButton.layer addAnimation:animation4a2 forKey:@"transform.scale"];
+    [RigthTickButton.layer addAnimation:animation4a forKey:@"transform.scale"];
+
 }
 
 

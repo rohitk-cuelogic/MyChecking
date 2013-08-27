@@ -24,17 +24,19 @@ static TigglyStampUtils *sharedInstance = nil;
 + (TigglyStampUtils *)sharedInstance {
     if (sharedInstance == nil) {
         sharedInstance = [[TigglyStampUtils alloc]init];
+        
     }
     
     return sharedInstance;
 }
 // We can still have a regular init method, that will get called the first time the Singleton is used.
-- (id)init
-{
-    self = [super init];
+- (id)init {
     
+    self = [super init];    
     if (self) {
         // Work your initialising magic here as you normally would
+        DebugLog(@"");
+        
     }
     
     return self;

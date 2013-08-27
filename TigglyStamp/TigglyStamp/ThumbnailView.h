@@ -9,20 +9,23 @@
 #import <UIKit/UIKit.h>
 #import "TConstant.h"
 #import "TigglyStampUtils.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 @class ThumbnailView;
 
 @protocol ThumbnailViewProtocol <NSObject>
 
--(void)thumbnailViewTapped:(ThumbnailView *)thumbnail;
-
+-(void) thumbnailViewTapped:(ThumbnailView *)thumbnail;
+-(void) thumbnailViewLongPressed;
+-(void) thumbnailViewCloseBtnClicked:(ThumbnailView *)thumbnail;
 @end
 
-@interface ThumbnailView : UIView {
+@interface ThumbnailView : UIView<UIGestureRecognizerDelegate> {
     UIImageView *imgView;
     UIImage *actualImage;
     NSString *imageName;
+    UIButton *closeBtn;
+    UIImageView *playBtn;
 }
 
 @property (nonatomic, strong) UIImageView *imgView;
@@ -31,5 +34,6 @@
 @property (unsafe_unretained, nonatomic) id<ThumbnailViewProtocol> delegate;
 
 - (id)initWithFrame:(CGRect)frame withThumbnailImagePath:(NSString *) imgePath;
-
+- (void) startAnimation;
+- (void) stopAnimation;
 @end

@@ -9,8 +9,11 @@
 #import "AppDelegate.h"
 #import "IntroScreenViewController.h"
 #import "WinterSceneViewController.h"
+#import "TigglyStampUtils.h"
+
 @implementation AppDelegate
 @synthesize navController;
+@synthesize allFiles;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -22,6 +25,10 @@
     self.window.rootViewController = self.navController;
     
     [self.window makeKeyAndVisible];
+    
+    allFiles = [[TigglyStampUtils sharedInstance]getAllImagesAndMovies];
+    DebugLog(@"AllFilesCount : %d",allFiles.count);
+    
     return YES;
 }
 

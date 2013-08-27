@@ -12,6 +12,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 @interface TigglyStampUtils : NSObject{
     NSMutableString *strCsvKyes;
+    int thumbnailCount;
 }
 
 + (id)sharedInstance;

@@ -37,6 +37,7 @@
     UIActivityIndicatorView *activityIndicator;
     MPMoviePlayerController *mplayer;
     
+    BOOL isBtnViewHidden;
 }
 @property(nonatomic,strong) ScreenCaptureView *screenCapture;
 @property (nonatomic, strong) IBOutlet UITouchVerificationView * touchView;
@@ -60,6 +61,7 @@
 @property (nonatomic, retain) XBCurlView *curlView;
 @property (nonatomic, retain) IBOutlet UIButton *backButton;
 @property (nonatomic)  BOOL isCameraClick;
+@property (nonatomic, strong) IBOutlet UIView *btnView;
 
 -(IBAction)screenShot:(id)sender;
 -(IBAction)onBackButtonClicked:(id)sender;

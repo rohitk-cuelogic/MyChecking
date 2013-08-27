@@ -28,6 +28,8 @@
     NSTimer *playBtnTimer;
     CALayer *bkgLayer;
     BOOL isFirstTimePlay;
+    BOOL isThumbnailLongPressed;
+    NSMutableArray *allThumbnails;
 }
 
 @property(nonatomic, strong)UIScrollView *imgScrollView;

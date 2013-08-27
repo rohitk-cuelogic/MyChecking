@@ -13,7 +13,7 @@ static NSMutableDictionary *shapeDicionary;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (strong,nonatomic) NSArray *allFiles;
 @property (strong, nonatomic) IntroScreenViewController *viewController;
 @property (strong, nonatomic) UINavigationController *navController;
 

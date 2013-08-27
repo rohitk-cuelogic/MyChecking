@@ -35,8 +35,8 @@
     CapturedImageView *ccImageView;
     UIActivityIndicatorView *activityIndicator;
     MPMoviePlayerController *mplayer;
-    
-    NSTimer *videoBtnTimer;
+
+    BOOL isBtnViewHidden;
     
 }
 @property(nonatomic,strong) ScreenCaptureView *screenCapture;

@@ -479,193 +479,193 @@ bool bStartStopRecorder = YES;
     if (isWithShape) {
         midPoint = CGPointMake(((centerX/numOfTouchPts)),((centerY/numOfTouchPts)));
         
-        if([shape isEqualToString:@"triangle"]){
-            //DebugLog(@"triangle");
-            UITouch *touch = [pointComparison objectAtIndex:0];
-            UITouch *compare = [pointComparison objectAtIndex:1];
-            UITouch *reference = [pointComparison objectAtIndex:2];
-            float pointX=0, pointY=0;
-            for(UITouch *t in pointComparison){
-                //DebugLog(@"point=%@",NSStringFromCGPoint([t locationInView:self]));
-                pointX += [t locationInView:self.view].x;
-                pointY += [t locationInView:self.view].y;
-            }
-            midPoint=CGPointMake(pointX / pointComparison.count, pointY / pointComparison.count);
-            
-            if (reference == compare || reference == touch) {
-                int i = 0;
-                while (reference == compare || reference == touch) {
-                    i++;
-                    if (i < [pointComparison count]) {
-                        reference = [pointComparison objectAtIndex:i];
-                    } else {
-                        break;
-                    }
-                    
-                }
-                //DebugLog(@"ERROR fixed");
-            }
-            CGPoint touchLocation1 = [touch locationInView:self.view];
-            CGPoint compareLocation = [compare locationInView:self.view];
-            CGPoint referenceLocation = [reference locationInView:self.view];
-            
-            UIBezierPath *trianglePath;
-            NSMutableArray *newPoints = [[NSMutableArray alloc] init];
-            midPoint=CGPointMake((touchLocation1.x + compareLocation.x + referenceLocation.x)/3,(touchLocation1.y+ compareLocation.y + referenceLocation.y)/3);
-            int i=0;
-            
-            for(UITouch *t in pointComparison){
-                i++;
-                if(i >= pointComparison.count){
-                    i = 0;
-                }
-                CGPoint first = [t locationInView:self.view];
-                CGPoint second = [[pointComparison objectAtIndex:i] locationInView:self.view];
-                CGPoint mid = CGPointMake((first.x + second.x) / 2, (first.y + second.y) / 2);
-                float dist = sqrtf(((first.x - second.x) * (first.x - second.x)) + ((first.y - second.y) * (first.y - second.y)));
-                
-                dist = 110;    //defines size of triangle to be drawn (to get shape same as physical shape, use 'dist += 60;')
-                float offset = (float)abs(midPoint.y - mid.y) / (float)abs(midPoint.x - mid.x);
-                float newX = (dist) * (dist);
-                float temp = (offset) * (offset);
-                temp += 1;
-                newX /= temp;
-                newX = sqrtf(newX);
-                float newY = newX * offset;
-                
-                if(midPoint.x < mid.x){
-                    newX += midPoint.x;
-                }else if(midPoint.x > mid.x){
-                    newX = midPoint.x - newX;
-                    
-                }
-                if(midPoint.y < mid.y){
-                    newY += midPoint.y;
-                }else if(midPoint.y > mid.y){
-                    newY = midPoint.y - newY;
-                }
-                if(offset == 0){
-                    if(midPoint.x < mid.x){
-                        newX = midPoint.x + dist;
-                    }else if(midPoint.x > mid.x){
-                        newX = midPoint.x - dist;
-                    }
-                    newY = midPoint.y;
-                }
-                if(offset == INFINITY){
-                    newX = midPoint.x;
-                    if(midPoint.y < mid.y){
-                        newY = midPoint.y + dist;
-                    }else if(midPoint.y > mid.y){
-                        newY = midPoint.y - dist;
-                    }
-                }
-                [newPoints addObject:[NSValue valueWithCGPoint:CGPointMake(newX, newY)]];
-                DebugLog(@" point of triangle%f %f",newX,newY);
-            }
-            DebugLog(@" point of triangle array %@",newPoints);
-            trianglePath = [[UIBezierPath alloc]init];
-            [trianglePath moveToPoint:[[newPoints objectAtIndex:0] CGPointValue]];
-            [trianglePath addLineToPoint:[[newPoints objectAtIndex:1] CGPointValue]];
-            [trianglePath addLineToPoint:[[newPoints objectAtIndex:2] CGPointValue]];
-            [trianglePath addLineToPoint:[[newPoints objectAtIndex:0] CGPointValue]];
-            [trianglePath closePath];
-            //    }
-            CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-            shapeLayer.backgroundColor = [[UIColor clearColor] CGColor];
-            shapeLayer.borderColor = [[UIColor clearColor] CGColor];
-            shapeLayer.borderWidth = 3.0f;
-            CGPoint midpointoftriangle = CGPointMake((touchLocation1.x + compareLocation.x + referenceLocation.x)/3,(touchLocation1.y+ compareLocation.y + referenceLocation.y)/3);
-            DebugLog(@"Center point %@", NSStringFromCGPoint(midpointoftriangle));
-            shapeLayer.position = midpointoftriangle;
-            shapeLayer.frame = CGRectMake(0, 0, 400, 400);
-            shapeLayer.strokeColor = [UIColor blueColor].CGColor;
-            //if([shapeName isEqualToString:@"triangle"])
-            [shapeLayer setPath:trianglePath.CGPath];
-            [trianglePath closePath];
-            [self.view.layer addSublayer:shapeLayer];
-            [shapeLayer setOpacity:0];
-            
-            
-            CGPoint smallX;
-            smallX = CGPointMake(INFINITY, INFINITY);
-            for (int i = 0; i<newPoints.count;i++){
-                CGPoint point = [[newPoints objectAtIndex:i] CGPointValue];
-                if(smallX.x > point.x){
-                    smallX = point;
-                }
-            }
-            CGPoint bigY = CGPointZero;
-            for (int i = 0; i< newPoints.count;i++){
-                CGPoint point = [[newPoints objectAtIndex:i] CGPointValue];
-                if(!CGPointEqualToPoint(point, smallX)){
-                    if(point.y > bigY.y){
-                        bigY = point;
-                    }
-                }
-            }
-            
-            float hyp = sqrt(pow((bigY.y - smallX.y),2) + pow((bigY.x - smallX.x), 2));
-            float oppSide = abs(bigY.y - smallX.y);
-            angleDiff = asinf(oppSide/hyp);// * 180 / M_PI;
-            if(bigY.y <= smallX.y){
-                angleDiff = -1 * angleDiff;
-            }
-            DebugLog(@"SmallX : %@ BigY : %@",NSStringFromCGPoint(smallX),NSStringFromCGPoint(bigY));
-            DebugLog(@"Hyp : %f Opp : %f",hyp,oppSide);
-            DebugLog(@"AngleDiff : %f",angleDiff);
-        }
-        else if([shape isEqualToString:@"square"]){
-            UITouch *touch = [pointComparison objectAtIndex:0];
-            UITouch *compare = [pointComparison objectAtIndex:1];
-            float pointX=0, pointY=0;
-            for(UITouch *t in pointComparison){
-                //DebugLog(@"point=%@",NSStringFromCGPoint([t locationInView:self]));
-                pointX += [t locationInView:self.view].x;
-                pointY += [t locationInView:self.view].y;
-            }
-            midPoint=CGPointMake(pointX / pointComparison.count, pointY / pointComparison.count);
-            CGPoint touchLocation1 = [touch locationInView:self.view];
-            CGPoint compareLocation = [compare locationInView:self.view];
-            midPoint=CGPointMake((touchLocation1.x + compareLocation.x)/2,(touchLocation1.y+ compareLocation.y)/2);
-            
-            float hyp = sqrt(pow((touchLocation1.y - compareLocation.y),2) + pow((touchLocation1.x - compareLocation.x), 2));
-            float oppSide = abs(compareLocation.y - touchLocation1.y);
-            
-            float sinAngle;
-            
-            sinAngle=oppSide/hyp;
-            sinAngle=asinf(sinAngle);   //sin inverse
-            
-            CGPoint pointUp,pointDown;
-            if(touchLocation1.y <= compareLocation.y){
-                pointUp=touchLocation1;
-                pointDown=compareLocation;
-            }else{
-                pointUp=compareLocation;
-                pointDown=touchLocation1;
-            }
-            if(pointUp.x >= pointDown.x){
-                //DebugLog(@"OK");
-                angleDiff=(45 * M_PI / 180) - sinAngle;
-                
-            }else{
-                //DebugLog(@"Not OK");
-                angleDiff=sinAngle - (135 * M_PI / 180);
-            }
-            //    }
-            CAShapeLayer *square= [CAShapeLayer layer];
-            [square setFrame:CGRectMake(0, 0, 180, 180)];//in old code it was (0, 0, 350, 350)
-            [square setBackgroundColor:[UIColor redColor].CGColor];
-            [square setBorderColor:[UIColor blackColor].CGColor];
-            [square setBorderWidth:3.0f];
-            
-            [self.view.layer addSublayer:square];
-            [square setOpacity:0];
-            [square setPosition:midPoint];
-            [square setValue:[NSNumber numberWithFloat:angleDiff] forKeyPath:@"transform.rotation.z"];
-            
-        }
+//        if([shape isEqualToString:@"triangle"]){
+//            //DebugLog(@"triangle");
+//            UITouch *touch = [pointComparison objectAtIndex:0];
+//            UITouch *compare = [pointComparison objectAtIndex:1];
+//            UITouch *reference = [pointComparison objectAtIndex:2];
+//            float pointX=0, pointY=0;
+//            for(UITouch *t in pointComparison){
+//                //DebugLog(@"point=%@",NSStringFromCGPoint([t locationInView:self]));
+//                pointX += [t locationInView:self.view].x;
+//                pointY += [t locationInView:self.view].y;
+//            }
+//            midPoint=CGPointMake(pointX / pointComparison.count, pointY / pointComparison.count);
+//            
+//            if (reference == compare || reference == touch) {
+//                int i = 0;
+//                while (reference == compare || reference == touch) {
+//                    i++;
+//                    if (i < [pointComparison count]) {
+//                        reference = [pointComparison objectAtIndex:i];
+//                    } else {
+//                        break;
+//                    }
+//                    
+//                }
+//                //DebugLog(@"ERROR fixed");
+//            }
+//            CGPoint touchLocation1 = [touch locationInView:self.view];
+//            CGPoint compareLocation = [compare locationInView:self.view];
+//            CGPoint referenceLocation = [reference locationInView:self.view];
+//            
+//            UIBezierPath *trianglePath;
+//            NSMutableArray *newPoints = [[NSMutableArray alloc] init];
+//            midPoint=CGPointMake((touchLocation1.x + compareLocation.x + referenceLocation.x)/3,(touchLocation1.y+ compareLocation.y + referenceLocation.y)/3);
+//            int i=0;
+//            
+//            for(UITouch *t in pointComparison){
+//                i++;
+//                if(i >= pointComparison.count){
+//                    i = 0;
+//                }
+//                CGPoint first = [t locationInView:self.view];
+//                CGPoint second = [[pointComparison objectAtIndex:i] locationInView:self.view];
+//                CGPoint mid = CGPointMake((first.x + second.x) / 2, (first.y + second.y) / 2);
+//                float dist = sqrtf(((first.x - second.x) * (first.x - second.x)) + ((first.y - second.y) * (first.y - second.y)));
+//                
+//                dist = 110;    //defines size of triangle to be drawn (to get shape same as physical shape, use 'dist += 60;')
+//                float offset = (float)abs(midPoint.y - mid.y) / (float)abs(midPoint.x - mid.x);
+//                float newX = (dist) * (dist);
+//                float temp = (offset) * (offset);
+//                temp += 1;
+//                newX /= temp;
+//                newX = sqrtf(newX);
+//                float newY = newX * offset;
+//                
+//                if(midPoint.x < mid.x){
+//                    newX += midPoint.x;
+//                }else if(midPoint.x > mid.x){
+//                    newX = midPoint.x - newX;
+//                    
+//                }
+//                if(midPoint.y < mid.y){
+//                    newY += midPoint.y;
+//                }else if(midPoint.y > mid.y){
+//                    newY = midPoint.y - newY;
+//                }
+//                if(offset == 0){
+//                    if(midPoint.x < mid.x){
+//                        newX = midPoint.x + dist;
+//                    }else if(midPoint.x > mid.x){
+//                        newX = midPoint.x - dist;
+//                    }
+//                    newY = midPoint.y;
+//                }
+//                if(offset == INFINITY){
+//                    newX = midPoint.x;
+//                    if(midPoint.y < mid.y){
+//                        newY = midPoint.y + dist;
+//                    }else if(midPoint.y > mid.y){
+//                        newY = midPoint.y - dist;
+//                    }
+//                }
+//                [newPoints addObject:[NSValue valueWithCGPoint:CGPointMake(newX, newY)]];
+//                DebugLog(@" point of triangle%f %f",newX,newY);
+//            }
+//            DebugLog(@" point of triangle array %@",newPoints);
+//            trianglePath = [[UIBezierPath alloc]init];
+//            [trianglePath moveToPoint:[[newPoints objectAtIndex:0] CGPointValue]];
+//            [trianglePath addLineToPoint:[[newPoints objectAtIndex:1] CGPointValue]];
+//            [trianglePath addLineToPoint:[[newPoints objectAtIndex:2] CGPointValue]];
+//            [trianglePath addLineToPoint:[[newPoints objectAtIndex:0] CGPointValue]];
+//            [trianglePath closePath];
+//            //    }
+//            CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+//            shapeLayer.backgroundColor = [[UIColor clearColor] CGColor];
+//            shapeLayer.borderColor = [[UIColor clearColor] CGColor];
+//            shapeLayer.borderWidth = 3.0f;
+//            CGPoint midpointoftriangle = CGPointMake((touchLocation1.x + compareLocation.x + referenceLocation.x)/3,(touchLocation1.y+ compareLocation.y + referenceLocation.y)/3);
+//            DebugLog(@"Center point %@", NSStringFromCGPoint(midpointoftriangle));
+//            shapeLayer.position = midpointoftriangle;
+//            shapeLayer.frame = CGRectMake(0, 0, 400, 400);
+//            shapeLayer.strokeColor = [UIColor blueColor].CGColor;
+//            //if([shapeName isEqualToString:@"triangle"])
+//            [shapeLayer setPath:trianglePath.CGPath];
+//            [trianglePath closePath];
+//            [self.view.layer addSublayer:shapeLayer];
+//            [shapeLayer setOpacity:0];
+//            
+//            
+//            CGPoint smallX;
+//            smallX = CGPointMake(INFINITY, INFINITY);
+//            for (int i = 0; i<newPoints.count;i++){
+//                CGPoint point = [[newPoints objectAtIndex:i] CGPointValue];
+//                if(smallX.x > point.x){
+//                    smallX = point;
+//                }
+//            }
+//            CGPoint bigY = CGPointZero;
+//            for (int i = 0; i< newPoints.count;i++){
+//                CGPoint point = [[newPoints objectAtIndex:i] CGPointValue];
+//                if(!CGPointEqualToPoint(point, smallX)){
+//                    if(point.y > bigY.y){
+//                        bigY = point;
+//                    }
+//                }
+//            }
+//            
+//            float hyp = sqrt(pow((bigY.y - smallX.y),2) + pow((bigY.x - smallX.x), 2));
+//            float oppSide = abs(bigY.y - smallX.y);
+//            angleDiff = asinf(oppSide/hyp);// * 180 / M_PI;
+//            if(bigY.y <= smallX.y){
+//                angleDiff = -1 * angleDiff;
+//            }
+//            DebugLog(@"SmallX : %@ BigY : %@",NSStringFromCGPoint(smallX),NSStringFromCGPoint(bigY));
+//            DebugLog(@"Hyp : %f Opp : %f",hyp,oppSide);
+//            DebugLog(@"AngleDiff : %f",angleDiff);
+//        }
+//        else if([shape isEqualToString:@"square"]){
+//            UITouch *touch = [pointComparison objectAtIndex:0];
+//            UITouch *compare = [pointComparison objectAtIndex:1];
+//            float pointX=0, pointY=0;
+//            for(UITouch *t in pointComparison){
+//                //DebugLog(@"point=%@",NSStringFromCGPoint([t locationInView:self]));
+//                pointX += [t locationInView:self.view].x;
+//                pointY += [t locationInView:self.view].y;
+//            }
+//            midPoint=CGPointMake(pointX / pointComparison.count, pointY / pointComparison.count);
+//            CGPoint touchLocation1 = [touch locationInView:self.view];
+//            CGPoint compareLocation = [compare locationInView:self.view];
+//            midPoint=CGPointMake((touchLocation1.x + compareLocation.x)/2,(touchLocation1.y+ compareLocation.y)/2);
+//            
+//            float hyp = sqrt(pow((touchLocation1.y - compareLocation.y),2) + pow((touchLocation1.x - compareLocation.x), 2));
+//            float oppSide = abs(compareLocation.y - touchLocation1.y);
+//            
+//            float sinAngle;
+//            
+//            sinAngle=oppSide/hyp;
+//            sinAngle=asinf(sinAngle);   //sin inverse
+//            
+//            CGPoint pointUp,pointDown;
+//            if(touchLocation1.y <= compareLocation.y){
+//                pointUp=touchLocation1;
+//                pointDown=compareLocation;
+//            }else{
+//                pointUp=compareLocation;
+//                pointDown=touchLocation1;
+//            }
+//            if(pointUp.x >= pointDown.x){
+//                //DebugLog(@"OK");
+//                angleDiff=(45 * M_PI / 180) - sinAngle;
+//                
+//            }else{
+//                //DebugLog(@"Not OK");
+//                angleDiff=sinAngle - (135 * M_PI / 180);
+//            }
+//            //    }
+//            CAShapeLayer *square= [CAShapeLayer layer];
+//            [square setFrame:CGRectMake(0, 0, 180, 180)];//in old code it was (0, 0, 350, 350)
+//            [square setBackgroundColor:[UIColor redColor].CGColor];
+//            [square setBorderColor:[UIColor blackColor].CGColor];
+//            [square setBorderWidth:3.0f];
+//            
+//            [self.view.layer addSublayer:square];
+//            [square setOpacity:0];
+//            [square setPosition:midPoint];
+//            [square setValue:[NSNumber numberWithFloat:angleDiff] forKeyPath:@"transform.rotation.z"];
+//            
+//        }
         
     }else{
         angleDiff = 0;

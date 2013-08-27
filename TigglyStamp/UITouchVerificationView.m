@@ -110,12 +110,22 @@ int previousTouchCount = 0;
             UITouchGroup *tg = [[UITouchGroup alloc]init];
             [touchGroups addObject:tg];
         }
-        
+        isStartDetectShape = 0.5;
+        detectShapeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(startListeningShape) userInfo:nil repeats:YES];
         shapeDicionary = [[NSMutableDictionary alloc]init];
     }
     [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin];
     return self;
 }
+
+-(void) startListeningShape {
+    //0.5f means ready to detect shape
+    isStartDetectShape = isStartDetectShape+0.1;
+    if (isStartDetectShape>=999) {
+        isStartDetectShape = 0.5f;
+    }
+}
+
 //=====================================================================================================================================//
 
 #pragma mark-
@@ -535,15 +545,15 @@ int previousTouchCount = 0;
 
 
         
-        NSLog(@"tri :%d cir :%d star :%d squ :%d ",triangleShpDetected,circleShpDetected,starShpDetected,squareShpDetected);
+        DebugLog(@"tri :%d cir :%d star :%d squ :%d ",triangleShpDetected,circleShpDetected,starShpDetected,squareShpDetected);
 
     }
-    NSLog(@"Final tri :%d cir :%d star :%d squ :%d ",triangleShpDetected,circleShpDetected,starShpDetected,squareShpDetected);
+    DebugLog(@"Final tri :%d cir :%d star :%d squ :%d ",triangleShpDetected,circleShpDetected,starShpDetected,squareShpDetected);
 
 
     UITouchShapeRecognizer *UITShape = NULL;
     int totlsreqshape = 1;
-    if (triangleShpDetected>=totlsreqshape) {
+    if (triangleShpDetected>=totlsreqshape && triangleShpDetected>=circleShpDetected && triangleShpDetected>=starShpDetected && triangleShpDetected>=squareShpDetected) {
         DebugLog(@"Triangle Detected....");
         for (UITouchShapeRecognizer *UIT in shapeDataCache) {
             if ([UIT.label isEqualToString:@"triangle"]) {
@@ -551,7 +561,7 @@ int previousTouchCount = 0;
                 UITShape = UIT;
             }
         }
-    }else if (circleShpDetected>=totlsreqshape) {
+    }else if (circleShpDetected>=totlsreqshape && circleShpDetected>=triangleShpDetected && circleShpDetected>=starShpDetected && circleShpDetected>=squareShpDetected) {
         DebugLog(@"circle Detected....");
         for (UITouchShapeRecognizer *UIT in shapeDataCache) {
             if ([UIT.label isEqualToString:@"circle"]) {
@@ -559,7 +569,7 @@ int previousTouchCount = 0;
                 [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"-%@,circle\n",keyAllTouchPts] ];
             }
         }
-    }else if (starShpDetected>=totlsreqshape) {
+    }else if (starShpDetected>=totlsreqshape && starShpDetected>=triangleShpDetected && starShpDetected>=circleShpDetected && starShpDetected>=squareShpDetected) {
         DebugLog(@"Star Detected....");
         for (UITouchShapeRecognizer *UIT in shapeDataCache) {
             if ([UIT.label isEqualToString:@"star"]) {
@@ -567,7 +577,7 @@ int previousTouchCount = 0;
                 [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"-%@,star\n",keyAllTouchPts] ];
             }
         }
-    }else if (squareShpDetected>=1) {
+    }else if (squareShpDetected>=1 && squareShpDetected>=triangleShpDetected && squareShpDetected>=circleShpDetected && squareShpDetected>=starShpDetected) {
         DebugLog(@"Square Detected....");
         for (UITouchShapeRecognizer *UIT in shapeDataCache) {
             if ([UIT.label isEqualToString:@"square"]) {
@@ -592,10 +602,15 @@ int previousTouchCount = 0;
             [allTouchPoints removeAllObjects];
         }
         if (delegate && [delegate respondsToSelector:@selector(shapeDetected: inView:)]) {
-            NSLog(@"Came in delegate");
-            [delegate shapeDetected:UITShape inView:self];
+            DebugLog(@"Came in delegate");
+            if (isStartDetectShape>=0.3f) {
+                isStartDetectShape = 0;
+                [delegate shapeDetected:UITShape inView:self];
+            }else  {
+                DebugLog(@"Device is not ready to show shape");
+            }
         }else{
-            NSLog(@"Didnt go in delegate");
+            DebugLog(@"Didnt go in delegate");
         }
     }
 
@@ -613,11 +628,34 @@ int previousTouchCount = 0;
     
 }
 //=====================================================================================================================================//
+-(void)showTouchPoints {
+    
+    for(int i = 0;i<allTouchPoints.count;i++){
+        UITouch *touch = [allTouchPoints objectAtIndex:i];
+        CGPoint touchLocation = [touch locationInView:self];
+        if([[TigglyStampUtils sharedInstance] getDebugModeForWriteKeyInCsvOn]) {
+            UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x-32, touchLocation.y-32, 65, 65)];
+            testView.backgroundColor = [UIColor blueColor];
+            testView.layer.cornerRadius = 20.0f;
+            testView.layer.masksToBounds=YES;
+            [self addSubview:testView];
+            
+            double delayInSeconds = 0.2;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [testView removeFromSuperview];
+                
+            });
+        }
+        
+    }
+    
+}
 
 -(void) performCalculations{
     DebugLog(@"");
     
-    NSLog(@"PerformCalculations allTouchCount : %d",allTouchPoints.count);
+    DebugLog(@"PerformCalculations allTouchCount : %d",allTouchPoints.count);
     
     for(int i = 0;i<allTouchPoints.count;i++){
         UITouch *touch = [allTouchPoints objectAtIndex:i];
@@ -640,22 +678,10 @@ int previousTouchCount = 0;
             }
             
         }
-        if([[TigglyStampUtils sharedInstance] getDebugModeForWriteKeyInCsvOn]) {
-            UIView *testView= [[UIView alloc] initWithFrame:CGRectMake(touchLocation.x, touchLocation.y, 40, 40)];
-            testView.backgroundColor = [UIColor blueColor];
-            testView.layer.cornerRadius = 20.0f;
-            testView.layer.masksToBounds=YES;
-            [self addSubview:testView];
-            
-            double delayInSeconds = 0.2;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [testView removeFromSuperview];
-                
-            });
-        }
+
     
     }
+    [self showTouchPoints];
     DebugLog(@" allTouchCount a: %d distanceArr :%d",allTouchPoints.count,distanceArr.count);
     if (allTouchPoints.count==1) {
         UITouch *touch = [allTouchPoints objectAtIndex:0];
@@ -675,7 +701,7 @@ int previousTouchCount = 0;
     }
     @synchronized(distanceArr) {
                 [distanceArr removeAllObjects];
-            }
+    }
     
 }
 
@@ -731,12 +757,13 @@ int previousTouchCount = 0;
             }
         }
     }
-//    
-//    if(allTouchPoints.count >=  2) {
-//        [self performCalculations];
-//    }
 
-    NSLog(@"touchesBegan : AllTouchpoints : %d",allTouchPoints.count);
+
+    if(allTouchPoints.count >=  2) {
+        [self performCalculations];
+    }
+
+    DebugLog(@"touchesBegan : AllTouchpoints : %d",allTouchPoints.count);
 }
 
 //======================================================================================================================//
@@ -759,7 +786,7 @@ int previousTouchCount = 0;
 //        [self performCalculations];
 //    }
 
-    NSLog(@"touchesMoved : AllTouchpoints : %d",allTouchPoints.count);
+    DebugLog(@"touchesMoved : AllTouchpoints : %d",allTouchPoints.count);
 }
 
 
@@ -771,8 +798,15 @@ int previousTouchCount = 0;
         [self.delegate touchVerificationViewTouchesEnded:touches withEvent:event];
     }
 
-    NSLog(@"touchesEnded : AllTouchpoints : %d " ,allTouchPoints.count);
-    [self performCalculations];
+    DebugLog(@"touchesEnded : AllTouchpoints : %d " ,allTouchPoints.count);
+//    [self performCalculations];
+    @synchronized(allTouchPoints) {
+        [allTouchPoints removeAllObjects];
+    }
+    @synchronized(distanceArr) {
+        [distanceArr removeAllObjects];
+    }
+    
     circleShpDetected = 0;
     triangleShpDetected = 0;
     starShpDetected = 0;

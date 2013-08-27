@@ -34,7 +34,8 @@
     
     NSMutableSet *shapes;
     CALayer *currentShape;
-    
+    NSTimer *detectShapeTimer;
+    float isStartDetectShape;
     NSMutableArray *allTouchPoints;
     NSMutableArray *distanceArr;
     NSMutableArray *detectedPoints;

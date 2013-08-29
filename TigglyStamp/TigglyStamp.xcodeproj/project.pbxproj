@@ -23,6 +23,15 @@
 		63019DD717A2B54B005B8CA3 /* deletebtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 63019DD517A2B54B005B8CA3 /* deletebtn.png */; };
 		63019DD817A2B54B005B8CA3 /* savebtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 63019DD617A2B54B005B8CA3 /* savebtn.png */; };
 		6354DFB017CF487600DDFD67 /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFAF17CF487600DDFD67 /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 */; };
+		6354DFBB17CF549400DDFD67 /* CakeCandle1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB217CF549400DDFD67 /* CakeCandle1.mp3 */; };
+		6354DFBC17CF549400DDFD67 /* CakeCandle2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB317CF549400DDFD67 /* CakeCandle2.mp3 */; };
+		6354DFBD17CF549400DDFD67 /* CakeCandle3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB417CF549400DDFD67 /* CakeCandle3.mp3 */; };
+		6354DFBE17CF549400DDFD67 /* CakeCandle4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB517CF549400DDFD67 /* CakeCandle4.mp3 */; };
+		6354DFBF17CF549400DDFD67 /* CakeCandle5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB617CF549400DDFD67 /* CakeCandle5.mp3 */; };
+		6354DFC017CF549400DDFD67 /* CakeCandle6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB717CF549400DDFD67 /* CakeCandle6.mp3 */; };
+		6354DFC117CF549400DDFD67 /* CakeCandle7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB817CF549400DDFD67 /* CakeCandle7.mp3 */; };
+		6354DFC217CF549400DDFD67 /* CakeCandle8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB917CF549400DDFD67 /* CakeCandle8.mp3 */; };
+		6354DFC317CF549400DDFD67 /* CakeCandle9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFBA17CF549400DDFD67 /* CakeCandle9.mp3 */; };
 		636B507A17CF253D004D3397 /* Tiggly_Word_GaspGenius_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 636B507117CF253D004D3397 /* Tiggly_Word_GaspGenius_01.mp3 */; };
 		636B507B17CF253D004D3397 /* Tiggly_Word_Masterpiece_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 636B507217CF253D004D3397 /* Tiggly_Word_Masterpiece_01.mp3 */; };
 		636B507C17CF253D004D3397 /* Tiggly_Word_OhThatsSoPretty_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 636B507317CF253D004D3397 /* Tiggly_Word_OhThatsSoPretty_01.mp3 */; };
@@ -414,6 +423,15 @@
 		63019DD517A2B54B005B8CA3 /* deletebtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deletebtn.png; sourceTree = "<group>"; };
 		63019DD617A2B54B005B8CA3 /* savebtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = savebtn.png; sourceTree = "<group>"; };
 		6354DFAF17CF487600DDFD67 /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_DragNDrop_DRAG_04.mp3; sourceTree = "<group>"; };
+		6354DFB217CF549400DDFD67 /* CakeCandle1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle1.mp3; sourceTree = "<group>"; };
+		6354DFB317CF549400DDFD67 /* CakeCandle2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle2.mp3; sourceTree = "<group>"; };
+		6354DFB417CF549400DDFD67 /* CakeCandle3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle3.mp3; sourceTree = "<group>"; };
+		6354DFB517CF549400DDFD67 /* CakeCandle4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle4.mp3; sourceTree = "<group>"; };
+		6354DFB617CF549400DDFD67 /* CakeCandle5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle5.mp3; sourceTree = "<group>"; };
+		6354DFB717CF549400DDFD67 /* CakeCandle6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle6.mp3; sourceTree = "<group>"; };
+		6354DFB817CF549400DDFD67 /* CakeCandle7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle7.mp3; sourceTree = "<group>"; };
+		6354DFB917CF549400DDFD67 /* CakeCandle8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle8.mp3; sourceTree = "<group>"; };
+		6354DFBA17CF549400DDFD67 /* CakeCandle9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle9.mp3; sourceTree = "<group>"; };
 		636B507117CF253D004D3397 /* Tiggly_Word_GaspGenius_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_GaspGenius_01.mp3; sourceTree = "<group>"; };
 		636B507217CF253D004D3397 /* Tiggly_Word_Masterpiece_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Masterpiece_01.mp3; sourceTree = "<group>"; };
 		636B507317CF253D004D3397 /* Tiggly_Word_OhThatsSoPretty_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_OhThatsSoPretty_01.mp3; sourceTree = "<group>"; };
@@ -857,6 +875,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6354DFB117CF549400DDFD67 /* ShapeFill */ = {
+			isa = PBXGroup;
+			children = (
+				6354DFB217CF549400DDFD67 /* CakeCandle1.mp3 */,
+				6354DFB317CF549400DDFD67 /* CakeCandle2.mp3 */,
+				6354DFB417CF549400DDFD67 /* CakeCandle3.mp3 */,
+				6354DFB517CF549400DDFD67 /* CakeCandle4.mp3 */,
+				6354DFB617CF549400DDFD67 /* CakeCandle5.mp3 */,
+				6354DFB717CF549400DDFD67 /* CakeCandle6.mp3 */,
+				6354DFB817CF549400DDFD67 /* CakeCandle7.mp3 */,
+				6354DFB917CF549400DDFD67 /* CakeCandle8.mp3 */,
+				6354DFBA17CF549400DDFD67 /* CakeCandle9.mp3 */,
+			);
+			path = ShapeFill;
+			sourceTree = "<group>";
+		};
 		636B501917CF2025004D3397 /* Chosen Praises */ = {
 			isa = PBXGroup;
 			children = (
@@ -1497,6 +1531,7 @@
 		EBFCF29017942329003C82CC /* tiggly_stamp_audio */ = {
 			isa = PBXGroup;
 			children = (
+				6354DFB117CF549400DDFD67 /* ShapeFill */,
 				636B501917CF2025004D3397 /* Chosen Praises */,
 				636B502317CF2025004D3397 /* Chosen Tell Stories */,
 				636B503317CF2025004D3397 /* Getting ready */,
@@ -1897,6 +1932,15 @@
 				636B50C117CF26CD004D3397 /* Tiggly_Word_UseTheShapesToMakeAPicture_01.mp3 in Resources */,
 				636B50C217CF26CD004D3397 /* Tiggly_Word_UseYourShapesToMakeAPicture_01.mp3 in Resources */,
 				6354DFB017CF487600DDFD67 /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 in Resources */,
+				6354DFBB17CF549400DDFD67 /* CakeCandle1.mp3 in Resources */,
+				6354DFBC17CF549400DDFD67 /* CakeCandle2.mp3 in Resources */,
+				6354DFBD17CF549400DDFD67 /* CakeCandle3.mp3 in Resources */,
+				6354DFBE17CF549400DDFD67 /* CakeCandle4.mp3 in Resources */,
+				6354DFBF17CF549400DDFD67 /* CakeCandle5.mp3 in Resources */,
+				6354DFC017CF549400DDFD67 /* CakeCandle6.mp3 in Resources */,
+				6354DFC117CF549400DDFD67 /* CakeCandle7.mp3 in Resources */,
+				6354DFC217CF549400DDFD67 /* CakeCandle8.mp3 in Resources */,
+				6354DFC317CF549400DDFD67 /* CakeCandle9.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,6 +36,7 @@
 @synthesize backButton;
 @synthesize isCameraClick;
 @synthesize btnView;
+@synthesize homeButton;
 
 NSString *shapeToDraw,*prevShape;
 bool shouldShapeDetected = YES;
@@ -46,6 +47,11 @@ int movedObjectAtTime;
 NSTimer *showSeasonsTimer;
 NSTimer *unCurlTimer;
 NSTimer *tickBtnTimer;
+NSString *shapeSoundToPlay;
+NSTimer *shapeSoundTimer;
+int countShapeSound;
+
+
 //================================================================================================================
 
 #pragma mark-
@@ -100,8 +106,10 @@ NSTimer *tickBtnTimer;
     touchView = [[UITouchVerificationView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
     touchView.isWithShape = [self isWithShape];
     
-    isRecording = NO;
+    [homeButton setHidden:true];
     
+    isRecording = NO;
+    countShapeSound = 1;
     isMoveObject = YES;
     
     isBtnViewHidden = YES;
@@ -222,6 +230,7 @@ NSTimer *tickBtnTimer;
         }
         fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
         RigthTickButton.hidden = YES;
+        homeButton.hidden = YES;
         [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
 
     }
@@ -282,8 +291,20 @@ NSTimer *tickBtnTimer;
     }
     if(shouldShapeDetected){
         shouldShapeDetected = NO;
+        [self playShapeDetectedSound];
         
-        [[TDSoundManager sharedManager] playSound:UIT.label withFormat:@"mp3"];
+        
+        shapeSoundToPlay = UIT.label;
+        if ([shapeSoundTimer isValid]) {
+            [shapeSoundTimer invalidate];
+        }
+        shapeSoundTimer = [NSTimer scheduledTimerWithTimeInterval:1.5f target:self selector:@selector(playSoundForShape) userInfo:nil repeats:NO];
+        
+//        int64_t delayInSecondsTodetect = 1.5f;
+//        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
+//        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
+//            [[TDSoundManager sharedManager] playSound:UIT.label withFormat:@"mp3"];
+//        });
         
         [self buildShape:UIT.label];
     }
@@ -302,6 +323,10 @@ NSTimer *tickBtnTimer;
     
     if(!isRecording && RigthTickButton.hidden) {
         RigthTickButton.hidden = NO;
+        if (!homeButton.hidden) {
+            homeButton.hidden = YES;
+        }
+        
     }
     [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
     [tickBtnTimer invalidate];
@@ -1066,6 +1091,11 @@ NSTimer *tickBtnTimer;
     
 }
 
+
+-(IBAction)onHomeButton:(id)sender{
+    
+}
+
 //================================================================================================================
 
 
@@ -1075,6 +1105,8 @@ NSTimer *tickBtnTimer;
     if ([btn tag] == TAG_RIGHT_TICK_BTN) {
  
         [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
+        
+        [homeButton setHidden:false];
         
         [NSTimer scheduledTimerWithTimeInterval:0.29 + 0.1 target:self selector:@selector(playDragSound) userInfo:nil repeats:NO];
         
@@ -1674,4 +1706,17 @@ NSTimer *tickBtnTimer;
     [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_DragNDrop_DRAG_04" withFormat:@"mp3"];
 }
 
+-(void) playShapeDetectedSound{
+    NSString *soundName = [NSString stringWithFormat:@"CakeCandle%d",countShapeSound];
+    [[TDSoundManager sharedManager] playSound:soundName withFormat:@"mp3"];
+    
+    countShapeSound ++;
+    if (countShapeSound == 10) {
+        countShapeSound = 1;
+    }
+    
+}
+-(void) playSoundForShape{
+    [[TDSoundManager sharedManager] playSound:shapeSoundToPlay withFormat:@"mp3"];
+}
 @end

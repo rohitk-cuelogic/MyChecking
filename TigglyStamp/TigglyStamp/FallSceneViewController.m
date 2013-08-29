@@ -43,17 +43,21 @@ AVAudioRecorder *recorder;
 @synthesize backButton;
 @synthesize isCameraClick;
 @synthesize btnView;
+@synthesize homeButton;
 
 NSString *shapeToDraw,*prevShape;
+NSString *shapeSoundToPlay;
 bool bShouldShapeDetected = YES;
 float centerX,centerY;
 int numOfTouchPts;
+int countShapeSound;
+
 
 UITouchVerificationView * touchView;
 int movedObjectAtTime;
 NSTimer *unCurlTimer;
 NSTimer *tickBtnTimer;
-
+NSTimer *shapeSoundTimer;
 #pragma mark -
 #pragma mark =======================================
 #pragma mark Init
@@ -79,13 +83,15 @@ NSTimer *tickBtnTimer;
     // Do any additional setup after loading the view from its nib.
     DebugLog(@"Came on view did load from intro screen");
     
+    [homeButton setHidden:true];
+    
     isWithShape = [[TigglyStampUtils sharedInstance] GetBooleanWithShape];
     
     touchView = [[UITouchVerificationView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
     touchView.isWithShape = [self isWithShape];
     
     isRecording = NO;
-        
+    countShapeSound = 1;
     isMoveObject = YES;
     
     isBtnViewHidden = YES;
@@ -287,6 +293,10 @@ NSTimer *tickBtnTimer;
         return;
     }
 
+    // play sound
+    
+    
+    
     
     shapeToDraw = nil;
     self.shapes = [[NSMutableArray alloc]initWithArray:[fallSceneObject shapeForObject:UIT.label]];
@@ -304,9 +314,20 @@ NSTimer *tickBtnTimer;
         bShouldShapeDetected = NO;
         NSLog(@"I got the shape i am displaying");
         [self buildShape:UIT.label];
+        [self playShapeDetectedSound];
         
-         [[TDSoundManager sharedManager] playSound:UIT.label withFormat:@"mp3"];
+        shapeSoundToPlay = UIT.label;
+        if ([shapeSoundTimer isValid]) {
+            [shapeSoundTimer invalidate];
+        }
+        shapeSoundTimer = [NSTimer scheduledTimerWithTimeInterval:1.5f target:self selector:@selector(playSoundForShape) userInfo:nil repeats:NO];
         
+//        int64_t delayInSecondsTodetect = 1.5f;
+//        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
+//        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
+//           [[TDSoundManager sharedManager] playSound:UIT.label withFormat:@"mp3"];
+//        });
+ 
     }else{
         NSLog(@"I got the shape but dont wanna display");
     }
@@ -1167,6 +1188,10 @@ NSTimer *tickBtnTimer;
     
 }
 
+-(IBAction)onhomeButton:(id)sender{
+    
+}
+
  
 
 -(IBAction)onButtonClicked:(id)sender{
@@ -1177,6 +1202,9 @@ NSTimer *tickBtnTimer;
 //        SystemSoundID logoSound = [TDSoundManager createSoundID:@"Blop_Sound_effect.mp3"];
 //        AudioServicesPlayAlertSound(logoSound);
 //
+        
+        [homeButton setHidden:false];
+        
         [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
         
         [NSTimer scheduledTimerWithTimeInterval:0.29 + 0.1 target:self selector:@selector(playDragSound) userInfo:nil repeats:NO];
@@ -1697,6 +1725,21 @@ NSTimer *tickBtnTimer;
 
 -(void) playDragSound{
     [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_DragNDrop_DRAG_04" withFormat:@"mp3"];
+}
+
+-(void) playShapeDetectedSound{
+    NSString *soundName = [NSString stringWithFormat:@"CakeCandle%d",countShapeSound];
+    [[TDSoundManager sharedManager] playSound:soundName withFormat:@"mp3"];
+    
+    countShapeSound ++;
+    if (countShapeSound == 10) {
+        countShapeSound = 1;
+    }
+    
+}
+
+-(void) playSoundForShape{
+    [[TDSoundManager sharedManager] playSound:shapeSoundToPlay withFormat:@"mp3"];
 }
 
 @end

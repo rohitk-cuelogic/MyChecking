@@ -51,6 +51,7 @@
 @property (nonatomic,strong) IBOutlet UIButton *garbageCan;
 @property (nonatomic , assign) BOOL isWithShape;
 @property (nonatomic,strong) IBOutlet UIButton *cameraButton;
+@property (nonatomic,strong) IBOutlet UIButton *homeButton;
 @property (nonatomic,strong) IBOutlet UIButton *videoButton;
 @property (nonatomic,strong) IBOutlet UIButton *RigthTickButton;
 @property (nonatomic,strong) IBOutlet UIButton *curlButton;
@@ -67,5 +68,6 @@
 -(IBAction)onBackButtonClicked:(id)sender;
 -(IBAction)onButtonClicked:(id)sender;
 -(IBAction)actionRecording:(id)sender;
--(IBAction)actionBack;;
+-(IBAction)actionBack;
+-(IBAction)onhomeButton:(id)sender;
 @end

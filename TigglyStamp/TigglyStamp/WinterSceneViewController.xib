@@ -126,7 +126,7 @@
 								<string key="NSFrame">{{40, 15}, {70, 70}}</string>
 								<reference key="NSSuperview" ref="517430245"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="34656682"/>
+								<reference key="NSNextKeyView" ref="1021125293"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -191,7 +191,7 @@
 								<reference key="IBUIFontDescription" ref="24435954"/>
 								<reference key="IBUIFont" ref="659358699"/>
 							</object>
-							<object class="IBUIButton" id="34656682">
+							<object class="IBUIButton" id="1021125293">
 								<reference key="NSNextResponder" ref="517430245"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{40, 15}, {73, 70}}</string>
@@ -416,7 +416,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">homeButton</string>
 						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="34656682"/>
+						<reference key="destination" ref="1021125293"/>
 					</object>
 					<int key="connectionID">52</int>
 				</object>
@@ -468,7 +468,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">onHomeButton:</string>
-						<reference key="source" ref="34656682"/>
+						<reference key="source" ref="1021125293"/>
 						<reference key="destination" ref="841351856"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -512,7 +512,7 @@
 							<reference ref="276847873"/>
 							<reference ref="869610204"/>
 							<reference ref="36117394"/>
-							<reference ref="34656682"/>
+							<reference ref="1021125293"/>
 						</array>
 						<reference key="parent" ref="766721923"/>
 					</object>
@@ -576,7 +576,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">50</int>
-						<reference key="object" ref="34656682"/>
+						<reference key="object" ref="1021125293"/>
 						<reference key="parent" ref="517430245"/>
 					</object>
 				</array>

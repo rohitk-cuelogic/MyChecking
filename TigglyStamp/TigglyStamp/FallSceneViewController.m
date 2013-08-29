@@ -1189,7 +1189,7 @@ NSTimer *shapeSoundTimer;
 }
 
 -(IBAction)onhomeButton:(id)sender{
-    
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
 }
 
  
@@ -1203,7 +1203,6 @@ NSTimer *shapeSoundTimer;
 //        AudioServicesPlayAlertSound(logoSound);
 //
         
-        [homeButton setHidden:false];
         
         [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
         

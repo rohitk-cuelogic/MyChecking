@@ -1306,10 +1306,9 @@ NSTimer *tickBtnTimer;
 //================================================================================================================
 
 -(void) onImageClicked:(CapturedImageView *)cImageView{
-//    if(isCameraClick == YES) {
-//        [cImageView removeFromSuperview];
-//        isCameraClick = NO;
-//    }
+    DebugLog(@"");
+    
+     [self addCurlAnimation];
     
     DebugLog(@"");
     [cImageView removeFromSuperview];

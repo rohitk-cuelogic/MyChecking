@@ -190,6 +190,7 @@ NSTimer *tickBtnTimer;
     doubleFingerTapOnGarbage.numberOfTapsRequired = 2;
     [self.garbageCan addGestureRecognizer:doubleFingerTapOnGarbage];
     
+    [[TDSoundManager sharedManager] playMusic:@"Tiggly_SFX_BACKGROUND_AUTUMN" withFormat:@"mp3"];
    
 }
 
@@ -200,7 +201,7 @@ NSTimer *tickBtnTimer;
     
     [self addCurlAnimation];
     
-     [[TDSoundManager sharedManager] playMusic:@"Tiggly_SFX_BACKGROUND_AUTUMN" withFormat:@"mp3"];
+
     
 }
 
@@ -1255,10 +1256,9 @@ NSTimer *tickBtnTimer;
 #pragma mark- CapturedImageView Delegates
 #pragma mark- ===============================
 -(void) onImageClicked:(CapturedImageView *)cImageView{
-//    if(isCameraClick == YES) {
-//        [cImageView removeFromSuperview];
-//        isCameraClick = NO;
-//    }
+
+    [self addCurlAnimation];
+    
     DebugLog(@"");
     [cImageView removeFromSuperview];
     for(FruitView *fruit in fruitObjectArray){

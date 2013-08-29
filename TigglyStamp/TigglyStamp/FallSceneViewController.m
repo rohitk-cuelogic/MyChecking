@@ -1176,8 +1176,10 @@ NSTimer *tickBtnTimer;
         
 //        SystemSoundID logoSound = [TDSoundManager createSoundID:@"Blop_Sound_effect.mp3"];
 //        AudioServicesPlayAlertSound(logoSound);
-//        
+//
         [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
+        
+        [NSTimer scheduledTimerWithTimeInterval:0.29 + 0.1 target:self selector:@selector(playDragSound) userInfo:nil repeats:NO];
         
         [self sendEmail];
         if (![btn isHidden]) {
@@ -1693,6 +1695,9 @@ NSTimer *tickBtnTimer;
     
 }
 
+-(void) playDragSound{
+    [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_DragNDrop_DRAG_04" withFormat:@"mp3"];
+}
 
 @end
 

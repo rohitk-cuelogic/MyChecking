@@ -7,6 +7,7 @@
 //
 
 #import "TSThumbnailEditController.h"
+#import "TDSoundManager.h"
 
 @interface TSThumbnailEditController ()
 
@@ -341,6 +342,8 @@ int swipeTextCnt;
         return;
     }
     
+    [self playSlidingSounds];
+    
     editorImgView.hidden = YES;
     editorImgView.userInteractionEnabled = NO;
     
@@ -458,6 +461,10 @@ int swipeTextCnt;
     if([savedImgArry count] == 0){
         return;
     }
+    
+    
+    [self playSlidingSounds];
+    
     editorImgView.hidden = YES;
     editorImgView.userInteractionEnabled = NO;
     
@@ -742,6 +749,33 @@ int swipeTextCnt;
     deleteBtn.enabled = YES;
     deleteBtn.userInteractionEnabled = YES;
     editorImgView.userInteractionEnabled = YES;
+}
+
+
+#pragma mark ===========================================
+#pragma mark - play sounds
+#pragma mark ===========================================
+
+-(void) playSlidingSounds{
+    
+     int ranNo = arc4random() % 3;
+    
+    switch (ranNo) {
+        case 0:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_MAGIC_12" withFormat:@"mp3"];
+            break;
+        case 1:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_MAGIC_13" withFormat:@"mp3"];
+            break;
+        case 2:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_MAGIC_14" withFormat:@"mp3"];
+            break;
+            
+        default:
+            break;
+    }
+    
+    
 }
 
 @end

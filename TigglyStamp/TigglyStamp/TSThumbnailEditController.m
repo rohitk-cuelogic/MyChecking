@@ -342,7 +342,7 @@ int swipeTextCnt;
         return;
     }
     
-    [self playSlidingSounds];
+    
     
     editorImgView.hidden = YES;
     editorImgView.userInteractionEnabled = NO;
@@ -389,6 +389,9 @@ int swipeTextCnt;
         }
         
     }else{
+        
+        [self playSlidingSounds];
+        
         if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
             UIImage *img = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[savedImgArry objectAtIndex:cnt]];
             imageToBeEdit = img;
@@ -463,8 +466,6 @@ int swipeTextCnt;
     }
     
     
-    [self playSlidingSounds];
-    
     editorImgView.hidden = YES;
     editorImgView.userInteractionEnabled = NO;
     
@@ -510,6 +511,9 @@ int swipeTextCnt;
                              }];
         }
     }else{
+        
+        [self playSlidingSounds];
+        
         if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
             UIImage *img = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[savedImgArry objectAtIndex:cnt]];
             imageToBeEdit = img;

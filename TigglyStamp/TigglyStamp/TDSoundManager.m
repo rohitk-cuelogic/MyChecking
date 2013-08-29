@@ -81,7 +81,7 @@ int val;
 #ifdef DISABLE_SOUND
     
 #else
-    if ([[[NSUserDefaults standardUserDefaults] valueForKey:MUSIC] isEqualToString:@"no"])
+    if ([[[NSUserDefaults standardUserDefaults] valueForKey:MUSIC] isEqualToString:@"yes"])
         [player2 play];
     
 #endif

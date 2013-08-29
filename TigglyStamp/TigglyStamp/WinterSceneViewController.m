@@ -67,6 +67,12 @@ NSTimer *tickBtnTimer;
     [super viewDidAppear:YES];
      DebugLog(@"");
     
+    if (isWithShape) {
+        [self playShapeinstructionSounds];
+    }else{
+        [self playFingerInstructionSound];
+    }
+    
     [self addCurlAnimation];
 }
 
@@ -1611,7 +1617,53 @@ NSTimer *tickBtnTimer;
     }
     
     
-     [NSTimer scheduledTimerWithTimeInterval:timeToStartVideoRecording target:self selector:@selector(startScreenRecording) userInfo:nil repeats:NO];
+     [NSTimer scheduledTimerWithTimeInterval:timeToStartVideoRecording + 0.2f target:self selector:@selector(startScreenRecording) userInfo:nil repeats:NO];
 }
 
+
+-(void) playShapeinstructionSounds{
+    int ranNo = arc4random() % 5;
+    
+    switch (ranNo) {
+        case 0:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TapOnTheScreen_WithAShape_01" withFormat:@"mp3"];
+            break;
+        case 1:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TapOnTheScreen_WithYourShape_01" withFormat:@"mp3"];
+            break;
+        case 2:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TapOnTheScreen_WithYourShape_02" withFormat:@"mp3"];
+            break;
+        case 3:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_UseTheShapesToMakeAPicture_01" withFormat:@"mp3"];
+            break;
+        case 4:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_UseYourShapesToMakeAPicture_01" withFormat:@"mp3"];
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
+-(void) playFingerInstructionSound{
+    int ranNo = arc4random() % 3;
+    
+    switch (ranNo) {
+        case 0:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TapOnTheScreen_WithYourShape_01" withFormat:@"mp3"];
+            break;
+        case 1:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TouchTheScreenWithYourFinger_01" withFormat:@"mp3"];
+            break;
+        case 2:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TouchTheScreenWithYourFingerToMakeAPicture_01" withFormat:@"mp3"];
+            break;
+        default:
+            break;
+    }
+    
+
+}
 @end

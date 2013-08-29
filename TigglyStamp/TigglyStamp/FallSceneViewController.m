@@ -1134,7 +1134,7 @@ NSTimer *tickBtnTimer;
                                           }
                                           completion:^(BOOL finished){
                                               [flashView removeFromSuperview];
-                                              
+                                              [self playRandomPraiseSound];
                                               CapturedImageView *cImageView = [[CapturedImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768) ImageName:imgName];
                                               cImageView.delegate = self;
                                               [self.mainView addSubview:cImageView];
@@ -1145,7 +1145,42 @@ NSTimer *tickBtnTimer;
     
 }
 
- 
+-(void) playRandomPraiseSound{
+    // playing sound praise sound randomly
+    int ranNo = arc4random() % 9;
+    switch (ranNo) {
+        case 0:
+           [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_GaspGenius_01" withFormat:@"mp3"];
+            break;
+        case 1:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_Masterpiece_01" withFormat:@"mp3"];
+            break;
+        case 2:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_OhThatsSoPretty_01" withFormat:@"mp3"];
+            break;
+        case 3:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_OhWowThatsWonderful_01" withFormat:@"mp3"];
+            break;
+        case 4:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_RembrandtSchmembrandtLookAtYou_01" withFormat:@"mp3"];
+            break;
+        case 5:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_WorthyOfAMuseum_01" withFormat:@"mp3"];
+            break;
+        case 6:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_Wow_01" withFormat:@"mp3"];
+            break;
+        case 7:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_Wow_02" withFormat:@"mp3"];
+            break;
+        case 8:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_YoureAProdigy_01" withFormat:@"mp3"];
+            break;
+
+        default:
+            break;
+    }
+}
 
 -(IBAction)onBackButtonClicked:(id)sender{
     DebugLog(@"onBackButtonClicked");
@@ -1421,7 +1456,7 @@ NSTimer *tickBtnTimer;
 - (void) recordingFinished:(NSString*)outputPathOrNil
 {    
     NSURL *url = screenCapture.exportUrl;
-    
+    [self playRandomPraiseSound];
     UIImage *thumbnail = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[url lastPathComponent]];
     ccImageView.imageView.image = thumbnail;
     [activityIndicator removeFromSuperview];

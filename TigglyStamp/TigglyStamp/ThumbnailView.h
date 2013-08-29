@@ -26,6 +26,7 @@
     NSString *imageName;
     UIButton *closeBtn;
     UIImageView *playBtn;
+    UIActivityIndicatorView *busyView;
 }
 
 @property (nonatomic, strong) UIImageView *imgView;

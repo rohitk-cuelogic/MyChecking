@@ -100,6 +100,7 @@
 -(void)btnHomeClicked{
     DebugLog(@"");
     //call delegate
+    
     [delegate onHomeButtonClicked:self];
 }
 

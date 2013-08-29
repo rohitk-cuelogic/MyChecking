@@ -12,6 +12,7 @@
 #import "SeasonSelectionViewController.h"
 #import "TigglyStampUtils.h"
 #import "TSHomeViewController.h"
+#import "TDSoundManager.h"
 
 #define TAG_BTN_WITHSHAPE 1
 #define TAG_BTN_WITHOUTSHAPE 2
@@ -54,6 +55,10 @@
     logo.frame = CGRectMake(self.view.center.x - 300,self.view.center.y - 300, 600, 600);
     logo.contents = (id) [UIImage imageNamed:@"logo.png"].CGImage;
     [self.view.layer addSublayer:logo];
+    
+    SystemSoundID logoSound = [TDSoundManager createSoundID:@"tiggly_logo_audio.mp3"];
+    AudioServicesPlayAlertSound(logoSound);
+    
     CABasicAnimation *animation3 = nil;
     animation3 = [CABasicAnimation animationWithKeyPath:@"opacity"];
     [animation3 setToValue:[NSNumber numberWithDouble:1]];
@@ -162,6 +167,8 @@
 
 -(IBAction) onButtonTouched:(id)sender{
 
+ [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
+    
     UIButton *btn = (UIButton *) sender;
     TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];
     
@@ -175,13 +182,18 @@
     }
     
     [self.navigationController pushViewController:homeViewController animated:YES];
-//    [del.window setRootViewController:winterViewController];
-    
+
 }
 
 -(IBAction)closeButtonClicked:(id)sender {
+    DebugLog(@"");
+    
+   [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
+    
     [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
     [self.languageView removeFromSuperview];
+    
+
     
 }
 

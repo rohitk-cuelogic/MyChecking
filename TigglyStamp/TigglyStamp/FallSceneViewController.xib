@@ -75,9 +75,9 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
-								<object class="NSColor" key="IBUINormalTitleShadowColor" id="856985407">
+								<object class="NSColor" key="IBUINormalTitleShadowColor" id="952195360">
 									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MC41AA</bytes>
+									<bytes key="NSWhite">MCAwAA</bytes>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="932187827">
 									<int key="type">2</int>
@@ -95,13 +95,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="935994263"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MQA</bytes>
-							<object class="NSColorSpace" key="NSCustomColorSpace" id="130979648">
-								<int key="NSID">2</int>
-							</object>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="952195360"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
 					<object class="IBUIView" id="994649728">
@@ -126,7 +120,7 @@
 								<string key="NSFrame">{{40, 10}, {70, 70}}</string>
 								<reference key="NSSuperview" ref="994649728"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="187408720"/>
+								<reference key="NSNextKeyView" ref="1025294646"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -137,7 +131,10 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="856985407"/>
+								<object class="NSColor" key="IBUINormalTitleShadowColor" id="856985407">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MC41AA</bytes>
+								</object>
 								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">star_btn_1.png</string>
@@ -163,10 +160,6 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="856985407"/>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">curlImage.png</string>
-								</object>
 								<reference key="IBUIFontDescription" ref="932187827"/>
 								<reference key="IBUIFont" ref="280982549"/>
 							</object>
@@ -176,6 +169,7 @@
 								<string key="NSFrame">{{919, 664}, {100, 100}}</string>
 								<reference key="NSSuperview" ref="994649728"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="276622731"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -200,7 +194,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="437425970"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="911909985"/>
+						<reference key="IBUIBackgroundColor" ref="952195360"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
 					<object class="IBUIView" id="276622731">
@@ -238,7 +232,6 @@
 								<string key="NSFrame">{{371, 15}, {70, 70}}</string>
 								<reference key="NSSuperview" ref="276622731"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1025294646"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -261,11 +254,9 @@
 						<string key="NSFrame">{{162, 0}, {700, 100}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="187408720"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MCAwAA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="952195360"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
 				</array>
@@ -276,7 +267,9 @@
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
-					<reference key="NSCustomColorSpace" ref="130979648"/>
+					<object class="NSColorSpace" key="NSCustomColorSpace">
+						<int key="NSID">2</int>
+					</object>
 				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -697,7 +690,6 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="camera@2x~ipad.png">{200, 199}</string>
-			<string key="curlImage.png">{153, 136}</string>
 			<string key="fallView.png">{1024, 768}</string>
 			<string key="recordingStarted@2x~ipad.png">{200, 200}</string>
 			<string key="star_btn_1.png">{276, 275}</string>

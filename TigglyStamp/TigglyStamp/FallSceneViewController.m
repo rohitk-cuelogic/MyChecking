@@ -10,7 +10,7 @@
 #import "WinterScene.h"
 #import "FruitView.h"
 #import "TigglyStampUtils.h"
-
+#import "TDSoundManager.h"
 
 #define TAG_RIGHT_TICK_BTN 1
 #define TAG_CURL_BTN 2
@@ -190,51 +190,7 @@ NSTimer *tickBtnTimer;
     doubleFingerTapOnGarbage.numberOfTapsRequired = 2;
     [self.garbageCan addGestureRecognizer:doubleFingerTapOnGarbage];
     
-//    // Set the audio file name
-//    //Check the already created files
-//    NSString *documentDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-//    // create directory named "test"
-//    [[NSFileManager defaultManager] createDirectoryAtPath:[documentDirPath stringByAppendingPathComponent:@"tigglyAudio"] withIntermediateDirectories:YES attributes:nil error:nil];
-//    // retrieved all directories
-//    DebugLog(@"%@", [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentDirPath error:nil]);
-//    
-//    NSArray *paths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentDirPath error:nil];
-//    DebugLog(@"Total files recorded are %d",paths.count);
-//    NSString* a = @"tigglyAudio";
-//    NSString *fileNameToRecord = [NSString stringWithFormat:@"%@%d.m4a",a,paths.count];
-//    NSArray *pathComponents = [NSArray arrayWithObjects:
-//                               [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
-//                               fileNameToRecord,
-//                               nil];
-//    NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
-//    
-//    // Setup audio session
-//    AVAudioSession *session = [AVAudioSession sharedInstance];
-//    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-//    
-//    // Define the recorder setting
-//    NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
-//    
-//    [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
-//    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
-//    [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
-//    
-//    // Initiate and prepare the recorder
-//    recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:NULL];
-//    recorder.delegate = self;
-//    recorder.meteringEnabled = YES;
-//    [recorder prepareToRecord];
-    
-
-//    CABasicAnimation *theAnimation;
-//    
-//    theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
-//    theAnimation.duration=1.0;
-//    theAnimation.repeatCount=HUGE_VALF;
-//    theAnimation.autoreverses=YES;
-//    theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
-//    theAnimation.toValue=[NSNumber numberWithFloat:0.2];
-//    [RigthTickButton.layer addAnimation:theAnimation forKey:@"animateLayer"]; //animateOpacity
+   
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -242,13 +198,17 @@ NSTimer *tickBtnTimer;
     [super viewDidAppear:YES];
     DebugLog(@"");
     
-//    [self addCurlAnimation];
+    [self addCurlAnimation];
     
+     [[TDSoundManager sharedManager] playMusic:@"Tiggly_SFX_BACKGROUND_AUTUMN" withFormat:@"mp3"];
     
 }
 
-- (void) addCurlAnimation
-{
+- (void) addCurlAnimation {
+    DebugLog(@"");
+    
+    DebugLog(@"ViewFrame : %@",NSStringFromCGRect(self.view.frame));
+    
     CATransition *animation = [CATransition animation];
     [animation setDuration:HUGE_VAL];
     animation.type = @"pageUnCurl";
@@ -256,11 +216,17 @@ NSTimer *tickBtnTimer;
     animation.fillMode = kCAFillModeBackwards;
     animation.startProgress = 0.85;
     [animation setRemovedOnCompletion:NO];
-    [mainView.layer addAnimation:animation forKey:@"pageCurlAnimation"];
+    [[[self view] layer] addAnimation:animation forKey:@"pageUnCurl"];
 }
 
 - (void)clearScreen:(UITapGestureRecognizer *)sender {
     DebugLog(@"");
+    
+//    SystemSoundID logoSound = [TDSoundManager createSoundID:@"trashsweep.mp3"];
+//    AudioServicesPlayAlertSound(logoSound);
+    
+     [[TDSoundManager sharedManager] playSound:@"trashsweep" withFormat:@"mp3"];
+    
     if (sender.state == UIGestureRecognizerStateRecognized) {
         for(FruitView *f in fruitObjectArray){
             [f removeFromSuperview];
@@ -269,6 +235,7 @@ NSTimer *tickBtnTimer;
         
         RigthTickButton.hidden = YES;
         [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+
         
     }
     else{
@@ -330,6 +297,9 @@ NSTimer *tickBtnTimer;
         bShouldShapeDetected = NO;
         NSLog(@"I got the shape i am displaying");
         [self buildShape:UIT.label];
+        
+         [[TDSoundManager sharedManager] playSound:UIT.label withFormat:@"mp3"];
+        
     }else{
         NSLog(@"I got the shape but dont wanna display");
     }
@@ -848,6 +818,8 @@ NSTimer *tickBtnTimer;
             shape = @"circle";
         }
         
+        [[TDSoundManager sharedManager] playSound:shape withFormat:@"mp3"];
+        
         shapeToDraw = nil;
         self.shapes = [[NSMutableArray alloc]initWithArray:[fallSceneObject shapeForObject:shape]];
         centerX = 0;
@@ -911,6 +883,9 @@ NSTimer *tickBtnTimer;
         [touchView touchesBegan:touches withEvent:nil];
     }
     
+    [tickBtnTimer invalidate];
+    [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+    
 }
  
 -(void) onFruitView:(FruitView *)fruit touchesMoved:(NSSet *)touches {
@@ -939,6 +914,9 @@ NSTimer *tickBtnTimer;
         [touchView touchesMoved:touches withEvent:nil];
     }
     
+    [tickBtnTimer invalidate];
+    [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+    
     
 }
  
@@ -953,9 +931,13 @@ NSTimer *tickBtnTimer;
         DebugLog(@"Delete Object");
         fruit.layer.position = CGPointMake(1024 - garbageCan.frame.size.width/2, 768 - garbageCan.frame.size.height/2);
         DebugLog(@"Frame is %@",NSStringFromCGRect(fruit.frame));
-        dispatch_time_t playAudioIn = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
+        dispatch_time_t playAudioIn = dispatch_time(DISPATCH_TIME_NOW, 0.05 * NSEC_PER_SEC);
         dispatch_after(playAudioIn, dispatch_get_main_queue(), ^(void){
-            [KTViewController playMusic:@"trashsweep" withFormat:@"mp3"];
+//            SystemSoundID logoSound = [TDSoundManager createSoundID:@"Tiggly_SFX_DELETE_01.mp3"];
+//            AudioServicesPlayAlertSound(logoSound);
+            
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_DELETE_01" withFormat:@"mp3"];
+            
         });
         fruit.userInteractionEnabled = NO;
         CABasicAnimation *animation4a = nil;
@@ -977,8 +959,12 @@ NSTimer *tickBtnTimer;
     if (isWithShape) {
         [touchView touchesEnded:touches withEvent:nil];
     }
+    
+    [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+    [tickBtnTimer invalidate];
+    tickBtnTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(pulseTickButton) userInfo:nil repeats:NO];
 }
- 
+
 
 -(void) onFruitViewSwipeLeft:(FruitView *) fruit
 {
@@ -1043,9 +1029,14 @@ NSTimer *tickBtnTimer;
         
         [self hideVideoCameraButtons];
         
+       // [self addCurlAnimation];
+        
     }else{
 
         isRecording = YES;
+        
+        [self.view.layer removeAnimationForKey:@"pageUnCurl"];
+        [self.view.layer removeAllAnimations];
 
         [NSThread detachNewThreadSelector:@selector(hideButtons) toTarget:self withObject:nil];
         
@@ -1068,6 +1059,14 @@ NSTimer *tickBtnTimer;
 
 -(IBAction)screenShot:(id)sender {
     DebugLog(@"");
+    
+//    SystemSoundID logoSound = [TDSoundManager createSoundID:@"Tiggly_SFX_CAMERA.mp3"];
+//    AudioServicesPlayAlertSound(logoSound);
+//    
+    [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_CAMERA" withFormat:@"mp3"];
+    
+    [[[self view] layer] removeAnimationForKey:@"pageUnCurl"];
+    [[[self view] layer]removeAllAnimations];
     
     [self hideVideoCameraButtons];
     
@@ -1117,7 +1116,7 @@ NSTimer *tickBtnTimer;
     [garbageCan setHidden:NO];
     [curlButton setHidden:NO];
         
-    [KTViewController playMusic:@"camera_click" withFormat:@"mp3"];
+
     
     UIView *flashView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
     flashView.backgroundColor = [UIColor whiteColor];
@@ -1166,6 +1165,12 @@ NSTimer *tickBtnTimer;
     DebugLog(@"");
     UIButton *btn = sender;
     if ([btn tag] == TAG_RIGHT_TICK_BTN) {
+        
+//        SystemSoundID logoSound = [TDSoundManager createSoundID:@"Blop_Sound_effect.mp3"];
+//        AudioServicesPlayAlertSound(logoSound);
+//        
+        [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
+        
         [self sendEmail];
         if (![btn isHidden]) {
             [self showVideoCameraButtons];
@@ -1193,9 +1198,13 @@ NSTimer *tickBtnTimer;
     if ([btn tag] == TAG_CURL_CONFIRMED_BTN) {
         
         [unCurlTimer invalidate];
-        
-        [self.curlView CurlFullView:1.2];
         [self.view sendSubviewToBack:backView];
+        [self.curlView CurlFullView:1.2];
+        
+//        SystemSoundID logoSound = [TDSoundManager createSoundID:@"Tiggly_SFX_PAGETURN.mp3"];
+//        AudioServicesPlayAlertSound(logoSound);
+        
+        [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_PAGETURN" withFormat:@"mp3"];
         
         for(FruitView *fruit in fruitObjectArray){
             [fruit removeFromSuperview];
@@ -1203,11 +1212,13 @@ NSTimer *tickBtnTimer;
         fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
         //[RigthTickButton setHidden:YES];
         
-//        int64_t delayInSecondsTodetect = 1.0f;
-//        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
-//        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
-//            [self addCurlAnimation];
-//        });
+        int64_t delayInSecondsTodetect = 1.0f;
+        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
+        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
+           [self addCurlAnimation];
+          
+            
+        });
 
     }
 }
@@ -1217,6 +1228,13 @@ NSTimer *tickBtnTimer;
     
     [self.curlView uncurlAnimatedWithDuration:0.6];
     [self.view sendSubviewToBack:backView];
+    
+    double delayInSeconds = 0.6;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+         [self addCurlAnimation];
+    });
+    
 }
 
 -(void) removeCurl{
@@ -1255,14 +1273,13 @@ NSTimer *tickBtnTimer;
 
 -(void) onNextButtonClicked:(CapturedImageView *)cImageView{
     DebugLog(@"");
-//    [cImageView removeFromSuperview];
-//    for(FruitView *fruit in fruitObjectArray){
-//        [fruit removeFromSuperview];
-//    }
-//    fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
-//    [cameraButton setHidden:YES];
-//    [videoButton setHidden:YES];
-//    [RigthTickButton setHidden:YES];
+
+//    SystemSoundID logoSound = [TDSoundManager createSoundID:@"Blop_Sound_effect.mp3"];
+//    AudioServicesPlayAlertSound(logoSound);
+    
+    [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
+    
+    
     [moviePlayer stop];
 
     [self.navigationController popViewControllerAnimated:YES];
@@ -1272,6 +1289,12 @@ NSTimer *tickBtnTimer;
 
 
 -(void) onHomeButtonClicked:(CapturedImageView *)cImageView{
+    
+//    SystemSoundID logoSound = [TDSoundManager createSoundID:@"Blop_Sound_effect.mp3"];
+//    AudioServicesPlayAlertSound(logoSound);
+    
+    [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
+    
     [moviePlayer stop];
 
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
@@ -1307,7 +1330,7 @@ NSTimer *tickBtnTimer;
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             CABasicAnimation *animation4a = nil;
             animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-            [animation4a setToValue:[NSNumber numberWithDouble:1.7]];
+            [animation4a setToValue:[NSNumber numberWithDouble:1.5]];
             [animation4a setFromValue:[NSNumber numberWithDouble:1]];
             [animation4a setAutoreverses:YES];
             [animation4a setDuration:1.5f];
@@ -1317,7 +1340,7 @@ NSTimer *tickBtnTimer;
             
             CABasicAnimation *animation4a2 = nil;
             animation4a2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-            [animation4a2 setToValue:[NSNumber numberWithDouble:1.7]];
+            [animation4a2 setToValue:[NSNumber numberWithDouble:1.5]];
             [animation4a2 setFromValue:[NSNumber numberWithDouble:1]];
             [animation4a2 setAutoreverses:YES];
             [animation4a2 setDuration:1.5f];
@@ -1358,7 +1381,7 @@ NSTimer *tickBtnTimer;
     
     CABasicAnimation *animation4a = nil;
     animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    [animation4a setToValue:[NSNumber numberWithDouble:1.7]];
+    [animation4a setToValue:[NSNumber numberWithDouble:1.5]];
     [animation4a setFromValue:[NSNumber numberWithDouble:1]];
     [animation4a setAutoreverses:YES];
     [animation4a setDuration:1.5f];

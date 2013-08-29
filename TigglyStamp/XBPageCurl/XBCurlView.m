@@ -985,8 +985,7 @@ void OrthoM4x4(GLfloat *out, GLfloat left, GLfloat right, GLfloat bottom, GLfloa
 
 - (void)CurlFullView:(NSTimeInterval)duration
 {
-    CGRect frame = self.frame;
-    
+
     //Animate the cylinder back to its start position at the right side of the screen, oriented vertically
     [self setCylinderPosition:CGPointMake(0, 0) animatedWithDuration:duration];
     [self setCylinderAngle:3*M_PI_4 animatedWithDuration:duration];

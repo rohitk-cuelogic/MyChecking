@@ -11,6 +11,7 @@
 #import "SeasonSelectionViewController.h"
 #import "ParentScreenViewController.h"
 #import "MovingView.h"
+#import "TDSoundManager.h"
 
 @interface TSHomeViewController ()
 
@@ -22,7 +23,7 @@
 @synthesize containerView;
 
 UISwipeGestureRecognizer *mSwpeRecognizer;
-BOOL readyToParentScreen, readyToNewsScreen;
+BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail;
 NSMutableArray *swipeTxtArray;
 int swipeTxtCnt;
 
@@ -92,7 +93,7 @@ int swipeTxtCnt;
     [self.view.layer addSublayer:bkgLayer];
     
     isFirstTimePlay = YES;
-    playBtnTimer = [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(animatePlayButton) userInfo:nil repeats:NO];
+    playBtnTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(animatePlayButton) userInfo:nil repeats:YES];
     
 
  
@@ -126,37 +127,58 @@ int swipeTxtCnt;
 -(void) animatePlayButton {
     DebugLog(@"");
     
-    CATransition *animation=[CATransition animation];
-    [animation setDuration:1.5];
-    [animation setType:@"rippleEffect"];
-    [animation setFillMode:kCAFillModeBoth];
-    animation.endProgress=0.6;
-    animation.repeatCount = HUGE_VAL;
-    [animation setRemovedOnCompletion:YES];
-    animation.autoreverses = NO;
-    animation.delegate=self;
-    [animation setTimingFunction: [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
-    [playBtn.layer addAnimation:animation forKey:nil];
+//    CATransition *animation=[CATransition animation];
+//    [animation setDuration:1.5];
+//    [animation setType:@"rippleEffect"];
+//    [animation setFillMode:kCAFillModeBoth];
+//    animation.endProgress=0.6;
+//    animation.repeatCount = HUGE_VAL;
+//    [animation setRemovedOnCompletion:YES];
+//    animation.autoreverses = NO;
+//    animation.delegate=self;
+//    [animation setTimingFunction: [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
+//    [playBtn.layer addAnimation:animation forKey:nil];
+    
+    
+    CABasicAnimation *animation4a = nil;
+    animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    [animation4a setToValue:[NSNumber numberWithDouble:0.8]];
+    [animation4a setFromValue:[NSNumber numberWithDouble:1]];
+    [animation4a setAutoreverses:YES];
+    [animation4a setDuration:1.0f];
+    [animation4a setBeginTime:0.0f];
+    [animation4a setRepeatCount:1.0];
+    animation4a.delegate = self;
+    [playBtn.layer addAnimation:animation4a forKey:@"transform.scale"];
     
 
-    NSMutableArray *arr = [[NSMutableArray alloc] initWithCapacity:1];
-    
-    for(int i = 2 ; i <= 5 ; i++ ) {
-        NSString *imgName = [NSString stringWithFormat:@"play_btn_circle_%d.png",i];
-        DebugLog(@"Img Name : %@",imgName);
-        UIImage *img =  [UIImage imageNamed:imgName];
-        [arr addObject:(id) img.CGImage];
+    double delayInSeconds = 1.2;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         
-    }
+        NSMutableArray *arr = [[NSMutableArray alloc] initWithCapacity:1];
+        
+        for(int i = 2 ; i <= 5 ; i++ ) {
+            NSString *imgName = [NSString stringWithFormat:@"play_btn_circle_%d.png",i];
+            DebugLog(@"Img Name : %@",imgName);
+            UIImage *img =  [UIImage imageNamed:imgName];
+            [arr addObject:(id) img.CGImage];
+            
+        }
+        
+        CAKeyframeAnimation *animation2 = [CAKeyframeAnimation animationWithKeyPath: @"contents"];
+        animation2.calculationMode = kCAAnimationDiscrete;
+        animation2.beginTime = 0.0;
+        animation2.duration =1.0;
+        animation2.repeatCount = 1.0;
+        animation2.values = arr;
+        animation2.removedOnCompletion = YES;
+        [bkgLayer addAnimation: animation2 forKey: @"contents"];
+    });
     
-    CAKeyframeAnimation *animation2 = [CAKeyframeAnimation animationWithKeyPath: @"contents"];
-    animation2.calculationMode = kCAAnimationDiscrete;
-    animation2.beginTime = 1.2;
-    animation2.duration =1.2;
-    animation2.repeatCount = HUGE_VAL;
-    animation2.values = arr;
-    animation2.removedOnCompletion = YES;
-    [bkgLayer addAnimation: animation2 forKey: @"contents"];
+}
+
+-(void) addRipples {
     
 }
 
@@ -168,16 +190,10 @@ int swipeTxtCnt;
 
 -(void) animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     DebugLog(@"");
-    
+ 
 }
 
 
--(void) addRippleEffect {
-    DebugLog(@"");
-    
-
-    
-}
 
 -(void) addMovingObjects{
     DebugLog(@"");
@@ -327,11 +343,31 @@ int swipeTxtCnt;
         
         readyToNewsScreen = NO;
     }
+    
+    if(readyToDeleteThumbnail) {
+        readyToDeleteThumbnail = NO;
+        for(ThumbnailView *thumbnail in allThumbnails) {
+            [thumbnail startAnimation];
+        }
+        
+        confirmationView.hidden = YES;
+        forParentsBtn.alpha = 1;
+        newsBtn.alpha = 1;
+        playBtn.alpha = 1;
+        imgScrollView.alpha = 1;
+        bkgLayer.opacity  =1.0;
+        
+        forParentsBtn.enabled = YES;
+        playBtn.enabled = YES;
+        newsBtn.enabled = YES;
+        [imgScrollView setUserInteractionEnabled:YES];
+
+    }
 }
 
 -(void) showConfirmationView{
     DebugLog(@"");
-    
+    bkgLayer.opacity = 0.0;
     swipeTxtCnt = random()%7;
     [txtView setText:[NSString stringWithFormat:@"Hi there!\n\nSwipe %@ fingers to continue.", [swipeTxtArray objectAtIndex:swipeTxtCnt]]];
     
@@ -384,6 +420,8 @@ int swipeTxtCnt;
 -(void)playGame:(id)sender{
     DebugLog(@"");
     
+ [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
+    
     [playBtnTimer invalidate];
     
     SeasonSelectionViewController *hmView = [[SeasonSelectionViewController alloc]initWithNibName:@"SeasonSelectionViewController" bundle:nil];
@@ -430,6 +468,8 @@ int swipeTxtCnt;
     DebugLog(@"");
     readyToParentScreen = NO;
     readyToNewsScreen = NO;
+     readyToDeleteThumbnail = NO;
+    isThumbnailLongPressed = NO;
     
     confirmationView.hidden = YES;
     forParentsBtn.alpha = 1;
@@ -496,9 +536,8 @@ int swipeTxtCnt;
     if(!isThumbnailLongPressed) {
         isThumbnailLongPressed = YES;
        
-        for(ThumbnailView *thumbnail in allThumbnails) {
-            [thumbnail startAnimation];
-        }
+        readyToDeleteThumbnail = YES;
+        [self showConfirmationView];
         
     }
     

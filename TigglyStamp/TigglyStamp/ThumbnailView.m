@@ -25,21 +25,19 @@
 //        self.layer.cornerRadius = 30.0f;
 //        self.layer.masksToBounds = YES;
         
-        UIActivityIndicatorView *busyView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        busyView.frame = CGRectMake(self.frame.size.width/2 - 20, self.frame.size.height/2 - 20, 40, 40);
-        [self addSubview:busyView];
-        [busyView startAnimating];
-        
         imageName = imgePath;
         
         imgView = [[UIImageView alloc] initWithFrame:CGRectMake(10,10, frame.size.width-20, frame.size.height-20)];
-        [imgView setContentMode:UIViewContentModeScaleAspectFit];
+        [imgView setContentMode:UIViewContentModeScaleToFill];
         imgView.layer.cornerRadius = 30.0f;
         imgView.layer.masksToBounds = YES;
+        imgView.backgroundColor = [UIColor lightGrayColor];
+
+        busyView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        busyView.frame = CGRectMake(imgView.frame.size.width/2 - 20, imgView.frame.size.height/2 - 20, 40, 40);
+        [imgView addSubview:busyView];
+        [busyView startAnimating];
         
-//        UIImageView *imgViewFrame = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,frame.size.width, frame.size.height)];
-//        imgViewFrame.image = [UIImage imageNamed:@"frame.png"];
-//        [self addSubview:imgViewFrame];
         
         playBtn = [[UIImageView alloc] initWithFrame:CGRectMake(imgView.frame.size.width/2 - 25, imgView.frame.size.height/2 - 25,50, 50)];
         playBtn.image = [UIImage imageNamed:@"play_btn.png"];
@@ -93,6 +91,8 @@
             imgView.image = thumbnailImage;
             actulaImage = image;
             playBtn.hidden = YES;
+            [busyView stopAnimating];
+            busyView.hidden = YES;
 
         }else if([[[imageName lastPathComponent] pathExtension] isEqualToString:@"mov"]){
 
@@ -100,6 +100,8 @@
             imgView.image = thumb;
             actulaImage = thumb;
             playBtn.hidden = NO;
+            [busyView stopAnimating];
+            busyView.hidden = YES;
         }
 }
 
@@ -123,12 +125,12 @@
 - (void) startAnimation {
    DebugLog(@"");
     closeBtn.hidden = NO;
-    self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(-5));
-    [UIView animateWithDuration:0.25
+    self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(-3));
+    [UIView animateWithDuration:0.5
                           delay:0.0
                         options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse)
                      animations:^ {
-                         self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(5));
+                         self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(3));
                      }
                      completion:NULL
      ];
@@ -137,7 +139,7 @@
 - (void) stopAnimation {
    DebugLog(@"");
     closeBtn.hidden = YES;
-    [UIView animateWithDuration:0.25
+    [UIView animateWithDuration:0.5
                           delay:0.0
                         options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveLinear)
                      animations:^ {

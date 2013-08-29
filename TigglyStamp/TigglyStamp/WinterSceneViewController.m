@@ -1167,28 +1167,32 @@ NSTimer *tickBtnTimer;
         
     }else{
         
-        [self.view.layer removeAnimationForKey:@"pageUnCurl"];
-        [self.view.layer removeAllAnimations];
-        
-        isRecording = YES;
-        
-        [NSThread detachNewThreadSelector:@selector(hideButtons) toTarget:self withObject:nil];
-        
-        screenCapture.delegate = self;
-        [screenCapture startRecording];
-        [screenCapture setNeedsDisplay];
-        
-        CABasicAnimation *theAnimation;
-        theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
-        theAnimation.duration=1.0;
-        theAnimation.repeatCount=HUGE_VALF;
-        theAnimation.autoreverses=NO;
-        theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
-        theAnimation.toValue=[NSNumber numberWithFloat:0.5];
-        [videoButton.layer addAnimation:theAnimation forKey:@"opacity"]; //animateOpacity
+        [self playTellUsStorySound];
         
     }
 }
+-(void) startScreenRecording{
+    [self.view.layer removeAnimationForKey:@"pageUnCurl"];
+    [self.view.layer removeAllAnimations];
+    
+    isRecording = YES;
+    
+    [NSThread detachNewThreadSelector:@selector(hideButtons) toTarget:self withObject:nil];
+    
+    screenCapture.delegate = self;
+    [screenCapture startRecording];
+    [screenCapture setNeedsDisplay];
+    
+    CABasicAnimation *theAnimation;
+    theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+    theAnimation.duration=1.0;
+    theAnimation.repeatCount=HUGE_VALF;
+    theAnimation.autoreverses=NO;
+    theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
+    theAnimation.toValue=[NSNumber numberWithFloat:0.5];
+    [videoButton.layer addAnimation:theAnimation forKey:@"opacity"]; //animateOpacity
+}
+
 
 
 -(void) unCurl{
@@ -1568,7 +1572,7 @@ NSTimer *tickBtnTimer;
     
     // schedule playGettingReadyTotellStorySound method after timeToPlayGettingReadySound sec
     
-    [NSTimer scheduledTimerWithTimeInterval:timeToPlayGettingReadySound target:self selector:@selector(playGettingReadyTotellStorySound) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:timeToPlayGettingReadySound + 0.4 target:self selector:@selector(playGettingReadyTotellStorySound) userInfo:nil repeats:NO];
 }
 
 -(void) playGettingReadyTotellStorySound{
@@ -1577,38 +1581,37 @@ NSTimer *tickBtnTimer;
     
     switch (ranNo) {
         case 0:
-            timeToStartVideoRecording = 0.0f;
+            timeToStartVideoRecording = 4.30f;
             [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_321GO_01" withFormat:@"mp3"];
             break;
         case 1:
-            timeToStartVideoRecording = 0.0f;
+            timeToStartVideoRecording = 5.88f;
             [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_321GO_02" withFormat:@"mp3"];
             break;
         case 2:
-            timeToStartVideoRecording = 0.0f;
+            timeToStartVideoRecording = 4.41f;
             [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_321GO_OnYourMarkGetSet_01" withFormat:@"mp3"];
             break;
         case 3:
-            timeToStartVideoRecording = 0.0f;
+            timeToStartVideoRecording = 4.41f;
             [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_321GO_ReadySet_01" withFormat:@"mp3"];
             break;
         case 4:
-            timeToStartVideoRecording = 0.0f;
+            timeToStartVideoRecording = 2.87f;
             [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_OneTwoThree_01" withFormat:@"mp3"];
             break;
         case 5:
-            timeToStartVideoRecording = 0.0f;
+            timeToStartVideoRecording = 3.06f;
             [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_Your_01" withFormat:@"mp3"];
             break;
-        case 6:
-            timeToStartVideoRecording = 0.0f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_LightsCameraAction_01" withFormat:@"mp3"];
-            break;
+
             
         default:
             break;
     }
     
+    
+     [NSTimer scheduledTimerWithTimeInterval:timeToStartVideoRecording target:self selector:@selector(startScreenRecording) userInfo:nil repeats:NO];
 }
 
 @end

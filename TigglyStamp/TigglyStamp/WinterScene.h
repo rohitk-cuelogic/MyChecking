@@ -71,4 +71,5 @@
 -(NSString *)pickRandomObject;
 -(NSMutableArray *)shapeForObject:(NSString *)shape;
 -(void)removeDrawnShapeObject:(NSString *)typeOfShape  objectToRemove:(NSString *)objectDrawn;
+-(NSString *) getAnimalNameSoundForObject:(NSString *) winterObject;
 @end

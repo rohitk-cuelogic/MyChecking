@@ -89,7 +89,7 @@ int countShapeSound;
     animation.type = @"pageUnCurl";
     animation.subtype = kCATransitionFromRight;
     animation.fillMode = kCAFillModeBackwards;
-    animation.startProgress = 0.85;
+    animation.startProgress = 0.80;
     [animation setRemovedOnCompletion:NO];
     [[[self view] layer] addAnimation:animation forKey:@"pageUnCurl"];
 }
@@ -232,6 +232,17 @@ int countShapeSound;
         RigthTickButton.hidden = YES;
         homeButton.hidden = YES;
         [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+        
+        UIImageView *tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+        tempImgView.image = [UIImage imageNamed:@"Tiggly_stamp_Winter_BG.png"];
+        [self.mainView addSubview:tempImgView];
+        
+        [tempImgView genieInTransitionWithDuration:1.0
+                                   destinationRect:CGRectMake(970, 660, 10, 10)
+                                   destinationEdge:BCRectEdgeTop
+                                        completion:^{
+                                            [tempImgView removeFromSuperview];
+                                        }];
 
     }
     else{
@@ -695,7 +706,7 @@ int countShapeSound;
     int64_t delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        int64_t d = 1;
+        int64_t d = 2.0;
         dispatch_time_t p = dispatch_time(DISPATCH_TIME_NOW, d * NSEC_PER_SEC);
         dispatch_after(p, dispatch_get_main_queue(), ^(void){
             [layer removeFromSuperlayer];
@@ -712,6 +723,18 @@ int countShapeSound;
             [self.mainView addSubview:fruit];
             //[self.view insertSubview:fruit atIndex:1];
             [fruitObjectArray addObject:fruit];
+            
+            
+            NSString *objName = shapeImage;
+            DebugLog(@"Object Name : %@", objName);
+            double delayInSeconds = 0.2;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [[TDSoundManager sharedManager] playSound:[winterSceneObject getAnimalNameSoundForObject:objName] withFormat:@"mp3"];
+                
+            });
+            
+            
             for(FruitView *f in fruitObjectArray){
                 [self.mainView bringSubviewToFront:f];
             }
@@ -794,7 +817,8 @@ int countShapeSound;
         }else{
             shape = @"circle";
         }
-        
+        shapeSoundToPlay = shape;        
+
         shapeToDraw = nil;
         self.shapes = [[NSMutableArray alloc]initWithArray:[winterSceneObject shapeForObject:shape]];
         centerX = 0;
@@ -805,13 +829,19 @@ int countShapeSound;
         if(shouldShapeDetected){
             shouldShapeDetected = NO;
             
-            [[TDSoundManager sharedManager] playSound:shape withFormat:@"mp3"];
-            
             [self buildShape:shape];
+             [self playShapeDetectedSound];
+            
+            double delayInSeconds = 0.7;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [[TDSoundManager sharedManager] playSound:shape withFormat:@"mp3"];
+            });
         }
-        int64_t delayInSecondsTodetect = 0.8f;
+        int64_t delayInSecondsTodetect = 1.0f;
         dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
         dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
+            
             shouldShapeDetected = YES;
         });
 
@@ -994,6 +1024,8 @@ int countShapeSound;
 //================================================================================================================
 -(IBAction)screenShot:(id)sender {
 
+     [[TDSoundManager sharedManager] stopMusic];
+    
     [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_CAMERA" withFormat:@"mp3"];
     
     [self.view.layer removeAnimationForKey:@"pageUnCurl"];
@@ -1009,6 +1041,7 @@ int countShapeSound;
     if ([btn isHidden]) {
         return;
     }
+    [homeButton setHidden:YES];
     [RigthTickButton setHidden:YES];
     [cameraButton setHidden:YES];
     [videoButton setHidden:YES];
@@ -1093,6 +1126,8 @@ int countShapeSound;
 
 
 -(IBAction)onHomeButton:(id)sender{
+    [[TDSoundManager sharedManager] stopSound];
+     [[TDSoundManager sharedManager] stopMusic];
      [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
 }
 
@@ -1107,6 +1142,7 @@ int countShapeSound;
         [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
         
         [homeButton setHidden:false];
+        [self.mainView bringSubviewToFront:homeButton];
         
         [NSTimer scheduledTimerWithTimeInterval:0.29 + 0.1 target:self selector:@selector(playDragSound) userInfo:nil repeats:NO];
         
@@ -1170,16 +1206,20 @@ int countShapeSound;
 }
 
 -(void) hideButtons{
+    DebugLog(@"");
     cameraButton.hidden = YES;
     RigthTickButton.hidden = YES;
-    
+    [homeButton setHidden:YES];
     garbageCan.hidden = YES;
     curlButton.hidden = YES;
     cameraButton.hidden = YES;
     
+    [btnView.layer removeAllAnimations];
+    
     for(CALayer *layer in btnView.layer.sublayers) {
+         [layer removeAllAnimations];
         [layer removeAnimationForKey:@"transform.scale"];
-        [layer removeAllAnimations];
+       
     }
     
     [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted"] forState:UIControlStateNormal];
@@ -1196,7 +1236,7 @@ int countShapeSound;
         cameraButton.hidden = NO;
         [screenCapture stopRecording];
         [self screenVideoShotStop];
-        
+
         garbageCan.hidden = NO;
         curlButton.hidden = NO;
         
@@ -1207,6 +1247,13 @@ int countShapeSound;
         
     }else{
         
+        isRecording = YES;
+        
+        [[TDSoundManager sharedManager] stopMusic];
+        
+        [NSThread detachNewThreadSelector:@selector(hideButtons) toTarget:self withObject:nil];
+        
+        
         [self playTellUsStorySound];
         
     }
@@ -1216,21 +1263,24 @@ int countShapeSound;
     [self.view.layer removeAllAnimations];
     
     isRecording = YES;
-    
-    [NSThread detachNewThreadSelector:@selector(hideButtons) toTarget:self withObject:nil];
-    
+
     screenCapture.delegate = self;
     [screenCapture startRecording];
     [screenCapture setNeedsDisplay];
     
-    CABasicAnimation *theAnimation;
-    theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
-    theAnimation.duration=1.0;
-    theAnimation.repeatCount=HUGE_VALF;
-    theAnimation.autoreverses=NO;
-    theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
-    theAnimation.toValue=[NSNumber numberWithFloat:0.5];
-    [videoButton.layer addAnimation:theAnimation forKey:@"opacity"]; //animateOpacity
+    double delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        CABasicAnimation *theAnimation;
+        theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+        theAnimation.duration=1.0;
+        theAnimation.repeatCount=HUGE_VALF;
+        theAnimation.autoreverses=NO;
+        theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
+        theAnimation.toValue=[NSNumber numberWithFloat:0.5];
+        [videoButton.layer addAnimation:theAnimation forKey:@"opacity"]; //animateOpacity
+    });
+
 }
 
 

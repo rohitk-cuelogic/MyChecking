@@ -54,37 +54,66 @@ int val;
 -(void)playMusic:(NSString *)name withFormat:(NSString *)format{
     DebugLog(@"");
 
+    DebugLog(@"Name: %@",name);
+    
+    if([name isEqualToString:@""] || name == nil || [name isEqual:NULL])
+        return;
+    
+    
     NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:name ofType:format];
     
-    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
-    player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
-    player.numberOfLoops = -1;
-    player.volume = 1;
-#ifdef DISABLE_SOUND
+    DebugLog(@"SoundFilePath: %@",soundFilePath);
     
-#else
-    if ([[[NSUserDefaults standardUserDefaults] valueForKey:MUSIC] isEqualToString:@"yes"])
-        [player play];
-    
-#endif
+    if ([[NSFileManager defaultManager] fileExistsAtPath:soundFilePath])
+    {    
+            NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+            player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+            player.numberOfLoops = -1;
+            player.volume = 1;
+        #ifdef DISABLE_SOUND
+            
+        #else
+            if ([[[NSUserDefaults standardUserDefaults] valueForKey:MUSIC] isEqualToString:@"yes"]) {
+              if(player.isPlaying)
+                  [player stop];
+                
+              [player play];
+            }
+        #endif
+    }
 }
 
 -(void) playSound:(NSString *) name withFormat: (NSString*)format {
     DebugLog(@"");
+
+    DebugLog(@"Name: %@",name);
+    
+    if([name isEqualToString:@""] || name == nil || [name isEqual:NULL])
+           return;
+    
     
     NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:name ofType:format];
     
-    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
-    player2 = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
-    player2.numberOfLoops = 0;
-    player2.volume = 1.0;
-#ifdef DISABLE_SOUND
+   DebugLog(@"SoundFilePath: %@",soundFilePath);
     
-#else
-    if ([[[NSUserDefaults standardUserDefaults] valueForKey:MUSIC] isEqualToString:@"yes"])
-        [player2 play];
-    
-#endif
+    if ([[NSFileManager defaultManager] fileExistsAtPath:soundFilePath])
+    {
+                
+            NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+            player2 = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+            player2.numberOfLoops = 0;
+            player2.volume = 1.0;
+        #ifdef DISABLE_SOUND
+            
+        #else
+            if ([[[NSUserDefaults standardUserDefaults] valueForKey:MUSIC] isEqualToString:@"yes"]) {
+                if(player2.isPlaying)
+                    [player2 stop];
+                
+                [player2 play];
+            }
+        #endif
+    }
 }
 
 -(void)stopMusic{

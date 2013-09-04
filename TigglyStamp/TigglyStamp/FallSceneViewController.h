@@ -16,6 +16,7 @@
 #import "XBCurlView.h"
 #import "ScreenCaptureView.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "UIView+Genie.h"
 
 @interface FallSceneViewController : KTViewController<UITouchVerificationViewDelegate,FallSceneShapeToDrawProtocol,FruitViewProtocol,AVAudioRecorderDelegate,CapturedImageViewDelegate,ScreenCaptureViewDelegate> {
     //    IBOutlet UITouchVerificationView * touchView;

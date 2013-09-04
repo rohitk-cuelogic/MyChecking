@@ -19,6 +19,7 @@
 //    IBOutlet UIButton *fallScene;
     UIPickerView *pickerView;
     UIPopoverController *popoverController;
+    BOOL isLanguageScreenDisplayed;
 }
 @property (nonatomic,strong) IBOutlet UIButton *btnWithShape;
 @property (nonatomic,strong) IBOutlet UIButton *btnWithoutShape;
@@ -31,6 +32,7 @@
 @property (nonatomic, strong) IBOutlet UIImageView *bkgImageView;
 @property (nonatomic, strong) IBOutlet UIImageView *bkgImageViewlang;
 @property (nonatomic, strong) IBOutlet UITableView *tblView;
+@property (nonatomic, strong) IBOutlet UIView *gameTypeView;
 
 -(IBAction)onButtonTouched:(id)sender;
 -(IBAction)languageButtonClicked:(id)sender;

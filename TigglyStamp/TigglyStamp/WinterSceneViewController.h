@@ -17,6 +17,7 @@
 #import "TConstant.h"
 #import "ScreenCaptureView.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "UIView+Genie.h"
 
 @interface WinterSceneViewController : KTViewController<UITouchVerificationViewDelegate,ShapeToDrawProtocol,FruitViewProtocol,AVAudioRecorderDelegate,CapturedImageViewDelegate,ScreenCaptureViewDelegate>
 {

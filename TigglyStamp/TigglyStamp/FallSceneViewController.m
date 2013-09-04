@@ -212,8 +212,12 @@ NSTimer *shapeSoundTimer;
     }
     
     [self addCurlAnimation];
-    
-
+//    CGRect r = self.imageView.frame;
+//    self.curlView = [[XBCurlView alloc] initWithFrame:r];
+//    self.curlView.opaque = NO;
+//    self.curlView.pageOpaque = YES;
+//    self.curlView.cylinderPosition = CGPointMake(self.mainView.bounds.size.width, self.mainView.bounds.size.height);
+//    [self.curlView curlView:self.mainView cylinderPosition:CGPointMake(800,600) cylinderAngle:3*M_PI_4 cylinderRadius:UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad? 100: 70 animatedWithDuration:0.6];
     
 }
 
@@ -227,7 +231,8 @@ NSTimer *shapeSoundTimer;
     animation.type = @"pageUnCurl";
     animation.subtype = kCATransitionFromRight;
     animation.fillMode = kCAFillModeBackwards;
-    animation.startProgress = 0.85;
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    animation.startProgress = 0.80;
     [animation setRemovedOnCompletion:NO];
     [[[self view] layer] addAnimation:animation forKey:@"pageUnCurl"];
 }
@@ -248,7 +253,17 @@ NSTimer *shapeSoundTimer;
         
         RigthTickButton.hidden = YES;
         [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+        
+        UIImageView *tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+        tempImgView.image = [UIImage imageNamed:@"fallView.png"];
+        [self.mainView addSubview:tempImgView];
 
+        [tempImgView genieInTransitionWithDuration:1.0
+                                    destinationRect:CGRectMake(970, 660, 10, 10)
+                                    destinationEdge:BCRectEdgeTop
+                                         completion:^{
+                                             [tempImgView removeFromSuperview];
+                                         }];
         
     }
     else{
@@ -348,6 +363,10 @@ NSTimer *shapeSoundTimer;
     
     if(!isRecording && RigthTickButton.hidden) {
         RigthTickButton.hidden = NO;
+        
+        if (!homeButton.hidden) {
+            homeButton.hidden = YES;
+        }
     }
     [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
     [tickBtnTimer invalidate];
@@ -726,7 +745,7 @@ NSTimer *shapeSoundTimer;
     int64_t delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        int64_t d = 1.0;
+        int64_t d = 2.0;
         dispatch_time_t p = dispatch_time(DISPATCH_TIME_NOW, d * NSEC_PER_SEC);
         dispatch_after(p, dispatch_get_main_queue(), ^(void){
             [layer removeFromSuperlayer];
@@ -743,6 +762,16 @@ NSTimer *shapeSoundTimer;
             [self.mainView addSubview:fruit];
             //[self.view insertSubview:fruit atIndex:1];
             [fruitObjectArray addObject:fruit];
+            
+            NSString *objName = shapeImage;
+            DebugLog(@"Object Name : %@", objName);
+            double delayInSeconds = 0.2;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [[TDSoundManager sharedManager] playSound:[fallSceneObject getAnimalNameSoundForObject:objName] withFormat:@"mp3"];
+
+            });
+            
             for(FruitView *f in fruitObjectArray){
                 [self.mainView bringSubviewToFront:f];
             }
@@ -846,7 +875,9 @@ NSTimer *shapeSoundTimer;
             shape = @"circle";
         }
         
-        [[TDSoundManager sharedManager] playSound:shape withFormat:@"mp3"];
+        shapeSoundToPlay = shape;
+        
+
         
         shapeToDraw = nil;
         self.shapes = [[NSMutableArray alloc]initWithArray:[fallSceneObject shapeForObject:shape]];
@@ -858,10 +889,18 @@ NSTimer *shapeSoundTimer;
         if(bShouldShapeDetected){
             bShouldShapeDetected = NO;
             [self buildShape:shape];
+             [self playShapeDetectedSound];
+            
+            double delayInSeconds = 0.7;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [[TDSoundManager sharedManager] playSound:shape withFormat:@"mp3"];
+            });
         }
-        int64_t delayInSecondsTodetect = 0.8f;
+        int64_t delayInSecondsTodetect = 1.0f;
         dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
         dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
+          
             bShouldShapeDetected = YES;
         });
         
@@ -1024,7 +1063,7 @@ NSTimer *shapeSoundTimer;
 -(void) hideButtons{
     cameraButton.hidden = YES;
     RigthTickButton.hidden = YES;
-
+   [homeButton setHidden:YES];
     garbageCan.hidden = YES;
     curlButton.hidden = YES;
     cameraButton.hidden = YES;
@@ -1061,6 +1100,12 @@ NSTimer *shapeSoundTimer;
         
     }else{
 
+        isRecording = YES;
+        
+        [[TDSoundManager sharedManager] stopMusic];
+        
+        [NSThread detachNewThreadSelector:@selector(hideButtons) toTarget:self withObject:nil];
+        
         [self playTellUsStorySound];
     }
     
@@ -1091,9 +1136,9 @@ NSTimer *shapeSoundTimer;
 -(IBAction)screenShot:(id)sender {
     DebugLog(@"");
     
-//    SystemSoundID logoSound = [TDSoundManager createSoundID:@"Tiggly_SFX_CAMERA.mp3"];
-//    AudioServicesPlayAlertSound(logoSound);
-//    
+    [[TDSoundManager sharedManager] stopMusic];
+    
+    
     [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_CAMERA" withFormat:@"mp3"];
     
     [[[self view] layer] removeAnimationForKey:@"pageUnCurl"];
@@ -1109,6 +1154,7 @@ NSTimer *shapeSoundTimer;
     if ([btn isHidden]) {
         return;
     }
+     [homeButton setHidden:YES];
     [RigthTickButton setHidden:YES];
     [cameraButton setHidden:YES];
     [videoButton setHidden:YES];
@@ -1189,6 +1235,8 @@ NSTimer *shapeSoundTimer;
 }
 
 -(IBAction)onhomeButton:(id)sender{
+    [[TDSoundManager sharedManager] stopSound];
+    [[TDSoundManager sharedManager] stopMusic];
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
 }
 
@@ -1199,17 +1247,15 @@ NSTimer *shapeSoundTimer;
     UIButton *btn = sender;
     if ([btn tag] == TAG_RIGHT_TICK_BTN) {
         
-//        SystemSoundID logoSound = [TDSoundManager createSoundID:@"Blop_Sound_effect.mp3"];
-//        AudioServicesPlayAlertSound(logoSound);
-//
-        
-        
         [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
         
         [NSTimer scheduledTimerWithTimeInterval:0.29 + 0.1 target:self selector:@selector(playDragSound) userInfo:nil repeats:NO];
         
         [self sendEmail];
         if (![btn isHidden]) {
+            [homeButton setHidden:false];
+            [self.mainView bringSubviewToFront:homeButton];
+            
             [self showVideoCameraButtons];
             [tickBtnTimer invalidate];
             [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
@@ -1727,6 +1773,7 @@ NSTimer *shapeSoundTimer;
 }
 
 -(void) playShapeDetectedSound{
+    DebugLog(@"");
     NSString *soundName = [NSString stringWithFormat:@"CakeCandle%d",countShapeSound];
     [[TDSoundManager sharedManager] playSound:soundName withFormat:@"mp3"];
     

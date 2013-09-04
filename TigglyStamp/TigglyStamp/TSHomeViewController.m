@@ -371,6 +371,47 @@ int swipeTxtCnt;
     swipeTxtCnt = random()%7;
     [txtView setText:[NSString stringWithFormat:@"Hi there!\n\nSwipe %@ fingers to continue.", [swipeTxtArray objectAtIndex:swipeTxtCnt]]];
     
+#ifdef DEBUG_MODE
+    [txtView setText:[NSString stringWithFormat:@"Hi there!\n\nSwipe %@ or 2 fingers to continue.", [swipeTxtArray objectAtIndex:swipeTxtCnt]]];
+    
+    switch (swipeTxtCnt) {
+        case 0:
+            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
+            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
+            break;
+        case 1:
+            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
+            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
+            break;
+        case 2:
+            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
+            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
+            break;
+        case 3:
+            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
+            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
+            break;
+        case 4:
+            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
+            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
+            break;
+        case 5:
+            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
+            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
+            break;
+        case 6:
+            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
+            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
+            break;
+        case 7:
+            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
+            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
+            break;
+        default:
+            break;
+    }
+    
+#else
     switch (swipeTxtCnt) {
         case 0:
             [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
@@ -407,6 +448,9 @@ int swipeTxtCnt;
         default:
             break;
     }
+    
+#endif
+    
     confirmationView.hidden = NO;
     [self.view bringSubviewToFront:confirmationView];
     
@@ -509,13 +553,26 @@ int swipeTxtCnt;
     NSFileManager *fileManager = [NSFileManager defaultManager];
   
     [fileManager removeItemAtPath:thumbnail.imageName error:nil];
-     
-    [thumbnail removeFromSuperview];
-    [allThumbnails removeObject:thumbnail];
-    for(ThumbnailView *thumbnail in allThumbnails) {
+    thumbnail.transform = CGAffineTransformIdentity;
+    [UIView animateWithDuration:0.2 animations:^{
+        thumbnail.alpha = 0;
+    
+    } completion:^(BOOL finished) {
+        
         [thumbnail removeFromSuperview];
-    }
-    [self reloadThumbnails];
+         [allThumbnails removeObject:thumbnail];
+        
+        
+        for(ThumbnailView *thumbnail in allThumbnails) {
+            [thumbnail removeFromSuperview];
+        }
+        
+        [[TDSoundManager sharedManager] playSound:@"trashsweep" withFormat:@"mp3"];
+        
+        [self reloadThumbnails];
+    }];
+    
+
 }
 
 

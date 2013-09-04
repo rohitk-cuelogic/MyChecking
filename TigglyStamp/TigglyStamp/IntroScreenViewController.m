@@ -34,6 +34,7 @@
 @synthesize bkgImageView;
 @synthesize bkgImageViewlang;
 @synthesize tblView;
+@synthesize gameTypeView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -46,6 +47,13 @@
 - (void)viewDidLoad {
     DebugLog(@"");
     [super viewDidLoad];
+    
+    isLanguageScreenDisplayed = NO;
+    
+    [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:LIMIT_GALLERY];
+    [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:SAVE_ART];
+    [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:MUSIC];
+    
     self.navigationController.navigationBar.hidden = YES;
     // Do any additional setup after loading the view from its nib.
     bkgImageViewlang.alpha = 0.0;
@@ -56,8 +64,7 @@
     logo.contents = (id) [UIImage imageNamed:@"logo.png"].CGImage;
     [self.view.layer addSublayer:logo];
     
-    SystemSoundID logoSound = [TDSoundManager createSoundID:@"tiggly_logo_audio.mp3"];
-    AudioServicesPlayAlertSound(logoSound);
+    [[TDSoundManager sharedManager] playSound:@"tiggly_logo_audio" withFormat:@"mp3"];
     
     CABasicAnimation *animation3 = nil;
     animation3 = [CABasicAnimation animationWithKeyPath:@"opacity"];
@@ -84,8 +91,7 @@
     [btnWithoutShape setHidden:true];
     [btnWithShape setHidden:true];
     
-    [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:LIMIT_GALLERY];
-    [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:SAVE_ART];
+
     
     arrLanguage = [[NSMutableArray alloc] initWithObjects:@"English",@"Spanish",@"Italian",@"Portuguese",@"Russian",@"French",@"German", nil];
     
@@ -119,6 +125,13 @@
             [self displayLanguageSelectionView];
             [btnWithoutShape setHidden:false];
             [btnWithShape setHidden:false];
+            
+            double delayInSeconds = 0.2;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                 [self.view setBackgroundColor:[UIColor clearColor]];
+            });
+           
         }];
         
     }else{
@@ -130,6 +143,7 @@
             [self displayLanguageSelectionView];
             [btnWithoutShape setHidden:false];
             [btnWithShape setHidden:false];
+            [self.view setBackgroundColor:[UIColor clearColor]];
         }];
         return;
 #endif
@@ -144,9 +158,26 @@
 
 - (void) displayLanguageSelectionView {
     DebugLog(@"");
-        self.languageSubView.layer.cornerRadius = 30.0f;
-        self.languageSubView.layer.masksToBounds = YES;
-        [self.view addSubview:self.languageView]; 
+    isLanguageScreenDisplayed = YES;
+    self.languageSubView.layer.cornerRadius = 30.0f;
+    self.languageSubView.layer.masksToBounds = YES;
+    [self.view addSubview:self.languageView];
+    
+    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedScreen:)];
+    swipeGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:swipeGesture];
+}
+
+- (void)swipedScreen:(UISwipeGestureRecognizer*)gesture {
+    DebugLog(@"");
+    if(isLanguageScreenDisplayed) {
+        [UIView transitionFromView:self.languageSubView  toView:self.gameTypeView duration:1.0 options: UIViewAnimationOptionTransitionFlipFromRight
+                        completion: ^(BOOL inFinished) {
+                            isLanguageScreenDisplayed = NO;
+                            [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
+//                            [self.languageView removeFromSuperview];
+                        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning{
@@ -188,13 +219,13 @@
 -(IBAction)closeButtonClicked:(id)sender {
     DebugLog(@"");
     
+    isLanguageScreenDisplayed = NO;
+    
    [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
     
     [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
     [self.languageView removeFromSuperview];
-    
-
-    
+        
 }
 
 -(IBAction)languageButtonClicked:(id)sender

@@ -106,8 +106,7 @@
 }
 
 -(void) actionClose {
-    DebugLog(@"");
-    
+    DebugLog(@"");    
     [self.delegate thumbnailViewCloseBtnClicked:self];
 }
 
@@ -118,7 +117,9 @@
 
 -(void)imageTapped{
     DebugLog(@"");
-    [self.delegate thumbnailViewTapped:self];
+    if(closeBtn.hidden) {
+        [self.delegate thumbnailViewTapped:self];
+    }
 }
 
 

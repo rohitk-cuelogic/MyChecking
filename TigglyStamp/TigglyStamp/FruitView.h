@@ -23,8 +23,11 @@
     NSString *shape;   
     CGPoint touchLocation;
     int increaseSize;
+ 
+    CGRect initialRect;
+ 
 }
-
+@property (nonatomic, readonly) BOOL isFruitMovedSufficiently;
 @property(nonatomic,strong) id<FruitViewProtocol>delegate;
 @property(nonatomic,strong)UIImageView *imgView;
 @property(nonatomic,strong)NSString *objectName;

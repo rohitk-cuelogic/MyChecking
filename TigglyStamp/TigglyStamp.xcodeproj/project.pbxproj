@@ -22,7 +22,6 @@
 		63019DD417A2AA4C005B8CA3 /* TSThumbnailEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63019DD217A2AA4C005B8CA3 /* TSThumbnailEditController.xib */; };
 		63019DD717A2B54B005B8CA3 /* deletebtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 63019DD517A2B54B005B8CA3 /* deletebtn.png */; };
 		63019DD817A2B54B005B8CA3 /* savebtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 63019DD617A2B54B005B8CA3 /* savebtn.png */; };
-		6354DFB017CF487600DDFD67 /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFAF17CF487600DDFD67 /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 */; };
 		6354DFBB17CF549400DDFD67 /* CakeCandle1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB217CF549400DDFD67 /* CakeCandle1.mp3 */; };
 		6354DFBC17CF549400DDFD67 /* CakeCandle2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB317CF549400DDFD67 /* CakeCandle2.mp3 */; };
 		6354DFBD17CF549400DDFD67 /* CakeCandle3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB417CF549400DDFD67 /* CakeCandle3.mp3 */; };
@@ -169,6 +168,19 @@
 		C01E52B917C7437100B749F3 /* tiggly_parents_bkg.png in Resources */ = {isa = PBXBuildFile; fileRef = C01E52B717C7437100B749F3 /* tiggly_parents_bkg.png */; };
 		C01E52BB17C7495300B749F3 /* home_play_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = C01E52BA17C7495300B749F3 /* home_play_btn.png */; };
 		C01E52BD17C74BA800B749F3 /* winter_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = C01E52BC17C74BA800B749F3 /* winter_btn.png */; };
+		C028606917D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028606617D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_02.mp3 */; };
+		C028606A17D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_03.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028606717D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_03.mp3 */; };
+		C028606B17D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028606817D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_01.mp3 */; };
+		C028607417D7685A001EAE9E /* Tiggly_Word_Spider_Ooh_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028606C17D7685A001EAE9E /* Tiggly_Word_Spider_Ooh_01.mp3 */; };
+		C028607517D7685A001EAE9E /* Tiggly_Word_Hat_Gasp_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028606D17D7685A001EAE9E /* Tiggly_Word_Hat_Gasp_01.mp3 */; };
+		C028607617D7685A001EAE9E /* Tiggly_Word_Hat_Ooh_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028606E17D7685A001EAE9E /* Tiggly_Word_Hat_Ooh_01.mp3 */; };
+		C028607717D7685A001EAE9E /* Tiggly_Word_Hat_Wow_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028606F17D7685A001EAE9E /* Tiggly_Word_Hat_Wow_01.mp3 */; };
+		C028607817D7685A001EAE9E /* Tiggly_Word_Hat_Wow_02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607017D7685A001EAE9E /* Tiggly_Word_Hat_Wow_02.mp3 */; };
+		C028607917D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607117D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_01.mp3 */; };
+		C028607A17D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607217D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_02.mp3 */; };
+		C028607B17D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_03.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607317D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_03.mp3 */; };
+		C028607D17D76A1D001EAE9E /* Tiggly_GenGreeting_spider_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607C17D76A1C001EAE9E /* Tiggly_GenGreeting_spider_01.mp3 */; };
+		C028607F17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607E17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 */; };
 		C02F440E17D60CFC007AEA39 /* Tiggly_Word_Bell_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02F431717D60CFC007AEA39 /* Tiggly_Word_Bell_01.mp3 */; };
 		C02F440F17D60CFC007AEA39 /* Tiggly_Word_Bell_Wow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02F431817D60CFC007AEA39 /* Tiggly_Word_Bell_Wow.mp3 */; };
 		C02F441017D60CFC007AEA39 /* Tiggly_Word_Candy_01 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02F431917D60CFC007AEA39 /* Tiggly_Word_Candy_01 1.mp3 */; };
@@ -667,7 +679,6 @@
 		63019DD217A2AA4C005B8CA3 /* TSThumbnailEditController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSThumbnailEditController.xib; sourceTree = "<group>"; };
 		63019DD517A2B54B005B8CA3 /* deletebtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deletebtn.png; sourceTree = "<group>"; };
 		63019DD617A2B54B005B8CA3 /* savebtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = savebtn.png; sourceTree = "<group>"; };
-		6354DFAF17CF487600DDFD67 /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_DragNDrop_DRAG_04.mp3; sourceTree = "<group>"; };
 		6354DFB217CF549400DDFD67 /* CakeCandle1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle1.mp3; sourceTree = "<group>"; };
 		6354DFB317CF549400DDFD67 /* CakeCandle2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle2.mp3; sourceTree = "<group>"; };
 		6354DFB417CF549400DDFD67 /* CakeCandle3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle3.mp3; sourceTree = "<group>"; };
@@ -840,6 +851,19 @@
 		C01E52B717C7437100B749F3 /* tiggly_parents_bkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiggly_parents_bkg.png; sourceTree = "<group>"; };
 		C01E52BA17C7495300B749F3 /* home_play_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_play_btn.png; sourceTree = "<group>"; };
 		C01E52BC17C74BA800B749F3 /* winter_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = winter_btn.png; sourceTree = "<group>"; };
+		C028606617D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_DragNDrop_DROP_02.mp3; sourceTree = "<group>"; };
+		C028606717D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_03.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_DragNDrop_DROP_03.mp3; sourceTree = "<group>"; };
+		C028606817D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_DragNDrop_DROP_01.mp3; sourceTree = "<group>"; };
+		C028606C17D7685A001EAE9E /* Tiggly_Word_Spider_Ooh_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Spider_Ooh_01.mp3; sourceTree = "<group>"; };
+		C028606D17D7685A001EAE9E /* Tiggly_Word_Hat_Gasp_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Hat_Gasp_01.mp3; sourceTree = "<group>"; };
+		C028606E17D7685A001EAE9E /* Tiggly_Word_Hat_Ooh_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Hat_Ooh_01.mp3; sourceTree = "<group>"; };
+		C028606F17D7685A001EAE9E /* Tiggly_Word_Hat_Wow_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Hat_Wow_01.mp3; sourceTree = "<group>"; };
+		C028607017D7685A001EAE9E /* Tiggly_Word_Hat_Wow_02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Hat_Wow_02.mp3; sourceTree = "<group>"; };
+		C028607117D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_SnowMan_DaDaa_01.mp3; sourceTree = "<group>"; };
+		C028607217D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_SnowMan_DaDaa_02.mp3; sourceTree = "<group>"; };
+		C028607317D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_03.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_SnowMan_DaDaa_03.mp3; sourceTree = "<group>"; };
+		C028607C17D76A1C001EAE9E /* Tiggly_GenGreeting_spider_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_GenGreeting_spider_01.mp3; sourceTree = "<group>"; };
+		C028607E17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_DragNDrop_DRAG_04.mp3; sourceTree = "<group>"; };
 		C02F431717D60CFC007AEA39 /* Tiggly_Word_Bell_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Bell_01.mp3; sourceTree = "<group>"; };
 		C02F431817D60CFC007AEA39 /* Tiggly_Word_Bell_Wow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Bell_Wow.mp3; sourceTree = "<group>"; };
 		C02F431917D60CFC007AEA39 /* Tiggly_Word_Candy_01 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tiggly_Word_Candy_01 1.mp3"; sourceTree = "<group>"; };
@@ -1484,6 +1508,7 @@
 				63CEE1D217A14DB80060DC42 /* XBSnappingPoint.m */,
 			);
 			name = XBPageCurl;
+			path = TigglyStamp;
 			sourceTree = "<group>";
 		};
 		63CEE1BD17A14DB80060DC42 /* Resources */ = {
@@ -1654,6 +1679,11 @@
 		C02F433B17D60CFC007AEA39 /* Chosen_Greeting */ = {
 			isa = PBXGroup;
 			children = (
+				C028607E17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 */,
+				C028606617D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_02.mp3 */,
+				C028606717D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_03.mp3 */,
+				C028606817D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_01.mp3 */,
+				C028607C17D76A1C001EAE9E /* Tiggly_GenGreeting_spider_01.mp3 */,
 				C02F433C17D60CFC007AEA39 /* Tiggly_GenGreeting_Bat_01.mp3 */,
 				C02F433D17D60CFC007AEA39 /* Tiggly_GenGreeting_Bat_02.mp3 */,
 				C02F433E17D60CFC007AEA39 /* Tiggly_GenGreeting_Bat_03.mp3 */,
@@ -1846,6 +1876,14 @@
 		C02F43F517D60CFC007AEA39 /* Fall_Words_For_Objects */ = {
 			isa = PBXGroup;
 			children = (
+				C028606C17D7685A001EAE9E /* Tiggly_Word_Spider_Ooh_01.mp3 */,
+				C028606D17D7685A001EAE9E /* Tiggly_Word_Hat_Gasp_01.mp3 */,
+				C028606E17D7685A001EAE9E /* Tiggly_Word_Hat_Ooh_01.mp3 */,
+				C028606F17D7685A001EAE9E /* Tiggly_Word_Hat_Wow_01.mp3 */,
+				C028607017D7685A001EAE9E /* Tiggly_Word_Hat_Wow_02.mp3 */,
+				C028607117D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_01.mp3 */,
+				C028607217D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_02.mp3 */,
+				C028607317D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_03.mp3 */,
 				C02F43F617D60CFC007AEA39 /* Tiggly_Word_Apple_01.mp3 */,
 				C02F43F717D60CFC007AEA39 /* Tiggly_Word_Apple_Wow_01.mp3 */,
 				C02F43F817D60CFC007AEA39 /* Tiggly_Word_Barn_01.mp3 */,
@@ -1986,13 +2024,14 @@
 		EB6F33151781867900FC479F = {
 			isa = PBXGroup;
 			children = (
+				EB6F332A1781867900FC479F /* TigglyStamp */,
+				EB6F335217818A8600FC479F /* KTCore */,
+				63CEE1BA17A14D960060DC42 /* XBPageCurl */,
 				C00B873917AA2EED00823454 /* FHSTwitterEngine */,
 				EBFCF29017942329003C82CC /* tiggly_stamp_audio */,
 				C01E525D17C738B800B749F3 /* NavigationImages */,
 				EBD0F92B1782CE3900339BB7 /* iPadRetinaImages */,
 				EB6F339517819E2200FC479F /* iPadImages */,
-				EB6F335217818A8600FC479F /* KTCore */,
-				EB6F332A1781867900FC479F /* TigglyStamp */,
 				EB6F332B1781867900FC479F /* Supporting Files */,
 				EB6F33231781867900FC479F /* Frameworks */,
 				EB6F33211781867900FC479F /* Products */,
@@ -2033,17 +2072,22 @@
 		EB6F332A1781867900FC479F /* TigglyStamp */ = {
 			isa = PBXGroup;
 			children = (
-				C00B873617AA2EDF00823454 /* UIView+Genie.h */,
-				C00B873717AA2EDF00823454 /* UIView+Genie.m */,
-				C074891E17A94650001943E0 /* ScreenCaptureView.h */,
-				C074891F17A94650001943E0 /* ScreenCaptureView.m */,
-				63CEE1BA17A14D960060DC42 /* XBPageCurl */,
-				EBF42C94178A9480004FECEE /* FruitView.h */,
-				EBF42C95178A9480004FECEE /* FruitView.m */,
 				EB6F339F1781B8C900FC479F /* WinterScene.h */,
 				EB6F33A01781B8CA00FC479F /* WinterScene.m */,
 				C08291AE17A79D580023F08A /* FallScene.h */,
 				C08291AF17A79D580023F08A /* FallScene.m */,
+				EB6F338B17819B8100FC479F /* WinterSceneViewController.h */,
+				EB6F338C17819B8100FC479F /* WinterSceneViewController.m */,
+				EB6F338D17819B8100FC479F /* WinterSceneViewController.xib */,
+				C0DDFCC017A66E4C001F846D /* FallSceneViewController.h */,
+				C0DDFCC117A66E4C001F846D /* FallSceneViewController.m */,
+				C0DDFCC217A66E4C001F846D /* FallSceneViewController.xib */,
+				C00B873617AA2EDF00823454 /* UIView+Genie.h */,
+				C00B873717AA2EDF00823454 /* UIView+Genie.m */,
+				C074891E17A94650001943E0 /* ScreenCaptureView.h */,
+				C074891F17A94650001943E0 /* ScreenCaptureView.m */,
+				EBF42C94178A9480004FECEE /* FruitView.h */,
+				EBF42C95178A9480004FECEE /* FruitView.m */,
 				63CEE1B317A1228B0060DC42 /* CapturedImageView.h */,
 				63CEE1B417A1228B0060DC42 /* CapturedImageView.m */,
 				EB6F33981781AD0600FC479F /* TConstant.h */,
@@ -2063,9 +2107,6 @@
 				63019DB717A24FCE005B8CA3 /* ParentScreenViewController.h */,
 				63019DB817A24FCE005B8CA3 /* ParentScreenViewController.m */,
 				63019DB917A24FCE005B8CA3 /* ParentScreenViewController.xib */,
-				EB6F338B17819B8100FC479F /* WinterSceneViewController.h */,
-				EB6F338C17819B8100FC479F /* WinterSceneViewController.m */,
-				EB6F338D17819B8100FC479F /* WinterSceneViewController.xib */,
 				EB6F334D1781879100FC479F /* IntroScreenViewController.h */,
 				EB6F334E1781879100FC479F /* IntroScreenViewController.m */,
 				BC31D64317A94CE1008C5361 /* IntroScreenViewController.xib */,
@@ -2079,9 +2120,6 @@
 				C00C973517A292A300224283 /* SettingsViewController.h */,
 				C00C973617A292A300224283 /* SettingsViewController.m */,
 				C082922217A80B7F0023F08A /* SettingsViewController.xib */,
-				C0DDFCC017A66E4C001F846D /* FallSceneViewController.h */,
-				C0DDFCC117A66E4C001F846D /* FallSceneViewController.m */,
-				C0DDFCC217A66E4C001F846D /* FallSceneViewController.xib */,
 				C00D920417C6169000FECBAF /* MovingView.h */,
 				C00D920517C6169000FECBAF /* MovingView.m */,
 			);
@@ -2299,7 +2337,6 @@
 				636B504217CF2025004D3397 /* Tap with shape */,
 				C060B42E17CE1770000AD202 /* circle.mp3 */,
 				C060B42F17CE1770000AD202 /* square.mp3 */,
-				6354DFAF17CF487600DDFD67 /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 */,
 				C060B43017CE1770000AD202 /* star.mp3 */,
 				C060B43117CE1770000AD202 /* triangle.mp3 */,
 				C060B42C17CDFB72000AD202 /* tiggly_logo_audio.mp3 */,
@@ -2690,7 +2727,6 @@
 				636B50C017CF26CD004D3397 /* Tiggly_Word_TapOnTheScreen_WithYourShape_02.mp3 in Resources */,
 				636B50C117CF26CD004D3397 /* Tiggly_Word_UseTheShapesToMakeAPicture_01.mp3 in Resources */,
 				636B50C217CF26CD004D3397 /* Tiggly_Word_UseYourShapesToMakeAPicture_01.mp3 in Resources */,
-				6354DFB017CF487600DDFD67 /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 in Resources */,
 				6354DFBB17CF549400DDFD67 /* CakeCandle1.mp3 in Resources */,
 				6354DFBC17CF549400DDFD67 /* CakeCandle2.mp3 in Resources */,
 				6354DFBD17CF549400DDFD67 /* CakeCandle3.mp3 in Resources */,
@@ -2945,6 +2981,19 @@
 				C02F450017D60CFC007AEA39 /* Tiggly_Word_Raincoat_Ah_01.mp3 in Resources */,
 				C02F450117D60CFC007AEA39 /* Tiggly_Word_Shirt_01.mp3 in Resources */,
 				C02F450217D60CFC007AEA39 /* Tiggly_Word_Shirt_Gasp_01.mp3 in Resources */,
+				C028606917D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_02.mp3 in Resources */,
+				C028606A17D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_03.mp3 in Resources */,
+				C028606B17D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_01.mp3 in Resources */,
+				C028607417D7685A001EAE9E /* Tiggly_Word_Spider_Ooh_01.mp3 in Resources */,
+				C028607517D7685A001EAE9E /* Tiggly_Word_Hat_Gasp_01.mp3 in Resources */,
+				C028607617D7685A001EAE9E /* Tiggly_Word_Hat_Ooh_01.mp3 in Resources */,
+				C028607717D7685A001EAE9E /* Tiggly_Word_Hat_Wow_01.mp3 in Resources */,
+				C028607817D7685A001EAE9E /* Tiggly_Word_Hat_Wow_02.mp3 in Resources */,
+				C028607917D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_01.mp3 in Resources */,
+				C028607A17D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_02.mp3 in Resources */,
+				C028607B17D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_03.mp3 in Resources */,
+				C028607D17D76A1D001EAE9E /* Tiggly_GenGreeting_spider_01.mp3 in Resources */,
+				C028607F17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

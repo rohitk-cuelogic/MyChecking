@@ -78,4 +78,5 @@
 -(NSMutableArray *)shapeForObject:(NSString *)shape;
 -(void)removeDrawnShapeObject:(NSString *)typeOfShape  objectToRemove:(NSString *)objectDrawn;
 -(NSString *) getAnimalNameSoundForObject:(NSString *) fallObject;
+-(NSString *) getAnimalDropSoundForObject:(NSString *) fallObject;
 @end

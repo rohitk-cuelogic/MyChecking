@@ -811,23 +811,6 @@ NSTimer *shapeSoundTimer;
         RigthTickButton.hidden = NO;
         videoButton.hidden = YES;
         cameraButton.hidden = YES;
-        
-        
-//        NSArray *arr = [NSArray arrayWithObjects:
-//                        (id) [UIImage imageNamed:@"tick"].CGImage,
-//                        (id) [UIImage imageNamed:@"tick1"].CGImage,
-//                        (id) [UIImage imageNamed:@"tick2"].CGImage,
-//                        nil];
-//        
-//        CAKeyframeAnimation *animation3 = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
-//        animation3.calculationMode = kCAAnimationDiscrete;
-//        animation3.removedOnCompletion = NO;
-//        animation3.duration =0.8;
-//        animation3.repeatCount = HUGE_VAL;
-//        animation3.values = arr;
-//        animation3.autoreverses = YES;
-//        [RigthTickButton.layer addAnimation: animation3 forKey: @"contents"];
-        
 
     }
 }
@@ -943,6 +926,8 @@ NSTimer *shapeSoundTimer;
     DebugLog(@"");
     DebugLog(@"FruitTouchBegan");
 
+    fruitInitialPoint = fruit.frame.origin;
+    
     for (UITouch * touch in touches) {
     }
    
@@ -957,19 +942,10 @@ NSTimer *shapeSoundTimer;
  
 -(void) onFruitView:(FruitView *)fruit touchesMoved:(NSSet *)touches {
     DebugLog(@"");
-    for (UITouch * touch in touches) {
-    }
+
     if (isTouchesOnTouchLayer) {
         isMoveObject = NO;
     }
-    //    if([multiTouchForFruitObject count]>1){
-    //         [multiTouchForFruitObject addObject:touches];
-    //        [self.view bringSubviewToFront:touchView];
-    //        [multiTouchForFruitObject removeAllObjects];
-    //    }
-    //    else{
-    //         [self.view bringSubviewToFront:fruit];
-    //    }
     
     if (isMoveObject) {
         CGPoint point = [[touches anyObject] locationInView:touchView];
@@ -988,21 +964,23 @@ NSTimer *shapeSoundTimer;
 }
  
 -(void) onFruitView:(FruitView *)fruit touchesEnded:(NSSet *)touches {
-    //    [inactivityTimer invalidate];
+
     increaseSize =0;
     isMoveObject = YES;
-    //    [fruit.layer setTransform:CATransform3DMakeScale(1.0, 1.0, 1.0)];
     [multiTouchForFruitObject removeAllObjects];
+    
+    
+    if (isWithShape) {
+        [touchView touchesEnded:touches withEvent:nil];
+    }
+    
     if(CGRectIntersectsRect(fruit.frame, garbageCan.frame)){
-        //called delete Object method
         DebugLog(@"Delete Object");
         fruit.layer.position = CGPointMake(1024 - garbageCan.frame.size.width/2, 768 - garbageCan.frame.size.height/2);
         DebugLog(@"Frame is %@",NSStringFromCGRect(fruit.frame));
         dispatch_time_t playAudioIn = dispatch_time(DISPATCH_TIME_NOW, 0.05 * NSEC_PER_SEC);
         dispatch_after(playAudioIn, dispatch_get_main_queue(), ^(void){
-//            SystemSoundID logoSound = [TDSoundManager createSoundID:@"Tiggly_SFX_DELETE_01.mp3"];
-//            AudioServicesPlayAlertSound(logoSound);
-            
+
             [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_DELETE_01" withFormat:@"mp3"];
             
         });
@@ -1020,16 +998,21 @@ NSTimer *shapeSoundTimer;
         dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
             [fruit removeFromSuperview];
         });
+                
         
+        [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+        [tickBtnTimer invalidate];
+        tickBtnTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(pulseTickButton) userInfo:nil repeats:NO];
+        
+        return;
     }
     
-    if (isWithShape) {
-        [touchView touchesEnded:touches withEvent:nil];
-    }
     
-    [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
-    [tickBtnTimer invalidate];
-    tickBtnTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(pulseTickButton) userInfo:nil repeats:NO];
+    if(fruit.isFruitMovedSufficiently){
+        NSString *sound = [fallSceneObject getAnimalDropSoundForObject:fruit.objectName];
+        [[TDSoundManager sharedManager] playSound:sound withFormat:@"mp3"];
+    }
+
 }
 
 

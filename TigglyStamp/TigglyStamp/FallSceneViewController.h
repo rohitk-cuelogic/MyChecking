@@ -24,7 +24,6 @@
     CGPoint touchLocation;
     CALayer *currentLayer;
     UIColor *colorOrnament;
-    CGPoint fruitInitialPos;
     int increaseSize;
     IntroScreenViewController *introView;
     BOOL isTouchesOnTouchLayer;
@@ -38,6 +37,9 @@
     MPMoviePlayerController *mplayer;
 
     BOOL isBtnViewHidden;
+    
+    CGPoint fruitInitialPoint;
+    BOOL isFruitMoved;
     
 }
 @property(nonatomic,strong) ScreenCaptureView *screenCapture;

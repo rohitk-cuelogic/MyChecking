@@ -14,6 +14,7 @@
 @synthesize delegate;
 @synthesize imgView;
 @synthesize objectName;
+@synthesize isFruitMovedSufficiently;
 
 #pragma mark -
 #pragma mark =======================================
@@ -31,27 +32,7 @@
         [self addSubview:imgView];
         self.userInteractionEnabled = YES;
         increaseSize = 0;
-//        if([shapeName isEqualToString:@"sled"]){
-//            UISwipeGestureRecognizer *oneFingerSwipeLeft = [[UISwipeGestureRecognizer alloc]
-//                                                            initWithTarget:self
-//                                                            action:@selector(oneFingerSwipeLeft:)];
-//            [oneFingerSwipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
-//            [self addGestureRecognizer:oneFingerSwipeLeft];
-//            
-//            UISwipeGestureRecognizer *oneFingerSwipeRight = [[UISwipeGestureRecognizer alloc]
-//                                                             initWithTarget:self
-//                                                             action:@selector(oneFingerSwipeRight:)];
-//            [oneFingerSwipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
-//            [self addGestureRecognizer:oneFingerSwipeRight];
-//        }
-        
-//        UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureMoveAround:)];
-//        [panGesture setMaximumNumberOfTouches:1];
-//        [self addGestureRecognizer:panGesture];
-        
-//        UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self
-//                                                action:@selector(handleSingleTap:)];
-//        [self addGestureRecognizer:singleFingerTap];
+
     }
     
     
@@ -65,11 +46,13 @@
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     DebugLog(@"");
+    initialRect = self.frame;
+
+    isFruitMovedSufficiently = NO;
     touchLocation = [[touches anyObject] locationInView:self];
-//    [self.delegate onFruitViewTouchesBegan:self];
     [self.delegate onFruitView:self touchesBegan:touches];
-    
 }
+
 -(void) moveObject:(NSSet *)set point:(CGPoint)point{
     UITouch *aTouch = [set anyObject];
     CGPoint location = [aTouch locationInView:self];
@@ -95,23 +78,45 @@
         frame.origin.y = self.frame.origin.y + location.y - touchLocation.y;
     }
 
-    
+
     
     DebugLog(@"Fruit Frame : %@", NSStringFromCGRect(frame));
-    
+
     [self setFrame:frame];
 }
 
 -(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     DebugLog(@"");
+
    [self.delegate onFruitView:self touchesMoved:touches];
-    
-//    [self.delegate onFruitView:self touchesMoved:touches];
 }
 
 -(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     DebugLog(@"");
-     
+    
+    DebugLog(@"Initial Loc.x : %f", initialRect.origin.x);
+    DebugLog(@"Initial Loc.y : %f", initialRect.origin.y);
+    
+    DebugLog(@"Frame origin.x : %f", self.frame.origin.x);
+    DebugLog(@"Frame origin.y : %f", self.frame.origin.y);
+    
+    int xDiff =  self.frame.origin.x - initialRect.origin.x;
+    int yDiff = self.frame.origin.y - initialRect.origin.y;
+    
+    DebugLog(@"Diff  x: %d y : %d",xDiff,yDiff);
+    
+    if(xDiff > 10 || xDiff  < -10)
+        isFruitMovedSufficiently = YES;
+    else
+        isFruitMovedSufficiently = NO;
+    
+    if(isFruitMovedSufficiently  != YES) {
+        if(yDiff > 10 || yDiff  < -10)
+            isFruitMovedSufficiently = YES;
+        else
+            isFruitMovedSufficiently = NO;
+    }
+    
     [self .delegate onFruitView:self touchesEnded:touches];
 }
 - (void)oneFingerSwipeLeft:(UITapGestureRecognizer *)recognizer {

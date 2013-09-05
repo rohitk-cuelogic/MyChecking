@@ -951,13 +951,21 @@ int countShapeSound;
 
 //================================================================================================================
 -(void) onFruitView:(FruitView *)fruit touchesEnded:(NSSet *)touches {
-//    [inactivityTimer invalidate];
+
     increaseSize =0;
     isMoveObject = YES;
-//    [fruit.layer setTransform:CATransform3DMakeScale(1.0, 1.0, 1.0)];
     [multiTouchForFruitObject removeAllObjects];
+    
+    
+    if (isWithShape) {
+        [touchView touchesEnded:touches withEvent:nil];
+    }
+    
+    
+    [showSeasonsTimer invalidate];
+    showSeasonsTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(needToShowRightTickButton) userInfo:nil repeats:NO];
+    
     if(CGRectIntersectsRect(fruit.frame, garbageCan.frame)){
-        //called delete Object method
         DebugLog(@"Delete Object");
         fruit.layer.position = CGPointMake(1024 - garbageCan.frame.size.width/2, 768 - garbageCan.frame.size.height/2);
         DebugLog(@"Frame is %@",NSStringFromCGRect(fruit.frame));
@@ -980,17 +988,19 @@ int countShapeSound;
             [fruit removeFromSuperview];
         });
         
+        [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+        [tickBtnTimer invalidate];
+        tickBtnTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(pulseTickButton) userInfo:nil repeats:NO];
+        
+        return;
+        
     }
-    [showSeasonsTimer invalidate];
-    showSeasonsTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(needToShowRightTickButton) userInfo:nil repeats:NO];
-    
-    if (isWithShape) {
-        [touchView touchesEnded:touches withEvent:nil];
+
+    if(fruit.isFruitMovedSufficiently){
+        NSString *sound = [winterSceneObject getAnimalDropSoundForObject:fruit.objectName];
+        [[TDSoundManager sharedManager] playSound:sound withFormat:@"mp3"];
     }
-    
-    [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
-    [tickBtnTimer invalidate];
-    tickBtnTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(pulseTickButton) userInfo:nil repeats:NO];
+
 }
 //================================================================================================================
 

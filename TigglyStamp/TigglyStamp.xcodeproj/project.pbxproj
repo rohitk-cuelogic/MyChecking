@@ -180,7 +180,7 @@
 		C028607A17D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607217D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_02.mp3 */; };
 		C028607B17D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_03.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607317D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_03.mp3 */; };
 		C028607D17D76A1D001EAE9E /* Tiggly_GenGreeting_spider_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607C17D76A1C001EAE9E /* Tiggly_GenGreeting_spider_01.mp3 */; };
-		C028607F17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607E17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 */; };
+		C028607F17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DROP_04.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607E17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DROP_04.mp3 */; };
 		C02F440E17D60CFC007AEA39 /* Tiggly_Word_Bell_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02F431717D60CFC007AEA39 /* Tiggly_Word_Bell_01.mp3 */; };
 		C02F440F17D60CFC007AEA39 /* Tiggly_Word_Bell_Wow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02F431817D60CFC007AEA39 /* Tiggly_Word_Bell_Wow.mp3 */; };
 		C02F441017D60CFC007AEA39 /* Tiggly_Word_Candy_01 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02F431917D60CFC007AEA39 /* Tiggly_Word_Candy_01 1.mp3 */; };
@@ -863,7 +863,7 @@
 		C028607217D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_SnowMan_DaDaa_02.mp3; sourceTree = "<group>"; };
 		C028607317D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_03.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_SnowMan_DaDaa_03.mp3; sourceTree = "<group>"; };
 		C028607C17D76A1C001EAE9E /* Tiggly_GenGreeting_spider_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_GenGreeting_spider_01.mp3; sourceTree = "<group>"; };
-		C028607E17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_DragNDrop_DRAG_04.mp3; sourceTree = "<group>"; };
+		C028607E17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DROP_04.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_DragNDrop_DROP_04.mp3; sourceTree = "<group>"; };
 		C02F431717D60CFC007AEA39 /* Tiggly_Word_Bell_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Bell_01.mp3; sourceTree = "<group>"; };
 		C02F431817D60CFC007AEA39 /* Tiggly_Word_Bell_Wow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Bell_Wow.mp3; sourceTree = "<group>"; };
 		C02F431917D60CFC007AEA39 /* Tiggly_Word_Candy_01 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tiggly_Word_Candy_01 1.mp3"; sourceTree = "<group>"; };
@@ -1679,7 +1679,7 @@
 		C02F433B17D60CFC007AEA39 /* Chosen_Greeting */ = {
 			isa = PBXGroup;
 			children = (
-				C028607E17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 */,
+				C028607E17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DROP_04.mp3 */,
 				C028606617D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_02.mp3 */,
 				C028606717D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_03.mp3 */,
 				C028606817D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_01.mp3 */,
@@ -2993,7 +2993,7 @@
 				C028607A17D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_02.mp3 in Resources */,
 				C028607B17D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_03.mp3 in Resources */,
 				C028607D17D76A1D001EAE9E /* Tiggly_GenGreeting_spider_01.mp3 in Resources */,
-				C028607F17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 in Resources */,
+				C028607F17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DROP_04.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2072,6 +2072,7 @@
 		EB6F332A1781867900FC479F /* TigglyStamp */ = {
 			isa = PBXGroup;
 			children = (
+				EB6F33981781AD0600FC479F /* TConstant.h */,
 				EB6F339F1781B8C900FC479F /* WinterScene.h */,
 				EB6F33A01781B8CA00FC479F /* WinterScene.m */,
 				C08291AE17A79D580023F08A /* FallScene.h */,
@@ -2090,7 +2091,6 @@
 				EBF42C95178A9480004FECEE /* FruitView.m */,
 				63CEE1B317A1228B0060DC42 /* CapturedImageView.h */,
 				63CEE1B417A1228B0060DC42 /* CapturedImageView.m */,
-				EB6F33981781AD0600FC479F /* TConstant.h */,
 				EB6F33991781AD0600FC479F /* TConstant.m */,
 				C060B41D17CDF643000AD202 /* TDSoundManager.h */,
 				C060B41E17CDF643000AD202 /* TDSoundManager.m */,

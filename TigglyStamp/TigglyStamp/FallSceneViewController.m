@@ -1276,7 +1276,7 @@ NSTimer *shapeSoundTimer;
             [fruit removeFromSuperview];
         }
         fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
-        //[RigthTickButton setHidden:YES];
+        [RigthTickButton setHidden:YES];
         
         int64_t delayInSecondsTodetect = 1.0f;
         dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);

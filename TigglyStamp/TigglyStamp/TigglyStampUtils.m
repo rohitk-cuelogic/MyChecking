@@ -421,6 +421,12 @@ static TigglyStampUtils *sharedInstance = nil;
     return sType;
 }
 
+-(void)setCurrentLanguage:(NSString *)lang{
+    
+}
+-(NSString *)getCurrentLanguage{
+    
+}
 
 - (void) saveCSVFileData {
     DebugLog(@"");

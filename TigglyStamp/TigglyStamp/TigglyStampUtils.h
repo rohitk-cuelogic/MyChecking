@@ -44,4 +44,7 @@
 -(void)setCurrentSahpeForStoringKeys:(ShapeType)sType;
 
 
+-(void)setCurrentLanguage:(NSString *)lang;
+-(NSString *)getCurrentLanguage;
+
 @end

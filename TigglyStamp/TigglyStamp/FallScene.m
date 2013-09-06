@@ -613,6 +613,9 @@ int currentObject;
     NSString *soundFile;
     
     if([fallObject isEqualToString:@"apple_red"] || [fallObject isEqualToString:@"green_apple"]) {
+        
+        
+        
         int ranNo = random()%4;
         
         if(ranNo == 0){

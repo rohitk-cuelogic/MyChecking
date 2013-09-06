@@ -974,10 +974,10 @@ void OrthoM4x4(GLfloat *out, GLfloat left, GLfloat right, GLfloat bottom, GLfloa
     [self setCylinderRadius:20 animatedWithDuration:duration completion:^(void) {
         //Setup the view hierarchy properly after the animation is finished
         self.curlingView.hidden = NO;
-        [self removeFromSuperview];
+//        [self removeFromSuperview];
         //Stop the rendering loop since the curlView was removed from its superview and hence won't appear
         [self stopAnimating];
-        self.curlingView = nil;
+//        self.curlingView = nil;
     }];
     
     [self startAnimating];

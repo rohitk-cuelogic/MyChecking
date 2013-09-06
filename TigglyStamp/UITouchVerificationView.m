@@ -512,7 +512,7 @@ int previousTouchCount = 0;
         NSMutableString *key = [[NSMutableString alloc]init];
         [key appendFormat:@"%@", i];
         int keyint = key.intValue;
-        DebugLog(@"keyint :%d",keyint);
+        NSLog(@"keyint :%d",keyint);
 
         if (keyint>= 152 && keyint<=173) {
             // triangle shape

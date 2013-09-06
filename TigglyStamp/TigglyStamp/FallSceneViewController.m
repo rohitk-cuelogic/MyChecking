@@ -38,7 +38,7 @@ AVAudioRecorder *recorder;
 @synthesize garbageCan;
 @synthesize cameraButton;
 @synthesize videoButton,curlConfirmedButton;
-@synthesize isWithShape,introView,imageView,RigthTickButton,curlButton,mainView,backView;
+@synthesize isWithShape,introView,imageView,RigthTickButton,curlButton,mainView,backView, viewForCurl;
 @synthesize screenCapture;
 @synthesize backButton;
 @synthesize isCameraClick;
@@ -58,6 +58,8 @@ int movedObjectAtTime;
 NSTimer *unCurlTimer;
 NSTimer *tickBtnTimer;
 NSTimer *shapeSoundTimer;
+UIImageView *tempImgView;
+
 #pragma mark -
 #pragma mark =======================================
 #pragma mark Init
@@ -114,7 +116,8 @@ NSTimer *shapeSoundTimer;
     [RigthTickButton setTag:TAG_RIGHT_TICK_BTN];
     [curlConfirmedButton setTag:TAG_CURL_CONFIRMED_BTN];
     
-    
+    [self configureViewForCurl];
+
     [touchView configure];
     [touchView.layer setZPosition:1];
 //    UITouchShapeRecognizer* squareRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"squareData"];
@@ -236,7 +239,21 @@ NSTimer *shapeSoundTimer;
     [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     animation.startProgress = 0.80;
     [animation setRemovedOnCompletion:NO];
-    [[[self view] layer] addAnimation:animation forKey:@"pageUnCurl"];
+//    [[[self view] layer] addAnimation:animation forKey:@"pageUnCurl"];
+    
+    //to add flipped page eefect at corner
+    CGRect r = self.viewForCurl.frame;
+    
+    if(self.curlView == nil){
+        self.curlView = [[XBCurlView alloc] initWithFrame:r];
+    }
+    
+    [self.curlView setUserInteractionEnabled:YES];
+    self.curlView.opaque = NO;
+    self.curlView.pageOpaque = YES;
+    self.curlView.cylinderPosition = CGPointMake(self.viewForCurl.bounds.size.width, self.viewForCurl.bounds.size.height);
+    [self.curlView curlView:self.viewForCurl cylinderPosition:CGPointMake(970,740) cylinderAngle:3*M_PI_4 cylinderRadius:UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad? 10: 30 animatedWithDuration:0.0];
+
 }
 
 - (void)clearScreen:(UITapGestureRecognizer *)sender {
@@ -361,6 +378,14 @@ NSTimer *shapeSoundTimer;
 #pragma mark======================
 #pragma mark Game Logic
 #pragma mark======================
+
+-(void)configureViewForCurl{
+    DebugLog(@"");
+    
+    [self addCurlAnimation];
+    
+    [self.view bringSubviewToFront:self.mainView];
+}
 
 -(void)buildShape:(NSString *)shape {
     DebugLog(@"");
@@ -1289,45 +1314,62 @@ NSTimer *shapeSoundTimer;
         
     }
     if ([btn tag] == TAG_CURL_BTN) {
+        self.mainView.userInteractionEnabled = NO;
         [[[self view] layer] removeAllAnimations];
-
-        CGRect r = self.imageView.frame;
-        [self.view bringSubviewToFront:backView];
         
-        self.curlView = [[XBCurlView alloc] initWithFrame:r];
-        self.curlView.opaque = NO;
-        self.curlView.pageOpaque = YES;
-        self.curlView.cylinderPosition = CGPointMake(self.mainView.bounds.size.width, self.mainView.bounds.size.height);
-        [self.curlView curlView:self.mainView cylinderPosition:CGPointMake(800,600) cylinderAngle:3*M_PI_4 cylinderRadius:UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad? 100: 70 animatedWithDuration:0.6];
+        UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
+        [[UIColor whiteColor] set];
+        UIRectFill(CGRectMake(0.0, 0.0,1024,768));
+        [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
         
-        unCurlTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(unCurl) userInfo:nil repeats:NO];
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        [self.curlView uncurlAnimatedWithDuration:0.0];
+        
+        
+        double delayInSeconds = 0.1;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            
+            tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+            tempImgView.image = image;
+            [self.viewForCurl addSubview:tempImgView];
+            
+            [self.view bringSubviewToFront:self.backView];
+            self.curlConfirmedButton.hidden = NO;
+            
+            [self.curlView curlView:self.viewForCurl cylinderPosition:CGPointMake(800,600) cylinderAngle:3*M_PI_4 cylinderRadius:UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad? 100: 70 animatedWithDuration:0.6];
+            
+            unCurlTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(unCurl) userInfo:nil repeats:NO];
+            
+        });
     }
     
     if ([btn tag] == TAG_CURL_CONFIRMED_BTN) {
         
+        self.curlConfirmedButton.hidden = YES;
         [unCurlTimer invalidate];
-        [self.view sendSubviewToBack:backView];
-        [self.curlView CurlFullView:1.2];
-        
-//        SystemSoundID logoSound = [TDSoundManager createSoundID:@"Tiggly_SFX_PAGETURN.mp3"];
-//        AudioServicesPlayAlertSound(logoSound);
         
         [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_PAGETURN" withFormat:@"mp3"];
+        
+        [self.curlView CurlFullView:1.0];
         
         for(FruitView *fruit in fruitObjectArray){
             [fruit removeFromSuperview];
         }
+        [tempImgView removeFromSuperview];
         fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
         [self hideVideoCameraButtons];
         [RigthTickButton setHidden:YES];
         [homeButton setHidden:YES];
         
-        int64_t delayInSecondsTodetect = 1.0f;
+        double delayInSecondsTodetect = 1.1f;
         dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
         dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
-           [self addCurlAnimation];
-          
-            
+            [self configureViewForCurl];
+            self.mainView.userInteractionEnabled = YES;
+            [self.mainView bringSubviewToFront:self.curlButton];
         });
 
     }
@@ -1336,13 +1378,16 @@ NSTimer *shapeSoundTimer;
 -(void) unCurl{
     DebugLog(@"");
     
+    self.curlConfirmedButton.hidden = YES;
     [self.curlView uncurlAnimatedWithDuration:0.6];
-    [self.view sendSubviewToBack:backView];
     
-    double delayInSeconds = 0.6;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    double delayInSeconds = 0.7;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-         [self addCurlAnimation];
+        [tempImgView removeFromSuperview];
+        [self configureViewForCurl];
+        self.mainView.userInteractionEnabled = YES;
+        [self.view bringSubviewToFront:self.mainView];
     });
     
 }
@@ -1431,6 +1476,8 @@ NSTimer *shapeSoundTimer;
     cameraButton.hidden = NO;
     RigthTickButton.hidden = YES;
     
+    [self.view bringSubviewToFront:btnView];
+
     [UIView animateWithDuration:0.8 animations:^{
         btnView.frame = CGRectMake(162, 0, 700,100);
     }completion:^(BOOL finished) {

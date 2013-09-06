@@ -62,6 +62,7 @@
 @property (nonatomic,strong) IBOutlet UIButton *curlConfirmedButton;
 @property (nonatomic,strong) IBOutlet UIView *mainView;
 @property (nonatomic,strong) IBOutlet UIView *backView;
+@property (nonatomic,strong) IBOutlet UIView *viewForCurl;
 @property (nonatomic,strong) IntroScreenViewController *introView;
 @property (nonatomic, strong) XBCurlView *curlView;
 @property (nonatomic, strong) IBOutlet UIButton *backButton;

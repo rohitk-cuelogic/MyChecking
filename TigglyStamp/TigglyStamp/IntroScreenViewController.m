@@ -242,16 +242,13 @@
         isLanguageScreenDisplayed = NO;
          [self.languageView removeFromSuperview];
         [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
-         [[TigglyStampUtils sharedInstance] setCurrentLanguage:lblLunguage.text];
+        
 //        [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
        
     }];
 
-        
-        [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
-       
-    }];
-
+         [[TigglyStampUtils sharedInstance] setCurrentLanguage:lblLunguage.text];
+       // [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
         
 }
 

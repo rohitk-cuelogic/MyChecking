@@ -776,6 +776,8 @@ NSTimer *shapeSoundTimer;
             
            // for(FruitView *f in fruitObjectArray){
                 [self.mainView bringSubviewToFront:fruit];
+                [self.mainView bringSubviewToFront:RigthTickButton];
+                [self.mainView bringSubviewToFront:homeButton];
             //}
             
             centerX = 0;
@@ -947,6 +949,7 @@ NSTimer *shapeSoundTimer;
 -(void) onFruitView:(FruitView *)fruit touchesBegan:(NSSet *)touches {
     DebugLog(@"");
     DebugLog(@"FruitTouchBegan");
+    
 
     fruitInitialPoint = fruit.frame.origin;
     
@@ -982,9 +985,10 @@ NSTimer *shapeSoundTimer;
     [tickBtnTimer invalidate];
     [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
     
-    
+    [self.mainView bringSubviewToFront:RigthTickButton];
+    [self.mainView bringSubviewToFront:homeButton];
 }
- 
+
 -(void) onFruitView:(FruitView *)fruit touchesEnded:(NSSet *)touches {
 
     increaseSize =0;

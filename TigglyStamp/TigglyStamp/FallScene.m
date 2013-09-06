@@ -398,7 +398,7 @@ int currentObject;
                
     }
     else if([fallObject isEqualToString:@"pumpkin_3"]) {
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             soundFile = @"Tiggly_GenGreeting_JackOLantern_06";
         }
     }
@@ -1057,7 +1057,7 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"bat"]) {
-        int ranNo = random()%4;
+        int ranNo = random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_GenGreeting_Bat_02";

@@ -112,7 +112,8 @@
 
 - (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer {
     DebugLog(@"");
-    [self.delegate thumbnailViewLongPressed];
+    if(closeBtn.hidden)
+        [self.delegate thumbnailViewLongPressed];
 }
 
 -(void)imageTapped{

@@ -743,6 +743,8 @@ int countShapeSound;
             
             //for(FruitView *f in fruitObjectArray){
                 [self.mainView bringSubviewToFront:fruit];
+            [self.mainView bringSubviewToFront:RigthTickButton];
+            [self.mainView bringSubviewToFront:homeButton];
            // }
             centerX = 0;
             centerY = 0;

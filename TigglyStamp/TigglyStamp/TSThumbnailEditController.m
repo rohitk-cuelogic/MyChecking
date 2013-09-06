@@ -390,7 +390,7 @@ int swipeTextCnt;
         
     }else{
         
-        [self playSlidingSounds];
+      //  [self playSlidingSounds];
         
         if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
             UIImage *img = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[savedImgArry objectAtIndex:cnt]];
@@ -512,7 +512,7 @@ int swipeTextCnt;
         }
     }else{
         
-        [self playSlidingSounds];
+      //  [self playSlidingSounds];
         
         if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
             UIImage *img = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[savedImgArry objectAtIndex:cnt]];

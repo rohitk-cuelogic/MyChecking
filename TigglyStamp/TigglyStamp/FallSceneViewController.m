@@ -771,12 +771,13 @@ NSTimer *shapeSoundTimer;
             DebugLog(@"Object Name : %@", objName);
             
             [continuityTimer invalidate];
-            continuityTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(playGreetingSoundForObject:) userInfo:objName repeats:NO];
+            continuityTimer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(playGreetingSoundForObject:) userInfo:objName repeats:NO];
 
             
-            for(FruitView *f in fruitObjectArray){
-                [self.mainView bringSubviewToFront:f];
-            }
+           // for(FruitView *f in fruitObjectArray){
+                [self.mainView bringSubviewToFront:fruit];
+            //}
+            
             centerX = 0;
             centerY = 0;
             [fallSceneObject removeDrawnShapeObject:shape objectToRemove:shapeImage];
@@ -806,7 +807,7 @@ NSTimer *shapeSoundTimer;
     [[TDSoundManager sharedManager] playSound:[fallSceneObject getAnimalNameSoundForObject:str] withFormat:@"mp3"];
     isGreetingPlaying = YES;
     
-    double delayInSeconds = 5.0;
+    double delayInSeconds = 2.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         isGreetingPlaying = NO;
@@ -1060,6 +1061,13 @@ NSTimer *shapeSoundTimer;
 #pragma mark- button touch handling functions
 #pragma mark- ===============================
 -(void) hideButtons{
+    DebugLog(@"");
+    
+    
+    [self.view.layer removeAnimationForKey:@"pageUnCurl"];
+    [self.view.layer removeAllAnimations];
+    
+    
     cameraButton.hidden = YES;
     RigthTickButton.hidden = YES;
    [homeButton setHidden:YES];
@@ -1112,10 +1120,7 @@ NSTimer *shapeSoundTimer;
 
 -(void) startScreenRecording{
     isRecording = YES;
-    
-    [self.view.layer removeAnimationForKey:@"pageUnCurl"];
-    [self.view.layer removeAllAnimations];
-    
+
     [NSThread detachNewThreadSelector:@selector(hideButtons) toTarget:self withObject:nil];
     
     screenCapture.delegate = self;
@@ -1136,10 +1141,7 @@ NSTimer *shapeSoundTimer;
     DebugLog(@"");
     
     [[TDSoundManager sharedManager] stopMusic];
-    
-    
-    [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_CAMERA" withFormat:@"mp3"];
-    
+
     [[[self view] layer] removeAnimationForKey:@"pageUnCurl"];
     [[[self view] layer]removeAllAnimations];
     
@@ -1198,18 +1200,31 @@ NSTimer *shapeSoundTimer;
     flashView.backgroundColor = [UIColor whiteColor];
     flashView.alpha = 0;
     [self.view addSubview:flashView];
+    
+    [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_CAMERA" withFormat:@"mp3"];
+    
     [UIView animateWithDuration:0.1
                      animations:^{
                          flashView.alpha = 1;
+
                      }
                      completion:^(BOOL finished){
+
+                         
                          [UIView animateWithDuration:0.2
                                           animations:^{
                                               flashView.alpha = 0;
                                           }
                                           completion:^(BOOL finished){
                                               [flashView removeFromSuperview];
-                                              [self playRandomPraiseSound];
+                                              //[self playRandomPraiseSound];
+                                              double delayInSeconds = 0.8;
+                                              dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                                              dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                                                  [self playSlidingSounds];
+                                              });
+                                              
+                                              
                                               CapturedImageView *cImageView = [[CapturedImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768) ImageName:imgName];
                                               cImageView.delegate = self;
                                               [self.mainView addSubview:cImageView];
@@ -1292,7 +1307,9 @@ NSTimer *shapeSoundTimer;
             [fruit removeFromSuperview];
         }
         fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
+        [self hideVideoCameraButtons];
         [RigthTickButton setHidden:YES];
+        [homeButton setHidden:YES];
         
         int64_t delayInSecondsTodetect = 1.0f;
         dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
@@ -1502,7 +1519,14 @@ NSTimer *shapeSoundTimer;
 - (void) recordingFinished:(NSString*)outputPathOrNil
 {    
     NSURL *url = screenCapture.exportUrl;
-    [self playRandomPraiseSound];
+    //[self playRandomPraiseSound];
+    
+    double delayInSeconds = 0.8;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self playSlidingSounds];
+    });
+    
     UIImage *thumbnail = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[url lastPathComponent]];
     ccImageView.imageView.image = thumbnail;
     [activityIndicator removeFromSuperview];
@@ -1567,7 +1591,27 @@ NSTimer *shapeSoundTimer;
 #pragma mark- ===============================
 #pragma mark- Play sound
 #pragma mark- ===============================
-
+-(void) playSlidingSounds{
+    
+    int ranNo = arc4random() % 3;
+    
+    switch (ranNo) {
+        case 0:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_MAGIC_12" withFormat:@"mp3"];
+            break;
+        case 1:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_MAGIC_13" withFormat:@"mp3"];
+            break;
+        case 2:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_MAGIC_14" withFormat:@"mp3"];
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+}
 -(void) playRandomPraiseSound{
     // playing sound praise sound randomly
     int ranNo = arc4random() % 9;

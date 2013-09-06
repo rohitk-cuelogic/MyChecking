@@ -48,6 +48,8 @@
     DebugLog(@"");
     [super viewDidLoad];
     
+    self.gameTypeView.frame = CGRectMake(1024, 0, 1024, 768);
+    
     isLanguageScreenDisplayed = NO;
     
     [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:LIMIT_GALLERY];
@@ -155,6 +157,11 @@
     
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+    DebugLog(@"");
+
+}
+
 
 - (void) displayLanguageSelectionView {
     DebugLog(@"");
@@ -171,12 +178,20 @@
 - (void)swipedScreen:(UISwipeGestureRecognizer*)gesture {
     DebugLog(@"");
     if(isLanguageScreenDisplayed) {
-        [UIView transitionFromView:self.languageSubView  toView:self.gameTypeView duration:1.0 options: UIViewAnimationOptionTransitionFlipFromRight
-                        completion: ^(BOOL inFinished) {
-                            isLanguageScreenDisplayed = NO;
-                            [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
-//                            [self.languageView removeFromSuperview];
-                        }];
+//        [UIView transitionFromView:self.languageSubView  toView:self.gameTypeView duration:1.0 options: UIViewAnimationOptionTransitionFlipFromRight
+//                        completion: ^(BOOL inFinished) {
+//                            isLanguageScreenDisplayed = NO;
+//                            [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
+////                            [self.languageView removeFromSuperview];
+//                        }];
+        [self.view bringSubviewToFront:self.gameTypeView];
+        [UIView animateWithDuration:0.4 animations:^{
+            self.gameTypeView.frame = CGRectMake(0, 0, 1024, 768);
+        } completion:^(BOOL finished) {
+            isLanguageScreenDisplayed = NO;
+            [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
+            [self.languageView removeFromSuperview];
+        }];
     }
 }
 
@@ -217,14 +232,19 @@
 }
 
 -(IBAction)closeButtonClicked:(id)sender {
-    DebugLog(@"");
-    
-    isLanguageScreenDisplayed = NO;
-    
-   [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
-    
-    [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
-    [self.languageView removeFromSuperview];
+    DebugLog(@"");    
+    [self.view bringSubviewToFront:self.gameTypeView];
+    [UIView animateWithDuration:0.4 animations:^{
+        self.gameTypeView.frame = CGRectMake(0, 0, 1024, 768);
+    } completion:^(BOOL finished) {        
+        isLanguageScreenDisplayed = NO;
+         [self.languageView removeFromSuperview];
+        [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
+        
+        [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
+       
+    }];
+
         
 }
 

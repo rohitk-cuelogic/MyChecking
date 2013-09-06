@@ -39,6 +39,8 @@
     MPMoviePlayerController *mplayer;
     
     BOOL isBtnViewHidden;
+    BOOL isGreetingSoundPlaying;
+    NSTimer *continuityTimer;
 }
 @property(nonatomic,strong) ScreenCaptureView *screenCapture;
 @property (nonatomic, strong) IBOutlet UITouchVerificationView * touchView;

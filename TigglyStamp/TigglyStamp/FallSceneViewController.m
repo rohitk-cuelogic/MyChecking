@@ -205,6 +205,8 @@ NSTimer *shapeSoundTimer;
     [super viewDidAppear:YES];
     DebugLog(@"");
     
+    isGreetingPlaying = NO;
+    
     if (isWithShape) {
         [self playShapeinstructionSounds];
     }else{
@@ -250,9 +252,11 @@ NSTimer *shapeSoundTimer;
             [f removeFromSuperview];
         }
         fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
-        
-        RigthTickButton.hidden = YES;
+       
+        homeButton.hidden = YES;
+        [self hideVideoCameraButtons];
         [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+        RigthTickButton.hidden = YES;
         
         UIImageView *tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
         tempImgView.image = [UIImage imageNamed:@"fallView.png"];
@@ -678,7 +682,7 @@ NSTimer *shapeSoundTimer;
     UIColor *color = [[TigglyStampUtils sharedInstance]getRGBValueForShape:shapeImage withBasicShape:shape];
     UIImage *img= [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",shape]];
     if([shape isEqualToString:@"square"]){
-        layer.frame = CGRectMake(((centerX/2) - (img.size.width/4)),((centerY/2) - (img.size.height/4)), img.size.width/2, img.size.height/2);
+        layer.frame = CGRectMake(((centerX/2) - (img.size.width/4)),((centerY/2) - (img.size.height/4)), img.size.width/2.8, img.size.height/2.8);
     }else{
         layer.frame = CGRectMake(((centerX/numOfTouchPts) - (img.size.width/4)),((centerY/numOfTouchPts) - (img.size.height/4)), img.size.width/2, img.size.height/2);
         
@@ -745,7 +749,7 @@ NSTimer *shapeSoundTimer;
     int64_t delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        int64_t d = 2.0;
+        int64_t d = 1.0;
         dispatch_time_t p = dispatch_time(DISPATCH_TIME_NOW, d * NSEC_PER_SEC);
         dispatch_after(p, dispatch_get_main_queue(), ^(void){
             [layer removeFromSuperlayer];
@@ -765,12 +769,10 @@ NSTimer *shapeSoundTimer;
             
             NSString *objName = shapeImage;
             DebugLog(@"Object Name : %@", objName);
-            double delayInSeconds = 0.2;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [[TDSoundManager sharedManager] playSound:[fallSceneObject getAnimalNameSoundForObject:objName] withFormat:@"mp3"];
+            
+            [continuityTimer invalidate];
+            continuityTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(playGreetingSoundForObject:) userInfo:objName repeats:NO];
 
-            });
             
             for(FruitView *f in fruitObjectArray){
                 [self.mainView bringSubviewToFront:f];
@@ -797,11 +799,25 @@ NSTimer *shapeSoundTimer;
     });
     
 }
- 
+
+-(void) playGreetingSoundForObject:(NSTimer *) timer {
+    DebugLog(@"");
+    NSString *str = (NSString *)[timer userInfo];
+    [[TDSoundManager sharedManager] playSound:[fallSceneObject getAnimalNameSoundForObject:str] withFormat:@"mp3"];
+    isGreetingPlaying = YES;
+    
+    double delayInSeconds = 5.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        isGreetingPlaying = NO;
+    });
+
+}
+
 -(void)deleteObject {
     
 }
- 
+
 /*
  This method is called when user is idle for more than 3 seconds.
  */
@@ -877,15 +893,15 @@ NSTimer *shapeSoundTimer;
             double delayInSeconds = 0.7;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [[TDSoundManager sharedManager] playSound:shape withFormat:@"mp3"];
+               // [[TDSoundManager sharedManager] playSound:shape withFormat:@"mp3"];
             });
         }
-        int64_t delayInSecondsTodetect = 1.0f;
-        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
-        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
-          
+//        int64_t delayInSecondsTodetect = 0.0f;
+//        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
+//        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
+//          
             bShouldShapeDetected = YES;
-        });
+//        });
         
     }else{
         
@@ -1008,7 +1024,7 @@ NSTimer *shapeSoundTimer;
     }
     
     
-    if(fruit.isFruitMovedSufficiently){
+    if(fruit.isFruitMovedSufficiently && !isGreetingPlaying){
         NSString *sound = [fallSceneObject getAnimalDropSoundForObject:fruit.objectName];
         [[TDSoundManager sharedManager] playSound:sound withFormat:@"mp3"];
     }
@@ -1768,7 +1784,7 @@ NSTimer *shapeSoundTimer;
 }
 
 -(void) playSoundForShape{
-    [[TDSoundManager sharedManager] playSound:shapeSoundToPlay withFormat:@"mp3"];
+//    [[TDSoundManager sharedManager] playSound:shapeSoundToPlay withFormat:@"mp3"];
 }
 
 @end

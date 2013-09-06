@@ -73,6 +73,8 @@ int countShapeSound;
     [super viewDidAppear:YES];
      DebugLog(@"");
     
+    isGreetingSoundPlaying = NO;
+    
     if (isWithShape) {
         [self playShapeinstructionSounds];
     }else{
@@ -229,9 +231,10 @@ int countShapeSound;
             [f removeFromSuperview];
         }
         fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
-        RigthTickButton.hidden = YES;
         homeButton.hidden = YES;
+        [self hideVideoCameraButtons];
         [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+        RigthTickButton.hidden = YES;
         
         UIImageView *tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
         tempImgView.image = [UIImage imageNamed:@"Tiggly_stamp_Winter_BG.png"];
@@ -651,7 +654,7 @@ int countShapeSound;
     UIColor *color = [[TigglyStampUtils sharedInstance]getRGBValueForShape:shapeImage withBasicShape:shape];
     UIImage *img= [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",shape]];
     if([shape isEqualToString:@"square"]){
-        layer.frame = CGRectMake(((centerX/2) - (img.size.width/4)),((centerY/2) - (img.size.height/4)), img.size.width/2, img.size.height/2);
+        layer.frame = CGRectMake(((centerX/2) - (img.size.width/4)),((centerY/2) - (img.size.height/4)), img.size.width/2.8, img.size.height/2.8);
     }else{
         layer.frame = CGRectMake(((centerX/numOfTouchPts) - (img.size.width/4)),((centerY/numOfTouchPts) - (img.size.height/4)), img.size.width/2, img.size.height/2);
         
@@ -706,7 +709,7 @@ int countShapeSound;
     int64_t delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        int64_t d = 2.0;
+        int64_t d = 1.0;
         dispatch_time_t p = dispatch_time(DISPATCH_TIME_NOW, d * NSEC_PER_SEC);
         dispatch_after(p, dispatch_get_main_queue(), ^(void){
             [layer removeFromSuperlayer];
@@ -727,13 +730,16 @@ int countShapeSound;
             
             NSString *objName = shapeImage;
             DebugLog(@"Object Name : %@", objName);
-            double delayInSeconds = 0.2;
+            
+            [continuityTimer invalidate];
+            continuityTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(playGreetingSoundForObject:) userInfo:objName repeats:NO];
+
+         
+            double delayInSeconds = 5.0;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [[TDSoundManager sharedManager] playSound:[winterSceneObject getAnimalNameSoundForObject:objName] withFormat:@"mp3"];
-                
+                isGreetingSoundPlaying = NO;
             });
-            
             
             for(FruitView *f in fruitObjectArray){
                 [self.mainView bringSubviewToFront:f];
@@ -761,11 +767,20 @@ int countShapeSound;
     
 }
 //================================================================================================================
--(void)deleteObject
-{
+-(void) playGreetingSoundForObject:(NSTimer *) timer {
+    DebugLog(@"");
+    NSString *str = (NSString *)[timer userInfo];
+    [[TDSoundManager sharedManager] playSound:[winterSceneObject getAnimalNameSoundForObject:str] withFormat:@"mp3"];
+    isGreetingSoundPlaying = YES;
+    
+    double delayInSeconds = 5.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        isGreetingSoundPlaying = NO;
+    });
     
 }
-//================================================================================================================
+
 /*
  This method is called when user is idle for more than 3 seconds.
  */
@@ -835,15 +850,15 @@ int countShapeSound;
             double delayInSeconds = 0.7;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [[TDSoundManager sharedManager] playSound:shape withFormat:@"mp3"];
+//                [[TDSoundManager sharedManager] playSound:shape withFormat:@"mp3"];
             });
         }
-        int64_t delayInSecondsTodetect = 1.0f;
-        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
-        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
-            
+//        int64_t delayInSecondsTodetect = 1.0f;
+//        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
+//        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
+//            
             shouldShapeDetected = YES;
-        });
+//        });
 
     }else{
         
@@ -996,7 +1011,7 @@ int countShapeSound;
         
     }
 
-    if(fruit.isFruitMovedSufficiently){
+    if(fruit.isFruitMovedSufficiently && !isGreetingSoundPlaying){
         NSString *sound = [winterSceneObject getAnimalDropSoundForObject:fruit.objectName];
         [[TDSoundManager sharedManager] playSound:sound withFormat:@"mp3"];
     }
@@ -1777,6 +1792,6 @@ int countShapeSound;
     
 }
 -(void) playSoundForShape{
-    [[TDSoundManager sharedManager] playSound:shapeSoundToPlay withFormat:@"mp3"];
+//    [[TDSoundManager sharedManager] playSound:shapeSoundToPlay withFormat:@"mp3"];
 }
 @end

@@ -39,7 +39,8 @@
     BOOL isBtnViewHidden;
     
     CGPoint fruitInitialPoint;
-    BOOL isFruitMoved;
+    BOOL isGreetingPlaying;
+    NSTimer *continuityTimer;
     
 }
 @property(nonatomic,strong) ScreenCaptureView *screenCapture;

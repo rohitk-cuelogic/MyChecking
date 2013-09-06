@@ -103,16 +103,14 @@ int val;
             player2 = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
             player2.numberOfLoops = 0;
             player2.volume = 1.0;
-        #ifdef DISABLE_SOUND
-            
-        #else
+
             if ([[[NSUserDefaults standardUserDefaults] valueForKey:MUSIC] isEqualToString:@"yes"]) {
                 if(player2.isPlaying)
                     [player2 stop];
                 
                 [player2 play];
             }
-        #endif
+        
     }
 }
 

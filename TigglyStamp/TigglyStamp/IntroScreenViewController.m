@@ -95,13 +95,13 @@
     
 
     
-    arrLanguage = [[NSMutableArray alloc] initWithObjects:@"English",@"Spanish",@"Italian",@"Portuguese",@"Russian",@"French",@"German", nil];
+    arrLanguage = [[NSMutableArray alloc] initWithObjects:@"English US",@"English UK",@"Portuguese",@"Russian",@"Spanish", nil];
     
     tblView.layer.cornerRadius = 30;
     tblView.layer.masksToBounds = YES;
     
     
-    NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:LANGUAGE_SELECTED];
+    NSString *str = [[TigglyStampUtils sharedInstance] getCurrentLanguage]; //[[NSUserDefaults standardUserDefaults] objectForKey:LANGUAGE_SELECTED];
     lblLunguage.text = str;
     int count=0;
     for(int i=0; i< arrLanguage.count;i++){
@@ -122,8 +122,9 @@
             bkgImageViewlang.alpha = 1.0;
             bkgImageView.alpha = 1.0;
             
-             [[NSUserDefaults standardUserDefaults] setValue:@"English" forKey:LANGUAGE_SELECTED];
-            lblLunguage.text = @"English";
+//             [[NSUserDefaults standardUserDefaults] setValue:@"English US" forKey:LANGUAGE_SELECTED];
+            [[TigglyStampUtils sharedInstance] setCurrentLanguage:@"English US"];
+            lblLunguage.text = @"English US";
             [self displayLanguageSelectionView];
             [btnWithoutShape setHidden:false];
             [btnWithShape setHidden:false];
@@ -189,7 +190,8 @@
             self.gameTypeView.frame = CGRectMake(0, 0, 1024, 768);
         } completion:^(BOOL finished) {
             isLanguageScreenDisplayed = NO;
-            [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
+//            [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
+             [[TigglyStampUtils sharedInstance] setCurrentLanguage:lblLunguage.text];
             [self.languageView removeFromSuperview];
         }];
     }
@@ -240,6 +242,11 @@
         isLanguageScreenDisplayed = NO;
          [self.languageView removeFromSuperview];
         [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
+         [[TigglyStampUtils sharedInstance] setCurrentLanguage:lblLunguage.text];
+//        [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
+       
+    }];
+
         
         [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
        
@@ -311,8 +318,9 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     lblLunguage.text = [self.arrLanguage objectAtIndex:row];
-    [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
-    if ([lblLunguage.text isEqualToString:@"English"]) {
+//    [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
+      [[TigglyStampUtils sharedInstance] setCurrentLanguage:lblLunguage.text];
+    if ([lblLunguage.text isEqualToString:@"English US"]) {
         lblLunguageTest.text=[self languageSelectedStringForKey:@"Welcome to Advance Localization" withSelectedLanguage:[self.arrLanguage objectAtIndex:row]];
     }else if ([lblLunguage.text isEqualToString:@"French"]){
         lblLunguageTest.text=[self languageSelectedStringForKey:@"Welcome to Advance Localization" withSelectedLanguage:[self.arrLanguage objectAtIndex:row]];
@@ -325,7 +333,7 @@
 -(NSString*) languageSelectedStringForKey:(NSString*) key withSelectedLanguage:(NSString*)selectedLanguage
 {
 	NSString *path;
-	if([selectedLanguage isEqualToString:@"English"])
+	if([selectedLanguage isEqualToString:@"English US"])
 		path = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"];
 	else if([selectedLanguage isEqualToString:@"Italian"])
 		path = [[NSBundle mainBundle] pathForResource:@"zh" ofType:@"lproj"];

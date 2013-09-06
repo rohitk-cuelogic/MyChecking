@@ -196,7 +196,7 @@ NSTimer *shapeSoundTimer;
     doubleFingerTapOnGarbage.numberOfTapsRequired = 2;
     [self.garbageCan addGestureRecognizer:doubleFingerTapOnGarbage];
     
-    [[TDSoundManager sharedManager] playMusic:@"Tiggly_SFX_BACKGROUND_AUTUMN" withFormat:@"mp3"];
+//    [[TDSoundManager sharedManager] playMusic:@"Tiggly_SFX_BACKGROUND_AUTUMN" withFormat:@"mp3"];
    
 }
 
@@ -803,6 +803,11 @@ NSTimer *shapeSoundTimer;
 
 -(void) playGreetingSoundForObject:(NSTimer *) timer {
     DebugLog(@"");
+    
+    if (isRecording) {
+        return;
+    }
+    
     NSString *str = (NSString *)[timer userInfo];
     [[TDSoundManager sharedManager] playSound:[fallSceneObject getAnimalNameSoundForObject:str] withFormat:@"mp3"];
     isGreetingPlaying = YES;
@@ -997,8 +1002,10 @@ NSTimer *shapeSoundTimer;
         DebugLog(@"Frame is %@",NSStringFromCGRect(fruit.frame));
         dispatch_time_t playAudioIn = dispatch_time(DISPATCH_TIME_NOW, 0.05 * NSEC_PER_SEC);
         dispatch_after(playAudioIn, dispatch_get_main_queue(), ^(void){
-
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_DELETE_01" withFormat:@"mp3"];
+            if (!isRecording) {
+                 [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_DELETE_01" withFormat:@"mp3"];
+            }
+           
             
         });
         fruit.userInteractionEnabled = NO;
@@ -1025,7 +1032,7 @@ NSTimer *shapeSoundTimer;
     }
     
     
-    if(fruit.isFruitMovedSufficiently && !isGreetingPlaying){
+    if(fruit.isFruitMovedSufficiently && !isGreetingPlaying && !isRecording){
         NSString *sound = [fallSceneObject getAnimalDropSoundForObject:fruit.objectName];
         [[TDSoundManager sharedManager] playSound:sound withFormat:@"mp3"];
     }
@@ -1651,74 +1658,95 @@ NSTimer *shapeSoundTimer;
 
 
 -(void) playTellUsStorySound{
-    int ranNo = arc4random() % 15;
     float timeToPlayGettingReadySound = 0.0f;
     
-    switch (ranNo) {
-        case 0:
-            timeToPlayGettingReadySound = 1.70f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_01" withFormat:@"mp3"];
-            break;
-        case 1:
-            timeToPlayGettingReadySound = 1.65f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_HaveYouGotAStoryForMe_01" withFormat:@"mp3"];
-            break;
-        case 2:
-            timeToPlayGettingReadySound = 1.67f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_HaveYouGotAStoryToTell_01" withFormat:@"mp3"];
-            break;
-        case 3:
-            timeToPlayGettingReadySound = 2.30f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_IBetYouGotAGreatStory_01" withFormat:@"mp3"];
-            break;
-        case 4:
-            timeToPlayGettingReadySound = 2.12f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_IBetYouveGotAStoryToTell_01" withFormat:@"mp3"];
-            break;
-        case 5:
-            timeToPlayGettingReadySound = 1.46f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_MakeUp_02" withFormat:@"mp3"];
-            break;
-        case 6:
-            timeToPlayGettingReadySound = 1.56f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_Me_01" withFormat:@"mp3"];
-            break;
-        case 7:
-            timeToPlayGettingReadySound = 1.57f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_Me_02" withFormat:@"mp3"];
-            break;
-        case 8:
-            timeToPlayGettingReadySound = 1.54f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_MeYour_01" withFormat:@"mp3"];
-            break;
-        case 9:
-            timeToPlayGettingReadySound = 1.46f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_MeYour_02" withFormat:@"mp3"];
-            break;
-        case 10:
-            timeToPlayGettingReadySound = 1.99f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_NowMakeUp_01" withFormat:@"mp3"];
-            break;
-        case 11:
-            timeToPlayGettingReadySound = 1.80f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_NowMakeUp_02" withFormat:@"mp3"];
-            break;
-        case 12:
-            timeToPlayGettingReadySound = 1.78f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_NowMakeUp_03" withFormat:@"mp3"];
-            break;
-        case 13:
-            timeToPlayGettingReadySound = 1.88f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_NowMakeUpYour_01" withFormat:@"mp3"];
-            break;
-        case 14:
-            timeToPlayGettingReadySound = 1.38f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_Your_01" withFormat:@"mp3"];
-            break;
-            
-        default:
-            break;
+    
+    if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        
+        int ranNo = arc4random() % 15;
+        
+        
+        switch (ranNo) {
+            case 0:
+                timeToPlayGettingReadySound = 1.70f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_01" withFormat:@"mp3"];
+                break;
+            case 1:
+                timeToPlayGettingReadySound = 1.65f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_HaveYouGotAStoryForMe_01" withFormat:@"mp3"];
+                break;
+            case 2:
+                timeToPlayGettingReadySound = 1.67f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_HaveYouGotAStoryToTell_01" withFormat:@"mp3"];
+                break;
+            case 3:
+                timeToPlayGettingReadySound = 2.30f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_IBetYouGotAGreatStory_01" withFormat:@"mp3"];
+                break;
+            case 4:
+                timeToPlayGettingReadySound = 2.12f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_IBetYouveGotAStoryToTell_01" withFormat:@"mp3"];
+                break;
+            case 5:
+                timeToPlayGettingReadySound = 1.46f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_MakeUp_02" withFormat:@"mp3"];
+                break;
+            case 6:
+                timeToPlayGettingReadySound = 1.56f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_Me_01" withFormat:@"mp3"];
+                break;
+            case 7:
+                timeToPlayGettingReadySound = 1.57f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_Me_02" withFormat:@"mp3"];
+                break;
+            case 8:
+                timeToPlayGettingReadySound = 1.54f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_MeYour_01" withFormat:@"mp3"];
+                break;
+            case 9:
+                timeToPlayGettingReadySound = 1.46f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_MeYour_02" withFormat:@"mp3"];
+                break;
+            case 10:
+                timeToPlayGettingReadySound = 1.99f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_NowMakeUp_01" withFormat:@"mp3"];
+                break;
+            case 11:
+                timeToPlayGettingReadySound = 1.80f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_NowMakeUp_02" withFormat:@"mp3"];
+                break;
+            case 12:
+                timeToPlayGettingReadySound = 1.78f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_NowMakeUp_03" withFormat:@"mp3"];
+                break;
+            case 13:
+                timeToPlayGettingReadySound = 1.88f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_NowMakeUpYour_01" withFormat:@"mp3"];
+                break;
+            case 14:
+                timeToPlayGettingReadySound = 1.38f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_Your_01" withFormat:@"mp3"];
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
+        timeToPlayGettingReadySound = 1.42f;
+        [[TDSoundManager sharedManager] playSound:@"Tell_us_a_story!_breng" withFormat:@"mp3"];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Portuguese"]){
+        timeToPlayGettingReadySound = 1.61f;
+        [[TDSoundManager sharedManager] playSound:@"Tell_us_a_story!_prtgs" withFormat:@"mp3"];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
+        timeToPlayGettingReadySound = 1.46f;
+        [[TDSoundManager sharedManager] playSound:@"Tell_us_a_story!_ru" withFormat:@"mp3"];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Spanish"]){
+        timeToPlayGettingReadySound = 1.51f;
+        [[TDSoundManager sharedManager] playSound:@"Tell us a story!_sp" withFormat:@"mp3"];
     }
+    
     
     
     // schedule playGettingReadyTotellStorySound method after timeToPlayGettingReadySound sec
@@ -1727,43 +1755,64 @@ NSTimer *shapeSoundTimer;
 }
 
 -(void) playGettingReadyTotellStorySound{
-    int ranNo = arc4random() % 6;
     float timeToStartVideoRecording = 0.0f;
-    
-    switch (ranNo) {
-        case 0:
-            timeToStartVideoRecording = 4.30f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_321GO_01" withFormat:@"mp3"];
-            break;
-        case 1:
-            timeToStartVideoRecording = 5.88f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_321GO_02" withFormat:@"mp3"];
-            break;
-        case 2:
-            timeToStartVideoRecording = 4.41f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_321GO_OnYourMarkGetSet_01" withFormat:@"mp3"];
-            break;
-        case 3:
-            timeToStartVideoRecording = 4.41f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_321GO_ReadySet_01" withFormat:@"mp3"];
-            break;
-        case 4:
-            timeToStartVideoRecording = 2.87f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_OneTwoThree_01" withFormat:@"mp3"];
-            break;
-        case 5:
-            timeToStartVideoRecording = 3.06f;
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_Your_01" withFormat:@"mp3"];
-            break;
-            
-            
-        default:
-            break;
+    if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        
+        int ranNo = arc4random() % 6;
+        
+        
+        switch (ranNo) {
+            case 0:
+                timeToStartVideoRecording = 4.30f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_321GO_01" withFormat:@"mp3"];
+                break;
+            case 1:
+                timeToStartVideoRecording = 5.88f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_321GO_02" withFormat:@"mp3"];
+                break;
+            case 2:
+                timeToStartVideoRecording = 4.41f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_321GO_OnYourMarkGetSet_01" withFormat:@"mp3"];
+                break;
+            case 3:
+                timeToStartVideoRecording = 4.41f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_321GO_ReadySet_01" withFormat:@"mp3"];
+                break;
+            case 4:
+                timeToStartVideoRecording = 2.87f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_OneTwoThree_01" withFormat:@"mp3"];
+                break;
+            case 5:
+                timeToStartVideoRecording = 3.06f;
+                [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TellUsAStory_Your_01" withFormat:@"mp3"];
+                break;
+                
+                
+            default:
+                break;
+        }
+        
+        
+        
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
+        timeToStartVideoRecording = 4.18f;
+        [[TDSoundManager sharedManager] playSound:@"321GO!_breng" withFormat:@"mp3"];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Portuguese"]){
+        timeToStartVideoRecording = 2.26f;
+        [[TDSoundManager sharedManager] playSound:@"321GO!_prtgs" withFormat:@"mp3"];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
+        timeToStartVideoRecording = 3.94f;
+        [[TDSoundManager sharedManager] playSound:@"321GO!_ru" withFormat:@"mp3"];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Spanish"]){
+        timeToStartVideoRecording = 2.47f;
+        [[TDSoundManager sharedManager] playSound:@"321GO!_sp" withFormat:@"mp3"];
     }
     
     
-    [NSTimer scheduledTimerWithTimeInterval:timeToStartVideoRecording target:self selector:@selector(startScreenRecording) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:timeToStartVideoRecording + 0.2f target:self selector:@selector(startScreenRecording) userInfo:nil repeats:NO];
 }
+
+
 
 -(void) playShapeinstructionSounds{
     int ranNo = arc4random() % 5;
@@ -1817,6 +1866,9 @@ NSTimer *shapeSoundTimer;
 
 -(void) playShapeDetectedSound{
     DebugLog(@"");
+    if (isRecording) {
+        return;
+    }
     NSString *soundName = [NSString stringWithFormat:@"CakeCandle%d",countShapeSound];
     [[TDSoundManager sharedManager] playSound:soundName withFormat:@"mp3"];
     

@@ -35,11 +35,11 @@
     [super viewDidLoad];
     arrLanguage = NULL;
     isShapePopView = NO;
-    NSString *lung = [[NSUserDefaults standardUserDefaults] valueForKey:LANGUAGE_SELECTED];
+    NSString *lung =   [[TigglyStampUtils sharedInstance] getCurrentLanguage];//[[NSUserDefaults standardUserDefaults] valueForKey:LANGUAGE_SELECTED];
     if (lung.length==0) {
-        lblLunguage.text = @"English";
+        lblLunguage.text = @"English US";
     }else{
-        lblLunguage.text = [[NSUserDefaults standardUserDefaults] valueForKey:LANGUAGE_SELECTED];
+        lblLunguage.text =  [[TigglyStampUtils sharedInstance] getCurrentLanguage];//[[NSUserDefaults standardUserDefaults] valueForKey:LANGUAGE_SELECTED];
     }
 //    ShapeType stype =   [[TigglyStampUtils sharedInstance]getCurrentSahpeForStoringKeys];
 //    if (stype== kShapeTypeCircle) {
@@ -237,7 +237,7 @@
     }
     isShapePopView = NO;
 
-    arrLanguage = [[NSMutableArray alloc] initWithObjects:@"English",@"Spanish",@"Italian",@"Portuguese",@"Russian",@"French",@"German", nil];
+    arrLanguage =[[NSMutableArray alloc] initWithObjects:@"English US",@"English UK",@"Portuguese",@"Russian",@"Spanish", nil];
     [self popOverUIPicker:sender];
     
 }
@@ -334,8 +334,9 @@
     }else {
         
         lblLunguage.text = [self.arrLanguage objectAtIndex:row];
-        [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
-        if ([lblLunguage.text isEqualToString:@"English"]) {
+//        [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
+        [[TigglyStampUtils sharedInstance] setCurrentLanguage:lblLunguage.text];
+        if ([lblLunguage.text isEqualToString:@"English US"]) {
             lblLunguageTest.text=[self languageSelectedStringForKey:@"Welcome to Advance Localization" withSelectedLanguage:[self.arrLanguage objectAtIndex:row]];
         }else if ([lblLunguage.text isEqualToString:@"French"]){
             lblLunguageTest.text=[self languageSelectedStringForKey:@"Welcome to Advance Localization" withSelectedLanguage:[self.arrLanguage objectAtIndex:row]];
@@ -352,7 +353,7 @@
 -(NSString*) languageSelectedStringForKey:(NSString*) key withSelectedLanguage:(NSString*)selectedLanguage
 {
 	NSString *path;
-	if([selectedLanguage isEqualToString:@"English"])
+	if([selectedLanguage isEqualToString:@"English US"])
 		path = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"];
 	else if([selectedLanguage isEqualToString:@"Italian"])
 		path = [[NSBundle mainBundle] pathForResource:@"zh" ofType:@"lproj"];

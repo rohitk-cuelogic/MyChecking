@@ -425,11 +425,11 @@ static TigglyStampUtils *sharedInstance = nil;
 
 -(void)setCurrentLanguage:(NSString *)lang{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:lang forKey:KEY_CURRENT_LANGUAGE];
+    [userDefaults setValue:lang forKey:KEY_CURRENT_LANGUAGE];
 }
 -(NSString *)getCurrentLanguage{
      NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *lang = [userDefaults objectForKey:KEY_CURRENT_LANGUAGE];
+    NSString *lang = [userDefaults valueForKey:KEY_CURRENT_LANGUAGE];
     return lang;
 }
 

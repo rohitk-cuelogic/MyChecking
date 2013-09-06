@@ -16,6 +16,8 @@
 #define KEY_IS_SEND_MAIL @"keyissendmail"
 #define KEY_SHAPE_STORE_KEY @"keyshapestore"
 #define KEY_FIRST_TIME_LAUNCH @"firsttimelaunch"
+#define KEY_CURRENT_LANGUAGE @"currentlang"
+
 
 @implementation TigglyStampUtils
 static TigglyStampUtils *sharedInstance = nil;
@@ -422,10 +424,13 @@ static TigglyStampUtils *sharedInstance = nil;
 }
 
 -(void)setCurrentLanguage:(NSString *)lang{
-    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:lang forKey:KEY_CURRENT_LANGUAGE];
 }
 -(NSString *)getCurrentLanguage{
-    
+     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *lang = [userDefaults objectForKey:KEY_CURRENT_LANGUAGE];
+    return lang;
 }
 
 - (void) saveCSVFileData {

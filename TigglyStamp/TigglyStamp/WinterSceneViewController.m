@@ -88,15 +88,7 @@ UIImageView *tempImgView;
 - (void) addCurlAnimation
 {
     DebugLog(@"");
-    CATransition *animation = [CATransition animation];
-    [animation setDuration:HUGE_VAL];
-    animation.type = @"pageUnCurl";
-    animation.subtype = kCATransitionFromRight;
-    animation.fillMode = kCAFillModeBackwards;
-    animation.startProgress = 0.80;
-    [animation setRemovedOnCompletion:NO];
-//    [[[self view] layer] addAnimation:animation forKey:@"pageUnCurl"];
-    
+
     //to add flipped page eefect at corner
     CGRect r = self.viewForCurl.frame;
     
@@ -155,6 +147,9 @@ UIImageView *tempImgView;
 
     [touchView configure];
     [touchView.layer setZPosition:1];
+    
+    [self.view bringSubviewToFront:self.mainView];
+    
 //    UITouchShapeRecognizer* squareRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"squareData"];
 //    [squareRecognizer setLabel:@"square"];    
 //    UITouchShapeRecognizer* square2Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"square2Data"];
@@ -237,6 +232,8 @@ UIImageView *tempImgView;
     doubleFingerTapOnGarbage.numberOfTapsRequired = 2;
     [self.garbageCan addGestureRecognizer:doubleFingerTapOnGarbage];
 
+    
+    
 //  [[TDSoundManager sharedManager] playMusic:@"Tiggly_SFX_BACKGROUND_WINTER" withFormat:@"mp3"];
     
 }
@@ -357,7 +354,10 @@ UIImageView *tempImgView;
     
     [self addCurlAnimation];
 
+
     [self.view bringSubviewToFront:self.mainView];
+
+    self.mainView.userInteractionEnabled = YES;
 }
 
 -(void)buildShape:(NSString *)shape{
@@ -799,9 +799,9 @@ UIImageView *tempImgView;
 -(void) playGreetingSoundForObject:(NSTimer *) timer {
     DebugLog(@"");
     
-    if (isRecording) {
-        return;
-    }
+//    if (isRecording) {
+//        return;
+//    }
     
     NSString *str = (NSString *)[timer userInfo];
     [[TDSoundManager sharedManager] playSound:[winterSceneObject getAnimalNameSoundForObject:str] withFormat:@"mp3"];
@@ -1020,9 +1020,9 @@ UIImageView *tempImgView;
         DebugLog(@"Frame is %@",NSStringFromCGRect(fruit.frame));
         dispatch_time_t playAudioIn = dispatch_time(DISPATCH_TIME_NOW, 0.05* NSEC_PER_SEC);
         dispatch_after(playAudioIn, dispatch_get_main_queue(), ^(void){
-            if (!isRecording){
+           // if (!isRecording){
                  [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_DELETE_01" withFormat:@"mp3"];
-            }
+           // }
         });
         fruit.userInteractionEnabled = NO;
         CABasicAnimation *animation4a = nil;
@@ -1047,7 +1047,7 @@ UIImageView *tempImgView;
         
     }
 
-    if(fruit.isFruitMovedSufficiently && !isGreetingSoundPlaying && !isRecording){
+    if(fruit.isFruitMovedSufficiently && !isGreetingSoundPlaying){// && !isRecording
         NSString *sound = [winterSceneObject getAnimalDropSoundForObject:fruit.objectName];
         [[TDSoundManager sharedManager] playSound:sound withFormat:@"mp3"];
     }
@@ -1227,6 +1227,8 @@ UIImageView *tempImgView;
     if ([btn tag] == TAG_CURL_BTN) {
         self.mainView.userInteractionEnabled = NO;
         [[[self view] layer] removeAllAnimations];
+        [self hideVideoCameraButtons];
+        homeButton.hidden = YES;
         
         UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
         [[UIColor whiteColor] set];
@@ -1924,9 +1926,9 @@ UIImageView *tempImgView;
 
 -(void) playShapeDetectedSound{
     
-    if (isRecording) {
-        return;
-    }
+//    if (isRecording) {
+//        return;
+//    }
     
     NSString *soundName = [NSString stringWithFormat:@"CakeCandle%d",countShapeSound];
     [[TDSoundManager sharedManager] playSound:soundName withFormat:@"mp3"];

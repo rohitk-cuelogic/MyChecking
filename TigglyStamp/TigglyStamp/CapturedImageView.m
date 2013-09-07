@@ -121,7 +121,7 @@
     UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     imageView = [[UIImageView alloc] initWithImage:thumbnailImage];
-    imageView.frame = CGRectMake(0, 0, 700, 430);
+    imageView.frame = CGRectMake(0, 0, 700, 525);
     imageView.center = CGPointMake(512, 1000);
     [self addSubview:imageView];
     

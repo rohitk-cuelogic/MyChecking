@@ -215,15 +215,7 @@ UIImageView *tempImgView;
     }else{
         [self playFingerInstructionSound];
     }
-    
-    [self addCurlAnimation];
-//    CGRect r = self.imageView.frame;
-//    self.curlView = [[XBCurlView alloc] initWithFrame:r];
-//    self.curlView.opaque = NO;
-//    self.curlView.pageOpaque = YES;
-//    self.curlView.cylinderPosition = CGPointMake(self.mainView.bounds.size.width, self.mainView.bounds.size.height);
-//    [self.curlView curlView:self.mainView cylinderPosition:CGPointMake(800,600) cylinderAngle:3*M_PI_4 cylinderRadius:UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad? 100: 70 animatedWithDuration:0.6];
-    
+
 }
 
 - (void) addCurlAnimation {
@@ -231,15 +223,6 @@ UIImageView *tempImgView;
     
     DebugLog(@"ViewFrame : %@",NSStringFromCGRect(self.view.frame));
     
-    CATransition *animation = [CATransition animation];
-    [animation setDuration:HUGE_VAL];
-    animation.type = @"pageUnCurl";
-    animation.subtype = kCATransitionFromRight;
-    animation.fillMode = kCAFillModeBackwards;
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    animation.startProgress = 0.80;
-    [animation setRemovedOnCompletion:NO];
-//    [[[self view] layer] addAnimation:animation forKey:@"pageUnCurl"];
     
     //to add flipped page eefect at corner
     CGRect r = self.viewForCurl.frame;
@@ -707,7 +690,7 @@ UIImageView *tempImgView;
     UIColor *color = [[TigglyStampUtils sharedInstance]getRGBValueForShape:shapeImage withBasicShape:shape];
     UIImage *img= [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",shape]];
     if([shape isEqualToString:@"square"]){
-        layer.frame = CGRectMake(((centerX/2) - (img.size.width/4)),((centerY/2) - (img.size.height/4)), img.size.width/2.8, img.size.height/2.8);
+        layer.frame = CGRectMake(((centerX/2) - (img.size.width/4)),((centerY/2) - (img.size.height/4)), img.size.width/2.5, img.size.height/2.5);
     }else{
         layer.frame = CGRectMake(((centerX/numOfTouchPts) - (img.size.width/4)),((centerY/numOfTouchPts) - (img.size.height/4)), img.size.width/2, img.size.height/2);
         
@@ -1316,6 +1299,8 @@ UIImageView *tempImgView;
     if ([btn tag] == TAG_CURL_BTN) {
         self.mainView.userInteractionEnabled = NO;
         [[[self view] layer] removeAllAnimations];
+        [self hideVideoCameraButtons];
+        homeButton.hidden = YES;
         
         UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
         [[UIColor whiteColor] set];

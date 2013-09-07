@@ -647,6 +647,7 @@
 		C074892817A947CD001943E0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C074892717A947CD001943E0 /* CoreVideo.framework */; };
 		C074892A17A952C0001943E0 /* play_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = C074892917A952C0001943E0 /* play_btn.png */; };
 		C074892C17A95817001943E0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C074892B17A95817001943E0 /* MediaPlayer.framework */; };
+		C0760FA417DA031200D5E93D /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0760FA317DA031200D5E93D /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 */; };
 		C08291A717A793640023F08A /* lock@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08291A417A793640023F08A /* lock@2x~ipad.png */; };
 		C08291A817A793640023F08A /* recording@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08291A517A793640023F08A /* recording@2x~ipad.png */; };
 		C08291A917A793640023F08A /* tick@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08291A617A793640023F08A /* tick@2x~ipad.png */; };
@@ -1533,6 +1534,7 @@
 		C074892717A947CD001943E0 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		C074892917A952C0001943E0 /* play_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_btn.png; sourceTree = "<group>"; };
 		C074892B17A95817001943E0 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		C0760FA317DA031200D5E93D /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_DragNDrop_DRAG_04.mp3; sourceTree = "<group>"; };
 		C08291A417A793640023F08A /* lock@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock@2x~ipad.png"; sourceTree = "<group>"; };
 		C08291A517A793640023F08A /* recording@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recording@2x~ipad.png"; sourceTree = "<group>"; };
 		C08291A617A793640023F08A /* tick@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick@2x~ipad.png"; sourceTree = "<group>"; };
@@ -2983,6 +2985,7 @@
 				C060B42517CDFA61000AD202 /* Tiggly_SFX_PAGETURN.mp3 */,
 				EBF797A217BE0317003C7888 /* camera_click.mp3 */,
 				EBFCF29117942329003C82CC /* trashsweep.mp3 */,
+				C0760FA317DA031200D5E93D /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 */,
 			);
 			path = tiggly_stamp_audio;
 			sourceTree = "<group>";
@@ -3830,6 +3833,7 @@
 				6304DE4D17D9A6F00075DE97 /* Winter_sp.mp3 in Resources */,
 				6304DE4E17D9A6F00075DE97 /* Zebra_sp.mp3 in Resources */,
 				C0F20DD217D9D09900340C20 /* rooster_Animal.mp3 in Resources */,
+				C0760FA417DA031200D5E93D /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3936,8 +3940,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "DB4E14AA-3C41-4742-BBBD-54777F256FAE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB4E14AA-3C41-4742-BBBD-54777F256FAE";
+				PROVISIONING_PROFILE = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -3961,8 +3965,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "42B70FC8-8FC6-45B7-BB45-EE048F3C157E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "42B70FC8-8FC6-45B7-BB45-EE048F3C157E";
+				PROVISIONING_PROFILE = "0AB02773-5230-4CB5-8961-338D5C6340D1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0AB02773-5230-4CB5-8961-338D5C6340D1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -3986,8 +3990,8 @@
 				INFOPLIST_FILE = "TigglyStamp/TigglyStamp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "DB4E14AA-3C41-4742-BBBD-54777F256FAE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB4E14AA-3C41-4742-BBBD-54777F256FAE";
+				PROVISIONING_PROFILE = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -4009,8 +4013,8 @@
 				INFOPLIST_FILE = "TigglyStamp/TigglyStamp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "42B70FC8-8FC6-45B7-BB45-EE048F3C157E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "42B70FC8-8FC6-45B7-BB45-EE048F3C157E";
+				PROVISIONING_PROFILE = "0AB02773-5230-4CB5-8961-338D5C6340D1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0AB02773-5230-4CB5-8961-338D5C6340D1";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -106,12 +106,12 @@
             [busyView stopAnimating];
             busyView.hidden = YES;
             
-            [self playSlidingSounds];
+//            [self playSlidingSounds];
         }
 }
 
 -(void) playSlidingSounds{
-    
+    DebugLog(@"");
     int ranNo = arc4random() % 3;
     
     switch (ranNo) {

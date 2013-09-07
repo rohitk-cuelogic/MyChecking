@@ -22,4 +22,5 @@
 -(void)stopSound;
 -(void)doVolumeFadeIn;
 -(void)doVolumeFadeOut;
+-(float)getSoundDuration;
 @end

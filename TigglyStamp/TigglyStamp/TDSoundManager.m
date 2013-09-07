@@ -104,8 +104,9 @@ int val;
             NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
             player2 = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
             player2.numberOfLoops = 0;
+    
         if ([name isEqualToString:@"rooster_Animal"]) {
-            player2.volume = 0.7;
+            player2.volume = 0.4;
         }else{
             player2.volume = 1.0;
         }
@@ -119,6 +120,10 @@ int val;
             }
         
     }
+}
+
+-(float)getSoundDuration {
+    return player2.duration;
 }
 
 -(void)stopMusic{

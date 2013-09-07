@@ -807,7 +807,7 @@ UIImageView *tempImgView;
     [[TDSoundManager sharedManager] playSound:[winterSceneObject getAnimalNameSoundForObject:str] withFormat:@"mp3"];
     
     
-    double delayInSeconds = 3.5;
+    double delayInSeconds = [[TDSoundManager sharedManager] getSoundDuration] + 0.3;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         isGreetingSoundPlaying = NO;
@@ -1589,16 +1589,17 @@ UIImageView *tempImgView;
     NSURL *url = screenCapture.exportUrl;
    // [self playRandomPraiseSound];
     
-//    double delayInSeconds = 1.5;
-//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//        [self playSlidingSounds];
-//    });
+    double delayInSeconds = 1.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self playSlidingSounds];
+    });
     
     UIImage *thumbnail = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[url lastPathComponent]];
     ccImageView.imageView.image = thumbnail;
     [activityIndicator removeFromSuperview];
     ccImageView.btnPlay.hidden = NO;
+    [self playSlidingSounds];
 
 
 }

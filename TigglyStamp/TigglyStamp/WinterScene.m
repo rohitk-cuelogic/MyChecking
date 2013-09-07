@@ -604,22 +604,22 @@ int currentObject;
             int ranNo = random()%2;
             
             if(ranNo == 0){
-                soundFile = @"Tiggly_Word_Cupcake_01";
+                soundFile = @"Tiggly_Word_HotChocolate_01";
             }else if (ranNo == 1) {
-                soundFile = @"Tiggly_Word_Cupcake_Mmm_01";
+                soundFile = @"Tiggly_Word_HotChocolate_Mmm_01";
             }
             
             
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
-            soundFile = @"cupcake_breng";
+            soundFile = @"hot_chocolate_breng";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Portuguese"]){
-            soundFile = @"cupcake_prtgs";
+            soundFile = @"hot_chocolate_prtgs";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
-            soundFile = @"hot cupcake_ru";
+            soundFile = @"hot chocolate_ru";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Spanish"]){
-            soundFile = @"hot cupcake_sp";
+            soundFile = @"hot chocolate_sp";
         }
-
+        
       
         
     }else if([winterObject isEqualToString:@"lightbulb"] ) {
@@ -750,26 +750,29 @@ int currentObject;
         
     }else if([winterObject isEqualToString:@"choclate"] ) {
         
+
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
             int ranNo = random()%2;
             
             if(ranNo == 0){
-                soundFile = @"Tiggly_Word_HotChocolate_01";
+                soundFile = @"Tiggly_Word_Cupcake_01";
             }else if (ranNo == 1) {
-                soundFile = @"Tiggly_Word_HotChocolate_Mmm_01";
+                soundFile = @"Tiggly_Word_Cupcake_Mmm_01";
             }
             
             
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
-            soundFile = @"hot_chocolate_breng";
+            soundFile = @"cupcake_breng";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Portuguese"]){
-            soundFile = @"hot_chocolate_prtgs";
+            soundFile = @"cupcake_prtgs";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
-            soundFile = @"hot chocolate_ru";
+            soundFile = @"hot cupcake_ru";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Spanish"]){
-            soundFile = @"hot chocolate_sp";
+            soundFile = @"hot cupcake_sp";
         }
+        
+        
         
         
         

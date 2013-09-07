@@ -53,14 +53,16 @@
         [closeBtn setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
         [closeBtn setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateSelected];
         [closeBtn addTarget:self action:@selector(actionClose)forControlEvents:UIControlEventTouchUpInside];
-        closeBtn.frame = CGRectMake(imgView.frame.size.width - 22,0,44, 44);
-        [self addSubview:closeBtn];
+        closeBtn.frame = CGRectMake(imgView.frame.size.width - 25,0,50, 50);
         closeBtn.hidden =YES;
-        
+        [self addSubview:closeBtn];
+        closeBtn.userInteractionEnabled = YES;
+        [imgView bringSubviewToFront:closeBtn];
+        [self bringSubviewToFront:closeBtn];
         
         [self setUserInteractionEnabled:YES];
         
-        UITapGestureRecognizer *mTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped)];
+        mTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped)];
         [self addGestureRecognizer:mTapGesture];
         
         UILongPressGestureRecognizer *gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
@@ -126,7 +128,12 @@
 
 - (void) startAnimation {
    DebugLog(@"");
+    [self removeGestureRecognizer:mTapGesture];
     closeBtn.hidden = NO;
+    closeBtn.userInteractionEnabled = YES;
+    [imgView bringSubviewToFront:closeBtn];
+    [self bringSubviewToFront:closeBtn];
+
     self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(-3));
     [UIView animateWithDuration:0.5
                           delay:0.0
@@ -141,6 +148,7 @@
 - (void) stopAnimation {
    DebugLog(@"");
     closeBtn.hidden = YES;
+    [self addGestureRecognizer:mTapGesture];
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveLinear)

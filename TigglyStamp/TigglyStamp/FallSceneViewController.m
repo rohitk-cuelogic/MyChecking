@@ -780,7 +780,7 @@ UIImageView *tempImgView;
             
             [continuityTimer invalidate];
             continuityTimer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(playGreetingSoundForObject:) userInfo:objName repeats:NO];
-
+            isGreetingPlaying = YES;
             
            // for(FruitView *f in fruitObjectArray){
                 [self.mainView bringSubviewToFront:fruit];
@@ -820,9 +820,9 @@ UIImageView *tempImgView;
     
     NSString *str = (NSString *)[timer userInfo];
     [[TDSoundManager sharedManager] playSound:[fallSceneObject getAnimalNameSoundForObject:str] withFormat:@"mp3"];
-    isGreetingPlaying = YES;
     
-    double delayInSeconds = 2.5;
+    
+    double delayInSeconds = 3.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         isGreetingPlaying = NO;
@@ -1008,39 +1008,41 @@ UIImageView *tempImgView;
         [touchView touchesEnded:touches withEvent:nil];
     }
     
-    if(CGRectIntersectsRect(fruit.frame, garbageCan.frame)){
-        DebugLog(@"Delete Object");
-        fruit.layer.position = CGPointMake(1024 - garbageCan.frame.size.width/2, 768 - garbageCan.frame.size.height/2);
-        DebugLog(@"Frame is %@",NSStringFromCGRect(fruit.frame));
-        dispatch_time_t playAudioIn = dispatch_time(DISPATCH_TIME_NOW, 0.05 * NSEC_PER_SEC);
-        dispatch_after(playAudioIn, dispatch_get_main_queue(), ^(void){
-            if (!isRecording) {
-                 [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_DELETE_01" withFormat:@"mp3"];
-            }
-           
-            
-        });
-        fruit.userInteractionEnabled = NO;
-        CABasicAnimation *animation4a = nil;
-        animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-        [animation4a setToValue:[NSNumber numberWithDouble:0]];
-        [animation4a setFromValue:[NSNumber numberWithDouble:1]];
-        [animation4a setAutoreverses:NO];
-        [animation4a setDuration:1.5f];
-        [animation4a setBeginTime:0.0f];
-        [fruit.layer addAnimation:animation4a forKey:@"transform.scale"];
-        
-        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
-        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
-            [fruit removeFromSuperview];
-        });
+    if(!isRecording) {
+            if(CGRectIntersectsRect(fruit.frame, garbageCan.frame)){
+                DebugLog(@"Delete Object");
+                fruit.layer.position = CGPointMake(1024 - garbageCan.frame.size.width/2, 768 - garbageCan.frame.size.height/2);
+                DebugLog(@"Frame is %@",NSStringFromCGRect(fruit.frame));
+                dispatch_time_t playAudioIn = dispatch_time(DISPATCH_TIME_NOW, 0.05 * NSEC_PER_SEC);
+                dispatch_after(playAudioIn, dispatch_get_main_queue(), ^(void){
+                    if (!isRecording) {
+                         [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_DELETE_01" withFormat:@"mp3"];
+                    }
+                   
+                    
+                });
+                fruit.userInteractionEnabled = NO;
+                CABasicAnimation *animation4a = nil;
+                animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+                [animation4a setToValue:[NSNumber numberWithDouble:0]];
+                [animation4a setFromValue:[NSNumber numberWithDouble:1]];
+                [animation4a setAutoreverses:NO];
+                [animation4a setDuration:1.5f];
+                [animation4a setBeginTime:0.0f];
+                [fruit.layer addAnimation:animation4a forKey:@"transform.scale"];
                 
+                dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+                dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
+                    [fruit removeFromSuperview];
+                });
+    
         
         [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
         [tickBtnTimer invalidate];
         tickBtnTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(pulseTickButton) userInfo:nil repeats:NO];
         
         return;
+    }
     }
     
     
@@ -1564,7 +1566,7 @@ UIImageView *tempImgView;
     NSURL *url = screenCapture.exportUrl;
     //[self playRandomPraiseSound];
     
-    double delayInSeconds = 0.8;
+    double delayInSeconds = 1.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self playSlidingSounds];
@@ -1783,11 +1785,11 @@ UIImageView *tempImgView;
         [[TDSoundManager sharedManager] playSound:@"Tell us a story!_sp" withFormat:@"mp3"];
     }
     
-    
+     [NSTimer scheduledTimerWithTimeInterval:timeToPlayGettingReadySound + 0.2f target:self selector:@selector(startScreenRecording) userInfo:nil repeats:NO];
     
     // schedule playGettingReadyTotellStorySound method after timeToPlayGettingReadySound sec
     
-    [NSTimer scheduledTimerWithTimeInterval:timeToPlayGettingReadySound + 0.4 target:self selector:@selector(playGettingReadyTotellStorySound) userInfo:nil repeats:NO];
+//    [NSTimer scheduledTimerWithTimeInterval:timeToPlayGettingReadySound + 0.4 target:self selector:@selector(playGettingReadyTotellStorySound) userInfo:nil repeats:NO];
 }
 
 -(void) playGettingReadyTotellStorySound{

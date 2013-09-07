@@ -27,6 +27,7 @@
     UIButton *closeBtn;
     UIImageView *playBtn;
     UIActivityIndicatorView *busyView;
+    UITapGestureRecognizer *mTapGesture;
 }
 
 @property (nonatomic, strong) UIImageView *imgView;

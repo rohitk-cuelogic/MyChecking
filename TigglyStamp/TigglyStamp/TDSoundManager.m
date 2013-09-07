@@ -88,6 +88,8 @@ int val;
 
     DebugLog(@"Name: %@",name);
     
+
+    
     if([name isEqualToString:@""] || name == nil || [name isEqual:NULL])
            return;
     
@@ -102,7 +104,12 @@ int val;
             NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
             player2 = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
             player2.numberOfLoops = 0;
+        if ([name isEqualToString:@"rooster_Animal"]) {
+            player2.volume = 0.7;
+        }else{
             player2.volume = 1.0;
+        }
+            
 
             if ([[[NSUserDefaults standardUserDefaults] valueForKey:MUSIC] isEqualToString:@"yes"]) {
                 if(player2.isPlaying)

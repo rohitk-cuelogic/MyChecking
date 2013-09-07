@@ -7,6 +7,7 @@
 //
 
 #import "ThumbnailView.h"
+#import "TDSoundManager.h"
 
 #define RADIANS(degrees) ((degrees * M_PI) / 180.0)
 
@@ -104,9 +105,32 @@
             playBtn.hidden = NO;
             [busyView stopAnimating];
             busyView.hidden = YES;
+            
+            [self playSlidingSounds];
         }
 }
 
+-(void) playSlidingSounds{
+    
+    int ranNo = arc4random() % 3;
+    
+    switch (ranNo) {
+        case 0:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_MAGIC_12" withFormat:@"mp3"];
+            break;
+        case 1:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_MAGIC_13" withFormat:@"mp3"];
+            break;
+        case 2:
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_MAGIC_14" withFormat:@"mp3"];
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+}
 -(void) actionClose {
     DebugLog(@"");    
     [self.delegate thumbnailViewCloseBtnClicked:self];

@@ -146,7 +146,7 @@ int swipeTextCnt;
 -(void) showConfirmationView{
     DebugLog(@"");
     
-    swipeTextCnt = random()%7;
+    swipeTextCnt = arc4random()%7;
     [textView setText:[NSString stringWithFormat:@"Hi there!\n\nSwipe %@ fingers to continue.", [swipeTextArray objectAtIndex:swipeTextCnt]]];
     
     switch (swipeTextCnt) {

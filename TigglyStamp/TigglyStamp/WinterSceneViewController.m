@@ -77,12 +77,13 @@ UIImageView *tempImgView;
     
     isGreetingSoundPlaying = NO;
     
-    if (isWithShape) {
-        [self playShapeinstructionSounds];
-    }else{
-        [self playFingerInstructionSound];
+    if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"] || [[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]){
+        if (isWithShape) {
+            [self playShapeinstructionSounds];
+        }else{
+            [self playFingerInstructionSound];
+        }
     }
-    
 }
 
 - (void) addCurlAnimation
@@ -131,13 +132,16 @@ UIImageView *tempImgView;
     [self.mainView bringSubviewToFront:cameraButton];
     [self.mainView bringSubviewToFront:videoButton];
     [self.mainView bringSubviewToFront:RigthTickButton];
+    [self.mainView bringSubviewToFront:videoButton];
+    [self.mainView bringSubviewToFront:cameraButton];
     [self.mainView bringSubviewToFront:curlButton];
     [self.mainView bringSubviewToFront:backButton];
     
     backButton.hidden = YES;
-    [RigthTickButton setHidden:YES];
-    [cameraButton setHidden:YES];
-    [videoButton setHidden:YES];
+    homeButton.hidden = YES;
+//    [RigthTickButton setHidden:YES];
+//    [cameraButton setHidden:YES];
+//    [videoButton setHidden:YES];
     [curlButton setTag:TAG_CURL_BTN];
     [RigthTickButton setTag:TAG_RIGHT_TICK_BTN];
     [curlConfirmedButton setTag:TAG_CURL_CONFIRMED_BTN];
@@ -249,7 +253,10 @@ UIImageView *tempImgView;
         homeButton.hidden = YES;
         [self hideVideoCameraButtons];
         [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
-        RigthTickButton.hidden = YES;
+        RigthTickButton.hidden = NO;
+        cameraButton.hidden = NO;
+        videoButton.hidden = NO;
+        
         
         UIImageView *tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
         tempImgView.image = [UIImage imageNamed:@"Tiggly_stamp_Winter_BG.png"];
@@ -362,12 +369,14 @@ UIImageView *tempImgView;
 
 -(void)buildShape:(NSString *)shape{
     
-    if(!isRecording && RigthTickButton.hidden) {
+    if(!isRecording ) {
         RigthTickButton.hidden = NO;
+        videoButton.hidden = NO;
+        cameraButton.hidden = NO;
+        
         if (!homeButton.hidden) {
             homeButton.hidden = YES;
         }
-        
     }
     [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
     [tickBtnTimer invalidate];
@@ -772,6 +781,8 @@ UIImageView *tempImgView;
                 [self.mainView bringSubviewToFront:fruit];
             [self.mainView bringSubviewToFront:RigthTickButton];
             [self.mainView bringSubviewToFront:homeButton];
+            [self.mainView bringSubviewToFront:videoButton];
+            [self.mainView bringSubviewToFront:cameraButton];
            // }
             centerX = 0;
             centerY = 0;
@@ -855,7 +866,7 @@ UIImageView *tempImgView;
     }
     
     if (!isWithShape) {
-        int randomNo = random() % 4;
+        int randomNo = arc4random() % 4;
         NSString *shape;
         if (randomNo == 1) {
             shape = @"triangle";
@@ -1213,9 +1224,10 @@ UIImageView *tempImgView;
         [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
         
         [homeButton setHidden:false];
+        RigthTickButton.hidden = YES;
         [self.mainView bringSubviewToFront:homeButton];
         
-        [NSTimer scheduledTimerWithTimeInterval:0.29 + 0.1 target:self selector:@selector(playDragSound) userInfo:nil repeats:NO];
+        //[NSTimer scheduledTimerWithTimeInterval:0.29 + 0.1 target:self selector:@selector(playDragSound) userInfo:nil repeats:NO];
         
         [self sendEmail];
         if (![btn isHidden]) {
@@ -1226,6 +1238,7 @@ UIImageView *tempImgView;
         }
     }
     if ([btn tag] == TAG_CURL_BTN) {
+        RigthTickButton.hidden = NO;
         self.mainView.userInteractionEnabled = NO;
         [[[self view] layer] removeAllAnimations];
         [self hideVideoCameraButtons];
@@ -1275,8 +1288,11 @@ UIImageView *tempImgView;
         [tempImgView removeFromSuperview];
         fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
         [self hideVideoCameraButtons];
-        [RigthTickButton setHidden:YES];
+
         [homeButton setHidden:YES];
+        RigthTickButton.hidden = NO;
+        videoButton.hidden = NO;
+        cameraButton.hidden = NO;
         
         double delayInSecondsTodetect = 1.1f;
         dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
@@ -1419,81 +1435,81 @@ UIImageView *tempImgView;
 
 -(void) showVideoCameraButtons {
     DebugLog(@"");
-    
-    isBtnViewHidden = NO;
-    videoButton.hidden = NO;
-    cameraButton.hidden = NO;
-    RigthTickButton.hidden = YES;
-    
-    [self.view bringSubviewToFront:btnView];
-    
-    [UIView animateWithDuration:0.8 animations:^{
-        btnView.frame = CGRectMake(162, 0, 700,100);
-    }completion:^(BOOL finished) {
-        double delayInSeconds = 2.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            CABasicAnimation *animation4a = nil;
-            animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-            [animation4a setToValue:[NSNumber numberWithDouble:1.5]];
-            [animation4a setFromValue:[NSNumber numberWithDouble:1]];
-            [animation4a setAutoreverses:YES];
-            [animation4a setDuration:1.5f];
-            [animation4a setBeginTime:0.0f];
-            [animation4a setRepeatCount:HUGE_VAL];
-            [videoButton.layer addAnimation:animation4a forKey:@"transform.scale"];
-            
-            CABasicAnimation *animation4a2 = nil;
-            animation4a2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-            [animation4a2 setToValue:[NSNumber numberWithDouble:1.5]];
-            [animation4a2 setFromValue:[NSNumber numberWithDouble:1]];
-            [animation4a2 setAutoreverses:YES];
-            [animation4a2 setDuration:1.5f];
-            [animation4a2 setBeginTime:0.0f];
-            [animation4a2 setRepeatCount:HUGE_VAL];
-            [cameraButton.layer addAnimation:animation4a2 forKey:@"transform.scale"];
-        });
-    }];
-    
+//    
+//    isBtnViewHidden = NO;
+//    videoButton.hidden = NO;
+//    cameraButton.hidden = NO;
+//    RigthTickButton.hidden = YES;
+//    
+//    [self.view bringSubviewToFront:btnView];
+//    
+//    [UIView animateWithDuration:0.8 animations:^{
+//        btnView.frame = CGRectMake(162, 0, 700,100);
+//    }completion:^(BOOL finished) {
+//        double delayInSeconds = 2.0;
+//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//            CABasicAnimation *animation4a = nil;
+//            animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+//            [animation4a setToValue:[NSNumber numberWithDouble:1.5]];
+//            [animation4a setFromValue:[NSNumber numberWithDouble:1]];
+//            [animation4a setAutoreverses:YES];
+//            [animation4a setDuration:1.5f];
+//            [animation4a setBeginTime:0.0f];
+//            [animation4a setRepeatCount:HUGE_VAL];
+//            [videoButton.layer addAnimation:animation4a forKey:@"transform.scale"];
+//            
+//            CABasicAnimation *animation4a2 = nil;
+//            animation4a2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+//            [animation4a2 setToValue:[NSNumber numberWithDouble:1.5]];
+//            [animation4a2 setFromValue:[NSNumber numberWithDouble:1]];
+//            [animation4a2 setAutoreverses:YES];
+//            [animation4a2 setDuration:1.5f];
+//            [animation4a2 setBeginTime:0.0f];
+//            [animation4a2 setRepeatCount:HUGE_VAL];
+//            [cameraButton.layer addAnimation:animation4a2 forKey:@"transform.scale"];
+//        });
+//    }];
+//    
     
 }
 
 -(void) hideVideoCameraButtons {
     DebugLog(@"");
-    
-    if(!isRecording) {
-        RigthTickButton.hidden = NO;
-        
-        for(CALayer *layer in btnView.layer.sublayers) {
-            [layer removeAnimationForKey:@"transform.scale"];
-            [layer removeAllAnimations];
-        }
-        isBtnViewHidden = YES;
-        [UIView animateWithDuration:0.3 animations:^{
-            btnView.frame = CGRectMake(162, -100, 700,100);
-        }completion:^(BOOL finished) {
-            videoButton.hidden = YES;
-            cameraButton.hidden = YES;
-            btnView.frame = CGRectMake(-700, 0, 700,100);
-        }];
-    }
-    
+//    
+//    if(!isRecording) {
+//        RigthTickButton.hidden = NO;
+//        
+//        for(CALayer *layer in btnView.layer.sublayers) {
+//            [layer removeAnimationForKey:@"transform.scale"];
+//            [layer removeAllAnimations];
+//        }
+//        isBtnViewHidden = YES;
+//        [UIView animateWithDuration:0.3 animations:^{
+//            btnView.frame = CGRectMake(162, -100, 700,100);
+//        }completion:^(BOOL finished) {
+//            videoButton.hidden = YES;
+//            cameraButton.hidden = YES;
+//            btnView.frame = CGRectMake(-700, 0, 700,100);
+//        }];
+//    }
+//    
     
 }
 
 -(void) pulseTickButton {
     DebugLog(@"");
     
-    CABasicAnimation *animation4a = nil;
-    animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    [animation4a setToValue:[NSNumber numberWithDouble:1.5]];
-    [animation4a setFromValue:[NSNumber numberWithDouble:1]];
-    [animation4a setAutoreverses:YES];
-    [animation4a setDuration:1.5f];
-    [animation4a setBeginTime:0.0f];
-    [animation4a setRepeatCount:HUGE_VAL];
-    [RigthTickButton.layer addAnimation:animation4a forKey:@"transform.scale"];
-    
+//    CABasicAnimation *animation4a = nil;
+//    animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+//    [animation4a setToValue:[NSNumber numberWithDouble:1.5]];
+//    [animation4a setFromValue:[NSNumber numberWithDouble:1]];
+//    [animation4a setAutoreverses:YES];
+//    [animation4a setDuration:1.5f];
+//    [animation4a setBeginTime:0.0f];
+//    [animation4a setRepeatCount:HUGE_VAL];
+//    [RigthTickButton.layer addAnimation:animation4a forKey:@"transform.scale"];
+//    
 }
 
 //================================================================================================================

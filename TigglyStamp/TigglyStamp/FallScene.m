@@ -276,7 +276,7 @@ int currentObject;
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_Word_Apple_01";
@@ -300,7 +300,7 @@ int currentObject;
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_GenGreeting_Turkey_01";
@@ -323,7 +323,7 @@ int currentObject;
     }else if([fallObject isEqualToString:@"cranberries"]|| [fallObject isEqualToString:@"cranberries_leaves"]) {
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_Word_Cranberries_01";
@@ -346,7 +346,7 @@ int currentObject;
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_GenGreeting_Cat_07";
@@ -371,7 +371,7 @@ int currentObject;
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
-            int ranNo = random()%4;
+            int ranNo = arc4random()%4;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_GenGreeting_Raccoon_02";
@@ -407,7 +407,7 @@ int currentObject;
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
-            int ranNo = random()%7;
+            int ranNo = arc4random()%7;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_GenGreeting_Pumpkin_01";
@@ -443,7 +443,7 @@ int currentObject;
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_Word_Barn_01";
@@ -468,7 +468,7 @@ int currentObject;
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
-            int ranNo = random()%4;
+            int ranNo = arc4random()%4;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_GenGreeting_Bat_01";
@@ -500,7 +500,7 @@ int currentObject;
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
             
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_Word_Candy_01";
@@ -526,7 +526,7 @@ int currentObject;
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
             
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_Word_Leaf_01";
@@ -551,7 +551,7 @@ int currentObject;
     }else if([fallObject isEqualToString:@"haybale"] ) {
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_Word_Haybale_01";
@@ -573,7 +573,7 @@ int currentObject;
        
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_Word_Shirt_01";
@@ -597,7 +597,7 @@ int currentObject;
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_Word_Spider_Ooh_01";
@@ -622,7 +622,7 @@ int currentObject;
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
-            int ranNo = random()%4;
+            int ranNo = arc4random()%4;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_GenGreeting_Fly_01";
@@ -650,7 +650,7 @@ int currentObject;
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
-            int ranNo = random()%3;
+            int ranNo = arc4random()%3;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_GenGreeting_Hamster_01";
@@ -678,7 +678,7 @@ int currentObject;
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_GenGreeting_Rooster_01";
@@ -702,7 +702,7 @@ int currentObject;
        
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
-            int ranNo = random()%4;
+            int ranNo = arc4random()%4;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_GenGreeting_Scarecrow_02";
@@ -729,7 +729,7 @@ int currentObject;
     }else if([fallObject isEqualToString:@"bee"]) {
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
             
-            int ranNo = random()%3;
+            int ranNo = arc4random()%3;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_GenGreeting_Bee_01";
@@ -754,7 +754,7 @@ int currentObject;
     }else if([fallObject isEqualToString:@"broom"]) {
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_Word_Broom_01";
@@ -775,7 +775,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"duck_1"]) {
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_GenGreeting_Duck_01";
@@ -796,7 +796,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"horse"]) {
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
-            int ranNo = random()%4;
+            int ranNo = arc4random()%4;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_GenGreeting_Donkey_01";
@@ -821,7 +821,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"leaves"]) {
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_Word_Leaves_01";
@@ -842,7 +842,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"mushroom"]) {
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_Word_Mushroom_01";
@@ -863,7 +863,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"pear"]) {
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_Word_Pear_01";
@@ -884,7 +884,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"raincoat"]) {
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
-            int ranNo = random()%2;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_Word_Raincoat_01";
@@ -904,7 +904,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"zebra_2"]) {
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
-            int ranNo = random()%6;
+            int ranNo = arc4random()%6;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_GenGreeting_Zebra_01";
@@ -933,7 +933,7 @@ int currentObject;
     }else if([fallObject isEqualToString:@"witches_hat"] || [fallObject isEqualToString:@"witches_hat_purple"]) {
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
-            int ranNo = random()%4;
+            int ranNo = arc4random()%4;
             
             if(ranNo == 0){
                 soundFile = @"Tiggly_Word_Hat_Gasp_01";
@@ -968,7 +968,7 @@ int currentObject;
     
     if([fallObject isEqualToString:@"apple_red"] || [fallObject isEqualToString:@"green_apple"]) {
         
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
@@ -977,7 +977,7 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"blue_turkey"] || [fallObject isEqualToString:@"orange_turkey"]) {
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_GenGreeting_Turkey_07";
@@ -986,7 +986,7 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"cranberries"]|| [fallObject isEqualToString:@"cranberries_leaves"]) {
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
@@ -995,7 +995,7 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"greyish_cat"] || [fallObject isEqualToString:@"pink_cat"]|| [fallObject isEqualToString:@"cat"]) {
-        int ranNo = random()%4;
+        int ranNo = arc4random()%4;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_GenGreeting_Cat_01";
@@ -1007,7 +1007,7 @@ int currentObject;
             soundFile = @"Tiggly_GenGreeting_Cat_04";
         }
     }else if([fallObject isEqualToString:@"litepurple_racoon"] || [fallObject isEqualToString:@"racoon"]) {
-        int ranNo = random()%3;
+        int ranNo = arc4random()%3;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_GenGreeting_Raccoon_04";
@@ -1019,7 +1019,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"pumpkin_3"]) {
        
-        int ranNo = random()%7;
+        int ranNo = arc4random()%7;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_GenGreeting_JackOLantern_02";
@@ -1038,7 +1038,7 @@ int currentObject;
         }
         
     } else if([fallObject isEqualToString:@"pumkin_1"] || [fallObject isEqualToString:@"pumkin_bag"] ) {
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_GenGreeting_Pumpkin_05";
@@ -1048,7 +1048,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"barn_2"] ) {
       
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
@@ -1057,7 +1057,7 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"bat"]) {
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_GenGreeting_Bat_02";
@@ -1067,7 +1067,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"blue_candy"] || [fallObject isEqualToString:@"orange_candy"]|| [fallObject isEqualToString:@"yellow_candy"] ) {
         
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
@@ -1077,7 +1077,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"green_leaf"] || [fallObject isEqualToString:@"orange_leaf"]|| [fallObject isEqualToString:@"yellow_leaf"]|| [fallObject isEqualToString:@"pink_leaf"]|| [fallObject isEqualToString:@"green_leaf_2"] || [fallObject isEqualToString:@"orange_leaf_2"]) {
         
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
@@ -1088,7 +1088,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"haybale"] ) {
         
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
@@ -1098,7 +1098,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"pirate"] ) {
         
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
@@ -1107,7 +1107,7 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"spider"]) {
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_GenGreeting_spider_01";
@@ -1116,7 +1116,7 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"purple_spirder"] ) {
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_GenGreeting_Fly_03";
@@ -1125,7 +1125,7 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"hampster"]) {
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_GenGreeting_Hamster_04";
@@ -1134,7 +1134,7 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"rooster"] || [fallObject isEqualToString:@"rooster_2"]) {
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"rooster_Animal";
@@ -1143,7 +1143,7 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"scare_crow"]) {
-        int ranNo = random()%5;
+        int ranNo = arc4random()%5;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_GenGreeting_Scarecrow_03";
@@ -1158,7 +1158,7 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"bee"]) {
-        int ranNo = random()%1;
+        int ranNo = arc4random()%1;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_GenGreeting_Bee_04";
@@ -1166,7 +1166,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"broom"]) {
         
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
@@ -1175,7 +1175,7 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"duck_1"]) {
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_GenGreeting_Duck_03";
@@ -1184,7 +1184,7 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"horse"]) {
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_GenGreeting_Donkey_03";
@@ -1194,7 +1194,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"leaves"]) {
         
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
@@ -1205,7 +1205,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"mushroom"]) {
         
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
@@ -1215,7 +1215,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"pear"]) {
         
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
@@ -1225,7 +1225,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"raincoat"]) {
         
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
@@ -1234,7 +1234,7 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"zebra_2"]) {
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_GenGreeting_Zebra_07";
@@ -1244,7 +1244,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"witches_hat"] || [fallObject isEqualToString:@"witches_hat_purple"]) {
         
-        int ranNo = random()%2;
+        int ranNo = arc4random()%2;
         
         if(ranNo == 0){
             soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";

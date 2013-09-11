@@ -86,7 +86,7 @@
       CGPoint point = [[touches anyObject] locationInView:self];
     if (CGRectContainsPoint(imageView.frame, point)) {
         // call delegate
-        [delegate onImageClicked:self];
+       // [delegate onImageClicked:self];
     }
     
 }

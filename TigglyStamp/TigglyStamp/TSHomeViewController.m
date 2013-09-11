@@ -368,7 +368,7 @@ int swipeTxtCnt;
 -(void) showConfirmationView{
     DebugLog(@"");
     bkgLayer.opacity = 0.0;
-    swipeTxtCnt = random()%7;
+    swipeTxtCnt = arc4random()%7;
     [txtView setText:[NSString stringWithFormat:@"Hi there!\n\nSwipe %@ fingers to continue.", [swipeTxtArray objectAtIndex:swipeTxtCnt]]];
     
 #ifdef DEBUG_MODE
@@ -567,7 +567,7 @@ int swipeTxtCnt;
             [thumbnail removeFromSuperview];
         }
         
-        [[TDSoundManager sharedManager] playSound:@"trashsweep" withFormat:@"mp3"];
+//        [[TDSoundManager sharedManager] playSound:@"trashsweep" withFormat:@"mp3"];
         
         [self reloadThumbnails];
     }];

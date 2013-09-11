@@ -87,8 +87,7 @@ UIImageView *tempImgView;
     
     [homeButton setHidden:true];
     
-    isWithShape = [[TigglyStampUtils sharedInstance] GetBooleanWithShape];
-    
+
     touchView = [[UITouchVerificationView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
     touchView.isWithShape = [self isWithShape];
     
@@ -208,6 +207,9 @@ UIImageView *tempImgView;
 {
     [super viewDidAppear:YES];
     DebugLog(@"");
+    
+    isWithShape = [[TigglyStampUtils sharedInstance] GetBooleanWithShape];
+    
     
     isGreetingPlaying = NO;
     

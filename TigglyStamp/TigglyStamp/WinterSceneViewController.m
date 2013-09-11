@@ -75,6 +75,9 @@ UIImageView *tempImgView;
     [super viewDidAppear:YES];
      DebugLog(@"");
     
+    isWithShape = [[TigglyStampUtils sharedInstance] GetBooleanWithShape];
+    
+    
     isGreetingSoundPlaying = NO;
     
     if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"] || [[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]){
@@ -112,8 +115,7 @@ UIImageView *tempImgView;
     // Do any additional setup after loading the view from its nib.
     DebugLog(@"Came on view did load from intro screen");
     
-    isWithShape = [[TigglyStampUtils sharedInstance] GetBooleanWithShape];
-    
+
     touchView = [[UITouchVerificationView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
     touchView.isWithShape = [self isWithShape];
     

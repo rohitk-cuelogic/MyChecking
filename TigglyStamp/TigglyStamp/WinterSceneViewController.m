@@ -1021,19 +1021,12 @@ UIImageView *tempImgView;
             continuityTimer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(playGreetingSoundForObject:) userInfo:objName repeats:NO];
             isGreetingSoundPlaying = YES;
             
-            //            double delayInSeconds = 5.0;
-            //            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-            //            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            //                isGreetingSoundPlaying = NO;
-            //            });
-            
-            //for(FruitView *f in fruitObjectArray){
             [self.mainView bringSubviewToFront:fruit];
             [self.mainView bringSubviewToFront:RigthTickButton];
             [self.mainView bringSubviewToFront:homeButton];
             [self.mainView bringSubviewToFront:videoButton];
             [self.mainView bringSubviewToFront:cameraButton];
-            // }
+           
             centerX = 0;
             centerY = 0;
             [winterSceneObject removeDrawnShapeObject:shape objectToRemove:shapeImage];
@@ -1048,12 +1041,26 @@ UIImageView *tempImgView;
                                          }
                                          
                                      }
-                                     completion:^(BOOL finished){}];
+                                     completion:^(BOOL finished){
+
+                                     }];
                 }
             }
             
+//            //Sachin
+//            double delayInSeconds = [[TDSoundManager sharedManager] getSoundDuration];;
+//            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//           
+//                [fruit removeFromSuperview];
+//                [fruitObjectArray removeObject:fruit];
+//            });
+//            //Sachin
         });
+        
     });
+    
+
     
 }
 

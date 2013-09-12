@@ -18,8 +18,8 @@
 + (id)sharedInstance;
 -(UIColor *)getRGBValueForShape:(NSString *)shapeToDraw withBasicShape:(NSString *)basicShape;
 
--(void)SetBooleanWithShape:(BOOL) bVar;
--(BOOL)GetBooleanWithShape;
+-(void)setShapeMode:(BOOL) bVar;
+-(BOOL)getShapeMode;
 
 - (NSString *) getDocumentDirPath;
 - (NSArray *) getAllImagesAndMovies;

@@ -11,7 +11,7 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 
-#define KEY_BOOLEAN_ISWITH_SHAPE @"withShape"
+
 #define KEY_WRITE_KEYS_INCSV @"keyincsv"
 #define KEY_IS_SEND_MAIL @"keyissendmail"
 #define KEY_SHAPE_STORE_KEY @"keyshapestore"
@@ -309,14 +309,14 @@ static TigglyStampUtils *sharedInstance = nil;
 }
 
 
--(void)SetBooleanWithShape:(BOOL) bVar{
+-(void)setShapeMode:(BOOL) bVar{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:bVar forKey:KEY_BOOLEAN_ISWITH_SHAPE];
+    [userDefaults setBool:bVar forKey:IS_WITH_SHAPE];
     
 }
--(BOOL)GetBooleanWithShape{
+-(BOOL)getShapeMode{
      NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    BOOL isWithShape = [userDefaults boolForKey:KEY_BOOLEAN_ISWITH_SHAPE];
+    BOOL isWithShape = [userDefaults boolForKey:IS_WITH_SHAPE];
     return isWithShape;
     
 }

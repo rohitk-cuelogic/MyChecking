@@ -66,16 +66,10 @@
     }else{
         [swtchArt setOn:NO];
     }
-    if ([[[NSUserDefaults standardUserDefaults] valueForKey:I_HAVE_SHAPE] isEqualToString:@"yes"]) {
+    if ([[TigglyStampUtils sharedInstance] getShapeMode] == YES) {
         [swtchHaveShapes setOn:YES];
     }else{
         [swtchHaveShapes setOn:NO];
-    }
-    
-    if ([[[NSUserDefaults standardUserDefaults] valueForKey:I_MISS_SHAPE] isEqualToString:@"yes"]) {
-        [swtchNoShapes setOn:YES];
-    }else{
-        [swtchNoShapes setOn:NO];
     }
     
     if ([[[NSUserDefaults standardUserDefaults] valueForKey:LIMIT_GALLERY] isEqualToString:@"yes"]) {
@@ -143,26 +137,11 @@
 
         case TAG_SWITCH_HAVE_SHAPES:
             if ([swtchHaveShapes isOn] == YES) {
-                [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:I_HAVE_SHAPE];
-                [[TigglyStampUtils sharedInstance] SetBooleanWithShape:YES];
+                [[TigglyStampUtils sharedInstance] setShapeMode:YES];
             }else{
-                [[NSUserDefaults standardUserDefaults] setValue:@"no" forKey:I_HAVE_SHAPE];
-                [[TigglyStampUtils sharedInstance] SetBooleanWithShape:NO];
+                [[TigglyStampUtils sharedInstance] setShapeMode:NO];
             }
             break;
-
-            
-        case TAG_SWITCH_MISS_SWITCH:
-            if ([swtchNoShapes isOn] == YES) {
-                [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:I_MISS_SHAPE];
-                [[TigglyStampUtils sharedInstance] SetBooleanWithShape:NO];
-
-            }else{
-                [[NSUserDefaults standardUserDefaults] setValue:@"no" forKey:I_MISS_SHAPE];
-                [[TigglyStampUtils sharedInstance] SetBooleanWithShape:YES];
-            }
-            break;
-
             
         case TAG_SWITCH_LIMIT_GALLERY:
             if ([swtchLimitGallery isOn] == YES) {

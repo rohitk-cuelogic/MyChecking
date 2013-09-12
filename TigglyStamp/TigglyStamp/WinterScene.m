@@ -1203,9 +1203,9 @@ int currentObject;
         int ranNo =arc4random()%2;
         
         if(ranNo == 0){
-            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+            soundFile = @"Tiggly_SFX_TRAIN_01";
         }else if (ranNo == 1) {
-            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+            soundFile = @"Tiggly_SFX_TRAIN_01";
         }
         
     }else if([winterObject isEqualToString:@"fireplace"]) {
@@ -1263,9 +1263,9 @@ int currentObject;
         int ranNo =arc4random()%2;
         
         if(ranNo == 0){
-            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+            soundFile = @"Tiggly_SFX_BELL";
         }else if (ranNo == 1) {
-            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+            soundFile = @"Tiggly_SFX_BELL";
         }
         
     }else if([winterObject isEqualToString:@"blue_hat"] ) {

@@ -76,18 +76,27 @@ UIImageView *tempImgView;
 
 #pragma mark -
 #pragma mark =======================================
+#pragma mark Memory
+#pragma mark =======================================
+
+- (void)didReceiveMemoryWarning {
+    DebugLog(@"");
+    [super didReceiveMemoryWarning];
+}
+
+
+#pragma mark -
+#pragma mark =======================================
 #pragma mark View Life Cycle
 #pragma mark =======================================
 
 
 - (void)viewDidLoad {
+    DebugLog(@"");
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    DebugLog(@"Came on view did load from intro screen");
-    
+
     [homeButton setHidden:true];
     
-
     touchView = [[UITouchVerificationView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
     touchView.isWithShape = [self isWithShape];
     
@@ -203,12 +212,12 @@ UIImageView *tempImgView;
    
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:YES];
+- (void)viewDidAppear:(BOOL)animated {
     DebugLog(@"");
     
-    isWithShape = [[TigglyStampUtils sharedInstance] GetBooleanWithShape];
+    [super viewDidAppear:YES];
+
+    isWithShape = [[TigglyStampUtils sharedInstance] getShapeMode];
     
     
     isGreetingPlaying = NO;
@@ -221,6 +230,95 @@ UIImageView *tempImgView;
         }
     }
 
+}
+
+
+#pragma mark-
+#pragma mark======================
+#pragma mark View Orientation
+#pragma mark======================
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+}
+
+-(BOOL)shouldAutorotate {
+    return YES;
+}
+ 
+-(NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscape;
+}
+ 
+
+#pragma mark-
+#pragma mark======================
+#pragma mark Helpers
+#pragma mark======================
+
+-(void) startScreenRecording{
+    isRecording = YES;
+    
+    [NSThread detachNewThreadSelector:@selector(hideButtons) toTarget:self withObject:nil];
+    
+    screenCapture.delegate = self;
+    [screenCapture startRecording];
+    [screenCapture setNeedsDisplay];
+    
+    CABasicAnimation *theAnimation;
+    theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+    theAnimation.duration=1.0;
+    theAnimation.repeatCount=HUGE_VALF;
+    theAnimation.autoreverses=NO;
+    theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
+    theAnimation.toValue=[NSNumber numberWithFloat:0.5];
+    [videoButton.layer addAnimation:theAnimation forKey:@"opacity"]; //animateOpacity
+}
+
+
+-(void)configureViewForCurl{
+    DebugLog(@"");
+    
+    [self addCurlAnimation];
+    
+    [self.view bringSubviewToFront:self.mainView];
+}
+
+
+-(void) playGreetingSoundForObject:(NSTimer *) timer {
+    DebugLog(@"");
+    
+    if (isRecording) {
+        return;
+    }
+    
+    NSString *str = (NSString *)[timer userInfo];
+    [[TDSoundManager sharedManager] playSound:[fallSceneObject getAnimalNameSoundForObject:str] withFormat:@"mp3"];
+    
+    
+    double delayInSeconds = [[TDSoundManager sharedManager] getSoundDuration] + 0.3;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        isGreetingPlaying = NO;
+    });
+
+}
+
+-(void)deleteObject {
+    
+}
+
+/*
+ This method is called when user is idle for more than 3 seconds.
+ */
+-(void)needToShowRightTickButton{
+    DebugLog(@"");
+    if ([fruitObjectArray count] > 0 ) {
+        RigthTickButton.hidden = NO;
+        videoButton.hidden = YES;
+        cameraButton.hidden = YES;
+
+    }
 }
 
 - (void) addCurlAnimation {
@@ -241,16 +339,16 @@ UIImageView *tempImgView;
     self.curlView.pageOpaque = YES;
     self.curlView.cylinderPosition = CGPointMake(self.viewForCurl.bounds.size.width, self.viewForCurl.bounds.size.height);
     [self.curlView curlView:self.viewForCurl cylinderPosition:CGPointMake(970,740) cylinderAngle:3*M_PI_4 cylinderRadius:UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad? 10: 30 animatedWithDuration:0.0];
-
+    
 }
 
 - (void)clearScreen:(UITapGestureRecognizer *)sender {
     DebugLog(@"");
     
-//    SystemSoundID logoSound = [TDSoundManager createSoundID:@"trashsweep.mp3"];
-//    AudioServicesPlayAlertSound(logoSound);
+    //    SystemSoundID logoSound = [TDSoundManager createSoundID:@"trashsweep.mp3"];
+    //    AudioServicesPlayAlertSound(logoSound);
     
-     [[TDSoundManager sharedManager] playSound:@"trashsweep" withFormat:@"mp3"];
+    [[TDSoundManager sharedManager] playSound:@"trashsweep" withFormat:@"mp3"];
     
     if (sender.state == UIGestureRecognizerStateRecognized) {
         for(FruitView *f in fruitObjectArray){
@@ -258,122 +356,339 @@ UIImageView *tempImgView;
         }
         fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
         homeButton.hidden = YES;
- 
+        
         [self hideVideoCameraButtons];
         [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
-
+        
         
         UIImageView *tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
         tempImgView.image = [UIImage imageNamed:@"fallView.png"];
         [self.mainView addSubview:tempImgView];
-
+        
         [tempImgView genieInTransitionWithDuration:1.0
-                                    destinationRect:CGRectMake(970, 660, 10, 10)
-                                    destinationEdge:BCRectEdgeTop
-                                         completion:^{
-                                             [tempImgView removeFromSuperview];
-                                         }];
+                                   destinationRect:CGRectMake(970, 660, 10, 10)
+                                   destinationEdge:BCRectEdgeTop
+                                        completion:^{
+                                            [tempImgView removeFromSuperview];
+                                        }];
         
     }
     else{
         
     }
 }
-- (void)handleDoubleTap:(UITapGestureRecognizer *)sender {
 
-}
- 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
- 
-#pragma mark-
-#pragma mark======================
-#pragma mark Landscape Orientation
-#pragma mark======================
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
-}
-
--(BOOL)shouldAutorotate {
-    return YES;
-}
- 
--(NSUInteger)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskLandscape;
-}
- 
-
-#pragma mark-
-#pragma mark======================
-#pragma mark UITouchVerification Delegate
-#pragma mark======================
-
--(void)shapeDetected:(UITouchShapeRecognizer *)UIT inView:(UITouchVerificationView*)view{
+-(void) unCurl{
     DebugLog(@"");
-    if(!bShouldShapeDetected){
-        NSLog(@"I got the shape but i am returning");
+    
+    self.curlConfirmedButton.hidden = YES;
+    [self.curlView uncurlAnimatedWithDuration:0.6];
+    
+    double delayInSeconds = 0.7;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [tempImgView removeFromSuperview];
+        [self configureViewForCurl];
+        self.mainView.userInteractionEnabled = YES;
+        [self.view bringSubviewToFront:self.mainView];
+    });
+    
+}
+
+-(void) removeCurl{
+    DebugLog(@"");
+    [self.curlView removeFromSuperview];
+    [self.view sendSubviewToBack:backView];
+    [self.view bringSubviewToFront:mainView];
+}
+
+-(void) hideButtons{
+    DebugLog(@"");
+    
+    
+    [self.view.layer removeAnimationForKey:@"pageUnCurl"];
+    [self.view.layer removeAllAnimations];
+    
+    
+    cameraButton.hidden = YES;
+    RigthTickButton.hidden = YES;
+    [homeButton setHidden:YES];
+    garbageCan.hidden = YES;
+    curlButton.hidden = YES;
+    cameraButton.hidden = YES;
+    
+    for(CALayer *layer in btnView.layer.sublayers) {
+        [layer removeAnimationForKey:@"transform.scale"];
+        [layer removeAllAnimations];
+    }
+    
+    [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted"] forState:UIControlStateNormal];
+    
+}
+
+#pragma mark- ===============================
+#pragma mark- Action Handling
+#pragma mark- ===============================
+
+-(IBAction)actionRecording:(id)sender {
+    DebugLog(@"");
+    
+    if(isRecording) {
+        
+        isRecording = NO;
+        [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted"] forState:UIControlStateNormal];
+        cameraButton.hidden = NO;
+        [screenCapture stopRecording];
+        [self screenVideoShotStop];
+        
+        garbageCan.hidden = NO;
+        curlButton.hidden = NO;
+        
+        [videoButton.layer removeAnimationForKey:@"opacity"];
+        [videoButton.layer removeAllAnimations];
+        
+        [self hideVideoCameraButtons];
+
+    }else{
+        
+        isRecording = YES;
+        
+        [[TDSoundManager sharedManager] stopMusic];
+        
+        [NSThread detachNewThreadSelector:@selector(hideButtons) toTarget:self withObject:nil];
+        
+        [self playTellUsStorySound];
+    }
+    
+}
+
+
+-(IBAction)screenShot:(id)sender {
+    DebugLog(@"");
+    
+    [[TDSoundManager sharedManager] stopMusic];
+    
+    [[[self view] layer] removeAnimationForKey:@"pageUnCurl"];
+    [[[self view] layer]removeAllAnimations];
+    
+    [self hideVideoCameraButtons];
+    
+    isCameraClick = YES;
+    
+    DebugLog(@"");
+    UIButton *btn = sender;
+    
+    if ([btn isHidden]) {
         return;
     }
+    [homeButton setHidden:YES];
+    [RigthTickButton setHidden:YES];
+    [cameraButton setHidden:YES];
+    [videoButton setHidden:YES];
+    [garbageCan setHidden:YES];
+    [curlButton setHidden:YES];
+    
+    UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
+    [[UIColor whiteColor] set];
+    UIRectFill(CGRectMake(0.0, 0.0,1024,768));
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    NSDate* currentDate = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"MM-dd-yyyy_HH:mm:ss"];
+    // convert it to a string
+    NSString *dateString = [dateFormat stringFromDate:currentDate];
+    NSString *imgName = [NSString stringWithFormat:@"TigglyStamp_%@.png",dateString];
+    DebugLog(@"Image Name : %@",imgName);
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:imgName];
+    DebugLog(@"Image Path: %@",savedImagePath);
+    NSData *imageData = UIImagePNGRepresentation(image);
+    BOOL isSuccess = [imageData writeToFile:savedImagePath atomically:YES];
+    if(isSuccess)
+        DebugLog(@"Imaged saved successfully");
+    else
+        DebugLog(@"Failed to save the image");
+    
+    [cameraButton setHidden:NO];
+    [videoButton setHidden:NO];
+    [garbageCan setHidden:NO];
+    [curlButton setHidden:NO];
+    
+    
+    
+    UIView *flashView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+    flashView.backgroundColor = [UIColor whiteColor];
+    flashView.alpha = 0;
+    [self.view addSubview:flashView];
+    
+    [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_CAMERA" withFormat:@"mp3"];
+    
+    [UIView animateWithDuration:0.1
+                     animations:^{
+                         flashView.alpha = 1;
+                         
+                     }
+                     completion:^(BOOL finished){
+                         
+                         
+                         [UIView animateWithDuration:0.2
+                                          animations:^{
+                                              flashView.alpha = 0;
+                                          }
+                                          completion:^(BOOL finished){
+                                              [flashView removeFromSuperview];
+                                              //[self playRandomPraiseSound];
+                                              double delayInSeconds = 0.8;
+                                              dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                                              dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                                                  [self playSlidingSounds];
+                                              });
+                                              
+                                              
+                                              CapturedImageView *cImageView = [[CapturedImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768) ImageName:imgName];
+                                              cImageView.delegate = self;
+                                              [self.mainView addSubview:cImageView];
+                                              [self.mainView bringSubviewToFront:cImageView];
+                                              
+                                          }];
+                     }];
+    
+}
 
-    // play sound
+-(IBAction)onBackButtonClicked:(id)sender{
+    DebugLog(@"onBackButtonClicked");
     
-    
-    
-    
-    shapeToDraw = nil;
-    self.shapes = [[NSMutableArray alloc]initWithArray:[fallSceneObject shapeForObject:UIT.label]];
-    centerX = 0;
-    centerY = 0;
-    pointComparison = [[NSArray alloc]initWithArray:view.detectedPoints];
-    numOfTouchPts = pointComparison.count;
-
-    for(UITouch *touch in view.detectedPoints){
-        CGPoint tochLocation = [touch locationInView:touchView];
-        centerX = centerX + tochLocation.x;
-        centerY = centerY + tochLocation.y;
-    }
-    if(bShouldShapeDetected){
-        bShouldShapeDetected = NO;
-        NSLog(@"I got the shape i am displaying");
-        [self buildShape:UIT.label];
-        [self playShapeDetectedSound];
-        
-        shapeSoundToPlay = UIT.label;
-        if ([shapeSoundTimer isValid]) {
-            [shapeSoundTimer invalidate];
-        }
-        shapeSoundTimer = [NSTimer scheduledTimerWithTimeInterval:1.5f target:self selector:@selector(playSoundForShape) userInfo:nil repeats:NO];
-        
-//        int64_t delayInSecondsTodetect = 1.5f;
-//        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
-//        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
-//           [[TDSoundManager sharedManager] playSound:UIT.label withFormat:@"mp3"];
-//        });
- 
+    introView.isShowLogo = NO;
+    if ([self respondsToSelector:@selector(dismissViewControllerAnimated:completion:)]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
     }else{
-        NSLog(@"I got the shape but dont wanna display");
+        [self dismissModalViewControllerAnimated:YES];
+        
     }
-    int64_t delayInSecondsTodetect = 0.0f;
-    dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
-    dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
-        bShouldShapeDetected = YES;
-    });
+    
+}
+
+-(IBAction)onhomeButton:(id)sender{
+    [[TDSoundManager sharedManager] stopSound];
+    [[TDSoundManager sharedManager] stopMusic];
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+}
+
+
+
+-(IBAction)onButtonClicked:(id)sender{
+    DebugLog(@"");
+    UIButton *btn = sender;
+    if ([btn tag] == TAG_RIGHT_TICK_BTN) {
+        
+        [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
+
+        [self sendEmail];
+        if (![btn isHidden]) {
+            RigthTickButton.hidden = YES;
+            [homeButton setHidden:false];
+            [self.mainView bringSubviewToFront:homeButton];
+            
+            [self showVideoCameraButtons];
+            [tickBtnTimer invalidate];
+            [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+            
+        }
+        
+    }
+    if ([btn tag] == TAG_CURL_BTN) {
+        RigthTickButton.hidden = NO;
+        self.mainView.userInteractionEnabled = NO;
+        [[[self view] layer] removeAllAnimations];
+        [self hideVideoCameraButtons];
+        homeButton.hidden = YES;
+        
+        UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
+        [[UIColor whiteColor] set];
+        UIRectFill(CGRectMake(0.0, 0.0,1024,768));
+        [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+        
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        [self.curlView uncurlAnimatedWithDuration:0.0];
+        
+        
+        double delayInSeconds = 0.1;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            
+            tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+            tempImgView.image = image;
+            [self.viewForCurl addSubview:tempImgView];
+            
+            [self.view bringSubviewToFront:self.backView];
+            self.curlConfirmedButton.hidden = NO;
+            
+            [self.curlView curlView:self.viewForCurl cylinderPosition:CGPointMake(800,600) cylinderAngle:3*M_PI_4 cylinderRadius:UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad? 100: 70 animatedWithDuration:0.6];
+            
+            unCurlTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(unCurl) userInfo:nil repeats:NO];
+            
+        });
+    }
+    
+    if ([btn tag] == TAG_CURL_CONFIRMED_BTN) {
+        
+        self.curlConfirmedButton.hidden = YES;
+        [unCurlTimer invalidate];
+        
+        [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_PAGETURN" withFormat:@"mp3"];
+        
+        [self.curlView CurlFullView:1.0];
+        
+        for(FruitView *fruit in fruitObjectArray){
+            [fruit removeFromSuperview];
+        }
+        [tempImgView removeFromSuperview];
+        fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
+        [self hideVideoCameraButtons];
+        //        [videoButton setHidden:YES];
+        //        [cameraButton setHidden:YES];
+        //        [RigthTickButton setHidden:YES];
+        [homeButton setHidden:YES];
+        
+        double delayInSecondsTodetect = 1.1f;
+        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
+        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
+            [self configureViewForCurl];
+            self.mainView.userInteractionEnabled = YES;
+            [self.mainView bringSubviewToFront:self.curlButton];
+        });        
+    }
+}
+
+-(IBAction)actionBack {
+    DebugLog(@"");
+    introView.isShowLogo = NO;    
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];    
 }
  
 #pragma mark-
 #pragma mark======================
-#pragma mark Game Logic
+#pragma mark WinterScene Delegate
 #pragma mark======================
 
--(void)configureViewForCurl{
+-(void)fallSceneDrawObjectForObjectName:(NSString *)objectName{
     DebugLog(@"");
-    
-    [self addCurlAnimation];
-    
-    [self.view bringSubviewToFront:self.mainView];
+    shapeToDraw = objectName;
+    prevShape = objectName;
 }
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Shape Detection Handling
+#pragma mark =======================================
 
 -(void)buildShape:(NSString *)shape {
     DebugLog(@"");
@@ -397,7 +712,7 @@ UIImageView *tempImgView;
     [self reorientationOfShape:(NSString *)shape];
 }
 
- 
+
 -(UIImage *) changeImageColor:(UIImage *) image withColor:(UIColor *) color {
     DebugLog(@"");
     
@@ -414,73 +729,7 @@ UIImageView *tempImgView;
     return flippedImage;
 }
 
--(void)thisIsCalledEvery1Second:(NSTimer *)timer {
-    if(increaseSize <5){
-        increaseSize = increaseSize +1;
-        DebugLog(@"increse call %d",increaseSize);
-        FruitView *f = timer.userInfo;
-        DebugLog(@"Frame to animate %@ ",f.objectName);
-        if([f.objectName isEqualToString:@"present"] ||
-           [f.objectName isEqualToString:@"sled" ]){
-            if(increaseSize == 1)
-                [f.layer setTransform:CATransform3DMakeScale(1.1, 1.1, 1.0)];
-            if(increaseSize == 2)
-                [f.layer setTransform:CATransform3DMakeScale(1.2, 1.2, 1.0)];
-            if(increaseSize == 3)
-                [f.layer setTransform:CATransform3DMakeScale(1.3, 1.3, 1.0)];
-            if(increaseSize == 4)
-                [f.layer setTransform:CATransform3DMakeScale(1.4, 1.4, 1.0)];
-            if(increaseSize == 5)
-                [f.layer setTransform:CATransform3DMakeScale(1.5, 1.5, 1.0)];
-        }else{
-            if(increaseSize == 1)
-                [f.layer setTransform:CATransform3DMakeScale(0.9, 0.9, 1.0)];
-            if(increaseSize == 2)
-                [f.layer setTransform:CATransform3DMakeScale(0.8, 0.8, 1.0)];
-            if(increaseSize == 3)
-                [f.layer setTransform:CATransform3DMakeScale(0.7, 0.7, 1.0)];
-            if(increaseSize == 4)
-                [f.layer setTransform:CATransform3DMakeScale(0.6, 0.6, 1.0)];
-            if(increaseSize == 5)
-                [f.layer setTransform:CATransform3DMakeScale(0.5, 0.5, 1.0)];
-        }
-    }
-}
- 
--(void) randomiseColorOfOrnamment {
-    DebugLog(@"");
-    int randomNo = random() % 5;
-    switch (randomNo) {
-        case 0:
-            colorOrnament = [UIColor colorWithRed:255.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1];
-            break;
-            
-        case 1:
-            colorOrnament = [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:255.0/255.0 alpha:1];
-            break;
-            
-        case 2:
-            colorOrnament = [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:0.0/255.0 alpha:1];
-            break;
-            
-        case 3:
-            colorOrnament = [UIColor colorWithRed:111.0/255.0 green:0.0/255.0 blue:255.0/255.0 alpha:1];
-            break;
-            
-        case 4:
-            colorOrnament = [UIColor colorWithRed:255.0/255.0 green:0.0/255.0 blue:255.0/255.0 alpha:1];
-            break;
-            
-        default:
-            break;
-    }
-    
-}
- 
--(void)visualizeShapeFromData:(NSArray *)pointComparison andRecognizer:(UITouchShapeRecognizer *)shapeRec withTouchGroup:(UITouchGroup *)group{
-    DebugLog(@"");
-}
- 
+
 /*
  Once the shape is get detected we create a shape in exact orientation as
  it was placed.
@@ -498,193 +747,193 @@ UIImageView *tempImgView;
     if (isWithShape) {
         midPoint = CGPointMake(((centerX/numOfTouchPts)),((centerY/numOfTouchPts)));
         
-//        if([shape isEqualToString:@"triangle"]){
-//            //DebugLog(@"triangle");
-//            UITouch *touch = [pointComparison objectAtIndex:0];
-//            UITouch *compare = [pointComparison objectAtIndex:1];
-//            UITouch *reference = [pointComparison objectAtIndex:2];
-//            float pointX=0, pointY=0;
-//            for(UITouch *t in pointComparison){
-//                //DebugLog(@"point=%@",NSStringFromCGPoint([t locationInView:self]));
-//                pointX += [t locationInView:self.view].x;
-//                pointY += [t locationInView:self.view].y;
-//            }
-//            midPoint=CGPointMake(pointX / pointComparison.count, pointY / pointComparison.count);
-//            
-//            if (reference == compare || reference == touch) {
-//                int i = 0;
-//                while (reference == compare || reference == touch) {
-//                    i++;
-//                    if (i < [pointComparison count]) {
-//                        reference = [pointComparison objectAtIndex:i];
-//                    } else {
-//                        break;
-//                    }
-//                    
-//                }
-//                //DebugLog(@"ERROR fixed");
-//            }
-//            CGPoint touchLocation1 = [touch locationInView:self.view];
-//            CGPoint compareLocation = [compare locationInView:self.view];
-//            CGPoint referenceLocation = [reference locationInView:self.view];
-//            
-//            UIBezierPath *trianglePath;
-//            NSMutableArray *newPoints = [[NSMutableArray alloc] init];
-//            midPoint=CGPointMake((touchLocation1.x + compareLocation.x + referenceLocation.x)/3,(touchLocation1.y+ compareLocation.y + referenceLocation.y)/3);
-//            int i=0;
-//            
-//            for(UITouch *t in pointComparison){
-//                i++;
-//                if(i >= pointComparison.count){
-//                    i = 0;
-//                }
-//                CGPoint first = [t locationInView:self.view];
-//                CGPoint second = [[pointComparison objectAtIndex:i] locationInView:self.view];
-//                CGPoint mid = CGPointMake((first.x + second.x) / 2, (first.y + second.y) / 2);
-//                float dist = sqrtf(((first.x - second.x) * (first.x - second.x)) + ((first.y - second.y) * (first.y - second.y)));
-//                
-//                dist = 110;    //defines size of triangle to be drawn (to get shape same as physical shape, use 'dist += 60;')
-//                float offset = (float)abs(midPoint.y - mid.y) / (float)abs(midPoint.x - mid.x);
-//                float newX = (dist) * (dist);
-//                float temp = (offset) * (offset);
-//                temp += 1;
-//                newX /= temp;
-//                newX = sqrtf(newX);
-//                float newY = newX * offset;
-//                
-//                if(midPoint.x < mid.x){
-//                    newX += midPoint.x;
-//                }else if(midPoint.x > mid.x){
-//                    newX = midPoint.x - newX;
-//                    
-//                }
-//                if(midPoint.y < mid.y){
-//                    newY += midPoint.y;
-//                }else if(midPoint.y > mid.y){
-//                    newY = midPoint.y - newY;
-//                }
-//                if(offset == 0){
-//                    if(midPoint.x < mid.x){
-//                        newX = midPoint.x + dist;
-//                    }else if(midPoint.x > mid.x){
-//                        newX = midPoint.x - dist;
-//                    }
-//                    newY = midPoint.y;
-//                }
-//                if(offset == INFINITY){
-//                    newX = midPoint.x;
-//                    if(midPoint.y < mid.y){
-//                        newY = midPoint.y + dist;
-//                    }else if(midPoint.y > mid.y){
-//                        newY = midPoint.y - dist;
-//                    }
-//                }
-//                [newPoints addObject:[NSValue valueWithCGPoint:CGPointMake(newX, newY)]];
-//                DebugLog(@" point of triangle%f %f",newX,newY);
-//            }
-//            DebugLog(@" point of triangle array %@",newPoints);
-//            trianglePath = [[UIBezierPath alloc]init];
-//            [trianglePath moveToPoint:[[newPoints objectAtIndex:0] CGPointValue]];
-//            [trianglePath addLineToPoint:[[newPoints objectAtIndex:1] CGPointValue]];
-//            [trianglePath addLineToPoint:[[newPoints objectAtIndex:2] CGPointValue]];
-//            [trianglePath addLineToPoint:[[newPoints objectAtIndex:0] CGPointValue]];
-//            [trianglePath closePath];
-//            //    }
-//            CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-//            shapeLayer.backgroundColor = [[UIColor clearColor] CGColor];
-//            shapeLayer.borderColor = [[UIColor clearColor] CGColor];
-//            shapeLayer.borderWidth = 3.0f;
-//            CGPoint midpointoftriangle = CGPointMake((touchLocation1.x + compareLocation.x + referenceLocation.x)/3,(touchLocation1.y+ compareLocation.y + referenceLocation.y)/3);
-//            DebugLog(@"Center point %@", NSStringFromCGPoint(midpointoftriangle));
-//            shapeLayer.position = midpointoftriangle;
-//            shapeLayer.frame = CGRectMake(0, 0, 400, 400);
-//            shapeLayer.strokeColor = [UIColor blueColor].CGColor;
-//            //if([shapeName isEqualToString:@"triangle"])
-//            [shapeLayer setPath:trianglePath.CGPath];
-//            [trianglePath closePath];
-//            [self.view.layer addSublayer:shapeLayer];
-//            [shapeLayer setOpacity:0];
-//            
-//            
-//            CGPoint smallX;
-//            smallX = CGPointMake(INFINITY, INFINITY);
-//            for (int i = 0; i<newPoints.count;i++){
-//                CGPoint point = [[newPoints objectAtIndex:i] CGPointValue];
-//                if(smallX.x > point.x){
-//                    smallX = point;
-//                }
-//            }
-//            CGPoint bigY = CGPointZero;
-//            for (int i = 0; i< newPoints.count;i++){
-//                CGPoint point = [[newPoints objectAtIndex:i] CGPointValue];
-//                if(!CGPointEqualToPoint(point, smallX)){
-//                    if(point.y > bigY.y){
-//                        bigY = point;
-//                    }
-//                }
-//            }
-//            
-//            float hyp = sqrt(pow((bigY.y - smallX.y),2) + pow((bigY.x - smallX.x), 2));
-//            float oppSide = abs(bigY.y - smallX.y);
-//            angleDiff = asinf(oppSide/hyp);// * 180 / M_PI;
-//            if(bigY.y <= smallX.y){
-//                angleDiff = -1 * angleDiff;
-//            }
-//            DebugLog(@"SmallX : %@ BigY : %@",NSStringFromCGPoint(smallX),NSStringFromCGPoint(bigY));
-//            DebugLog(@"Hyp : %f Opp : %f",hyp,oppSide);
-//            DebugLog(@"AngleDiff : %f",angleDiff);
-//        }
-//        else if([shape isEqualToString:@"square"]){
-//            UITouch *touch = [pointComparison objectAtIndex:0];
-//            UITouch *compare = [pointComparison objectAtIndex:1];
-//            float pointX=0, pointY=0;
-//            for(UITouch *t in pointComparison){
-//                //DebugLog(@"point=%@",NSStringFromCGPoint([t locationInView:self]));
-//                pointX += [t locationInView:self.view].x;
-//                pointY += [t locationInView:self.view].y;
-//            }
-//            midPoint=CGPointMake(pointX / pointComparison.count, pointY / pointComparison.count);
-//            CGPoint touchLocation1 = [touch locationInView:self.view];
-//            CGPoint compareLocation = [compare locationInView:self.view];
-//            midPoint=CGPointMake((touchLocation1.x + compareLocation.x)/2,(touchLocation1.y+ compareLocation.y)/2);
-//            
-//            float hyp = sqrt(pow((touchLocation1.y - compareLocation.y),2) + pow((touchLocation1.x - compareLocation.x), 2));
-//            float oppSide = abs(compareLocation.y - touchLocation1.y);
-//            
-//            float sinAngle;
-//            
-//            sinAngle=oppSide/hyp;
-//            sinAngle=asinf(sinAngle);   //sin inverse
-//            
-//            CGPoint pointUp,pointDown;
-//            if(touchLocation1.y <= compareLocation.y){
-//                pointUp=touchLocation1;
-//                pointDown=compareLocation;
-//            }else{
-//                pointUp=compareLocation;
-//                pointDown=touchLocation1;
-//            }
-//            if(pointUp.x >= pointDown.x){
-//                //DebugLog(@"OK");
-//                angleDiff=(45 * M_PI / 180) - sinAngle;
-//                
-//            }else{
-//                //DebugLog(@"Not OK");
-//                angleDiff=sinAngle - (135 * M_PI / 180);
-//            }
-//            //    }
-//            CAShapeLayer *square= [CAShapeLayer layer];
-//            [square setFrame:CGRectMake(0, 0, 180, 180)];//in old code it was (0, 0, 350, 350)
-//            [square setBackgroundColor:[UIColor redColor].CGColor];
-//            [square setBorderColor:[UIColor blackColor].CGColor];
-//            [square setBorderWidth:3.0f];
-//            
-//            [self.view.layer addSublayer:square];
-//            [square setOpacity:0];
-//            [square setPosition:midPoint];
-//            [square setValue:[NSNumber numberWithFloat:angleDiff] forKeyPath:@"transform.rotation.z"];
-//            
-//        }
+        //        if([shape isEqualToString:@"triangle"]){
+        //            //DebugLog(@"triangle");
+        //            UITouch *touch = [pointComparison objectAtIndex:0];
+        //            UITouch *compare = [pointComparison objectAtIndex:1];
+        //            UITouch *reference = [pointComparison objectAtIndex:2];
+        //            float pointX=0, pointY=0;
+        //            for(UITouch *t in pointComparison){
+        //                //DebugLog(@"point=%@",NSStringFromCGPoint([t locationInView:self]));
+        //                pointX += [t locationInView:self.view].x;
+        //                pointY += [t locationInView:self.view].y;
+        //            }
+        //            midPoint=CGPointMake(pointX / pointComparison.count, pointY / pointComparison.count);
+        //
+        //            if (reference == compare || reference == touch) {
+        //                int i = 0;
+        //                while (reference == compare || reference == touch) {
+        //                    i++;
+        //                    if (i < [pointComparison count]) {
+        //                        reference = [pointComparison objectAtIndex:i];
+        //                    } else {
+        //                        break;
+        //                    }
+        //
+        //                }
+        //                //DebugLog(@"ERROR fixed");
+        //            }
+        //            CGPoint touchLocation1 = [touch locationInView:self.view];
+        //            CGPoint compareLocation = [compare locationInView:self.view];
+        //            CGPoint referenceLocation = [reference locationInView:self.view];
+        //
+        //            UIBezierPath *trianglePath;
+        //            NSMutableArray *newPoints = [[NSMutableArray alloc] init];
+        //            midPoint=CGPointMake((touchLocation1.x + compareLocation.x + referenceLocation.x)/3,(touchLocation1.y+ compareLocation.y + referenceLocation.y)/3);
+        //            int i=0;
+        //
+        //            for(UITouch *t in pointComparison){
+        //                i++;
+        //                if(i >= pointComparison.count){
+        //                    i = 0;
+        //                }
+        //                CGPoint first = [t locationInView:self.view];
+        //                CGPoint second = [[pointComparison objectAtIndex:i] locationInView:self.view];
+        //                CGPoint mid = CGPointMake((first.x + second.x) / 2, (first.y + second.y) / 2);
+        //                float dist = sqrtf(((first.x - second.x) * (first.x - second.x)) + ((first.y - second.y) * (first.y - second.y)));
+        //
+        //                dist = 110;    //defines size of triangle to be drawn (to get shape same as physical shape, use 'dist += 60;')
+        //                float offset = (float)abs(midPoint.y - mid.y) / (float)abs(midPoint.x - mid.x);
+        //                float newX = (dist) * (dist);
+        //                float temp = (offset) * (offset);
+        //                temp += 1;
+        //                newX /= temp;
+        //                newX = sqrtf(newX);
+        //                float newY = newX * offset;
+        //
+        //                if(midPoint.x < mid.x){
+        //                    newX += midPoint.x;
+        //                }else if(midPoint.x > mid.x){
+        //                    newX = midPoint.x - newX;
+        //
+        //                }
+        //                if(midPoint.y < mid.y){
+        //                    newY += midPoint.y;
+        //                }else if(midPoint.y > mid.y){
+        //                    newY = midPoint.y - newY;
+        //                }
+        //                if(offset == 0){
+        //                    if(midPoint.x < mid.x){
+        //                        newX = midPoint.x + dist;
+        //                    }else if(midPoint.x > mid.x){
+        //                        newX = midPoint.x - dist;
+        //                    }
+        //                    newY = midPoint.y;
+        //                }
+        //                if(offset == INFINITY){
+        //                    newX = midPoint.x;
+        //                    if(midPoint.y < mid.y){
+        //                        newY = midPoint.y + dist;
+        //                    }else if(midPoint.y > mid.y){
+        //                        newY = midPoint.y - dist;
+        //                    }
+        //                }
+        //                [newPoints addObject:[NSValue valueWithCGPoint:CGPointMake(newX, newY)]];
+        //                DebugLog(@" point of triangle%f %f",newX,newY);
+        //            }
+        //            DebugLog(@" point of triangle array %@",newPoints);
+        //            trianglePath = [[UIBezierPath alloc]init];
+        //            [trianglePath moveToPoint:[[newPoints objectAtIndex:0] CGPointValue]];
+        //            [trianglePath addLineToPoint:[[newPoints objectAtIndex:1] CGPointValue]];
+        //            [trianglePath addLineToPoint:[[newPoints objectAtIndex:2] CGPointValue]];
+        //            [trianglePath addLineToPoint:[[newPoints objectAtIndex:0] CGPointValue]];
+        //            [trianglePath closePath];
+        //            //    }
+        //            CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+        //            shapeLayer.backgroundColor = [[UIColor clearColor] CGColor];
+        //            shapeLayer.borderColor = [[UIColor clearColor] CGColor];
+        //            shapeLayer.borderWidth = 3.0f;
+        //            CGPoint midpointoftriangle = CGPointMake((touchLocation1.x + compareLocation.x + referenceLocation.x)/3,(touchLocation1.y+ compareLocation.y + referenceLocation.y)/3);
+        //            DebugLog(@"Center point %@", NSStringFromCGPoint(midpointoftriangle));
+        //            shapeLayer.position = midpointoftriangle;
+        //            shapeLayer.frame = CGRectMake(0, 0, 400, 400);
+        //            shapeLayer.strokeColor = [UIColor blueColor].CGColor;
+        //            //if([shapeName isEqualToString:@"triangle"])
+        //            [shapeLayer setPath:trianglePath.CGPath];
+        //            [trianglePath closePath];
+        //            [self.view.layer addSublayer:shapeLayer];
+        //            [shapeLayer setOpacity:0];
+        //
+        //
+        //            CGPoint smallX;
+        //            smallX = CGPointMake(INFINITY, INFINITY);
+        //            for (int i = 0; i<newPoints.count;i++){
+        //                CGPoint point = [[newPoints objectAtIndex:i] CGPointValue];
+        //                if(smallX.x > point.x){
+        //                    smallX = point;
+        //                }
+        //            }
+        //            CGPoint bigY = CGPointZero;
+        //            for (int i = 0; i< newPoints.count;i++){
+        //                CGPoint point = [[newPoints objectAtIndex:i] CGPointValue];
+        //                if(!CGPointEqualToPoint(point, smallX)){
+        //                    if(point.y > bigY.y){
+        //                        bigY = point;
+        //                    }
+        //                }
+        //            }
+        //
+        //            float hyp = sqrt(pow((bigY.y - smallX.y),2) + pow((bigY.x - smallX.x), 2));
+        //            float oppSide = abs(bigY.y - smallX.y);
+        //            angleDiff = asinf(oppSide/hyp);// * 180 / M_PI;
+        //            if(bigY.y <= smallX.y){
+        //                angleDiff = -1 * angleDiff;
+        //            }
+        //            DebugLog(@"SmallX : %@ BigY : %@",NSStringFromCGPoint(smallX),NSStringFromCGPoint(bigY));
+        //            DebugLog(@"Hyp : %f Opp : %f",hyp,oppSide);
+        //            DebugLog(@"AngleDiff : %f",angleDiff);
+        //        }
+        //        else if([shape isEqualToString:@"square"]){
+        //            UITouch *touch = [pointComparison objectAtIndex:0];
+        //            UITouch *compare = [pointComparison objectAtIndex:1];
+        //            float pointX=0, pointY=0;
+        //            for(UITouch *t in pointComparison){
+        //                //DebugLog(@"point=%@",NSStringFromCGPoint([t locationInView:self]));
+        //                pointX += [t locationInView:self.view].x;
+        //                pointY += [t locationInView:self.view].y;
+        //            }
+        //            midPoint=CGPointMake(pointX / pointComparison.count, pointY / pointComparison.count);
+        //            CGPoint touchLocation1 = [touch locationInView:self.view];
+        //            CGPoint compareLocation = [compare locationInView:self.view];
+        //            midPoint=CGPointMake((touchLocation1.x + compareLocation.x)/2,(touchLocation1.y+ compareLocation.y)/2);
+        //
+        //            float hyp = sqrt(pow((touchLocation1.y - compareLocation.y),2) + pow((touchLocation1.x - compareLocation.x), 2));
+        //            float oppSide = abs(compareLocation.y - touchLocation1.y);
+        //
+        //            float sinAngle;
+        //
+        //            sinAngle=oppSide/hyp;
+        //            sinAngle=asinf(sinAngle);   //sin inverse
+        //
+        //            CGPoint pointUp,pointDown;
+        //            if(touchLocation1.y <= compareLocation.y){
+        //                pointUp=touchLocation1;
+        //                pointDown=compareLocation;
+        //            }else{
+        //                pointUp=compareLocation;
+        //                pointDown=touchLocation1;
+        //            }
+        //            if(pointUp.x >= pointDown.x){
+        //                //DebugLog(@"OK");
+        //                angleDiff=(45 * M_PI / 180) - sinAngle;
+        //
+        //            }else{
+        //                //DebugLog(@"Not OK");
+        //                angleDiff=sinAngle - (135 * M_PI / 180);
+        //            }
+        //            //    }
+        //            CAShapeLayer *square= [CAShapeLayer layer];
+        //            [square setFrame:CGRectMake(0, 0, 180, 180)];//in old code it was (0, 0, 350, 350)
+        //            [square setBackgroundColor:[UIColor redColor].CGColor];
+        //            [square setBorderColor:[UIColor blackColor].CGColor];
+        //            [square setBorderWidth:3.0f];
+        //
+        //            [self.view.layer addSublayer:square];
+        //            [square setOpacity:0];
+        //            [square setPosition:midPoint];
+        //            [square setValue:[NSNumber numberWithFloat:angleDiff] forKeyPath:@"transform.rotation.z"];
+        //
+        //        }
         
     }else{
         angleDiff = 0;
@@ -789,10 +1038,10 @@ UIImageView *tempImgView;
             continuityTimer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(playGreetingSoundForObject:) userInfo:objName repeats:NO];
             isGreetingPlaying = YES;
             
-           // for(FruitView *f in fruitObjectArray){
-                [self.mainView bringSubviewToFront:fruit];
-                [self.mainView bringSubviewToFront:RigthTickButton];
-                [self.mainView bringSubviewToFront:homeButton];
+            // for(FruitView *f in fruitObjectArray){
+            [self.mainView bringSubviewToFront:fruit];
+            [self.mainView bringSubviewToFront:RigthTickButton];
+            [self.mainView bringSubviewToFront:homeButton];
             [self.mainView bringSubviewToFront:videoButton];
             [self.mainView bringSubviewToFront:cameraButton];
             //}
@@ -820,59 +1069,64 @@ UIImageView *tempImgView;
     
 }
 
--(void) playGreetingSoundForObject:(NSTimer *) timer {
+
+
+#pragma mark-
+#pragma mark======================
+#pragma mark UITouchVerification Delegate
+#pragma mark======================
+
+-(void)shapeDetected:(UITouchShapeRecognizer *)UIT inView:(UITouchVerificationView*)view{
     DebugLog(@"");
-    
-    if (isRecording) {
+    if(!bShouldShapeDetected){
+        NSLog(@"I got the shape but i am returning");
         return;
     }
     
-    NSString *str = (NSString *)[timer userInfo];
-    [[TDSoundManager sharedManager] playSound:[fallSceneObject getAnimalNameSoundForObject:str] withFormat:@"mp3"];
     
     
-    double delayInSeconds = [[TDSoundManager sharedManager] getSoundDuration] + 0.3;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        isGreetingPlaying = NO;
-    });
-
-}
-
--(void)deleteObject {
+    shapeToDraw = nil;
+    self.shapes = [[NSMutableArray alloc]initWithArray:[fallSceneObject shapeForObject:UIT.label]];
+    centerX = 0;
+    centerY = 0;
+    pointComparison = [[NSArray alloc]initWithArray:view.detectedPoints];
+    numOfTouchPts = pointComparison.count;
     
-}
-
-/*
- This method is called when user is idle for more than 3 seconds.
- */
--(void)needToShowRightTickButton{
-    DebugLog(@"");
-    if ([fruitObjectArray count] > 0 ) {
-        RigthTickButton.hidden = NO;
-        videoButton.hidden = YES;
-        cameraButton.hidden = YES;
-
+    for(UITouch *touch in view.detectedPoints){
+        CGPoint tochLocation = [touch locationInView:touchView];
+        centerX = centerX + tochLocation.x;
+        centerY = centerY + tochLocation.y;
     }
+    if(bShouldShapeDetected){
+        bShouldShapeDetected = NO;
+        NSLog(@"I got the shape i am displaying");
+        [self buildShape:UIT.label];
+        [self playShapeDetectedSound];
+        
+        shapeSoundToPlay = UIT.label;
+        if ([shapeSoundTimer isValid]) {
+            [shapeSoundTimer invalidate];
+        }
+        shapeSoundTimer = [NSTimer scheduledTimerWithTimeInterval:1.5f target:self selector:@selector(playSoundForShape) userInfo:nil repeats:NO];
+        
+        //        int64_t delayInSecondsTodetect = 1.5f;
+        //        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
+        //        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
+        //           [[TDSoundManager sharedManager] playSound:UIT.label withFormat:@"mp3"];
+        //        });
+        
+    }else{
+        NSLog(@"I got the shape but dont wanna display");
+    }
+    int64_t delayInSecondsTodetect = 0.0f;
+    dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
+    dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
+        bShouldShapeDetected = YES;
+    });
 }
- 
-#pragma mark-
-#pragma mark======================
-#pragma mark WinterScene Delegate
-#pragma mark======================
-
--(void)fallSceneDrawObjectForObjectName:(NSString *)objectName{
-    DebugLog(@"");
-    shapeToDraw = objectName;
-    prevShape = objectName;
-}
- 
 
 
-#pragma mark-
-#pragma mark======================
-#pragma mark UITouchVerification TouchDelegate
-#pragma mark======================
+
 -(void)touchVerificationViewTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     
     DebugLog(@"TouchBegan");
@@ -1089,324 +1343,7 @@ UIImageView *tempImgView;
 }
 
 
-#pragma mark- ===============================
-#pragma mark- button touch handling functions
-#pragma mark- ===============================
--(void) hideButtons{
-    DebugLog(@"");
-    
-    
-    [self.view.layer removeAnimationForKey:@"pageUnCurl"];
-    [self.view.layer removeAllAnimations];
-    
-    
-    cameraButton.hidden = YES;
-    RigthTickButton.hidden = YES;
-   [homeButton setHidden:YES];
-    garbageCan.hidden = YES;
-    curlButton.hidden = YES;
-    cameraButton.hidden = YES;
-    
-    for(CALayer *layer in btnView.layer.sublayers) {
-        [layer removeAnimationForKey:@"transform.scale"];
-        [layer removeAllAnimations];
-    }
-    
-    [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted"] forState:UIControlStateNormal];
-    
-}
 
--(IBAction)actionRecording:(id)sender {
-    DebugLog(@"");
-    
-    if(isRecording) {
-
-        isRecording = NO;
-        [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted"] forState:UIControlStateNormal];
-        cameraButton.hidden = NO;
-        [screenCapture stopRecording];
-        [self screenVideoShotStop];
-        
-        garbageCan.hidden = NO;
-        curlButton.hidden = NO;
-        
-        [videoButton.layer removeAnimationForKey:@"opacity"];
-        [videoButton.layer removeAllAnimations];
-        
-        [self hideVideoCameraButtons];
-        
-       // [self addCurlAnimation];
-        
-    }else{
-
-        isRecording = YES;
-        
-        [[TDSoundManager sharedManager] stopMusic];
-        
-        [NSThread detachNewThreadSelector:@selector(hideButtons) toTarget:self withObject:nil];
-        
-        [self playTellUsStorySound];
-    }
-    
-}
-
--(void) startScreenRecording{
-    isRecording = YES;
-
-    [NSThread detachNewThreadSelector:@selector(hideButtons) toTarget:self withObject:nil];
-    
-    screenCapture.delegate = self;
-    [screenCapture startRecording];
-    [screenCapture setNeedsDisplay];
-    
-    CABasicAnimation *theAnimation;
-    theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
-    theAnimation.duration=1.0;
-    theAnimation.repeatCount=HUGE_VALF;
-    theAnimation.autoreverses=NO;
-    theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
-    theAnimation.toValue=[NSNumber numberWithFloat:0.5];
-    [videoButton.layer addAnimation:theAnimation forKey:@"opacity"]; //animateOpacity
-}
-
--(IBAction)screenShot:(id)sender {
-    DebugLog(@"");
-    
-    [[TDSoundManager sharedManager] stopMusic];
-
-    [[[self view] layer] removeAnimationForKey:@"pageUnCurl"];
-    [[[self view] layer]removeAllAnimations];
-    
-    [self hideVideoCameraButtons];
-    
-    isCameraClick = YES;
-
-    DebugLog(@"");
-    UIButton *btn = sender;
-    
-    if ([btn isHidden]) {
-        return;
-    }
-     [homeButton setHidden:YES];
-    [RigthTickButton setHidden:YES];
-    [cameraButton setHidden:YES];
-    [videoButton setHidden:YES];
-    [garbageCan setHidden:YES];
-    [curlButton setHidden:YES];
-    
-    UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
-    [[UIColor whiteColor] set];
-    UIRectFill(CGRectMake(0.0, 0.0,1024,768));
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    NSDate* currentDate = [NSDate date];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"MM-dd-yyyy_HH:mm:ss"];
-    // convert it to a string
-    NSString *dateString = [dateFormat stringFromDate:currentDate];
-    NSString *imgName = [NSString stringWithFormat:@"TigglyStamp_%@.png",dateString];
-    DebugLog(@"Image Name : %@",imgName);
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:imgName];
-    DebugLog(@"Image Path: %@",savedImagePath);
-    NSData *imageData = UIImagePNGRepresentation(image);
-    BOOL isSuccess = [imageData writeToFile:savedImagePath atomically:YES];
-    if(isSuccess)
-        DebugLog(@"Imaged saved successfully");
-    else
-        DebugLog(@"Failed to save the image");
-    
-    [cameraButton setHidden:NO];
-    [videoButton setHidden:NO];
-    [garbageCan setHidden:NO];
-    [curlButton setHidden:NO];
-        
-
-    
-    UIView *flashView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
-    flashView.backgroundColor = [UIColor whiteColor];
-    flashView.alpha = 0;
-    [self.view addSubview:flashView];
-    
-    [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_CAMERA" withFormat:@"mp3"];
-    
-    [UIView animateWithDuration:0.1
-                     animations:^{
-                         flashView.alpha = 1;
-
-                     }
-                     completion:^(BOOL finished){
-
-                         
-                         [UIView animateWithDuration:0.2
-                                          animations:^{
-                                              flashView.alpha = 0;
-                                          }
-                                          completion:^(BOOL finished){
-                                              [flashView removeFromSuperview];
-                                              //[self playRandomPraiseSound];
-                                              double delayInSeconds = 0.8;
-                                              dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                                              dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                                                  [self playSlidingSounds];
-                                              });
-                                              
-                                              
-                                              CapturedImageView *cImageView = [[CapturedImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768) ImageName:imgName];
-                                              cImageView.delegate = self;
-                                              [self.mainView addSubview:cImageView];
-                                              [self.mainView bringSubviewToFront:cImageView];
-                                              
-                                          }];
-                     }];
-    
-}
-
--(IBAction)onBackButtonClicked:(id)sender{
-    DebugLog(@"onBackButtonClicked");
-    
-    introView.isShowLogo = NO;
-    if ([self respondsToSelector:@selector(dismissViewControllerAnimated:completion:)]) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }else{
-        [self dismissModalViewControllerAnimated:YES];
-        
-    }
-    
-}
-
--(IBAction)onhomeButton:(id)sender{
-    [[TDSoundManager sharedManager] stopSound];
-    [[TDSoundManager sharedManager] stopMusic];
-    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
-}
-
- 
-
--(IBAction)onButtonClicked:(id)sender{
-    DebugLog(@"");
-    UIButton *btn = sender;
-    if ([btn tag] == TAG_RIGHT_TICK_BTN) {
-        
-        [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
-        
-//        [NSTimer scheduledTimerWithTimeInterval:0.29 + 0.1 target:self selector:@selector(playDragSound) userInfo:nil repeats:NO];
-        
-        [self sendEmail];
-        if (![btn isHidden]) {
-            RigthTickButton.hidden = YES;
-            [homeButton setHidden:false];
-            [self.mainView bringSubviewToFront:homeButton];
-            
-            [self showVideoCameraButtons];
-            [tickBtnTimer invalidate];
-            [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
-            
-        }
-        
-    }
-    if ([btn tag] == TAG_CURL_BTN) {
-        RigthTickButton.hidden = NO;
-        self.mainView.userInteractionEnabled = NO;
-        [[[self view] layer] removeAllAnimations];
-        [self hideVideoCameraButtons];
-        homeButton.hidden = YES;
-        
-        UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
-        [[UIColor whiteColor] set];
-        UIRectFill(CGRectMake(0.0, 0.0,1024,768));
-        [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-        
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        [self.curlView uncurlAnimatedWithDuration:0.0];
-        
-        
-        double delayInSeconds = 0.1;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            
-            tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
-            tempImgView.image = image;
-            [self.viewForCurl addSubview:tempImgView];
-            
-            [self.view bringSubviewToFront:self.backView];
-            self.curlConfirmedButton.hidden = NO;
-            
-            [self.curlView curlView:self.viewForCurl cylinderPosition:CGPointMake(800,600) cylinderAngle:3*M_PI_4 cylinderRadius:UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad? 100: 70 animatedWithDuration:0.6];
-            
-            unCurlTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(unCurl) userInfo:nil repeats:NO];
-            
-        });
-    }
-    
-    if ([btn tag] == TAG_CURL_CONFIRMED_BTN) {
-        
-        self.curlConfirmedButton.hidden = YES;
-        [unCurlTimer invalidate];
-        
-        [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_PAGETURN" withFormat:@"mp3"];
-        
-        [self.curlView CurlFullView:1.0];
-        
-        for(FruitView *fruit in fruitObjectArray){
-            [fruit removeFromSuperview];
-        }
-        [tempImgView removeFromSuperview];
-        fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
-        [self hideVideoCameraButtons];
-//        [videoButton setHidden:YES];
-//        [cameraButton setHidden:YES];
-//        [RigthTickButton setHidden:YES];
-        [homeButton setHidden:YES];
-        
-        double delayInSecondsTodetect = 1.1f;
-        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
-        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
-            [self configureViewForCurl];
-            self.mainView.userInteractionEnabled = YES;
-            [self.mainView bringSubviewToFront:self.curlButton];
-        });
-
-    }
-}
-
--(void) unCurl{
-    DebugLog(@"");
-    
-    self.curlConfirmedButton.hidden = YES;
-    [self.curlView uncurlAnimatedWithDuration:0.6];
-    
-    double delayInSeconds = 0.7;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [tempImgView removeFromSuperview];
-        [self configureViewForCurl];
-        self.mainView.userInteractionEnabled = YES;
-        [self.view bringSubviewToFront:self.mainView];
-    });
-    
-}
-
--(void) removeCurl{
-    DebugLog(@"");
-    [self.curlView removeFromSuperview];
-    [self.view sendSubviewToBack:backView];
-    [self.view bringSubviewToFront:mainView];
-}
-
--(IBAction)actionBack {
-    introView.isShowLogo = NO;
-    
-      [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
-    
-}
  
 #pragma mark- ===============================
 #pragma mark- CapturedImageView Delegates
@@ -1459,7 +1396,7 @@ UIImageView *tempImgView;
  
 -(void) onPlayButtonClicked:(CapturedImageView *)cImageView
 {
-    [self actionPlayVideo];
+    [self playVideo];
     
 }
 
@@ -1551,7 +1488,7 @@ UIImageView *tempImgView;
 
 
 #pragma mark- ===============================
-#pragma mark- Play Button Action
+#pragma mark- Video Handling
 #pragma mark- ===============================
 
 -(void)screenVideoShotStop {
@@ -1576,8 +1513,8 @@ UIImageView *tempImgView;
     
 }
 
-- (void) recordingFinished:(NSString*)outputPathOrNil
-{    
+- (void) recordingFinished:(NSString*)outputPathOrNil {
+    DebugLog(@"");
     NSURL *url = screenCapture.exportUrl;
     //[self playRandomPraiseSound];
     
@@ -1594,7 +1531,8 @@ UIImageView *tempImgView;
     [self playSlidingSounds];
 }
 
--(void)actionPlayVideo {
+-(void)playVideo {
+    DebugLog(@"");
     NSString *editImgName = [NSString stringWithFormat:@"%@",screenCapture.exportUrl];
     if([[[editImgName lastPathComponent] pathExtension]isEqualToString:@"mov"]) {
         [self playVideoWithURL:screenCapture.exportUrl];
@@ -1650,10 +1588,11 @@ UIImageView *tempImgView;
 
 
 #pragma mark- ===============================
-#pragma mark- Play sound
+#pragma mark- Sound Handling
 #pragma mark- ===============================
+
 -(void) playSlidingSounds{
-    
+    DebugLog(@"");
     int ranNo = arc4random() % 3;
     
     switch (ranNo) {
@@ -1674,7 +1613,7 @@ UIImageView *tempImgView;
     
 }
 -(void) playRandomPraiseSound{
-    // playing sound praise sound randomly
+    DebugLog(@"");
     int ranNo = arc4random() % 9;
     switch (ranNo) {
         case 0:
@@ -1712,6 +1651,7 @@ UIImageView *tempImgView;
 
 
 -(void) playTellUsStorySound{
+    DebugLog(@"");
     float timeToPlayGettingReadySound = 0.0f;
     
     
@@ -1809,6 +1749,7 @@ UIImageView *tempImgView;
 }
 
 -(void) playGettingReadyTotellStorySound{
+    DebugLog(@"");
     float timeToStartVideoRecording = 0.0f;
     if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
         
@@ -1869,6 +1810,7 @@ UIImageView *tempImgView;
 
 
 -(void) playShapeinstructionSounds{
+    DebugLog(@"");
     int ranNo = arc4random() % 5;
     
     switch (ranNo) {
@@ -1882,7 +1824,7 @@ UIImageView *tempImgView;
             [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TapOnTheScreen_WithYourShape_02" withFormat:@"mp3"];
             break;
         case 3:
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_UseTheShapesToMakeAPicture_01" withFormat:@"mp3"];
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TapOnTheScreen_WithYourShape_01" withFormat:@"mp3"];
             break;
         case 4:
             [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_UseYourShapesToMakeAPicture_01" withFormat:@"mp3"];
@@ -1895,18 +1837,17 @@ UIImageView *tempImgView;
 }
 
 -(void) playFingerInstructionSound{
-    int ranNo = arc4random() % 3;
+    DebugLog(@"");
+    int ranNo = arc4random() % 2;
     
     switch (ranNo) {
         case 0:
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TapOnTheScreen_WithYourShape_01" withFormat:@"mp3"];
+            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TouchTheScreenWithYourFingerToMakeAPicture_01" withFormat:@"mp3"];
             break;
         case 1:
             [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TouchTheScreenWithYourFinger_01" withFormat:@"mp3"];
             break;
-        case 2:
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TouchTheScreenWithYourFingerToMakeAPicture_01" withFormat:@"mp3"];
-            break;
+
         default:
             break;
     }
@@ -1915,6 +1856,7 @@ UIImageView *tempImgView;
 }
 
 -(void) playDragSound{
+    DebugLog(@"");
     [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_DragNDrop_DRAG_04" withFormat:@"mp3"];
 }
 
@@ -1934,6 +1876,7 @@ UIImageView *tempImgView;
 }
 
 -(void) playSoundForShape{
+    DebugLog(@"");
 //    [[TDSoundManager sharedManager] playSound:shapeSoundToPlay withFormat:@"mp3"];
 }
 

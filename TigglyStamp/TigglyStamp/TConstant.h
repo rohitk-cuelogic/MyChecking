@@ -33,9 +33,8 @@
 #define LANGUAGE_SELECTED @"language"
 #define MUSIC @"music"
 #define SAVE_ART @"saveArt"
-#define I_HAVE_SHAPE @"iHaveShape"
-#define I_MISS_SHAPE @"iMissShape"
 #define LIMIT_GALLERY @"limitGallery"
+#define IS_WITH_SHAPE @"withShape"
 
 // Twitter Tokens
 #define kOAuthConsumerKey           @"M3Nq5aWit1KMvxMiK3Vng"

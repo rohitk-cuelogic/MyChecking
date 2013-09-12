@@ -367,6 +367,8 @@
 		C01E52B917C7437100B749F3 /* tiggly_parents_bkg.png in Resources */ = {isa = PBXBuildFile; fileRef = C01E52B717C7437100B749F3 /* tiggly_parents_bkg.png */; };
 		C01E52BB17C7495300B749F3 /* home_play_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = C01E52BA17C7495300B749F3 /* home_play_btn.png */; };
 		C01E52BD17C74BA800B749F3 /* winter_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = C01E52BC17C74BA800B749F3 /* winter_btn.png */; };
+		C0258D9917E18B4F0072FA52 /* Tiggly_SFX_BELL.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0258D9717E18B4F0072FA52 /* Tiggly_SFX_BELL.mp3 */; };
+		C0258D9A17E18B4F0072FA52 /* Tiggly_SFX_TRAIN_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0258D9817E18B4F0072FA52 /* Tiggly_SFX_TRAIN_01.mp3 */; };
 		C028606917D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028606617D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_02.mp3 */; };
 		C028606A17D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_03.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028606717D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_03.mp3 */; };
 		C028606B17D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028606817D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_01.mp3 */; };
@@ -1253,6 +1255,8 @@
 		C01E52B717C7437100B749F3 /* tiggly_parents_bkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiggly_parents_bkg.png; sourceTree = "<group>"; };
 		C01E52BA17C7495300B749F3 /* home_play_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_play_btn.png; sourceTree = "<group>"; };
 		C01E52BC17C74BA800B749F3 /* winter_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = winter_btn.png; sourceTree = "<group>"; };
+		C0258D9717E18B4F0072FA52 /* Tiggly_SFX_BELL.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_BELL.mp3; sourceTree = "<group>"; };
+		C0258D9817E18B4F0072FA52 /* Tiggly_SFX_TRAIN_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_TRAIN_01.mp3; sourceTree = "<group>"; };
 		C028606617D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_DragNDrop_DROP_02.mp3; sourceTree = "<group>"; };
 		C028606717D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_03.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_DragNDrop_DROP_03.mp3; sourceTree = "<group>"; };
 		C028606817D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_DragNDrop_DROP_01.mp3; sourceTree = "<group>"; };
@@ -2318,6 +2322,8 @@
 		C02F433B17D60CFC007AEA39 /* Chosen_Greeting */ = {
 			isa = PBXGroup;
 			children = (
+				C0258D9717E18B4F0072FA52 /* Tiggly_SFX_BELL.mp3 */,
+				C0258D9817E18B4F0072FA52 /* Tiggly_SFX_TRAIN_01.mp3 */,
 				C0F20DD117D9D09900340C20 /* rooster_Animal.mp3 */,
 				C028607E17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DROP_04.mp3 */,
 				C028606617D7683E001EAE9E /* Tiggly_SFX_DragNDrop_DROP_02.mp3 */,
@@ -3839,6 +3845,8 @@
 				C0F20DD217D9D09900340C20 /* rooster_Animal.mp3 in Resources */,
 				C0760FA417DA031200D5E93D /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 in Resources */,
 				C03989C317DF51D90079EB90 /* StampViewController.xib in Resources */,
+				C0258D9917E18B4F0072FA52 /* Tiggly_SFX_BELL.mp3 in Resources */,
+				C0258D9A17E18B4F0072FA52 /* Tiggly_SFX_TRAIN_01.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3971,8 +3979,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "0AB02773-5230-4CB5-8961-338D5C6340D1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0AB02773-5230-4CB5-8961-338D5C6340D1";
+				PROVISIONING_PROFILE = "60E85B2E-4C7D-4D2F-AF62-C6A52928E959";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "60E85B2E-4C7D-4D2F-AF62-C6A52928E959";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -4019,8 +4027,8 @@
 				INFOPLIST_FILE = "TigglyStamp/TigglyStamp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0AB02773-5230-4CB5-8961-338D5C6340D1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0AB02773-5230-4CB5-8961-338D5C6340D1";
+				PROVISIONING_PROFILE = "60E85B2E-4C7D-4D2F-AF62-C6A52928E959";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "60E85B2E-4C7D-4D2F-AF62-C6A52928E959";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

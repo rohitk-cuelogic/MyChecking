@@ -222,11 +222,9 @@
     
     
     if (btn.tag == TAG_BTN_WITHSHAPE) {
-        [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:I_HAVE_SHAPE];
-        [[TigglyStampUtils sharedInstance] SetBooleanWithShape:YES];
+        [[TigglyStampUtils sharedInstance] setShapeMode:YES];
     }else if (btn.tag == TAG_BTN_WITHOUTSHAPE){
-        [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:I_MISS_SHAPE];
-        [[TigglyStampUtils sharedInstance] SetBooleanWithShape:NO];
+        [[TigglyStampUtils sharedInstance] setShapeMode:NO];
     }
     
     [self.navigationController pushViewController:homeViewController animated:YES];

@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "IntroScreenViewController.h"
-#import "WinterSceneViewController.h"
 #import "TigglyStampUtils.h"
 #import "TDSoundManager.h"
 

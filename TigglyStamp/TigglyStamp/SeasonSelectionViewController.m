@@ -7,8 +7,7 @@
 //
 
 #import "SeasonSelectionViewController.h"
-#import "WinterSceneViewController.h"
-#import "FallSceneViewController.h"
+
 
 #define TAG_FALL_BTN 1
 #define TAG_WINTER_BTN 2
@@ -76,13 +75,15 @@
     UIButton *btn = (UIButton *) sender;
     DebugLog(@"Btn Tag : %d",btn.tag);
     
+    StampViewController *stampViewController = nil;
+    
     if (btn.tag == TAG_WINTER_BTN) {
-        WinterSceneViewController *winterViewController = [[WinterSceneViewController alloc]initWithNibName:@"WinterSceneViewController" bundle:nil];
-        [self.navigationController pushViewController:winterViewController animated:YES];
+        stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneWinter];
     }else if (btn.tag == TAG_FALL_BTN){         
-        FallSceneViewController *winterViewController = [[FallSceneViewController alloc]initWithNibName:@"FallSceneViewController" bundle:nil];
-        [self.navigationController pushViewController:winterViewController animated:YES];
+        stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneFall];
     }
+    
+    [self.navigationController pushViewController:stampViewController animated:YES];
     
 
 }

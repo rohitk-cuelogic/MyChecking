@@ -75,7 +75,7 @@ int swipeTxtCnt;
         [thumbnail removeFromSuperview];
     }
     
-    swipeTxtArray = [[NSMutableArray alloc] initWithObjects:@"right with 2", @"right with 3", @"left with 2", @"left with 3", @"up with 2", @"up with 3", @"down with 2", @"down with 3", nil];
+    swipeTxtArray = [[NSMutableArray alloc] initWithObjects:@"right with 2", @"right with 2", @"left with 2", @"left with 2", @"up with 2", @"up with 2", @"down with 2", @"down with 2", nil];
 
 }
 
@@ -371,9 +371,6 @@ int swipeTxtCnt;
     swipeTxtCnt = arc4random()%7;
     [txtView setText:[NSString stringWithFormat:@"Hi there!\n\nSwipe %@ fingers to continue.", [swipeTxtArray objectAtIndex:swipeTxtCnt]]];
     
-#ifdef DEBUG_MODE
-    [txtView setText:[NSString stringWithFormat:@"Hi there!\n\nSwipe %@ or 2 fingers to continue.", [swipeTxtArray objectAtIndex:swipeTxtCnt]]];
-    
     switch (swipeTxtCnt) {
         case 0:
             [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
@@ -410,46 +407,6 @@ int swipeTxtCnt;
         default:
             break;
     }
-    
-#else
-    switch (swipeTxtCnt) {
-        case 0:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 1:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 3];
-            break;
-        case 2:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 3:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 3];
-            break;
-        case 4:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 5:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 3];
-            break;
-        case 6:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 7:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 3];
-            break;
-        default:
-            break;
-    }
-    
-#endif
     
     confirmationView.hidden = NO;
     [self.view bringSubviewToFront:confirmationView];

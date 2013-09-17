@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-//#define DEBUG_MODE
+#define DEBUG_MODE
 //#define IS_RUN_WITHOUT_SHAPE_FOR_TESTING 1
 
 #define TEST_MODE 1
@@ -47,6 +47,11 @@ typedef enum {
     kShapeTypeStar,
     kShapeTypeSquare    
 } ShapeType;
+
+typedef enum {
+    kSceneWinter,
+    kSceneFall    
+} SceneType;
 
 @interface TConstant : NSObject
 

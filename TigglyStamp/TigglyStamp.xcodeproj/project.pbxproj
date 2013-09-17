@@ -382,6 +382,7 @@
 		C028607B17D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_03.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607317D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_03.mp3 */; };
 		C028607D17D76A1D001EAE9E /* Tiggly_GenGreeting_spider_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607C17D76A1C001EAE9E /* Tiggly_GenGreeting_spider_01.mp3 */; };
 		C028607F17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DROP_04.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607E17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DROP_04.mp3 */; };
+		C02F012C17E70CC7007405C0 /* PhysicalShapesView.m in Sources */ = {isa = PBXBuildFile; fileRef = C02F012B17E70CC7007405C0 /* PhysicalShapesView.m */; };
 		C02F440E17D60CFC007AEA39 /* Tiggly_Word_Bell_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02F431717D60CFC007AEA39 /* Tiggly_Word_Bell_01.mp3 */; };
 		C02F440F17D60CFC007AEA39 /* Tiggly_Word_Bell_Wow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02F431817D60CFC007AEA39 /* Tiggly_Word_Bell_Wow.mp3 */; };
 		C02F441017D60CFC007AEA39 /* Tiggly_Word_Candy_01 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02F431917D60CFC007AEA39 /* Tiggly_Word_Candy_01 1.mp3 */; };
@@ -628,7 +629,6 @@
 		C02F450117D60CFC007AEA39 /* Tiggly_Word_Shirt_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02F440C17D60CFC007AEA39 /* Tiggly_Word_Shirt_01.mp3 */; };
 		C02F450217D60CFC007AEA39 /* Tiggly_Word_Shirt_Gasp_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02F440D17D60CFC007AEA39 /* Tiggly_Word_Shirt_Gasp_01.mp3 */; };
 		C03989C217DF51D90079EB90 /* StampViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03989C017DF51D90079EB90 /* StampViewController.m */; };
-		C03989C317DF51D90079EB90 /* StampViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C03989C117DF51D90079EB90 /* StampViewController.xib */; };
 		C03C64D317B280E8006666F4 /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C03C64D017B280E8006666F4 /* Pinterest.framework */; };
 		C03C64D417B280E8006666F4 /* PinterestSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C03C64D217B280E8006666F4 /* PinterestSDKResources.bundle */; };
 		C060B41F17CDF643000AD202 /* TDSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C060B41E17CDF643000AD202 /* TDSoundManager.m */; };
@@ -717,8 +717,6 @@
 		C0D8C92417C772C000A037B8 /* play_btn_circle_3.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D8C92217C772C000A037B8 /* play_btn_circle_3.png */; };
 		C0D8C92517C772C000A037B8 /* play_btn_circle_5.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D8C92317C772C000A037B8 /* play_btn_circle_5.png */; };
 		C0DDFCBF17A6384D001F846D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C00C973617A292A300224283 /* SettingsViewController.m */; };
-		C0DDFCC317A66E4C001F846D /* FallSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DDFCC117A66E4C001F846D /* FallSceneViewController.m */; };
-		C0DDFCC417A66E4C001F846D /* FallSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0DDFCC217A66E4C001F846D /* FallSceneViewController.xib */; };
 		C0F20DD217D9D09900340C20 /* rooster_Animal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0F20DD117D9D09900340C20 /* rooster_Animal.mp3 */; };
 		C0FF762A17A78FA500FF084A /* TigglyStamp-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F332C1781867900FC479F /* TigglyStamp-Info.plist */; };
 		EB11AF8117AA36FE0013B1B4 /* IntroScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC31D64317A94CE1008C5361 /* IntroScreenViewController.xib */; };
@@ -754,8 +752,7 @@
 		EB6F3386178198B700FC479F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6F3385178198B700FC479F /* AudioToolbox.framework */; };
 		EB6F3388178198BC00FC479F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6F3387178198BC00FC479F /* AVFoundation.framework */; };
 		EB6F338A178198D500FC479F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6F3389178198D500FC479F /* QuartzCore.framework */; };
-		EB6F338E17819B8100FC479F /* WinterSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F338C17819B8100FC479F /* WinterSceneViewController.m */; };
-		EB6F338F17819B8100FC479F /* WinterSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB6F338D17819B8100FC479F /* WinterSceneViewController.xib */; };
+		EB6F338F17819B8100FC479F /* StampViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB6F338D17819B8100FC479F /* StampViewController.xib */; };
 		EB6F33961781AB4700FC479F /* UITouchShapeRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F337C17818CED00FC479F /* UITouchShapeRecognizer.m */; };
 		EB6F33971781AB4B00FC479F /* UITouchVerificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F337E17818CED00FC479F /* UITouchVerificationView.m */; };
 		EB6F339A1781AD3500FC479F /* TConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F33991781AD0600FC479F /* TConstant.m */; };
@@ -1270,6 +1267,8 @@
 		C028607317D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_03.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_SnowMan_DaDaa_03.mp3; sourceTree = "<group>"; };
 		C028607C17D76A1C001EAE9E /* Tiggly_GenGreeting_spider_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_GenGreeting_spider_01.mp3; sourceTree = "<group>"; };
 		C028607E17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DROP_04.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_DragNDrop_DROP_04.mp3; sourceTree = "<group>"; };
+		C02F012A17E70CC7007405C0 /* PhysicalShapesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalShapesView.h; sourceTree = "<group>"; };
+		C02F012B17E70CC7007405C0 /* PhysicalShapesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicalShapesView.m; sourceTree = "<group>"; };
 		C02F431717D60CFC007AEA39 /* Tiggly_Word_Bell_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Bell_01.mp3; sourceTree = "<group>"; };
 		C02F431817D60CFC007AEA39 /* Tiggly_Word_Bell_Wow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Bell_Wow.mp3; sourceTree = "<group>"; };
 		C02F431917D60CFC007AEA39 /* Tiggly_Word_Candy_01 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tiggly_Word_Candy_01 1.mp3"; sourceTree = "<group>"; };
@@ -1517,7 +1516,6 @@
 		C02F440D17D60CFC007AEA39 /* Tiggly_Word_Shirt_Gasp_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Shirt_Gasp_01.mp3; sourceTree = "<group>"; };
 		C03989BF17DF51D80079EB90 /* StampViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampViewController.h; sourceTree = "<group>"; };
 		C03989C017DF51D90079EB90 /* StampViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampViewController.m; sourceTree = "<group>"; };
-		C03989C117DF51D90079EB90 /* StampViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StampViewController.xib; sourceTree = "<group>"; };
 		C03C64D017B280E8006666F4 /* Pinterest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pinterest.framework; sourceTree = "<group>"; };
 		C03C64D217B280E8006666F4 /* PinterestSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PinterestSDKResources.bundle; sourceTree = "<group>"; };
 		C060B41D17CDF643000AD202 /* TDSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDSoundManager.h; sourceTree = "<group>"; };
@@ -1609,9 +1607,6 @@
 		C0A4E61717BA6A89008EB0C9 /* fallView@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fallView@2x~ipad.png"; sourceTree = "<group>"; };
 		C0D8C92217C772C000A037B8 /* play_btn_circle_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_btn_circle_3.png; sourceTree = "<group>"; };
 		C0D8C92317C772C000A037B8 /* play_btn_circle_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_btn_circle_5.png; sourceTree = "<group>"; };
-		C0DDFCC017A66E4C001F846D /* FallSceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FallSceneViewController.h; sourceTree = "<group>"; };
-		C0DDFCC117A66E4C001F846D /* FallSceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FallSceneViewController.m; sourceTree = "<group>"; };
-		C0DDFCC217A66E4C001F846D /* FallSceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FallSceneViewController.xib; sourceTree = "<group>"; };
 		C0F20DD117D9D09900340C20 /* rooster_Animal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rooster_Animal.mp3; sourceTree = "<group>"; };
 		EB1A593317ABD138001749D2 /* pattern_0_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pattern_0_1.png; sourceTree = "<group>"; };
 		EB2B02C517C4DE9F00340A20 /* tick2@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick2@2x~ipad.png"; sourceTree = "<group>"; };
@@ -1663,9 +1658,7 @@
 		EB6F3385178198B700FC479F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		EB6F3387178198BC00FC479F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EB6F3389178198D500FC479F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		EB6F338B17819B8100FC479F /* WinterSceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinterSceneViewController.h; sourceTree = "<group>"; };
-		EB6F338C17819B8100FC479F /* WinterSceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinterSceneViewController.m; sourceTree = "<group>"; };
-		EB6F338D17819B8100FC479F /* WinterSceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WinterSceneViewController.xib; sourceTree = "<group>"; };
+		EB6F338D17819B8100FC479F /* StampViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StampViewController.xib; sourceTree = "<group>"; };
 		EB6F33981781AD0600FC479F /* TConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TConstant.h; sourceTree = "<group>"; };
 		EB6F33991781AD0600FC479F /* TConstant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TConstant.m; sourceTree = "<group>"; };
 		EB6F339F1781B8C900FC479F /* WinterScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinterScene.h; sourceTree = "<group>"; };
@@ -2723,15 +2716,11 @@
 				EB6F33A01781B8CA00FC479F /* WinterScene.m */,
 				C08291AE17A79D580023F08A /* FallScene.h */,
 				C08291AF17A79D580023F08A /* FallScene.m */,
-				EB6F338B17819B8100FC479F /* WinterSceneViewController.h */,
-				EB6F338C17819B8100FC479F /* WinterSceneViewController.m */,
-				EB6F338D17819B8100FC479F /* WinterSceneViewController.xib */,
-				C0DDFCC017A66E4C001F846D /* FallSceneViewController.h */,
-				C0DDFCC117A66E4C001F846D /* FallSceneViewController.m */,
-				C0DDFCC217A66E4C001F846D /* FallSceneViewController.xib */,
 				C03989BF17DF51D80079EB90 /* StampViewController.h */,
 				C03989C017DF51D90079EB90 /* StampViewController.m */,
-				C03989C117DF51D90079EB90 /* StampViewController.xib */,
+				EB6F338D17819B8100FC479F /* StampViewController.xib */,
+				C02F012A17E70CC7007405C0 /* PhysicalShapesView.h */,
+				C02F012B17E70CC7007405C0 /* PhysicalShapesView.m */,
 				C00B873617AA2EDF00823454 /* UIView+Genie.h */,
 				C00B873717AA2EDF00823454 /* UIView+Genie.m */,
 				C074891E17A94650001943E0 /* ScreenCaptureView.h */,
@@ -3074,7 +3063,7 @@
 				EB6F336E17818C5400FC479F /* triangle2Data.plist in Resources */,
 				EB6F336F17818C5400FC479F /* triangleData.plist in Resources */,
 				EB6F337017818C5400FC479F /* triangleData3.plist in Resources */,
-				EB6F338F17819B8100FC479F /* WinterSceneViewController.xib in Resources */,
+				EB6F338F17819B8100FC479F /* StampViewController.xib in Resources */,
 				EBF2841D17869F6900082F64 /* Tiggly_stamp_Winter_BG.png in Resources */,
 				EBF2843717869F7700082F64 /* Tiggly_stamp_Winter_BG@2x~ipad.png in Resources */,
 				EBF2843B17869FAB00082F64 /* logo.png in Resources */,
@@ -3198,7 +3187,6 @@
 				63019DD417A2AA4C005B8CA3 /* TSThumbnailEditController.xib in Resources */,
 				63019DD717A2B54B005B8CA3 /* deletebtn.png in Resources */,
 				63019DD817A2B54B005B8CA3 /* savebtn.png in Resources */,
-				C0DDFCC417A66E4C001F846D /* FallSceneViewController.xib in Resources */,
 				C0FF762A17A78FA500FF084A /* TigglyStamp-Info.plist in Resources */,
 				C08291A717A793640023F08A /* lock@2x~ipad.png in Resources */,
 				C08291A817A793640023F08A /* recording@2x~ipad.png in Resources */,
@@ -3844,7 +3832,6 @@
 				6304DE4E17D9A6F00075DE97 /* Zebra_sp.mp3 in Resources */,
 				C0F20DD217D9D09900340C20 /* rooster_Animal.mp3 in Resources */,
 				C0760FA417DA031200D5E93D /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 in Resources */,
-				C03989C317DF51D90079EB90 /* StampViewController.xib in Resources */,
 				C0258D9917E18B4F0072FA52 /* Tiggly_SFX_BELL.mp3 in Resources */,
 				C0258D9A17E18B4F0072FA52 /* Tiggly_SFX_TRAIN_01.mp3 in Resources */,
 			);
@@ -3861,7 +3848,6 @@
 				EB6F33351781867900FC479F /* AppDelegate.m in Sources */,
 				EB6F33501781879100FC479F /* IntroScreenViewController.m in Sources */,
 				EB6F33831781977200FC479F /* KTViewController.m in Sources */,
-				EB6F338E17819B8100FC479F /* WinterSceneViewController.m in Sources */,
 				EB6F33961781AB4700FC479F /* UITouchShapeRecognizer.m in Sources */,
 				EB6F33971781AB4B00FC479F /* UITouchVerificationView.m in Sources */,
 				EB6F339A1781AD3500FC479F /* TConstant.m in Sources */,
@@ -3886,7 +3872,6 @@
 				63019DCF17A2AA03005B8CA3 /* TSThumbnailView.m in Sources */,
 				63019DD317A2AA4C005B8CA3 /* TSThumbnailEditController.m in Sources */,
 				C0DDFCBF17A6384D001F846D /* SettingsViewController.m in Sources */,
-				C0DDFCC317A66E4C001F846D /* FallSceneViewController.m in Sources */,
 				C08291B017A79D580023F08A /* FallScene.m in Sources */,
 				C074892017A94650001943E0 /* ScreenCaptureView.m in Sources */,
 				C00B873817AA2EDF00823454 /* UIView+Genie.m in Sources */,
@@ -3903,6 +3888,7 @@
 				C00D920617C6169000FECBAF /* MovingView.m in Sources */,
 				C060B41F17CDF643000AD202 /* TDSoundManager.m in Sources */,
 				C03989C217DF51D90079EB90 /* StampViewController.m in Sources */,
+				C02F012C17E70CC7007405C0 /* PhysicalShapesView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3979,8 +3965,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "60E85B2E-4C7D-4D2F-AF62-C6A52928E959";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "60E85B2E-4C7D-4D2F-AF62-C6A52928E959";
+				PROVISIONING_PROFILE = "544D1089-548A-4252-A58D-6ED1B61AF485";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "544D1089-548A-4252-A58D-6ED1B61AF485";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -4027,8 +4013,8 @@
 				INFOPLIST_FILE = "TigglyStamp/TigglyStamp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "60E85B2E-4C7D-4D2F-AF62-C6A52928E959";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "60E85B2E-4C7D-4D2F-AF62-C6A52928E959";
+				PROVISIONING_PROFILE = "544D1089-548A-4252-A58D-6ED1B61AF485";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "544D1089-548A-4252-A58D-6ED1B61AF485";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

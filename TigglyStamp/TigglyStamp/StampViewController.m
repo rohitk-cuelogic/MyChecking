@@ -62,6 +62,11 @@ int countShapeSound;
 UIImageView *tempImgView;
 NSMutableArray   *arrPhysicalShapes;
 
+
+XBPageCurlView *pageCurlView;
+XBSnappingPoint *bottomSnappingPoint;
+BOOL boolIsPageCurled, boolIsTouchMoved;
+
 #pragma mark -
 #pragma mark =======================================
 #pragma mark Init
@@ -121,6 +126,8 @@ NSMutableArray   *arrPhysicalShapes;
             pv.hidden = YES;
         }
     }
+    [self addFlippedPageAnimation];
+
 }
 
 
@@ -146,7 +153,7 @@ NSMutableArray   *arrPhysicalShapes;
     [self.mainView bringSubviewToFront:RigthTickButton];
     [self.mainView bringSubviewToFront:videoButton];
     [self.mainView bringSubviewToFront:cameraButton];
-    [self.mainView bringSubviewToFront:curlButton];
+//    [self.mainView bringSubviewToFront:curlButton];
 
     
     homeButton.hidden = YES;
@@ -245,6 +252,34 @@ NSMutableArray   *arrPhysicalShapes;
 #pragma mark Helpers
 #pragma mark======================
 
+- (void) addFlippedPageAnimation
+{
+    DebugLog(@"");
+    
+    //to add flipped page eefect at corner
+    //    CGRect r = self.viewForCurl.frame;
+    //
+    //    if(self.curlView == nil){
+    //        self.curlView = [[XBCurlView alloc] initWithFrame:r];
+    //    }
+    //
+    //    [self.curlView setUserInteractionEnabled:YES];
+    //    self.curlView.opaque = NO;
+    //    self.curlView.pageOpaque = YES;
+    //    self.curlView.cylinderPosition = CGPointMake(self.viewForCurl.bounds.size.width, self.viewForCurl.bounds.size.height);
+    //    [self.curlView curlView:self.viewForCurl cylinderPosition:CGPointMake(970,740) cylinderAngle:3*M_PI_4 cylinderRadius:UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad? 10: 30 animatedWithDuration:0.0];
+    
+    CATransition *animation = [CATransition animation];
+    [animation setDuration:HUGE_VAL];
+    animation.type = @"pageUnCurl";
+    animation.subtype = kCATransitionFromRight;
+    animation.fillMode = kCAFillModeBackwards;
+    animation.startProgress = 0.88;
+    [animation setRemovedOnCompletion:NO];
+    [[[self view] layer] addAnimation:animation forKey:@"pageUnCurl"];
+    
+}
+
 -(void) displayShapesTray {
     DebugLog(@"");
         
@@ -304,11 +339,27 @@ NSMutableArray   *arrPhysicalShapes;
 -(void)configureViewForCurl{
     DebugLog(@"");
     
-    [self addCurlAnimation];
+    boolIsPageCurled = NO;
+    pageCurlView = [[XBPageCurlView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)] ;
+    [self.view addSubview:pageCurlView];
+    pageCurlView.delegate = self;
+    pageCurlView.hidden = YES;
+    pageCurlView.pageOpaque = YES;
+    pageCurlView.opaque = NO;
+    pageCurlView.snappingEnabled = YES;
     
-    [self.view bringSubviewToFront:self.mainView];
+    XBSnappingPoint *point = [[XBSnappingPoint alloc] init];
+    point.position = CGPointMake(850,712);
+    point.angle = 3 * M_PI_4;
+    point.radius = 30;
+    [pageCurlView.snappingPoints addObject:point];
+    bottomSnappingPoint = point;
     
-    self.mainView.userInteractionEnabled = YES;
+    //    point = [[XBSnappingPoint alloc] init];
+    //    point.position = CGPointMake(160, 280);
+    //    point.angle = M_PI/8;
+    //    point.radius = 80;
+    //    [pageCurlView.snappingPoints addObject:point];
 }
 
 
@@ -380,16 +431,28 @@ NSMutableArray   *arrPhysicalShapes;
 
 -(void) unCurl{
     DebugLog(@"");
-    self.curlConfirmedButton.hidden = YES;
-    [self.curlView uncurlAnimatedWithDuration:0.6];
+    CGPoint p =CGPointMake(INT_X_LIMIT_TO_FULL_CURL + 10, INT_Y_LIMIT_TO_FULL_CURL - 10);
+    pageCurlView.boolIsPageDragEnabled = NO;
     
-    double delayInSeconds = 0.7;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    [pageCurlView touchEndedAtPoint:p];
+    
+    [tempImgView removeFromSuperview];
+    
+    double delayInSeconds = FLOAT_CURL_TIME + 0.2;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [tempImgView removeFromSuperview];
+        
+        pageCurlView.hidden = YES;
+        [pageCurlView removeFromSuperview];
+        pageCurlView = nil;
         [self configureViewForCurl];
-        self.mainView.userInteractionEnabled = YES;
+        
+        self.viewForCurl.hidden = NO;
+        [self.view bringSubviewToFront:self.viewForCurl];
+        self.mainView.hidden = NO;
         [self.view bringSubviewToFront:self.mainView];
+        
+        [self addFlippedPageAnimation];
     });
 }
 
@@ -457,7 +520,7 @@ NSMutableArray   *arrPhysicalShapes;
     RigthTickButton.hidden = YES;
     [homeButton setHidden:YES];
     garbageCan.hidden = YES;
-    curlButton.hidden = YES;
+//    curlButton.hidden = YES;
     cameraButton.hidden = YES;
     
 }
@@ -498,7 +561,7 @@ NSMutableArray   *arrPhysicalShapes;
     [cameraButton setHidden:YES];
     [videoButton setHidden:YES];
     [garbageCan setHidden:YES];
-    [curlButton setHidden:YES];
+//    [curlButton setHidden:YES];
     
     UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
     [[UIColor whiteColor] set];
@@ -530,7 +593,7 @@ NSMutableArray   *arrPhysicalShapes;
     [cameraButton setHidden:NO];
     [videoButton setHidden:NO];
     [garbageCan setHidden:NO];
-    [curlButton setHidden:NO];
+//    [curlButton setHidden:NO];
     
     UIView *flashView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
     flashView.backgroundColor = [UIColor whiteColor];
@@ -603,68 +666,39 @@ NSMutableArray   *arrPhysicalShapes;
     }
     
     if ([btn tag] == TAG_CURL_BTN) {
-        RigthTickButton.hidden = NO;
-        self.mainView.userInteractionEnabled = NO;
-        [[[self view] layer] removeAllAnimations];
-        [self hideVideoCameraButtons];
-        homeButton.hidden = YES;
-        
-        UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
-        [[UIColor whiteColor] set];
-        UIRectFill(CGRectMake(0.0, 0.0,1024,768));
-        [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-        
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        [self.curlView uncurlAnimatedWithDuration:0.0];
-        
-        
-        double delayInSeconds = 0.1;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            
-            tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
-            tempImgView.image = image;
-            [self.viewForCurl addSubview:tempImgView];
-            
-            [self.view bringSubviewToFront:self.backView];
-            self.curlConfirmedButton.hidden = NO;
-            
-            [self.curlView curlView:self.viewForCurl cylinderPosition:CGPointMake(800,600) cylinderAngle:3*M_PI_4 cylinderRadius:UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad? 100: 70 animatedWithDuration:0.6];
-            
-            unCurlTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(unCurl) userInfo:nil repeats:NO];
-            
-        });
-        
+                
     }
     
     if ([btn tag] == TAG_CURL_CONFIRMED_BTN) {
-        self.curlConfirmedButton.hidden = YES;
+        curlConfirmedButton.hidden = YES;
+        pageCurlView.boolIsPageDragEnabled = NO;
         [unCurlTimer invalidate];
         
-        [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_PAGETURN" withFormat:@"mp3"];
-        
-        [self.curlView CurlFullView:1.0];
+        CGPoint p =CGPointMake(INT_X_LIMIT_TO_FULL_CURL - 10, INT_Y_LIMIT_TO_FULL_CURL + 10);
+        [pageCurlView touchEndedAtPoint:p];
         
         for(FruitView *fruit in fruitObjectArray){
             [fruit removeFromSuperview];
         }
-        [tempImgView removeFromSuperview];
         fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
-        [self hideVideoCameraButtons];
         
-        [homeButton setHidden:YES];
-        RigthTickButton.hidden = NO;
-        videoButton.hidden = NO;
-        cameraButton.hidden = NO;
+        [tempImgView removeFromSuperview];
         
-        double delayInSecondsTodetect = 1.1f;
-        dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
-        dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
+        double delayInSeconds = FLOAT_FULL_CURL_TIME + 0.2;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            
+            pageCurlView.hidden = YES;
+            [pageCurlView removeFromSuperview];
+            pageCurlView = nil;
             [self configureViewForCurl];
-            self.mainView.userInteractionEnabled = YES;
-            [self.mainView bringSubviewToFront:self.curlButton];
+            
+            self.viewForCurl.hidden = NO;
+            [self.view bringSubviewToFront:self.viewForCurl];
+            self.mainView.hidden = NO;
+            [self.view bringSubviewToFront:self.mainView];
+            
+            [self addFlippedPageAnimation];
         });
         
     }
@@ -684,7 +718,7 @@ NSMutableArray   *arrPhysicalShapes;
         [self screenVideoShotStop];
         
         garbageCan.hidden = NO;
-        curlButton.hidden = NO;
+//        curlButton.hidden = NO;
         
         [videoButton.layer removeAnimationForKey:@"opacity"];
         [videoButton.layer removeAllAnimations];
@@ -972,8 +1006,37 @@ NSMutableArray   *arrPhysicalShapes;
 
 -(void)touchVerificationViewTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 //    
-//    DebugLog(@"TouchBegan");
-//    
+    DebugLog(@"TouchBegan");
+    
+    DebugLog(@"TouchBegan");
+    CGPoint p = [[touches anyObject] locationInView:touchView];
+    if(p.x > 950 && p.y < 75){
+        boolIsPageCurled = YES;
+        
+        [self.view.layer removeAllAnimations];
+        
+        UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
+        [[UIColor whiteColor] set];
+        UIRectFill(CGRectMake(0.0, 0.0,1024,768));
+        [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+        
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        self.mainView.hidden = YES;
+        
+        tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+        tempImgView.image = image;
+        [self.viewForCurl addSubview:tempImgView];
+        [self.view bringSubviewToFront:self.viewForCurl];
+        
+        boolIsTouchMoved = NO;
+        
+        
+        
+        return;
+    }
+
+//
 //    if (event != nil) {
 //        // if touch count is greater than 1
 //        if ([touches count]>0) {
@@ -1032,12 +1095,99 @@ NSMutableArray   *arrPhysicalShapes;
 
 -(void) touchVerificationViewTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     DebugLog(@"The layer to move %@",[currentLayer name]);
+    CGPoint p = [[touches anyObject] locationInView:touchView];
+    if(boolIsPageCurled){
+        if(!boolIsTouchMoved){
+            boolIsTouchMoved = YES;
+            
+            [pageCurlView drawViewOnFrontOfPage:self.viewForCurl];
+            //            pageCurlView.cylinderPosition =bottomSnappingPoint.position;
+            //            pageCurlView.cylinderAngle = bottomSnappingPoint.angle;
+            //            pageCurlView.cylinderRadius = bottomSnappingPoint.radius;
+            
+            pageCurlView.hidden = NO;
+            self.viewForCurl.hidden = YES;
+            [pageCurlView startAnimating];
+            
+            [pageCurlView touchBeganAtPoint:p];
+            
+            curlConfirmedButton.hidden = YES;
+            
+        }else{
+            [pageCurlView touchMovedToPoint:p];
+        }
+        return;
+    }
+
 }
 
 -(void)touchVerificationViewTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     DebugLog(@"");
 //    isTouchesOnTouchLayer = NO;
+    CGPoint p = [[touches anyObject] locationInView:touchView];
+    if(boolIsPageCurled){
+        boolIsPageCurled = NO;
+        
+        if(boolIsTouchMoved){
+            
+            [pageCurlView touchEndedAtPoint:p];
+            
+            float time = FLOAT_CURL_TIME;
+            
+            if(p.x < INT_X_LIMIT_TO_FULL_CURL && p.y > INT_Y_LIMIT_TO_FULL_CURL){
+                
+                time = FLOAT_FULL_CURL_TIME;
+                for(FruitView *fruit in fruitObjectArray){
+                    [fruit removeFromSuperview];
+                }
+                fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
+            }
+            
+            [tempImgView removeFromSuperview];
+            
+            double delayInSeconds = time + 0.2;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                
+                pageCurlView.hidden = YES;
+                [pageCurlView removeFromSuperview];
+                pageCurlView = nil;
+                [self configureViewForCurl];
+                
+                self.viewForCurl.hidden = NO;
+                [self.view bringSubviewToFront:self.viewForCurl];
+                self.mainView.hidden = NO;
+                [self.view bringSubviewToFront:self.mainView];
+                
+                [self addFlippedPageAnimation];
+                
+                curlConfirmedButton.hidden = NO;
+                
+            });
+            
+        }else{
+            //flip the page corner and wait for 3 seconds for user action
+            
+            [pageCurlView drawViewOnFrontOfPage:self.viewForCurl];
+            pageCurlView.cylinderPosition =bottomSnappingPoint.position;
+            pageCurlView.cylinderAngle = bottomSnappingPoint.angle;
+            pageCurlView.cylinderRadius = bottomSnappingPoint.radius;
+            
+            pageCurlView.hidden = NO;
+            self.viewForCurl.hidden = YES;
+            [pageCurlView startAnimating];
+            pageCurlView.boolIsPageDragEnabled = YES;
+            
+            [unCurlTimer invalidate];
+            unCurlTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(unCurl) userInfo:nil repeats:NO];
+            
+            curlConfirmedButton.hidden = NO;
+        }
+        return;
+    }
     
+    isTouchesOnTouchLayer = NO;
+
 }
 
 
@@ -1360,7 +1510,6 @@ NSMutableArray   *arrPhysicalShapes;
 -(void) onImageClicked:(CapturedImageView *)cImageView{
     DebugLog(@"");
     
-    [self addCurlAnimation];
     
     DebugLog(@"");
     [cImageView removeFromSuperview];
@@ -1828,5 +1977,75 @@ NSMutableArray   *arrPhysicalShapes;
     //    [[TDSoundManager sharedManager] playSound:shapeSoundToPlay withFormat:@"mp3"];
 }
 
+#pragma mark-
+#pragma mark======================
+#pragma mark XBPageCurlView Delegates
+#pragma mark======================
+
+-(void) pageCurlViewTouchBeganAtPoint:(CGPoint)p{
+    DebugLog(@"");
+    [unCurlTimer invalidate];
+    curlConfirmedButton.hidden = YES;
+    
+}
+
+-(void) pageCurlViewTouchMovedToPoint:(CGPoint)p{
+    DebugLog(@"");
+    
+}
+
+-(void) pageCurlViewTouchEndedAtPoint:(CGPoint)p{
+    DebugLog(@"");
+    float time = FLOAT_CURL_TIME;
+    
+    if(p.x < INT_X_LIMIT_TO_FULL_CURL && p.y > INT_Y_LIMIT_TO_FULL_CURL){
+        NSLog(@"Not OK");
+        [pageCurlView touchEndedAtPoint:p];
+        
+        time = FLOAT_FULL_CURL_TIME;
+        for(FruitView *fruit in fruitObjectArray){
+            [fruit removeFromSuperview];
+        }
+        fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
+        
+        [tempImgView removeFromSuperview];
+        
+        double delayInSeconds = time + 0.2;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            
+            pageCurlView.hidden = YES;
+            [pageCurlView removeFromSuperview];
+            pageCurlView = nil;
+            [self configureViewForCurl];
+            
+            self.viewForCurl.hidden = NO;
+            [self.view bringSubviewToFront:self.viewForCurl];
+            self.mainView.hidden = NO;
+            [self.view bringSubviewToFront:self.mainView];
+            
+            [self addFlippedPageAnimation];
+            
+            curlConfirmedButton.hidden = NO;
+            
+        });
+        
+    }else{
+        //flip the page corner and wait for 3 seconds for user action
+        NSLog(@"OK");
+        
+        pageCurlView.cylinderPosition =bottomSnappingPoint.position;
+        pageCurlView.cylinderAngle = bottomSnappingPoint.angle;
+        pageCurlView.cylinderRadius = bottomSnappingPoint.radius;
+        
+        [pageCurlView startAnimating];
+        
+        [unCurlTimer invalidate];
+        unCurlTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(unCurl) userInfo:nil repeats:NO];
+        
+        curlConfirmedButton.hidden = NO;
+    }
+    
+}
 
 @end

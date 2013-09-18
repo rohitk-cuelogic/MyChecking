@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-#define DEBUG_MODE
+//#define DEBUG_MODE
 //#define IS_RUN_WITHOUT_SHAPE_FOR_TESTING 1
 
 #define TEST_MODE 1
@@ -39,6 +39,12 @@
 // Twitter Tokens
 #define kOAuthConsumerKey           @"M3Nq5aWit1KMvxMiK3Vng"
 #define kOAuthConsumerSecret		@"4MhzodK7wiAves9vWFn4qbWIQX77lwS2fkajlJVqNmY"
+
+//page curl
+#define INT_X_LIMIT_TO_FULL_CURL 512
+#define INT_Y_LIMIT_TO_FULL_CURL 384
+#define FLOAT_FULL_CURL_TIME 0.8
+#define FLOAT_CURL_TIME 0.3
 
 //Do not change the sequence
 typedef enum {

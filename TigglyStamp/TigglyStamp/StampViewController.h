@@ -19,10 +19,11 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "UIView+Genie.h"
 #import "XBCurlView.h"
+#import "XBPageCurlView.h"
 #import "TDSoundManager.h"
 #import "PhysicalShapesView.h"
 
-@interface StampViewController : KTViewController<UITouchVerificationViewDelegate,ShapeToDrawProtocol,FruitViewProtocol,AVAudioRecorderDelegate,CapturedImageViewDelegate,ScreenCaptureViewDelegate,FallSceneShapeToDrawProtocol,PhysicalShapeViewProtocol>{
+@interface StampViewController : KTViewController<UITouchVerificationViewDelegate,ShapeToDrawProtocol,FruitViewProtocol,AVAudioRecorderDelegate,CapturedImageViewDelegate,ScreenCaptureViewDelegate,FallSceneShapeToDrawProtocol,PhysicalShapeViewProtocol,XBPageCurlViewDelegate>{
    
     WinterScene *winterSceneObject;
     FallScene *fallSceneObject;

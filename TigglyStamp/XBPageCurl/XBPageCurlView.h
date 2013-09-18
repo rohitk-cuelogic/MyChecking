@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "XBCurlView.h"
 #import "XBSnappingPoint.h"
+#import "TConstant.h"
 
 @class XBPageCurlView;
 
@@ -17,6 +18,10 @@
 @optional
 - (void)pageCurlView:(XBPageCurlView *)pageCurlView willSnapToPoint:(XBSnappingPoint *)snappintPoint;
 - (void)pageCurlView:(XBPageCurlView *)pageCurlView didSnapToPoint:(XBSnappingPoint *)snappintPoint;
+
+- (void)pageCurlViewTouchBeganAtPoint:(CGPoint)p;
+- (void)pageCurlViewTouchMovedToPoint:(CGPoint)p;
+- (void)pageCurlViewTouchEndedAtPoint:(CGPoint)p;
 
 @end
 
@@ -31,6 +36,7 @@
 
 @property (nonatomic, assign) id<XBPageCurlViewDelegate> delegate;
 @property (nonatomic, assign) BOOL snappingEnabled;
+@property (nonatomic, assign) BOOL boolIsPageDragEnabled;
 @property (nonatomic, retain) NSMutableArray *snappingPoints;
 
 - (void)touchBeganAtPoint:(CGPoint)p;

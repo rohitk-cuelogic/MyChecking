@@ -9,18 +9,21 @@
 #import "XBPageCurlView.h"
 #import "CGPointAdditions.h"
 
-#define kDuration 0.3
-
 @implementation XBPageCurlView
 
-@synthesize delegate, snappingPoints, snappingEnabled;
+@synthesize delegate, snappingPoints, snappingEnabled, boolIsPageDragEnabled;
+
+BOOL boolReadyToMove;
 
 - (id)initWithFrame:(CGRect)frame
 {
+    DebugLog(@"");
     self = [super initWithFrame:frame];
     if (self) {
         self.snappingPoints = [NSMutableArray array];
         self.snappingEnabled = NO;
+        self.boolIsPageDragEnabled = NO;
+        boolReadyToMove = NO;
     }
     return self;
 }
@@ -35,6 +38,7 @@
 
 - (void)updateCylinderStateWithPoint:(CGPoint)p animated:(BOOL)animated
 {
+    DebugLog(@"");
     CGPoint v = CGPointSub(p, startPickingPosition);
     CGFloat l = CGPointLength(v);
     
@@ -60,14 +64,18 @@
     CGPoint c = CGPointAdd(startPickingPosition, CGPointMul(vn, d));
     CGFloat angle = atan2f(-vn.x, vn.y);
     
-    NSTimeInterval duration = animated? kDuration: 0;
+    NSTimeInterval duration = animated? FLOAT_CURL_TIME: 0;
     [self setCylinderPosition:c animatedWithDuration:duration];
     [self setCylinderAngle:angle animatedWithDuration:duration];
     [self setCylinderRadius:r animatedWithDuration:duration];
+    
+//    NSLog(@"updateCylinderStateWithPoint: %@", NSStringFromCGPoint(c));
 }
 
 - (void)touchBeganAtPoint:(CGPoint)p
 {
+    DebugLog(@"");
+
     p.y = self.bounds.size.height - p.y;
     
     CGPoint v = CGPointMake(cosf(_cylinderAngle), sinf(_cylinderAngle));
@@ -85,18 +93,24 @@
         startPickingPosition.x = self.bounds.size.width;
         startPickingPosition.y = p.y;
     }
-    
+
+//    NSLog(@"touchBeganAtPoint: %@", NSStringFromCGPoint(p));
+
     [self updateCylinderStateWithPoint:p animated:YES];
 }
 
 - (void)touchMovedToPoint:(CGPoint)p
 {
+    DebugLog(@"");
+
     p.y = self.bounds.size.height - p.y;
     [self updateCylinderStateWithPoint:p animated:NO];
 }
 
 - (void)touchEndedAtPoint:(CGPoint)p
 {
+    DebugLog(@"");
+
     if (self.snappingEnabled && self.snappingPoints.count > 0) {
         XBSnappingPoint *closestSnappingPoint = nil;
         CGFloat d = FLT_MAX;
@@ -113,16 +127,27 @@
         
         NSAssert(closestSnappingPoint != nil, @"There is always a closest point in a non-empty set of points hence closestSnappingPoint should not be nil.");
         
+        v = closestSnappingPoint.position;
+        float time = FLOAT_CURL_TIME;
+        
+        if(p.x < INT_X_LIMIT_TO_FULL_CURL && p.y > INT_Y_LIMIT_TO_FULL_CURL){
+            closestSnappingPoint.position = CGPointMake(0,0);
+            time = FLOAT_FULL_CURL_TIME;
+        }else{
+            closestSnappingPoint.position = CGPointMake(1024,768);
+        }
+        
         if ([self.delegate respondsToSelector:@selector(pageCurlView:willSnapToPoint:)]) {
             [self.delegate pageCurlView:self willSnapToPoint:closestSnappingPoint];
         }
         
-        [self setCylinderPosition:closestSnappingPoint.position animatedWithDuration:kDuration];
-        [self setCylinderAngle:closestSnappingPoint.angle animatedWithDuration:kDuration];
-        [self setCylinderRadius:closestSnappingPoint.radius animatedWithDuration:kDuration completion:^{
+        [self setCylinderPosition:closestSnappingPoint.position animatedWithDuration:time];
+        [self setCylinderAngle:closestSnappingPoint.angle animatedWithDuration:time];
+        [self setCylinderRadius:closestSnappingPoint.radius animatedWithDuration:time completion:^{
             if ([self.delegate respondsToSelector:@selector(pageCurlView:didSnapToPoint:)]) {
                 [self.delegate pageCurlView:self didSnapToPoint:closestSnappingPoint];
             }
+            closestSnappingPoint.position = v;
         }];
     }
 }
@@ -132,25 +157,49 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UITouch *touch = [touches anyObject];
-    CGPoint p = [touch locationInView:self];
-    [self touchBeganAtPoint:p];
+    DebugLog(@"");
+    if(self.boolIsPageDragEnabled){
+        UITouch *touch = [touches anyObject];
+        CGPoint p = [touch locationInView:self.superview];
+//        NSLog(@"touchesBegan: %@", NSStringFromCGPoint(p));
+        
+        CGRect startRect = CGRectMake(800, 50, 150, 150);
+        if(CGRectContainsPoint(startRect, p)){
+            boolReadyToMove = YES;
+            [self touchBeganAtPoint:p];
+            [self.delegate pageCurlViewTouchBeganAtPoint:p];
+        }
+        
+    }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    CGPoint p = [[touches anyObject] locationInView:self];
-    [self touchMovedToPoint:p];
+    DebugLog(@"");
+    if(self.boolIsPageDragEnabled && boolReadyToMove){
+        CGPoint p = [[touches anyObject] locationInView:self.superview];
+        [self touchMovedToPoint:p];
+        [self.delegate pageCurlViewTouchMovedToPoint:p];
+    }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    CGPoint p = [[touches anyObject] locationInView:self];
-    [self touchEndedAtPoint:p];
+    DebugLog(@"");
+    if(self.boolIsPageDragEnabled && boolReadyToMove){
+        boolReadyToMove = NO;
+        CGPoint p = [[touches anyObject] locationInView:self.superview];
+//        [self touchEndedAtPoint:p];
+//        NSLog(@"touchesEnded: %@", NSStringFromCGPoint(p));
+
+        [self.delegate pageCurlViewTouchEndedAtPoint:p];
+
+    }
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    DebugLog(@"");
     [self touchesEnded:touches withEvent:event];
 }
 

@@ -505,7 +505,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="close_btn.png">{274, 274}</string>
+			<string key="close_btn.png">{200, 200}</string>
 			<string key="home_icon_2.png">{274, 274}</string>
 			<string key="play_btn.png">{200, 199}</string>
 			<string key="savebtn.png">{109, 109}</string>

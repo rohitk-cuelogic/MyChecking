@@ -123,7 +123,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">blue_bg.png</string>
+							<string key="NSResourceName">red_bg.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="471517257">
@@ -280,7 +280,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="488689974"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">fb_login.png</string>
+							<string key="NSResourceName">fb_btn.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="446462628"/>
 						<reference key="IBUIFont" ref="160492080"/>
@@ -305,7 +305,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="488689974"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">twitter_logo.png</string>
+							<string key="NSResourceName">twitter_btn.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="446462628"/>
 						<reference key="IBUIFont" ref="160492080"/>
@@ -331,7 +331,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="488689974"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">path_logo.png</string>
+							<string key="NSResourceName">pintrest_btn.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="446462628"/>
 						<reference key="IBUIFont" ref="160492080"/>
@@ -1884,22 +1884,22 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="blue_bg.png">{1024, 768}</string>
-			<string key="fb_login.png">{82, 82}</string>
+			<string key="fb_btn.png">{181, 180}</string>
 			<string key="greentick.png">{243, 243}</string>
 			<string key="home_icon_2.png">{274, 274}</string>
 			<string key="logo.png">{1334, 1334}</string>
 			<string key="love_to_share.png">{577, 75}</string>
 			<string key="parent_text_bkg.png">{1287, 1331}</string>
-			<string key="path_logo.png">{113, 114}</string>
 			<string key="pattern_0_1.png">{270, 267}</string>
+			<string key="pintrest_btn.png">{180, 180}</string>
+			<string key="red_bg.png">{1024, 768}</string>
 			<string key="review_btn.png">{384, 114}</string>
 			<string key="settings_btn.png">{491, 173}</string>
 			<string key="submit_btn.png">{131, 131}</string>
 			<string key="subscribe_btn.png">{295, 114}</string>
 			<string key="tab_letter.png">{1258, 132}</string>
 			<string key="textfieldback.png">{600, 77}</string>
-			<string key="twitter_logo.png">{113, 114}</string>
+			<string key="twitter_btn.png">{181, 180}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

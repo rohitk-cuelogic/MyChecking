@@ -674,12 +674,18 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         pageCurlView.boolIsPageDragEnabled = NO;
         [unCurlTimer invalidate];
         
+        homeButton.hidden = YES;
+        [self hideVideoCameraButtons];
+        
         CGPoint p =CGPointMake(INT_X_LIMIT_TO_FULL_CURL - 10, INT_Y_LIMIT_TO_FULL_CURL + 10);
         [pageCurlView touchEndedAtPoint:p];
         
         for(FruitView *fruit in fruitObjectArray){
             [fruit removeFromSuperview];
         }
+        
+       
+        
         fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
         
         [tempImgView removeFromSuperview];
@@ -1140,6 +1146,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                 for(FruitView *fruit in fruitObjectArray){
                     [fruit removeFromSuperview];
                 }
+                
+                homeButton.hidden = YES;
+                [self hideVideoCameraButtons];
+                
                 fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
             }
             
@@ -2009,6 +2019,9 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
         
         [tempImgView removeFromSuperview];
+        
+        homeButton.hidden = YES;
+        [self hideVideoCameraButtons];
         
         double delayInSeconds = time + 0.2;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));

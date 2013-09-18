@@ -13,12 +13,15 @@
 #import "FHSTwitterEngine.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <Pinterest/Pinterest.h>
-#import <QuartzCore/QuartzCore.h>
 
 @interface ParentScreenViewController : UIViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate>
 {
     Pinterest*  _pinterest;
     
+    IBOutlet UIView *viewForWeb;
+    IBOutlet UIWebView *webView;
+    IBOutlet UIButton *btnClose;
+    IBOutlet UIButton *btnTigglyNews;
 }
 @property (nonatomic,strong) IBOutlet UIButton *homeBTN;
 @property (nonatomic,strong) IBOutlet UIButton *subscribeBTN;
@@ -38,6 +41,17 @@
 @property (nonatomic, retain) FBSession *activeSession;
 @property (nonatomic, retain) NSString *userFieldsRequired;
 @property (nonatomic, retain) NSArray *permissions;
+@property (nonatomic,strong) IBOutlet UIButton *tabLetterBTN;
+@property (nonatomic,strong) IBOutlet UIButton *tabPlayBTN;
+@property (nonatomic,strong) IBOutlet UIButton *tabLearningTipBTN;
+@property (nonatomic,strong) IBOutlet UIButton *tabLearPhilosophyBTN;
+@property (nonatomic,strong) IBOutlet UIImageView *tabTitleIMGVIEW;
+@property (nonatomic,strong) IBOutlet UITextView *tabHeadingTEXT;
+@property (nonatomic,strong) IBOutlet UITextView *tabBodyTEXT;
 
+@property (nonatomic,strong) IBOutlet UIButton *tabLetterMotarBTN;
+@property (nonatomic,strong) IBOutlet UIButton *tabLetterLanguageBTN;
+@property (nonatomic,strong) IBOutlet UIButton *tabLetterSpatialBTN;
 -(IBAction)onButtonClicked:(id)sender;
+
 @end

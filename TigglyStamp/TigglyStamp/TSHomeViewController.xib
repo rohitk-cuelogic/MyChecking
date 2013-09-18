@@ -54,7 +54,7 @@
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">navigation_bg_5.png</string>
+									<string key="NSResourceName">play_bg.png</string>
 								</object>
 							</object>
 							<object class="IBUIButton" id="172180165">
@@ -202,7 +202,7 @@
 									<object class="IBUIButton" id="453515696">
 										<reference key="NSNextResponder" ref="688651153"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{20, 14}, {57, 51}}</string>
+										<string key="NSFrameSize">{58, 53}</string>
 										<reference key="NSSuperview" ref="688651153"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="799219218"/>
@@ -220,7 +220,7 @@
 										<reference key="IBUINormalTitleShadowColor" ref="843403582"/>
 										<object class="NSCustomResource" key="IBUINormalImage">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">cross.png</string>
+											<string key="NSResourceName">close_btn.png</string>
 										</object>
 										<reference key="IBUIFontDescription" ref="482238810"/>
 										<reference key="IBUIFont" ref="764477984"/>
@@ -608,9 +608,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="cross.png">{104, 104}</string>
+			<string key="close_btn.png">{274, 274}</string>
 			<string key="home_play_btn.png">{619, 620}</string>
-			<string key="navigation_bg_5.png">{2048, 1536}</string>
+			<string key="play_bg.png">{1024, 768}</string>
 			<string key="tiggly_parents_bkg.png">{395, 107}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>

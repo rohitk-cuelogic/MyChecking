@@ -39,13 +39,15 @@
 @synthesize isCameraClick;
 @synthesize homeButton;
 @synthesize curlViewImage,backViewImage;
+@synthesize btnView;
 
 #pragma mark -
 #pragma mark =======================================
 #pragma mark Private Variables
 #pragma mark =======================================
 
-NSString *shapeToDraw,*prevShape;
+NSString *shapeToDraw;
+NSString * prevShape;
 bool shouldShapeDetected = YES;
 float centerX,centerY;
 int numOfTouchPts;
@@ -99,13 +101,12 @@ NSMutableArray   *arrPhysicalShapes;
     
     isGreetingSoundPlaying = NO;
     
-    if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"] || [[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]){
-        if (isWithShape) {
-            [self playShapeinstructionSounds];
-        }else{
-            [self playFingerInstructionSound];
-        }
+    if (isWithShape) {
+        [self playShapeinstructionSounds];
+    }else{
+        [self playFingerInstructionSound];
     }
+    
     
     if(!isWithShape){
         if(viewShapesTray.hidden){
@@ -129,11 +130,14 @@ NSMutableArray   *arrPhysicalShapes;
     touchView = [[UITouchVerificationView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
     touchView.isWithShape = [self isWithShape];
 
+    isBtnViewHidden = YES;
+    videoButton.hidden = YES;
+    cameraButton.hidden = YES;
+    btnView.frame = CGRectMake(-512, 0, 512, 90);
+    
     isRecording = NO;
     countShapeSound = 1;
     isMoveObject = YES;
-    
-    isBtnViewHidden = YES;
     
     [self.mainView addSubview:touchView];
     [self.mainView bringSubviewToFront:touchView];
@@ -208,11 +212,11 @@ NSMutableArray   *arrPhysicalShapes;
     isWithShape = [[TigglyStampUtils sharedInstance] getShapeMode];
     if(!isWithShape) {
         [self displayShapesTray];
-        homeButton.frame = CGRectMake(160, 15, 70, 70);
-        RigthTickButton.frame = CGRectMake(160, 15, 70, 70);
-    }else{        
-        homeButton.frame = CGRectMake(40, 15, 70, 70);
-        RigthTickButton.frame = CGRectMake(40, 15, 70, 70);
+//        homeButton.frame = CGRectMake(160, 15, 70, 70);
+//        RigthTickButton.frame = CGRectMake(160, 15, 70, 70);
+    }else{
+//        homeButton.frame = CGRectMake(40, 15, 70, 70);
+//        RigthTickButton.frame = CGRectMake(40, 15, 70, 70);
     }
     
 }
@@ -243,35 +247,37 @@ NSMutableArray   *arrPhysicalShapes;
 
 -(void) displayShapesTray {
     DebugLog(@"");
-    
         
-    
-        viewShapesTray= [[UIView alloc]initWithFrame:CGRectMake(0,0, 140, 768)];
-        viewShapesTray.backgroundColor = [UIColor colorWithRed:51.0f/255.0f green:102.0f/255.0f blue:0.0f/255.0f alpha:1];
-        [self.mainView addSubview:viewShapesTray];
-        [self.mainView bringSubviewToFront:viewShapesTray];
-        
-        NSString *shapeName = nil;
-        int yPos = 30;
-        arrPhysicalShapes = [[NSMutableArray alloc] initWithCapacity:1];
-        for(int i=0; i< 4; i++) {
-            if(i == 0)
-                shapeName = @"circle";
-            else if (i ==1)
-                shapeName = @"square";
-            else if (i ==2)
-                shapeName = @"triangle";
-            else if (i ==3)
-                shapeName = @"star";
-            
-            
-            PhysicalShapesView *shape = [[PhysicalShapesView alloc] initWithFrame:CGRectMake(20, yPos, 100, 100)withShapeName:shapeName];
-            shape.delagate = self;
-            shape.layer.zPosition = 1000;
-            yPos = yPos + 100 + 100;
-            [viewShapesTray addSubview:shape];
-            [arrPhysicalShapes addObject:shape];
-        }
+    viewShapesTray= [[UIImageView alloc]initWithFrame:CGRectMake(0,150, 140, 550)];
+    viewShapesTray.image = [UIImage imageNamed:@"shape_3.png"];
+    viewShapesTray.userInteractionEnabled = YES;
+    [self.mainView addSubview:viewShapesTray];
+    [self.mainView bringSubviewToFront:viewShapesTray];
+
+
+    NSString *shapeName = nil;
+    int yPos = 30;
+    arrPhysicalShapes = [[NSMutableArray alloc] initWithCapacity:1];
+    for(int i=0; i< 4; i++) {
+    if(i == 0)
+    shapeName = @"circle";
+    else if (i ==1)
+    shapeName = @"square";
+    else if (i ==2)
+    shapeName = @"triangle";
+    else if (i ==3)
+    shapeName = @"star";
+
+
+    PhysicalShapesView *shape = [[PhysicalShapesView alloc] initWithFrame:CGRectMake(20, yPos, 100, 100)withShapeName:shapeName];
+    shape.delagate = self;
+    shape.layer.zPosition = 1000;
+    yPos = yPos + 100 + 30;
+    [viewShapesTray addSubview:shape];
+    [viewShapesTray bringSubviewToFront:shape];
+    [self.mainView bringSubviewToFront:shape];
+    [arrPhysicalShapes addObject:shape];
+    }
     
 
 }
@@ -342,6 +348,9 @@ NSMutableArray   *arrPhysicalShapes;
 }
 
 -(void) startScreenRecording{
+    DebugLog(@"");
+    
+    [videoButton setBackgroundImage:[UIImage imageNamed:@"record_icon_stop_2"] forState:UIControlStateNormal];
     
     isRecording = YES;
     
@@ -349,7 +358,10 @@ NSMutableArray   *arrPhysicalShapes;
     [screenCapture startRecording];
     [screenCapture setNeedsDisplay];
     
-    double delayInSeconds = 2.0;
+    [videoButton.layer removeAnimationForKey:@"transform.scale"];
+    [videoButton.layer removeAllAnimations];
+    
+    double delayInSeconds = 0.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         CABasicAnimation *theAnimation;
@@ -428,14 +440,25 @@ NSMutableArray   *arrPhysicalShapes;
     [self.view.layer removeAnimationForKey:@"pageUnCurl"];
     [self.view.layer removeAllAnimations];
     
+     [videoButton.layer removeAllAnimations];
+    [videoButton.layer removeAnimationForKey:@"transform.scale"];
+   
+//    
+//    if(!isWithShape){
+//        if(!viewShapesTray.hidden){
+//            viewShapesTray.hidden = YES;
+//            for(PhysicalShapesView *pv in arrPhysicalShapes) {
+//                pv.hidden = YES;
+//            }
+//        }
+//    }
+    
     cameraButton.hidden = YES;
     RigthTickButton.hidden = YES;
     [homeButton setHidden:YES];
     garbageCan.hidden = YES;
     curlButton.hidden = YES;
     cameraButton.hidden = YES;
-    
-    [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted"] forState:UIControlStateNormal];
     
 }
 
@@ -513,6 +536,7 @@ NSMutableArray   *arrPhysicalShapes;
     flashView.backgroundColor = [UIColor whiteColor];
     flashView.alpha = 0;
     [self.view addSubview:flashView];
+
     
     [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_CAMERA" withFormat:@"mp3"];
     
@@ -566,16 +590,18 @@ NSMutableArray   *arrPhysicalShapes;
         RigthTickButton.hidden = YES;
         [self.mainView bringSubviewToFront:homeButton];
         
-        //[NSTimer scheduledTimerWithTimeInterval:0.29 + 0.1 target:self selector:@selector(playDragSound) userInfo:nil repeats:NO];
+        [NSTimer scheduledTimerWithTimeInterval:0.29 + 0.1 target:self selector:@selector(playDragSound) userInfo:nil repeats:NO];
         
         [self sendEmail];
-        if (![btn isHidden]) {
-            [self showVideoCameraButtons];
-            [tickBtnTimer invalidate];
-            [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
-            
-        }
+
+        [self showVideoCameraButtons];
+        
+        [tickBtnTimer invalidate];
+        [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+        
+        
     }
+    
     if ([btn tag] == TAG_CURL_BTN) {
         RigthTickButton.hidden = NO;
         self.mainView.userInteractionEnabled = NO;
@@ -652,7 +678,7 @@ NSMutableArray   *arrPhysicalShapes;
     if(isRecording) {
         
         isRecording = NO;
-        [videoButton setBackgroundImage:[UIImage imageNamed:@"recordingStarted"] forState:UIControlStateNormal];
+        [videoButton setBackgroundImage:[UIImage imageNamed:@"record_icon_ record"] forState:UIControlStateNormal];
         cameraButton.hidden = NO;
         [screenCapture stopRecording];
         [self screenVideoShotStop];
@@ -672,7 +698,6 @@ NSMutableArray   *arrPhysicalShapes;
         [[TDSoundManager sharedManager] stopMusic];
         
         [NSThread detachNewThreadSelector:@selector(hideButtons) toTarget:self withObject:nil];
-        
         
         [self playTellUsStorySound];
         
@@ -895,6 +920,7 @@ NSMutableArray   *arrPhysicalShapes;
 
 -(void)shapeDetected:(UITouchShapeRecognizer *)UIT inView:(UITouchVerificationView*)view{
     DebugLog(@"");
+    
     if(!shouldShapeDetected){
         return;
     }
@@ -1070,8 +1096,10 @@ NSMutableArray   *arrPhysicalShapes;
     
     [self.mainView bringSubviewToFront:RigthTickButton];
     [self.mainView bringSubviewToFront:homeButton];
+     [self.mainView bringSubviewToFront:btnView];
     [self.mainView bringSubviewToFront:videoButton];
     [self.mainView bringSubviewToFront:cameraButton];
+    
     for(PhysicalShapesView *psv in arrPhysicalShapes) {
         [self.mainView bringSubviewToFront:psv];
     }
@@ -1183,6 +1211,9 @@ NSMutableArray   *arrPhysicalShapes;
     DebugLog(@"");
 
     
+    [self.mainView bringSubviewToFront:phyShapeView];
+    [self.backView bringSubviewToFront:phyShapeView];
+    [self.view bringSubviewToFront:phyShapeView];
 }
 
 
@@ -1240,81 +1271,83 @@ NSMutableArray   *arrPhysicalShapes;
 
 -(void) showVideoCameraButtons {
     DebugLog(@"");
-    //
-    //    isBtnViewHidden = NO;
-    //    videoButton.hidden = NO;
-    //    cameraButton.hidden = NO;
-    //    RigthTickButton.hidden = YES;
-    //
-    //    [self.view bringSubviewToFront:btnView];
-    //
-    //    [UIView animateWithDuration:0.8 animations:^{
-    //        btnView.frame = CGRectMake(162, 0, 700,100);
-    //    }completion:^(BOOL finished) {
-    //        double delayInSeconds = 2.0;
-    //        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    //        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    //            CABasicAnimation *animation4a = nil;
-    //            animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    //            [animation4a setToValue:[NSNumber numberWithDouble:1.5]];
-    //            [animation4a setFromValue:[NSNumber numberWithDouble:1]];
-    //            [animation4a setAutoreverses:YES];
-    //            [animation4a setDuration:1.5f];
-    //            [animation4a setBeginTime:0.0f];
-    //            [animation4a setRepeatCount:HUGE_VAL];
-    //            [videoButton.layer addAnimation:animation4a forKey:@"transform.scale"];
-    //
-    //            CABasicAnimation *animation4a2 = nil;
-    //            animation4a2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    //            [animation4a2 setToValue:[NSNumber numberWithDouble:1.5]];
-    //            [animation4a2 setFromValue:[NSNumber numberWithDouble:1]];
-    //            [animation4a2 setAutoreverses:YES];
-    //            [animation4a2 setDuration:1.5f];
-    //            [animation4a2 setBeginTime:0.0f];
-    //            [animation4a2 setRepeatCount:HUGE_VAL];
-    //            [cameraButton.layer addAnimation:animation4a2 forKey:@"transform.scale"];
-    //        });
-    //    }];
-    //
+
+    isBtnViewHidden = NO;
+    videoButton.hidden = NO;
+    cameraButton.hidden = NO;
+    RigthTickButton.hidden = YES;
+
+    [self.mainView bringSubviewToFront:btnView];
+
+    [UIView animateWithDuration:0.8 animations:^{
+        btnView.frame = CGRectMake(256, 0, 512, 90);
+    }completion:^(BOOL finished) {
+        double delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            CABasicAnimation *animation4a = nil;
+            animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+            [animation4a setToValue:[NSNumber numberWithDouble:1.5]];
+            [animation4a setFromValue:[NSNumber numberWithDouble:1]];
+            [animation4a setAutoreverses:YES];
+            [animation4a setDuration:1.5f];
+            [animation4a setBeginTime:0.0f];
+            [animation4a setRepeatCount:HUGE_VAL];
+            [videoButton.layer addAnimation:animation4a forKey:@"transform.scale"];
+
+            CABasicAnimation *animation4a2 = nil;
+            animation4a2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+            [animation4a2 setToValue:[NSNumber numberWithDouble:1.5]];
+            [animation4a2 setFromValue:[NSNumber numberWithDouble:1]];
+            [animation4a2 setAutoreverses:YES];
+            [animation4a2 setDuration:1.5f];
+            [animation4a2 setBeginTime:0.0f];
+            [animation4a2 setRepeatCount:HUGE_VAL];
+            [cameraButton.layer addAnimation:animation4a2 forKey:@"transform.scale"];
+        });
+    }];
+
     
 }
 
 -(void) hideVideoCameraButtons {
     DebugLog(@"");
-    //
-    //    if(!isRecording) {
-    //        RigthTickButton.hidden = NO;
-    //
-    //        for(CALayer *layer in btnView.layer.sublayers) {
-    //            [layer removeAnimationForKey:@"transform.scale"];
-    //            [layer removeAllAnimations];
-    //        }
-    //        isBtnViewHidden = YES;
-    //        [UIView animateWithDuration:0.3 animations:^{
-    //            btnView.frame = CGRectMake(162, -100, 700,100);
-    //        }completion:^(BOOL finished) {
-    //            videoButton.hidden = YES;
-    //            cameraButton.hidden = YES;
-    //            btnView.frame = CGRectMake(-700, 0, 700,100);
-    //        }];
-    //    }
-    //
+
+    if(!isRecording) {
+        RigthTickButton.hidden = NO;
+
+        [cameraButton.layer removeAnimationForKey:@"transform.scale"];
+        [cameraButton.layer removeAllAnimations];
+        
+        [videoButton.layer removeAnimationForKey:@"transform.scale"];
+        [videoButton.layer removeAllAnimations];
+       
+        isBtnViewHidden = YES;
+        [UIView animateWithDuration:0.3 animations:^{
+            btnView.frame = CGRectMake(256,-90, 512,90);
+        }completion:^(BOOL finished) {
+            videoButton.hidden = YES;
+            cameraButton.hidden = YES;
+            btnView.frame = CGRectMake(-512, 0, 512,90);
+        }];
+    }
+
     
 }
 
 -(void) pulseTickButton {
     DebugLog(@"");
     
-    //    CABasicAnimation *animation4a = nil;
-    //    animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    //    [animation4a setToValue:[NSNumber numberWithDouble:1.5]];
-    //    [animation4a setFromValue:[NSNumber numberWithDouble:1]];
-    //    [animation4a setAutoreverses:YES];
-    //    [animation4a setDuration:1.5f];
-    //    [animation4a setBeginTime:0.0f];
-    //    [animation4a setRepeatCount:HUGE_VAL];
-    //    [RigthTickButton.layer addAnimation:animation4a forKey:@"transform.scale"];
-    //
+    CABasicAnimation *animation4a = nil;
+    animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    [animation4a setToValue:[NSNumber numberWithDouble:1.5]];
+    [animation4a setFromValue:[NSNumber numberWithDouble:1]];
+    [animation4a setAutoreverses:YES];
+    [animation4a setDuration:1.5f];
+    [animation4a setBeginTime:0.0f];
+    [animation4a setRepeatCount:HUGE_VAL];
+    [RigthTickButton.layer addAnimation:animation4a forKey:@"transform.scale"];
+
 }
 
 
@@ -1448,7 +1481,7 @@ NSMutableArray   *arrPhysicalShapes;
                                              selector:@selector(didExitFullScreen:)
                                                  name:MPMoviePlayerDidExitFullscreenNotification
                                                object:nil];
-    [moviePlayer.view setFrame:CGRectMake(100, 80,800,600)];
+    [moviePlayer.view setFrame:CGRectMake(80, 80,820,600)];
     moviePlayer.controlStyle = MPMovieControlStyleDefault;
     moviePlayer.shouldAutoplay = YES;
     [self.view addSubview:moviePlayer.view];
@@ -1632,6 +1665,15 @@ NSMutableArray   *arrPhysicalShapes;
     }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Spanish"]){
         timeToPlayGettingReadySound = 1.51f;
         [[TDSoundManager sharedManager] playSound:@"Tell us a story!_sp" withFormat:@"mp3"];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"French"]){
+        timeToPlayGettingReadySound = 1.51f;
+        [[TDSoundManager sharedManager] playSound:@"TellusaStory_fr" withFormat:@"mp3"];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"German"]){
+        timeToPlayGettingReadySound = 1.51f;
+        [[TDSoundManager sharedManager] playSound:@"Tell_us_a_story_gr" withFormat:@"mp3"];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
+        timeToPlayGettingReadySound = 1.51f;
+        [[TDSoundManager sharedManager] playSound:@"Tell_us_a_story!_ita" withFormat:@"mp3"];
     }
     
     [NSTimer scheduledTimerWithTimeInterval:timeToPlayGettingReadySound + 0.2f target:self selector:@selector(startScreenRecording) userInfo:nil repeats:NO];
@@ -1681,17 +1723,26 @@ NSMutableArray   *arrPhysicalShapes;
                 break;
         }
     }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
-        timeToStartVideoRecording = 4.18f;
         [[TDSoundManager sharedManager] playSound:@"321GO!_breng" withFormat:@"mp3"];
+        timeToStartVideoRecording = [[TDSoundManager sharedManager] getSoundDuration];
     }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Portuguese"]){
-        timeToStartVideoRecording = 2.26f;
         [[TDSoundManager sharedManager] playSound:@"321GO!_prtgs" withFormat:@"mp3"];
+        timeToStartVideoRecording = [[TDSoundManager sharedManager] getSoundDuration];
     }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
-        timeToStartVideoRecording = 3.94f;
         [[TDSoundManager sharedManager] playSound:@"321GO!_ru" withFormat:@"mp3"];
+        timeToStartVideoRecording = [[TDSoundManager sharedManager] getSoundDuration];
     }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Spanish"]){
-        timeToStartVideoRecording = 2.47f;
         [[TDSoundManager sharedManager] playSound:@"321GO!_sp" withFormat:@"mp3"];
+        timeToStartVideoRecording = [[TDSoundManager sharedManager] getSoundDuration];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"French"]){        
+        [[TDSoundManager sharedManager] playSound:@"3_2_1_GO_fr" withFormat:@"mp3"];
+        timeToStartVideoRecording = [[TDSoundManager sharedManager] getSoundDuration];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"German"]){
+        [[TDSoundManager sharedManager] playSound:@"3_2_1_GO_gr" withFormat:@"mp3"];
+        timeToStartVideoRecording = [[TDSoundManager sharedManager] getSoundDuration];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
+        [[TDSoundManager sharedManager] playSound:@"3_2_1_GO_ita" withFormat:@"mp3"];
+        timeToStartVideoRecording = [[TDSoundManager sharedManager] getSoundDuration];
     }
     
     
@@ -1701,47 +1752,54 @@ NSMutableArray   *arrPhysicalShapes;
 
 -(void) playShapeinstructionSounds{
     DebugLog(@"");
-    int ranNo = arc4random() % 5;
     
-    switch (ranNo) {
-        case 0:
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TapOnTheScreen_WithAShape_01" withFormat:@"mp3"];
-            break;
-        case 1:
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TapOnTheScreen_WithYourShape_01" withFormat:@"mp3"];
-            break;
-        case 2:
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TapOnTheScreen_WithYourShape_02" withFormat:@"mp3"];
-            break;
-        case 3:
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_UseTheShapesToMakeAPicture_01" withFormat:@"mp3"];
-            break;
-        case 4:
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_UseYourShapesToMakeAPicture_01" withFormat:@"mp3"];
-            break;
-            
-        default:
-            break;
-    }
-    
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"] ||
+            [[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]){
+                    int ranNo = arc4random() % 5;
+                    
+                    switch (ranNo) {
+                        case 0:
+                            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TapOnTheScreen_WithAShape_01" withFormat:@"mp3"];
+                            break;
+                        case 1:
+                            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TapOnTheScreen_WithYourShape_01" withFormat:@"mp3"];
+                            break;
+                        case 2:
+                            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TapOnTheScreen_WithYourShape_02" withFormat:@"mp3"];
+                            break;
+                        case 3:
+                            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_UseTheShapesToMakeAPicture_01" withFormat:@"mp3"];
+                            break;
+                        case 4:
+                            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_UseYourShapesToMakeAPicture_01" withFormat:@"mp3"];
+                            break;
+                            
+                        default:
+                            break;
+                    }
+        }
 }
 
 -(void) playFingerInstructionSound{
     DebugLog(@"");
-    int ranNo = arc4random() % 2;
     
-    switch (ranNo) {
-        case 0:
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TouchTheScreenWithYourFingerToMakeAPicture_01" withFormat:@"mp3"];
-            break;
-        case 1:
-            [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TouchTheScreenWithYourFinger_01" withFormat:@"mp3"];
-            break;
+    if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"] ||
+        [[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]){
+        
+        int ranNo = arc4random() % 2;
             
-        default:
-            break;
+            switch (ranNo) {
+                case 0:
+                    [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TouchTheScreenWithYourFingerToMakeAPicture_01" withFormat:@"mp3"];
+                    break;
+                case 1:
+                    [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TouchTheScreenWithYourFinger_01" withFormat:@"mp3"];
+                    break;
+                    
+                default:
+                    break;
+            }
     }
-    
     
 }
 

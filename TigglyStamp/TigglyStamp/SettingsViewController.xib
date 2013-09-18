@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">11G63b</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1138.51</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">2083</string>
@@ -302,7 +302,7 @@
 					<object class="IBUIButton" id="386432917">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{25, 25}, {45, 40}}</string>
+						<string key="NSFrame">{{1, 2}, {56, 50}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="353143650"/>
@@ -320,7 +320,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="775152153"/>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">cross.png</string>
+							<string key="NSResourceName">close_btn.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="730400083"/>
 						<reference key="IBUIFont" ref="106633385"/>
@@ -771,7 +771,6 @@
 							<reference ref="1009735539"/>
 							<reference ref="373665788"/>
 							<reference ref="904263140"/>
-							<reference ref="386432917"/>
 							<reference ref="15547931"/>
 							<reference ref="326552501"/>
 							<reference ref="596600886"/>
@@ -789,6 +788,7 @@
 							<reference ref="593618906"/>
 							<reference ref="482248165"/>
 							<reference ref="177607880"/>
+							<reference ref="386432917"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1093,8 +1093,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">cross.png</string>
-			<string key="NS.object.0">{104, 104}</string>
+			<string key="NS.key.0">close_btn.png</string>
+			<string key="NS.object.0">{274, 274}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

@@ -46,7 +46,8 @@
     UIActivityIndicatorView *activityIndicator;
     MPMoviePlayerController *mplayer;
     NSTimer *continuityTimer;
-    UIView *viewShapesTray;
+    UIImageView *viewShapesTray;
+    UIView *btnView;
     
     SceneType sceneType;
 }
@@ -69,10 +70,10 @@
 @property (nonatomic,strong) IBOutlet UIView *viewForCurl;
 @property (nonatomic,strong) IntroScreenViewController *introView;
 @property (nonatomic, retain) XBCurlView *curlView;
-@property (nonatomic)  BOOL isCameraClick;
-@property (nonatomic) IBOutlet UIImageView *backViewImage;
-@property (nonatomic) IBOutlet UIImageView *curlViewImage;
-
+@property (nonatomic,readwrite)  BOOL isCameraClick;
+@property (nonatomic,strong) IBOutlet UIImageView *backViewImage;
+@property (nonatomic,strong) IBOutlet UIImageView *curlViewImage;
+@property (nonatomic,strong) IBOutlet UIView *btnView;
 
 -(IBAction)screenShot:(id)sender;
 -(IBAction)onButtonClicked:(id)sender;

@@ -94,7 +94,7 @@
     
 
     
-    arrLanguage = [[NSMutableArray alloc] initWithObjects:@"English US",@"English UK",@"Portuguese",@"Russian",@"Spanish", nil];
+    arrLanguage = [[NSMutableArray alloc] initWithObjects:@"English US",@"English UK",@"Portuguese",@"Russian",@"Spanish",@"French",@"German",@"Italian", nil];
     
     tblView.layer.cornerRadius = 30;
     tblView.layer.masksToBounds = YES;
@@ -262,12 +262,7 @@
     
     UIView *popoverView = [[UIView alloc] init]; //view
     popoverView.backgroundColor = [UIColor clearColor];
-    
-    pickerView=[[UIPickerView alloc]init];// UIPicker
-    pickerView.frame=CGRectMake(0,44,320, 216);
-    pickerView.showsSelectionIndicator = YES;
-    pickerView.delegate = self;
-    [popoverView addSubview:pickerView];
+
     popoverContent.view = popoverView;
     
     UIToolbar *toolbar = [[UIToolbar alloc] init];
@@ -293,39 +288,7 @@
     [popoverController presentPopoverFromRect:senderButton.frame inView:self.languageSubView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return [self.arrLanguage count];
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    NSString *titleString = [self.arrLanguage objectAtIndex:row];
-    return titleString;
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    lblLunguage.text = [self.arrLanguage objectAtIndex:row];
-//    [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
-      [[TigglyStampUtils sharedInstance] setCurrentLanguage:lblLunguage.text];
-    if ([lblLunguage.text isEqualToString:@"English US"]) {
-        lblLunguageTest.text=[self languageSelectedStringForKey:@"Welcome to Advance Localization" withSelectedLanguage:[self.arrLanguage objectAtIndex:row]];
-    }else if ([lblLunguage.text isEqualToString:@"French"]){
-        lblLunguageTest.text=[self languageSelectedStringForKey:@"Welcome to Advance Localization" withSelectedLanguage:[self.arrLanguage objectAtIndex:row]];
-    }else if ([lblLunguage.text isEqualToString:@"Italian"]){
-        lblLunguageTest.text=[self languageSelectedStringForKey:@"Welcome to Advance Localization" withSelectedLanguage:[self.arrLanguage objectAtIndex:row]];
-    }
-    
-}
-
--(NSString*) languageSelectedStringForKey:(NSString*) key withSelectedLanguage:(NSString*)selectedLanguage
-{
+-(NSString*) languageSelectedStringForKey:(NSString*) key withSelectedLanguage:(NSString*)selectedLanguage{
 	NSString *path;
 	if([selectedLanguage isEqualToString:@"English US"])
 		path = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"];

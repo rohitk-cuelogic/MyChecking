@@ -134,6 +134,9 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 - (void)viewDidLoad {
     DebugLog(@"");
     [super viewDidLoad];
+    
+    isWithShape = [[TigglyStampUtils sharedInstance] getShapeMode];
+    
     touchView = [[UITouchVerificationView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
     touchView.isWithShape = [self isWithShape];
 
@@ -216,7 +219,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     doubleFingerTapOnGarbage.numberOfTapsRequired = 2;
     [self.garbageCan addGestureRecognizer:doubleFingerTapOnGarbage];
     
-    isWithShape = [[TigglyStampUtils sharedInstance] getShapeMode];
+   
     if(!isWithShape) {
         [self displayShapesTray];
 //        homeButton.frame = CGRectMake(160, 15, 70, 70);

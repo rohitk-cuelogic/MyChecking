@@ -94,7 +94,7 @@
     
 
     
-    arrLanguage = [[NSMutableArray alloc] initWithObjects:@"English US",@"English UK",@"Portuguese",@"Russian",@"Spanish",@"French",@"German",@"Italian", nil];
+    arrLanguage = [[NSMutableArray alloc] initWithObjects:@"English US",@"Portuguese",@"Russian",@"Spanish",@"French",@"German",@"Italian", nil];
     
     tblView.layer.cornerRadius = 30;
     tblView.layer.masksToBounds = YES;

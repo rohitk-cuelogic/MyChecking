@@ -126,7 +126,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             pv.hidden = YES;
         }
     }
-    [self addFlippedPageAnimation];
+//    [self addFlippedPageAnimation];
 
 }
 
@@ -158,11 +158,11 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     homeButton.hidden = YES;
 
-    [curlButton setTag:TAG_CURL_BTN];
+//    [curlButton setTag:TAG_CURL_BTN];
     [RigthTickButton setTag:TAG_RIGHT_TICK_BTN];
-    [curlConfirmedButton setTag:TAG_CURL_CONFIRMED_BTN];
+//    [curlConfirmedButton setTag:TAG_CURL_CONFIRMED_BTN];
     
-    [self configureViewForCurl];
+//    [self configureViewForCurl];
     self.mainView.backgroundColor = [UIColor clearColor];
     
     [touchView configure];

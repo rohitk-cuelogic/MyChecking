@@ -746,7 +746,7 @@ int previousTouchCount = 0;
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 
     if(delegate && [delegate respondsToSelector:@selector(touchVerificationViewTouchesBegan:withEvent:)]) {
-        [self.delegate touchVerificationViewTouchesBegan:touches withEvent:event];
+      //  [self.delegate touchVerificationViewTouchesBegan:touches withEvent:event];
     }
     
     for (UITouch *touch  in touches) {
@@ -773,7 +773,7 @@ int previousTouchCount = 0;
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     
     if(delegate && [delegate respondsToSelector:@selector(touchVerificationViewTouchesBegan:withEvent:)]) {
-        [self.delegate touchVerificationViewTouchesMoved:touches withEvent:event];
+        //[self.delegate touchVerificationViewTouchesMoved:touches withEvent:event];
     }
     
 //    for (UITouch *touch  in touches) {
@@ -798,7 +798,7 @@ int previousTouchCount = 0;
     isContaintSelfPoint = NO;
     
     if(delegate && [delegate respondsToSelector:@selector(touchVerificationViewTouchesEnded:withEvent:)]) {
-        [self.delegate touchVerificationViewTouchesEnded:touches withEvent:event];
+        //[self.delegate touchVerificationViewTouchesEnded:touches withEvent:event];
     }
 
     if (allTouchPoints.count==1) {

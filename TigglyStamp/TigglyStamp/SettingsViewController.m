@@ -216,7 +216,7 @@
     }
     isShapePopView = NO;
 
-    arrLanguage =[[NSMutableArray alloc] initWithObjects:@"English US",@"English UK",@"Portuguese",@"Russian",@"Spanish", nil];
+    arrLanguage =[[NSMutableArray alloc] initWithObjects:@"English US",@"Portuguese",@"Russian",@"Spanish", nil];
     [self popOverUIPicker:sender];
     
 }

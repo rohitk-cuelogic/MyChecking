@@ -361,6 +361,20 @@
     
     lblLunguage.text = [self.arrLanguage objectAtIndex:indexPath.row];
     
+    [self.view bringSubviewToFront:self.gameTypeView];
+    [UIView animateWithDuration:0.4 animations:^{
+        self.gameTypeView.frame = CGRectMake(0, 0, 1024, 768);
+    } completion:^(BOOL finished) {
+        isLanguageScreenDisplayed = NO;
+        //         [self.languageView removeFromSuperview];
+        [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
+        
+        //        [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
+        
+    }];
+    
+    [[TigglyStampUtils sharedInstance] setCurrentLanguage:lblLunguage.text];
+    
 }
 
 @end

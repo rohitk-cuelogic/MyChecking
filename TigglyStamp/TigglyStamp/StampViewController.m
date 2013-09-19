@@ -479,7 +479,12 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         
         
         UIImageView *tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
-        tempImgView.image = [UIImage imageNamed:@"Tiggly_stamp_Winter_BG.png"];
+        if (sceneType == kSceneWinter) {
+            tempImgView.image = [UIImage imageNamed:@"Tiggly_stamp_Winter_BG.png"];
+        }else if (sceneType == kSceneFall){
+             tempImgView.image = [UIImage imageNamed:@"fallView.png"];
+        }
+        
         [self.mainView addSubview:tempImgView];
         
         [tempImgView genieInTransitionWithDuration:1.0

@@ -691,7 +691,7 @@ int previousTouchCount = 0;
         touchLocationY = touchLocation.y;
         [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"(%d:%d),-,-,-,-\n",touchLocationX,touchLocationY] ];
     }
-    if (distanceArr.count >=1) {
+    if (distanceArr.count >=1 && isWithShape) {
         [self detectShape];
     }
 

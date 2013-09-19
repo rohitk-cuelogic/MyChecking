@@ -34,6 +34,7 @@
 @synthesize bkgImageViewlang;
 @synthesize tblView;
 @synthesize gameTypeView;
+@synthesize btnGoLanguage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -230,6 +231,19 @@
 
 }
 
+-(IBAction)actionGoLanguage {
+    DebugLog(@"");
+    //    [self displayLanguageSelectionView];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.gameTypeView.frame = CGRectMake(1024, 0, 1024, 768);
+    } completion:^(BOOL finished) {
+        isLanguageScreenDisplayed = YES;
+        //self.gameTypeView.frame = CGRectMake(1024, 0, 1024, 768);
+    }];
+    
+}
+
 -(IBAction)closeButtonClicked:(id)sender {
     DebugLog(@"");    
     [self.view bringSubviewToFront:self.gameTypeView];
@@ -237,7 +251,7 @@
         self.gameTypeView.frame = CGRectMake(0, 0, 1024, 768);
     } completion:^(BOOL finished) {        
         isLanguageScreenDisplayed = NO;
-         [self.languageView removeFromSuperview];
+//         [self.languageView removeFromSuperview];
         [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
         
 //        [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];

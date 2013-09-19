@@ -21,6 +21,7 @@
     UIPopoverController *popoverController;
     BOOL isLanguageScreenDisplayed;
 }
+@property (nonatomic,strong) IBOutlet UIButton *btnGoLanguage;
 @property (nonatomic,strong) IBOutlet UIButton *btnWithShape;
 @property (nonatomic,strong) IBOutlet UIButton *btnWithoutShape;
 @property (nonatomic, assign) BOOL isShowLogo;
@@ -37,5 +38,5 @@
 -(IBAction)onButtonTouched:(id)sender;
 -(IBAction)languageButtonClicked:(id)sender;
 -(IBAction)closeButtonClicked:(id)sender;
-
+-(IBAction)actionGoLanguage;
 @end

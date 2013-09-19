@@ -222,6 +222,7 @@
 		6304DE4C17D9A6F00075DE97 /* umbrella_sp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6304DD8417D9A6F00075DE97 /* umbrella_sp.mp3 */; };
 		6304DE4D17D9A6F00075DE97 /* Winter_sp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6304DD8517D9A6F00075DE97 /* Winter_sp.mp3 */; };
 		6304DE4E17D9A6F00075DE97 /* Zebra_sp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6304DD8617D9A6F00075DE97 /* Zebra_sp.mp3 */; };
+		631A51EE17EADD9300D88E2C /* btnBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 631A51ED17EADD9300D88E2C /* btnBack.png */; };
 		6354DFBB17CF549400DDFD67 /* CakeCandle1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB217CF549400DDFD67 /* CakeCandle1.mp3 */; };
 		6354DFBC17CF549400DDFD67 /* CakeCandle2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB317CF549400DDFD67 /* CakeCandle2.mp3 */; };
 		6354DFBD17CF549400DDFD67 /* CakeCandle3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB417CF549400DDFD67 /* CakeCandle3.mp3 */; };
@@ -1381,6 +1382,7 @@
 		6304DD8417D9A6F00075DE97 /* umbrella_sp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = umbrella_sp.mp3; sourceTree = "<group>"; };
 		6304DD8517D9A6F00075DE97 /* Winter_sp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Winter_sp.mp3; sourceTree = "<group>"; };
 		6304DD8617D9A6F00075DE97 /* Zebra_sp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Zebra_sp.mp3; sourceTree = "<group>"; };
+		631A51ED17EADD9300D88E2C /* btnBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnBack.png; sourceTree = "<group>"; };
 		6354DFB217CF549400DDFD67 /* CakeCandle1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle1.mp3; sourceTree = "<group>"; };
 		6354DFB317CF549400DDFD67 /* CakeCandle2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle2.mp3; sourceTree = "<group>"; };
 		6354DFB417CF549400DDFD67 /* CakeCandle3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle3.mp3; sourceTree = "<group>"; };
@@ -3754,6 +3756,7 @@
 			isa = PBXGroup;
 			children = (
 				EBEDE490179566B0002151E5 /* back_btn.png */,
+				631A51ED17EADD9300D88E2C /* btnBack.png */,
 				EBEDE494179588D0002151E5 /* bear.png */,
 				EBEDE4C617958902002151E5 /* bells.png */,
 				EBEDE495179588D0002151E5 /* bird.png */,
@@ -5066,6 +5069,7 @@
 				C021F8D417E8BC4700EBD6B6 /* pintrest_btn.png in Resources */,
 				C021F8D517E8BC4700EBD6B6 /* twitter_btn.png in Resources */,
 				C021F8D617E8BC4700EBD6B6 /* fb_btn.png in Resources */,
+				631A51EE17EADD9300D88E2C /* btnBack.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

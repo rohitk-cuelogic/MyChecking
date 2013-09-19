@@ -368,6 +368,11 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
     NSString *str = (NSString *)[timer userInfo];
     if(sceneType == kSceneWinter) {
+        if(isRecording){
+            isGreetingSoundPlaying = NO;
+            return;
+        }
+
         [[TDSoundManager sharedManager] playSound:[winterSceneObject getAnimalNameSoundForObject:str] withFormat:@"mp3"];
     }else if (sceneType == kSceneFall){
         
@@ -986,7 +991,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     if(shouldShapeDetected){
         shouldShapeDetected = NO;
         
-        if(sceneType == kSceneFall && isRecording) {            
+        if((sceneType == kSceneFall && isRecording) ||(sceneType == kSceneWinter && isRecording) ) {
         }else{
             [self playShapeDetectedSound];
         }
@@ -1316,6 +1321,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     if(fruit.isFruitMovedSufficiently && !isGreetingSoundPlaying){// && !isRecording
         if(sceneType == kSceneWinter) {
+            if(isRecording){
+                return;
+            }
+            
             NSString *sound = [winterSceneObject getAnimalDropSoundForObject:fruit.objectName];
             [[TDSoundManager sharedManager] playSound:sound withFormat:@"mp3"];
         }else if (sceneType == kSceneFall) {
@@ -1412,8 +1421,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
             [self buildShape:phyShapeView.shapeName];
 
-            if(sceneType == kSceneFall && isRecording) {
-
+            if((sceneType == kSceneFall && isRecording) || (sceneType == kSceneWinter && isRecording)) {
+            
             }else{
                 [self playShapeDetectedSound];
             }

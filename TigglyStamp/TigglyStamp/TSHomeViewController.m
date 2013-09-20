@@ -21,7 +21,7 @@
 @implementation TSHomeViewController
 @synthesize imgScrollView;
 @synthesize bkgImageView;
-@synthesize containerView;
+@synthesize containerView,learnMoreBtn;
 
 UISwipeGestureRecognizer *mSwpeRecognizer;
 BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail;
@@ -63,6 +63,15 @@ int swipeTxtCnt;
 //    newsBtn.layer.cornerRadius = 20.0f;
 //    newsBtn.layer.masksToBounds = YES;
     
+    if ([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
+        
+        newsBtn.hidden = YES;
+        newsBtn.userInteractionEnabled = NO;
+        
+        learnMoreBtn.hidden = YES;
+        learnMoreBtn.userInteractionEnabled = NO;
+    }
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -70,7 +79,7 @@ int swipeTxtCnt;
     readyToParentScreen = NO;
     readyToNewsScreen = NO;
     confirmationView.hidden = YES;
-    
+    confirmationViewBKG.hidden = YES;
     for(UIView *thumbnail in imgScrollView.subviews){
         [thumbnail removeFromSuperview];
     }
@@ -313,6 +322,7 @@ int swipeTxtCnt;
     if(readyToParentScreen){
         DebugLog(@"");
         confirmationView.hidden = YES;
+        confirmationViewBKG.hidden = YES;
         forParentsBtn.alpha = 1;
         newsBtn.alpha = 1;
         playBtn.alpha = 1;
@@ -331,6 +341,7 @@ int swipeTxtCnt;
     if(readyToNewsScreen){
         DebugLog(@"");
         confirmationView.hidden = YES;
+        confirmationViewBKG.hidden = YES;
         forParentsBtn.alpha = 1;
         newsBtn.alpha = 1;
         playBtn.alpha = 1;
@@ -364,6 +375,7 @@ int swipeTxtCnt;
         }
         
         confirmationView.hidden = YES;
+        confirmationViewBKG.hidden = YES;
         forParentsBtn.alpha = 1;
         newsBtn.alpha = 1;
         playBtn.alpha = 1;
@@ -384,7 +396,7 @@ int swipeTxtCnt;
     swipeTxtCnt = arc4random()%7;
     
     [txtView setText:[NSString stringWithFormat:@"To continue,\nswipe %@ fingers.", [swipeTxtArray objectAtIndex:swipeTxtCnt]]];
-    txtView.font = [UIFont fontWithName:APP_FONT_BOLD size:26.0f];
+    txtView.font = [UIFont fontWithName:APP_FONT_BOLD size:35.0f];
     txtView.textColor = [UIColor whiteColor];
     
     switch (swipeTxtCnt) {
@@ -425,6 +437,8 @@ int swipeTxtCnt;
     }
     
     confirmationView.hidden = NO;
+    confirmationViewBKG.hidden = NO;
+    [self.view bringSubviewToFront:confirmationViewBKG];
     [self.view bringSubviewToFront:confirmationView];
     [confirmationView  bringSubviewToFront:notConfirm];
 }
@@ -489,6 +503,7 @@ int swipeTxtCnt;
     isThumbnailLongPressed = NO;
     
     confirmationView.hidden = YES;
+    confirmationViewBKG.hidden = YES;
     forParentsBtn.alpha = 1;
     newsBtn.alpha = 1;
     playBtn.alpha = 1;
@@ -499,6 +514,19 @@ int swipeTxtCnt;
     newsBtn.enabled = YES;
     playBtn.enabled = YES;
     [imgScrollView setUserInteractionEnabled:YES];
+}
+
+-(IBAction)actionLearnMore {
+    DebugLog(@"");
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"About tiggly"
+                                            action:@"Learn more"
+                                             label:@"Learn more"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.myshopify.com/products/tiggly-shapes"]];
 }
 
 #pragma mark -

@@ -13,6 +13,7 @@
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
 			<string>IBUIButton</string>
+			<string>IBUIImageView</string>
 			<string>IBUITextView</string>
 			<string>IBUIView</string>
 		</array>
@@ -106,7 +107,7 @@
 						<string key="NSFrame">{{542, 11}, {78, 78}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="389247849"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -131,7 +132,7 @@
 						<string key="NSFrame">{{384, 80}, {183, 83}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="309515849"/>
+						<reference key="NSNextKeyView" ref="393389592"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -182,6 +183,21 @@
 						<reference key="IBUIFontDescription" ref="884719611"/>
 						<reference key="IBUIFont" ref="338325910"/>
 					</object>
+					<object class="IBUIImageView" id="389247849">
+						<reference key="NSNextResponder" ref="766721923"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrameSize">{1024, 768}</string>
+						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="715887542"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">parent_gesture_black_bg.png</string>
+						</object>
+					</object>
 					<object class="IBUIView" id="393389592">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
@@ -192,6 +208,7 @@
 								<string key="NSFrame">{{93, 83}, {418, 138}}</string>
 								<reference key="NSSuperview" ref="393389592"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="309515849"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -350,6 +367,14 @@
 					<int key="connectionID">58</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">confirmationViewBKG</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="389247849"/>
+					</object>
+					<int key="connectionID">60</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">goToHomeScreen:</string>
 						<reference key="source" ref="649104806"/>
@@ -433,6 +458,7 @@
 							<reference ref="584513254"/>
 							<reference ref="309515849"/>
 							<reference ref="393389592"/>
+							<reference ref="389247849"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -481,6 +507,11 @@
 						<reference key="object" ref="43507919"/>
 						<reference key="parent" ref="393389592"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">59</int>
+						<reference key="object" ref="389247849"/>
+						<reference key="parent" ref="766721923"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -499,12 +530,13 @@
 				<string key="52.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="53.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="54.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="59.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">58</int>
+			<int key="maxID">60</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -548,6 +580,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="confirmSaveBtn">UIButton</string>
 						<string key="confirmationView">UIView</string>
+						<string key="confirmationViewBKG">UIView</string>
 						<string key="deleteBtn">UIButton</string>
 						<string key="homeBtn">UIButton</string>
 						<string key="notConfirm">UIButton</string>
@@ -562,6 +595,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="confirmationView">
 							<string key="name">confirmationView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="confirmationViewBKG">
+							<string key="name">confirmationViewBKG</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="deleteBtn">
@@ -601,8 +638,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="close_btn.png">{200, 200}</string>
+			<string key="close_btn.png">{120, 120}</string>
 			<string key="home_icon_2.png">{274, 274}</string>
+			<string key="parent_gesture_black_bg.png">{2048, 1536}</string>
 			<string key="play_btn.png">{200, 199}</string>
 			<string key="savebtn.png">{109, 109}</string>
 			<string key="trashcan_icon@2x~ipad.png">{200, 199}</string>

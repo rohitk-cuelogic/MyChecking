@@ -109,6 +109,7 @@ int swipeTextCnt;
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     [self loadSavedImagesIntoArray];
     confirmationView.hidden = YES;
+    confirmationViewBKG.hidden = YES;
     readyToSave = NO;
     readyToDelete = NO;
     readyToZoom = YES;
@@ -156,7 +157,7 @@ int swipeTextCnt;
     
     swipeTextCnt = arc4random()%7;
     [textView setText:[NSString stringWithFormat:@"To continue,\nswipe %@ fingers.", [swipeTextArray objectAtIndex:swipeTextCnt]]];
-    textView.font = [UIFont fontWithName:APP_FONT_BOLD size:26.0f];
+    textView.font = [UIFont fontWithName:APP_FONT_BOLD size:35.0f];
     textView.textColor = [UIColor whiteColor];
     
     switch (swipeTextCnt) {
@@ -196,6 +197,8 @@ int swipeTextCnt;
             break;
     }
     confirmationView.hidden = NO;
+    confirmationViewBKG.hidden = NO;
+    [self.view bringSubviewToFront:confirmationViewBKG];
     [self.view bringSubviewToFront:confirmationView];
     
 }
@@ -250,6 +253,7 @@ int swipeTextCnt;
         [self.view bringSubviewToFront:confirmSaveBtn];
         
         confirmationView.hidden = YES;
+        confirmationViewBKG.hidden = YES;
         readyToSave = NO;
     }
     if(readyToDelete){
@@ -258,6 +262,7 @@ int swipeTextCnt;
         [self deleteImageAfterConfirm];
         
         confirmationView.hidden = YES;
+        confirmationViewBKG.hidden = YES;
         readyToDelete = NO;
         
         upperPanel.alpha = 1;
@@ -760,6 +765,7 @@ int swipeTextCnt;
 -(IBAction)noConfirmation:(id)sender{
     DebugLog(@"");
     confirmationView.hidden = YES;
+    confirmationViewBKG.hidden = YES;
     readyToSave = NO;
     readyToDelete = NO;
     

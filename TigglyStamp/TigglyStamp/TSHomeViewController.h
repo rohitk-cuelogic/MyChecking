@@ -19,6 +19,7 @@
     IBOutlet UIScrollView *imgScrollView;
     IBOutlet UILabel *lblForParents;
     IBOutlet UIView *confirmationView;
+     IBOutlet UIImageView *confirmationViewBKG;
     IBOutlet UITextView *txtView;
     IBOutlet UIButton *notConfirm;
     NSMutableArray *diskImages;
@@ -35,10 +36,12 @@
 @property(nonatomic, strong)UIScrollView *imgScrollView;
 @property(nonatomic, strong)UIImageView *bkgImageView;
 @property (nonatomic, strong) UIView *containerView;
+@property (nonatomic,strong) IBOutlet UIButton *learnMoreBtn;
 
 -(IBAction)playGame:(id)sender;
 -(IBAction)goToParentsScreen:(id)sender;
 -(IBAction)noConfirmation:(id)sender;
 -(IBAction)goToNewsScreen:(id)sender;
+-(IBAction)actionLearnMore;
 
 @end

@@ -24,6 +24,7 @@
     IBOutlet UIButton *confirmSaveBtn;
     IBOutlet UIButton *deleteBtn;
     IBOutlet UIView *confirmationView;
+    IBOutlet UIView *confirmationViewBKG;
     IBOutlet UITextView *textView;
     IBOutlet UIButton *notConfirm;
     IBOutlet UIButton *playBtn;

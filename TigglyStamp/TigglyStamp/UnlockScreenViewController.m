@@ -12,7 +12,7 @@
 
 #define INSTRUCTION_TEXT1 @"Tap the Tiggly shape on the screen that matches what you see. Once you match 6 shapes in a row, the app will be unlocked."
 #define INSTRUCTION_TEXT2 @"Congratulations! You unlocked the full version of Tiggly Stamp. To play the app without the shapes, you can change the settings in parents section."
-#define INSTRUCTION_RESTART @"Restart"
+#define INSTRUCTION_RESTART @"Restart..."
 
 @interface UnlockScreenViewController ()
 
@@ -353,6 +353,9 @@
         if(isPromptDisplayed) {
             [[TDSoundManager sharedManager] playSound:@"Incorrect_01" withFormat:@"mp3"];
             shapeCount = 0;
+            [promptsArray removeAllObjects];
+            promptsArray = nil;
+            promptsArray = [[NSMutableArray alloc] initWithObjects:@"circle",@"square",@"triangle",@"star", nil];
             lblInstructionText.text = INSTRUCTION_RESTART;
             lblRemainingShapes.text = [NSString stringWithFormat:@"matched %d out of %d",shapeCount, totalShapes];
             [promtView removeFromSuperview];

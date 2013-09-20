@@ -222,6 +222,7 @@
 		6304DE4C17D9A6F00075DE97 /* umbrella_sp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6304DD8417D9A6F00075DE97 /* umbrella_sp.mp3 */; };
 		6304DE4D17D9A6F00075DE97 /* Winter_sp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6304DD8517D9A6F00075DE97 /* Winter_sp.mp3 */; };
 		6304DE4E17D9A6F00075DE97 /* Zebra_sp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6304DD8617D9A6F00075DE97 /* Zebra_sp.mp3 */; };
+		631A51FB17EB2FC900D88E2C /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 631A51FA17EB2FC900D88E2C /* libGoogleAnalytics_debug.a */; };
 		6354DFBB17CF549400DDFD67 /* CakeCandle1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB217CF549400DDFD67 /* CakeCandle1.mp3 */; };
 		6354DFBC17CF549400DDFD67 /* CakeCandle2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB317CF549400DDFD67 /* CakeCandle2.mp3 */; };
 		6354DFBD17CF549400DDFD67 /* CakeCandle3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB417CF549400DDFD67 /* CakeCandle3.mp3 */; };
@@ -1406,6 +1407,13 @@
 		631A51ED17EADD9300D88E2C /* btnBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnBack.png; sourceTree = "<group>"; };
 		631A51EF17EB0D4600D88E2C /* language_stamp_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = language_stamp_bg.png; path = NewImages/language_stamp_bg.png; sourceTree = SOURCE_ROOT; };
 		631A51F017EB0D4600D88E2C /* or.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = or.png; path = NewImages/or.png; sourceTree = SOURCE_ROOT; };
+		631A51F417EB2FC900D88E2C /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = GoogleAnalyticLibrary/GAI.h; sourceTree = "<group>"; };
+		631A51F517EB2FC900D88E2C /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = GoogleAnalyticLibrary/GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		631A51F617EB2FC900D88E2C /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = GoogleAnalyticLibrary/GAIFields.h; sourceTree = "<group>"; };
+		631A51F717EB2FC900D88E2C /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = GoogleAnalyticLibrary/GAILogger.h; sourceTree = "<group>"; };
+		631A51F817EB2FC900D88E2C /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = GoogleAnalyticLibrary/GAITrackedViewController.h; sourceTree = "<group>"; };
+		631A51F917EB2FC900D88E2C /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = GoogleAnalyticLibrary/GAITracker.h; sourceTree = "<group>"; };
+		631A51FA17EB2FC900D88E2C /* libGoogleAnalytics_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics_debug.a; path = GoogleAnalyticLibrary/libGoogleAnalytics_debug.a; sourceTree = "<group>"; };
 		6354DFB217CF549400DDFD67 /* CakeCandle1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle1.mp3; sourceTree = "<group>"; };
 		6354DFB317CF549400DDFD67 /* CakeCandle2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle2.mp3; sourceTree = "<group>"; };
 		6354DFB417CF549400DDFD67 /* CakeCandle3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle3.mp3; sourceTree = "<group>"; };
@@ -2432,6 +2440,7 @@
 				EB6F33291781867900FC479F /* CoreGraphics.framework in Frameworks */,
 				C03C64D317B280E8006666F4 /* Pinterest.framework in Frameworks */,
 				C0034ABA17B36C9900C2ED96 /* FacebookSDK.framework in Frameworks */,
+				631A51FB17EB2FC900D88E2C /* libGoogleAnalytics_debug.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2664,6 +2673,20 @@
 				6304DD8617D9A6F00075DE97 /* Zebra_sp.mp3 */,
 			);
 			path = Spanish;
+			sourceTree = "<group>";
+		};
+		631A51F317EB2F9B00D88E2C /* GoogleAnalyticLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				631A51F417EB2FC900D88E2C /* GAI.h */,
+				631A51F517EB2FC900D88E2C /* GAIDictionaryBuilder.h */,
+				631A51F617EB2FC900D88E2C /* GAIFields.h */,
+				631A51F717EB2FC900D88E2C /* GAILogger.h */,
+				631A51F817EB2FC900D88E2C /* GAITrackedViewController.h */,
+				631A51F917EB2FC900D88E2C /* GAITracker.h */,
+				631A51FA17EB2FC900D88E2C /* libGoogleAnalytics_debug.a */,
+			);
+			name = GoogleAnalyticLibrary;
 			sourceTree = "<group>";
 		};
 		6354DFB117CF549400DDFD67 /* ShapeFill */ = {
@@ -3713,6 +3736,7 @@
 		EB6F332A1781867900FC479F /* TigglyStamp */ = {
 			isa = PBXGroup;
 			children = (
+				631A51F317EB2F9B00D88E2C /* GoogleAnalyticLibrary */,
 				EB6F33981781AD0600FC479F /* TConstant.h */,
 				EB6F33991781AD0600FC479F /* TConstant.m */,
 				EBEDE48817951667002151E5 /* TigglyStampUtils.h */,
@@ -5320,6 +5344,10 @@
 				GCC_PREFIX_HEADER = "TigglyStamp/TigglyStamp-Prefix.pch";
 				INFOPLIST_FILE = "TigglyStamp/TigglyStamp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TigglyStamp/GoogleAnalyticLibrary\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
@@ -5343,6 +5371,10 @@
 				GCC_PREFIX_HEADER = "TigglyStamp/TigglyStamp-Prefix.pch";
 				INFOPLIST_FILE = "TigglyStamp/TigglyStamp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TigglyStamp/GoogleAnalyticLibrary\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "B49DF27A-5214-45F0-9DCE-A7CE4A0B5EBF";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B49DF27A-5214-45F0-9DCE-A7CE4A0B5EBF";

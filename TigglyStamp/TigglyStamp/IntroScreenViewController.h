@@ -10,6 +10,10 @@
 #import "KTViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TConstant.h"
+#import "GAITrackedViewController.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface IntroScreenViewController:KTViewController<UIPopoverControllerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {

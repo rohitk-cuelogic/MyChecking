@@ -82,9 +82,27 @@
          if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
              return;
          }
+        
+        NSMutableDictionary *event =
+        [[GAIDictionaryBuilder createEventWithCategory:@"Scene"
+                                                action:@"Scene selected"
+                                                 label:@"Winter scene"
+                                                 value:nil] build];
+        [[GAI sharedInstance].defaultTracker send:event];
+        [[GAI sharedInstance] dispatch];
+        
         stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneWinter];
         [self.navigationController pushViewController:stampViewController animated:YES];
-    }else if (btn.tag == TAG_FALL_BTN){         
+    }else if (btn.tag == TAG_FALL_BTN){
+        
+        NSMutableDictionary *event =
+        [[GAIDictionaryBuilder createEventWithCategory:@"Scene"
+                                                action:@"Scene selected"
+                                                 label:@"Fall scene"
+                                                 value:nil] build];
+        [[GAI sharedInstance].defaultTracker send:event];
+        [[GAI sharedInstance] dispatch];
+        
         stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneFall];
         [self.navigationController pushViewController:stampViewController animated:YES];
     }

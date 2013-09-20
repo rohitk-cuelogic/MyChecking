@@ -15,6 +15,11 @@
 @synthesize navController;
 @synthesize allFiles;
 
+/******* Set your tracking ID here *******/
+static NSString *const kTrackingId = @"UA-43978705-5";
+static NSString *const kAllowTracking = @"allowTracking";
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -28,6 +33,9 @@
     
     allFiles = [[TigglyStampUtils sharedInstance]getAllImagesAndMovies];
     DebugLog(@"AllFilesCount : %d",allFiles.count);
+    
+    self.tracker = [[GAI sharedInstance] trackerWithName:@"iOSTigglySafari"
+                                              trackingId:kTrackingId];
     
     return YES;
 }

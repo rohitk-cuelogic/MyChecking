@@ -102,7 +102,7 @@
     
     
     NSString *str = [[TigglyStampUtils sharedInstance] getCurrentLanguage]; //[[NSUserDefaults standardUserDefaults] objectForKey:LANGUAGE_SELECTED];
-    lblLunguage.text = str;
+//    lblLunguage.text = str;
     int count=0;
     for(int i=0; i< arrLanguage.count;i++){
         NSString *lang = [arrLanguage objectAtIndex:i];
@@ -124,7 +124,7 @@
             
 //             [[NSUserDefaults standardUserDefaults] setValue:@"English US" forKey:LANGUAGE_SELECTED];
             [[TigglyStampUtils sharedInstance] setCurrentLanguage:@"English US"];
-            lblLunguage.text = @"English US";
+//            lblLunguage.text = @"English US";
             [self displayLanguageSelectionView];
             [btnWithoutShape setHidden:false];
             [btnWithShape setHidden:false];
@@ -191,7 +191,7 @@
         } completion:^(BOOL finished) {
             isLanguageScreenDisplayed = NO;
 //            [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
-             [[TigglyStampUtils sharedInstance] setCurrentLanguage:lblLunguage.text];
+             [[TigglyStampUtils sharedInstance] setCurrentLanguage: [[TigglyStampUtils sharedInstance] getCurrentLanguage]];
 //            [self.languageView removeFromSuperview];
         }];
     }
@@ -359,7 +359,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     DebugLog(@"");
     
-    lblLunguage.text = [self.arrLanguage objectAtIndex:indexPath.row];
+//    lblLunguage.text = [self.arrLanguage objectAtIndex:indexPath.row];
+    
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"Language"
+                                            action:@"Language Selected"
+                                             label:[self.arrLanguage objectAtIndex:indexPath.row]
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
+    
     
     [self.view bringSubviewToFront:self.gameTypeView];
     [UIView animateWithDuration:0.4 animations:^{
@@ -373,7 +382,7 @@
         
     }];
     
-    [[TigglyStampUtils sharedInstance] setCurrentLanguage:lblLunguage.text];
+    [[TigglyStampUtils sharedInstance] setCurrentLanguage:[self.arrLanguage objectAtIndex:indexPath.row]];
     
 }
 

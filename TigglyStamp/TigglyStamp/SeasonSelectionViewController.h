@@ -17,7 +17,11 @@
 @property (nonatomic,strong) IBOutlet UIButton *fallSeasonBtn;
 @property (nonatomic,strong) IBOutlet UIButton *SpringSeasonBtn;
 @property (nonatomic,strong) IBOutlet UIButton *SummerSeasonBtn;
-
+@property (nonatomic,strong) IBOutlet UIImageView *lockWinter;
+@property (nonatomic,strong) IBOutlet UIButton *homeBtn;
+@property (nonatomic,strong) IBOutlet UIButton *learnMoreBtn;
 
 -(IBAction)onButtonTouched:(id)sender;
+-(IBAction)actionHomeButtonClicked:(id)sender;
+-(IBAction)actionLearnMore:(id)sender;
 @end

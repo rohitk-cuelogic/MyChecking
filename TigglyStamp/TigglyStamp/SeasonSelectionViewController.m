@@ -20,7 +20,7 @@
 //============================================================================================
 @implementation SeasonSelectionViewController
 
-@synthesize winterSeasonBtn,SummerSeasonBtn,SpringSeasonBtn,fallSeasonBtn;
+@synthesize winterSeasonBtn,SummerSeasonBtn,SpringSeasonBtn,fallSeasonBtn,lockWinter,homeBtn,learnMoreBtn;
 
 //============================================================================================
 
@@ -39,10 +39,15 @@
     [super viewDidLoad];
   
     if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
-        [winterSeasonBtn  setBackgroundImage:[UIImage imageNamed:@"btnLock.png"] forState:UIControlStateNormal];
+        [lockWinter setHidden:FALSE];
+        [learnMoreBtn setHidden:FALSE];
+        [winterSeasonBtn setAlpha:0.5f];
+       // [winterSeasonBtn  setBackgroundImage:[UIImage imageNamed:@"btnLock.png"] forState:UIControlStateNormal];
         winterSeasonBtn.userInteractionEnabled = NO;
     }else{
-        [winterSeasonBtn  setBackgroundImage:[UIImage imageNamed:@"winter_btn.png"] forState:UIControlStateNormal];
+        [lockWinter setHidden:TRUE];
+        [learnMoreBtn setHidden:TRUE];
+        //[winterSeasonBtn  setBackgroundImage:[UIImage imageNamed:@"winter_btn.png"] forState:UIControlStateNormal];
         winterSeasonBtn.userInteractionEnabled = YES;
     }
     
@@ -70,6 +75,32 @@
 
 //============================================================================================
 
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Action Handling
+#pragma mark =======================================
+
+//============================================================================================
+
+-(IBAction)actionHomeButtonClicked:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+//============================================================================================
+
+-(IBAction)actionLearnMore:(id)sender{
+    
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"About tiggly"
+                                            action:@"Learn more"
+                                             label:@"Learn more"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
+
+    
+     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.myshopify.com/products/tiggly-shapes"]];
+}
+//============================================================================================
 
 -(IBAction) onButtonTouched:(id)sender{
     DebugLog(@"");

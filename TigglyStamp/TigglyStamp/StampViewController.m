@@ -974,6 +974,9 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 -(void)shapeDetected:(UITouchShapeRecognizer *)UIT inView:(UITouchVerificationView*)view{
     DebugLog(@"");
     
+    if(!isWithShape)
+        return;
+    
     if(!shouldShapeDetected){
         return;
     }

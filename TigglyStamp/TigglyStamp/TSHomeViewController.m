@@ -12,6 +12,7 @@
 #import "ParentScreenViewController.h"
 #import "MovingView.h"
 #import "TDSoundManager.h"
+#import "UnlockScreenViewController.h"
 
 @interface TSHomeViewController ()
 
@@ -41,8 +42,7 @@ int swipeTxtCnt;
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     DebugLog(@"");
     [super viewDidLoad];
     
@@ -339,9 +339,12 @@ int swipeTxtCnt;
         forParentsBtn.enabled = YES;
         playBtn.enabled = YES;
         newsBtn.enabled = YES;
-        [imgScrollView setUserInteractionEnabled:YES];
-        
+        [imgScrollView setUserInteractionEnabled:YES];        
         readyToNewsScreen = NO;
+        
+        [playBtnTimer invalidate];
+        UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil];
+         [self.navigationController pushViewController:unlockScreen animated:YES];
     }
     
     if(readyToDeleteThumbnail) {

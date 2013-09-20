@@ -691,7 +691,7 @@ int previousTouchCount = 0;
         touchLocationY = touchLocation.y;
         [[TigglyStampUtils sharedInstance]appendKeyDatatoString:[NSString stringWithFormat:@"(%d:%d),-,-,-,-\n",touchLocationX,touchLocationY] ];
     }
-    if (distanceArr.count >=1 && isWithShape) {
+    if (distanceArr.count >=1) {
         [self detectShape];
     }
 
@@ -746,7 +746,7 @@ int previousTouchCount = 0;
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 
     if(delegate && [delegate respondsToSelector:@selector(touchVerificationViewTouchesBegan:withEvent:)]) {
-      //  [self.delegate touchVerificationViewTouchesBegan:touches withEvent:event];
+        [self.delegate touchVerificationViewTouchesBegan:touches withEvent:event];
     }
     
     for (UITouch *touch  in touches) {

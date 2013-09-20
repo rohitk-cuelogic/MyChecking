@@ -34,29 +34,30 @@
 }
 
 //============================================================================================
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
+    DebugLog(@"");
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
-    
-//    [winterSeasonBtn setTag:TAG_WINTER_BTN];
-//    [fallSeasonBtn setTag:TAG_FALL_BTN];
-//    [SpringSeasonBtn setTag:TAG_SPRING_BTN];
-//    [SummerSeasonBtn setTag:TAG_SUMMER_BTN];
+  
+    if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
+        [winterSeasonBtn  setBackgroundImage:[UIImage imageNamed:@"btnLock.png"] forState:UIControlStateNormal];
+        //winterSeasonBtn.enabled = NO;
+    }else{
+        [winterSeasonBtn  setBackgroundImage:[UIImage imageNamed:@"winter_btn.png"] forState:UIControlStateNormal];
+        //winterSeasonBtn.enabled = YES;
+    }
     
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
--(BOOL)shouldAutorotate
-{
+
+-(BOOL)shouldAutorotate {
     return YES;
 }
 
--(NSUInteger)supportedInterfaceOrientations
-{
+-(NSUInteger)supportedInterfaceOrientations {
+    DebugLog(@"");
     return UIInterfaceOrientationMaskLandscape;
 }
 
@@ -78,12 +79,17 @@
     StampViewController *stampViewController = nil;
     
     if (btn.tag == TAG_WINTER_BTN) {
+         if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
+             return;
+         }
         stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneWinter];
+        [self.navigationController pushViewController:stampViewController animated:YES];
     }else if (btn.tag == TAG_FALL_BTN){         
         stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneFall];
+        [self.navigationController pushViewController:stampViewController animated:YES];
     }
     
-    [self.navigationController pushViewController:stampViewController animated:YES];
+    
     
 
 }

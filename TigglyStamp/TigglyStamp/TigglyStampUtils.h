@@ -47,4 +47,7 @@
 -(void)setCurrentLanguage:(NSString *)lang;
 -(NSString *)getCurrentLanguage;
 
+-(BOOL) isAppUnlockedForShapes;
+-(void)unlockAppForShapes:(BOOL) boolean;
+
 @end

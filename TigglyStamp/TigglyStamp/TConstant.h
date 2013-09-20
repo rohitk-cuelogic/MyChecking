@@ -20,6 +20,8 @@
 #define DebugLog( s, ... )
 #endif
 
+#define APP_FONT @"ROCKB.ttf"
+
 #define SPEED_TIME_EASY 12
 #define SPEED_TIME_MEDIUM 8
 #define SPEED_TIME_HARD 4
@@ -35,6 +37,7 @@
 #define SAVE_ART @"saveArt"
 #define LIMIT_GALLERY @"limitGallery"
 #define IS_WITH_SHAPE @"withShape"
+#define IS_UNLOCKED_FOR_SHAPES @"unlockedForShapes"
 
 // Twitter Tokens
 #define kOAuthConsumerKey           @"M3Nq5aWit1KMvxMiK3Vng"

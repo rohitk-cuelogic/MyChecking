@@ -8,12 +8,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "TigglyStamp/StampViewController.m"
-         timestampString = "401133144.533366"
+         timestampString = "401288271.014602"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1476"
-         endingLineNumber = "1476"
-         landmarkName = "-hideVideoCameraButtons"
+         startingLineNumber = "1479"
+         endingLineNumber = "1479"
+         landmarkName = "-showVideoCameraButtons"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

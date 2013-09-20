@@ -1,0 +1,324 @@
+//
+//  UnlockScreenViewController.m
+//  TigglyStamp
+//
+//  Created by Sachin Patil on 19/09/13.
+//  Copyright (c) 2013 cuelogic. All rights reserved.
+//
+
+#import "UnlockScreenViewController.h"
+#import "TConstant.h"
+#import "TigglyStampUtils.h"
+
+#define INSTRUCTION_TEXT1 @""
+#define INSTRUCTION_TEXT2 @"Congratulations! You unlocked the full version of Tiggly Stamp. To play the app without the shapes, you can change the settings in parents section"
+#define INSTRUCTION_RESTART @"Restart"
+
+@interface UnlockScreenViewController ()
+
+@end
+
+@implementation UnlockScreenViewController
+
+@synthesize lblAboutTiggly,lblAboutTigglyText,lblRemainingShapes,lblInstructionHead,lblInstructionText;
+@synthesize btnBack,btnBuyShapes,btnLearnMore;
+@synthesize bkgView;
+@synthesize touchView;
+@synthesize shapeToBeDetected;
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Init
+#pragma mark =======================================
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    DebugLog(@"");
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+        totalShapes = 6;
+        shapeCount = 0;
+        isPromptDisplayed = NO;
+    }
+    return self;
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark View Lifecycle
+#pragma mark =======================================
+
+- (void)viewDidLoad {
+    DebugLog(@"");
+    [super viewDidLoad];
+    
+    [self initializeTouchVerificationView];
+    
+    [self displayPrompt];
+    
+    [self.view bringSubviewToFront:btnBack];
+    [self.view bringSubviewToFront:btnLearnMore];
+    [self.view bringSubviewToFront:btnBuyShapes];
+    
+    bkgView.layer.cornerRadius = 20.0f;
+    bkgView.layer.masksToBounds  =YES;
+    
+     lblRemainingShapes.text = [NSString stringWithFormat:@"matched %d out of %d",shapeCount, totalShapes];
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    DebugLog(@"");
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark  Helpers
+#pragma mark =======================================
+
+-(void) initializeTouchVerificationView {
+    DebugLog(@"");
+    
+    if (self.touchView == nil) {
+        self.touchView = [[UITouchVerificationView alloc]initWithFrame:CGRectMake(0 , 0, 1024, 768)];
+        self.touchView.delegate =self;
+        [self.view addSubview:self.touchView];
+        [self.view bringSubviewToFront:touchView];
+    }
+    [self.touchView configure];
+    [self.touchView setDelegate:self];
+    
+    UITouchShapeRecognizer* squareRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"squareData"];
+    [squareRecognizer setLabel:@"square"];
+    
+    UITouchShapeRecognizer* square2Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"square2Data"];
+    [square2Recognizer setLabel:@"square"];
+    
+    UITouchShapeRecognizer* square3Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"squareTwoPointData"];
+    [square3Recognizer setLabel:@"square"];
+    
+    UITouchShapeRecognizer* starRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"starData"];
+    [starRecognizer setLabel:@"star"];
+    
+    UITouchShapeRecognizer* star3Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"star5Data"];
+    [star3Recognizer setLabel:@"star"];
+    
+    UITouchShapeRecognizer* starRecognizerNew = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"starData6"];
+    [starRecognizerNew setLabel:@"star"];
+    
+    UITouchShapeRecognizer* circleRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"circleData"];
+    [circleRecognizer setLabel:@"circle"];
+    //    UITouchShapeRecognizer* circle2Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"circle2Data"];
+    //    [circleRecognizer setLabel:@"circle"];
+    UITouchShapeRecognizer* circle3Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"circleData3"];
+    [circle3Recognizer setLabel:@"circle"];
+    
+    UITouchShapeRecognizer* triangle2Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"triangle2Data"];
+    [triangle2Recognizer setLabel:@"triangle"];
+    
+    UITouchShapeRecognizer* triangle3Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"triangleData3"];
+    [triangle3Recognizer setLabel:@"triangle"];
+    
+    UITouchShapeRecognizer* triangleRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"triangleData"];
+    [triangleRecognizer setLabel:@"triangle"];
+    
+    // for old star
+    [self.touchView loadShape:starRecognizer];
+    [self.touchView loadShape:star3Recognizer];
+    
+    // for new star
+    [self.touchView loadShape:starRecognizerNew];
+    
+    [self.touchView loadShape:triangleRecognizer];
+    //[self.touchView loadShape:triangle2Recognizer];
+    [self.touchView loadShape:triangle3Recognizer];
+    
+    [self.touchView loadShape:circleRecognizer];
+    //[self.touchView loadShape:circle2Recognizer];
+    [self.touchView loadShape:circle3Recognizer];
+    
+    [self.touchView loadShape:squareRecognizer];
+    //[self.touchView loadShape:square2Recognizer];
+    [self.touchView loadShape:square3Recognizer];
+}
+
+
+-(void) displayPrompt{
+    DebugLog(@"");
+    
+    int ranNo = arc4random()%4;
+    NSString *prompt;
+    
+    switch (ranNo) {
+        case 0:
+            prompt = @"circle";
+            break;
+
+        case 1:
+            prompt = @"triangle";
+            break;
+
+        case 2:
+            prompt = @"square";
+            break;
+
+        case 3:
+            prompt = @"star";
+            break;
+
+        default:
+            break;
+    }
+    
+    shapeToBeDetected = prompt;
+    promtView = [[UIImageView alloc] initWithFrame:CGRectMake(215,250,400, 400)];
+    promtView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_prompt.png",prompt]];
+    promtView.layer.zPosition = 1000;
+    [self.view addSubview:promtView];
+    isPromptDisplayed = YES;
+    
+    if([lblInstructionText.text isEqualToString:INSTRUCTION_RESTART]) {
+        lblInstructionText.text = INSTRUCTION_TEXT1;
+    }
+}
+
+-(void) buildShape:(NSString *) shape{
+    DebugLog(@"");
+    
+    [promtView removeFromSuperview];
+    promtView = nil;
+    isPromptDisplayed = NO;
+    
+    shapeView = [[UIImageView alloc] initWithFrame:CGRectMake(215,250,400, 400)];
+    shapeView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_shape.png",shape]];
+    shapeView.layer.zPosition = 1000;
+    [self.view addSubview:shapeView];
+    
+    double delayInSeconds = 0.8;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [UIView animateWithDuration:0.0 animations:^{
+            shapeView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            
+            shapeCount++;
+            lblRemainingShapes.text = [NSString stringWithFormat:@"matched %d out of %d",shapeCount, totalShapes];
+            //lblInstructionHead.hidden = YES;
+            
+            if(shapeCount == 6) {
+                lblInstructionText.text = INSTRUCTION_TEXT2;
+                [[TigglyStampUtils sharedInstance] unlockAppForShapes:YES];
+            }
+            
+        }completion:^(BOOL finished) {
+            double delayInSeconds = 1.0;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [shapeView removeFromSuperview];
+                shapeView = nil;
+                
+                double delayInSeconds = 0.5;
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+
+                    if(shapeCount < 6){
+                        [self displayPrompt];
+                    }
+
+                    
+                });
+            });
+        }];
+    });
+
+}
+
+-(void) inactivity {
+    DebugLog(@"");
+    
+    
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Action Handling
+#pragma mark =======================================
+
+-(IBAction)actionBack {
+    DebugLog(@"");
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+-(IBAction)actionBuyNow {
+    DebugLog(@"");
+    
+}
+
+-(IBAction)actionLearnMore {
+    DebugLog(@"");
+    
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark TouchVerification View Delegates
+#pragma mark =======================================
+
+-(void)shapeDetected:(UITouchShapeRecognizer*)UIT {
+    DebugLog(@"");
+    
+}
+
+-(void)shapeDetected:(UITouchShapeRecognizer *)UIT inView:(id)view {
+    DebugLog(@"");
+    DebugLog(@"Physical Shape: %@",UIT.label);
+    
+    if([self.shapeToBeDetected isEqualToString:UIT.label]) {
+        if(isPromptDisplayed) {
+             [promptTimer invalidate];
+            [self buildShape:UIT.label];
+            [[TDSoundManager sharedManager] playSound:UIT.label withFormat:@"mp3"];
+        }
+    }else{
+        if(isPromptDisplayed) {
+            [[TDSoundManager sharedManager] playSound:@"Incorrect_01" withFormat:@"mp3"];
+            shapeCount = 0;
+            lblInstructionText.text = INSTRUCTION_RESTART;
+            lblRemainingShapes.text = [NSString stringWithFormat:@"matched %d out of %d",shapeCount, totalShapes];
+            [promtView removeFromSuperview];
+            promtView = nil;
+            
+            [promptTimer invalidate];
+            promptTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(displayPrompt) userInfo:nil repeats:NO];
+        }
+    }
+ 
+}
+
+-(void)shapeRendered:(CALayer *)shape {
+    DebugLog(@"");
+    
+}
+
+-(void)touchVerificationViewTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    DebugLog(@"");
+    
+#ifdef DEBUG_MODE
+    if(isPromptDisplayed) {
+        [self buildShape:self.shapeToBeDetected];
+        [[TDSoundManager sharedManager] playSound:self.shapeToBeDetected withFormat:@"mp3"];
+    }
+#endif
+    
+}
+
+-(void)touchVerificationViewTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    DebugLog(@"");
+    
+}
+
+
+@end

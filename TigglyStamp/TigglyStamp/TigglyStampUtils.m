@@ -530,4 +530,18 @@ static TigglyStampUtils *sharedInstance = nil;
     return strCsvKyes;
 }
 
+-(BOOL) isAppUnlockedForShapes {
+    DebugLog(@"");
+    
+    return [[NSUserDefaults standardUserDefaults] boolForKey:IS_UNLOCKED_FOR_SHAPES];
+}
+
+-(void)unlockAppForShapes:(BOOL) boolean{
+    DebugLog(@"");
+    
+    [[NSUserDefaults standardUserDefaults] setBool:boolean forKey:IS_UNLOCKED_FOR_SHAPES];
+    
+}
+
+
 @end

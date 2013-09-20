@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">11G63</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1138.51</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">2083</string>
@@ -172,7 +172,7 @@
 							<object class="IBUIButton" id="12288070">
 								<reference key="NSNextResponder" ref="646164643"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{854, 183}, {150, 95}}</string>
+								<string key="NSFrame">{{860, 183}, {144, 130}}</string>
 								<reference key="NSSuperview" ref="646164643"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="768890085"/>
@@ -304,7 +304,6 @@
 						<string key="NSFrame">{{0, 543}, {1024, 225}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>

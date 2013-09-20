@@ -63,14 +63,7 @@ int swipeTxtCnt;
 //    newsBtn.layer.cornerRadius = 20.0f;
 //    newsBtn.layer.masksToBounds = YES;
     
-    if ([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
-        
-        newsBtn.hidden = YES;
-        newsBtn.userInteractionEnabled = NO;
-        
-        learnMoreBtn.hidden = YES;
-        learnMoreBtn.userInteractionEnabled = NO;
-    }
+
     
 }
 
@@ -104,7 +97,14 @@ int swipeTxtCnt;
     isFirstTimePlay = YES;
     playBtnTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(animatePlayButton) userInfo:nil repeats:YES];
     
-
+    if ([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
+        
+        newsBtn.hidden = YES;
+        newsBtn.userInteractionEnabled = NO;
+        
+        learnMoreBtn.hidden = YES;
+        learnMoreBtn.userInteractionEnabled = NO;
+    }
  
 }
 
@@ -331,6 +331,7 @@ int swipeTxtCnt;
         forParentsBtn.enabled = YES;
         newsBtn.enabled = YES;
         playBtn.enabled = YES;
+        learnMoreBtn.enabled = YES;
         [imgScrollView setUserInteractionEnabled:YES];
         readyToParentScreen = NO;
         
@@ -350,6 +351,7 @@ int swipeTxtCnt;
         forParentsBtn.enabled = YES;
         playBtn.enabled = YES;
         newsBtn.enabled = YES;
+        learnMoreBtn.enabled = YES;
         [imgScrollView setUserInteractionEnabled:YES];        
         readyToNewsScreen = NO;
         
@@ -385,6 +387,7 @@ int swipeTxtCnt;
         forParentsBtn.enabled = YES;
         playBtn.enabled = YES;
         newsBtn.enabled = YES;
+         learnMoreBtn.enabled = YES;
         [imgScrollView setUserInteractionEnabled:YES];
 
     }
@@ -472,6 +475,7 @@ int swipeTxtCnt;
     forParentsBtn.enabled = NO;
     newsBtn.enabled = NO;
     playBtn.enabled = NO;
+    learnMoreBtn.enabled = NO;
     [imgScrollView setUserInteractionEnabled:NO];
     
     [self showConfirmationView];
@@ -490,6 +494,7 @@ int swipeTxtCnt;
     forParentsBtn.enabled = NO;
     playBtn.enabled = NO;
     newsBtn.enabled = NO;
+    learnMoreBtn.enabled = NO;
     [imgScrollView setUserInteractionEnabled:NO];
     
     [self showConfirmationView];
@@ -513,6 +518,7 @@ int swipeTxtCnt;
     forParentsBtn.enabled = YES;
     newsBtn.enabled = YES;
     playBtn.enabled = YES;
+    learnMoreBtn.enabled = YES;
     [imgScrollView setUserInteractionEnabled:YES];
 }
 

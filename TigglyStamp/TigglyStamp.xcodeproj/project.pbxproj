@@ -709,6 +709,7 @@
 		C028607B17D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_03.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607317D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_03.mp3 */; };
 		C028607D17D76A1D001EAE9E /* Tiggly_GenGreeting_spider_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607C17D76A1C001EAE9E /* Tiggly_GenGreeting_spider_01.mp3 */; };
 		C028607F17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DROP_04.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C028607E17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DROP_04.mp3 */; };
+		C02DE81D17EC31C1005AC469 /* photo_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C02DE81C17EC31C1005AC469 /* photo_bg.png */; };
 		C02F012C17E70CC7007405C0 /* PhysicalShapesView.m in Sources */ = {isa = PBXBuildFile; fileRef = C02F012B17E70CC7007405C0 /* PhysicalShapesView.m */; };
 		C02F440E17D60CFC007AEA39 /* Tiggly_Word_Bell_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02F431717D60CFC007AEA39 /* Tiggly_Word_Bell_01.mp3 */; };
 		C02F440F17D60CFC007AEA39 /* Tiggly_Word_Bell_Wow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02F431817D60CFC007AEA39 /* Tiggly_Word_Bell_Wow.mp3 */; };
@@ -1934,6 +1935,7 @@
 		C028607317D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_03.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_SnowMan_DaDaa_03.mp3; sourceTree = "<group>"; };
 		C028607C17D76A1C001EAE9E /* Tiggly_GenGreeting_spider_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_GenGreeting_spider_01.mp3; sourceTree = "<group>"; };
 		C028607E17D76ADD001EAE9E /* Tiggly_SFX_DragNDrop_DROP_04.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_DragNDrop_DROP_04.mp3; sourceTree = "<group>"; };
+		C02DE81C17EC31C1005AC469 /* photo_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_bg.png; sourceTree = "<group>"; };
 		C02F012A17E70CC7007405C0 /* PhysicalShapesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalShapesView.h; sourceTree = "<group>"; };
 		C02F012B17E70CC7007405C0 /* PhysicalShapesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicalShapesView.m; sourceTree = "<group>"; };
 		C02F431717D60CFC007AEA39 /* Tiggly_Word_Bell_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Bell_01.mp3; sourceTree = "<group>"; };
@@ -3242,6 +3244,7 @@
 		C021F88417E86E4700EBD6B6 /* NewImages */ = {
 			isa = PBXGroup;
 			children = (
+				C02DE81C17EC31C1005AC469 /* photo_bg.png */,
 				6374B1C617EC254F00F27364 /* parent_gesture_black_bg.png */,
 				6374B1C717EC254F00F27364 /* parent_gesture_black_bg@2x~ipad.png */,
 				6374B1C417EC1B7000F27364 /* lock.png */,
@@ -5228,6 +5231,7 @@
 				6374B1C517EC1B7000F27364 /* lock.png in Resources */,
 				6374B1C817EC254F00F27364 /* parent_gesture_black_bg.png in Resources */,
 				6374B1C917EC254F00F27364 /* parent_gesture_black_bg@2x~ipad.png in Resources */,
+				C02DE81D17EC31C1005AC469 /* photo_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5335,8 +5339,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "EFBEE89C-BC84-4A0F-BA58-7849C9E64928";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EFBEE89C-BC84-4A0F-BA58-7849C9E64928";
+				PROVISIONING_PROFILE = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -5389,8 +5393,8 @@
 					"\"$(SRCROOT)/TigglyStamp/GoogleAnalyticLibrary\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EFBEE89C-BC84-4A0F-BA58-7849C9E64928";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EFBEE89C-BC84-4A0F-BA58-7849C9E64928";
+				PROVISIONING_PROFILE = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

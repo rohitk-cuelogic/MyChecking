@@ -39,6 +39,8 @@
         // Custom initialization
         totalShapes = 6;
         shapeCount = 0;
+        countShapeSound = 1;
+        
         isPromptDisplayed = NO;
         promptsArray = [[NSMutableArray alloc] initWithObjects:@"circle",@"square",@"triangle",@"star", nil];
     }
@@ -289,9 +291,16 @@
     
 }
 
--(void) inactivity {
+-(void) playShapeDetectedSound{
     DebugLog(@"");
     
+    NSString *soundName = [NSString stringWithFormat:@"CakeCandle%d",countShapeSound];
+    [[TDSoundManager sharedManager] playSound:soundName withFormat:@"mp3"];
+    
+    countShapeSound ++;
+    if (countShapeSound == 10) {
+        countShapeSound = 1;
+    }
     
 }
 
@@ -355,7 +364,8 @@
         if(isPromptDisplayed) {
              [promptTimer invalidate];
             [self buildShape:UIT.label];
-            [[TDSoundManager sharedManager] playSound:UIT.label withFormat:@"mp3"];
+            //[[TDSoundManager sharedManager] playSound:UIT.label withFormat:@"mp3"];
+            [self playShapeDetectedSound];
         }
     }else{
         if(isPromptDisplayed) {

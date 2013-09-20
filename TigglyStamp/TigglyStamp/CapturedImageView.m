@@ -132,8 +132,9 @@
 -(void)showPhotoPreview:(NSString *)imgName {
     DebugLog(@"");
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 740, 540)];
-    view.backgroundColor = [UIColor whiteColor];
+    UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 740, 540)];
+    //view.backgroundColor = [UIColor whiteColor];
+    view.image = [UIImage imageNamed:@"photo_bg.png"];
     view.center = CGPointMake(512, 1000);
     view.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
     view.layer.cornerRadius = 20.0f;
@@ -146,12 +147,12 @@
     // convert it to a string
     NSString *dateString = [dateFormat stringFromDate:currentDate];
     
-    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 480, 700, 50)];
+    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 475, 700, 50)];
     lblDate.textAlignment = UITextAlignmentCenter;
-    //lblDate.font = [UIFont fontWithName:@"Georgia" size:35.0f];
+    lblDate.backgroundColor = [UIColor clearColor];
     lblDate.text = dateString;
     lblDate.textColor = [UIColor blueColor];
-    lblDate.font = [UIFont fontWithName:APP_FONT size:32.0f];
+    lblDate.font = [UIFont fontWithName:APP_FONT size:30.0f];
     [view addSubview:lblDate];
     
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];

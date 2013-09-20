@@ -18,12 +18,17 @@
     
     UIImageView *promtView;
     UIImageView *shapeView;
-    NSString *shapeToBeDetected;
+      
     int shapeCount;
     int totalShapes;
+    int countShapeSound;
+    
     BOOL isPromptDisplayed;
+    
+    NSString *shapeToBeDetected;
     NSTimer *promptTimer;
     NSMutableArray *promptsArray;
+    
 }
 
 @property(nonatomic, strong)UITouchVerificationView * touchView;

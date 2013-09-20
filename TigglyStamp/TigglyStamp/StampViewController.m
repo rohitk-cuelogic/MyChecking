@@ -109,7 +109,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     if (isWithShape) {
         [self playShapeinstructionSounds];
     }else{
-        [self playFingerInstructionSound];
+        //[self playFingerInstructionSound];
     }
     
     
@@ -294,42 +294,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
 }
 
--(void) displayShapesTray {
-    DebugLog(@"");
-        
-    viewShapesTray= [[UIImageView alloc]initWithFrame:CGRectMake(0,150, 140, 550)];
-    viewShapesTray.image = [UIImage imageNamed:@"shape_3.png"];
-    viewShapesTray.userInteractionEnabled = YES;
-    [self.mainView addSubview:viewShapesTray];
-    [self.mainView bringSubviewToFront:viewShapesTray];
 
-
-    NSString *shapeName = nil;
-    int yPos = 30;
-    arrPhysicalShapes = [[NSMutableArray alloc] initWithCapacity:1];
-    for(int i=0; i< 4; i++) {
-    if(i == 0)
-    shapeName = @"circle";
-    else if (i ==1)
-    shapeName = @"square";
-    else if (i ==2)
-    shapeName = @"triangle";
-    else if (i ==3)
-    shapeName = @"star";
-
-
-    PhysicalShapesView *shape = [[PhysicalShapesView alloc] initWithFrame:CGRectMake(20, yPos, 100, 100)withShapeName:shapeName];
-    shape.delagate = self;
-    shape.layer.zPosition = 1000;
-    yPos = yPos + 100 + 30;
-    [viewShapesTray addSubview:shape];
-    [viewShapesTray bringSubviewToFront:shape];
-    [self.mainView bringSubviewToFront:shape];
-    [arrPhysicalShapes addObject:shape];
-    }
-    
-
-}
 
 - (void) addCurlAnimation {
     DebugLog(@"");
@@ -549,6 +514,64 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
 }
 
+-(void) displayShapesTray {
+    DebugLog(@"");
+    
+    viewShapesTray= [[UIImageView alloc]initWithFrame:CGRectMake(0,150, 140, 550)];
+    viewShapesTray.image = [UIImage imageNamed:@"shape_3.png"];
+    viewShapesTray.userInteractionEnabled = YES;
+    [self.mainView addSubview:viewShapesTray];
+    [self.mainView bringSubviewToFront:viewShapesTray];
+    
+    
+    NSString *shapeName = nil;
+    int yPos = 30;
+    arrPhysicalShapes = [[NSMutableArray alloc] initWithCapacity:1];
+    for(int i=0; i< 4; i++) {
+        if(i == 0)
+            shapeName = @"circle";
+        else if (i ==1)
+            shapeName = @"square";
+        else if (i ==2)
+            shapeName = @"triangle";
+        else if (i ==3)
+            shapeName = @"star";
+        
+        
+        PhysicalShapesView *shape = [[PhysicalShapesView alloc] initWithFrame:CGRectMake(20, yPos, 100, 100)withShapeName:shapeName];
+        shape.delagate = self;
+        shape.layer.zPosition = 1000;
+        yPos = yPos + 100 + 30;
+        [viewShapesTray addSubview:shape];
+        [viewShapesTray bringSubviewToFront:shape];
+        [self.mainView bringSubviewToFront:shape];
+        [arrPhysicalShapes addObject:shape];
+    }
+    
+    
+}
+
+-(void) removeShapesTray {
+    DebugLog(@"");
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         viewShapesTray.frame = CGRectMake(-140,150, 140, 550);
+                         for(PhysicalShapesView *shape in arrPhysicalShapes) {
+                             shape.frame = CGRectMake(-140, shape.frame.origin.y, shape.frame.size.width, shape.frame.size.height);
+                         }
+                     }
+                     completion:^(BOOL finished){
+                         for(PhysicalShapesView *shape in arrPhysicalShapes) {
+                             [shape removeFromSuperview];
+                         }
+                         [arrPhysicalShapes removeAllObjects];
+                         arrPhysicalShapes = nil;
+                         
+                         [viewShapesTray removeFromSuperview];
+                         viewShapesTray = nil;
+                     }];
+}
+
 #pragma mark- ===============================
 #pragma mark- Action Handling
 #pragma mark- ===============================
@@ -696,7 +719,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         [tickBtnTimer invalidate];
         [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
         
-        
+        if(!isWithShape)
+            [self removeShapesTray];
     }
     
     if ([btn tag] == TAG_CURL_BTN) {
@@ -816,9 +840,6 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             homeButton.hidden = YES;
         }
     }
-    [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
-    [tickBtnTimer invalidate];
-    tickBtnTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(pulseTickButton) userInfo:nil repeats:NO];
     
     if(!isBtnViewHidden) {
         [self hideVideoCameraButtons];
@@ -942,12 +963,14 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             }
             fruit.delegate = self;
             [self.mainView addSubview:fruit];
-            //[self.view insertSubview:fruit atIndex:1];
-            [fruitObjectArray addObject:fruit];
-            
+            [fruitObjectArray addObject:fruit];            
             
             NSString *objName = shapeImage;
             DebugLog(@"Object Name : %@", objName);
+            
+            [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+            [tickBtnTimer invalidate];
+            tickBtnTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(pulseTickButton) userInfo:nil repeats:NO];
             
             [continuityTimer invalidate];
             continuityTimer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(playGreetingSoundForObject:) userInfo:objName repeats:NO];
@@ -999,6 +1022,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         return;
     
     if(!shouldShapeDetected){
+        return;
+    }
+    
+    if(!isBtnViewHidden){
         return;
     }
     
@@ -1325,6 +1352,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     [showSeasonsTimer invalidate];
     showSeasonsTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(needToShowRightTickButton) userInfo:nil repeats:NO];
     
+    [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+    [tickBtnTimer invalidate];
+    tickBtnTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(pulseTickButton) userInfo:nil repeats:NO];
+    
     if(!isRecording){
         if(CGRectIntersectsRect(fruit.frame, garbageCan.frame)){
             DebugLog(@"Delete Object");
@@ -1423,6 +1454,9 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     phyShapeView.imgView.transform = CGAffineTransformMakeScale(4.0, 4.0);
     phyShapeView.imgView.alpha = 0.8;
+    
+    [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+
 }
 
 -(void) physicalShapeViewOnTouchesMoved:(PhysicalShapesView *) phyShapeView {
@@ -1464,6 +1498,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             self.shapes = [[NSMutableArray alloc]initWithArray:[fallSceneObject shapeForObject:phyShapeView.shapeName]];
         }
 
+        [tickBtnTimer invalidate];
+        tickBtnTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(pulseTickButton) userInfo:nil repeats:NO];
 
         if(shouldShapeDetected){
             shouldShapeDetected = NO;

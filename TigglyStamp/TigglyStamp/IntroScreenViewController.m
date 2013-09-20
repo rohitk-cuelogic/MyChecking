@@ -12,6 +12,7 @@
 #import "TigglyStampUtils.h"
 #import "TSHomeViewController.h"
 #import "TDSoundManager.h"
+#import "UnlockScreenViewController.h"
 
 #define TAG_BTN_WITHSHAPE 1
 #define TAG_BTN_WITHOUTSHAPE 2
@@ -177,6 +178,7 @@
     self.languageSubView.layer.cornerRadius = 30.0f;
     self.languageSubView.layer.masksToBounds = YES;
     [self.view addSubview:self.languageView];
+    lblLunguage.font = [UIFont fontWithName:APP_FONT_BOLD size:26.0f];
     
     UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedScreen:)];
     swipeGesture.direction = UISwipeGestureRecognizerDirectionLeft;
@@ -228,13 +230,20 @@
     TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];
     
     
-    if (btn.tag == TAG_BTN_WITHSHAPE) {
-        [[TigglyStampUtils sharedInstance] setShapeMode:YES];
+    if (btn.tag == TAG_BTN_WITHSHAPE) {     
+        if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
+            UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil];
+            [self.navigationController pushViewController:unlockScreen animated:YES];
+        }else{
+            [[TigglyStampUtils sharedInstance] setShapeMode:YES];
+            [self.navigationController pushViewController:homeViewController animated:YES];
+        }
     }else if (btn.tag == TAG_BTN_WITHOUTSHAPE){
         [[TigglyStampUtils sharedInstance] setShapeMode:NO];
+         [self.navigationController pushViewController:homeViewController animated:YES];
     }
     
-    [self.navigationController pushViewController:homeViewController animated:YES];
+   
 
 }
 
@@ -358,7 +367,7 @@
     
     cell.textLabel.text = [self.arrLanguage objectAtIndex:indexPath.row];
     cell.textLabel.textAlignment = UITextAlignmentCenter;
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:24.0f];
+    cell.textLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:22.0f];
     
     return cell;
 }

@@ -13,7 +13,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1479"
          endingLineNumber = "1479"
-         landmarkName = "-showVideoCameraButtons"
+         landmarkName = "-physicalShapeViewOnTouchesEnded:withEvent:forView:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

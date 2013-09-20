@@ -26,6 +26,7 @@
 @synthesize touchView;
 @synthesize shapeToBeDetected;
 
+
 #pragma mark -
 #pragma mark =======================================
 #pragma mark Init
@@ -70,7 +71,9 @@
     lblInstructionText.font = [UIFont fontWithName:APP_FONT size:20.0f];
     lblRemainingShapes.font = [UIFont fontWithName:APP_FONT_BOLD size:20.0f];
     lblAboutTiggly.font = [UIFont fontWithName:APP_FONT_BOLD size:20.0f];
-    lblAboutTigglyText.font = [UIFont fontWithName:APP_FONT size:18.0f];
+    lblAboutTigglyText.font = [UIFont fontWithName:APP_FONT size:17.0f];
+
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -196,7 +199,7 @@
     
     if([lblInstructionText.text isEqualToString:INSTRUCTION_RESTART]) {
         lblInstructionText.text = INSTRUCTION_TEXT1;
-        lblInstructionText.frame = CGRectMake(20, 60, 615, 70);
+
     }
 }
 
@@ -224,8 +227,8 @@
             
             if(shapeCount == 6) {
                 lblInstructionText.text = INSTRUCTION_TEXT2;
-                lblInstructionText.frame = CGRectMake(20, 265, 615, 70);
-                [[TigglyStampUtils sharedInstance] unlockAppForShapes:YES];
+                
+                [self setUnlockStatus];
             }
             
         }completion:^(BOOL finished) {
@@ -252,6 +255,12 @@
 }
 
 -(void) setUnlockStatus{
+    DebugLog(@"");
+    
+    [[TigglyStampUtils sharedInstance] setShapeMode:YES];
+    
+    [[TigglyStampUtils sharedInstance] unlockAppForShapes:YES];
+    
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"App Version"
                                             action:@"App Version"
@@ -299,6 +308,8 @@
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
     
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.myshopify.com/products/tiggly-shapes"]];
 }
 
 -(IBAction)actionLearnMore {
@@ -310,7 +321,11 @@
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
+    
+     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.myshopify.com/products/tiggly-shapes"]];
 }
+
+
 
 #pragma mark -
 #pragma mark =======================================
@@ -337,7 +352,6 @@
             [[TDSoundManager sharedManager] playSound:@"Incorrect_01" withFormat:@"mp3"];
             shapeCount = 0;
             lblInstructionText.text = INSTRUCTION_RESTART;
-            lblInstructionText.frame = CGRectMake(20, 265, 615, 70);
             lblRemainingShapes.text = [NSString stringWithFormat:@"matched %d out of %d",shapeCount, totalShapes];
             [promtView removeFromSuperview];
             promtView = nil;

@@ -156,6 +156,8 @@ int swipeTextCnt;
     
     swipeTextCnt = arc4random()%7;
     [textView setText:[NSString stringWithFormat:@"To continue,\nswipe %@ fingers.", [swipeTextArray objectAtIndex:swipeTextCnt]]];
+    textView.font = [UIFont fontWithName:APP_FONT_BOLD size:26.0f];
+    textView.textColor = [UIColor whiteColor];
     
     switch (swipeTextCnt) {
         case 0:

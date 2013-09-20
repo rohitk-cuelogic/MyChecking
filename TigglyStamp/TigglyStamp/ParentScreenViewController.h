@@ -13,6 +13,9 @@
 #import "FHSTwitterEngine.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <Pinterest/Pinterest.h>
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface ParentScreenViewController : UIViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate>
 {
@@ -46,12 +49,21 @@
 @property (nonatomic,strong) IBOutlet UIButton *tabLearningTipBTN;
 @property (nonatomic,strong) IBOutlet UIButton *tabLearPhilosophyBTN;
 @property (nonatomic,strong) IBOutlet UIImageView *tabTitleIMGVIEW;
-@property (nonatomic,strong) IBOutlet UITextView *tabHeadingTEXT;
-@property (nonatomic,strong) IBOutlet UITextView *tabBodyTEXT;
+@property (nonatomic,strong) IBOutlet UITextView *tabHeading1TEXT;
+@property (nonatomic,strong) IBOutlet UITextView *tabBody1TEXT;
+@property (nonatomic,strong) IBOutlet UITextView *tabHeading2TEXT;
+@property (nonatomic,strong) IBOutlet UITextView *tabBody2TEXT;
+@property (nonatomic,strong) IBOutlet UITextView *tabHeading3TEXT;
+@property (nonatomic,strong) IBOutlet UILabel *lblMotarTEXT;
+@property (nonatomic,strong) IBOutlet UILabel *lblLanguageTEXT;
+@property (nonatomic,strong) IBOutlet UILabel *lblSpatialTEXT;
 
 @property (nonatomic,strong) IBOutlet UIButton *tabLetterMotarBTN;
 @property (nonatomic,strong) IBOutlet UIButton *tabLetterLanguageBTN;
 @property (nonatomic,strong) IBOutlet UIButton *tabLetterSpatialBTN;
+@property (nonatomic,strong) IBOutlet UIScrollView *tabInforSCROLL;
+
+
 -(IBAction)onButtonClicked:(id)sender;
 
 @end

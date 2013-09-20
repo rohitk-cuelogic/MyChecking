@@ -29,7 +29,7 @@
 @property(nonatomic, strong)UITouchVerificationView * touchView;
 @property (nonatomic, strong) IBOutlet UIView *bkgView;
 @property (nonatomic, strong) IBOutlet UILabel *lblAboutTiggly;
-@property (nonatomic, strong) IBOutlet UILabel *lblAboutTigglyText;
+@property (nonatomic, strong) IBOutlet UITextView *lblAboutTigglyText;
 @property (nonatomic, strong) IBOutlet UILabel *lblRemainingShapes;
 @property (nonatomic, strong) IBOutlet UILabel *lblInstructionHead;
 @property (nonatomic, strong) IBOutlet UILabel *lblInstructionText;
@@ -42,5 +42,6 @@
 -(IBAction)actionBack;
 -(IBAction)actionBuyNow;
 -(IBAction)actionLearnMore;
+
 
 @end

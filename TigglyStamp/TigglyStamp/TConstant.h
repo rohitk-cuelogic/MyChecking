@@ -22,6 +22,7 @@
 
 #define APP_FONT @"Rockwell"
 #define APP_FONT_BOLD @"Rockwell-Bold"
+#define APP_FONT_BOLD_ITALIC @"Rockwell-BoldItalic"
 
 #define SPEED_TIME_EASY 12
 #define SPEED_TIME_MEDIUM 8

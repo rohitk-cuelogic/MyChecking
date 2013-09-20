@@ -135,23 +135,24 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 740, 540)];
     view.backgroundColor = [UIColor whiteColor];
     view.center = CGPointMake(512, 1000);
-    
+    view.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
     view.layer.cornerRadius = 20.0f;
     
     [self addSubview:view];
     
-//    NSDate* currentDate = [NSDate date];
-//    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-//    [dateFormat setDateFormat:@"MM/dd/yyyy"];
-//    // convert it to a string
-//    NSString *dateString = [dateFormat stringFromDate:currentDate];
-//    
-//    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 470, 700, 50)];
-//    lblDate.textAlignment = UITextAlignmentCenter;
-//    lblDate.font = [UIFont fontWithName:@"Georgia" size:35.0f];
-//    lblDate.text = dateString;
-//    lblDate.textColor = [UIColor blueColor];
-//    [view addSubview:lblDate];
+    NSDate* currentDate = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"MM/dd/yyyy"];
+    // convert it to a string
+    NSString *dateString = [dateFormat stringFromDate:currentDate];
+    
+    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 480, 700, 50)];
+    lblDate.textAlignment = UITextAlignmentCenter;
+    //lblDate.font = [UIFont fontWithName:@"Georgia" size:35.0f];
+    lblDate.text = dateString;
+    lblDate.textColor = [UIColor blueColor];
+    lblDate.font = [UIFont fontWithName:APP_FONT size:32.0f];
+    [view addSubview:lblDate];
     
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imgName]]];
@@ -161,21 +162,21 @@
     UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     imageView = [[UIImageView alloc] initWithImage:thumbnailImage];
-    imageView.frame = CGRectMake(20,20, 660, 460);
+    imageView.frame = CGRectMake(20,20, 660, 440);
     imageView.center = CGPointMake(512, 1000);
     [self addSubview:imageView];
     
-//    imageView.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
+    imageView.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
     
-//    imageView.layer.shadowColor = [UIColor grayColor].CGColor;
-//    imageView.layer.shadowOffset = CGSizeMake(-3.0, 3.0);
-//    imageView.layer.shadowOpacity = 1.0;
-//    imageView.layer.shadowRadius = 3.0;
+    imageView.layer.shadowColor = [UIColor grayColor].CGColor;
+    imageView.layer.shadowOffset = CGSizeMake(-3.0, 3.0);
+    imageView.layer.shadowOpacity = 1.0;
+    imageView.layer.shadowRadius = 3.0;
     
     [UIView animateWithDuration:1.2
                      animations:^{
                          imageView.center = CGPointMake(512, 384);
-                         view.center = CGPointMake(512, 384);
+                         view.center = CGPointMake(512, 400);
                      }
                      completion:^(BOOL finished){
                      }];

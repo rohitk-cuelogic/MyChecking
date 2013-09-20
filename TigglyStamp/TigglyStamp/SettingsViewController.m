@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import "UnlockScreenViewController.h"
 
 @interface SettingsViewController ()
 
@@ -137,7 +138,12 @@
 
         case TAG_SWITCH_HAVE_SHAPES:
             if ([swtchHaveShapes isOn] == YES) {
-                [[TigglyStampUtils sharedInstance] setShapeMode:YES];
+                if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
+                    UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil];
+                    [self.navigationController pushViewController:unlockScreen animated:YES];
+                }else{
+                    [[TigglyStampUtils sharedInstance] setShapeMode:YES];
+                }
             }else{
                 [[TigglyStampUtils sharedInstance] setShapeMode:NO];
             }

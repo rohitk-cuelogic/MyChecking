@@ -40,10 +40,10 @@
   
     if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
         [winterSeasonBtn  setBackgroundImage:[UIImage imageNamed:@"btnLock.png"] forState:UIControlStateNormal];
-        //winterSeasonBtn.enabled = NO;
+        winterSeasonBtn.userInteractionEnabled = NO;
     }else{
         [winterSeasonBtn  setBackgroundImage:[UIImage imageNamed:@"winter_btn.png"] forState:UIControlStateNormal];
-        //winterSeasonBtn.enabled = YES;
+        winterSeasonBtn.userInteractionEnabled = YES;
     }
     
 }

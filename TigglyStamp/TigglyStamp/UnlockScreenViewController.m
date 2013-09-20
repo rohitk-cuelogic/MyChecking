@@ -158,6 +158,8 @@
     DebugLog(@"");
     NSString *prompt;
     
+    DebugLog(@"ArrCount : %d", promptsArray.count);
+    
     if(promptsArray.count != 0) {
         
         int rNo = arc4random()%[promptsArray count];

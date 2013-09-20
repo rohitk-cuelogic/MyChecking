@@ -222,7 +222,7 @@
 		6304DE4C17D9A6F00075DE97 /* umbrella_sp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6304DD8417D9A6F00075DE97 /* umbrella_sp.mp3 */; };
 		6304DE4D17D9A6F00075DE97 /* Winter_sp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6304DD8517D9A6F00075DE97 /* Winter_sp.mp3 */; };
 		6304DE4E17D9A6F00075DE97 /* Zebra_sp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6304DD8617D9A6F00075DE97 /* Zebra_sp.mp3 */; };
-		631A51FB17EB2FC900D88E2C /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 631A51FA17EB2FC900D88E2C /* libGoogleAnalytics_debug.a */; };
+		631A51FB17EB2FC900D88E2C /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 631A51FA17EB2FC900D88E2C /* libGoogleAnalytics_debug.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		6354DFBB17CF549400DDFD67 /* CakeCandle1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB217CF549400DDFD67 /* CakeCandle1.mp3 */; };
 		6354DFBC17CF549400DDFD67 /* CakeCandle2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB317CF549400DDFD67 /* CakeCandle2.mp3 */; };
 		6354DFBD17CF549400DDFD67 /* CakeCandle3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6354DFB417CF549400DDFD67 /* CakeCandle3.mp3 */; };
@@ -5295,8 +5295,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
+				PROVISIONING_PROFILE = "EFBEE89C-BC84-4A0F-BA58-7849C9E64928";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EFBEE89C-BC84-4A0F-BA58-7849C9E64928";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -5349,8 +5349,8 @@
 					"\"$(SRCROOT)/TigglyStamp/GoogleAnalyticLibrary\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
+				PROVISIONING_PROFILE = "EFBEE89C-BC84-4A0F-BA58-7849C9E64928";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EFBEE89C-BC84-4A0F-BA58-7849C9E64928";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

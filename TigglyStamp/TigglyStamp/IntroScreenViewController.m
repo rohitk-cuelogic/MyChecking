@@ -20,8 +20,6 @@
 
 @end
 
-
-
 @implementation IntroScreenViewController
 
 @synthesize btnWithoutShape,btnWithShape,isShowLogo;
@@ -118,6 +116,15 @@
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     // Language selection shows only onces when app launch first time
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
+        
+        NSMutableDictionary *event =
+        [[GAIDictionaryBuilder createEventWithCategory:@"App Version"
+                                                action:@"App Version"
+                                                 label:@"Trial version"
+                                                 value:nil] build];
+        [[GAI sharedInstance].defaultTracker send:event];
+        [[GAI sharedInstance] dispatch];
+        
         [UIView animateWithDuration:0.3 animations:^{
             bkgImageViewlang.alpha = 1.0;
             bkgImageView.alpha = 1.0;

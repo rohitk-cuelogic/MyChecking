@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "UITouchVerificationView.h"
 #import "TDSoundManager.h"
+#import "GAITrackedViewController.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface UnlockScreenViewController : UIViewController <UITouchVerificationViewDelegate> {
     

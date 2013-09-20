@@ -37,6 +37,14 @@ static NSString *const kAllowTracking = @"allowTracking";
     self.tracker = [[GAI sharedInstance] trackerWithName:@"iOSTigglySafari"
                                               trackingId:kTrackingId];
     
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"About tiggly"
+                                            action:@"App Open"
+                                             label:@"Application open"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
+    
     return YES;
 }
 

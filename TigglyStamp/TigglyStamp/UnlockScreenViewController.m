@@ -251,6 +251,16 @@
 
 }
 
+-(void) setUnlockStatus{
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"App Version"
+                                            action:@"App Version"
+                                             label:@"Full version"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
+}
+
 -(void) inactivity {
     DebugLog(@"");
     
@@ -272,11 +282,25 @@
 -(IBAction)actionBuyNow {
     DebugLog(@"");
     
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"Buy shapes"
+                                            action:@"Buy now"
+                                             label:@"Buy Shape"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
+    
 }
 
 -(IBAction)actionLearnMore {
     DebugLog(@"");
-    
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"About tiggly"
+                                            action:@"Learn more"
+                                             label:@"Learn more"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
 }
 
 #pragma mark -

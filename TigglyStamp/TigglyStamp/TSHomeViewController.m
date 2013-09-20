@@ -342,6 +342,16 @@ int swipeTxtCnt;
         [imgScrollView setUserInteractionEnabled:YES];        
         readyToNewsScreen = NO;
         
+        
+        NSMutableDictionary *event =
+        [[GAIDictionaryBuilder createEventWithCategory:@"Button Click"
+                                                action:@"Button Clicked"
+                                                 label:@"Unlock for shapes"
+                                                 value:nil] build];
+        [[GAI sharedInstance].defaultTracker send:event];
+        [[GAI sharedInstance] dispatch];
+
+        
         [playBtnTimer invalidate];
         UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil];
          [self.navigationController pushViewController:unlockScreen animated:YES];

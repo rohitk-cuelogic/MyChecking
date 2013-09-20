@@ -259,6 +259,15 @@
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
+    
+    
+    NSMutableDictionary *event1 =
+    [[GAIDictionaryBuilder createEventWithCategory:@"App Version"
+                                            action:@"Converted customers"
+                                             label:@"Unlocked from trial version"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event1];
+    [[GAI sharedInstance] dispatch];
 }
 
 -(void) inactivity {

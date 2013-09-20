@@ -19,6 +19,7 @@
     int totalShapes;
     BOOL isPromptDisplayed;
     NSTimer *promptTimer;
+    NSMutableArray *promptsArray;
 }
 
 @property(nonatomic, strong)UITouchVerificationView * touchView;

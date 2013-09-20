@@ -10,8 +10,8 @@
 #import "TConstant.h"
 #import "TigglyStampUtils.h"
 
-#define INSTRUCTION_TEXT1 @""
-#define INSTRUCTION_TEXT2 @"Congratulations! You unlocked the full version of Tiggly Stamp. To play the app without the shapes, you can change the settings in parents section"
+#define INSTRUCTION_TEXT1 @"Tap the Tiggly shape on the screen that matches what you see. Once you match 6 shapes in a row, the app will be unlocked."
+#define INSTRUCTION_TEXT2 @"Congratulations! You unlocked the full version of Tiggly Stamp. To play the app without the shapes, you can change the settings in parents section."
 #define INSTRUCTION_RESTART @"Restart"
 
 @interface UnlockScreenViewController ()
@@ -39,6 +39,7 @@
         totalShapes = 6;
         shapeCount = 0;
         isPromptDisplayed = NO;
+        promptsArray = [[NSMutableArray alloc] initWithObjects:@"circle",@"square",@"triangle",@"star", nil];
     }
     return self;
 }
@@ -65,6 +66,11 @@
     
      lblRemainingShapes.text = [NSString stringWithFormat:@"matched %d out of %d",shapeCount, totalShapes];
     
+    lblInstructionHead.font = [UIFont fontWithName:APP_FONT_BOLD size:20.0f];
+    lblInstructionText.font = [UIFont fontWithName:APP_FONT size:20.0f];
+    lblRemainingShapes.font = [UIFont fontWithName:APP_FONT_BOLD size:20.0f];
+    lblAboutTiggly.font = [UIFont fontWithName:APP_FONT_BOLD size:20.0f];
+    lblAboutTigglyText.font = [UIFont fontWithName:APP_FONT size:18.0f];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -147,29 +153,38 @@
 
 -(void) displayPrompt{
     DebugLog(@"");
-    
-    int ranNo = arc4random()%4;
     NSString *prompt;
     
-    switch (ranNo) {
-        case 0:
-            prompt = @"circle";
-            break;
+    if(promptsArray.count != 0) {
+        
+        int rNo = arc4random()%[promptsArray count];
+        prompt = [promptsArray objectAtIndex:rNo];
+        [promptsArray removeObjectAtIndex:rNo];
+        
+    }else{
+            int ranNo = arc4random()%4;
+        
+            
+            switch (ranNo) {
+                case 0:
+                    prompt = @"circle";
+                    break;
 
-        case 1:
-            prompt = @"triangle";
-            break;
+                case 1:
+                    prompt = @"triangle";
+                    break;
 
-        case 2:
-            prompt = @"square";
-            break;
+                case 2:
+                    prompt = @"square";
+                    break;
 
-        case 3:
-            prompt = @"star";
-            break;
+                case 3:
+                    prompt = @"star";
+                    break;
 
-        default:
-            break;
+                default:
+                    break;
+            }
     }
     
     shapeToBeDetected = prompt;
@@ -181,6 +196,7 @@
     
     if([lblInstructionText.text isEqualToString:INSTRUCTION_RESTART]) {
         lblInstructionText.text = INSTRUCTION_TEXT1;
+        lblInstructionText.frame = CGRectMake(20, 60, 615, 70);
     }
 }
 
@@ -208,6 +224,7 @@
             
             if(shapeCount == 6) {
                 lblInstructionText.text = INSTRUCTION_TEXT2;
+                lblInstructionText.frame = CGRectMake(20, 265, 615, 70);
                 [[TigglyStampUtils sharedInstance] unlockAppForShapes:YES];
             }
             
@@ -287,6 +304,7 @@
             [[TDSoundManager sharedManager] playSound:@"Incorrect_01" withFormat:@"mp3"];
             shapeCount = 0;
             lblInstructionText.text = INSTRUCTION_RESTART;
+            lblInstructionText.frame = CGRectMake(20, 265, 615, 70);
             lblRemainingShapes.text = [NSString stringWithFormat:@"matched %d out of %d",shapeCount, totalShapes];
             [promtView removeFromSuperview];
             promtView = nil;

@@ -192,7 +192,7 @@
             isLanguageScreenDisplayed = NO;
 //            [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
              [[TigglyStampUtils sharedInstance] setCurrentLanguage:lblLunguage.text];
-            [self.languageView removeFromSuperview];
+//            [self.languageView removeFromSuperview];
         }];
     }
 }

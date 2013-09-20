@@ -113,7 +113,7 @@ int swipeTextCnt;
         playBtn.hidden = YES;
     }
     
-    swipeTextArray = [[NSMutableArray alloc] initWithObjects:@"right with 2", @"right with 3", @"left with 2", @"left with 3", @"up with 2", @"up with 3", @"down with 2", @"down with 3", nil];
+    swipeTextArray = [[NSMutableArray alloc] initWithObjects:@"RIGHT\nwith 2", @"RIGHT\nwith 2", @"LEFT\nwith 2", @"LEFT\nwith 2", @"UP\nwith 2", @"UP\nwith 2", @"DOWN\nwith 2", @"DOWN\nwith 2", nil];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -147,7 +147,7 @@ int swipeTextCnt;
     DebugLog(@"");
     
     swipeTextCnt = arc4random()%7;
-    [textView setText:[NSString stringWithFormat:@"Hi there!\n\nSwipe %@ fingers to continue.", [swipeTextArray objectAtIndex:swipeTextCnt]]];
+    [textView setText:[NSString stringWithFormat:@"To continue,\nswipe %@ fingers.", [swipeTextArray objectAtIndex:swipeTextCnt]]];
     
     switch (swipeTextCnt) {
         case 0:

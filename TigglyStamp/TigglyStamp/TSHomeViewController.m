@@ -75,7 +75,7 @@ int swipeTxtCnt;
         [thumbnail removeFromSuperview];
     }
     
-    swipeTxtArray = [[NSMutableArray alloc] initWithObjects:@"right with 2", @"right with 2", @"left with 2", @"left with 2", @"up with 2", @"up with 2", @"down with 2", @"down with 2", nil];
+    swipeTxtArray = [[NSMutableArray alloc] initWithObjects:@"RIGHT\nwith 2", @"RIGHT\nwith 2", @"LEFT\nwith 2", @"LEFT\nwith 2", @"UP\nwith 2", @"UP\nwith 2", @"DOWN\nwith 2", @"DOWN\nwith 2", nil];
 
 }
 
@@ -369,7 +369,8 @@ int swipeTxtCnt;
     DebugLog(@"");
     bkgLayer.opacity = 0.0;
     swipeTxtCnt = arc4random()%7;
-    [txtView setText:[NSString stringWithFormat:@"Hi there!\n\nSwipe %@ fingers to continue.", [swipeTxtArray objectAtIndex:swipeTxtCnt]]];
+    
+    [txtView setText:[NSString stringWithFormat:@"To continue,\nswipe %@ fingers.", [swipeTxtArray objectAtIndex:swipeTxtCnt]]];
     
     switch (swipeTxtCnt) {
         case 0:
@@ -410,7 +411,7 @@ int swipeTxtCnt;
     
     confirmationView.hidden = NO;
     [self.view bringSubviewToFront:confirmationView];
-    
+    [confirmationView  bringSubviewToFront:notConfirm];
 }
 
 #pragma mark-

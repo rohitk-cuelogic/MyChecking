@@ -54,6 +54,8 @@
 }
 
 -(void) moveObject:(NSSet *)set point:(CGPoint)point{
+
+    
     UITouch *aTouch = [set anyObject];
     CGPoint location = [aTouch locationInView:self];
     

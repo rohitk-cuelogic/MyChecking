@@ -84,7 +84,7 @@
          }
         
         NSMutableDictionary *event =
-        [[GAIDictionaryBuilder createEventWithCategory:@"Scene"
+        [[GAIDictionaryBuilder createEventWithCategory:@"Game Scene"
                                                 action:@"Scene selected"
                                                  label:@"Winter scene"
                                                  value:nil] build];
@@ -96,7 +96,7 @@
     }else if (btn.tag == TAG_FALL_BTN){
         
         NSMutableDictionary *event =
-        [[GAIDictionaryBuilder createEventWithCategory:@"Scene"
+        [[GAIDictionaryBuilder createEventWithCategory:@"Game Scene"
                                                 action:@"Scene selected"
                                                  label:@"Fall scene"
                                                  value:nil] build];

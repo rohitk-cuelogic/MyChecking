@@ -229,6 +229,17 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 //        RigthTickButton.frame = CGRectMake(40, 15, 70, 70);
     }
     
+    
+    if ([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes] && !isWithShape) {
+        NSMutableDictionary *event =
+        [[GAIDictionaryBuilder createEventWithCategory:@"Game Play"
+                                                action:@"Full version with no shape"
+                                                 label:@"Full version with no shape"
+                                                 value:nil] build];
+        [[GAI sharedInstance].defaultTracker send:event];
+        [[GAI sharedInstance] dispatch];
+    }
+    
 }
 
 
@@ -607,6 +618,16 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     [videoButton setHidden:NO];
     [garbageCan setHidden:NO];
 //    [curlButton setHidden:NO];
+    
+    
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"Gallery"
+                                            action:@"Picture captured"
+                                             label:@"Picture"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
+    
     
     UIView *flashView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
     flashView.backgroundColor = [UIColor whiteColor];
@@ -1260,6 +1281,14 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         CGPoint point = [[touches anyObject] locationInView:touchView];
         [self.mainView bringSubviewToFront:fruit];
         
+        NSMutableDictionary *event =
+        [[GAIDictionaryBuilder createEventWithCategory:@"Game Play"
+                                                action:@"Object moved"
+                                                 label:@"Drag things on screen"
+                                                 value:nil] build];
+        [[GAI sharedInstance].defaultTracker send:event];
+        [[GAI sharedInstance] dispatch];
+        
         [fruit moveObject:touches point:point];
     }
     
@@ -1299,6 +1328,15 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     if(!isRecording){
         if(CGRectIntersectsRect(fruit.frame, garbageCan.frame)){
             DebugLog(@"Delete Object");
+            
+            NSMutableDictionary *event =
+            [[GAIDictionaryBuilder createEventWithCategory:@"Game Play"
+                                                    action:@"Object Deleted"
+                                                     label:@"Delete Object"
+                                                     value:nil] build];
+            [[GAI sharedInstance].defaultTracker send:event];
+            [[GAI sharedInstance] dispatch];
+            
             fruit.layer.position = CGPointMake(1024 - garbageCan.frame.size.width/2, 768 - garbageCan.frame.size.height/2);
             DebugLog(@"Frame is %@",NSStringFromCGRect(fruit.frame));
             dispatch_time_t playAudioIn = dispatch_time(DISPATCH_TIME_NOW, 0.05* NSEC_PER_SEC);
@@ -1574,6 +1612,13 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     [[TDSoundManager sharedManager] stopMusic];
     
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"Home Button"
+                                            action:@"Home button Clicked"
+                                             label:@"Home From canvas"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
     
     [moviePlayer stop];
     
@@ -1621,6 +1666,14 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     DebugLog(@"");
     NSURL *url = screenCapture.exportUrl;
     // [self playRandomPraiseSound];
+    
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"Gallery"
+                                            action:@"Video Recording"
+                                             label:@"Video"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
     
     double delayInSeconds = 1.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));

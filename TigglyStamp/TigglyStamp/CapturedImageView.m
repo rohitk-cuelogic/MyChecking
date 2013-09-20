@@ -111,6 +111,13 @@
 -(void)btnHomeClicked{
     DebugLog(@"");
     //call delegate
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"Home Button"
+                                            action:@"Home button Clicked"
+                                             label:@"Home From Photo page"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
     
     [delegate onHomeButtonClicked:self];
 }

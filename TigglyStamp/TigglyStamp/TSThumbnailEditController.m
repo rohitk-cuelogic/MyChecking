@@ -81,6 +81,14 @@ int swipeTextCnt;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"Gallery"
+                                            action:@"Gallery opened"
+                                             label:@"Gallery"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
+    
     mSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swippedforConfirmation)];
     [mSwipeRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
     [mSwipeRecognizer setNumberOfTouchesRequired:2];
@@ -688,6 +696,14 @@ int swipeTextCnt;
 -(IBAction)saveImageConfirmed:(id)sender{
     DebugLog(@"");
     //save image to the photo album
+    
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"Gallery"
+                                            action:@"Gallery opened"
+                                             label:@"Save Image/ Video"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
     
     if([[editImgName pathExtension] isEqualToString:@"mov"]) {
         

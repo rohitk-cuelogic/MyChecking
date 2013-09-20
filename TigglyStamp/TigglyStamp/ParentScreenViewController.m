@@ -147,7 +147,7 @@ UIActivityIndicatorView *activityIndicator;
         [self presentViewController:settingsView animated:YES completion:nil];
     
     [settingsView.view.superview setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
-    [settingsView.view.superview setFrame:CGRectMake(128, 177, 768, 414)]; //(128, 177, 768, 414)
+    [settingsView.view.superview setFrame:CGRectMake(128, 100, 800, 600)]; //(128, 177, 768, 414)
     settingsView.view.superview.layer.cornerRadius = 25.0f;
     settingsView.view.superview.layer.masksToBounds = YES;
 //    settingsView.view.superview.frame = CGRectMake(0, 0, 768, 414);//it's important to do this after

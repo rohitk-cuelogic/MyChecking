@@ -18,7 +18,7 @@
 
 @synthesize swtchArt,swtchHaveShapes,swtchLimitGallery,swtchMusic,swtchNoShapes,swtdebugMode,btnClearData,swtSendMail;
 @synthesize arrLanguage;
-@synthesize lblLunguage,lblSendMail,lblClearPrevData;
+@synthesize lblLunguage,lblSendMail,lblClearPrevData,lblDebugMode;
 @synthesize backgroundView;
 @synthesize lblLunguageTest;
 @synthesize lbl1,lbl2,lbl3,lbl4,lbl5,lbl6;
@@ -42,20 +42,7 @@
     }else{
         lblLunguage.text =  [[TigglyStampUtils sharedInstance] getCurrentLanguage];//[[NSUserDefaults standardUserDefaults] valueForKey:LANGUAGE_SELECTED];
     }
-//    ShapeType stype =   [[TigglyStampUtils sharedInstance]getCurrentSahpeForStoringKeys];
-//    if (stype== kShapeTypeCircle) {
-//        lblShape.text = @"Circle";
-//    }
-//    if (stype== kShapeTypeTriangle) {
-//        lblShape.text = @"Triangle";
-//    }
-//    if (stype== kShapeTypeStar) {
-//        lblShape.text = @"Star";
-//    }
-//    if (stype== kShapeTypeSquare) {
-//        lblShape.text = @"Square";
-//    }
-    
+
     if ([[[NSUserDefaults standardUserDefaults] valueForKey:MUSIC] isEqualToString:@"yes"]) {
         [swtchMusic setOn:YES];
     }else{
@@ -99,6 +86,16 @@
     }else{
         [swtSendMail setOn:NO];
     }
+    
+    lbl1.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
+    lbl2.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
+    lbl3.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
+    lbl4.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
+    lbl5.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
+    lbl6.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
+    lblDebugMode.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
+    lblClearPrevData.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
+    lblSendMail.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
     
 }
 

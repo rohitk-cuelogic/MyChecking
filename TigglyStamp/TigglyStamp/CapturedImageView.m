@@ -67,8 +67,8 @@
             [self addSubview:btnNext];
             
             btnHome = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_2.png"] forState:UIControlStateNormal];
-            [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_2.png"] forState:UIControlStateSelected];
+            [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateNormal];
+            [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateSelected];
             [btnHome addTarget:self action:@selector(btnHomeClicked)forControlEvents:UIControlEventTouchUpInside];
             btnHome.frame = CGRectMake(05, 05, 75, 75);
             [self addSubview:btnHome];
@@ -192,8 +192,8 @@
     [self addSubview:btnNext];
     
     btnHome = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_2.png"] forState:UIControlStateNormal];
-    [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_2.png"] forState:UIControlStateSelected];
+    [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateNormal];
+    [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateSelected];
     [btnHome addTarget:self action:@selector(btnHomeClicked)forControlEvents:UIControlEventTouchUpInside];
     btnHome.frame = CGRectMake(05, 05, 75, 75);
     [self addSubview:btnHome];

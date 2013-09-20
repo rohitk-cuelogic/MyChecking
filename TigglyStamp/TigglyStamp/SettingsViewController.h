@@ -41,6 +41,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *lblLunguageTest;
 @property (nonatomic, strong) IBOutlet UILabel *lblSendMail;
 @property (nonatomic, strong) IBOutlet UILabel *lblClearPrevData;
+@property (nonatomic, strong) IBOutlet UILabel *lblDebugMode;
 
 @property (nonatomic, strong) IBOutlet UILabel *lbl1;
 @property (nonatomic, strong) IBOutlet UILabel *lbl2;

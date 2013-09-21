@@ -52,11 +52,6 @@ int swipeTxtCnt;
     // Do any additional setup after loading the view from its nib.
     imgScrollView.frame = CGRectMake(0,768 - (RECT_THUMBNAIL_FRAME.size.height + 40), 1024, RECT_THUMBNAIL_FRAME.size.height + 40);
     
-    mSwpeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swippedforConfirmation)];
-    [mSwpeRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
-    [mSwpeRecognizer setNumberOfTouchesRequired:2];
-    [self.view addGestureRecognizer:mSwpeRecognizer];
-    
     confirmationView.layer.cornerRadius = 20.0f;
     confirmationView.layer.masksToBounds = YES;
     
@@ -107,6 +102,10 @@ int swipeTxtCnt;
     isFirstTimePlay = YES;
     playBtnTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(animatePlayButton) userInfo:nil repeats:YES];
     
+    mSwpeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swippedforConfirmation)];
+    [mSwpeRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
+    [mSwpeRecognizer setNumberOfTouchesRequired:2];
+    [self.view addGestureRecognizer:mSwpeRecognizer];
 
 }
 

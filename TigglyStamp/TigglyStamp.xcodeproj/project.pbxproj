@@ -1190,7 +1190,6 @@
 		EBF2843717869F7700082F64 /* Tiggly_stamp_Winter_BG@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF2842A17869F7700082F64 /* Tiggly_stamp_Winter_BG@2x~ipad.png */; };
 		EBF2843B17869FAB00082F64 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF2843A17869FAB00082F64 /* logo.png */; };
 		EBF284401786A05B00082F64 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF2843C1786A05B00082F64 /* circle.png */; };
-		EBF284411786A05B00082F64 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF2843D1786A05B00082F64 /* square.png */; };
 		EBF284421786A05B00082F64 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF2843E1786A05B00082F64 /* star.png */; };
 		EBF284431786A05B00082F64 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF2843F1786A05B00082F64 /* triangle.png */; };
 		EBF284481786A06D00082F64 /* circle@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF284441786A06D00082F64 /* circle@2x~ipad.png */; };
@@ -2444,7 +2443,6 @@
 		EBF2842A17869F7700082F64 /* Tiggly_stamp_Winter_BG@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tiggly_stamp_Winter_BG@2x~ipad.png"; sourceTree = "<group>"; };
 		EBF2843A17869FAB00082F64 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		EBF2843C1786A05B00082F64 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
-		EBF2843D1786A05B00082F64 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
 		EBF2843E1786A05B00082F64 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		EBF2843F1786A05B00082F64 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
 		EBF284441786A06D00082F64 /* circle@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@2x~ipad.png"; sourceTree = "<group>"; };
@@ -3981,7 +3979,6 @@
 				EBEDE4BB179588F0002151E5 /* snowflake_3.png */,
 				EBEDE49D179588D0002151E5 /* snowglobe.png */,
 				EBEDE49E179588D0002151E5 /* snowman.png */,
-				EBF2843D1786A05B00082F64 /* square.png */,
 				BC31D62E17A8F555008C5361 /* square_blue.png */,
 				EBF2843E1786A05B00082F64 /* star.png */,
 				EBEDE4BD179588F0002151E5 /* star_cookie.png */,
@@ -4174,7 +4171,6 @@
 				EBF2843717869F7700082F64 /* Tiggly_stamp_Winter_BG@2x~ipad.png in Resources */,
 				EBF2843B17869FAB00082F64 /* logo.png in Resources */,
 				EBF284401786A05B00082F64 /* circle.png in Resources */,
-				EBF284411786A05B00082F64 /* square.png in Resources */,
 				EBF284421786A05B00082F64 /* star.png in Resources */,
 				EBF284431786A05B00082F64 /* triangle.png in Resources */,
 				EBF284481786A06D00082F64 /* circle@2x~ipad.png in Resources */,
@@ -5468,8 +5464,8 @@
 					"\"$(SRCROOT)/TigglyStamp/GoogleAnalyticLibrary\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9E041187-19A3-4FEE-9C50-C2FAB0F6D9A3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9E041187-19A3-4FEE-9C50-C2FAB0F6D9A3";
+				PROVISIONING_PROFILE = "31F5A27D-E863-43A6-8671-6F9070B71CDA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "31F5A27D-E863-43A6-8671-6F9070B71CDA";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

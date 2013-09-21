@@ -11,7 +11,10 @@
 
 @interface SeasonSelectionViewController : UIViewController
 {
-    
+    IBOutlet UIView *confirmationView;
+    IBOutlet UIImageView *confirmationViewBKG;
+    IBOutlet UIButton *notConfirm;
+    IBOutlet UITextView *txtView;
 }
 @property (nonatomic,strong) IBOutlet UIButton *winterSeasonBtn;
 @property (nonatomic,strong) IBOutlet UIButton *fallSeasonBtn;
@@ -24,4 +27,6 @@
 -(IBAction)onButtonTouched:(id)sender;
 -(IBAction)actionHomeButtonClicked:(id)sender;
 -(IBAction)actionLearnMore:(id)sender;
+-(IBAction)noConfirmation:(id)sender;
+
 @end

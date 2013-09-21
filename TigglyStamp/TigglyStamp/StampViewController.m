@@ -473,6 +473,9 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                             [tempImgView removeFromSuperview];
                                         }];
         
+        if(!isWithShape){
+            [self displayShapesTray];
+        }
     }
     else{
         
@@ -516,6 +519,17 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
 -(void) displayShapesTray {
     DebugLog(@"");
+    
+    if(viewShapesTray!= nil){
+        for(PhysicalShapesView *shape in arrPhysicalShapes) {
+            [shape removeFromSuperview];
+        }
+        [arrPhysicalShapes removeAllObjects];
+        arrPhysicalShapes = nil;
+        
+        [viewShapesTray removeFromSuperview];
+        viewShapesTray = nil;
+    }
     
     viewShapesTray= [[UIImageView alloc]initWithFrame:CGRectMake(0,150, 140, 550)];
     viewShapesTray.image = [UIImage imageNamed:@"shape_3.png"];
@@ -1849,7 +1863,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     float timeToPlayGettingReadySound = 0.0f;
     
     
-    if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+    if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
         
         int ranNo = arc4random() % 15;
         
@@ -1955,7 +1969,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 -(void) playGettingReadyTotellStorySound{
     DebugLog(@"");
     float timeToStartVideoRecording = 0.0f;
-    if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+    if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
         
         int ranNo = arc4random() % 6;
         
@@ -2022,7 +2036,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     DebugLog(@"");
     
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"] ||
-            [[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]){
+            [[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
                     int ranNo = arc4random() % 5;
                     
                     switch (ranNo) {
@@ -2052,7 +2066,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     DebugLog(@"");
     
     if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"] ||
-        [[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]){
+        [[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
         
         int ranNo = arc4random() % 2;
             

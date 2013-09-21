@@ -274,7 +274,7 @@ int currentObject;
  
     if([fallObject isEqualToString:@"apple_red"] || [fallObject isEqualToString:@"green_apple"]) {
         
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             int ranNo = arc4random()%2;
             
@@ -304,7 +304,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"blue_turkey"] || [fallObject isEqualToString:@"orange_turkey"]) {
         
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             int ranNo = arc4random()%2;
             
@@ -333,7 +333,7 @@ int currentObject;
         
         
     }else if([fallObject isEqualToString:@"cranberries"]|| [fallObject isEqualToString:@"cranberries_leaves"]) {
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             int ranNo = arc4random()%2;
             
@@ -362,7 +362,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"greyish_cat"] || [fallObject isEqualToString:@"pink_cat"]|| [fallObject isEqualToString:@"cat"]) {
         
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             int ranNo = arc4random()%2;
             
@@ -393,7 +393,7 @@ int currentObject;
     }else if([fallObject isEqualToString:@"litepurple_racoon"] || [fallObject isEqualToString:@"racoon"]) {
        
         
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             int ranNo = arc4random()%4;
             
@@ -428,14 +428,14 @@ int currentObject;
                
     }
     else if([fallObject isEqualToString:@"pumpkin_3"]) {
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             soundFile = @"Tiggly_GenGreeting_JackOLantern_06";
         }
     }
     
     else if([fallObject isEqualToString:@"pumkin_1"] || [fallObject isEqualToString:@"pumkin_bag"] ) {
         
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             int ranNo = arc4random()%7;
             
@@ -477,7 +477,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"barn_2"] ) {
         
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             int ranNo = arc4random()%2;
             
@@ -508,7 +508,7 @@ int currentObject;
               
     }else if([fallObject isEqualToString:@"bat"]) {
         
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             int ranNo = arc4random()%4;
             
@@ -545,7 +545,7 @@ int currentObject;
     }else if([fallObject isEqualToString:@"blue_candy"] || [fallObject isEqualToString:@"orange_candy"]|| [fallObject isEqualToString:@"yellow_candy"] ) {
        
         
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             
             int ranNo = arc4random()%2;
@@ -577,7 +577,7 @@ int currentObject;
     }else if([fallObject isEqualToString:@"green_leaf"] || [fallObject isEqualToString:@"orange_leaf"]|| [fallObject isEqualToString:@"yellow_leaf"]|| [fallObject isEqualToString:@"pink_leaf"]|| [fallObject isEqualToString:@"green_leaf_2"] || [fallObject isEqualToString:@"orange_leaf_2"]) {
         
         
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             
             int ranNo = arc4random()%2;
@@ -609,7 +609,7 @@ int currentObject;
         
         
     }else if([fallObject isEqualToString:@"haybale"] ) {
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             int ranNo = arc4random()%2;
             
@@ -637,7 +637,7 @@ int currentObject;
               
     }else if([fallObject isEqualToString:@"pirate"] ) {
        
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             int ranNo = arc4random()%2;
             
@@ -667,7 +667,7 @@ int currentObject;
         
     } else if([fallObject isEqualToString:@"spider"]) {
         
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             int ranNo = arc4random()%2;
             
@@ -698,7 +698,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"purple_spirder"] ) {
         
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             int ranNo = arc4random()%4;
             
@@ -732,7 +732,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"hampster"]) {
         
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             int ranNo = arc4random()%3;
             
@@ -766,7 +766,7 @@ int currentObject;
     }else if([fallObject isEqualToString:@"rooster"] || [fallObject isEqualToString:@"rooster_2"]) {
        
         
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             int ranNo = arc4random()%2;
             
@@ -796,7 +796,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"scare_crow"]) {
        
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             int ranNo = arc4random()%4;
             
@@ -829,7 +829,7 @@ int currentObject;
 
                 
     }else if([fallObject isEqualToString:@"bee"]) {
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
             int ranNo = arc4random()%3;
             
@@ -861,7 +861,7 @@ int currentObject;
                 
     }else if([fallObject isEqualToString:@"broom"]) {
         
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             int ranNo = arc4random()%2;
             
             if(ranNo == 0){
@@ -888,7 +888,7 @@ int currentObject;
         
         
     }else if([fallObject isEqualToString:@"duck_1"]) {
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             int ranNo = arc4random()%2;
             
             if(ranNo == 0){
@@ -915,7 +915,7 @@ int currentObject;
         
         
     }else if([fallObject isEqualToString:@"horse"]) {
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             int ranNo = arc4random()%4;
             
             if(ranNo == 0){
@@ -946,7 +946,7 @@ int currentObject;
         
         
     }else if([fallObject isEqualToString:@"leaves"]) {
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             int ranNo = arc4random()%2;
             
             if(ranNo == 0){
@@ -973,7 +973,7 @@ int currentObject;
         
         
     }else if([fallObject isEqualToString:@"mushroom"]) {
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             int ranNo = arc4random()%2;
             
             if(ranNo == 0){
@@ -1000,7 +1000,7 @@ int currentObject;
         
         
     }else if([fallObject isEqualToString:@"pear"]) {
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             int ranNo = arc4random()%2;
             
             if(ranNo == 0){
@@ -1027,7 +1027,7 @@ int currentObject;
        
         
     }else if([fallObject isEqualToString:@"raincoat"]) {
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             int ranNo = arc4random()%2;
             
             if(ranNo == 0){
@@ -1053,7 +1053,7 @@ int currentObject;
        
         
     }else if([fallObject isEqualToString:@"zebra_2"]) {
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             int ranNo = arc4random()%6;
             
             if(ranNo == 0){
@@ -1088,7 +1088,7 @@ int currentObject;
         
     }else if([fallObject isEqualToString:@"witches_hat"] || [fallObject isEqualToString:@"witches_hat_purple"]) {
         
-        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English US"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             int ranNo = arc4random()%4;
             
             if(ranNo == 0){

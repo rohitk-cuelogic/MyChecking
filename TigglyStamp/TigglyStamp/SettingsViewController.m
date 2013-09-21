@@ -38,7 +38,7 @@
     isShapePopView = NO;
     NSString *lung =   [[TigglyStampUtils sharedInstance] getCurrentLanguage];//[[NSUserDefaults standardUserDefaults] valueForKey:LANGUAGE_SELECTED];
     if (lung.length==0) {
-        lblLunguage.text = @"English US";
+        lblLunguage.text = @"English";
     }else{
         lblLunguage.text =  [[TigglyStampUtils sharedInstance] getCurrentLanguage];//[[NSUserDefaults standardUserDefaults] valueForKey:LANGUAGE_SELECTED];
     }
@@ -220,7 +220,7 @@
     }
     isShapePopView = NO;
 
-    arrLanguage =[[NSMutableArray alloc] initWithObjects:@"English US",@"Portuguese",@"Russian",@"Spanish", nil];
+    arrLanguage =[[NSMutableArray alloc] initWithObjects:@"English",@"Portuguese",@"Russian",@"Spanish", nil];
     [self popOverUIPicker:sender];
     
 }
@@ -319,7 +319,7 @@
         lblLunguage.text = [self.arrLanguage objectAtIndex:row];
 //        [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
         [[TigglyStampUtils sharedInstance] setCurrentLanguage:lblLunguage.text];
-        if ([lblLunguage.text isEqualToString:@"English US"]) {
+        if ([lblLunguage.text isEqualToString:@"English"]) {
             lblLunguageTest.text=[self languageSelectedStringForKey:@"Welcome to Advance Localization" withSelectedLanguage:[self.arrLanguage objectAtIndex:row]];
         }else if ([lblLunguage.text isEqualToString:@"French"]){
             lblLunguageTest.text=[self languageSelectedStringForKey:@"Welcome to Advance Localization" withSelectedLanguage:[self.arrLanguage objectAtIndex:row]];
@@ -336,7 +336,7 @@
 -(NSString*) languageSelectedStringForKey:(NSString*) key withSelectedLanguage:(NSString*)selectedLanguage
 {
 	NSString *path;
-	if([selectedLanguage isEqualToString:@"English US"])
+	if([selectedLanguage isEqualToString:@"English"])
 		path = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"];
 	else if([selectedLanguage isEqualToString:@"Italian"])
 		path = [[NSBundle mainBundle] pathForResource:@"zh" ofType:@"lproj"];

@@ -94,7 +94,7 @@
     
 
     
-    arrLanguage = [[NSMutableArray alloc] initWithObjects:@"English US",@"Portuguese",@"Russian",@"Spanish",@"French",@"German",@"Italian", nil];
+    arrLanguage = [[NSMutableArray alloc] initWithObjects:@"English",@"Portuguese",@"Russian",@"Spanish",@"French",@"German",@"Italian", nil];
     
     tblView.layer.cornerRadius = 30;
     tblView.layer.masksToBounds = YES;
@@ -130,9 +130,9 @@
             bkgImageViewlang.alpha = 1.0;
             bkgImageView.alpha = 1.0;
             
-//             [[NSUserDefaults standardUserDefaults] setValue:@"English US" forKey:LANGUAGE_SELECTED];
-            [[TigglyStampUtils sharedInstance] setCurrentLanguage:@"English US"];
-//            lblLunguage.text = @"English US";
+//             [[NSUserDefaults standardUserDefaults] setValue:@"English" forKey:LANGUAGE_SELECTED];
+            [[TigglyStampUtils sharedInstance] setCurrentLanguage:@"English"];
+//            lblLunguage.text = @"English";
             [self displayLanguageSelectionView];
             [btnWithoutShape setHidden:false];
             [btnWithShape setHidden:false];
@@ -320,7 +320,7 @@
 
 -(NSString*) languageSelectedStringForKey:(NSString*) key withSelectedLanguage:(NSString*)selectedLanguage{
 	NSString *path;
-	if([selectedLanguage isEqualToString:@"English US"])
+	if([selectedLanguage isEqualToString:@"English"])
 		path = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"];
 	else if([selectedLanguage isEqualToString:@"Italian"])
 		path = [[NSBundle mainBundle] pathForResource:@"zh" ofType:@"lproj"];

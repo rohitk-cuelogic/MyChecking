@@ -24,7 +24,7 @@
 @synthesize containerView,learnMoreBtn;
 
 UISwipeGestureRecognizer *mSwpeRecognizer;
-BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail;
+BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail,readyToLearnMore;
 NSMutableArray *swipeTxtArray;
 int swipeTxtCnt;
 
@@ -339,6 +339,7 @@ int swipeTxtCnt;
         ParentScreenViewController *parentViewCOntroller = [[ParentScreenViewController alloc] initWithNibName:@"ParentScreenViewController" bundle:nil];
         [self.navigationController pushViewController:parentViewCOntroller animated:YES];
     }
+    
     if(readyToNewsScreen){
         DebugLog(@"");
         confirmationView.hidden = YES;
@@ -390,6 +391,34 @@ int swipeTxtCnt;
          learnMoreBtn.enabled = YES;
         [imgScrollView setUserInteractionEnabled:YES];
 
+    }
+    
+    if(readyToLearnMore) {
+        confirmationView.hidden = YES;
+        confirmationViewBKG.hidden = YES;
+        forParentsBtn.alpha = 1;
+        newsBtn.alpha = 1;
+        playBtn.alpha = 1;
+        imgScrollView.alpha = 1;
+        
+        forParentsBtn.enabled = YES;
+        playBtn.enabled = YES;
+        newsBtn.enabled = YES;
+        learnMoreBtn.enabled = YES;
+        [imgScrollView setUserInteractionEnabled:YES];
+        readyToLearnMore = NO;
+        
+        
+        
+        NSMutableDictionary *event =
+        [[GAIDictionaryBuilder createEventWithCategory:@"About tiggly"
+                                                action:@"Learn more"
+                                                 label:@"Learn more"
+                                                 value:nil] build];
+        [[GAI sharedInstance].defaultTracker send:event];
+        [[GAI sharedInstance] dispatch];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.myshopify.com/products/tiggly-shapes"]];
     }
 }
 
@@ -504,7 +533,9 @@ int swipeTxtCnt;
     DebugLog(@"");
     readyToParentScreen = NO;
     readyToNewsScreen = NO;
-     readyToDeleteThumbnail = NO;
+    readyToDeleteThumbnail = NO;
+    readyToLearnMore = NO;
+    
     isThumbnailLongPressed = NO;
     
     confirmationView.hidden = YES;
@@ -524,15 +555,23 @@ int swipeTxtCnt;
 
 -(IBAction)actionLearnMore {
     DebugLog(@"");
-    NSMutableDictionary *event =
-    [[GAIDictionaryBuilder createEventWithCategory:@"About tiggly"
-                                            action:@"Learn more"
-                                             label:@"Learn more"
-                                             value:nil] build];
-    [[GAI sharedInstance].defaultTracker send:event];
-    [[GAI sharedInstance] dispatch];
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.myshopify.com/products/tiggly-shapes"]];
+    readyToLearnMore = YES;;
+    
+    forParentsBtn.alpha = 0.3;
+    newsBtn.alpha = 0.3;
+    playBtn.alpha = 0.3;
+    imgScrollView.alpha = 0.3;
+    bkgLayer.opacity = 0.0;
+    
+    forParentsBtn.enabled = NO;
+    playBtn.enabled = NO;
+    newsBtn.enabled = NO;
+    learnMoreBtn.enabled = NO;
+    [imgScrollView setUserInteractionEnabled:NO];
+    
+    [self showConfirmationView];
+
 }
 
 #pragma mark -

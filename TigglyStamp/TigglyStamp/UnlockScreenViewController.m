@@ -9,6 +9,7 @@
 #import "UnlockScreenViewController.h"
 #import "TConstant.h"
 #import "TigglyStampUtils.h"
+#import "TSHomeViewController.h"
 
 #define INSTRUCTION_TEXT1 @"Tap the Tiggly shape on the screen that matches what you see. Once you match 6 shapes in a row, the app will be unlocked."
 #define INSTRUCTION_TEXT2 @"Congratulations! You unlocked the full version of Tiggly Stamp. To play the app without the shapes, you can change the settings in parents section."
@@ -285,7 +286,8 @@
     double delayInSeconds = 3.0f;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self.navigationController popViewControllerAnimated:YES];
+        TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
+        [self.navigationController pushViewController:homeView animated:YES];
     });
     
     
@@ -356,16 +358,25 @@
     
 }
 
--(void)shapeDetected:(UITouchShapeRecognizer *)UIT inView:(id)view {
+-(void)shapeDetected:(UITouchShapeRecognizer *)UIT inView:(UITouchVerificationView *)view {
     DebugLog(@"");
     DebugLog(@"Physical Shape: %@",UIT.label);
     
+    BOOL isSuccess = YES;
+    for(UITouch *touch in view.detectedPoints){
+        CGPoint tochLocation = [touch locationInView:view];
+        if(!CGRectContainsPoint(CGRectMake(90, 100, 655, 600), tochLocation)){
+            isSuccess = NO;
+        }
+    }
+    
     if([self.shapeToBeDetected isEqualToString:UIT.label]) {
         if(isPromptDisplayed) {
+            if(isSuccess){
+                [self buildShape:UIT.label];
+                [self playShapeDetectedSound];
+            }
              [promptTimer invalidate];
-            [self buildShape:UIT.label];
-            //[[TDSoundManager sharedManager] playSound:UIT.label withFormat:@"mp3"];
-            [self playShapeDetectedSound];
         }
     }else{
         if(isPromptDisplayed) {

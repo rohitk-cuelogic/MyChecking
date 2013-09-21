@@ -78,6 +78,16 @@ int swipeTxtCnt;
     }
     
     swipeTxtArray = [[NSMutableArray alloc] initWithObjects:@"RIGHT\nwith 2", @"RIGHT\nwith 2", @"LEFT\nwith 2", @"LEFT\nwith 2", @"UP\nwith 2", @"UP\nwith 2", @"DOWN\nwith 2", @"DOWN\nwith 2", nil];
+    
+    if ([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
+        
+        newsBtn.hidden = YES;
+        newsBtn.userInteractionEnabled = NO;
+        
+        learnMoreBtn.hidden = YES;
+        learnMoreBtn.userInteractionEnabled = NO;
+    }
+    
 
 }
 
@@ -97,15 +107,7 @@ int swipeTxtCnt;
     isFirstTimePlay = YES;
     playBtnTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(animatePlayButton) userInfo:nil repeats:YES];
     
-    if ([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
-        
-        newsBtn.hidden = YES;
-        newsBtn.userInteractionEnabled = NO;
-        
-        learnMoreBtn.hidden = YES;
-        learnMoreBtn.userInteractionEnabled = NO;
-    }
- 
+
 }
 
 

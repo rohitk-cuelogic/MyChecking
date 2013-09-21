@@ -139,9 +139,6 @@
                 if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
                     [parentScreen launchUnlockScreen];
                     [self dismissModalViewControllerAnimated:NO];
-//                    UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil];
-//                    [self.navigationController pushViewController:unlockScreen animated:YES];
-//                    [[TigglyStampUtils sharedInstance] setShapeMode:YES];
                 }else{
                     [[TigglyStampUtils sharedInstance] setShapeMode:YES];
                 }

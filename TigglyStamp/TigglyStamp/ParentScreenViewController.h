@@ -15,8 +15,9 @@
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import "TSHomeViewController.h"
 
-@interface ParentScreenViewController : UIViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate>
+@interface ParentScreenViewController : GAITrackedViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate,UIWebViewDelegate>
 {
     Pinterest*  _pinterest;
     
@@ -62,9 +63,10 @@
 @property (nonatomic,strong) IBOutlet UIButton *tabLetterSpatialBTN;
 @property (nonatomic,strong) IBOutlet UIScrollView *tabInforSCROLL;
 
-
--(IBAction)onButtonClicked:(id)sender;
+@property (nonatomic,strong) IBOutlet UIWebView *webViewTab;
 
 -(void) launchUnlockScreen;
+
+-(IBAction)onButtonClicked:(id)sender;
 
 @end

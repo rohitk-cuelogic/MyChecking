@@ -48,6 +48,8 @@
 @synthesize lblLanguageTEXT,lblMotarTEXT,lblSpatialTEXT;
 @synthesize tabLetterMotarBTN,tabLetterLanguageBTN,tabLetterSpatialBTN;
 
+@synthesize webViewTab;
+
 UIActivityIndicatorView *activityIndicator;
 
 #pragma mark- Activity LifeCycle
@@ -92,7 +94,7 @@ UIActivityIndicatorView *activityIndicator;
     [tabLetterSpatialBTN setTag:TAG_LETTER_SPATIAL_BTN];
     
     
-    [self setInfoForLetterTab];
+    [self setInfoForLetterTabWebView];
 
     childInfoSubView.layer.cornerRadius = 30.0f;
     childInfoSubView.layer.masksToBounds = YES;
@@ -119,6 +121,19 @@ UIActivityIndicatorView *activityIndicator;
     [webView bringSubviewToFront:activityIndicator];
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    //Manual
+    // May return nil if a tracker has not already been initialized with a
+    // property ID.
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    
+    // This screen name value will remain set on the tracker and sent with
+    // hits until it is set to a new value or to nil.
+    [tracker set:kGAIScreenName
+           value:@"Parent Control Screen"];
+    
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -164,12 +179,12 @@ UIActivityIndicatorView *activityIndicator;
     [self.confView removeFromSuperview];
 }
 
--(void) launchUnlockScreen{
+-(void) launchUnlockScreen {
     DebugLog(@"");
-
+    
     UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil];
     [self.navigationController pushViewController:unlockScreen animated:YES];
-
+    
 }
 
 #pragma mark- IBAction handling
@@ -178,7 +193,8 @@ UIActivityIndicatorView *activityIndicator;
     
     UIButton *btn = sender;
     if ([btn tag] == TAG_HOME_BTN) {
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+        TSHomeViewController *tSHomeViewController = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:Nil];
+        [self.navigationController pushViewController:tSHomeViewController animated:YES];
     }
     if ([btn tag] == TAG_SUBSCRIBE_BTN) {
         NSMutableDictionary *event =
@@ -294,16 +310,16 @@ UIActivityIndicatorView *activityIndicator;
                          }];
     }
     if([btn tag] == TAG_LETTER_TAB_BTN){
-        [self setInfoForLetterTab];
+        [self setInfoForLetterTabWebView];
     }
     if([btn tag] == TAG_PLAY_TAB_BTN){
-        [self setInfoForPlayTab];
+        [self setInfoForPlayTabWebView];
     }
     if([btn tag] == TAG_TIP_TAB_BTN){
-        [self setInfoForTipTab];
+        [self setInfoForTipTabWebView];
     }
     if([btn tag] == TAG_PHILOSOPHY_TAB_BTN){
-        [self setInfoForPhilosophyTab];
+        [self setInfoForPhilosophyTabWebView];
     }
     if([btn tag] == TAG_LETTER_MOTAR_BTN){
         [self showValidationError:@"Grabbing and holding the shapes, moving them, and placing them on the screen help your child enhance their fine motor skills. " title:@"Motor skills"];
@@ -319,6 +335,117 @@ UIActivityIndicatorView *activityIndicator;
     
 }
 
+-(void)setInfoForLetterTabWebView {
+    tabTitleIMGVIEW.image = [UIImage imageNamed:@"tab_letter.png"];
+    
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"tiggly" ofType:@"html" inDirectory:nil];
+    NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+    
+    self.webViewTab.delegate = self;
+    [self.webViewTab loadHTMLString:htmlString baseURL:[[NSBundle mainBundle] bundleURL]];
+    
+}
+
+-(void)setInfoForPlayTabWebView {
+    tabTitleIMGVIEW.image = [UIImage imageNamed:@"tab_play.png"];
+    
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"play" ofType:@"html" inDirectory:nil];
+    NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+    
+    self.webViewTab.delegate = self;
+    [self.webViewTab loadHTMLString:htmlString baseURL:[[NSBundle mainBundle] bundleURL]];
+    
+}
+-(void)setInfoForTipTabWebView {
+    tabTitleIMGVIEW.image = [UIImage imageNamed:@"tab_learning.png"];
+    
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"learning" ofType:@"html" inDirectory:nil];
+    NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+    
+    self.webViewTab.delegate = self;
+    [self.webViewTab loadHTMLString:htmlString baseURL:[[NSBundle mainBundle] bundleURL]];
+    
+}
+-(void)setInfoForPhilosophyTabWebView {
+    tabTitleIMGVIEW.image = [UIImage imageNamed:@"tab_learning_philosophy.png"];
+    
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"learning_philoshophy" ofType:@"html" inDirectory:nil];
+    NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+    
+    self.webViewTab.delegate = self;
+    [self.webViewTab loadHTMLString:htmlString baseURL:[[NSBundle mainBundle] bundleURL]];
+    
+}
+
+-(void) launchTigglyNews {
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"Parent Control"
+                                            action:@"buttonPress"
+                                             label:@"Tiggly_news_Button"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
+    [self.view bringSubviewToFront:viewForWeb];
+    NSString *urlString = @"http://tiggly.com/";
+    //Create a URL object.
+    NSURL *url = [NSURL URLWithString:urlString];
+    //URL Requst Object
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    
+    [webView loadRequest:requestObj];
+    
+    [UIView animateWithDuration:0.5
+                     animations:^(void){
+                         viewForWeb.frame = CGRectMake(0, 0, 1024, 768);
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
+}
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSURL *URL = [request URL];
+    if ([[URL scheme] isEqualToString:@"callmycode"]) {
+        NSString *urlString = [[request URL] absoluteString];
+        NSArray *urlParts = [urlString componentsSeparatedByString:@":"];
+        //check to see if we just got the scheme
+        if ([urlParts count] > 1) {
+            NSArray *parameters = [[urlParts objectAtIndex:1] componentsSeparatedByString:@"&"];
+            NSString *methodName = [parameters objectAtIndex:0];
+            NSString *variableName = [parameters objectAtIndex:1];
+            
+            //            NSString *message = [NSString stringWithFormat:@"Obj-c from js with methodname=%@ and variablename=%@", methodName, variableName];
+            //
+            //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Great" message:message delegate: self cancelButtonTitle: nil otherButtonTitles: @"OK",nil, nil];
+            //            [alert show];
+            
+            if ([methodName isEqualToString:@"logoItem"] ) {
+                // tiggly logo clicked
+                [self launchTigglyNews];
+            }
+            if ([methodName isEqualToString:@"MotarSkill"] ) {
+                // MotarSkill clicked
+                [self showValidationError:@"Grabbing and holding the shapes, moving them, and placing them on the screen help your child enhance their fine motor skills. " title:@"Motor skills"];
+                
+            }
+            if ([methodName isEqualToString:@"LanguageDevelopment"] ) {
+                // language clicked
+                [self showValidationError:@"Children will hear the names of animals, fruits, and objects as they appear on screen and greet your child. They will also practice storytelling and producing language as part of their play" title:@"Language Development"];
+                
+            }
+            if ([methodName isEqualToString:@"SpatialThinking"] ) {
+                // spatialThinking clicked
+                [self showValidationError:@"Tiggly Safari encourages children to recognize and match basic shapes— circles, squares, triangles, and stars in various orientations. By manipulating real shapes, and grabbing, rotating, moving, and placing them on a target, children learn about spatial relations and transformations. Finally, by turning simple shapes into animals, they practice their ability to create complex images" title:@"Spatial Thinking"];
+                
+            }
+        }
+    }
+    return YES;
+}
+
+
+
+
+
 -(void)setInfoForLetterTab {
     DebugLog(@"");
 
@@ -329,7 +456,7 @@ UIActivityIndicatorView *activityIndicator;
     tabBody2TEXT.font = [UIFont fontWithName:APP_FONT size:14];
     
     tabHeading1TEXT.hidden = YES;
-    tabInforSCROLL.contentSize = CGSizeMake(tabInforSCROLL.contentSize.width, 1100);
+    tabInforSCROLL.contentSize = CGSizeMake(tabInforSCROLL.contentSize.width, 970);
     tabInforSCROLL.contentOffset = CGPointMake(0, 0);
     tabTitleIMGVIEW.image = [UIImage imageNamed:@"tab_letter.png"];
     tabHeading3TEXT.frame =CGRectMake(tabHeading3TEXT.frame.origin.x, 70, tabHeading3TEXT.frame.size.width, 150);
@@ -437,7 +564,7 @@ UIActivityIndicatorView *activityIndicator;
     lblMotarTEXT.hidden =YES;
     lblSpatialTEXT.hidden =YES;
     tabHeading3TEXT.hidden = YES;
-    tabInforSCROLL.contentSize = CGSizeMake(tabInforSCROLL.contentSize.width, 780);
+    tabInforSCROLL.contentSize = CGSizeMake(tabInforSCROLL.contentSize.width, 630);
     tabInforSCROLL.contentOffset = CGPointMake(0, 0);
     tabLetterMotarBTN.hidden =YES;
     tabLetterLanguageBTN.hidden =YES;
@@ -448,7 +575,7 @@ UIActivityIndicatorView *activityIndicator;
     tabHeading1TEXT.text = @"Tips to enhance your child’s play experience";
     tabHeading1TEXT.font = [UIFont fontWithName:@"Rockwell-BoldItalic" size:14];
 
-    tabBody1TEXT.frame =CGRectMake(tabBody1TEXT.frame.origin.x, tabHeading1TEXT.frame.origin.y+30, tabBody1TEXT.frame.size.width, 100);
+    tabBody1TEXT.frame =CGRectMake(tabBody1TEXT.frame.origin.x, tabHeading1TEXT.frame.origin.y+30, tabBody1TEXT.frame.size.width, 110);
     tabBody1TEXT.text = @"Here are few tips for you to support your child’s learning from the app:\n	•	Encourage them to repeat after the narrator as it names the objects and animals.\n	•	Challenge them by asking to guess what animal they are constructing.\n	•	Have two kids at home? Encourage them to share the shapes and collaborate on their creations!";
     
     tabHeading2TEXT.frame =CGRectMake(tabHeading2TEXT.frame.origin.x, tabBody1TEXT.frame.origin.y+ 120, tabHeading2TEXT.frame.size.width, tabHeading2TEXT.frame.size.height);
@@ -472,7 +599,7 @@ UIActivityIndicatorView *activityIndicator;
     lblMotarTEXT.hidden =YES;
     lblSpatialTEXT.hidden =YES;
     tabHeading3TEXT.hidden = YES;
-    tabInforSCROLL.contentSize = CGSizeMake(tabInforSCROLL.contentSize.width, 1350);
+    tabInforSCROLL.contentSize = CGSizeMake(tabInforSCROLL.contentSize.width, 1180);
     tabInforSCROLL.contentOffset = CGPointMake(0, 0);
     tabLetterMotarBTN.hidden =YES;
     tabLetterLanguageBTN.hidden =YES;

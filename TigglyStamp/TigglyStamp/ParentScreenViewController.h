@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "TConstant.h"
 #import <QuartzCore/QuartzCore.h>
-#import "SettingsViewController.h"
 #import "FHSTwitterEngine.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <Pinterest/Pinterest.h>
@@ -65,5 +64,7 @@
 
 
 -(IBAction)onButtonClicked:(id)sender;
+
+-(void) launchUnlockScreen;
 
 @end

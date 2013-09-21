@@ -7,6 +7,8 @@
 //
 
 #import "ParentScreenViewController.h"
+#import "SettingsViewController.h"
+#import "UnlockScreenViewController.h"
 
 #define TAG_SUBSCRIBE_BTN 1
 #define TAG_SETTINGS_BTN 2
@@ -138,6 +140,7 @@ UIActivityIndicatorView *activityIndicator;
 -(void) launchSettingScreen {
     DebugLog(@"");
     SettingsViewController *settingsView = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
+    settingsView.parentScreen = self;
     settingsView.modalPresentationStyle = UIModalPresentationPageSheet;
 //    settingsView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
@@ -159,6 +162,14 @@ UIActivityIndicatorView *activityIndicator;
 - (void)removeConfirmationDilog:(NSTimer*)timer {
     
     [self.confView removeFromSuperview];
+}
+
+-(void) launchUnlockScreen{
+    DebugLog(@"");
+
+    UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil];
+    [self.navigationController pushViewController:unlockScreen animated:YES];
+
 }
 
 #pragma mark- IBAction handling

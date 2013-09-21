@@ -10,7 +10,7 @@
 #import "TConstant.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TigglyStampUtils.h"
-
+#import "ParentScreenViewController.h"
 
 #define TAG_SWITCH_MUSIC 1
 #define TAG_SWITCH_ART 2
@@ -26,8 +26,9 @@
     UIPickerView *pickerView;
     UIPopoverController *popoverController;
     BOOL isShapePopView;
+    
 }
-
+@property (nonatomic, strong) ParentScreenViewController *parentScreen;
 @property (nonatomic, strong) IBOutlet UISwitch *swtchMusic;
 @property (nonatomic, strong) IBOutlet UISwitch *swtchArt;
 @property (nonatomic, strong) IBOutlet UISwitch *swtchHaveShapes;

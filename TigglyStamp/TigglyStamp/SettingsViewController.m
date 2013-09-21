@@ -22,6 +22,7 @@
 @synthesize backgroundView;
 @synthesize lblLunguageTest;
 @synthesize lbl1,lbl2,lbl3,lbl4,lbl5,lbl6;
+@synthesize parentScreen;
 
 #pragma mark - Activity LifeCycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -136,9 +137,11 @@
         case TAG_SWITCH_HAVE_SHAPES:
             if ([swtchHaveShapes isOn] == YES) {
                 if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
+                    [parentScreen launchUnlockScreen];
+                    [self dismissModalViewControllerAnimated:NO];
 //                    UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil];
 //                    [self.navigationController pushViewController:unlockScreen animated:YES];
-                    [[TigglyStampUtils sharedInstance] setShapeMode:YES];
+//                    [[TigglyStampUtils sharedInstance] setShapeMode:YES];
                 }else{
                     [[TigglyStampUtils sharedInstance] setShapeMode:YES];
                 }

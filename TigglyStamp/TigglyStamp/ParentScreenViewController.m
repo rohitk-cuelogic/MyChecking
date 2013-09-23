@@ -93,6 +93,7 @@ UIActivityIndicatorView *activityIndicator;
     [tabLetterLanguageBTN setTag:TAG_LETTER_LANGUAGE_BTN];
     [tabLetterSpatialBTN setTag:TAG_LETTER_SPATIAL_BTN];
     
+    emailidTextField.font =  [UIFont fontWithName:APP_FONT size:18.0f];
     
     [self setInfoForLetterTabWebView];
 
@@ -207,9 +208,13 @@ UIActivityIndicatorView *activityIndicator;
         
         if (emailidTextField.text.length != 0) {
             if ([self isValidEmailAddress:emailidTextField.text] == YES) {
+                emailidTextField.text = @"";
+                [emailidTextField resignFirstResponder];
+                [self.view addSubview:confView];
+                [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(removeConfirmationDilog:) userInfo:nil repeats:NO];
                 
-                [self.view addSubview:childInfoView];
-                [nameTextField becomeFirstResponder];
+//                [self.view addSubview:childInfoView];
+//                [nameTextField becomeFirstResponder];
                 
             }else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tiggly" message:@"Please enter valid email address" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];

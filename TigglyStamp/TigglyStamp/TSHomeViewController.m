@@ -93,6 +93,8 @@ int swipeTxtCnt;
     allThumbnails = [[NSMutableArray alloc] initWithCapacity:1];
     [self loadThumbnails];
     
+    forParentsBtn.titleLabel.font = [UIFont fontWithName:APP_FONT size:30.0f];
+    
     bkgLayer=[CALayer layer];
     bkgLayer.name = @"btnLayer";
     bkgLayer.frame = CGRectMake(360,210, 300, 300);

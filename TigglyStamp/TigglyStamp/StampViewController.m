@@ -385,31 +385,11 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
 -(void) startScreenRecording{
     DebugLog(@"");
-    
-    [videoButton setBackgroundImage:[UIImage imageNamed:@"record_icon_stop_2"] forState:UIControlStateNormal];
-    
-    isRecording = YES;
-    
+
     screenCapture.delegate = self;
     [screenCapture startRecording];
     [screenCapture setNeedsDisplay];
-    
-    [videoButton.layer removeAnimationForKey:@"transform.scale"];
-    [videoButton.layer removeAllAnimations];
-    
-    double delayInSeconds = 0.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        CABasicAnimation *theAnimation;
-        theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
-        theAnimation.duration=1.0;
-        theAnimation.repeatCount=HUGE_VALF;
-        theAnimation.autoreverses=NO;
-        theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
-        theAnimation.toValue=[NSNumber numberWithFloat:0.5];
-        [videoButton.layer addAnimation:theAnimation forKey:@"opacity"]; //animateOpacity
-    });
-    
+
 }
 
 
@@ -797,7 +777,6 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         [self screenVideoShotStop];
         
         garbageCan.hidden = NO;
-//        curlButton.hidden = NO;
         
         [videoButton.layer removeAnimationForKey:@"opacity"];
         [videoButton.layer removeAllAnimations];
@@ -813,6 +792,31 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         [NSThread detachNewThreadSelector:@selector(hideButtons) toTarget:self withObject:nil];
         
         [self playTellUsStorySound];
+        
+        
+        
+        [videoButton.layer removeAnimationForKey:@"transform.scale"];
+        [videoButton.layer removeAllAnimations];
+        
+        
+        [videoButton setBackgroundImage:[UIImage imageNamed:@"record_icon_stop_2"] forState:UIControlStateNormal];
+        
+         
+        double delayInSeconds = 0.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            CABasicAnimation *theAnimation;
+            theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+            theAnimation.duration=1.0;
+            theAnimation.repeatCount=HUGE_VALF;
+            theAnimation.autoreverses=NO;
+            theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
+            theAnimation.toValue=[NSNumber numberWithFloat:0.5];
+            [videoButton.layer addAnimation:theAnimation forKey:@"opacity"]; //animateOpacity
+        });
+        
+        [videoTimer invalidate];
+        videoTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(actionRecording:) userInfo:nil repeats:NO];
         
     }
 }

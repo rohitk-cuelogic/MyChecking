@@ -49,8 +49,10 @@
     NSTimer *continuityTimer;
     UIImageView *viewShapesTray;
     UIView *btnView;
+    NSTimer *videoTimer;
     
     SceneType sceneType;
+    
 }
 @property(nonatomic,strong) IBOutlet  ScreenCaptureView *screenCapture;
 @property(nonatomic, strong) NSMutableArray * shapes;

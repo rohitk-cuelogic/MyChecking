@@ -22,7 +22,7 @@
 @synthesize backgroundView;
 @synthesize lblLunguageTest;
 @synthesize lbl1,lbl2,lbl3,lbl4,lbl5,lbl6;
-@synthesize parentScreen;
+@synthesize parentScreen,btnBuyShapes,btnClose;
 
 #pragma mark - Activity LifeCycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -98,6 +98,11 @@
     lblClearPrevData.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
     lblSendMail.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
     
+    
+    if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
+        lbl6.hidden = YES;
+        btnBuyShapes.hidden = YES;
+    }
 }
 
 #pragma mark - Button Action 

@@ -158,7 +158,6 @@ UIActivityIndicatorView *activityIndicator;
     SettingsViewController *settingsView = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
     settingsView.parentScreen = self;
     settingsView.modalPresentationStyle = UIModalPresentationPageSheet;
-//    settingsView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
     if([self respondsToSelector:@selector(presentModalViewController:animated:)])
         [self presentModalViewController:settingsView animated:YES];
@@ -166,13 +165,16 @@ UIActivityIndicatorView *activityIndicator;
         [self presentViewController:settingsView animated:YES completion:nil];
     
     [settingsView.view.superview setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
-    [settingsView.view.superview setFrame:CGRectMake(128, 100, 800, 600)]; //(128, 177, 768, 414)
+    int height;
+    if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes])
+        height = 390;
+    else
+        height = 450;
+    
+    [settingsView.view.superview setFrame:CGRectMake(512-400, 384-(height/2), 800, height)]; //(128, 177, 768, 414)
     settingsView.view.superview.layer.cornerRadius = 25.0f;
     settingsView.view.superview.layer.masksToBounds = YES;
-//    settingsView.view.superview.frame = CGRectMake(0, 0, 768, 414);//it's important to do this after
-//    settingsView.view.superview.center = self.view.center;
-//    settingsView.view.superview.layer.cornerRadius = 25.0f;
-//    settingsView.view.superview.layer.masksToBounds = YES;
+
 }
 
 - (void)removeConfirmationDilog:(NSTimer*)timer {

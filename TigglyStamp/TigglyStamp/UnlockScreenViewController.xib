@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12E55</string>
+		<string key="IBDocument.SystemVersion">11G63</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.39</string>
-		<string key="IBDocument.HIToolboxVersion">626.00</string>
+		<string key="IBDocument.AppKitVersion">1138.51</string>
+		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">2083</string>
@@ -43,6 +43,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{1024, 768}</string>
 						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="980967005"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -61,6 +62,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{335, 555}, {282, 25}}</string>
 								<reference key="NSSuperview" ref="780981357"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="55657824"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -93,6 +95,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{21, 60}, {615, 70}}</string>
 								<reference key="NSSuperview" ref="780981357"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="123711310"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -122,6 +125,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{21, 31}, {238, 21}}</string>
 								<reference key="NSSuperview" ref="780981357"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="777264716"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -147,6 +151,7 @@
 						</array>
 						<string key="NSFrame">{{90, 97}, {655, 600}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="105830095"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -163,6 +168,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 9}, {80, 80}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="780981357"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -200,6 +206,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{761, 608}, {243, 105}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -223,6 +230,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{761, 407}, {242, 204}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="77090616"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -247,6 +255,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{769, 95}, {207, 30}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="444228943"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -267,6 +276,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{761, 126}, {242, 273}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -277,7 +287,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
 						<bool key="IBUIEditable">NO</bool>
-						<string key="IBUIText">Tiggly Stamp is designed to interact with Tiggly Shapes, a set of 4 geometric shapes that unlock the optimal learning experience for your child by combining the best of physical and digital play. Tiggly Shapes are safe for your toddler and your tablet. Read more about Tiggly Learning Philosophy.</string>
+						<string key="IBUIText">Tiggly Stamp is designed to interact with Tiggly Shapes, a set of 4 geometric shapes that unlock the optimal learning experience for your child by combining the best of physical and digital play. Tiggly Shapes are safe for your toddler and your tablet.</string>
 						<reference key="IBUITextColor" ref="113351203"/>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<int key="IBUIAutocapitalizationType">2</int>
@@ -298,6 +308,7 @@
 				</array>
 				<string key="NSFrameSize">{1024, 768}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1017831"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -536,7 +547,86 @@
 			<nil key="sourceID"/>
 			<int key="maxID">40</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">UnlockScreenViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="actionBack">id</string>
+						<string key="actionBuyNow">id</string>
+						<string key="actionLearnMore">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="actionBack">
+							<string key="name">actionBack</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="actionBuyNow">
+							<string key="name">actionBuyNow</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="actionLearnMore">
+							<string key="name">actionLearnMore</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="bkgView">UIView</string>
+						<string key="btnBack">UIButton</string>
+						<string key="btnBuyShapes">UIButton</string>
+						<string key="btnLearnMore">UIButton</string>
+						<string key="lblAboutTiggly">UILabel</string>
+						<string key="lblAboutTigglyText">UITextView</string>
+						<string key="lblInstructionHead">UILabel</string>
+						<string key="lblInstructionText">UILabel</string>
+						<string key="lblRemainingShapes">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="bkgView">
+							<string key="name">bkgView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnBack">
+							<string key="name">btnBack</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnBuyShapes">
+							<string key="name">btnBuyShapes</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnLearnMore">
+							<string key="name">btnLearnMore</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblAboutTiggly">
+							<string key="name">lblAboutTiggly</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblAboutTigglyText">
+							<string key="name">lblAboutTigglyText</string>
+							<string key="candidateClassName">UITextView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblInstructionHead">
+							<string key="name">lblInstructionHead</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblInstructionText">
+							<string key="name">lblInstructionText</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblRemainingShapes">
+							<string key="name">lblRemainingShapes</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/UnlockScreenViewController.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

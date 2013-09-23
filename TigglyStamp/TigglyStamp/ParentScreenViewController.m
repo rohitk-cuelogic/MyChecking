@@ -27,6 +27,7 @@
 #define TAG_LETTER_MOTAR_BTN 15
 #define TAG_LETTER_LANGUAGE_BTN 16
 #define TAG_LETTER_SPATIAL_BTN 17
+#define TAG_LETTER_TAB_POPUP_CLOSE_BTN 18
 
 @interface ParentScreenViewController ()
 
@@ -46,7 +47,7 @@
 @synthesize tabInforSCROLL;
 @synthesize tabLetterBTN,tabLearningTipBTN,tabPlayBTN,tabLearPhilosophyBTN,tabTitleIMGVIEW,tabBody1TEXT,tabHeading1TEXT,tabBody2TEXT,tabHeading2TEXT,tabHeading3TEXT;
 @synthesize lblLanguageTEXT,lblMotarTEXT,lblSpatialTEXT;
-@synthesize tabLetterMotarBTN,tabLetterLanguageBTN,tabLetterSpatialBTN;
+@synthesize tabLetterMotarBTN,tabLetterLanguageBTN,tabLetterSpatialBTN,lettertabBodyTEXT,lettertabCloseBTN,lettertabHeadingLBL,letterTabView;
 
 @synthesize webViewTab;
 
@@ -92,6 +93,8 @@ UIActivityIndicatorView *activityIndicator;
     [tabLetterMotarBTN setTag:TAG_LETTER_MOTAR_BTN];
     [tabLetterLanguageBTN setTag:TAG_LETTER_LANGUAGE_BTN];
     [tabLetterSpatialBTN setTag:TAG_LETTER_SPATIAL_BTN];
+    [lettertabCloseBTN setTag:TAG_LETTER_TAB_POPUP_CLOSE_BTN];
+    
     
     emailidTextField.font =  [UIFont fontWithName:APP_FONT size:18.0f];
     
@@ -339,7 +342,10 @@ UIActivityIndicatorView *activityIndicator;
         [self showValidationError:@"Tiggly Safari encourages children to recognize and match basic shapes— circles, squares, triangles, and stars in various orientations. By manipulating real shapes, and grabbing, rotating, moving, and placing them on a target, children learn about spatial relations and transformations. Finally, by turning simple shapes into animals, they practice their ability to create complex images" title:@"Spatial Thinking"];
     }
 
-    
+    if([btn tag] == TAG_LETTER_TAB_POPUP_CLOSE_BTN){
+        [letterTabView removeFromSuperview];
+        
+    }
 }
 
 -(void)setInfoForLetterTabWebView {
@@ -430,18 +436,44 @@ UIActivityIndicatorView *activityIndicator;
                 [self launchTigglyNews];
             }
             if ([methodName isEqualToString:@"MotarSkill"] ) {
+                [letterTabView removeFromSuperview];
+                
                 // MotarSkill clicked
-                [self showValidationError:@"Grabbing and holding the shapes, moving them, and placing them on the screen help your child enhance their fine motor skills. " title:@"Motor skills"];
+                //                [self showValidationError:@"Grabbing and holding the shapes, moving them, and placing them on the screen help your child enhance their fine motor skills. " title:@"Motor skills"];
+                 lettertabHeadingLBL.font = [UIFont fontWithName:APP_FONT_BOLD size:24.0f];
+                 lettertabBodyTEXT.font = [UIFont fontWithName:APP_FONT size:16.0f];
+                
+                lettertabHeadingLBL.text = @"Motor skills";
+                lettertabBodyTEXT.text =[NSString stringWithFormat:@"Grabbing and holding the shapes, moving them, and placing them on the screen help your child enhance their fine motor skills."];
+                [self.view addSubview:letterTabView];
                 
             }
             if ([methodName isEqualToString:@"LanguageDevelopment"] ) {
+                [letterTabView removeFromSuperview];
+                
                 // language clicked
-                [self showValidationError:@"Children will hear the names of animals, fruits, and objects as they appear on screen and greet your child. They will also practice storytelling and producing language as part of their play" title:@"Language Development"];
+                //                [self showValidationError:@"Children will hear the names of animals, fruits, and objects as they appear on screen and greet your child. They will also practice storytelling and producing language as part of their play" title:@"Language Development"];
+                
+                lettertabHeadingLBL.font = [UIFont fontWithName:APP_FONT_BOLD size:24.0f];
+                lettertabBodyTEXT.font = [UIFont fontWithName:APP_FONT size:16.0f];
+                
+                lettertabHeadingLBL.text = @"Language Development";
+                lettertabBodyTEXT.text =[NSString stringWithFormat:@"Children will hear the names of animals, fruits, and objects as they appear on screen and greet your child. They will also practice storytelling and producing language as part of their play"];
+                [self.view addSubview:letterTabView];
                 
             }
             if ([methodName isEqualToString:@"SpatialThinking"] ) {
+                [letterTabView removeFromSuperview];
+                
                 // spatialThinking clicked
-                [self showValidationError:@"Tiggly Safari encourages children to recognize and match basic shapes— circles, squares, triangles, and stars in various orientations. By manipulating real shapes, and grabbing, rotating, moving, and placing them on a target, children learn about spatial relations and transformations. Finally, by turning simple shapes into animals, they practice their ability to create complex images" title:@"Spatial Thinking"];
+                //                [self showValidationError:@"Tiggly Safari encourages children to recognize and match basic shapes— circles, squares, triangles, and stars in various orientations. By manipulating real shapes, and grabbing, rotating, moving, and placing them on a target, children learn about spatial relations and transformations. Finally, by turning simple shapes into animals, they practice their ability to create complex images" title:@"Spatial Thinking"];
+                
+                lettertabHeadingLBL.font = [UIFont fontWithName:APP_FONT_BOLD size:24.0f];
+                lettertabBodyTEXT.font = [UIFont fontWithName:APP_FONT size:16.0f];
+                
+                lettertabHeadingLBL.text = @"Spatial Thinking";
+                lettertabBodyTEXT.text =[NSString stringWithFormat:@"Tiggly Safari encourages children to recognize and match basic shapes— circles, squares, triangles, and stars in various orientations. By manipulating real shapes, and grabbing, rotating, moving, and placing them on a target, children learn about spatial relations and transformations. Finally, by turning simple shapes into animals, they practice their ability to create complex images"];
+                [self.view addSubview:letterTabView];
                 
             }
         }

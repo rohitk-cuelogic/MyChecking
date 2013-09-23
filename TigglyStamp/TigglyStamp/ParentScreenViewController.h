@@ -57,6 +57,10 @@
 @property (nonatomic,strong) IBOutlet UILabel *lblMotarTEXT;
 @property (nonatomic,strong) IBOutlet UILabel *lblLanguageTEXT;
 @property (nonatomic,strong) IBOutlet UILabel *lblSpatialTEXT;
+@property (nonatomic,strong) IBOutlet UILabel *lettertabHeadingLBL;
+@property (nonatomic,strong) IBOutlet UITextView *lettertabBodyTEXT;
+@property (nonatomic,strong) IBOutlet UIButton *lettertabCloseBTN;
+@property (nonatomic,strong) IBOutlet UIView *letterTabView;
 
 @property (nonatomic,strong) IBOutlet UIButton *tabLetterMotarBTN;
 @property (nonatomic,strong) IBOutlet UIButton *tabLetterLanguageBTN;

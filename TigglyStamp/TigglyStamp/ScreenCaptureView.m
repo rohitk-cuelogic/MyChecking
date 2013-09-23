@@ -279,9 +279,9 @@
                                   [NSNumber numberWithInt:kAudioFormatLinearPCM], AVFormatIDKey,
                                   [NSNumber numberWithInt:AVAudioQualityMin], AVEncoderAudioQualityKey,
                                   [NSNumber numberWithInt:16], AVEncoderBitRateKey,
-                                  [NSNumber numberWithInt: 1], AVNumberOfChannelsKey,
-                                  [NSNumber numberWithFloat:8000.0], AVSampleRateKey,
-                                  [NSNumber numberWithInt:8], AVLinearPCMBitDepthKey, nil];
+                                  [NSNumber numberWithInt: 2], AVNumberOfChannelsKey,
+                                  [NSNumber numberWithFloat:44100.0], AVSampleRateKey,
+                                   nil]; //[NSNumber numberWithInt:1], AVLinearPCMBitDepthKey,
     
     
     // Initialize the audio recorder

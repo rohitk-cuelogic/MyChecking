@@ -35,17 +35,31 @@
 
         if([[[imgName lastPathComponent]pathExtension] isEqualToString:@"mov"]) {
             
-            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(80,80, 820, 600)];
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(80,80, 820, 650)];
             view.backgroundColor = [UIColor whiteColor];
              view.layer.cornerRadius = 20.0f;
             
             [self addSubview:view];
             
+            NSDate* currentDate = [NSDate date];
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+            [dateFormat setDateFormat:@"MM/dd/yyyy"];
+            // convert it to a string
+            NSString *dateString = [dateFormat stringFromDate:currentDate];
+            
+            UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 595, 820, 50)];
+            lblDate.textAlignment = UITextAlignmentCenter;
+            lblDate.backgroundColor = [UIColor clearColor];
+            lblDate.text = dateString;
+            lblDate.textColor = [UIColor blueColor];
+            lblDate.font = [UIFont fontWithName:APP_FONT size:30.0f];
+            [view addSubview:lblDate];
+            
             NSString *strFile = [imgName lastPathComponent];
             UIImage *thumb = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:strFile];
             imageView = [[UIImageView alloc] initWithImage:thumb];
 //            imageView.frame = CGRectMake(100, 80,800,600);
-            imageView.frame = CGRectMake(120, 110,750,540);
+            imageView.frame = CGRectMake(120, 110,750,563);
             [self addSubview:imageView];
             
             btnPlay = [UIButton buttonWithType:UIButtonTypeCustom];

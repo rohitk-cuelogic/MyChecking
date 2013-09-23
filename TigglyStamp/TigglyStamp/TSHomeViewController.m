@@ -23,7 +23,7 @@
 @synthesize bkgImageView;
 @synthesize containerView,learnMoreBtn;
 
-UISwipeGestureRecognizer *mSwpeRecognizer;
+UISwipeGestureRecognizer *hmSwpeRecognizer;
 BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail,readyToLearnMore;
 NSMutableArray *swipeTxtArray;
 int swipeTxtCnt;
@@ -72,7 +72,7 @@ int swipeTxtCnt;
         [thumbnail removeFromSuperview];
     }
     
-    swipeTxtArray = [[NSMutableArray alloc] initWithObjects:@"RIGHT\nwith 2", @"RIGHT\nwith 2", @"LEFT\nwith 2", @"LEFT\nwith 2", @"UP\nwith 2", @"UP\nwith 2", @"DOWN\nwith 2", @"DOWN\nwith 2", nil];
+
     
     if ([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
         
@@ -104,11 +104,19 @@ int swipeTxtCnt;
     isFirstTimePlay = YES;
     playBtnTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(animatePlayButton) userInfo:nil repeats:YES];
     
-    mSwpeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swippedforConfirmation)];
-    [mSwpeRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
-    [mSwpeRecognizer setNumberOfTouchesRequired:2];
-    [self.view addGestureRecognizer:mSwpeRecognizer];
+    swipeTxtArray = [[NSMutableArray alloc] initWithObjects:@"RIGHT\nwith 2", @"RIGHT\nwith 2", @"LEFT\nwith 2", @"LEFT\nwith 2", @"UP\nwith 2", @"UP\nwith 2", @"DOWN\nwith 2", @"DOWN\nwith 2", nil];
+    
+    hmSwpeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swippedforConfirmation)];
+    [self.view addGestureRecognizer:hmSwpeRecognizer];
+    
 
+
+}
+
+-(void) viewDidDisappear:(BOOL)animated{
+    DebugLog(@"");
+    
+    [self.view removeGestureRecognizer:hmSwpeRecognizer];
 }
 
 
@@ -436,36 +444,36 @@ int swipeTxtCnt;
     
     switch (swipeTxtCnt) {
         case 0:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
+            [hmSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
+            [hmSwpeRecognizer setNumberOfTouchesRequired: 2];
             break;
         case 1:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
+            [hmSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
+            [hmSwpeRecognizer setNumberOfTouchesRequired: 2];
             break;
         case 2:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
+            [hmSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
+            [hmSwpeRecognizer setNumberOfTouchesRequired: 2];
             break;
         case 3:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
+            [hmSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
+            [hmSwpeRecognizer setNumberOfTouchesRequired: 2];
             break;
         case 4:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
+            [hmSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
+            [hmSwpeRecognizer setNumberOfTouchesRequired: 2];
             break;
         case 5:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
+            [hmSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
+            [hmSwpeRecognizer setNumberOfTouchesRequired: 2];
             break;
         case 6:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
+            [hmSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
+            [hmSwpeRecognizer setNumberOfTouchesRequired: 2];
             break;
         case 7:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
+            [hmSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
+            [hmSwpeRecognizer setNumberOfTouchesRequired: 2];
             break;
         default:
             break;

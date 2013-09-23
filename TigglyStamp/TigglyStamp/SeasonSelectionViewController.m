@@ -54,11 +54,6 @@ int swipeTxtCnt;
     }
     
     
-    mSwpeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swippedforConfirmation)];
-    [mSwpeRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
-    [mSwpeRecognizer setNumberOfTouchesRequired:2];
-    [self.view addGestureRecognizer:mSwpeRecognizer];
-    
     confirmationView.layer.cornerRadius = 20.0f;
     confirmationView.layer.masksToBounds = YES;
     
@@ -66,8 +61,24 @@ int swipeTxtCnt;
     confirmationView.hidden = YES;
     confirmationViewBKG.hidden = YES;
     
+
+}
+
+-(void) viewDidAppear:(BOOL)animated{
+    DebugLog(@"");
     
     swipeTxtArray = [[NSMutableArray alloc] initWithObjects:@"RIGHT\nwith 2", @"RIGHT\nwith 2", @"LEFT\nwith 2", @"LEFT\nwith 2", @"UP\nwith 2", @"UP\nwith 2", @"DOWN\nwith 2", @"DOWN\nwith 2", nil];
+    
+    mSwpeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swippedforConfirmation)];
+    [mSwpeRecognizer setNumberOfTouchesRequired:2];
+    [self.view addGestureRecognizer:mSwpeRecognizer];
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated{
+    DebugLog(@"");
+    
+    [self.view removeGestureRecognizer:mSwpeRecognizer];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

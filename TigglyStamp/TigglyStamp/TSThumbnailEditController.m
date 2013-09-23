@@ -15,7 +15,7 @@
 
 @implementation TSThumbnailEditController
 
-UISwipeGestureRecognizer *mSwipeRecognizer;
+UISwipeGestureRecognizer *emSwipeRecognizer;
 UIImage *imageToBeEdit;
 NSString * editImgName;
 UIView *upperPanel;
@@ -89,10 +89,10 @@ int swipeTextCnt;
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
     
-    mSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swippedforConfirmation)];
-    [mSwipeRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
-    [mSwipeRecognizer setNumberOfTouchesRequired:2];
-    [self.view addGestureRecognizer:mSwipeRecognizer];
+    emSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swippedforConfirmation)];
+    [emSwipeRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
+    [emSwipeRecognizer setNumberOfTouchesRequired:2];
+    [self.view addGestureRecognizer:emSwipeRecognizer];
     
     confirmationView.layer.cornerRadius = 20.0f;
     confirmationView.layer.masksToBounds = YES;
@@ -102,6 +102,12 @@ int swipeTextCnt;
 -(void)viewDidAppear:(BOOL)animated {
     DebugLog(@"");
      [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+}
+
+-(void) viewDidDisappear:(BOOL)animated{
+    DebugLog(@"");
+    
+    [self.view removeGestureRecognizer:emSwipeRecognizer];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -162,36 +168,36 @@ int swipeTextCnt;
     
     switch (swipeTextCnt) {
         case 0:
-            [mSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
-            [mSwipeRecognizer setNumberOfTouchesRequired: 2];
+            [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
+            [emSwipeRecognizer setNumberOfTouchesRequired: 2];
             break;
         case 1:
-            [mSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
-            [mSwipeRecognizer setNumberOfTouchesRequired: 3];
+            [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
+            [emSwipeRecognizer setNumberOfTouchesRequired: 3];
             break;
         case 2:
-            [mSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
-            [mSwipeRecognizer setNumberOfTouchesRequired: 2];
+            [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
+            [emSwipeRecognizer setNumberOfTouchesRequired: 2];
             break;
         case 3:
-            [mSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
-            [mSwipeRecognizer setNumberOfTouchesRequired: 3];
+            [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
+            [emSwipeRecognizer setNumberOfTouchesRequired: 3];
             break;
         case 4:
-            [mSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
-            [mSwipeRecognizer setNumberOfTouchesRequired: 2];
+            [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
+            [emSwipeRecognizer setNumberOfTouchesRequired: 2];
             break;
         case 5:
-            [mSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
-            [mSwipeRecognizer setNumberOfTouchesRequired: 3];
+            [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
+            [emSwipeRecognizer setNumberOfTouchesRequired: 3];
             break;
         case 6:
-            [mSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
-            [mSwipeRecognizer setNumberOfTouchesRequired: 2];
+            [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
+            [emSwipeRecognizer setNumberOfTouchesRequired: 2];
             break;
         case 7:
-            [mSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
-            [mSwipeRecognizer setNumberOfTouchesRequired: 3];
+            [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
+            [emSwipeRecognizer setNumberOfTouchesRequired: 3];
             break;
         default:
             break;

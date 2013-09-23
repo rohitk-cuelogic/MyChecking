@@ -1763,7 +1763,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                              selector:@selector(didExitFullScreen:)
                                                  name:MPMoviePlayerDidExitFullscreenNotification
                                                object:nil];
-    [moviePlayer.view setFrame:CGRectMake(80, 80,820,600)];
+    [moviePlayer.view setFrame:CGRectMake(120, 110,750,563)];
     moviePlayer.controlStyle = MPMovieControlStyleDefault;
     moviePlayer.shouldAutoplay = YES;
     [self.view addSubview:moviePlayer.view];

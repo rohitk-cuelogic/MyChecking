@@ -43,7 +43,7 @@
 						<string key="NSFrame">{{10, 11}, {78, 78}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="9648157"/>
+						<reference key="NSNextKeyView" ref="715887542"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -79,7 +79,7 @@
 					<object class="IBUIButton" id="9648157">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{456, 17}, {55, 66}}</string>
+						<string key="NSFrame">{{456, 17}, {78, 78}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="584513254"/>
@@ -96,7 +96,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="524186328"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">savebtn.png</string>
+							<string key="NSResourceName">send_icon.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="884719611"/>
 						<reference key="IBUIFont" ref="338325910"/>
@@ -107,7 +107,7 @@
 						<string key="NSFrame">{{542, 11}, {78, 78}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="389247849"/>
+						<reference key="NSNextKeyView" ref="393389592"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -132,7 +132,7 @@
 						<string key="NSFrame">{{384, 80}, {183, 83}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="393389592"/>
+						<reference key="NSNextKeyView" ref="9648157"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -165,6 +165,7 @@
 						<string key="NSFrame">{{462, 324}, {100, 100}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -189,7 +190,7 @@
 						<string key="NSFrameSize">{1024, 768}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="715887542"/>
+						<reference key="NSNextKeyView" ref="649104806"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -276,7 +277,7 @@
 				<string key="NSFrameSize">{1024, 768}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="649104806"/>
+				<reference key="NSNextKeyView" ref="389247849"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -642,7 +643,7 @@
 			<string key="home_icon_2.png">{274, 274}</string>
 			<string key="parent_gesture_black_bg.png">{2048, 1536}</string>
 			<string key="play_btn.png">{200, 199}</string>
-			<string key="savebtn.png">{109, 109}</string>
+			<string key="send_icon.png">{274, 274}</string>
 			<string key="trashcan_icon@2x~ipad.png">{200, 199}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>

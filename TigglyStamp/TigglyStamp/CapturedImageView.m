@@ -28,6 +28,7 @@
     DebugLog(@"");
     self = [super initWithFrame:rect];
     if (self) {
+        imageName = imgName;
         
         [self setUserInteractionEnabled:YES];
         
@@ -84,8 +85,17 @@
             [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateNormal];
             [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateSelected];
             [btnHome addTarget:self action:@selector(btnHomeClicked)forControlEvents:UIControlEventTouchUpInside];
-            btnHome.frame = CGRectMake(05, 05, 75, 75);
+            btnHome.frame = CGRectMake(44, 10, 75, 75);
             [self addSubview:btnHome];
+            
+            
+            btnSend = [UIButton buttonWithType:UIButtonTypeCustom];
+            [btnSend setBackgroundImage:[UIImage imageNamed:@"send_icon.png"] forState:UIControlStateNormal];
+            [btnSend setBackgroundImage:[UIImage imageNamed:@"send_icon.png"] forState:UIControlStateSelected];
+            [btnSend addTarget:self action:@selector(btnSendClicked)forControlEvents:UIControlEventTouchUpInside];
+            btnSend.frame = CGRectMake(472, 10, 80, 80);
+            [self addSubview:btnSend];
+            
             
         }else{
             
@@ -136,6 +146,57 @@
     [delegate onHomeButtonClicked:self];
 }
 
+-(void)btnSendClicked{
+    DebugLog(@"");
+    [delegate onSendButton:self];
+    
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"Gallery"
+                                            action:@"Gallery opened"
+                                             label:@"Save Image/ Video"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
+    
+    NSString *strFile = [imageName lastPathComponent];
+    
+    lblImageSaved = [[UILabel alloc] initWithFrame:CGRectMake(442, 91,  140, 50)];
+    lblImageSaved.backgroundColor = [UIColor whiteColor];
+    lblImageSaved.layer.cornerRadius = 13.0f;
+    lblImageSaved.layer.masksToBounds = YES;
+    lblImageSaved.layer.borderColor =  [UIColor blackColor].CGColor;
+    lblImageSaved.layer.borderWidth = 1.0f;
+    
+    [self addSubview:lblImageSaved];
+    lblImageSaved.font = [UIFont fontWithName:APP_FONT size:20.0f];
+    lblImageSaved.textAlignment = UITextAlignmentCenter;
+    if([[strFile pathExtension] isEqualToString:@"mov"]) {
+        
+        NSString *exportPath = [[NSString alloc] initWithFormat:@"%@/%@",
+                                [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], strFile];
+        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (exportPath)) {
+            UISaveVideoAtPathToSavedPhotosAlbum (exportPath, nil, nil, nil);
+        }
+        lblImageSaved.text = @"Video Saved";
+        
+    }else{
+        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imageName]]];
+        
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        
+        lblImageSaved.text = @"Image Saved";
+    }
+    
+    [UIView animateWithDuration:3.0
+                     animations:^{
+                         lblImageSaved.alpha = 0;
+                     }
+                     completion:^(BOOL finished){
+                         [lblImageSaved removeFromSuperview];
+                     }];
+    
+}
 -(void)btnPlayClicked{
     DebugLog(@"");
     //call delegate
@@ -209,8 +270,17 @@
     [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateNormal];
     [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateSelected];
     [btnHome addTarget:self action:@selector(btnHomeClicked)forControlEvents:UIControlEventTouchUpInside];
-    btnHome.frame = CGRectMake(05, 05, 75, 75);
+    btnHome.frame = CGRectMake(44, 10, 80, 80);
     [self addSubview:btnHome];
+    
+    
+    btnSend = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnSend setBackgroundImage:[UIImage imageNamed:@"send_icon.png"] forState:UIControlStateNormal];
+    [btnSend setBackgroundImage:[UIImage imageNamed:@"send_icon.png"] forState:UIControlStateSelected];
+    [btnSend addTarget:self action:@selector(btnSendClicked)forControlEvents:UIControlEventTouchUpInside];
+    btnSend.frame = CGRectMake(472, 10, 80, 80);
+    [self addSubview:btnSend];
+    
     
 }
 

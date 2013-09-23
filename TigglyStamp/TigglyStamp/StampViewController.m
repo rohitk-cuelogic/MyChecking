@@ -14,6 +14,7 @@
 #define TAG_CURL_BTN 2
 #define TAG_CURL_CONFIRMED_BTN 3
 
+
 @interface StampViewController (){
     AVAudioRecorder *recorder;
 }
@@ -1679,6 +1680,11 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 -(void) onPlayButtonClicked:(CapturedImageView *)cImageView {
     DebugLog(@"");
     [self playVideo];
+    
+}
+
+-(void)onSendButton:(CapturedImageView *)cImageView{
+    DebugLog(@"");
     
 }
 

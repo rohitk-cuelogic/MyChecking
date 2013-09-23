@@ -20,6 +20,7 @@
 -(void) onNextButtonClicked:(CapturedImageView *)cImageView;
 -(void) onHomeButtonClicked:(CapturedImageView *)cImageView;
 -(void) onPlayButtonClicked:(CapturedImageView *)cImageView;
+-(void) onSendButton:(CapturedImageView *)cImageView;
 
 @end
 
@@ -29,7 +30,10 @@
     UIButton *btnHome;
     UIButton *btnNext;
     UIButton *btnPlay;
-
+    UIButton *btnSend;
+    NSString *imageName;
+    UILabel *lblImageSaved;
+    
 }
 @property(nonatomic,strong) id<CapturedImageViewDelegate>delegate;
 @property (nonatomic,strong) UIImageView *imageView;

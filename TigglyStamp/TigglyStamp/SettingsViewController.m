@@ -24,6 +24,7 @@
 @synthesize lbl1,lbl2,lbl3,lbl4,lbl5,lbl6;
 @synthesize parentScreen,btnBuyShapes,btnClose;
 @synthesize viewLanguage,tblView;
+@synthesize langArr;
 
 #pragma mark - Activity LifeCycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -42,6 +43,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    self.langArr =[[NSArray alloc] initWithObjects:@"English",@"Portuguese",@"Russian",@"Spanish",@"French",@"German",@"Italian", nil];
+    
+    
     arrLanguage = NULL;
     isShapePopView = NO;
     NSString *lung =   [[TigglyStampUtils sharedInstance] getCurrentLanguage];//[[NSUserDefaults standardUserDefaults] valueForKey:LANGUAGE_SELECTED];
@@ -111,10 +117,7 @@
         btnBuyShapes.hidden = YES;
     }
     
-    
-    self.arrLanguage =[[NSMutableArray alloc] initWithObjects:@"English",@"Portuguese",@"Russian",@"Spanish",@"French",@"German",@"Italian", nil];
-    
-
+  
 }
 
 #pragma mark - Button Action 
@@ -416,7 +419,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     DebugLog(@"");
     
-    return [self.arrLanguage count];
+    return self.langArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -436,7 +439,7 @@
         cell = [[UITableViewCell alloc]  initWithStyle: UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
     
-    cell.textLabel.text = [self.arrLanguage objectAtIndex:indexPath.row];
+    cell.textLabel.text = [self.langArr objectAtIndex:indexPath.row];
     cell.textLabel.textAlignment = UITextAlignmentCenter;
     cell.textLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:20.0f];
     
@@ -449,13 +452,13 @@
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Language"
                                             action:@"Language Selected"
-                                             label:[self.arrLanguage objectAtIndex:indexPath.row]
+                                             label:[self.langArr objectAtIndex:indexPath.row]
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
 
     
-    [[TigglyStampUtils sharedInstance] setCurrentLanguage:[self.arrLanguage objectAtIndex:indexPath.row]];
+    [[TigglyStampUtils sharedInstance] setCurrentLanguage:[self.langArr objectAtIndex:indexPath.row]];
     
     viewLanguage.hidden = YES;
     

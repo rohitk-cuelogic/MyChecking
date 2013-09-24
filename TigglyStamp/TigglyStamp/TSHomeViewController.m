@@ -83,6 +83,9 @@ int swipeTxtCnt;
         learnMoreBtn.userInteractionEnabled = NO;
     }
     
+    
+    forParentsBtn.titleLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:22.0f];
+    
 
 }
 
@@ -92,9 +95,7 @@ int swipeTxtCnt;
     isThumbnailLongPressed = NO;
     allThumbnails = [[NSMutableArray alloc] initWithCapacity:1];
     [self loadThumbnails];
-    
-    forParentsBtn.titleLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:22.0f];
-    
+
     bkgLayer=[CALayer layer];
     bkgLayer.name = @"btnLayer";
     bkgLayer.frame = CGRectMake(360,210, 300, 300);

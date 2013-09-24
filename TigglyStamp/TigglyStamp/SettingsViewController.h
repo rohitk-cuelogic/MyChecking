@@ -26,8 +26,10 @@
     UIPickerView *pickerView;
     UIPopoverController *popoverController;
     BOOL isShapePopView;
+    NSArray *langArr;
     
 }
+@property (nonatomic, strong) NSArray *langArr;
 @property (nonatomic, strong) ParentScreenViewController *parentScreen;
 @property (nonatomic, strong) IBOutlet UISwitch *swtchMusic;
 @property (nonatomic, strong) IBOutlet UISwitch *swtchArt;

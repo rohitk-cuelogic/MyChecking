@@ -259,7 +259,7 @@ UIActivityIndicatorView *activityIndicator;
                 emailidTextField.text = @"";
                 [emailidTextField resignFirstResponder];
                 [self.view addSubview:confView];
-                [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(removeConfirmationDilog:) userInfo:nil repeats:NO];
+                [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(removeConfirmationDilog:) userInfo:nil repeats:NO];
                 
 //                [self.view addSubview:childInfoView];
 //                [nameTextField becomeFirstResponder];
@@ -955,6 +955,12 @@ UIActivityIndicatorView *activityIndicator;
         self.view.userInteractionEnabled = YES;
         [settingView removeFromSuperview];
     }];
+}
+
+-(void) settingViewOnShapeSwitchClick:(SettingsView *) sView{
+    DebugLog(@"");
+    
+    [self launchUnlockScreen];
 }
 
 @end

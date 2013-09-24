@@ -8,14 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "GAITrackedViewController.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @class SettingsView;
 
 @protocol SettingViewProtocol <NSObject>
 -(void) settingViewOnCloseButtonClick:(SettingsView *) sView;
+-(void) settingViewOnShapeSwitchClick:(SettingsView *) sView;
 @end
 
-@interface SettingsView : UIView {
+@interface SettingsView : UIView <UITableViewDataSource, UITableViewDelegate>{
     
     
 }

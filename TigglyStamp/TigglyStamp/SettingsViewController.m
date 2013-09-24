@@ -79,6 +79,7 @@
     }else{
         [swtchLimitGallery setOn:NO];
     }
+    
     if ([[TigglyStampUtils sharedInstance]getDebugModeForWriteKeyInCsvOn] == YES) {
         [swtdebugMode setOn:YES];
         btnClearData.hidden = NO;

@@ -34,6 +34,11 @@
     NSString *imageName;
     UILabel *lblImageSaved;
     
+    UIView *confirmationView;
+    UIImageView *confirmationViewBKG;
+    UIButton *notConfirm;
+    UITextView *txtView;
+    
 }
 @property(nonatomic,strong) id<CapturedImageViewDelegate>delegate;
 @property (nonatomic,strong) UIImageView *imageView;

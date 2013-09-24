@@ -51,6 +51,8 @@
 @synthesize btnPrivacyPolicy;
 @synthesize webViewTab;
 @synthesize privacymainView;
+@synthesize isConnection;
+
 
 UIActivityIndicatorView *activityIndicator;
 
@@ -234,6 +236,8 @@ UIActivityIndicatorView *activityIndicator;
 - (void)removeConfirmationDilog:(NSTimer*)timer {
     DebugLog(@"");
     [self.confView removeFromSuperview];
+    emailidTextField.text = @"";
+
 }
 
 -(void) launchUnlockScreen {
@@ -319,13 +323,19 @@ UIActivityIndicatorView *activityIndicator;
         
         if (emailidTextField.text.length != 0) {
             if ([self isValidEmailAddress:emailidTextField.text] == YES) {
-                emailidTextField.text = @"";
-                [emailidTextField resignFirstResponder];
-                [self.view addSubview:confView];
-                [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(removeConfirmationDilog:) userInfo:nil repeats:NO];
-                
-//                [self.view addSubview:childInfoView];
-//                [nameTextField becomeFirstResponder];
+   
+//                [self CheckNetworkConnection];
+//                if( isConnection==YES)
+//                {
+//                    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//                    hud.labelText = NSLocalizedString(@"Loading ...", @"");
+//                    hud.autoresizingMask = 0;
+//                    // send user email addresses to subscription@tiggly.com
+//                    NSString *msgBody = emailidTextField.text;
+//                    [self sendMessageTo:SUBSCRIPTION_EMAIL_ID withMessagebody:msgBody];
+//                    
+//                }
+
                 
             }else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tiggly" message:@"Please enter valid email address" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
@@ -1030,6 +1040,74 @@ UIActivityIndicatorView *activityIndicator;
     
      [self enableAllButtons];
     [self launchUnlockScreen];
+}
+
+#pragma mark- Mail
+- (void)sendMessageTo:(NSString *)reciverEmail withMessagebody:(NSString *)messageBody
+{
+    NSLog(@"Start Sending");
+    SKPSMTPMessage *emailMessage = [[SKPSMTPMessage alloc] init];
+    emailMessage.fromEmail = SENDER_EMAIL_ID; //sender email address
+    emailMessage.toEmail = reciverEmail;  //receiver email address
+    emailMessage.relayHost = @"smtp.gmail.com";
+    //emailMessage.ccEmail =@"your cc address";
+    //emailMessage.bccEmail =@"your bcc address";
+    emailMessage.requiresAuth = YES;
+    emailMessage.login = SENDER_EMAIL_ID; //sender email address
+    emailMessage.pass = SENDER_EMAIL_ID_PASSWORD; //sender email password
+    emailMessage.subject =@"Tiggly";
+    emailMessage.wantsSecure = YES;
+    emailMessage.delegate = self; // you must include <SKPSMTPMessageDelegate> to your class
+    
+    //for example :   NSString *messageBody = [NSString stringWithFormat:@"Tour Name: %@\nName: %@\nEmail: %@\nContact No: %@\nAddress: %@\nNote: %@",selectedTour,nameField.text,emailField.text,foneField.text,addField.text,txtView.text];
+    // Now creating plain text email message
+    NSDictionary *plainMsg = [NSDictionary
+                              dictionaryWithObjectsAndKeys:@"text/plain",kSKPSMTPPartContentTypeKey,
+                              messageBody,kSKPSMTPPartMessageKey,@"8bit",kSKPSMTPPartContentTransferEncodingKey,nil];
+    emailMessage.parts = [NSArray arrayWithObjects:plainMsg,nil];
+    //in addition : Logic for attaching file with email message.
+    /*
+     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"filename" ofType:@"JPG"];
+     NSData *fileData = [NSData dataWithContentsOfFile:filePath];
+     NSDictionary *fileMsg = [NSDictionary dictionaryWithObjectsAndKeys:@"text/directory;\r\n\tx-
+     unix-mode=0644;\r\n\tname=\"filename.JPG\"",kSKPSMTPPartContentTypeKey,@"attachment;\r\n\tfilename=\"filename.JPG\"",kSKPSMTPPartContentDispositionKey,[fileData encodeBase64ForData],kSKPSMTPPartMessageKey,@"base64",kSKPSMTPPartContentTransferEncodingKey,nil];
+     emailMessage.parts = [NSArray arrayWithObjects:plainMsg,fileMsg,nil]; //including plain msg and attached file msg
+     */
+    [emailMessage send];
+    // sending email- will take little time to send so its better to use indicator with message showing sending...
+}
+
+
+-(void)messageSent:(SKPSMTPMessage *)message{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self.view addSubview:confView];
+    [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(removeConfirmationDilog:) userInfo:nil repeats:NO];
+}
+
+-(void)messageFailed:(SKPSMTPMessage *)message error:(NSError *)error{
+    // open an alert with just an OK button
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    [alert show];
+}
+#pragma mark - Network Connection
+-(void)CheckNetworkConnection
+{
+    UIAlertView *errorView;
+    NetworkStatus internetStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
+    
+    if(internetStatus== NotReachable){
+        
+        errorView = [[UIAlertView alloc]
+                     initWithTitle: @"Tiggly"
+                     message: @"It seems that your internet connection is not working. Please check your internet connection."
+                     delegate: nil
+                     cancelButtonTitle: @"Ok" otherButtonTitles: nil];
+        [errorView show];
+        isConnection=NO;
+    }
+    else
+        isConnection=YES;
 }
 
 @end

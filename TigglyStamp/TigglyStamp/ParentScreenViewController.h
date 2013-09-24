@@ -12,7 +12,11 @@
 #import "FHSTwitterEngine.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <Pinterest/Pinterest.h>
-
+#import <CFNetwork/CFNetwork.h>
+#import "SKPSMTPMessage.h"
+#import "NSData+Base64Additions.h"
+#import "MBProgressHUD.h"
+#import "Reachability.h"
 #import "TSHomeViewController.h"
 #import "SettingsView.h"
 
@@ -22,7 +26,7 @@
 #import "GAIFields.h"
 @interface ParentScreenViewController : GAITrackedViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate,UIWebViewDelegate, SettingViewProtocol>
 #else
-@interface ParentScreenViewController : UIViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate,UIWebViewDelegate, SettingViewProtocol>
+@interface ParentScreenViewController : UIViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate,UIWebViewDelegate, SettingViewProtocol,SKPSMTPMessageDelegate>
 #endif
 
 
@@ -36,7 +40,11 @@
     IBOutlet UIWebView *webView;
     IBOutlet UIButton *btnClose;
     IBOutlet UIButton *btnTigglyNews;
+    
+    MBProgressHUD* hud;
+    BOOL            isConnection;
 }
+@property (nonatomic) BOOL isConnection;
 @property (nonatomic,strong) IBOutlet UIButton *homeBTN;
 @property (nonatomic,strong) IBOutlet UIButton *subscribeBTN;
 @property (nonatomic,strong) IBOutlet UIButton *settingsBTN;

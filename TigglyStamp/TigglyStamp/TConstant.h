@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-#define DEBUG_MODE
+//#define DEBUG_MODE
 //#define IS_RUN_WITHOUT_SHAPE_FOR_TESTING 1
 #define IS_RUN_ON_SIMULATOR
 
@@ -57,6 +57,10 @@
 #define INT_Y_LIMIT_TO_FULL_CURL 384
 #define FLOAT_FULL_CURL_TIME 0.8
 #define FLOAT_CURL_TIME 0.3
+
+#define SUBSCRIPTION_EMAIL_ID @"sachin.patil@cuelogic.co.in"//@"subscription@tiggly.com"
+#define SENDER_EMAIL_ID @"tigglytwitter@gmail.com"
+#define SENDER_EMAIL_ID_PASSWORD @"tiggly123"
 
 //Do not change the sequence
 typedef enum {

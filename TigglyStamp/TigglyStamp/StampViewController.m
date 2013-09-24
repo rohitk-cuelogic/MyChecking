@@ -40,7 +40,7 @@
 @synthesize isCameraClick;
 @synthesize homeButton;
 @synthesize curlViewImage,backViewImage;
-@synthesize btnView;
+@synthesize btnView,lblTimer;
 
 #pragma mark -
 #pragma mark =======================================
@@ -62,7 +62,7 @@ NSTimer *shapeSoundTimer;
 int countShapeSound;
 UIImageView *tempImgView;
 NSMutableArray   *arrPhysicalShapes;
-
+NSTimer *videoTimer;
 
 XBPageCurlView *pageCurlView;
 XBSnappingPoint *bottomSnappingPoint;
@@ -2253,6 +2253,17 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         curlConfirmedButton.hidden = NO;
     }
     
+}
+
+
+-(void)updateTime{
+    NSDate* currentDate = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"mm:ss"];
+    // convert it to a string
+    NSString *dateString = [dateFormat stringFromDate:currentDate];
+    lblTimer.text = dateString;
+
 }
 
 @end

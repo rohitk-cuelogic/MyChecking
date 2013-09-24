@@ -172,7 +172,7 @@
             if (scale > 1.0)
             {
                 // iPad retina
-                CGContextSetInterpolationQuality(context, kCGInterpolationNone);
+                
             }
             else
             {
@@ -181,7 +181,7 @@
             }
         }
         
-        
+        CGContextSetInterpolationQuality(context, kCGInterpolationNone);
         
         [[self.layer presentationLayer]  renderInContext:context];
         

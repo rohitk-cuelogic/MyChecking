@@ -71,6 +71,7 @@
 @property (nonatomic,strong) IBOutlet UIView *mainView;
 @property (nonatomic,strong) IBOutlet UIView *backView;
 @property (nonatomic,strong) IBOutlet UIView *viewForCurl;
+@property (nonatomic,strong) IBOutlet UILabel *lblTimer;
 @property (nonatomic,strong) IntroScreenViewController *introView;
 @property (nonatomic, retain) XBCurlView *curlView;
 @property (nonatomic,readwrite)  BOOL isCameraClick;

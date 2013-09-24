@@ -165,6 +165,24 @@
         CGAffineTransform flipVertical =  CGAffineTransformMake(1, 0, 0, -1,0, self.frame.size.height);
         CGContextConcatCTM(context, flipVertical);
         
+        if ([UIScreen instancesRespondToSelector:@selector(scale)])
+        {
+            CGFloat scale = [[UIScreen mainScreen] scale];
+            
+            if (scale > 1.0)
+            {
+                // iPad retina
+                CGContextSetInterpolationQuality(context, kCGInterpolationNone);
+            }
+            else
+            {
+                //iPad screen                
+                
+            }
+        }
+        
+        
+        
         [[self.layer presentationLayer]  renderInContext:context];
         
         CGImageRef cgImage = CGBitmapContextCreateImage(context);
@@ -175,24 +193,7 @@
         CGImageRelease(cgImage);
         
         
-        if ([UIScreen instancesRespondToSelector:@selector(scale)])
-        {
-            CGFloat scale = [[UIScreen mainScreen] scale];
-            
-            if (scale > 1.0)
-            {
-                // iPad retina
-                NSLog(@"iPad retina");
-                //self.currentScreen = [self imageWithImage:background scaledToSize:CGSizeMake(1024, 768)];
-            }
-            else
-            {
-                //iPad screen
-                NSLog(@"iPad screen");
-
-                
-            }
-        }
+      
         
         
         

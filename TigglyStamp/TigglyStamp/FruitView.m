@@ -83,12 +83,12 @@
         }
 
     }else{
-        if ((self.frame.origin.x + location.x - touchLocation.x > 1024 - (imgView.frame.size.width) && self.frame.origin.y + location.y - touchLocation.y > (768 - (imgView.frame.size.height))) || (self.frame.origin.x + location.x - touchLocation.x > 1024 - (imgView.frame.size.width) && self.frame.origin.y + location.y - touchLocation.y < 0) || ( self.frame.origin.x + location.x - touchLocation.x < 0 && self.frame.origin.y + location.y - touchLocation.y > (768 - (imgView.frame.size.height))) || (self.frame.origin.x + location.x - touchLocation.x < 0 && self.frame.origin.y + location.y - touchLocation.y < 0)) {
+        if ((self.frame.origin.x + location.x - touchLocation.x > 1024 - (imgView.frame.size.width) && self.frame.origin.y + location.y - touchLocation.y > (768 - (imgView.frame.size.height))) || (self.frame.origin.x + location.x - touchLocation.x > 1024 - (imgView.frame.size.width) && self.frame.origin.y + location.y - touchLocation.y < 0) || ( self.frame.origin.x + location.x - touchLocation.x < 130 && self.frame.origin.y + location.y - touchLocation.y > (768 - (imgView.frame.size.height))) || (self.frame.origin.x + location.x - touchLocation.x < 130 && self.frame.origin.y + location.y - touchLocation.y < 0)) {
             
         }else if ( self.frame.origin.x + location.x - touchLocation.x > 1024 - (imgView.frame.size.width) ) {
             frame.origin.x = self.frame.origin.x;
             frame.origin.y = self.frame.origin.y + location.y - touchLocation.y;
-        }else if ( self.frame.origin.x + location.x - touchLocation.x < 110){
+        }else if ( self.frame.origin.x + location.x - touchLocation.x < 130){
             frame.origin.x = self.frame.origin.x;
             frame.origin.y = self.frame.origin.y + location.y - touchLocation.y;
         }else if (self.frame.origin.y + location.y - touchLocation.y > (768 - (imgView.frame.size.height))){

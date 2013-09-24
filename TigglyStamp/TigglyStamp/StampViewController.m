@@ -1346,6 +1346,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         [touchView touchesMoved:touches withEvent:nil];
     }
     
+    
     [tickBtnTimer invalidate];
     [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
     

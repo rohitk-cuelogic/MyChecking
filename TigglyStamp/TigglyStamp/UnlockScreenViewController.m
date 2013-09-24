@@ -196,7 +196,7 @@
     }
     
     if(shapeCount == 6){
-        prompt = @"lock";
+        prompt = @"tick_mark";
         promtView = [[UIImageView alloc] initWithFrame:CGRectMake(215,240,400, 400)];
         promtView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",prompt]];
         promtView.layer.zPosition = 1000;

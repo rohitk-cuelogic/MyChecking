@@ -35,10 +35,22 @@ int swipeTxtCnt;
     return self;
 }
 
-//============================================================================================
-- (void)viewDidLoad{
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+- (void)viewDidLoad {
     DebugLog(@"");
     [super viewDidLoad];
+    
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        // iOS 7
+        [self prefersStatusBarHidden];
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    } else {
+        // iOS 6
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    }
   
     if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
         [lockWinter setHidden:FALSE];

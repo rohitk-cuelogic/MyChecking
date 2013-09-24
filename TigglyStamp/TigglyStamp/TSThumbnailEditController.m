@@ -75,11 +75,22 @@ int swipeTextCnt;
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+- (void)viewDidLoad {
     DebugLog(@"");
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        // iOS 7
+        [self prefersStatusBarHidden];
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    } else {
+        // iOS 6
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    }
     
 #ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =

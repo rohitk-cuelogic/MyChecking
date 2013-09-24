@@ -73,11 +73,15 @@ UIActivityIndicatorView *activityIndicator;
 #pragma mark View LifeCycle
 #pragma mark =======================================
 
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 - (void)viewDidLoad {
     DebugLog(@"");
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     
+
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         // iOS 7
         [self prefersStatusBarHidden];
@@ -243,7 +247,7 @@ UIActivityIndicatorView *activityIndicator;
 -(void) enableAllButtons{
     DebugLog(@"");
     
-    webView.userInteractionEnabled  =YES;
+    webViewTab.scrollView.scrollEnabled  =YES;
     homeBTN.enabled = YES;
     subscribeBTN.enabled = YES;
     faceBookBTN.enabled = YES;
@@ -261,7 +265,7 @@ UIActivityIndicatorView *activityIndicator;
 -(void) disableAllButtons{
     DebugLog(@"");
     
-    webView.userInteractionEnabled  = NO;
+    webViewTab.scrollView.scrollEnabled  =YES;
     settingsBTN.enabled = NO;
     homeBTN.enabled = NO;
     subscribeBTN.enabled =  NO;
@@ -977,12 +981,6 @@ UIActivityIndicatorView *activityIndicator;
 		return NO;
     
    	return YES;
-}
-
-#pragma mark - Hide Status Bar
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
 }
 
 #pragma mark -

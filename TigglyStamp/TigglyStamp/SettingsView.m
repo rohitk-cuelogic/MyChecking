@@ -272,7 +272,7 @@ BOOL isLanguageScreenDisplayed;
     [self addSubview:langView];
     
     tblView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 235, 235)];
-    tblView.separatorColor = [UIColor blackColor];
+    tblView.separatorColor = [UIColor lightGrayColor];
     tblView.backgroundColor = [UIColor whiteColor];
     tblView.delegate = self;
     tblView.dataSource = self;

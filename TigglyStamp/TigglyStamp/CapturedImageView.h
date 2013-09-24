@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "KTViewController.h"
+
+#ifdef GOOGLE_ANALYTICS_START
 #import "GAITrackedViewController.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#else
+
+#endif
 
 @class CapturedImageView;
 

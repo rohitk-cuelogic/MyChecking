@@ -81,6 +81,7 @@ int swipeTextCnt;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+#ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Gallery"
                                             action:@"Gallery opened"
@@ -88,6 +89,11 @@ int swipeTextCnt;
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
+#else
+    
+#endif
+    
+
     
     emSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swippedforConfirmation)];
     [emSwipeRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
@@ -710,6 +716,7 @@ int swipeTextCnt;
     DebugLog(@"");
     //save image to the photo album
     
+#ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Gallery"
                                             action:@"Gallery opened"
@@ -717,6 +724,11 @@ int swipeTextCnt;
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
+#else
+    
+#endif
+    
+
     
     if([[editImgName pathExtension] isEqualToString:@"mov"]) {
         

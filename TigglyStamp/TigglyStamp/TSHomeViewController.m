@@ -368,7 +368,7 @@ int swipeTxtCnt;
         [imgScrollView setUserInteractionEnabled:YES];        
         readyToNewsScreen = NO;
         
-        
+#ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
         [[GAIDictionaryBuilder createEventWithCategory:@"Button Click"
                                                 action:@"Button Clicked"
@@ -376,6 +376,11 @@ int swipeTxtCnt;
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];
         [[GAI sharedInstance] dispatch];
+        
+#else
+        
+#endif
+
 
         
         [playBtnTimer invalidate];
@@ -421,7 +426,7 @@ int swipeTxtCnt;
         readyToLearnMore = NO;
         
         
-        
+#ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
         [[GAIDictionaryBuilder createEventWithCategory:@"About tiggly"
                                                 action:@"Learn more"
@@ -429,6 +434,11 @@ int swipeTxtCnt;
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];
         [[GAI sharedInstance] dispatch];
+        
+#else
+        
+#endif
+
         
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.myshopify.com/products/tiggly-shapes"]];
     }

@@ -117,7 +117,7 @@
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     // Language selection shows only onces when app launch first time
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
-        
+#ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
         [[GAIDictionaryBuilder createEventWithCategory:@"App Version"
                                                 action:@"App Version"
@@ -125,6 +125,10 @@
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];
         [[GAI sharedInstance] dispatch];
+#else
+        
+#endif
+
         
         [UIView animateWithDuration:0.3 animations:^{
             bkgImageViewlang.alpha = 1.0;
@@ -377,6 +381,7 @@
     
 //    lblLunguage.text = [self.arrLanguage objectAtIndex:indexPath.row];
     
+#ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Language"
                                             action:@"Language Selected"
@@ -384,6 +389,10 @@
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
+#else
+    
+#endif
+
     
     
     [self.view bringSubviewToFront:self.gameTypeView];

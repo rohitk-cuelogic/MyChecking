@@ -10,6 +10,14 @@
 #import "IntroScreenViewController.h"
 #import "TigglyStampUtils.h"
 #import "TDSoundManager.h"
+#import "TConstant.h"
+
+#ifdef GOOGLE_ANALYTICS_START
+#import "GAI.h"
+#else
+
+#endif
+
 
 @implementation AppDelegate
 @synthesize navController;
@@ -34,8 +42,9 @@ static NSString *const kAllowTracking = @"allowTracking";
     allFiles = [[TigglyStampUtils sharedInstance]getAllImagesAndMovies];
     DebugLog(@"AllFilesCount : %d",allFiles.count);
     
-    self.tracker = [[GAI sharedInstance] trackerWithName:@"iOSTigglySafari"
-                                              trackingId:kTrackingId];
+#ifdef GOOGLE_ANALYTICS_START
+    [[GAI sharedInstance] trackerWithName:@"iOSTigglySafari"
+                               trackingId:kTrackingId];
     
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"About tiggly"
@@ -44,6 +53,13 @@ static NSString *const kAllowTracking = @"allowTracking";
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
+#else
+    
+#endif
+
+    
+    
+
     
     return YES;
 }

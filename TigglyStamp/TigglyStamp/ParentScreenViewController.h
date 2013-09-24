@@ -12,13 +12,21 @@
 #import "FHSTwitterEngine.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <Pinterest/Pinterest.h>
-#import "GAI.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
+
 #import "TSHomeViewController.h"
 #import "SettingsView.h"
 
+#ifdef GOOGLE_ANALYTICS_START
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 @interface ParentScreenViewController : GAITrackedViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate,UIWebViewDelegate, SettingViewProtocol>
+#else
+@interface ParentScreenViewController : UIViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate,UIWebViewDelegate, SettingViewProtocol>
+#endif
+
+
+
 {
     Pinterest*  _pinterest;
     

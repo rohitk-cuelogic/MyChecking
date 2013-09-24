@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "GAITrackedViewController.h"
-#import "GAI.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
+
+
 
 @class SettingsView;
 

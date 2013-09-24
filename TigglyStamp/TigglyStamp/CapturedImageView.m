@@ -135,6 +135,7 @@
 -(void)btnHomeClicked{
     DebugLog(@"");
     //call delegate
+#ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Home Button"
                                             action:@"Home button Clicked"
@@ -142,6 +143,11 @@
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
+#else
+    
+#endif
+    
+
     
     [delegate onHomeButtonClicked:self];
 }
@@ -150,6 +156,7 @@
     DebugLog(@"");
     [delegate onSendButton:self];
     
+#ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Gallery"
                                             action:@"Gallery opened"
@@ -157,6 +164,11 @@
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
+#else
+    
+#endif
+    
+
     
     NSString *strFile = [imageName lastPathComponent];
     

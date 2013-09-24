@@ -449,7 +449,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     DebugLog(@"");
- 
+#ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Language"
                                             action:@"Language Selected"
@@ -457,6 +457,11 @@
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
+    
+#else
+    
+#endif
+
 
     
     [[TigglyStampUtils sharedInstance] setCurrentLanguage:[self.langArr objectAtIndex:indexPath.row]];

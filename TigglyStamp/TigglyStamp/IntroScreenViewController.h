@@ -10,10 +10,17 @@
 #import "KTViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TConstant.h"
+
+
+
+#ifdef GOOGLE_ANALYTICS_START
 #import "GAITrackedViewController.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#else
+#endif
+
 
 @interface IntroScreenViewController:KTViewController<UIPopoverControllerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {

@@ -232,6 +232,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     
     if ([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes] && !isWithShape) {
+#ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
         [[GAIDictionaryBuilder createEventWithCategory:@"Game Play"
                                                 action:@"Full version with no shape"
@@ -239,6 +240,12 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];
         [[GAI sharedInstance] dispatch];
+        
+#else
+        
+#endif
+        
+
     }
     
 }
@@ -637,7 +644,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     [garbageCan setHidden:NO];
 //    [curlButton setHidden:NO];
     
-    
+#ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Gallery"
                                             action:@"Picture captured"
@@ -645,6 +652,11 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
+    
+#else
+    
+#endif
+
     
     
     UIView *flashView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
@@ -1343,6 +1355,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         CGPoint point = [[touches anyObject] locationInView:touchView];
         [self.mainView bringSubviewToFront:fruit];
         
+#ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
         [[GAIDictionaryBuilder createEventWithCategory:@"Game Play"
                                                 action:@"Object moved"
@@ -1350,6 +1363,11 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];
         [[GAI sharedInstance] dispatch];
+#else
+        
+#endif
+        
+
         
         [fruit moveObject:touches point:point];
     }
@@ -1393,7 +1411,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     if(!isRecording){
         if(CGRectIntersectsRect(fruit.frame, garbageCan.frame)){
             DebugLog(@"Delete Object");
-            
+#ifdef GOOGLE_ANALYTICS_START
             NSMutableDictionary *event =
             [[GAIDictionaryBuilder createEventWithCategory:@"Game Play"
                                                     action:@"Object Deleted"
@@ -1401,6 +1419,11 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                                      value:nil] build];
             [[GAI sharedInstance].defaultTracker send:event];
             [[GAI sharedInstance] dispatch];
+            
+#else
+            
+#endif
+ 
             
             fruit.layer.position = CGPointMake(1024 - garbageCan.frame.size.width/2, 768 - garbageCan.frame.size.height/2);
             DebugLog(@"Frame is %@",NSStringFromCGRect(fruit.frame));
@@ -1681,7 +1704,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
     
     [[TDSoundManager sharedManager] stopMusic];
-    
+#ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Home Button"
                                             action:@"Home button Clicked"
@@ -1689,6 +1712,11 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
+    
+#else
+    
+#endif
+
     
     [moviePlayer stop];
     
@@ -1741,7 +1769,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     DebugLog(@"");
     NSURL *url = screenCapture.exportUrl;
     // [self playRandomPraiseSound];
-    
+#ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Gallery"
                                             action:@"Video Recording"
@@ -1749,6 +1777,11 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
+    
+#else
+    
+#endif
+
     
     double delayInSeconds = 1.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));

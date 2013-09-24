@@ -135,7 +135,7 @@ int swipeTxtCnt;
          if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
              return;
          }
-        
+#ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
         [[GAIDictionaryBuilder createEventWithCategory:@"Game Scene"
                                                 action:@"Scene selected"
@@ -143,11 +143,15 @@ int swipeTxtCnt;
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];
         [[GAI sharedInstance] dispatch];
+#else
+        
+#endif
+
         
         stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneWinter];
         [self.navigationController pushViewController:stampViewController animated:YES];
     }else if (btn.tag == TAG_FALL_BTN){
-        
+#ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
         [[GAIDictionaryBuilder createEventWithCategory:@"Game Scene"
                                                 action:@"Scene selected"
@@ -155,6 +159,10 @@ int swipeTxtCnt;
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];
         [[GAI sharedInstance] dispatch];
+#else
+        
+#endif
+
         
         stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneFall];
         [self.navigationController pushViewController:stampViewController animated:YES];
@@ -221,7 +229,7 @@ int swipeTxtCnt;
 -(void)swippedforConfirmation{
     
     [self noConfirmation:NULL];
-    
+#ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"About tiggly"
                                             action:@"Learn more"
@@ -230,6 +238,11 @@ int swipeTxtCnt;
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
     
+#else
+    
+#endif
+
+
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.myshopify.com/products/tiggly-shapes"]];
 }

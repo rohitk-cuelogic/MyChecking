@@ -278,6 +278,7 @@
     
     [[TigglyStampUtils sharedInstance] unlockAppForShapes:YES];
     
+#ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"App Version"
                                             action:@"App Version"
@@ -294,6 +295,11 @@
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event1];
     [[GAI sharedInstance] dispatch];
+#else
+    
+#endif
+    
+
     
     double delayInSeconds = 5.0f;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -332,7 +338,7 @@
 
 -(IBAction)actionBuyNow {
     DebugLog(@"");
-    
+#ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Buy shapes"
                                             action:@"Buy now"
@@ -340,6 +346,10 @@
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
+#else
+    
+#endif
+
     
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.myshopify.com/products/tiggly-shapes"]];
@@ -347,6 +357,7 @@
 
 -(IBAction)actionLearnMore {
     DebugLog(@"");
+#ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"About tiggly"
                                             action:@"Learn more"
@@ -354,6 +365,10 @@
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
+#else
+    
+#endif
+
     
      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.myshopify.com/products/tiggly-shapes"]];
 }

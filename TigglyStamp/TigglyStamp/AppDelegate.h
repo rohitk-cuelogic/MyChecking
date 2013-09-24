@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAI.h"
 @class IntroScreen;
 @class IntroScreenViewController;
 static NSMutableDictionary *shapeDicionary;
@@ -17,5 +16,5 @@ static NSMutableDictionary *shapeDicionary;
 @property (strong,nonatomic) NSArray *allFiles;
 @property (strong, nonatomic) IntroScreenViewController *viewController;
 @property (strong, nonatomic) UINavigationController *navController;
-@property(nonatomic, strong) id<GAITracker> tracker;
+//@property(nonatomic, strong) id<GAITracker> tracker;
 @end

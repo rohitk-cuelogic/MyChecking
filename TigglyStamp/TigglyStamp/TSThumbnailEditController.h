@@ -12,11 +12,16 @@
 #import "UIView+Genie.h"
 #import "TigglyStampUtils.h"
 #import <MediaPlayer/MediaPlayer.h>
+
+
+#ifdef GOOGLE_ANALYTICS_START
 #import "GAITrackedViewController.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#else
 
+#endif
 
 @interface TSThumbnailEditController : UIViewController{
     IBOutlet UIButton *homeBtn;

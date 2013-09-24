@@ -9,10 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "UITouchVerificationView.h"
 #import "TDSoundManager.h"
+
+
+#ifdef GOOGLE_ANALYTICS_START
 #import "GAITrackedViewController.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#else
+
+#endif
 
 @interface UnlockScreenViewController : UIViewController <UITouchVerificationViewDelegate> {
     

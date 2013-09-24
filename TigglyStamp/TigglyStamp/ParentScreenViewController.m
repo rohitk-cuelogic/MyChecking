@@ -148,6 +148,7 @@ UIActivityIndicatorView *activityIndicator;
     //Manual
     // May return nil if a tracker has not already been initialized with a
     // property ID.
+#ifdef GOOGLE_ANALYTICS_START
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     
     // This screen name value will remain set on the tracker and sent with
@@ -156,6 +157,10 @@ UIActivityIndicatorView *activityIndicator;
            value:@"Parent Control Screen"];
     
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+#else
+#endif
+    
+
     
 }
 
@@ -246,6 +251,7 @@ UIActivityIndicatorView *activityIndicator;
         [self.navigationController pushViewController:tSHomeViewController animated:YES];
     }
     if ([btn tag] == TAG_SUBSCRIBE_BTN) {
+#ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
         [[GAIDictionaryBuilder createEventWithCategory:@"UI"
                                                 action:@"buttonPress"
@@ -253,6 +259,10 @@ UIActivityIndicatorView *activityIndicator;
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];
         [[GAI sharedInstance] dispatch];
+#else
+#endif
+        
+
         
         if (emailidTextField.text.length != 0) {
             if ([self isValidEmailAddress:emailidTextField.text] == YES) {
@@ -328,6 +338,7 @@ UIActivityIndicatorView *activityIndicator;
         }
     }
     if([btn tag] == TAG_TIGGLY_NEWS_BTN){
+#ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
         [[GAIDictionaryBuilder createEventWithCategory:@"UI"
                                                 action:@"buttonPress"
@@ -335,6 +346,9 @@ UIActivityIndicatorView *activityIndicator;
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];
         [[GAI sharedInstance] dispatch];
+#else
+#endif
+
         [self.view bringSubviewToFront:viewForWeb];
         NSString *urlString = @"http://tiggly.com/";
         //Create a URL object.
@@ -437,6 +451,7 @@ UIActivityIndicatorView *activityIndicator;
 
 -(void) launchTigglyNews {
     DebugLog(@"");
+#ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Parent Control"
                                             action:@"buttonPress"
@@ -444,6 +459,9 @@ UIActivityIndicatorView *activityIndicator;
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
+#else
+#endif
+
     [self.view bringSubviewToFront:viewForWeb];
     NSString *urlString = @"http://tiggly.com/";
     //Create a URL object.

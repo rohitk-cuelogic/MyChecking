@@ -10,7 +10,13 @@
 #import "TConstant.h"
 #import "TigglyStampUtils.h"
 
-
+#ifdef GOOGLE_ANALYTICS_START
+#import "GAITrackedViewController.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
+#else
+#endif
 @implementation SettingsView
 
 UISwitch *swtchMusic;
@@ -329,7 +335,7 @@ BOOL isLanguageScreenDisplayed;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     DebugLog(@"");
-    
+#ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Language"
                                             action:@"Language Selected"
@@ -337,6 +343,9 @@ BOOL isLanguageScreenDisplayed;
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
+#else
+#endif
+
     
     
     [[TigglyStampUtils sharedInstance] setCurrentLanguage:[langArr objectAtIndex:indexPath.row]];

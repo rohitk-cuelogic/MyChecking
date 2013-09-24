@@ -55,6 +55,9 @@
 @property (nonatomic, strong) IBOutlet UISwitch *swtdebugMode;
 @property (nonatomic, strong) IBOutlet UISwitch *swtSendMail;
 
+@property (nonatomic, strong) IBOutlet UIView *viewLanguage;
+@property (nonatomic, strong) IBOutlet UITableView *tblView;
+
 -(IBAction)actionSwitchValueChanged:(id)sender;
 -(IBAction)onButtonClicked:(id)sender;
 -(IBAction)languageButtonClicked:(id)sender;

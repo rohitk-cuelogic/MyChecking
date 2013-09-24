@@ -23,6 +23,7 @@
 @synthesize lblLunguageTest;
 @synthesize lbl1,lbl2,lbl3,lbl4,lbl5,lbl6;
 @synthesize parentScreen,btnBuyShapes,btnClose;
+@synthesize viewLanguage,tblView;
 
 #pragma mark - Activity LifeCycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -31,6 +32,12 @@
         // Custom initialization
     }
     return self;
+}
+
+-(void) viewWillAppear:(BOOL)animated {
+    DebugLog(@"");
+
+    viewLanguage.hidden = YES;
 }
 
 - (void)viewDidLoad {
@@ -103,6 +110,11 @@
         lbl6.hidden = YES;
         btnBuyShapes.hidden = YES;
     }
+    
+    
+    self.arrLanguage =[[NSMutableArray alloc] initWithObjects:@"English",@"Portuguese",@"Russian",@"Spanish",@"French",@"German",@"Italian", nil];
+    
+
 }
 
 #pragma mark - Button Action 
@@ -219,15 +231,20 @@
 -(IBAction)languageButtonClicked:(id)sender
 {
     // Shows the drop down menu for language
-    if (arrLanguage!=NULL) {
-        [arrLanguage removeAllObjects];
-        arrLanguage = NULL;
-    }
-    isShapePopView = NO;
+//    if (arrLanguage!=NULL) {
+//        [arrLanguage removeAllObjects];
+//        arrLanguage = NULL;
+//    }
+//    isShapePopView = NO;
 
-    arrLanguage =[[NSMutableArray alloc] initWithObjects:@"English",@"Portuguese",@"Russian",@"Spanish", nil];
-    [self popOverUIPicker:sender];
+    //[self popOverUIPicker:sender];
     
+
+    viewLanguage.layer.cornerRadius = 20.0f;
+    viewLanguage.backgroundColor = [UIColor colorWithRed:240.0f/255.0f green:210.0f/255.0f blue:50.0f/255.0f alpha:1.0];
+    tblView.layer.cornerRadius = 20.0f;
+    
+    viewLanguage.hidden = NO;
 }
 
 -(IBAction)shapeButtonClicked:(id)sender {
@@ -371,5 +388,78 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Touch Handling
+#pragma mark =======================================
+
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    DebugLog(@"");
+    
+    if(!viewLanguage.hidden)
+        viewLanguage.hidden = YES;
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark TableView Delegates
+#pragma mark =======================================
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    DebugLog(@"");
+    
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    DebugLog(@"");
+    
+    return [self.arrLanguage count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 40.0f;
+    
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //DebugLog(@"");
+    NSString *reuseIdentifier = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]  initWithStyle: UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    }
+    
+    cell.textLabel.text = [self.arrLanguage objectAtIndex:indexPath.row];
+    cell.textLabel.textAlignment = UITextAlignmentCenter;
+    cell.textLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:20.0f];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DebugLog(@"");
+ 
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"Language"
+                                            action:@"Language Selected"
+                                             label:[self.arrLanguage objectAtIndex:indexPath.row]
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
+
+    
+    [[TigglyStampUtils sharedInstance] setCurrentLanguage:[self.arrLanguage objectAtIndex:indexPath.row]];
+    
+    viewLanguage.hidden = YES;
+    
+}
+
 
 @end

@@ -770,6 +770,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     if(isRecording) {
         
+        [videoTimer invalidate];
+        
         isRecording = NO;
         [videoButton setBackgroundImage:[UIImage imageNamed:@"record_icon_ record"] forState:UIControlStateNormal];
         cameraButton.hidden = NO;
@@ -793,16 +795,18 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         
         [self playTellUsStorySound];
         
-        
-        
-        [videoButton.layer removeAnimationForKey:@"transform.scale"];
-        [videoButton.layer removeAllAnimations];
-        
-        
+                
         [videoButton setBackgroundImage:[UIImage imageNamed:@"record_icon_stop_2"] forState:UIControlStateNormal];
         
+        
+        [videoButton.layer removeAllAnimations];
+        [videoButton.layer removeAnimationForKey:@"transform.scale"];
+        
+        [cameraButton.layer removeAllAnimations];
+        [cameraButton.layer removeAnimationForKey:@"transform.scale"];
+        
          
-        double delayInSeconds = 0.0;
+        double delayInSeconds = 1.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             CABasicAnimation *theAnimation;
@@ -816,7 +820,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         });
         
         [videoTimer invalidate];
-        videoTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(actionRecording:) userInfo:nil repeats:NO];
+        videoTimer = [NSTimer scheduledTimerWithTimeInterval:180.0 target:self selector:@selector(actionRecording:) userInfo:nil repeats:NO];
         
     }
 }
@@ -1773,7 +1777,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                              selector:@selector(didExitFullScreen:)
                                                  name:MPMoviePlayerDidExitFullscreenNotification
                                                object:nil];
-    [moviePlayer.view setFrame:CGRectMake(120, 110,750,563)];
+    [moviePlayer.view setFrame:CGRectMake(140, 110,750,563)];
     moviePlayer.controlStyle = MPMovieControlStyleDefault;
     moviePlayer.shouldAutoplay = YES;
     [self.view addSubview:moviePlayer.view];

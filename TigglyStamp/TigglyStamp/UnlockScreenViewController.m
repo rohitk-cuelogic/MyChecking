@@ -195,16 +195,26 @@
             }
     }
     
-    shapeToBeDetected = prompt;
-    promtView = [[UIImageView alloc] initWithFrame:CGRectMake(215,250,400, 400)];
-    promtView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_prompt.png",prompt]];
-    promtView.layer.zPosition = 1000;
-    [self.view addSubview:promtView];
-    isPromptDisplayed = YES;
-    
-    if([lblInstructionText.text isEqualToString:INSTRUCTION_RESTART]) {
-        lblInstructionText.text = INSTRUCTION_TEXT1;
+    if(shapeCount == 6){
+        prompt = @"lock";
+        promtView = [[UIImageView alloc] initWithFrame:CGRectMake(215,240,400, 400)];
+        promtView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",prompt]];
+        promtView.layer.zPosition = 1000;
+        [self.view addSubview:promtView];
+        isPromptDisplayed = NO;
 
+    }else{
+        shapeToBeDetected = prompt;
+        promtView = [[UIImageView alloc] initWithFrame:CGRectMake(215,250,400, 400)];
+        promtView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_prompt.png",prompt]];
+        promtView.layer.zPosition = 1000;
+        [self.view addSubview:promtView];
+        isPromptDisplayed = YES;
+        
+        if([lblInstructionText.text isEqualToString:INSTRUCTION_RESTART]) {
+            lblInstructionText.text = INSTRUCTION_TEXT1;
+
+        }
     }
 }
 
@@ -249,6 +259,8 @@
 
                     if(shapeCount < 6){
                         [self displayPrompt];
+                    }else if (shapeCount == 6){
+                        [self displayPrompt];
                     }
 
                     
@@ -283,7 +295,7 @@
     [[GAI sharedInstance].defaultTracker send:event1];
     [[GAI sharedInstance] dispatch];
     
-    double delayInSeconds = 3.0f;
+    double delayInSeconds = 5.0f;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];

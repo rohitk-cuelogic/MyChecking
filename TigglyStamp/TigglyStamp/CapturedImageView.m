@@ -36,7 +36,7 @@
 
         if([[[imgName lastPathComponent]pathExtension] isEqualToString:@"mov"]) {
             
-            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(80,80, 820, 650)];
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100,90, 820, 650)];
             view.backgroundColor = [UIColor whiteColor];
              view.layer.cornerRadius = 20.0f;
             
@@ -60,7 +60,7 @@
             UIImage *thumb = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:strFile];
             imageView = [[UIImageView alloc] initWithImage:thumb];
 //            imageView.frame = CGRectMake(100, 80,800,600);
-            imageView.frame = CGRectMake(120, 110,750,563);
+            imageView.frame = CGRectMake(140, 120,750,563);
             [self addSubview:imageView];
             
             btnPlay = [UIButton buttonWithType:UIButtonTypeCustom];

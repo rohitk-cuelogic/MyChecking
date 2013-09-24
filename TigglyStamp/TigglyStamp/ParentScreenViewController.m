@@ -48,8 +48,9 @@
 @synthesize tabLetterBTN,tabLearningTipBTN,tabPlayBTN,tabLearPhilosophyBTN,tabTitleIMGVIEW,tabBody1TEXT,tabHeading1TEXT,tabBody2TEXT,tabHeading2TEXT,tabHeading3TEXT;
 @synthesize lblLanguageTEXT,lblMotarTEXT,lblSpatialTEXT;
 @synthesize tabLetterMotarBTN,tabLetterLanguageBTN,tabLetterSpatialBTN,lettertabBodyTEXT,lettertabCloseBTN,lettertabHeadingLBL,letterTabView;
-
+@synthesize btnPrivacyPolicy;
 @synthesize webViewTab;
+@synthesize privacymainView;
 
 UIActivityIndicatorView *activityIndicator;
 
@@ -132,13 +133,7 @@ UIActivityIndicatorView *activityIndicator;
     [webView addSubview:activityIndicator];
     [webView bringSubviewToFront:activityIndicator];
     
-    int height;
-    if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes])
-        height = 390;
-    else
-        height = 450;
-    
-    settingView = [[SettingsView alloc] initWithFrame:CGRectMake(512-400, 800, 800, height)];
+    btnPrivacyPolicy.titleLabel.font = [UIFont fontWithName:APP_FONT size:16.0f];
 
 }
 
@@ -208,12 +203,20 @@ UIActivityIndicatorView *activityIndicator;
 //    settingsView.view.superview.layer.cornerRadius = 25.0f;
 //    settingsView.view.superview.layer.masksToBounds = YES;
     
+    [self disableAllButtons];
+    
     int height;
     if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes])
         height = 390;
     else
         height = 450;
+
+    if(settingView != nil){
+        [settingView removeFromSuperview];
+        settingView = nil;
+    }
     
+    settingView = [[SettingsView alloc] initWithFrame:CGRectMake(512-400, 800, 800, height)];
     settingView.delegate = self;
     [UIView animateWithDuration:0.5 animations:^{
         settingView.frame = CGRectMake(512-400, 384-(height/2), 800, height);
@@ -237,10 +240,56 @@ UIActivityIndicatorView *activityIndicator;
     
 }
 
+-(void) enableAllButtons{
+    DebugLog(@"");
+    
+    webView.userInteractionEnabled  =YES;
+    homeBTN.enabled = YES;
+    subscribeBTN.enabled = YES;
+    faceBookBTN.enabled = YES;
+    twitterBTN.enabled = YES;
+    pathBTN.enabled = YES;
+    tabLetterBTN.enabled = YES;
+    tabPlayBTN.enabled = YES;
+    tabLearningTipBTN.enabled = YES;
+    tabLearPhilosophyBTN.enabled = YES;
+    settingsBTN.enabled = YES;
+    btnPrivacyPolicy.enabled = YES;
+}
+
+
+-(void) disableAllButtons{
+    DebugLog(@"");
+    
+    webView.userInteractionEnabled  = NO;
+    settingsBTN.enabled = NO;
+    homeBTN.enabled = NO;
+    subscribeBTN.enabled =  NO;
+    faceBookBTN.enabled =  NO;
+    twitterBTN.enabled =  NO;
+    pathBTN.enabled =  NO;
+    tabLetterBTN.enabled =  NO;
+    tabPlayBTN.enabled =  NO;
+    tabLearningTipBTN.enabled =  NO;
+    tabLearPhilosophyBTN.enabled =  NO;
+    btnPrivacyPolicy.enabled = NO;
+}
+
+
 #pragma mark -
 #pragma mark =======================================
 #pragma mark Action Handling
 #pragma mark =======================================
+
+-(IBAction)actionClosePrivacyPolicy:(id)sender{
+    DebugLog(@"");
+    [privacymainView removeFromSuperview];
+}
+
+-(IBAction)actionPrivacyPolicy:(id)sender{
+    DebugLog(@"");
+    [self.view addSubview:privacymainView];
+}
 
 -(IBAction)onButtonClicked:(id)sender{
     DebugLog(@"");
@@ -961,6 +1010,8 @@ UIActivityIndicatorView *activityIndicator;
 
 -(void) settingViewOnCloseButtonClick:(SettingsView *)sView {
     DebugLog(@"");
+  
+    [self enableAllButtons];
     
     int height;
     if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes])
@@ -972,12 +1023,14 @@ UIActivityIndicatorView *activityIndicator;
     } completion:^(BOOL finished){
         self.view.userInteractionEnabled = YES;
         [settingView removeFromSuperview];
+        settingView = nil;
     }];
 }
 
 -(void) settingViewOnShapeSwitchClick:(SettingsView *) sView{
     DebugLog(@"");
     
+     [self enableAllButtons];
     [self launchUnlockScreen];
 }
 

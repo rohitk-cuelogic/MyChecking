@@ -1071,6 +1071,7 @@
 		C0DDFCBF17A6384D001F846D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C00C973617A292A300224283 /* SettingsViewController.m */; };
 		C0F20DD217D9D09900340C20 /* rooster_Animal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0F20DD117D9D09900340C20 /* rooster_Animal.mp3 */; };
 		C0F814CA17F157EB0051C2B5 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F814C917F157EB0051C2B5 /* SettingsView.m */; };
+		C0F814CE17F179A10051C2B5 /* GestureConfirmationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F814CD17F179A10051C2B5 /* GestureConfirmationView.m */; };
 		C0FF762A17A78FA500FF084A /* TigglyStamp-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F332C1781867900FC479F /* TigglyStamp-Info.plist */; };
 		EB11AF8117AA36FE0013B1B4 /* IntroScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC31D64317A94CE1008C5361 /* IntroScreenViewController.xib */; };
 		EB1A593417ABD138001749D2 /* pattern_0_1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB1A593317ABD138001749D2 /* pattern_0_1.png */; };
@@ -2321,6 +2322,8 @@
 		C0F20DD117D9D09900340C20 /* rooster_Animal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rooster_Animal.mp3; sourceTree = "<group>"; };
 		C0F814C817F157EB0051C2B5 /* SettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsView.h; sourceTree = "<group>"; };
 		C0F814C917F157EB0051C2B5 /* SettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsView.m; sourceTree = "<group>"; };
+		C0F814CC17F179A10051C2B5 /* GestureConfirmationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureConfirmationView.h; sourceTree = "<group>"; };
+		C0F814CD17F179A10051C2B5 /* GestureConfirmationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureConfirmationView.m; sourceTree = "<group>"; };
 		EB1A593317ABD138001749D2 /* pattern_0_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pattern_0_1.png; sourceTree = "<group>"; };
 		EB2B02C517C4DE9F00340A20 /* tick2@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick2@2x~ipad.png"; sourceTree = "<group>"; };
 		EB2B02C617C4DE9F00340A20 /* tick1@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick1@2x~ipad.png"; sourceTree = "<group>"; };
@@ -3893,6 +3896,8 @@
 				C027AE5617EAD8920066632E /* UnlockScreenViewController.xib */,
 				C0F814C817F157EB0051C2B5 /* SettingsView.h */,
 				C0F814C917F157EB0051C2B5 /* SettingsView.m */,
+				C0F814CC17F179A10051C2B5 /* GestureConfirmationView.h */,
+				C0F814CD17F179A10051C2B5 /* GestureConfirmationView.m */,
 			);
 			path = TigglyStamp;
 			sourceTree = "<group>";
@@ -5370,6 +5375,7 @@
 				C02F012C17E70CC7007405C0 /* PhysicalShapesView.m in Sources */,
 				C027AE5717EAD8920066632E /* UnlockScreenViewController.m in Sources */,
 				C0F814CA17F157EB0051C2B5 /* SettingsView.m in Sources */,
+				C0F814CE17F179A10051C2B5 /* GestureConfirmationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">11G63</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1138.51</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">2083</string>
@@ -241,7 +241,7 @@
 						<string key="NSFrame">{{36, 239}, {147, 57}}</string>
 						<reference key="NSSuperview" ref="344892077"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="69692568"/>
+						<reference key="NSNextKeyView" ref="30614505"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -514,11 +514,43 @@
 						<string key="NSFrame">{{372, 111}, {620, 624}}</string>
 						<reference key="NSSuperview" ref="344892077"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="437977959"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIDataDetectorTypes">1</int>
 						<bool key="IBUIDetectsPhoneNumbers">YES</bool>
+					</object>
+					<object class="IBUIButton" id="30614505">
+						<reference key="NSNextResponder" ref="344892077"/>
+						<int key="NSvFlags">1316</int>
+						<string key="NSFrame">{{191, 270}, {130, 34}}</string>
+						<reference key="NSSuperview" ref="344892077"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="69692568"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUINormalTitle">privacy policy</string>
+						<reference key="IBUIHighlightedTitleColor" ref="577472033"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="283814012"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
+							<string key="name">Helvetica-Bold</string>
+							<string key="family">Helvetica</string>
+							<int key="traits">2</int>
+							<double key="pointSize">16</double>
+						</object>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">16</double>
+							<int key="NSfFlags">16</int>
+						</object>
 					</object>
 				</array>
 				<object class="NSPSMatrix" key="NSFrameMatrix"/>
@@ -539,7 +571,7 @@
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
 			<object class="IBUIView" id="375474989">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">1316</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="604285080">
@@ -548,7 +580,6 @@
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrameSize">{1024, 768}</string>
 						<reference key="NSSuperview" ref="375474989"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="774249904"/>
 						<reference key="IBUIBackgroundColor" ref="403566310"/>
 						<float key="IBUIAlpha">0.30000001192092896</float>
@@ -564,7 +595,6 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{35, 173}, {73, 44}}</string>
 								<reference key="NSSuperview" ref="774249904"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="927003367"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -595,7 +625,6 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{402, 165}, {66, 60}}</string>
 								<reference key="NSSuperview" ref="774249904"/>
-								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -619,7 +648,6 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{86, 95}, {330, 35}}</string>
 								<reference key="NSSuperview" ref="774249904"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="8026646"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -631,7 +659,6 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{86, 35}, {330, 35}}</string>
 								<reference key="NSSuperview" ref="774249904"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="287716009"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -643,7 +670,6 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{94, 98}, {322, 30}}</string>
 								<reference key="NSSuperview" ref="774249904"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="925556872"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -668,7 +694,6 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{94, 38}, {322, 30}}</string>
 								<reference key="NSSuperview" ref="774249904"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="424881950"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -690,7 +715,6 @@
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrame">{{66, 96}, {502, 250}}</string>
 						<reference key="NSSuperview" ref="375474989"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="357405579"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -701,15 +725,13 @@
 				</array>
 				<object class="NSPSMatrix" key="NSFrameMatrix"/>
 				<string key="NSFrameSize">{1024, 768}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="604285080"/>
 				<reference key="IBUIBackgroundColor" ref="696725433"/>
 				<int key="IBUIContentMode">1</int>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
 			<object class="IBUIView" id="791205474">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">1316</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="22454721">
@@ -718,7 +740,6 @@
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrameSize">{1024, 768}</string>
 						<reference key="NSSuperview" ref="791205474"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="273858948"/>
 						<reference key="IBUIBackgroundColor" ref="403566310"/>
 						<float key="IBUIAlpha">0.30000001192092896</float>
@@ -734,7 +755,6 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{199, 28}, {260, 69}}</string>
 								<reference key="NSSuperview" ref="273858948"/>
-								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -768,7 +788,6 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{1, 1}, {133, 134}}</string>
 								<reference key="NSSuperview" ref="273858948"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="625868202"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -781,7 +800,6 @@
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrame">{{227, 315}, {570, 137}}</string>
 						<reference key="NSSuperview" ref="791205474"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="304124330"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -792,15 +810,13 @@
 				</array>
 				<object class="NSPSMatrix" key="NSFrameMatrix"/>
 				<string key="NSFrameSize">{1024, 768}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="22454721"/>
 				<reference key="IBUIBackgroundColor" ref="696725433"/>
 				<int key="IBUIContentMode">1</int>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
 			<object class="IBUIView" id="85796047">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="574371888">
@@ -812,13 +828,12 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrameSize">{500, 309}</string>
 								<reference key="NSSuperview" ref="574371888"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1055823885"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<string key="NSHuggingPriority">{251, 251}</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
+								<object class="NSCustomResource" key="IBUIImage" id="92144410">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">email_block.png</string>
 								</object>
@@ -828,7 +843,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{4, 85}, {490, 204}}</string>
 								<reference key="NSSuperview" ref="574371888"/>
-								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="437977959"/>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -849,7 +863,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{70, 34}, {360, 43}}</string>
 								<reference key="NSSuperview" ref="574371888"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1036068287"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<string key="NSHuggingPriority">{251, 251}</string>
@@ -862,11 +875,11 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="59731671">
 									<int key="type">2</int>
 									<double key="pointSize">25</double>
 								</object>
-								<object class="NSFont" key="IBUIFont">
+								<object class="NSFont" key="IBUIFont" id="988413223">
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">25</double>
 									<int key="NSfFlags">16</int>
@@ -879,7 +892,6 @@
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
 								<string key="NSFrame">{{429, 0}, {65, 65}}</string>
 								<reference key="NSSuperview" ref="574371888"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="707873788"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -891,7 +903,7 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="283814012"/>
-								<object class="NSCustomResource" key="IBUINormalImage">
+								<object class="NSCustomResource" key="IBUINormalImage" id="764448193">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">close_btn.png</string>
 								</object>
@@ -901,7 +913,6 @@
 						</array>
 						<string key="NSFrame">{{262, 229}, {500, 309}}</string>
 						<reference key="NSSuperview" ref="85796047"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="833754556"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="696725433"/>
@@ -909,8 +920,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{1024, 768}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="574371888"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="696725433"/>
@@ -918,6 +927,279 @@
 					<int key="IBUIInterfaceOrientation">3</int>
 					<int key="interfaceOrientation">3</int>
 				</object>
+				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+			</object>
+			<object class="IBUIView" id="1047702296">
+				<reference key="NSNextResponder"/>
+				<int key="NSvFlags">1316</int>
+				<array class="NSMutableArray" key="NSSubviews">
+					<object class="IBUIImageView" id="895782830">
+						<reference key="NSNextResponder" ref="1047702296"/>
+						<int key="NSvFlags">1316</int>
+						<object class="NSPSMatrix" key="NSFrameMatrix"/>
+						<string key="NSFrameSize">{1024, 768}</string>
+						<reference key="NSSuperview" ref="1047702296"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="656422090"/>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">parent_gesture_black_bg.png</string>
+						</object>
+					</object>
+					<object class="IBUIView" id="656422090">
+						<reference key="NSNextResponder" ref="1047702296"/>
+						<int key="NSvFlags">1316</int>
+						<array class="NSMutableArray" key="NSSubviews">
+							<object class="IBUIImageView" id="458202972">
+								<reference key="NSNextResponder" ref="656422090"/>
+								<int key="NSvFlags">1316</int>
+								<object class="NSPSMatrix" key="NSFrameMatrix"/>
+								<string key="NSFrameSize">{886, 588}</string>
+								<reference key="NSSuperview" ref="656422090"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="205075141"/>
+								<string key="NSHuggingPriority">{251, 251}</string>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<reference key="IBUIImage" ref="92144410"/>
+							</object>
+							<object class="IBUITextView" id="312430900">
+								<reference key="NSNextResponder" ref="656422090"/>
+								<int key="NSvFlags">1316</int>
+								<object class="NSPSMatrix" key="NSFrameMatrix"/>
+								<string key="NSFrame">{{18, 82}, {845, 486}}</string>
+								<reference key="NSSuperview" ref="656422090"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
+								<reference key="IBUIBackgroundColor" ref="437977959"/>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<bool key="IBUIMultipleTouchEnabled">YES</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
+								<bool key="IBUIEditable">NO</bool>
+								<string type="base64-UTF8" key="IBUIText">VGlnZ2x5IGlzIGNvbW1pdHRlZCB0byBoZWxwaW5nIHByZXNjaG9vbGVycyBsZWFybiBpbiB0aGUgbW9z
+dCBlZmZlY3RpdmUgd2F5IHBvc3NpYmxlLiBXZSBiZWxpZXZlIHRoZSBpZGVhbCB3YXkgdG8gYWNoaWV2
+ZSB0aGF0IGdvYWwgaXMgYnkgY29tYmluaW5nIHBoeXNpY2FsIHBsYXkgd2l0aCBkaWdpdGFsIHRvb2xz
+LCBhbmQgYnkgYWN0aXZlbHkgaW52b2x2aW5nIHBhcmVudHMgaW4gdGhlIGxlYXJuaW5nIHByb2Nlc3Mu
+IAoKVGhpcyBwcml2YWN5IHBvbGljeSBoYXMgYmVlbiBjcmVhdGVkIHRvIHByb3ZpZGUgeW91IHdpdGgg
+aW5mb3JtYXRpb24gYWJvdXQgaG93IHdlIGNvbGxlY3QgYW5kIHVzZSBpbmZvcm1hdGlvbiB0aGF0IHlv
+dSBtYXkgcHJvdmlkZSB0aHJvdWdoIG91ciBhcHBzLCB0aGUgY2lyY3Vtc3RhbmNlcyB1bmRlciB3aGlj
+aCB3ZSBtYXkgZGlzY2xvc2UgdGhhdCBpbmZvcm1hdGlvbiwgYXMgd2VsbCBhcyB5b3VyIGNob2ljZXMg
+Y29uY2VybmluZyB0aGF0IGluZm9ybWF0aW9uLgoKMS4JRWZmZWN0aXZlIERhdGU6IFRoaXMgUHJpdmFj
+eSBQb2xpY3kgaXMgZWZmZWN0aXZlIDA5LzIwLzIwMTMsIGFuZCBhcHBsaWVzIHRvIGFueSBhbmQgYWxs
+IGluZm9ybWF0aW9uIHRoYXQgYSB1c2VyIG1heSBoYXZlIHByb3ZpZGVkIHRvIFRpZ2dseSB0aHJvdWdo
+IG91ciBhcHBzLiAgVGlnZ2x5IHJlc2VydmVzIHRoZSByaWdodCwgYXQgaXRzIGRpc2NyZXRpb24gYW5k
+L29yIGluIGNvbXBsaWFuY2Ugd2l0aCBhcHBsaWNhYmxlIGxhdyBpZiBuZWVkZWQsIHRvIGNoYW5nZSwg
+bW9kaWZ5LCBhbWVuZCwgYWRkLCBvciByZW1vdmUgcG9ydGlvbnMgb2YgaXRzIFByaXZhY3kgUG9saWN5
+IGF0IGFueSB0aW1lLiAgV2hlbiByZXF1aXJlZCBieSBsYXcsIHdlIHdpbGwgYWR2aXNlIHlvdSBvZiBz
+dWNoIGNoYW5nZXMuICBNb2RpZmljYXRpb25zIHdpbGwgYmUgZWZmZWN0aXZlIGltbWVkaWF0ZWx5LCBh
+bmQgd2lsbCBhcHBseSB0byB5b3VyIGNvbnRpbnVpbmcgdXNlLiAgVXNlIG9mIGFueSBvZiB0aGUgVGln
+Z2x5IGFwcHMgYWZ0ZXIgdGhlIHBvc3Rpbmcgb2YgYW55IGNoYW5nZXMgdG8gdGhlIFByaXZhY3kgUG9s
+aWN5IHdpbGwgY29uc3RpdHV0ZSBhY2NlcHRhbmNlLCBhY2tub3dsZWRnbWVudCBhbmQgYWdyZWVtZW50
+IHRvIHRoZSByZXNwZWN0aXZlIGNoYW5nZXMuICAKCjIuCVlvdXIgQ29uc2VudDogUGxlYXNlIHJlYWQg
+dGhpcyBwcml2YWN5IHBvbGljeSBjYXJlZnVsbHkuICBCeSBhY2Nlc3NpbmcgYW5kIHVzaW5nIG91ciBh
+cHBzLCB5b3UgYWNrbm93bGVkZ2UgdGhhdCB5b3UgaGF2ZSByZWFkIGFuZCB1bmRlcnN0b29kIHRoaXMg
+UHJpdmFjeSBQb2xpY3ksIGFuZCBhZ3JlZSB0byBiZSBsZWdhbGx5IGJvdW5kIGJ5IGl0LiBJZiB5b3Ug
+ZG8gbm90IGFncmVlIHdpdGggdGhlIHRlcm1zIG9mIHRoaXMgUHJpdmFjeSBQb2xpY3ksIHBsZWFzZSBy
+ZWZyYWluIGZyb20gdXNpbmcgb3VyIGFwcHMuICAKCjMuCVBlcnNvbmFsIEluZm9ybWF0aW9uIGFuZCBD
+aGlsZHJlbjogV2UgZG8gbm90IGtub3dpbmdseSBjb2xsZWN0IHBlcnNvbmFsbHkgaWRlbnRpZmlhYmxl
+IGluZm9ybWF0aW9uIGZyb20gY2hpbGRyZW4gdW5kZXIgdGhlIGFnZSBvZiAxMy4gIFdlIGRvIGFsbG93
+IGNoaWxkcmVuIHRvIHJlY29yZCB0aGVpciB2b2ljZSB3aXRoaW4gdGhlIGFwcDsgaG93ZXZlciwgdGhh
+dCByZWNvcmRpbmcgaXMgbm90IGNvbGxlY3RlZCBvbiBvdXIgc2VydmVycywgYW5kIGluc3RlYWQgaXMg
+c3RvcmVkIGxvY2FsbHksIG9ubHkgaW4gdGhlIGFwcCBhbmQgb24gdGhlIGRldmljZS4gIFdlIGRvIG5v
+dCByZWNlaXZlIHRoZSB2b2ljZSByZWNvcmRpbmcuCgpJZiBUaWdnbHkgbGVhcm5zIHRoYXQgd2UgaGF2
+ZSBpbmFkdmVydGVudGx5IGdhdGhlcmVkIHBlcnNvbmFsIGluZm9ybWF0aW9uIGZyb20gY2hpbGRyZW4g
+dW5kZXIgdGhlIGFnZSBvZiAxMyB0aHJvdWdoIG91ciBhcHBzLCB3ZSB3aWxsIHRha2UgcmVhc29uYWJs
+ZSBtZWFzdXJlcyB0byBwcm9tcHRseSBkZWxldGUgYW55IHN1Y2ggZGF0YSBmcm9tIFRpZ2dseeKAmXMg
+cmVjb3Jkcy4KCjQuCVBlcnNvbmFsIEluZm9ybWF0aW9uIGFuZCBBZHVsdHM6IFRocm91Z2ggb3VyIGFw
+cHMsIFRpZ2dseSBtYXkgY29sbGVjdCB0aGUgZm9sbG93aW5nIGluZm9ybWF0aW9uIGZyb20gcGFyZW50
+czoKLQlQYXJlbnTigJlzIG5hbWUgb3IgdXNlciBuYW1lCi0JRW1haWwgYWRkcmVzcwotCVlvdXIgY2hp
+bGQocmVuKeKAmXMgZmlyc3QgbmFtZShzKSBvciB1c2VyIG5hbWUocykKLQlZb3VyIGNoaWxkKHJlbini
+gJlzIGFnZShzKQotCVlvdXIgY2hpbGQocmVuKeKAmXMgZ2VuZGVyKHMpCgpQcm92aWRpbmcgdGhlIGFi
+b3ZlIGluZm9ybWF0aW9uIGlzIG9wdGlvbmFsLiBZb3VyIG5hbWUvdXNlcm5hbWUsIGlmIHByb3ZpZGVk
+LCB3b3VsZCBiZSB1c2VkIGZvciBrZWVwaW5nIHRyYWNrIG9mIHlvdXIgaW5mb3JtYXRpb24gYW5kIHlv
+dXIgY2hpbGQocmVuKeKAmXMgaW4tZ2FtZSBkYXRhIHN1Y2ggYXMgZnJlcXVlbmN5IG9mIHBsYXksIGFj
+Y3VyYWN5LCBtaXN0YWtlcyBhbmQgdGhlaXIgc3RyYXRlZ2llcy4gVGhpcyBpbmZvcm1hdGlvbiB3aWxs
+IGJlIHVzZWQgdG8gcHJlcGFyZSBwZXJzb25hbGl6ZWQgcmVwb3J0cyB0byBwYXJlbnRzIGFib3V0IHRo
+ZWlyIGNoaWxkKHJlbinigJlzIHByb2dyZXNzIGFuZCBsZWFybmluZy4gIFlvdXIgZW1haWwgYWRkcmVz
+cyBpcyBjb2xsZWN0ZWQgb25seSBpZiB5b3Ugc3Vic2NyaWJlIHRvIG91ciBuZXdzbGV0dGVyIG9yIGZv
+ciBlbWFpbCB1cGRhdGVzIGFuZCByZXBvcnRzLiBXZSBpbmNsdWRlIGluZm9ybWF0aW9uIG9uIGhvdyB0
+byB1bnN1YnNjcmliZSBmcm9tIHN1Y2ggY29tbXVuaWNhdGlvbnMgd2l0aGluIGV2ZXJ5IGVtYWlsIHRo
+YXQgd2Ugc2VuZC4gCgpXZSBhc2sgZm9yIHlvdXIgY2hpbGQocmVuKeKAmXMgZmlyc3QgbmFtZShzKSwg
+YWdlKHMpIGFuZCBnZW5kZXIocykgc28gdGhhdCB3ZSBtYXkgcGVyc29uYWxpemUgY29tbXVuaWNhdGlv
+bnMgc2VudCB0byB5b3UgcmVsYXRlZCB0byB5b3VyIGNoaWxkKHJlbinigJlzIHByb2dyZXNzIHdpdGhp
+biB0aGUgYXBwLiAgU3VjaCBpbmZvcm1hdGlvbiBpcyBvcHRpb25hbC4KCllvdSBjYW4gY29udGFjdCB1
+cyBieSBlbWFpbCB0byByZXF1ZXN0IHRvIHNlZSBvciBkZWxldGUgYW55IHBlcnNvbmFsbHkgaWRlbnRp
+ZmlhYmxlIGluZm9ybWF0aW9uIHdlIGhhdmUgc3RvcmVkLiAgVG8gbWFrZSBzdWNoIGEgcmVxdWVzdCwg
+cGxlYXNlIGVtYWlsIHVzIGF0IHByaXZhY3lAdGlnZ2x5LmNvbS4gSWYgbmVlZGVkLCB3ZSBtYXkgYXNr
+IGZvciBhZGRpdGlvbmFsIGluZm9ybWF0aW9uIHRvIHZlcmlmeSB5b3VyIGlkZW50aXR5IHByaW9yIHRv
+IGNvbXBsZXRpbmcgc3VjaCBhIHJlcXVlc3QuCiAKNS4JQ29sbGVjdGlvbiBvZiBOb24tUGVyc29uYWwg
+SW5mb3JtYXRpb246IFRpZ2dseSBjb2xsZWN0cyBjZXJ0YWluIG5vbi1wZXJzb25hbGx5IGlkZW50aWZp
+YWJsZSBpbmZvcm1hdGlvbiBmcm9tIG91ciB1c2Vycywgc3VjaCBhcyBkZXZpY2UgSUQgKFVESUQpLiAg
+V2UgZG8gbm90IGNvbWJpbmUgcGVyc29uYWwgaW5mb3JtYXRpb24gd2l0aCBub24tcGVyc29uYWwgaW5m
+b3JtYXRpb24uICBBbm9ueW1vdXMsIG5vbi1wZXJzb25hbCBkYXRhIGlzIHVzZWQgZm9yIGludGVybmFs
+IG9wZXJhdGlvbnMsIHN1Y2ggYXMgYW5hbHl6aW5nIHRoZSBlZmZlY3RpdmVuZXNzIG9mIG91ciBhcHBz
+LCBpbXByb3Zpbmcgb3VyIGZlYXR1cmVzLCBhbmQgZm9yIG90aGVyLCBzaW1pbGFyIHB1cnBvc2VzLiAg
+Rm9yIGV4YW1wbGUsIHdlIGNvbGxlY3QgYW5vbnltb3VzIGRhdGEgb24gaW4tZ2FtZSBhY3Rpdml0aWVz
+IHRvIGFuYWx5emUgY29tbW9uIHBhdGhzIG9mIGxlYXJuaW5nLCBtaXN0YWtlcywgYW5kIHN0cmF0ZWdp
+ZXMgaW4gb3JkZXIgdG8gYmV0dGVyIGFkb3B0IHRoZSBzb2Z0d2FyZSBhY3Rpdml0eSB0byBtZWV0IHVz
+ZXJz4oCZIG5lZWRzLiAKCjYuCVRoaXJkIFBhcnRpZXM6IFRpZ2dseSB1c2VzIGEgdGhpcmQgcGFydHkg
+dG8gYXNzaXN0IGluIHRoZSBhbmFseXNpcyBvZiBvdXIgYXBwcywgaW5jbHVkaW5nIGFuYWx5emluZyB0
+aGUgZ2VuZXJhbCBiZWhhdmlvciBhbmQgY2hhcmFjdGVyaXN0aWNzIG9mIHVzZXJzIHBhcnRpY2lwYXRp
+bmcgaW4gb3VyIGFwcC4gIEluIGRvaW5nIHNvLCB3ZSBtYXkgc2hhcmUgbm9uLXBlcnNvbmFsIGRhdGEs
+IHN1Y2ggYXMgeW91ciBVRElEIHdpdGggdGhpcmQgcGFydGllcy4gIFRoYXQgYW5vbnltb3VzIGluZm9y
+bWF0aW9uIHByb3ZpZGVkIHRvIHRoaXJkIHBhcnRpZXMgaXMgdXNlZCBmb3IgdGhlIHB1cnBvc2Ugb2Yg
+bWVhc3VyaW5nIHRoZSBwZXJmb3JtYW5jZSBvZiBvdXIgYXBwLCBwYWdlIHZpZXdzLCBudW1iZXIgb2Yg
+dmlzaXRvcnMsIGFuZCBzaW1pbGFyIHN0YXRpc3RpY2FsIG1lYXN1cmVzLiAgVGhlIGFub255bW91cyBp
+bmZvcm1hdGlvbiBpcyBjb2xsZWN0ZWQgdGhyb3VnaCBmZWF0dXJlcyBvZiB0aGUgYXBwcyBhbmQgdGhy
+b3VnaCBjb29raWVzLiAKCkEg4oCcY29va2ll4oCdIGlzIGEgc21hbGwgYml0IG9mIHJlY29yZC1rZWVw
+aW5nIGluZm9ybWF0aW9uIHRoYXQgd2Vic2l0ZXMgb2Z0ZW4gc3RvcmUgb24gYSB1c2VyJ3MgY29tcHV0
+ZXIuICBZb3UgY2FuIGRpc2FibGUgY29va2llcyBvciBzZXQgeW91ciBicm93c2VyIHRvIGFsZXJ0IHlv
+dSB3aGVuIGNvb2tpZXMgYXJlIGJlaW5nIHNlbnQgdG8geW91ciBkZXZpY2UuCgpUaWdnbHkgcmVxdWly
+ZXMgdGhhdCBhbnkgdGhpcmQgcGFydHkgY29tcGx5IHdpdGggdGhpcyBwcml2YWN5IHBvbGljeS4gIElu
+IGFkZGl0aW9uLCB3ZSBkbyBub3Qgc2VsbCwgcmVudCwgc2hhcmUgb3IgdHJhbnNmZXIgYW55IG9mIHRo
+ZSBpbmZvcm1hdGlvbiBjb2xsZWN0ZWQgdG8gdGhpcmQgcGFydGllcyBpbiB3YXlzIG90aGVyIHRoYW4g
+ZGVzY3JpYmVkIGluIHRoaXMgcG9saWN5LiAgCgo3LglUaGlyZCBQYXJ0eSBUZXJtcyBhbmQgQ29uZGl0
+aW9uczogQnkgdXNpbmcgb3VyIEFwcCwgeW91IG1heSBiZSBzdWJqZWN0IHRvIHRoaXJkIHBhcnR5IHRl
+cm1zIGFuZCBjb25kaXRpb25zIGFuZCBwcml2YWN5IHBvbGljaWVzLCBpbmNsdWRpbmcgYnV0IG5vdCBs
+aW1pdGVkIHRvIGFwcGxpY2F0aW9uIHN0b3JlcywgbW9iaWxlIHNvZnR3YXJlIHBsYXRmb3JtcywgYW5k
+IHNvY2lhbCBuZXR3b3JraW5nIHNlcnZpY2VzLiAgUHJvdmlkaW5nIGxpbmtzIHRvIGFueSBzdWNoIHRo
+aXJkIHBhcnRpZXMgZG9lcyBub3QgY29uc3RpdHV0ZSBUaWdnbHnigJlzIHNwb25zb3JzaGlwIG9mLCBv
+ciBhZmZpbGlhdGlvbiB3aXRoLCBzdWNoIHRoaXJkIHBhcnRpZXMuCgpDZXJ0YWluIGZlYXR1cmVzIHRo
+YXQgVGlnZ2x5IG1heSBvZmZlciwgc3VjaCBhcyBzb2NpYWwgbmV0d29ya2luZywgbWF5IHVzZSB0aGly
+ZCBwYXJ0eSBzZXJ2aWNlcyB0byBwcm92aWRlIGF1dGhlbnRpY2F0aW9uIHdpdGggYSBzb2NpYWwgbmV0
+d29ya2luZyBJRC4gSW4gY29ubmVjdGlvbiB3aXRoIHN1Y2ggdXNlLCBjZXJ0YWluIHBlcnNvbmFsbHkg
+aWRlbnRpZmlhYmxlIHVzZXIgYW5kL29yIG1lbWJlcnNoaXAgZGF0YSBtYXkgYmUgdHJhbnNmZXJyZWQg
+YXV0b21hdGljYWxseSB0byBhbmQgZnJvbSBUaWdnbHnigJlzIGFwcHMuICBTdWNoIGZlYXR1cmVzIGFy
+ZSBvbmx5IG9mZmVyZWQgd2l0aGluIHRoZSBwYXJlbnQgc2VjdGlvbiBvZiB0aGUgYXBwcy4KClRoZSBw
+YXJlbnQgc2VjdGlvbiBvZiBUaWdnbHkgYXBwcyBjb250YWlucyBsaW5rcyB0byBUaWdnbHnigJlzIHdl
+YnNpdGUsIGJsb2csIEZhY2Vib29rLCBUd2l0dGVyLCBQaW50ZXJlc3QsIFlvdVR1YmUgY2hhbm5lbCwg
+YW5kIEluc3RhZ3JhbS4gCgo4LglEYXRhIFJldGVudGlvbjogVGlnZ2x5IG9ubHkgcmV0YWlucyB0aGUg
+ZGF0YSBjb2xsZWN0ZWQgcHVyc3VhbnQgdG8gdGhpcyBQcml2YWN5IFBvbGljeSBmb3IgdGhlIHBlcmlv
+ZCBvZiB0aW1lIG5lY2Vzc2FyeSB0byBmdWxmaWxsIHRoZSBwdXJwb3NlcyBvdXRsaW5lZCBpbiB0aGlz
+IFByaXZhY3kgUG9saWN5LCB1bmxlc3MgYSBsb25nZXIgcmV0ZW50aW9uIHBlcmlvZCBpcyByZXF1aXJl
+ZCBvciBwZXJtaXR0ZWQgYnkgbGF3LiAgIEFmdGVyIHN1Y2ggdGltZSwgVGlnZ2x5IGRlbGV0ZXMgYWxs
+IHN1Y2ggZGF0YSB3aXRoaW4gYSB0aW1lIGZyYW1lIHRoYXQgaXMgcmVhc29uYWJsZSBmb3Igb3VyIG9w
+ZXJhdGluZyByZXF1aXJlbWVudHMuICBXaGVuIG5lY2Vzc2FyeSwgVGlnZ2x5IG1heSByZXRhaW4gZGF0
+YSB0byB0aGUgZXh0ZW50IG5lZWRlZCB0byByZXNvbHZlIGRpc3B1dGVzLCBlbmZvcmNlIFRpZ2dseSB1
+c2VyIGFncmVlbWVudHMsIGFuZCBjb21wbHkgd2l0aCB0ZWNobmljYWwgYW5kIGxlZ2FsIHJlcXVpcmVt
+ZW50cyBhbmQgY29uc3RyYWludHMgcmVsYXRlZCB0byB0aGUgc2VjdXJpdHksIGludGVncml0eSBhbmQg
+b3BlcmF0aW9uIG9mIHRoZSBhcHBzLgoKOS4JRGlzY2xvc3VyZSBvZiBEYXRhOiBJZiBuZWVkZWQgaW4g
+b3JkZXIgdG8gb3BlcmF0ZSBvdXIgYXBwcywgcGVyc29uYWwgYW5kIG5vbi1wZXJzb25hbCBpbmZvcm1h
+dGlvbiB3ZSBjb2xsZWN0IG1heSBiZSBzaGFyZWQgd2l0aCBvdXIgc2VydmljZSBwcm92aWRlcnMgd2hv
+IHN1cHBvcnQgYW5kIGFkbWluaXN0ZXIgdGhlIGludGVybmFsIG9wZXJhdGlvbnMgb2Ygb3VyIGFwcHMs
+IHN1Y2ggYXMgbWFpbnRhaW5pbmcgdXNlciBhY2NvdW50cyBhbmQgcHJvdmlkaW5nIGN1c3RvbWVyIHNl
+cnZpY2UuICBBbGwgc3VjaCBzZXJ2aWNlIHByb3ZpZGVycyBhcmUgcmVxdWlyZWQgdG8gYWdyZWUgdG8g
+bWFpbnRhaW4gdGhlIGNvbmZpZGVudGlhbGl0eSwgc2VjdXJpdHkgYW5kIGludGVncml0eSBvZiB0aGUg
+ZGF0YSwgYW5kIG1heSBub3QgdXNlIGl0IGZvciBhbnkgb3RoZXIgcHVycG9zZXMuCgpXZSBhbHNvIHJl
+c2VydmUgdGhlIHJpZ2h0IHRvIHJlbGVhc2UgcGVyc29uYWwgaW5mb3JtYXRpb24gdG8gY29tcGx5IHdp
+dGggYSBqdWRpY2lhbCBwcm9jZXNzIG9yIGxhdyBlbmZvcmNlbWVudCBpbnZlc3RpZ2F0aW9uLCBvciBp
+biBjb25uZWN0aW9uIHdpdGggYSBjb3Jwb3JhdGUgY2hhbmdlIG9yIGRpc3NvbHV0aW9uLCBpbmNsdWRp
+bmcgZm9yIGV4YW1wbGUgYSBtZXJnZXIsIGFjcXVpc2l0aW9uLCByZW9yZ2FuaXphdGlvbiwgY29uc29s
+aWRhdGlvbiwgYmFua3J1cHRjeSwgbGlxdWlkYXRpb24sIHNhbGUgb2YgYXNzZXRzLCB3aW5kLWRvd24g
+b2YgYnVzaW5lc3Mgb3IgcmVsYXRlZCBkdWUgZGlsaWdlbmNlLiBBbnkgc3VjaCByZWxlYXNlIG9mIGRh
+dGEgd2lsbCBiZSBkb25lIGluIGNvbXBsaWFuY2Ugd2l0aCBhcHBsaWNhYmxlIGxhdywgYW5kIG9ubHkg
+aWYgdGhlIHJlY2VpdmluZyBwYXJ0eSBhZ3JlZXMgdG8gbWFpbnRhaW4gdGhlIGNvbmZpZGVudGlhbGl0
+eSwgc2VjdXJpdHkgYW5kIGludGVncml0eSBvZiB0aGF0IGluZm9ybWF0aW9uLgoKMTAuCVNlY3VyaXR5
+OiBUaWdnbHkgZm9sbG93cyByZWFzb25hYmxlIGFuZCBnZW5lcmFsbHkgYWNjZXB0ZWQgaW5kdXN0cnkg
+c3RhbmRhcmRzIHJlZ2FyZGluZyBkYXRhIHNlY3VyaXR5LCBhbmQgd2UgbWFpbnRhaW4gcmVhc29uYWJs
+ZSBzYWZlZ3VhcmRzIHRvIGF0dGVtcHQgdG8gZW5zdXJlIHRoZSBjb25maWRlbnRpYWxpdHksIHNlY3Vy
+aXR5IGFuZCBpbnRlZ3JpdHkgb2YgdGhlIGluZm9ybWF0aW9uIGluIFRpZ2dseeKAmXMgcG9zc2Vzc2lv
+biBpbiBhY2NvcmRhbmNlIHdpdGggYXBwbGljYWJsZSBsYXcuICBPbmx5IHRob3NlIHBlcnNvbnMgd2l0
+aCBhIG5lZWQgdG8gcHJvY2VzcyB1c2VyIGRhdGEgaW4gY29ubmVjdGlvbiB3aXRoIHRoZSBmdWxmaWxs
+bWVudCBvZiB0aGVpciB0YXNrcyBpbiBhY2NvcmRhbmNlIHdpdGggdGhlIHB1cnBvc2VzIG9mIHRoaXMg
+UHJpdmFjeSBQb2xpY3kgYW5kIGZvciB0aGUgcHVycG9zZXMgb2YgcGVyZm9ybWluZyB0ZWNobmljYWwg
+bWFpbnRlbmFuY2UgaGF2ZSBhY2Nlc3MgdG8gdXNlciBkYXRhIGluIFRpZ2dseeKAmXMgcG9zc2Vzc2lv
+bi4KClRpZ2dseSBzdG9yZXMgYWxsIGRhdGEgYW5kIGluZm9ybWF0aW9uIGluIHNlY3VyZSBvcGVyYXRp
+bmcgZW52aXJvbm1lbnRzIGFuZCBpbXBsZW1lbnRzIHJlYXNvbmFibGUgYW5kIGdlbmVyYWxseSBhY2Nl
+cHRlZCBpbmR1c3RyeSBwcmFjdGljZXMgdG8gcHJldmVudCB1bmF1dGhvcml6ZWQgYWNjZXNzIHRvIHRo
+ZSBkYXRhLiAgIFBsZWFzZSBub3RlIHRoYXQgVGlnZ2x5IGNhbm5vdCBhbmQgZG9lcyBub3QgZ3VhcmFu
+dGVlIHRoZSBzZWN1cml0eSBvZiBtYXRlcmlhbHMgb3IgaW5mb3JtYXRpb24gdHJhbnNtaXR0ZWQgdG8g
+VGlnZ2x5IGJ5IHVzZXJzIG92ZXIgdGhlIEludGVybmV0IG9yIHRocm91Z2ggd2lyZWxlc3MgY29ubmVj
+dGlvbnMuIAoKMTEuCUZ1cnRoZXIgSW5mb3JtYXRpb246IElmIHlvdSBoYXZlIGFueSBxdWVzdGlvbnMs
+IGNvbW1lbnRzIG9yIGNvbmNlcm5zIHJlZ2FyZGluZyB0aGlzIFByaXZhY3kgUG9saWN5IGFuZC9vciBv
+dXIgcHJhY3RpY2VzLCBwbGVhc2UgZW1haWwgdXMgYXQ6IHByaXZhY3lAdGlnZ2x5LmNvbS4KClRpZ2ds
+eSBtYWludGFpbnMgb2ZmaWNlcyBhdCAyMjIgQnJvYWR3YXksIDE5dGggZmxvb3IsIE5ldyBZb3JrLCBO
+WSwgMTAwMzgsIGFuZCBtYXkgYWxzbyBiZSBjb250YWN0ZWQgYnkgbWFpbCBzaG91bGQgeW91IHdpc2gg
+dG8gZGlzY3VzcyB0aGlzIFByaXZhY3kgUG9saWN5IG9yIGFueSBvdGhlciBtYXR0ZXIgb2YgaW50ZXJl
+c3Qgb3IgY29uY2Vybi4KCjEyLglTcGVjaWFsIE5vdGljZSB0byBDYWxpZm9ybmlhIFJlc2lkZW50czog
+SW5kaXZpZHVhbHMgd2hvIHJlc2lkZSBpbiBDYWxpZm9ybmlhIGFuZCBoYXZlIHByb3ZpZGVkIHRoZWly
+IFBlcnNvbmFsbHkgSWRlbnRpZmlhYmxlIEluZm9ybWF0aW9uIG1heSByZXF1ZXN0IGluZm9ybWF0aW9u
+IHJlZ2FyZGluZyBkaXNjbG9zdXJlcyBvZiB0aGlzIGluZm9ybWF0aW9uIHRvIHRoaXJkIHBhcnRpZXMg
+Zm9yIGRpcmVjdCBtYXJrZXRpbmcgcHVycG9zZXMuIFN1Y2ggcmVxdWVzdHMgc2hvdWxkIGJlIHN1Ym1p
+dHRlZCB0byB1cyBhdCB0aGUgZm9sbG93aW5nIGVtYWlsIGFkZHJlc3M6IHByaXZhY3lAdGlnZ2x5LmNv
+bSBvciBpbiB3cml0aW5nIGF0IG91ciBvZmZpY2VzLgoKMTMuCVRoaXJkIFBhcnRpZXM6IFRoZSBmb2xs
+b3dpbmcgdGhpcmQgcGFydGllcyBtYXkgYmUgYXNzb2NpYXRlZCB3aXRoIHRoZSBUaWdnbHkgYXBwczoK
+R29vZ2xlIEFuYWx5dGljcwo</string>
+								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+									<int key="IBUIAutocapitalizationType">2</int>
+									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								</object>
+								<reference key="IBUIFontDescription" ref="996101631"/>
+								<reference key="IBUIFont" ref="350101785"/>
+							</object>
+							<object class="IBUIButton" id="393272201">
+								<reference key="NSNextResponder" ref="656422090"/>
+								<int key="NSvFlags">1316</int>
+								<object class="NSPSMatrix" key="NSFrameMatrix"/>
+								<string key="NSFrame">{{798, 14}, {65, 65}}</string>
+								<reference key="NSSuperview" ref="656422090"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="312430900"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIHighlightedTitleColor" ref="577472033"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="283814012"/>
+								<reference key="IBUINormalImage" ref="764448193"/>
+								<reference key="IBUIFontDescription" ref="706295479"/>
+								<reference key="IBUIFont" ref="431062375"/>
+							</object>
+							<object class="IBUILabel" id="205075141">
+								<reference key="NSNextResponder" ref="656422090"/>
+								<int key="NSvFlags">1316</int>
+								<object class="NSPSMatrix" key="NSFrameMatrix"/>
+								<string key="NSFrame">{{37, 25}, {735, 43}}</string>
+								<reference key="NSSuperview" ref="656422090"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="393272201"/>
+								<string key="NSHuggingPriority">{251, 251}</string>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">7</int>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<string key="IBUIText">TIGGLY PRIVACY POLICY</string>
+								<nil key="IBUIHighlightedColor"/>
+								<int key="IBUIBaselineAdjustment">0</int>
+								<int key="IBUITextAlignment">1</int>
+								<reference key="IBUIFontDescription" ref="59731671"/>
+								<reference key="IBUIFont" ref="988413223"/>
+								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+							</object>
+						</array>
+						<object class="NSPSMatrix" key="NSFrameMatrix"/>
+						<string key="NSFrame">{{69, 90}, {886, 588}}</string>
+						<reference key="NSSuperview" ref="1047702296"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="458202972"/>
+						<reference key="IBUIBackgroundColor" ref="696725433"/>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+					</object>
+				</array>
+				<object class="NSPSMatrix" key="NSFrameMatrix"/>
+				<string key="NSFrameSize">{1024, 768}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView" ref="895782830"/>
+				<reference key="IBUIBackgroundColor" ref="696725433"/>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
 		</array>
@@ -1157,6 +1439,22 @@
 					<string key="id">Bw1-MU-Thi</string>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnPrivacyPolicy</string>
+						<reference key="source" ref="478293091"/>
+						<reference key="destination" ref="30614505"/>
+					</object>
+					<string key="id">UHg-vj-iW1</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">privacymainView</string>
+						<reference key="source" ref="478293091"/>
+						<reference key="destination" ref="1047702296"/>
+					</object>
+					<string key="id">XyJ-vR-QqE</string>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">onButtonClicked:</string>
 						<reference key="source" ref="652276076"/>
@@ -1254,6 +1552,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">actionPrivacyPolicy:</string>
+						<reference key="source" ref="30614505"/>
+						<reference key="destination" ref="478293091"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<string key="id">xgx-Te-2af</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">onButtonClicked:</string>
 						<reference key="source" ref="586973332"/>
 						<reference key="destination" ref="478293091"/>
@@ -1269,6 +1576,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<string key="id">uPn-03-0jF</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">actionClosePrivacyPolicy:</string>
+						<reference key="source" ref="393272201"/>
+						<reference key="destination" ref="478293091"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<string key="id">JtM-Zr-ZdL</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -1358,6 +1674,7 @@
 							<reference ref="490242640"/>
 							<reference ref="768935281"/>
 							<reference ref="651210554"/>
+							<reference ref="30614505"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1604,6 +1921,56 @@
 						<reference key="object" ref="768935281"/>
 						<reference key="parent" ref="344892077"/>
 					</object>
+					<object class="IBObjectRecord">
+						<string key="id">2ZH-0R-h0x</string>
+						<reference key="object" ref="30614505"/>
+						<reference key="parent" ref="344892077"/>
+					</object>
+					<object class="IBObjectRecord">
+						<string key="id">kgL-t3-Uws</string>
+						<reference key="object" ref="1047702296"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="895782830"/>
+							<reference ref="656422090"/>
+						</array>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<string key="id">SiW-Nb-WGT</string>
+						<reference key="object" ref="895782830"/>
+						<reference key="parent" ref="1047702296"/>
+					</object>
+					<object class="IBObjectRecord">
+						<string key="id">yPf-JI-66P</string>
+						<reference key="object" ref="656422090"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="458202972"/>
+							<reference ref="312430900"/>
+							<reference ref="393272201"/>
+							<reference ref="205075141"/>
+						</array>
+						<reference key="parent" ref="1047702296"/>
+					</object>
+					<object class="IBObjectRecord">
+						<string key="id">K7g-dn-RQU</string>
+						<reference key="object" ref="458202972"/>
+						<reference key="parent" ref="656422090"/>
+					</object>
+					<object class="IBObjectRecord">
+						<string key="id">e0l-jn-rm3</string>
+						<reference key="object" ref="312430900"/>
+						<reference key="parent" ref="656422090"/>
+					</object>
+					<object class="IBObjectRecord">
+						<string key="id">NIn-xY-VH3</string>
+						<reference key="object" ref="393272201"/>
+						<reference key="parent" ref="656422090"/>
+					</object>
+					<object class="IBObjectRecord">
+						<string key="id">Vhe-FO-P30</string>
+						<reference key="object" ref="205075141"/>
+						<reference key="parent" ref="656422090"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1664,6 +2031,7 @@
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<reference key="2.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="2.showNotes"/>
+				<string key="2ZH-0R-h0x.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<reference key="4.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="4.showNotes"/>
@@ -1700,9 +2068,18 @@
 				<string key="Hzd-Lp-x5D.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<reference key="Hzd-Lp-x5D.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="Hzd-Lp-x5D.showNotes"/>
+				<string key="K7g-dn-RQU.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<reference key="K7g-dn-RQU.IBUserGuides" ref="0"/>
+				<boolean value="NO" key="K7g-dn-RQU.showNotes"/>
+				<string key="NIn-xY-VH3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<reference key="NIn-xY-VH3.IBUserGuides" ref="0"/>
+				<boolean value="NO" key="NIn-xY-VH3.showNotes"/>
 				<string key="RAq-zU-nPk.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<reference key="RAq-zU-nPk.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="RAq-zU-nPk.showNotes"/>
+				<string key="SiW-Nb-WGT.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<reference key="SiW-Nb-WGT.IBUserGuides" ref="0"/>
+				<boolean value="NO" key="SiW-Nb-WGT.showNotes"/>
 				<string key="SyS-ys-SJX.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<reference key="SyS-ys-SJX.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="SyS-ys-SJX.showNotes"/>
@@ -1713,6 +2090,9 @@
 				<reference key="VGH-89-T7g.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="VGH-89-T7g.showNotes"/>
 				<string key="VbF-hx-Ec0.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="Vhe-FO-P30.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<reference key="Vhe-FO-P30.IBUserGuides" ref="0"/>
+				<boolean value="NO" key="Vhe-FO-P30.showNotes"/>
 				<string key="ZOH-VJ-JeG.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<reference key="ZOH-VJ-JeG.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="ZOH-VJ-JeG.showNotes"/>
@@ -1720,11 +2100,20 @@
 				<reference key="cSa-JI-Qk0.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="cSa-JI-Qk0.showNotes"/>
 				<string key="dCz-HP-fRd.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="e0l-jn-rm3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<reference key="e0l-jn-rm3.IBUserGuides" ref="0"/>
+				<boolean value="NO" key="e0l-jn-rm3.showNotes"/>
 				<string key="eia-Cg-pUW.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<reference key="eia-Cg-pUW.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="eia-Cg-pUW.showNotes"/>
 				<string key="jzh-5O-cxd.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="kgL-t3-Uws.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<reference key="kgL-t3-Uws.IBUserGuides" ref="0"/>
+				<boolean value="NO" key="kgL-t3-Uws.showNotes"/>
 				<string key="s2m-hN-EaA.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="yPf-JI-66P.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<reference key="yPf-JI-66P.IBUserGuides" ref="0"/>
+				<boolean value="NO" key="yPf-JI-66P.showNotes"/>
 				<string key="zmm-5c-TPh.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<reference key="zmm-5c-TPh.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="zmm-5c-TPh.showNotes"/>
@@ -1737,38 +2126,36 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
-					<string key="className">GAITrackedViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GAITrackedViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
 					<string key="className">ParentScreenViewController</string>
-					<string key="superclassName">GAITrackedViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">onButtonClicked:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">onButtonClicked:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="actionClosePrivacyPolicy:">id</string>
+						<string key="actionPrivacyPolicy:">id</string>
+						<string key="onButtonClicked:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="actionClosePrivacyPolicy:">
+							<string key="name">actionClosePrivacyPolicy:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="actionPrivacyPolicy:">
+							<string key="name">actionPrivacyPolicy:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="onButtonClicked:">
 							<string key="name">onButtonClicked:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="ageTextField">UITextField</string>
-						<string key="btnClose">UIButton</string>
-						<string key="btnTigglyNews">UIButton</string>
+						<string key="btnPrivacyPolicy">UIButton</string>
 						<string key="childInfoSubView">UIView</string>
 						<string key="childInfoView">UIView</string>
 						<string key="confSubView">UIView</string>
 						<string key="confView">UIView</string>
 						<string key="emailidTextField">UITextField</string>
 						<string key="faceBookBTN">UIButton</string>
-						<string key="homeBTN">UIButton</string>
 						<string key="lblLanguageTEXT">UILabel</string>
 						<string key="lblMotarTEXT">UILabel</string>
 						<string key="lblSpatialTEXT">UILabel</string>
@@ -1778,6 +2165,7 @@
 						<string key="lettertabHeadingLBL">UILabel</string>
 						<string key="nameTextField">UITextField</string>
 						<string key="pathBTN">UIButton</string>
+						<string key="privacymainView">UIView</string>
 						<string key="settingsBTN">UIButton</string>
 						<string key="skipBTN">UIButton</string>
 						<string key="submitBTN">UIButton</string>
@@ -1797,8 +2185,6 @@
 						<string key="tabPlayBTN">UIButton</string>
 						<string key="tabTitleIMGVIEW">UIImageView</string>
 						<string key="twitterBTN">UIButton</string>
-						<string key="viewForWeb">UIView</string>
-						<string key="webView">UIWebView</string>
 						<string key="webViewTab">UIWebView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -1806,12 +2192,8 @@
 							<string key="name">ageTextField</string>
 							<string key="candidateClassName">UITextField</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="btnClose">
-							<string key="name">btnClose</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnTigglyNews">
-							<string key="name">btnTigglyNews</string>
+						<object class="IBToOneOutletInfo" key="btnPrivacyPolicy">
+							<string key="name">btnPrivacyPolicy</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="childInfoSubView">
@@ -1836,10 +2218,6 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="faceBookBTN">
 							<string key="name">faceBookBTN</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="homeBTN">
-							<string key="name">homeBTN</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="lblLanguageTEXT">
@@ -1877,6 +2255,10 @@
 						<object class="IBToOneOutletInfo" key="pathBTN">
 							<string key="name">pathBTN</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="privacymainView">
+							<string key="name">privacymainView</string>
+							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="settingsBTN">
 							<string key="name">settingsBTN</string>
@@ -1954,14 +2336,6 @@
 							<string key="name">twitterBTN</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="viewForWeb">
-							<string key="name">viewForWeb</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="webView">
-							<string key="name">webView</string>
-							<string key="candidateClassName">UIWebView</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="webViewTab">
 							<string key="name">webViewTab</string>
 							<string key="candidateClassName">UIWebView</string>
@@ -1990,6 +2364,7 @@
 			<string key="fb_btn.png">{181, 180}</string>
 			<string key="home_icon_2.png">{274, 274}</string>
 			<string key="love_to_share.png">{577, 75}</string>
+			<string key="parent_gesture_black_bg.png">{2048, 1536}</string>
 			<string key="parent_text_bkg.png">{1287, 1331}</string>
 			<string key="pattern_0_1.png">{270, 267}</string>
 			<string key="pintrest_btn.png">{180, 180}</string>

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "KTViewController.h"
+#import "GestureConfirmationView.h"
 
 #ifdef GOOGLE_ANALYTICS_START
 #import "GAITrackedViewController.h"
@@ -15,7 +16,6 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #else
-
 #endif
 
 @class CapturedImageView;
@@ -29,7 +29,7 @@
 
 @end
 
-@interface CapturedImageView : UIView
+@interface CapturedImageView : UIView<GestireViewProtocol>
 {
     UIImageView *imageView ;
     UIButton *btnHome;
@@ -38,12 +38,7 @@
     UIButton *btnSend;
     NSString *imageName;
     UILabel *lblImageSaved;
-    
-    UIView *confirmationView;
-    UIImageView *confirmationViewBKG;
-    UIButton *notConfirm;
-    UITextView *txtView;
-    
+
 }
 @property(nonatomic,strong) id<CapturedImageViewDelegate>delegate;
 @property (nonatomic,strong) UIImageView *imageView;

@@ -115,16 +115,16 @@
 #pragma mark - ============================
 #pragma mark - button  and image touch handling
 #pragma mark - ============================
-
--(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    DebugLog(@"");
-      CGPoint point = [[touches anyObject] locationInView:self];
-    if (CGRectContainsPoint(imageView.frame, point)) {
-        // call delegate
-       // [delegate onImageClicked:self];
-    }
-    
-}
+//
+//-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+//    DebugLog(@"");
+//      CGPoint point = [[touches anyObject] locationInView:self];
+//    if (CGRectContainsPoint(imageView.frame, point)) {
+//        // call delegate
+//       // [delegate onImageClicked:self];
+//    }
+//    
+//}
 
 -(void)btnNextClicked{
     DebugLog(@"");
@@ -154,61 +154,68 @@
 
 -(void)btnSendClicked{
     DebugLog(@"");
-    [delegate onSendButton:self];
     
-#ifdef GOOGLE_ANALYTICS_START
-    NSMutableDictionary *event =
-    [[GAIDictionaryBuilder createEventWithCategory:@"Gallery"
-                                            action:@"Gallery opened"
-                                             label:@"Save Image/ Video"
-                                             value:nil] build];
-    [[GAI sharedInstance].defaultTracker send:event];
-    [[GAI sharedInstance] dispatch];
-#else
+    GestureConfirmationView *gestureView = [[GestureConfirmationView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+    gestureView.delegate = self;
+    [self addSubview:gestureView];
+    [self bringSubviewToFront:gestureView];
     
-#endif
-    
-
-    
-    NSString *strFile = [imageName lastPathComponent];
-    
-    lblImageSaved = [[UILabel alloc] initWithFrame:CGRectMake(442, 91,  140, 50)];
-    lblImageSaved.backgroundColor = [UIColor whiteColor];
-    lblImageSaved.layer.cornerRadius = 13.0f;
-    lblImageSaved.layer.masksToBounds = YES;
-    lblImageSaved.layer.borderColor =  [UIColor blackColor].CGColor;
-    lblImageSaved.layer.borderWidth = 1.0f;
-    
-    [self addSubview:lblImageSaved];
-    lblImageSaved.font = [UIFont fontWithName:APP_FONT size:20.0f];
-    lblImageSaved.textAlignment = UITextAlignmentCenter;
-    if([[strFile pathExtension] isEqualToString:@"mov"]) {
-        
-        NSString *exportPath = [[NSString alloc] initWithFormat:@"%@/%@",
-                                [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], strFile];
-        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (exportPath)) {
-            UISaveVideoAtPathToSavedPhotosAlbum (exportPath, nil, nil, nil);
-        }
-        lblImageSaved.text = @"Video Saved";
-        
-    }else{
-        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imageName]]];
-        
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-        
-        lblImageSaved.text = @"Image Saved";
-    }
-    
-    [UIView animateWithDuration:3.0
-                     animations:^{
-                         lblImageSaved.alpha = 0;
-                     }
-                     completion:^(BOOL finished){
-                         [lblImageSaved removeFromSuperview];
-                     }];
-    
+//    [delegate onSendButton:self];
+//    
+//#ifdef GOOGLE_ANALYTICS_START
+//    NSMutableDictionary *event =
+//    [[GAIDictionaryBuilder createEventWithCategory:@"Gallery"
+//                                            action:@"Gallery opened"
+//                                             label:@"Save Image/ Video"
+//                                             value:nil] build];
+//    [[GAI sharedInstance].defaultTracker send:event];
+//    [[GAI sharedInstance] dispatch];
+//#else
+//    
+//#endif
+//    
+//
+//    
+//    NSString *strFile = [imageName lastPathComponent];
+//    
+//    lblImageSaved = [[UILabel alloc] initWithFrame:CGRectMake(442, 91,  140, 50)];
+//    lblImageSaved.backgroundColor = [UIColor whiteColor];
+//    lblImageSaved.layer.cornerRadius = 13.0f;
+//    lblImageSaved.layer.masksToBounds = YES;
+//    lblImageSaved.layer.borderColor =  [UIColor blackColor].CGColor;
+//    lblImageSaved.layer.borderWidth = 1.0f;
+//    
+//    [self addSubview:lblImageSaved];
+//    lblImageSaved.font = [UIFont fontWithName:APP_FONT size:20.0f];
+//    lblImageSaved.textAlignment = UITextAlignmentCenter;
+//    if([[strFile pathExtension] isEqualToString:@"mov"]) {
+//        
+//        NSString *exportPath = [[NSString alloc] initWithFormat:@"%@/%@",
+//                                [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], strFile];
+//        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (exportPath)) {
+//            UISaveVideoAtPathToSavedPhotosAlbum (exportPath, nil, nil, nil);
+//        }
+//        lblImageSaved.text = @"Video Saved";
+//        
+//    }else{
+//        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+//        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imageName]]];
+//        
+//        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+//        
+//        lblImageSaved.text = @"Image Saved";
+//    }
+//    
+//    [UIView animateWithDuration:3.0
+//                     animations:^{
+//                         lblImageSaved.alpha = 0;
+//                     }
+//                     completion:^(BOOL finished){
+//                         [lblImageSaved removeFromSuperview];
+//                     }];
+//    
 }
+
 -(void)btnPlayClicked{
     DebugLog(@"");
     //call delegate
@@ -296,6 +303,60 @@
     
 }
 
+-(void) gestureViewOnGestureConfirmed:(GestureConfirmationView *) gView {
+    DebugLog(@"");
+#ifdef GOOGLE_ANALYTICS_START
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"Gallery"
+                                            action:@"Gallery opened"
+                                             label:@"Save Image/ Video"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
+#else
 
+#endif
+
+
+
+    NSString *strFile = [imageName lastPathComponent];
+
+    lblImageSaved = [[UILabel alloc] initWithFrame:CGRectMake(442, 91,  140, 50)];
+    lblImageSaved.backgroundColor = [UIColor whiteColor];
+    lblImageSaved.layer.cornerRadius = 13.0f;
+    lblImageSaved.layer.masksToBounds = YES;
+    lblImageSaved.layer.borderColor =  [UIColor blackColor].CGColor;
+    lblImageSaved.layer.borderWidth = 1.0f;
+
+    [self addSubview:lblImageSaved];
+    lblImageSaved.font = [UIFont fontWithName:APP_FONT size:20.0f];
+    lblImageSaved.textAlignment = UITextAlignmentCenter;
+    if([[strFile pathExtension] isEqualToString:@"mov"]) {
+
+        NSString *exportPath = [[NSString alloc] initWithFormat:@"%@/%@",
+                                [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], strFile];
+        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (exportPath)) {
+            UISaveVideoAtPathToSavedPhotosAlbum (exportPath, nil, nil, nil);
+        }
+        lblImageSaved.text = @"Video Saved";
+
+    }else{
+        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imageName]]];
+
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+
+        lblImageSaved.text = @"Image Saved";
+    }
+
+    [UIView animateWithDuration:3.0
+                     animations:^{
+                         lblImageSaved.alpha = 0;
+                     }
+                     completion:^(BOOL finished){
+                         [lblImageSaved removeFromSuperview];
+                     }];
+
+}
 
 @end

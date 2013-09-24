@@ -142,6 +142,7 @@ BOOL isLanguageScreenDisplayed;
         }else{
             [swtchArt setOn:NO];
         }
+        
         if ([[TigglyStampUtils sharedInstance] getShapeMode] == YES) {
             [swtchShape setOn:YES];
         }else{

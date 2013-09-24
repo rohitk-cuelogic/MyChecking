@@ -80,8 +80,12 @@
 
 @property (nonatomic,strong) IBOutlet UIWebView *webViewTab;
 
+@property (nonatomic, strong) IBOutlet UIButton *btnPrivacyPolicy;
+@property (nonatomic,strong)IBOutlet UIView *privacymainView;
+
 -(void) launchUnlockScreen;
 
 -(IBAction)onButtonClicked:(id)sender;
-
+-(IBAction)actionClosePrivacyPolicy:(id)sender;
+-(IBAction)actionPrivacyPolicy:(id)sender;
 @end

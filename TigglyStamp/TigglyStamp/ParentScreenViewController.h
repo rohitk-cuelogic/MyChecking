@@ -16,10 +16,13 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #import "TSHomeViewController.h"
+#import "SettingsView.h"
 
-@interface ParentScreenViewController : GAITrackedViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate,UIWebViewDelegate>
+@interface ParentScreenViewController : GAITrackedViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate,UIWebViewDelegate, SettingViewProtocol>
 {
     Pinterest*  _pinterest;
+    
+    SettingsView *settingView;
     
     IBOutlet UIView *viewForWeb;
     IBOutlet UIWebView *webView;

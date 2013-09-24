@@ -53,7 +53,11 @@
 
 UIActivityIndicatorView *activityIndicator;
 
-#pragma mark- Activity LifeCycle
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Init
+#pragma mark =======================================
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -63,8 +67,13 @@ UIActivityIndicatorView *activityIndicator;
     return self;
 }
 
-- (void)viewDidLoad
-{
+#pragma mark -
+#pragma mark =======================================
+#pragma mark View LifeCycle
+#pragma mark =======================================
+
+- (void)viewDidLoad {
+    DebugLog(@"");
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
@@ -122,9 +131,20 @@ UIActivityIndicatorView *activityIndicator;
     activityIndicator.center = webView.center;
     [webView addSubview:activityIndicator];
     [webView bringSubviewToFront:activityIndicator];
+    
+    int height;
+    if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes])
+        height = 390;
+    else
+        height = 450;
+    
+    settingView = [[SettingsView alloc] initWithFrame:CGRectMake(512-400, 800, 800, height)];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    DebugLog(@"");
+    
     //Manual
     // May return nil if a tracker has not already been initialized with a
     // property ID.
@@ -136,9 +156,11 @@ UIActivityIndicatorView *activityIndicator;
            value:@"Parent Control Screen"];
     
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
 }
-- (void)didReceiveMemoryWarning
-{
+
+- (void)didReceiveMemoryWarning {
+    DebugLog(@"");
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -154,33 +176,51 @@ UIActivityIndicatorView *activityIndicator;
     return UIInterfaceOrientationMaskLandscape;
 }
 
-#pragma mark- Helpers
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Helpers
+#pragma mark =======================================
+
 -(void) launchSettingScreen {
     DebugLog(@"");
-    SettingsViewController *settingsView = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
-    settingsView.parentScreen = self;
-    settingsView.modalPresentationStyle = UIModalPresentationPageSheet;
+//    SettingsViewController *settingsView = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
+//    settingsView.parentScreen = self;
+//    settingsView.modalPresentationStyle = UIModalPresentationPageSheet;
+//    
+//    if([self respondsToSelector:@selector(presentModalViewController:animated:)])
+//        [self presentModalViewController:settingsView animated:YES];
+//    else
+//        [self presentViewController:settingsView animated:YES completion:nil];
+//    
+//    [settingsView.view.superview setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
+//    int height;
+//    if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes])
+//        height = 390;
+//    else
+//        height = 450;
+//    
+//    [settingsView.view.superview setFrame:CGRectMake(512-400, 384-(height/2), 800, height)]; //(128, 177, 768, 414)
+//    settingsView.view.superview.layer.cornerRadius = 25.0f;
+//    settingsView.view.superview.layer.masksToBounds = YES;
     
-    if([self respondsToSelector:@selector(presentModalViewController:animated:)])
-        [self presentModalViewController:settingsView animated:YES];
-    else
-        [self presentViewController:settingsView animated:YES completion:nil];
-    
-    [settingsView.view.superview setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
     int height;
     if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes])
         height = 390;
     else
         height = 450;
     
-    [settingsView.view.superview setFrame:CGRectMake(512-400, 384-(height/2), 800, height)]; //(128, 177, 768, 414)
-    settingsView.view.superview.layer.cornerRadius = 25.0f;
-    settingsView.view.superview.layer.masksToBounds = YES;
+    settingView.delegate = self;
+    [UIView animateWithDuration:0.5 animations:^{
+        settingView.frame = CGRectMake(512-400, 384-(height/2), 800, height);
+        [self.view addSubview:settingView];
+    } completion:^(BOOL finished){
+        self.view.userInteractionEnabled = YES;
+    }];
 
 }
 
 - (void)removeConfirmationDilog:(NSTimer*)timer {
-    
+    DebugLog(@"");
     [self.confView removeFromSuperview];
 }
 
@@ -192,7 +232,11 @@ UIActivityIndicatorView *activityIndicator;
     
 }
 
-#pragma mark- IBAction handling
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Action Handling
+#pragma mark =======================================
+
 -(IBAction)onButtonClicked:(id)sender{
     DebugLog(@"");
     
@@ -378,7 +422,9 @@ UIActivityIndicatorView *activityIndicator;
     [self.webViewTab loadHTMLString:htmlString baseURL:[[NSBundle mainBundle] bundleURL]];
     
 }
+
 -(void)setInfoForPhilosophyTabWebView {
+    DebugLog(@"");
     tabTitleIMGVIEW.image = [UIImage imageNamed:@"tab_learning_philosophy.png"];
     
     NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"learning_philoshophy" ofType:@"html" inDirectory:nil];
@@ -390,6 +436,7 @@ UIActivityIndicatorView *activityIndicator;
 }
 
 -(void) launchTigglyNews {
+    DebugLog(@"");
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Parent Control"
                                             action:@"buttonPress"
@@ -414,7 +461,9 @@ UIActivityIndicatorView *activityIndicator;
                          
                      }];
 }
+
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+    DebugLog(@"");
     NSURL *URL = [request URL];
     if ([[URL scheme] isEqualToString:@"callmycode"]) {
         NSString *urlString = [[request URL] absoluteString];
@@ -423,12 +472,6 @@ UIActivityIndicatorView *activityIndicator;
         if ([urlParts count] > 1) {
             NSArray *parameters = [[urlParts objectAtIndex:1] componentsSeparatedByString:@"&"];
             NSString *methodName = [parameters objectAtIndex:0];
-            NSString *variableName = [parameters objectAtIndex:1];
-            
-            //            NSString *message = [NSString stringWithFormat:@"Obj-c from js with methodname=%@ and variablename=%@", methodName, variableName];
-            //
-            //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Great" message:message delegate: self cancelButtonTitle: nil otherButtonTitles: @"OK",nil, nil];
-            //            [alert show];
             
             if ([methodName isEqualToString:@"logoItem"] ) {
                 // tiggly logo clicked
@@ -479,9 +522,6 @@ UIActivityIndicatorView *activityIndicator;
     }
     return YES;
 }
-
-
-
 
 
 -(void)setInfoForLetterTab {
@@ -878,7 +918,11 @@ UIActivityIndicatorView *activityIndicator;
     return YES;
 }
 
-#pragma mark Webview Delegate
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Webview Delegates
+#pragma mark =======================================
+
 -(void)webViewDidStartLoad:(UIWebView *)webView
 {
     [activityIndicator startAnimating];
@@ -890,6 +934,27 @@ UIActivityIndicatorView *activityIndicator;
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     [activityIndicator stopAnimating];
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark SettingView Protocol
+#pragma mark =======================================
+
+-(void) settingViewOnCloseButtonClick:(SettingsView *)sView {
+    DebugLog(@"");
+    
+    int height;
+    if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes])
+        height = 390;
+    else
+        height = 450;
+    [UIView animateWithDuration:0.5 animations:^{
+        settingView.frame = CGRectMake(512-400,800, 800, height);
+    } completion:^(BOOL finished){
+        self.view.userInteractionEnabled = YES;
+        [settingView removeFromSuperview];
+    }];
 }
 
 @end

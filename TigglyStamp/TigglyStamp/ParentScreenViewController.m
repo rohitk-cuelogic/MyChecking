@@ -95,7 +95,6 @@ UIActivityIndicatorView *activityIndicator;
     [tabLetterSpatialBTN setTag:TAG_LETTER_SPATIAL_BTN];
     [lettertabCloseBTN setTag:TAG_LETTER_TAB_POPUP_CLOSE_BTN];
     
-    
     emailidTextField.font =  [UIFont fontWithName:APP_FONT size:18.0f];
     
     [self setInfoForLetterTabWebView];

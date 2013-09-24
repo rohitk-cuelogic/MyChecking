@@ -221,7 +221,6 @@
 						<string key="NSFrame">{{615, 338}, {179, 125}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -745,7 +744,7 @@
 			<string key="btnCommingSoon.png">{295, 286}</string>
 			<string key="close_btn.png">{120, 120}</string>
 			<string key="fall_btn.png">{591, 572}</string>
-			<string key="green_bg_2.png">{2048, 1536}</string>
+			<string key="green_bg_2.png">{1024, 768}</string>
 			<string key="home_icon_2.png">{274, 274}</string>
 			<string key="learn_more.png">{416, 372}</string>
 			<string key="lock.png">{209, 280}</string>

@@ -88,7 +88,7 @@
         }else if ( self.frame.origin.x + location.x - touchLocation.x > 1024 - (imgView.frame.size.width) ) {
             frame.origin.x = self.frame.origin.x;
             frame.origin.y = self.frame.origin.y + location.y - touchLocation.y;
-        }else if ( self.frame.origin.x + location.x - touchLocation.x < 200){
+        }else if ( self.frame.origin.x + location.x - touchLocation.x < 110){
             frame.origin.x = self.frame.origin.x;
             frame.origin.y = self.frame.origin.y + location.y - touchLocation.y;
         }else if (self.frame.origin.y + location.y - touchLocation.y > (768 - (imgView.frame.size.height))){

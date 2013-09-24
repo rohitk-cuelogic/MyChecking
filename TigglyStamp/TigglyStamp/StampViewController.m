@@ -1344,6 +1344,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     if (isWithShape) {
         [touchView touchesMoved:touches withEvent:nil];
+    }else{
+        if(!viewShapesTray.hidden){
+            [self.view bringSubviewToFront:viewShapesTray];
+        }
     }
     
     
@@ -1511,7 +1515,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         centerX = point.x;
         centerY =  point.y;
     
-        if(centerX < 140)
+        if(centerX < 170)
             return;
     
         shapeToDraw = nil;

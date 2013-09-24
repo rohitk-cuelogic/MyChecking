@@ -1328,6 +1328,18 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     
     if (isMoveObject) {
+        
+        if (isWithShape) {
+            [touchView touchesMoved:touches withEvent:nil];
+        }else{
+            if(!viewShapesTray.hidden){
+                [self.mainView bringSubviewToFront:viewShapesTray];
+                for(PhysicalShapesView *pv in arrPhysicalShapes) {
+                    [self.mainView bringSubviewToFront:pv];
+                }
+            }
+        }
+        
         CGPoint point = [[touches anyObject] locationInView:touchView];
         [self.mainView bringSubviewToFront:fruit];
         
@@ -1342,13 +1354,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         [fruit moveObject:touches point:point];
     }
     
-    if (isWithShape) {
-        [touchView touchesMoved:touches withEvent:nil];
-    }else{
-        if(!viewShapesTray.hidden){
-            [self.view bringSubviewToFront:viewShapesTray];
-        }
-    }
+    
     
     
     [tickBtnTimer invalidate];
@@ -1515,7 +1521,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         centerX = point.x;
         centerY =  point.y;
     
-        if(centerX < 170)
+        if(centerX < 175)
             return;
     
         shapeToDraw = nil;

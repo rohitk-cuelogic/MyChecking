@@ -336,6 +336,7 @@ UIActivityIndicatorView *activityIndicator;
 //                    
 //                }
 
+                [self sendEmail];
                 
             }else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tiggly" message:@"Please enter valid email address" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
@@ -1109,5 +1110,79 @@ UIActivityIndicatorView *activityIndicator;
     else
         isConnection=YES;
 }
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Mail
+#pragma mark =======================================
+
+-(void) sendEmail {
+    DebugLog(@"");
+
+    if([[TigglyStampUtils sharedInstance] isMailSupported] == YES) {
+    
+        //Shows the email composer view
+        MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+        picker.mailComposeDelegate = self;
+        [picker setToRecipients:[[NSArray alloc]initWithObjects:@"sachin.patil@cuelogic.co.in", nil]]; //SUBSCRIPTION_EMAIL_ID
+
+        NSString *sub;
+        NSString *body;
+   
+        sub = [NSString stringWithFormat:@"Subscribe to Tiggly"];
+        body =  emailidTextField.text;
+        
+        DebugLog(@"Email Subject: %@",sub);
+        DebugLog(@"Email Body: %@",body);
+        
+        [picker setSubject:sub];    
+        [picker setMessageBody:body isHTML:NO];
+        
+        [self presentModalViewController:picker animated:YES];
+        
+    }else if([[TigglyStampUtils sharedInstance] isMailSupported] == NO){
+        
+        NSString *alertTitle = @"Email Error!";
+        NSString *alertMsg = @"Configure the Mail Account on your device to send email";
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMsg
+                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+        [alert show];
+        
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+	// Notifies users about errors associated with the interface
+	switch (result)
+	{
+		case MFMailComposeResultCancelled:
+			break;
+		case MFMailComposeResultSaved:
+			break;
+		case MFMailComposeResultSent:
+        {
+            NSString *alertTitle = @"Email Sent";
+            NSString *alertMsg = @"Report has been mailed successfully";
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMsg
+                                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+            [alert show];
+			
+        }
+            break;
+		case MFMailComposeResultFailed:
+        {
+            NSString *alertTitle = @"Email Sending Failed";
+            NSString *alertMsg = @"Email sending failed, please try again";
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMsg
+                                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+            [alert show];
+        }
+			break;
+		default:
+			break;
+	}
+	[self dismissModalViewControllerAnimated:YES];
+}
+
 
 @end

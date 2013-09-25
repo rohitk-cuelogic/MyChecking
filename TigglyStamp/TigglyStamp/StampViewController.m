@@ -22,6 +22,9 @@
 
 @implementation StampViewController
 
+int min = 0;
+int sec= 0;
+
 #pragma mark -
 #pragma mark =======================================
 #pragma mark Synthesize
@@ -223,10 +226,9 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     multiTouchForFruitObject = [[NSMutableArray alloc]init];
     multiTouchForTouchView = [[NSMutableArray alloc]init];
 
-    UITapGestureRecognizer *doubleFingerTap =
-    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
-    doubleFingerTap.numberOfTapsRequired = 2;
-    [self.videoButton addGestureRecognizer:doubleFingerTap];
+//    UITapGestureRecognizer *doubleFingerTap =
+//    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+//    doubleFingerTap.numberOfTapsRequired = 2;
     
     UITapGestureRecognizer *doubleFingerTapOnGarbage =
     [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(clearScreen:)];
@@ -410,6 +412,15 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     [screenCapture startRecording];
     [screenCapture setNeedsDisplay];
 
+    min = 0;
+    sec= 0;
+    if(videoPlayTimer != nil)
+        [videoPlayTimer invalidate];    
+    videoPlayTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
+    
+    [videoTimer invalidate];
+    videoTimer = [NSTimer scheduledTimerWithTimeInterval:180.0 target:self selector:@selector(actionRecording:) userInfo:nil repeats:NO];
+    
 }
 
 
@@ -797,6 +808,9 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         
         [videoTimer invalidate];
         
+        [videoPlayTimer invalidate];
+        lblTimer.text = @"";
+        
         isRecording = NO;
         [videoButton setBackgroundImage:[UIImage imageNamed:@"record_icon_ record"] forState:UIControlStateNormal];
         cameraButton.hidden = NO;
@@ -831,21 +845,20 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         [cameraButton.layer removeAnimationForKey:@"transform.scale"];
         
          
-        double delayInSeconds = 1.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            CABasicAnimation *theAnimation;
-            theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
-            theAnimation.duration=1.0;
-            theAnimation.repeatCount=HUGE_VALF;
-            theAnimation.autoreverses=NO;
-            theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
-            theAnimation.toValue=[NSNumber numberWithFloat:0.5];
-            [videoButton.layer addAnimation:theAnimation forKey:@"opacity"]; //animateOpacity
-        });
+//        double delayInSeconds = 1.0;
+//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//            CABasicAnimation *theAnimation;
+//            theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+//            theAnimation.duration=1.0;
+//            theAnimation.repeatCount=HUGE_VALF;
+//            theAnimation.autoreverses=NO;
+//            theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
+//            theAnimation.toValue=[NSNumber numberWithFloat:0.5];
+//            [videoButton.layer addAnimation:theAnimation forKey:@"opacity"]; //animateOpacity
+//        });
         
-        [videoTimer invalidate];
-        videoTimer = [NSTimer scheduledTimerWithTimeInterval:180.0 target:self selector:@selector(actionRecording:) userInfo:nil repeats:NO];
+
         
     }
 }
@@ -1382,7 +1395,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         
 
         
-        [fruit moveObject:touches point:point];
+        [fruit moveObject:touches point:point isRecording:isRecording];
     }
     
     
@@ -2257,12 +2270,25 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
 
 -(void)updateTime{
-    NSDate* currentDate = [NSDate date];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"mm:ss"];
-    // convert it to a string
-    NSString *dateString = [dateFormat stringFromDate:currentDate];
-    lblTimer.text = dateString;
+    DebugLog(@"");
+    
+    sec++;
+    if(sec == 60){
+        sec = 0;
+        min++;
+    }
+    
+    NSString *secTemp;
+    if(sec < 10){
+        secTemp = [NSString stringWithFormat:@"0%d",sec];
+    }else{
+        secTemp = [NSString stringWithFormat:@"%d",sec];
+    }
+    
+    NSString *time = [NSString stringWithFormat:@"0%d:%@",min,secTemp];
+    lblTimer.text = time;
+    lblTimer.textColor = [UIColor redColor];
+    lblTimer.font = [UIFont fontWithName:APP_FONT_BOLD size:20.0f];
 
 }
 

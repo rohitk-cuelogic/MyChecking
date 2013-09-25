@@ -58,7 +58,7 @@
 #define FLOAT_FULL_CURL_TIME 0.8
 #define FLOAT_CURL_TIME 0.3
 
-#define SUBSCRIPTION_EMAIL_ID @"sachin.patil@cuelogic.co.in"//@"subscription@tiggly.com"
+#define SUBSCRIPTION_EMAIL_ID @"subscription@tiggly.com"
 #define SENDER_EMAIL_ID @"tigglytwitter@gmail.com"
 #define SENDER_EMAIL_ID_PASSWORD @"tiggly123"
 

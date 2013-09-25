@@ -32,5 +32,5 @@
 @property(nonatomic,strong)UIImageView *imgView;
 @property(nonatomic,strong)NSString *objectName;
 -(id) initWithFrame:(CGRect)frame withShape:(NSString *) shapeName;
--(void) moveObject:(NSSet *)set point:(CGPoint)point;
+-(void) moveObject:(NSSet *)set point:(CGPoint)point isRecording:(BOOL) isTrue;
 @end

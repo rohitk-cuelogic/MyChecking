@@ -49,7 +49,7 @@
     NSTimer *continuityTimer;
     UIImageView *viewShapesTray;
     UIView *btnView;
-    NSTimer *videoTimer;
+    NSTimer *videoPlayTimer;
     
     SceneType sceneType;
     

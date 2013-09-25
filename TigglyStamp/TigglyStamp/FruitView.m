@@ -54,7 +54,7 @@
     [self.delegate onFruitView:self touchesBegan:touches];
 }
 
--(void) moveObject:(NSSet *)set point:(CGPoint)point{
+-(void) moveObject:(NSSet *)set point:(CGPoint)point isRecording:(BOOL) isTrue{
 
     
     UITouch *aTouch = [set anyObject];
@@ -62,7 +62,7 @@
     
     CGRect frame = self.frame;
 
-    if ([[TigglyStampUtils sharedInstance] getShapeMode]) {
+    if ([[TigglyStampUtils sharedInstance] getShapeMode] || isTrue) {
         if ((self.frame.origin.x + location.x - touchLocation.x > 1024 - (imgView.frame.size.width) && self.frame.origin.y + location.y - touchLocation.y > (768 - (imgView.frame.size.height))) || (self.frame.origin.x + location.x - touchLocation.x > 1024 - (imgView.frame.size.width) && self.frame.origin.y + location.y - touchLocation.y < 0) || ( self.frame.origin.x + location.x - touchLocation.x < 0 && self.frame.origin.y + location.y - touchLocation.y > (768 - (imgView.frame.size.height))) || (self.frame.origin.x + location.x - touchLocation.x < 0 && self.frame.origin.y + location.y - touchLocation.y < 0)) {
             
         }else if ( self.frame.origin.x + location.x - touchLocation.x > 1024 - (imgView.frame.size.width) ) {

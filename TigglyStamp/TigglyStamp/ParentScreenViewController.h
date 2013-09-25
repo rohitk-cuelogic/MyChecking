@@ -19,6 +19,8 @@
 #import "Reachability.h"
 #import "TSHomeViewController.h"
 #import "SettingsView.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
 #ifdef GOOGLE_ANALYTICS_START
 #import "GAI.h"
@@ -26,7 +28,7 @@
 #import "GAIFields.h"
 @interface ParentScreenViewController : GAITrackedViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate,UIWebViewDelegate, SettingViewProtocol>
 #else
-@interface ParentScreenViewController : UIViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate,UIWebViewDelegate, SettingViewProtocol,SKPSMTPMessageDelegate>
+@interface ParentScreenViewController : UIViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate,UIWebViewDelegate, SettingViewProtocol,SKPSMTPMessageDelegate,MFMailComposeViewControllerDelegate>
 #endif
 
 

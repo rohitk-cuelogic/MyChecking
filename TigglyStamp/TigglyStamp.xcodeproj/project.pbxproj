@@ -3857,7 +3857,6 @@
 		EB6F33151781867900FC479F = {
 			isa = PBXGroup;
 			children = (
-				C0F814E817F1A68B0051C2B5 /* CFNetwork.framework */,
 				C0F814CF17F1A6680051C2B5 /* BackgroundMail */,
 				C0A82D3017EC930500F85793 /* HTML */,
 				C027AE6117EAE3C40066632E /* Resource */,
@@ -3887,6 +3886,7 @@
 		EB6F33231781867900FC479F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C0F814E817F1A68B0051C2B5 /* CFNetwork.framework */,
 				C08EC11B17EB49680092F5A7 /* CoreData.framework */,
 				C01F422517EB47340093AA53 /* libz.dylib */,
 				B1D4077017C3727600E26814 /* MessageUI.framework */,

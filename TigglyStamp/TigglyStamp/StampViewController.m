@@ -418,6 +418,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         [videoPlayTimer invalidate];    
     videoPlayTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
     
+     lblTimer.textColor = [UIColor blueColor];
+    
     [videoTimer invalidate];
     videoTimer = [NSTimer scheduledTimerWithTimeInterval:180.0 target:self selector:@selector(actionRecording:) userInfo:nil repeats:NO];
     
@@ -2287,8 +2289,29 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     NSString *time = [NSString stringWithFormat:@"0%d:%@",min,secTemp];
     lblTimer.text = time;
-    lblTimer.textColor = [UIColor redColor];
-    lblTimer.font = [UIFont fontWithName:APP_FONT_BOLD size:20.0f];
+    
+    if (min == 2 && sec == 50) {
+        lblTimer.textColor = [UIColor redColor];
+        // start animation
+        
+        
+        double delayInSeconds = 1.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            CABasicAnimation *theAnimation;
+            theAnimation=[CABasicAnimation animationWithKeyPath:@"transform.scale"];
+            theAnimation.duration=0.7;
+            theAnimation.repeatCount=HUGE_VALF;
+            theAnimation.autoreverses=YES;
+            theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
+            theAnimation.toValue=[NSNumber numberWithFloat:1.3];
+            [lblTimer.layer addAnimation:theAnimation forKey:@"transform.scale"]; //animateOpacity
+        });
+        
+    }
+    
+    
+    lblTimer.font = [UIFont fontWithName:APP_FONT_BOLD size:26.0f];
 
 }
 

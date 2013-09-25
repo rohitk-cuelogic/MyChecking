@@ -52,7 +52,7 @@
 @synthesize webViewTab;
 @synthesize privacymainView;
 @synthesize isConnection;
-
+@synthesize clearView;
 
 UIActivityIndicatorView *activityIndicator;
 
@@ -209,7 +209,7 @@ UIActivityIndicatorView *activityIndicator;
 //    settingsView.view.superview.layer.cornerRadius = 25.0f;
 //    settingsView.view.superview.layer.masksToBounds = YES;
     
-    [self disableAllButtons];
+//    [self disableAllButtons];
     
     int height;
     if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes])
@@ -221,6 +221,11 @@ UIActivityIndicatorView *activityIndicator;
         [settingView removeFromSuperview];
         settingView = nil;
     }
+    
+    clearView = [[UIView alloc] initWithFrame:self.view.frame];
+    clearView.backgroundColor = [UIColor blackColor];
+    clearView.alpha = 0.5;
+    [self.view addSubview:clearView];
     
     settingView = [[SettingsView alloc] initWithFrame:CGRectMake(512-400, 800, 800, height)];
     settingView.delegate = self;
@@ -335,7 +340,8 @@ UIActivityIndicatorView *activityIndicator;
 //                    [self sendMessageTo:SUBSCRIPTION_EMAIL_ID withMessagebody:msgBody];
 //                    
 //                }
-
+                [emailidTextField resignFirstResponder];
+                
                 [self sendEmail];
                 
             }else{
@@ -1020,7 +1026,9 @@ UIActivityIndicatorView *activityIndicator;
 -(void) settingViewOnCloseButtonClick:(SettingsView *)sView {
     DebugLog(@"");
   
-    [self enableAllButtons];
+//    [self enableAllButtons];
+    
+    [clearView removeFromSuperview];
     
     int height;
     if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes])
@@ -1039,7 +1047,9 @@ UIActivityIndicatorView *activityIndicator;
 -(void) settingViewOnShapeSwitchClick:(SettingsView *) sView{
     DebugLog(@"");
     
-     [self enableAllButtons];
+//     [self enableAllButtons];
+    [clearView removeFromSuperview];
+    
     [self launchUnlockScreen];
 }
 
@@ -1153,6 +1163,8 @@ UIActivityIndicatorView *activityIndicator;
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
 	// Notifies users about errors associated with the interface
+    [emailidTextField resignFirstResponder];
+    
 	switch (result)
 	{
 		case MFMailComposeResultCancelled:
@@ -1161,12 +1173,8 @@ UIActivityIndicatorView *activityIndicator;
 			break;
 		case MFMailComposeResultSent:
         {
-            NSString *alertTitle = @"Email Sent";
-            NSString *alertMsg = @"Report has been mailed successfully";
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMsg
-                                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
-            [alert show];
-			
+            [self.view addSubview:confView];
+            [NSTimer scheduledTimerWithTimeInterval:6.0 target:self selector:@selector(removeConfirmationDilog:) userInfo:nil repeats:NO];
         }
             break;
 		case MFMailComposeResultFailed:

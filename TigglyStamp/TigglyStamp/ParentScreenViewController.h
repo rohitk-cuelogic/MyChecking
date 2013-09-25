@@ -93,6 +93,8 @@
 @property (nonatomic, strong) IBOutlet UIButton *btnPrivacyPolicy;
 @property (nonatomic,strong)IBOutlet UIView *privacymainView;
 
+@property (nonatomic,strong) IBOutlet UIView *clearView;
+
 -(void) launchUnlockScreen;
 
 -(IBAction)onButtonClicked:(id)sender;

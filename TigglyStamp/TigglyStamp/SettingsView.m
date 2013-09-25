@@ -62,7 +62,7 @@ BOOL isLanguageScreenDisplayed;
         [btnLang setBackgroundImage:[UIImage imageNamed:@"btnNext.png"] forState:UIControlStateNormal];
         [btnLang setBackgroundImage:[UIImage imageNamed:@"btnNext.png"] forState:UIControlStateSelected];
         [btnLang addTarget:self action:@selector(actionLanguage)forControlEvents:UIControlEventTouchUpInside];
-        btnLang.frame = CGRectMake(515, 65, 50, 50);
+        btnLang.frame = CGRectMake(485, 65, 50, 50);
         [self addSubview:btnLang];
         
         UILabel *lblMusic= [[UILabel alloc] initWithFrame:CGRectMake(80, 130, 345, 32)];
@@ -127,7 +127,7 @@ BOOL isLanguageScreenDisplayed;
                 [btnBuyShapes setBackgroundImage:[UIImage imageNamed:@"btnNext.png"] forState:UIControlStateNormal];
                 [btnBuyShapes setBackgroundImage:[UIImage imageNamed:@"btnNext.png"] forState:UIControlStateSelected];
                 [btnBuyShapes addTarget:self action:@selector(actionBuyShapes)forControlEvents:UIControlEventTouchUpInside];
-                btnBuyShapes.frame = CGRectMake(515, 340, 50, 50);
+                btnBuyShapes.frame = CGRectMake(485, 340, 50, 50);
                 [self addSubview:btnBuyShapes];
         }
         

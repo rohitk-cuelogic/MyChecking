@@ -62,7 +62,7 @@
 #define SENDER_EMAIL_ID @"tigglytwitter@gmail.com"
 #define SENDER_EMAIL_ID_PASSWORD @"tiggly123"
 
-#define GALLERY_LIMIT 7
+#define GALLERY_LIMIT 60
 
 //Do not change the sequence
 typedef enum {

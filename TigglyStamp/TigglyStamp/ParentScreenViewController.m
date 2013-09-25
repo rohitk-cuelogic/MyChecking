@@ -329,20 +329,20 @@ UIActivityIndicatorView *activityIndicator;
         if (emailidTextField.text.length != 0) {
             if ([self isValidEmailAddress:emailidTextField.text] == YES) {
    
-//                [self CheckNetworkConnection];
-//                if( isConnection==YES)
-//                {
-//                    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//                    hud.labelText = NSLocalizedString(@"Loading ...", @"");
-//                    hud.autoresizingMask = 0;
-//                    // send user email addresses to subscription@tiggly.com
-//                    NSString *msgBody = emailidTextField.text;
-//                    [self sendMessageTo:SUBSCRIPTION_EMAIL_ID withMessagebody:msgBody];
-//                    
-//                }
+                [self CheckNetworkConnection];
+                if( isConnection==YES)
+                {
+                    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                    hud.labelText = NSLocalizedString(@"Loading ...", @"");
+                    hud.autoresizingMask = 0;
+                    // send user email addresses to subscription@tiggly.com
+                    NSString *msgBody = emailidTextField.text;
+                    [self sendMessageTo:SUBSCRIPTION_EMAIL_ID withMessagebody:msgBody];
+                    
+                }
                 [emailidTextField resignFirstResponder];
-                
-                [self sendEmail];
+//                
+//                [self sendEmail];
                 
             }else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tiggly" message:@"Please enter valid email address" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
@@ -1066,7 +1066,7 @@ UIActivityIndicatorView *activityIndicator;
     emailMessage.requiresAuth = YES;
     emailMessage.login = SENDER_EMAIL_ID; //sender email address
     emailMessage.pass = SENDER_EMAIL_ID_PASSWORD; //sender email password
-    emailMessage.subject =@"Tiggly";
+    emailMessage.subject =@"Tiggly Subscription";
     emailMessage.wantsSecure = YES;
     emailMessage.delegate = self; // you must include <SKPSMTPMessageDelegate> to your class
     

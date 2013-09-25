@@ -43,11 +43,15 @@
 -(ShapeType)getCurrentSahpeForStoringKeys;
 -(void)setCurrentSahpeForStoringKeys:(ShapeType)sType;
 
+-(BOOL) isSpaceAvailableOnDisk;
+-(BOOL) isItemCountBelowTheLimit;
 
 -(void)setCurrentLanguage:(NSString *)lang;
 -(NSString *)getCurrentLanguage;
 
 -(BOOL) isAppUnlockedForShapes;
 -(void)unlockAppForShapes:(BOOL) boolean;
+
+-(uint64_t)getFreeDiskspace;
 
 @end

@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 
-//#define DEBUG_MODE
+#define DEBUG_MODE
 //#define IS_RUN_WITHOUT_SHAPE_FOR_TESTING 1
-//#define IS_RUN_ON_SIMULATOR
+#define IS_RUN_ON_SIMULATOR
 
 //#define TEST_MODE 1
 
@@ -61,6 +61,8 @@
 #define SUBSCRIPTION_EMAIL_ID @"subscription@tiggly.com"
 #define SENDER_EMAIL_ID @"tigglytwitter@gmail.com"
 #define SENDER_EMAIL_ID_PASSWORD @"tiggly123"
+
+#define GALLERY_LIMIT 7
 
 //Do not change the sequence
 typedef enum {

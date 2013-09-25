@@ -1072,8 +1072,8 @@
 		C0F20DD217D9D09900340C20 /* rooster_Animal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0F20DD117D9D09900340C20 /* rooster_Animal.mp3 */; };
 		C0F814CA17F157EB0051C2B5 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F814C917F157EB0051C2B5 /* SettingsView.m */; };
 		C0F814CE17F179A10051C2B5 /* GestureConfirmationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F814CD17F179A10051C2B5 /* GestureConfirmationView.m */; };
-		C0F814E117F1A6680051C2B5 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F814D217F1A6680051C2B5 /* MBProgressHUD.m */; };
-		C0F814E217F1A6680051C2B5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F814D517F1A6680051C2B5 /* Reachability.m */; };
+		C0F814E117F1A6680051C2B5 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F814D217F1A6680051C2B5 /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C0F814E217F1A6680051C2B5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F814D517F1A6680051C2B5 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C0F814E317F1A6680051C2B5 /* Base64Transcoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F814D817F1A6680051C2B5 /* Base64Transcoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C0F814E417F1A6680051C2B5 /* HSK_CFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F814DA17F1A6680051C2B5 /* HSK_CFUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C0F814E517F1A6680051C2B5 /* NSData+Base64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F814DC17F1A6680051C2B5 /* NSData+Base64Additions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };

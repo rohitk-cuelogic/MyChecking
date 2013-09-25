@@ -607,6 +607,24 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 -(IBAction)screenShot:(id)sender {
     DebugLog(@"");
     
+    if(![[TigglyStampUtils sharedInstance] isItemCountBelowTheLimit]){
+        NSString *alertTitle = @"Gallery Limit Reached!";
+        NSString *alertMsg = @"You have reached the maximum gallery limit. Please delete few items to continue ";
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMsg
+                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+        [alert show];
+        return;
+    }
+    
+    if(![[TigglyStampUtils sharedInstance] isSpaceAvailableOnDisk]){
+        NSString *alertTitle = @"Low memory";
+        NSString *alertMsg = @"You dont have enough memory on disk. Please free some memory to continue.";
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMsg
+                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+        [alert show];
+        return;
+    }
+    
     [[TDSoundManager sharedManager] stopMusic];
     
     [self.view.layer removeAnimationForKey:@"pageUnCurl"];
@@ -806,6 +824,24 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 -(IBAction)actionRecording:(id)sender {
     DebugLog(@"");
     
+    if(![[TigglyStampUtils sharedInstance] isItemCountBelowTheLimit]){
+        NSString *alertTitle = @"Gallery Limit Reached!";
+        NSString *alertMsg = @"You have reached the maximum gallery limit. Please delete few items to continue.";
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMsg
+                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+        [alert show];
+        return;
+    }
+    
+    if(![[TigglyStampUtils sharedInstance] isSpaceAvailableOnDisk]){
+        NSString *alertTitle = @"Low memory";
+        NSString *alertMsg = @"You dont have enough memory on disk. Please free some memory to continue.";
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMsg
+                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+        [alert show];
+        return;
+    }
+    
     if(isRecording) {
         
         [videoTimer invalidate];
@@ -860,7 +896,6 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 //            [videoButton.layer addAnimation:theAnimation forKey:@"opacity"]; //animateOpacity
 //        });
         
-
         
     }
 }

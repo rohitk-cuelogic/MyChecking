@@ -51,6 +51,8 @@
     DebugLog(@"");
     [super viewDidLoad];
     
+    [[TigglyStampUtils sharedInstance] isItemCountBelowTheLimit];
+    
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         // iOS 7
         [self prefersStatusBarHidden];

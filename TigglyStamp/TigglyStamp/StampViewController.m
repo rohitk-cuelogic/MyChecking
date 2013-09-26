@@ -247,9 +247,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     
     if ([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes] && !isWithShape) {
+        
 #ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
-        [[GAIDictionaryBuilder createEventWithCategory:@"Game Play"
+        [[GAIDictionaryBuilder createEventWithCategory:@"App Version"
                                                 action:@"Full version with no shape"
                                                  label:@"Full version with no shape"
                                                  value:nil] build];

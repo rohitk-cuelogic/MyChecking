@@ -313,10 +313,11 @@ UIActivityIndicatorView *activityIndicator;
         [self.navigationController pushViewController:tSHomeViewController animated:YES];
     }
     if ([btn tag] == TAG_SUBSCRIBE_BTN) {
+        
 #ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
-        [[GAIDictionaryBuilder createEventWithCategory:@"UI"
-                                                action:@"buttonPress"
+        [[GAIDictionaryBuilder createEventWithCategory:@"Button Click"
+                                                action:@"Button Clicked"
                                                  label:@"Subscribe_Button"
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];
@@ -424,8 +425,8 @@ UIActivityIndicatorView *activityIndicator;
     if([btn tag] == TAG_TIGGLY_NEWS_BTN){
 #ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
-        [[GAIDictionaryBuilder createEventWithCategory:@"UI"
-                                                action:@"buttonPress"
+        [[GAIDictionaryBuilder createEventWithCategory:@"Button Click"
+                                                action:@"Button Clicked"
                                                  label:@"Tiggly_news_Button"
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];

@@ -147,6 +147,7 @@ int swipeTxtCnt;
          if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
              return;
          }
+        
 #ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
         [[GAIDictionaryBuilder createEventWithCategory:@"Game Scene"
@@ -162,7 +163,9 @@ int swipeTxtCnt;
         
         stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneWinter];
         [self.navigationController pushViewController:stampViewController animated:YES];
+        
     }else if (btn.tag == TAG_FALL_BTN){
+        
 #ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
         [[GAIDictionaryBuilder createEventWithCategory:@"Game Scene"

@@ -7,7 +7,7 @@
 //
 
 #import "StampViewController.h"
-
+#import "TSHomeViewController.h"
 
 
 #define TAG_RIGHT_TICK_BTN 1
@@ -744,9 +744,11 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
 
 -(IBAction)onHomeButton:(id)sender{
+    DebugLog(@"");
     [[TDSoundManager sharedManager] stopSound];
     [[TDSoundManager sharedManager] stopMusic];
-    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+    TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
+    [self.navigationController pushViewController:homeView animated:YES];
 }
 
 
@@ -1783,7 +1785,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     [moviePlayer stop];
     
-    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+    TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
+    [self.navigationController pushViewController:homeView animated:YES];
     [cImageView removeFromSuperview];
 }
 

@@ -8,6 +8,7 @@
 
 #import "TSThumbnailEditController.h"
 #import "TDSoundManager.h"
+#import "TSHomeViewController.h"
 
 @interface TSThumbnailEditController ()
 
@@ -704,7 +705,8 @@ int swipeTextCnt;
 
 -(IBAction)goToHomeScreen:(id)sender{
     [moviePlayer stop];
-    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+    TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
+    [self.navigationController popToViewController:homeView animated:YES];
 }
 
 -(IBAction)saveImageToGallary:(id)sender{

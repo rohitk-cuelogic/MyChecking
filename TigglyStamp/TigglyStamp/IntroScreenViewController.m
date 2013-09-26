@@ -246,8 +246,7 @@
  [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
     
     UIButton *btn = (UIButton *) sender;
-    TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];
-    
+
     
     if (btn.tag == TAG_BTN_WITHSHAPE) {     
         if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
@@ -255,10 +254,12 @@
             [self.navigationController pushViewController:unlockScreen animated:YES];
         }else{
             [[TigglyStampUtils sharedInstance] setShapeMode:YES];
+            TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];            
             [self.navigationController pushViewController:homeViewController animated:YES];
         }
     }else if (btn.tag == TAG_BTN_WITHOUTSHAPE){
         [[TigglyStampUtils sharedInstance] setShapeMode:NO];
+        TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];        
          [self.navigationController pushViewController:homeViewController animated:YES];
     }
     

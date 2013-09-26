@@ -329,19 +329,33 @@ UIActivityIndicatorView *activityIndicator;
         if (emailidTextField.text.length != 0) {
             if ([self isValidEmailAddress:emailidTextField.text] == YES) {
    
-                [self CheckNetworkConnection];
-                if( isConnection==YES)
-                {
-                    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                    hud.labelText = NSLocalizedString(@"Loading ...", @"");
-                    hud.autoresizingMask = 0;
-                    // send user email addresses to subscription@tiggly.com
-                    NSString *msgBody = emailidTextField.text;
-                    [self sendMessageTo:SUBSCRIPTION_EMAIL_ID withMessagebody:msgBody];
-                    
-                }
-                [emailidTextField resignFirstResponder];
-//                
+#ifdef GOOGLE_ANALYTICS_START
+                NSMutableDictionary *event =
+                [[GAIDictionaryBuilder createEventWithCategory:@"Tiggly Subscription"
+                                                        action:@"Subscribe"
+                                                         label:emailidTextField.text
+                                                         value:nil] build];
+                [[GAI sharedInstance].defaultTracker send:event];
+                [[GAI sharedInstance] dispatch];
+#else
+#endif
+                 [emailidTextField resignFirstResponder];
+                [self.view addSubview:confView];
+                [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(removeConfirmationDilog:) userInfo:nil repeats:NO];
+                
+//                [self CheckNetworkConnection];
+//                if( isConnection==YES)
+//                {
+//                    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//                    hud.labelText = NSLocalizedString(@"Loading ...", @"");
+//                    hud.autoresizingMask = 0;
+//                    // send user email addresses to subscription@tiggly.com
+//                    NSString *msgBody = emailidTextField.text;
+//                    [self sendMessageTo:SUBSCRIPTION_EMAIL_ID withMessagebody:msgBody];
+//                    
+//                }
+//                [emailidTextField resignFirstResponder];
+//
 //                [self sendEmail];
                 
             }else{

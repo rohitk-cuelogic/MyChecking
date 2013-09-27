@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">11G63</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1138.51</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">2083</string>
@@ -79,7 +79,7 @@
 					<object class="IBUIButton" id="9648157">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{456, 17}, {78, 78}}</string>
+						<string key="NSFrame">{{456, 11}, {78, 78}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="584513254"/>
@@ -165,7 +165,6 @@
 						<string key="NSFrame">{{462, 324}, {100, 100}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -643,7 +642,7 @@
 			<string key="home_icon_2.png">{274, 274}</string>
 			<string key="parent_gesture_black_bg.png">{2048, 1536}</string>
 			<string key="play_btn.png">{200, 199}</string>
-			<string key="send_icon.png">{274, 274}</string>
+			<string key="send_icon.png">{150, 150}</string>
 			<string key="trashcan_icon@2x~ipad.png">{200, 199}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>

@@ -191,7 +191,7 @@ int swipeTextCnt;
             break;
         case 1:
             [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
-            [emSwipeRecognizer setNumberOfTouchesRequired: 3];
+            [emSwipeRecognizer setNumberOfTouchesRequired: 2];
             break;
         case 2:
             [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
@@ -199,7 +199,7 @@ int swipeTextCnt;
             break;
         case 3:
             [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
-            [emSwipeRecognizer setNumberOfTouchesRequired: 3];
+            [emSwipeRecognizer setNumberOfTouchesRequired: 2];
             break;
         case 4:
             [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
@@ -207,7 +207,7 @@ int swipeTextCnt;
             break;
         case 5:
             [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
-            [emSwipeRecognizer setNumberOfTouchesRequired: 3];
+            [emSwipeRecognizer setNumberOfTouchesRequired: 2];
             break;
         case 6:
             [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
@@ -215,7 +215,7 @@ int swipeTextCnt;
             break;
         case 7:
             [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
-            [emSwipeRecognizer setNumberOfTouchesRequired: 3];
+            [emSwipeRecognizer setNumberOfTouchesRequired: 2];
             break;
         default:
             break;
@@ -282,15 +282,17 @@ int swipeTextCnt;
     }
     if(readyToDelete){
         DebugLog(@"");
-        
-        [self deleteImageAfterConfirm];
-        
+
         confirmationView.hidden = YES;
         confirmationViewBKG.hidden = YES;
         readyToDelete = NO;
         
         upperPanel.alpha = 1;
         editorImgView.alpha = 1;
+        
+        
+        [self deleteImageAfterConfirm];
+        
         
     }
 }

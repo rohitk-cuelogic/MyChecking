@@ -1444,6 +1444,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         }else{
             if(!viewShapesTray.hidden){
                 [self.mainView bringSubviewToFront:viewShapesTray];
+                [self.mainView bringSubviewToFront:btnShapesTray];
                 for(PhysicalShapesView *pv in arrPhysicalShapes) {
                     [self.mainView bringSubviewToFront:pv];
                 }

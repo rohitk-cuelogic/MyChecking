@@ -100,4 +100,5 @@
 -(IBAction)onButtonClicked:(id)sender;
 -(IBAction)actionClosePrivacyPolicy:(id)sender;
 -(IBAction)actionPrivacyPolicy:(id)sender;
+-(IBAction)actionReview:(id)sender;
 @end

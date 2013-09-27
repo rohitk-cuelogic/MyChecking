@@ -294,6 +294,12 @@ UIActivityIndicatorView *activityIndicator;
 #pragma mark Action Handling
 #pragma mark =======================================
 
+-(IBAction)actionReview:(id)sender{
+    DebugLog(@"");
+    
+     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/tiggly-stamp/id716727860?ls=1&mt=8"]];
+}
+
 -(IBAction)actionClosePrivacyPolicy:(id)sender{
     DebugLog(@"");
     [privacymainView removeFromSuperview];

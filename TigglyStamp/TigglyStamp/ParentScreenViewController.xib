@@ -514,7 +514,6 @@
 						<string key="NSFrame">{{372, 111}, {620, 624}}</string>
 						<reference key="NSSuperview" ref="344892077"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="437977959"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -628,7 +627,6 @@
 								<string key="NSFrame">{{402, 165}, {66, 60}}</string>
 								<reference key="NSSuperview" ref="774249904"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -768,7 +766,6 @@
 								<string key="NSFrame">{{199, 28}, {260, 69}}</string>
 								<reference key="NSSuperview" ref="273858948"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -990,7 +987,6 @@
 								<string key="NSFrame">{{18, 82}, {845, 486}}</string>
 								<reference key="NSSuperview" ref="656422090"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<reference key="IBUIBackgroundColor" ref="437977959"/>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -1602,6 +1598,15 @@ cm93c2VyIGFkZC1vbiBmb3IgbW9yZSBpbmZvcm1hdGlvbi4NDQ</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">actionReview:</string>
+						<reference key="source" ref="21584122"/>
+						<reference key="destination" ref="478293091"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<string key="id">Dk4-jF-4nV</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">actionClosePrivacyPolicy:</string>
 						<reference key="source" ref="393272201"/>
 						<reference key="destination" ref="478293091"/>
@@ -2162,6 +2167,7 @@ cm93c2VyIGFkZC1vbiBmb3IgbW9yZSBpbmZvcm1hdGlvbi4NDQ</bytes>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="actionClosePrivacyPolicy:">id</string>
 						<string key="actionPrivacyPolicy:">id</string>
+						<string key="actionReview:">id</string>
 						<string key="onButtonClicked:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
@@ -2173,6 +2179,10 @@ cm93c2VyIGFkZC1vbiBmb3IgbW9yZSBpbmZvcm1hdGlvbi4NDQ</bytes>
 							<string key="name">actionPrivacyPolicy:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="actionReview:">
+							<string key="name">actionReview:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="onButtonClicked:">
 							<string key="name">onButtonClicked:</string>
 							<string key="candidateClassName">id</string>
@@ -2180,7 +2190,9 @@ cm93c2VyIGFkZC1vbiBmb3IgbW9yZSBpbmZvcm1hdGlvbi4NDQ</bytes>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="ageTextField">UITextField</string>
+						<string key="btnClose">UIButton</string>
 						<string key="btnPrivacyPolicy">UIButton</string>
+						<string key="btnTigglyNews">UIButton</string>
 						<string key="childInfoSubView">UIView</string>
 						<string key="childInfoView">UIView</string>
 						<string key="clearView">UIView</string>
@@ -2218,6 +2230,8 @@ cm93c2VyIGFkZC1vbiBmb3IgbW9yZSBpbmZvcm1hdGlvbi4NDQ</bytes>
 						<string key="tabPlayBTN">UIButton</string>
 						<string key="tabTitleIMGVIEW">UIImageView</string>
 						<string key="twitterBTN">UIButton</string>
+						<string key="viewForWeb">UIView</string>
+						<string key="webView">UIWebView</string>
 						<string key="webViewTab">UIWebView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -2225,8 +2239,16 @@ cm93c2VyIGFkZC1vbiBmb3IgbW9yZSBpbmZvcm1hdGlvbi4NDQ</bytes>
 							<string key="name">ageTextField</string>
 							<string key="candidateClassName">UITextField</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="btnClose">
+							<string key="name">btnClose</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="btnPrivacyPolicy">
 							<string key="name">btnPrivacyPolicy</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnTigglyNews">
+							<string key="name">btnTigglyNews</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="childInfoSubView">
@@ -2376,6 +2398,14 @@ cm93c2VyIGFkZC1vbiBmb3IgbW9yZSBpbmZvcm1hdGlvbi4NDQ</bytes>
 						<object class="IBToOneOutletInfo" key="twitterBTN">
 							<string key="name">twitterBTN</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewForWeb">
+							<string key="name">viewForWeb</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="webView">
+							<string key="name">webView</string>
+							<string key="candidateClassName">UIWebView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="webViewTab">
 							<string key="name">webViewTab</string>

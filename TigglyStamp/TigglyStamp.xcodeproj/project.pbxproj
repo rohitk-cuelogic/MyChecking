@@ -272,7 +272,6 @@
 		636B50B017CF2647004D3397 /* Tiggly_SFX_MAGIC_12.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 636B50AD17CF2647004D3397 /* Tiggly_SFX_MAGIC_12.mp3 */; };
 		636B50B117CF2647004D3397 /* Tiggly_SFX_MAGIC_13.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 636B50AE17CF2647004D3397 /* Tiggly_SFX_MAGIC_13.mp3 */; };
 		636B50B217CF2647004D3397 /* Tiggly_SFX_MAGIC_14.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 636B50AF17CF2647004D3397 /* Tiggly_SFX_MAGIC_14.mp3 */; };
-		636B50B617CF268E004D3397 /* Tiggly_Word_TapOnTheScreen_WithYourShape_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 636B50B317CF268E004D3397 /* Tiggly_Word_TapOnTheScreen_WithYourShape_01.mp3 */; };
 		636B50B717CF268E004D3397 /* Tiggly_Word_TouchTheScreenWithYourFinger_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 636B50B417CF268E004D3397 /* Tiggly_Word_TouchTheScreenWithYourFinger_01.mp3 */; };
 		636B50B817CF268E004D3397 /* Tiggly_Word_TouchTheScreenWithYourFingerToMakeAPicture_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 636B50B517CF268E004D3397 /* Tiggly_Word_TouchTheScreenWithYourFingerToMakeAPicture_01.mp3 */; };
 		636B50BE17CF26CD004D3397 /* Tiggly_Word_TapOnTheScreen_WithAShape_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 636B50B917CF26CD004D3397 /* Tiggly_Word_TapOnTheScreen_WithAShape_01.mp3 */; };
@@ -1514,7 +1513,6 @@
 		636B50AD17CF2647004D3397 /* Tiggly_SFX_MAGIC_12.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_MAGIC_12.mp3; sourceTree = "<group>"; };
 		636B50AE17CF2647004D3397 /* Tiggly_SFX_MAGIC_13.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_MAGIC_13.mp3; sourceTree = "<group>"; };
 		636B50AF17CF2647004D3397 /* Tiggly_SFX_MAGIC_14.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_MAGIC_14.mp3; sourceTree = "<group>"; };
-		636B50B317CF268E004D3397 /* Tiggly_Word_TapOnTheScreen_WithYourShape_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_TapOnTheScreen_WithYourShape_01.mp3; sourceTree = "<group>"; };
 		636B50B417CF268E004D3397 /* Tiggly_Word_TouchTheScreenWithYourFinger_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_TouchTheScreenWithYourFinger_01.mp3; sourceTree = "<group>"; };
 		636B50B517CF268E004D3397 /* Tiggly_Word_TouchTheScreenWithYourFingerToMakeAPicture_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_TouchTheScreenWithYourFingerToMakeAPicture_01.mp3; sourceTree = "<group>"; };
 		636B50B917CF26CD004D3397 /* Tiggly_Word_TapOnTheScreen_WithAShape_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_TapOnTheScreen_WithAShape_01.mp3; sourceTree = "<group>"; };
@@ -2881,7 +2879,6 @@
 		636B503E17CF2025004D3397 /* Tap with finger */ = {
 			isa = PBXGroup;
 			children = (
-				636B50B317CF268E004D3397 /* Tiggly_Word_TapOnTheScreen_WithYourShape_01.mp3 */,
 				636B50B417CF268E004D3397 /* Tiggly_Word_TouchTheScreenWithYourFinger_01.mp3 */,
 				636B50B517CF268E004D3397 /* Tiggly_Word_TouchTheScreenWithYourFingerToMakeAPicture_01.mp3 */,
 			);
@@ -4587,7 +4584,6 @@
 				636B50B017CF2647004D3397 /* Tiggly_SFX_MAGIC_12.mp3 in Resources */,
 				636B50B117CF2647004D3397 /* Tiggly_SFX_MAGIC_13.mp3 in Resources */,
 				636B50B217CF2647004D3397 /* Tiggly_SFX_MAGIC_14.mp3 in Resources */,
-				636B50B617CF268E004D3397 /* Tiggly_Word_TapOnTheScreen_WithYourShape_01.mp3 in Resources */,
 				636B50B717CF268E004D3397 /* Tiggly_Word_TouchTheScreenWithYourFinger_01.mp3 in Resources */,
 				636B50B817CF268E004D3397 /* Tiggly_Word_TouchTheScreenWithYourFingerToMakeAPicture_01.mp3 in Resources */,
 				636B50BE17CF26CD004D3397 /* Tiggly_Word_TapOnTheScreen_WithAShape_01.mp3 in Resources */,
@@ -5537,8 +5533,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Nikhil Ambekar (RAARKWRAJS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nikhil Ambekar (RAARKWRAJS)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Charles Clareman (3NP42L9YQL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Charles Clareman (3NP42L9YQL)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -5553,8 +5549,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
+				PROVISIONING_PROFILE = "A98B80D8-3FA0-41B2-A300-D40B1C5088FF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A98B80D8-3FA0-41B2-A300-D40B1C5088FF";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -5569,8 +5565,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Vikrant Labde (FQWVPRQEN6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Vikrant Labde (FQWVPRQEN6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Charles Clareman (3NP42L9YQL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Charles Clareman (3NP42L9YQL)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -5578,8 +5574,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "7C04EAC1-08EC-48E4-927F-AFF02B6DFF2A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7C04EAC1-08EC-48E4-927F-AFF02B6DFF2A";
+				PROVISIONING_PROFILE = "A98B80D8-3FA0-41B2-A300-D40B1C5088FF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A98B80D8-3FA0-41B2-A300-D40B1C5088FF";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -5589,8 +5585,8 @@
 		EB6F334B1781867900FC479F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Nikhil Ambekar (RAARKWRAJS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nikhil Ambekar (RAARKWRAJS)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Charles Clareman (3NP42L9YQL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Charles Clareman (3NP42L9YQL)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/cuelogic/Documents/FacebookSDK,
@@ -5607,8 +5603,8 @@
 					"\"$(SRCROOT)/TigglyStamp/GoogleAnalyticLibrary\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FE8214F9-64AF-4D6D-A8E2-5D48C264EC42";
+				PROVISIONING_PROFILE = "A98B80D8-3FA0-41B2-A300-D40B1C5088FF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A98B80D8-3FA0-41B2-A300-D40B1C5088FF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -5616,8 +5612,8 @@
 		EB6F334C1781867900FC479F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Vikrant Labde (FQWVPRQEN6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Vikrant Labde (FQWVPRQEN6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Charles Clareman (3NP42L9YQL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Charles Clareman (3NP42L9YQL)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/cuelogic/Documents/FacebookSDK,
@@ -5634,8 +5630,8 @@
 					"\"$(SRCROOT)/TigglyStamp/GoogleAnalyticLibrary\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7C04EAC1-08EC-48E4-927F-AFF02B6DFF2A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7C04EAC1-08EC-48E4-927F-AFF02B6DFF2A";
+				PROVISIONING_PROFILE = "A98B80D8-3FA0-41B2-A300-D40B1C5088FF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A98B80D8-3FA0-41B2-A300-D40B1C5088FF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

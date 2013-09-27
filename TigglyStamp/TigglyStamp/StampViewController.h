@@ -42,6 +42,7 @@
     BOOL isRecording;
     BOOL isBtnViewHidden;
     BOOL isGreetingSoundPlaying;
+    BOOL isShapesTrayHidden;
     
     MPMoviePlayerController *moviePlayer;    
     UIActivityIndicatorView *activityIndicator;
@@ -50,6 +51,7 @@
     UIImageView *viewShapesTray;
     UIView *btnView;
     NSTimer *videoPlayTimer;
+    UIButton *btnShapesTray;
     
     SceneType sceneType;
     

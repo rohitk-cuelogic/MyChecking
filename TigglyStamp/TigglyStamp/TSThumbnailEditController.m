@@ -706,7 +706,7 @@ int swipeTextCnt;
 -(IBAction)goToHomeScreen:(id)sender{
     [moviePlayer stop];
     TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
-    [self.navigationController popToViewController:homeView animated:YES];
+    [self.navigationController pushViewController:homeView animated:YES];
 }
 
 -(IBAction)saveImageToGallary:(id)sender{

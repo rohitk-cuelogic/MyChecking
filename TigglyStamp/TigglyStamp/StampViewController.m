@@ -236,14 +236,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     [self.garbageCan addGestureRecognizer:doubleFingerTapOnGarbage];
     
    
-    if(!isWithShape) {
-        [self displayShapesTray];
-//        homeButton.frame = CGRectMake(160, 15, 70, 70);
-//        RigthTickButton.frame = CGRectMake(160, 15, 70, 70);
-    }else{
-//        homeButton.frame = CGRectMake(40, 15, 70, 70);
-//        RigthTickButton.frame = CGRectMake(40, 15, 70, 70);
-    }
+    if(!isWithShape)
+        [self initShapesTray];
     
     
     if ([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes] && !isWithShape) {
@@ -465,11 +459,13 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         }
         fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
         homeButton.hidden = YES;
+        cameraButton.hidden = YES;
+        videoButton.hidden = YES;
         [self hideVideoCameraButtons];
         [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
         RigthTickButton.hidden = NO;
-        cameraButton.hidden = NO;
-        videoButton.hidden = NO;
+//        cameraButton.hidden = NO;
+//        videoButton.hidden = NO;
         
         
         UIImageView *tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
@@ -532,8 +528,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
 }
 
--(void) displayShapesTray {
+-(void) initShapesTray{
     DebugLog(@"");
+    
+    isShapesTrayHidden = NO;
     
     if(viewShapesTray!= nil){
         for(PhysicalShapesView *shape in arrPhysicalShapes) {
@@ -541,17 +539,27 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         }
         [arrPhysicalShapes removeAllObjects];
         arrPhysicalShapes = nil;
-        
+
         [viewShapesTray removeFromSuperview];
         viewShapesTray = nil;
+        
+        [btnShapesTray removeFromSuperview];
+        btnShapesTray = nil;
     }
     
-    viewShapesTray= [[UIImageView alloc]initWithFrame:CGRectMake(0,150, 140, 550)];
-    viewShapesTray.image = [UIImage imageNamed:@"shape_3.png"];
+    viewShapesTray= [[UIImageView alloc]initWithFrame:CGRectMake(0,150, 200, 550)];
+    viewShapesTray.image = [UIImage imageNamed:@"new_try_out_2.png"];
     viewShapesTray.userInteractionEnabled = YES;
     [self.mainView addSubview:viewShapesTray];
     [self.mainView bringSubviewToFront:viewShapesTray];
     
+    
+    btnShapesTray = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnShapesTray setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [btnShapesTray setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+    [btnShapesTray addTarget:self action:@selector(actionBtnShapesTray)forControlEvents:UIControlEventTouchUpInside];
+    btnShapesTray.frame = CGRectMake(140, 150,55, 80);
+    [self.mainView addSubview:btnShapesTray];
     
     NSString *shapeName = nil;
     int yPos = 30;
@@ -577,33 +585,56 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         [arrPhysicalShapes addObject:shape];
     }
     
+}
+
+-(void) displayShapesTray {
+    DebugLog(@"");
+        
+    isShapesTrayHidden = NO;    
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         viewShapesTray.frame = CGRectMake(0,150, 200, 550);
+                         btnShapesTray.frame = CGRectMake(140, 150,55, 80);
+                         viewShapesTray.image = [UIImage imageNamed:@"new_try_out_2.png"];
+                         for(PhysicalShapesView *shape in arrPhysicalShapes) {
+                             shape.frame = CGRectMake(20, shape.frame.origin.y, shape.frame.size.width, shape.frame.size.height);                             
+                         }                         
+                     } completion:^(BOOL finished){
+  
+        }];
+    
     
 }
 
 -(void) removeShapesTray {
     DebugLog(@"");
+    isShapesTrayHidden = YES;
     [UIView animateWithDuration:0.2
                      animations:^{
-                         viewShapesTray.frame = CGRectMake(-140,150, 140, 550);
+                         viewShapesTray.frame = CGRectMake(-145,150, 200, 550);
+                         btnShapesTray.frame = CGRectMake(0, 150,55,80);
+                         viewShapesTray.image = [UIImage imageNamed:@"new_try_out.png"];
                          for(PhysicalShapesView *shape in arrPhysicalShapes) {
                              shape.frame = CGRectMake(-140, shape.frame.origin.y, shape.frame.size.width, shape.frame.size.height);
+                             
                          }
                      }
                      completion:^(BOOL finished){
-                         for(PhysicalShapesView *shape in arrPhysicalShapes) {
-                             [shape removeFromSuperview];
-                         }
-                         [arrPhysicalShapes removeAllObjects];
-                         arrPhysicalShapes = nil;
-                         
-                         [viewShapesTray removeFromSuperview];
-                         viewShapesTray = nil;
+
                      }];
 }
 
 #pragma mark- ===============================
 #pragma mark- Action Handling
 #pragma mark- ===============================
+
+-(void)actionBtnShapesTray{
+    DebugLog(@"");
+    if(isShapesTrayHidden)
+        [self displayShapesTray];
+    else
+        [self removeShapesTray];
+}
 
 -(IBAction)screenShot:(id)sender {
     DebugLog(@"");
@@ -644,6 +675,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     if(!isWithShape){
         if(!viewShapesTray.hidden){
             viewShapesTray.hidden = YES;
+            btnShapesTray.hidden = YES;
             for(PhysicalShapesView *pv in arrPhysicalShapes) {
                 pv.hidden = YES;
             }
@@ -1888,7 +1920,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                              selector:@selector(didExitFullScreen:)
                                                  name:MPMoviePlayerDidExitFullscreenNotification
                                                object:nil];
-    [moviePlayer.view setFrame:CGRectMake(140, 110,750,563)];
+    [moviePlayer.view setFrame:CGRectMake(140, 120,750,563)];
     moviePlayer.controlStyle = MPMovieControlStyleDefault;
     moviePlayer.shouldAutoplay = YES;
     [self.view addSubview:moviePlayer.view];

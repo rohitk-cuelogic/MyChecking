@@ -13,6 +13,20 @@
 		<string>Icon-72.png</string>
 		<string>144x144.png</string>
 	</array>
+	<key>CFBundleIconFiles~ipad</key>
+	<array>
+		<string>58X58</string>
+		<string>29X29</string>
+		<string>80X80</string>
+		<string>40X40</string>
+		<string>100X100</string>
+		<string>50X50</string>
+		<string>152X152</string>
+		<string>76X76</string>
+		<string>144X144</string>
+		<string>Icon-72.png</string>
+		<string>144x144.png</string>
+	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.tiggly.stamp</string>
 	<key>CFBundleInfoDictionaryVersion</key>

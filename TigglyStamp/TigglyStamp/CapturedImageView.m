@@ -241,7 +241,7 @@
     // convert it to a string
     NSString *dateString = [dateFormat stringFromDate:currentDate];
     
-    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 475, 700, 50)];
+    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 460, 700, 50)];
     lblDate.textAlignment = UITextAlignmentCenter;
     lblDate.backgroundColor = [UIColor clearColor];
     lblDate.text = dateString;
@@ -253,24 +253,25 @@
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imgName]]];
     UIGraphicsBeginImageContext(CGSizeMake(800, 600));
     [image drawInRect:CGRectMake(0, 0, 800, 600)];
-    
     UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    imageView = [[UIImageView alloc] initWithImage:thumbnailImage];
-    imageView.frame = CGRectMake(20,20, 660, 440);
-    imageView.center = CGPointMake(512, 1000);
+    
+    UIImage *imagenew = [thumbnailImage imageByScalingAndCroppingForSize:CGSizeMake(665,405)];
+    imageView = [[UIImageView alloc] initWithImage:imagenew];
+    imageView.frame = CGRectMake(20,20, 665, 405);
+    imageView.center = CGPointMake(503, 935);
     [self addSubview:imageView];
     
     imageView.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
     
-    imageView.layer.shadowColor = [UIColor grayColor].CGColor;
-    imageView.layer.shadowOffset = CGSizeMake(-3.0, 3.0);
-    imageView.layer.shadowOpacity = 1.0;
-    imageView.layer.shadowRadius = 3.0;
+//    imageView.layer.shadowColor = [UIColor whiteColor].CGColor;
+//    imageView.layer.shadowOffset = CGSizeMake(-3.0, 3.0);
+//    imageView.layer.shadowOpacity = 1.0;
+//    imageView.layer.shadowRadius = 3.0;
     
     [UIView animateWithDuration:1.2
                      animations:^{
-                         imageView.center = CGPointMake(512, 384);
+                         imageView.center = CGPointMake(503, 365);
                          view.center = CGPointMake(512, 400);
                      }
                      completion:^(BOOL finished){

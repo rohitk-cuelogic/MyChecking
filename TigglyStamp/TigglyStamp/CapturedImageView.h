@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KTViewController.h"
 #import "GestureConfirmationView.h"
-
+#import "UIImage+Resize.h"
 #ifdef GOOGLE_ANALYTICS_START
 #import "GAITrackedViewController.h"
 #import "GAI.h"

@@ -279,27 +279,50 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     return UIInterfaceOrientationMaskLandscape;
 }
 
-#pragma mark-
-#pragma mark======================
-#pragma mark Helpers
-#pragma mark======================
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Game Animation
+#pragma mark =======================================
 
-- (void) addFlippedPageAnimation
-{
-    DebugLog(@"");
+
+-(void) addRainbowEffectAnimation {
     
-    //to add flipped page eefect at corner
-    //    CGRect r = self.viewForCurl.frame;
-    //
-    //    if(self.curlView == nil){
-    //        self.curlView = [[XBCurlView alloc] initWithFrame:r];
-    //    }
-    //
-    //    [self.curlView setUserInteractionEnabled:YES];
-    //    self.curlView.opaque = NO;
-    //    self.curlView.pageOpaque = YES;
-    //    self.curlView.cylinderPosition = CGPointMake(self.viewForCurl.bounds.size.width, self.viewForCurl.bounds.size.height);
-    //    [self.curlView curlView:self.viewForCurl cylinderPosition:CGPointMake(970,740) cylinderAngle:3*M_PI_4 cylinderRadius:UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad? 10: 30 animatedWithDuration:0.0];
+    CAShapeLayer * rainBowLayer = [CAShapeLayer layer];
+    rainBowLayer.frame = CGRectMake(0,0, 1024, 768);
+    rainBowLayer.name=@"rainBowLayer";
+    [self.mainView.layer addSublayer:rainBowLayer];
+    [self.mainView bringSubviewToFront:RigthTickButton];
+   
+    
+    NSMutableArray *arrRainbowImages = [[NSMutableArray alloc] initWithCapacity:1];
+    
+    for(int i =1 ; i <= 6 ; i++ ) {
+        NSString *imgName = [NSString stringWithFormat:@"R%d.png",i];
+        DebugLog(@"Img Name : %@",imgName);
+        UIImage *img =  [UIImage imageNamed:imgName];
+        [arrRainbowImages addObject:(id) img.CGImage];        
+    }
+    
+    for(int i =2 ; i <= 6 ; i++ ) {
+        NSString *imgName = [NSString stringWithFormat:@"R-%d.png",i];
+        DebugLog(@"Img Name : %@",imgName);
+        UIImage *img =  [UIImage imageNamed:imgName];
+        [arrRainbowImages addObject:(id) img.CGImage];
+    }
+    
+    CAKeyframeAnimation *animation3 = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+    animation3.calculationMode = kCAAnimationDiscrete;
+    animation3.removedOnCompletion = NO;
+    animation3.duration =2.0;
+    animation3.repeatCount =1;
+    animation3.values = arrRainbowImages;
+    [animation3 setValue:@"spinAnim" forKey:@"id"];
+    [rainBowLayer addAnimation: animation3 forKey: @"contents"];
+
+}
+
+- (void) addFlippedPageAnimation {
+    DebugLog(@"");
     
     CATransition *animation = [CATransition animation];
     [animation setDuration:HUGE_VAL];
@@ -331,6 +354,11 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     [self.curlView curlView:self.viewForCurl cylinderPosition:CGPointMake(970,740) cylinderAngle:3*M_PI_4 cylinderRadius:UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad? 10: 30 animatedWithDuration:0.0];
     
 }
+
+#pragma mark-
+#pragma mark======================
+#pragma mark Helpers
+#pragma mark======================
 
 
 -(void)configureViewForCurl{
@@ -791,22 +819,54 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     if ([btn tag] == TAG_RIGHT_TICK_BTN) {
         
         [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
-        
-        [homeButton setHidden:false];
-        RigthTickButton.hidden = YES;
-        [self.mainView bringSubviewToFront:homeButton];
-        
-        [NSTimer scheduledTimerWithTimeInterval:0.29 + 0.1 target:self selector:@selector(playDragSound) userInfo:nil repeats:NO];
-        
-        [self sendEmail];
 
-        [self showVideoCameraButtons];
-        
         [tickBtnTimer invalidate];
         [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
-        
+
         if(!isWithShape)
             [self removeShapesTray];
+        
+        [self addRainbowEffectAnimation];
+        
+        [self.mainView bringSubviewToFront:RigthTickButton];
+        
+        videoButton.hidden = YES;
+        cameraButton.hidden = YES;
+        
+        btnView.frame = CGRectMake(256, 384, 512, 90);
+        cameraButton.frame = CGRectMake(cameraButton.frame.origin.x + 100, cameraButton.frame.origin.y, cameraButton.frame.size.width, cameraButton.frame.size.height);
+        videoButton.frame = CGRectMake(videoButton.frame.origin.x - 100, videoButton.frame.origin.y, videoButton.frame.size.width, videoButton.frame.size.height);
+        [cameraButton.layer setTransform:CATransform3DMakeScale(2.5, 2.5, 1.0)];
+        [videoButton.layer setTransform:CATransform3DMakeScale(2.5, 2.5, 1.0)];
+        
+        double delayInSeconds = 1.8;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+
+            [self removeShapesTray];
+            
+            [self showVideoCameraButtons];
+
+        
+        });
+        
+//       
+//
+//        [homeButton setHidden:false];
+//        RigthTickButton.hidden = YES;
+//        [self.mainView bringSubviewToFront:homeButton];
+//        
+//        [NSTimer scheduledTimerWithTimeInterval:0.29 + 0.1 target:self selector:@selector(playDragSound) userInfo:nil repeats:NO];
+//        
+//        [self sendEmail];
+//
+//        [self showVideoCameraButtons];
+//        
+//        [tickBtnTimer invalidate];
+//        [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+//        
+//        if(!isWithShape)
+//            [self removeShapesTray];
     }
     
     if ([btn tag] == TAG_CURL_BTN) {
@@ -966,8 +1026,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     DebugLog(@"");
     if(!isRecording ) {
         RigthTickButton.hidden = NO;
-        videoButton.hidden = NO;
-        cameraButton.hidden = NO;
+//        videoButton.hidden = NO;
+//        cameraButton.hidden = NO;
         
         if (!homeButton.hidden) {
             homeButton.hidden = YES;
@@ -1685,13 +1745,23 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     isBtnViewHidden = NO;
     videoButton.hidden = NO;
     cameraButton.hidden = NO;
-    RigthTickButton.hidden = YES;
 
     [self.mainView bringSubviewToFront:btnView];
+    
 
     [UIView animateWithDuration:0.8 animations:^{
         btnView.frame = CGRectMake(256, 0, 512, 90);
+        [cameraButton.layer setTransform:CATransform3DMakeScale(1.0, 1.0, 1.0)];
+        [videoButton.layer setTransform:CATransform3DMakeScale(1.0, 1.0, 1.0)];
+        cameraButton.frame = CGRectMake(cameraButton.frame.origin.x - 100, cameraButton.frame.origin.y, cameraButton.frame.size.width, cameraButton.frame.size.height);
+        videoButton.frame = CGRectMake(videoButton.frame.origin.x + 100, videoButton.frame.origin.y, videoButton.frame.size.width, videoButton.frame.size.height);
     }completion:^(BOOL finished) {
+        
+        [self.mainView bringSubviewToFront:homeButton];
+        [homeButton setHidden:NO];
+        RigthTickButton.hidden = YES;
+
+        
         double delayInSeconds = 2.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -1734,11 +1804,12 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
        
         isBtnViewHidden = YES;
         [UIView animateWithDuration:0.3 animations:^{
-            btnView.frame = CGRectMake(256,-90, 512,90);
+            btnView.frame = CGRectMake(256,-150, 512,90);
+
         }completion:^(BOOL finished) {
             videoButton.hidden = YES;
             cameraButton.hidden = YES;
-            btnView.frame = CGRectMake(-512, 0, 512,90);
+//            btnView.frame = CGRectMake(256,-100, 512,90);
         }];
     }
 

@@ -807,160 +807,160 @@ UIActivityIndicatorView *activityIndicator;
 }
 
 
-#pragma mark- Facebook Integration
--(void)signInWithFacebook:(id)sender
-{
-    [self facebookLogout];
-    [self facebookAuthentication];
-}
-
-- (void) facebookLogout
-{
-    [FBSession.activeSession closeAndClearTokenInformation];
-    [FBSession.activeSession close];
-    [FBSession setActiveSession:nil];
-    NSHTTPCookie *cookie;
-    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (cookie in [storage cookies])
-    {
-        NSString *domainName = [cookie domain];
-        NSRange domainRange = [domainName rangeOfString:@"facebook"];
-        if(domainRange.length > 0)
-        {
-            [storage deleteCookie:cookie];
-        }
-    }
-    //    activeSession = [[FBSession alloc] initWithPermissions:permissions];
-}
-
-
-
-- (void) facebookAuthentication
-{
-    // FBSample logic
-    // Check to see whether we have already opened a session.
-    
-    userFieldsRequired = @"id,name,first_name, last_name, gender,birthday,email,username, work";
-    permissions = [[NSArray alloc] initWithObjects:
-                   @"email" , @"user_about_me",@"user_birthday", @"user_work_history",@"user_interests", @"user_activities",@"user_status",@"user_photos",@"user_likes",
-                   nil];
-    
-    if (!FBSession.activeSession.isOpen)
-    {
-        activeSession = [[FBSession alloc] initWithPermissions:permissions];
-        
-        [activeSession openWithBehavior:FBSessionLoginBehaviorForcingWebView
-                      completionHandler:^(FBSession *session,
-                                          FBSessionState status,
-                                          NSError *error) {
-                          // if login fails for any reason, we alert
-                          if (error) {
-
-//                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tiggly" message:@"Do you want to try again?" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-//                              
-                              // if otherwise we check to see if the session is open, an alternative to
-                              // to the FB_ISSESSIONOPENWITHSTATE helper-macro would be to check the isOpen
-                              // property of the session object; the macros are useful, however, for more
-                              // detailed state checking for FBSession objects
-                          } else if (FB_ISSESSIONOPENWITHSTATE(session.state)) {
-                              // send our requests if we successfully logged in
-                              [self sendRequests:[NSString stringWithFormat:@"me?access_token=%@",activeSession.accessToken] params:[NSDictionary dictionaryWithObject:userFieldsRequired forKey:@"fields"]];
-                          }
-                          else
-                          {
-                              [activeSession closeAndClearTokenInformation];
-                          }
-                      }];
-        
-    }else
-    {
-        [self sendRequests:[NSString stringWithFormat:@"me?access_token=%@",activeSession.accessToken] params:[NSDictionary dictionaryWithObject:userFieldsRequired forKey:@"fields"]];
-    }
-    
-}
-
--(void) sendRequests:(NSString *) fbid
-{
-    [self sendRequests:fbid params:NULL];
-}
-
--(void) sendRequests:(NSString *) fbid params:(NSDictionary *) params
-{
-    // create the connection object
-    FBRequestConnection *newConnection = [[FBRequestConnection alloc] init];
-    
-    // create a handler block to handle the results of the request for fbid's profile
-    FBRequestHandler handler =
-    ^(FBRequestConnection *connection, id result, NSError *error) {
-        // output the results of the request
-        [self requestCompleted:connection forFbID:fbid result:result error:error];
-    };
-    
-    // create the request object, using the fbid as the graph path
-    // as an alternative the request* static methods of the FBRequest class could
-    // be used to fetch common requests, such as /me and /me/friends
-    FBRequest *request = NULL;
-    if(params != NULL)
-    {
-        request = [[FBRequest alloc] initWithSession:activeSession
-                                           graphPath:fbid parameters:params HTTPMethod:@"GET"] ;
-    }
-    else
-    {
-        request = [[FBRequest alloc] initWithSession:activeSession
-                                           graphPath:fbid];
-    }
-    
-    // add the request to the connection object, if more than one request is added
-    // the connection object will compose the requests as a batch request; whether or
-    // not the request is a batch or a singleton, the handler behavior is the same,
-    // allowing the application to be dynamic in regards to whether a single or multiple
-    // requests are occuring
-    [newConnection addRequest:request completionHandler:handler];
-    
-    
-    // if there's an outstanding connection, just cancel
-    //    [self.requestConnection cancel];
-    //
-    //    // keep track of our connection, and start it
-    //    self.requestConnection = newConnection;
-    [newConnection start];
-}
-
-
-// FBSample logic
-// Report any results.  Invoked once for each request we make.
-- (void)requestCompleted:(FBRequestConnection *)connection
-                 forFbID:fbID
-                  result:(id)result
-                   error:(NSError *)error
-{
-    
-}
-
-#pragma mark- Twitter Integration
--(void)signInWithTwitter:(id)sender
-{
-    [[FHSTwitterEngine sharedEngine]permanentlySetConsumerKey:kOAuthConsumerKey andSecret:kOAuthConsumerSecret];
-    [[FHSTwitterEngine sharedEngine]setDelegate:self];
-    
-    [[FHSTwitterEngine sharedEngine]showOAuthLoginControllerFromViewController:self withCompletion:^(BOOL success) {
-        NSLog(success?@"L0L success":@"O noes!!! Loggen faylur!!!");
-        NSDictionary *twitterDict =  [[FHSTwitterEngine sharedEngine] getTwitterAccountDetails:[[FHSTwitterEngine sharedEngine]loggedInUsername]];
-        NSLog(@"USER DICT _ %@",twitterDict);
-    }];
-}
-
-#pragma mark- Pinterest Integration
--(void)signInWithPinterest:(id)sender
-{
-    _pinterest = [[Pinterest alloc] initWithClientId:@"1432658"];
-    
-    [_pinterest createPinWithImageURL:[NSURL URLWithString:@"http://placekitten.com/500/400"]
-                            sourceURL:[NSURL URLWithString:@"http://placekitten.com"]
-                          description:@"Pinning from Tiggly Application"];
-
-}
+//#pragma mark- Facebook Integration
+//-(void)signInWithFacebook:(id)sender
+//{
+//    [self facebookLogout];
+//    [self facebookAuthentication];
+//}
+//
+//- (void) facebookLogout
+//{
+//    [FBSession.activeSession closeAndClearTokenInformation];
+//    [FBSession.activeSession close];
+//    [FBSession setActiveSession:nil];
+//    NSHTTPCookie *cookie;
+//    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+//    for (cookie in [storage cookies])
+//    {
+//        NSString *domainName = [cookie domain];
+//        NSRange domainRange = [domainName rangeOfString:@"facebook"];
+//        if(domainRange.length > 0)
+//        {
+//            [storage deleteCookie:cookie];
+//        }
+//    }
+//    //    activeSession = [[FBSession alloc] initWithPermissions:permissions];
+//}
+//
+//
+//
+//- (void) facebookAuthentication
+//{
+//    // FBSample logic
+//    // Check to see whether we have already opened a session.
+//    
+//    userFieldsRequired = @"id,name,first_name, last_name, gender,birthday,email,username, work";
+//    permissions = [[NSArray alloc] initWithObjects:
+//                   @"email" , @"user_about_me",@"user_birthday", @"user_work_history",@"user_interests", @"user_activities",@"user_status",@"user_photos",@"user_likes",
+//                   nil];
+//    
+//    if (!FBSession.activeSession.isOpen)
+//    {
+//        activeSession = [[FBSession alloc] initWithPermissions:permissions];
+//        
+//        [activeSession openWithBehavior:FBSessionLoginBehaviorForcingWebView
+//                      completionHandler:^(FBSession *session,
+//                                          FBSessionState status,
+//                                          NSError *error) {
+//                          // if login fails for any reason, we alert
+//                          if (error) {
+//
+////                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tiggly" message:@"Do you want to try again?" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+////                              
+//                              // if otherwise we check to see if the session is open, an alternative to
+//                              // to the FB_ISSESSIONOPENWITHSTATE helper-macro would be to check the isOpen
+//                              // property of the session object; the macros are useful, however, for more
+//                              // detailed state checking for FBSession objects
+//                          } else if (FB_ISSESSIONOPENWITHSTATE(session.state)) {
+//                              // send our requests if we successfully logged in
+//                              [self sendRequests:[NSString stringWithFormat:@"me?access_token=%@",activeSession.accessToken] params:[NSDictionary dictionaryWithObject:userFieldsRequired forKey:@"fields"]];
+//                          }
+//                          else
+//                          {
+//                              [activeSession closeAndClearTokenInformation];
+//                          }
+//                      }];
+//        
+//    }else
+//    {
+//        [self sendRequests:[NSString stringWithFormat:@"me?access_token=%@",activeSession.accessToken] params:[NSDictionary dictionaryWithObject:userFieldsRequired forKey:@"fields"]];
+//    }
+//    
+//}
+//
+//-(void) sendRequests:(NSString *) fbid
+//{
+//    [self sendRequests:fbid params:NULL];
+//}
+//
+//-(void) sendRequests:(NSString *) fbid params:(NSDictionary *) params
+//{
+//    // create the connection object
+//    FBRequestConnection *newConnection = [[FBRequestConnection alloc] init];
+//    
+//    // create a handler block to handle the results of the request for fbid's profile
+//    FBRequestHandler handler =
+//    ^(FBRequestConnection *connection, id result, NSError *error) {
+//        // output the results of the request
+//        [self requestCompleted:connection forFbID:fbid result:result error:error];
+//    };
+//    
+//    // create the request object, using the fbid as the graph path
+//    // as an alternative the request* static methods of the FBRequest class could
+//    // be used to fetch common requests, such as /me and /me/friends
+//    FBRequest *request = NULL;
+//    if(params != NULL)
+//    {
+//        request = [[FBRequest alloc] initWithSession:activeSession
+//                                           graphPath:fbid parameters:params HTTPMethod:@"GET"] ;
+//    }
+//    else
+//    {
+//        request = [[FBRequest alloc] initWithSession:activeSession
+//                                           graphPath:fbid];
+//    }
+//    
+//    // add the request to the connection object, if more than one request is added
+//    // the connection object will compose the requests as a batch request; whether or
+//    // not the request is a batch or a singleton, the handler behavior is the same,
+//    // allowing the application to be dynamic in regards to whether a single or multiple
+//    // requests are occuring
+//    [newConnection addRequest:request completionHandler:handler];
+//    
+//    
+//    // if there's an outstanding connection, just cancel
+//    //    [self.requestConnection cancel];
+//    //
+//    //    // keep track of our connection, and start it
+//    //    self.requestConnection = newConnection;
+//    [newConnection start];
+//}
+//
+//
+//// FBSample logic
+//// Report any results.  Invoked once for each request we make.
+//- (void)requestCompleted:(FBRequestConnection *)connection
+//                 forFbID:fbID
+//                  result:(id)result
+//                   error:(NSError *)error
+//{
+//    
+//}
+//
+//#pragma mark- Twitter Integration
+//-(void)signInWithTwitter:(id)sender
+//{
+//    [[FHSTwitterEngine sharedEngine]permanentlySetConsumerKey:kOAuthConsumerKey andSecret:kOAuthConsumerSecret];
+//    [[FHSTwitterEngine sharedEngine]setDelegate:self];
+//    
+//    [[FHSTwitterEngine sharedEngine]showOAuthLoginControllerFromViewController:self withCompletion:^(BOOL success) {
+//        NSLog(success?@"L0L success":@"O noes!!! Loggen faylur!!!");
+//        NSDictionary *twitterDict =  [[FHSTwitterEngine sharedEngine] getTwitterAccountDetails:[[FHSTwitterEngine sharedEngine]loggedInUsername]];
+//        NSLog(@"USER DICT _ %@",twitterDict);
+//    }];
+//}
+//
+//#pragma mark- Pinterest Integration
+//-(void)signInWithPinterest:(id)sender
+//{
+//    _pinterest = [[Pinterest alloc] initWithClientId:@"1432658"];
+//    
+//    [_pinterest createPinWithImageURL:[NSURL URLWithString:@"http://placekitten.com/500/400"]
+//                            sourceURL:[NSURL URLWithString:@"http://placekitten.com"]
+//                          description:@"Pinning from Tiggly Application"];
+//
+//}
 
 #pragma mark- UITextField Delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

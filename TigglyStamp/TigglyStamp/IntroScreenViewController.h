@@ -22,7 +22,7 @@
 #endif
 
 
-@interface IntroScreenViewController:KTViewController<UIPopoverControllerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+@interface IntroScreenViewController:KTViewController<UIPopoverControllerDelegate>
 {
 //    IBOutlet UIButton *winterScene;
 //    IBOutlet UIButton *springScene;

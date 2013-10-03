@@ -26,9 +26,9 @@
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
-@interface ParentScreenViewController : GAITrackedViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate,UIWebViewDelegate, SettingViewProtocol>
+@interface ParentScreenViewController : GAITrackedViewController<UITextFieldDelegate,UIWebViewDelegate, SettingViewProtocol,MFMailComposeViewControllerDelegate,SKPSMTPMessageDelegate>
 #else
-@interface ParentScreenViewController : UIViewController<UITextFieldDelegate,FHSTwitterEngineAccessTokenDelegate,UIWebViewDelegate, SettingViewProtocol,SKPSMTPMessageDelegate,MFMailComposeViewControllerDelegate>
+@interface ParentScreenViewController : UIViewController<UITextFieldDelegate,UIWebViewDelegate, SettingViewProtocol,MFMailComposeViewControllerDelegate,SKPSMTPMessageDelegate>
 #endif
 
 

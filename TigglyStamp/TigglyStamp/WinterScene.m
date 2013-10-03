@@ -1381,9 +1381,6 @@ int currentObject;
             soundFile = @"cookie_ita";
         }
         
-        
-        
-        
     }    
     return soundFile;
 }

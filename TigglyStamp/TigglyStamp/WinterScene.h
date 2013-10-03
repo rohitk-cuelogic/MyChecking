@@ -55,8 +55,6 @@
 @property(nonatomic,strong)NSMutableArray *penguinShapeArray;
 @property(nonatomic,strong)NSMutableArray *snowglobeShapeArray;
 @property(nonatomic,strong)NSMutableArray *snowmanShapeArray;
-
-
 @property(nonatomic,strong)NSMutableArray *chipmunkShapeArray;
 @property(nonatomic,strong)NSMutableArray *foxShapeArray;
 @property(nonatomic,strong)NSMutableArray *ornament_purpleShapeArray;
@@ -65,10 +63,8 @@
 @property(nonatomic,strong)NSMutableArray *snowflake_3ShapeArray;
 @property(nonatomic,strong)NSMutableArray *star_cookieShapeArray;
 @property(nonatomic,strong)NSMutableArray *star_cookie_2ShapeArray;
-
-
 @property(nonatomic,strong)NSMutableDictionary *winterObjectWithShapes;
--(NSString *)pickRandomObject;
+
 -(NSMutableArray *)shapeForObject:(NSString *)shape;
 -(void)removeDrawnShapeObject:(NSString *)typeOfShape  objectToRemove:(NSString *)objectDrawn;
 -(NSString *) getAnimalNameSoundForObject:(NSString *) winterObject;

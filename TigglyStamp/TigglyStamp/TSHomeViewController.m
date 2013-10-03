@@ -160,19 +160,7 @@ int swipeTxtCnt;
 
 -(void) animatePlayButton {
     DebugLog(@"");
-    
-//    CATransition *animation=[CATransition animation];
-//    [animation setDuration:1.5];
-//    [animation setType:@"rippleEffect"];
-//    [animation setFillMode:kCAFillModeBoth];
-//    animation.endProgress=0.6;
-//    animation.repeatCount = HUGE_VAL;
-//    [animation setRemovedOnCompletion:YES];
-//    animation.autoreverses = NO;
-//    animation.delegate=self;
-//    [animation setTimingFunction: [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
-//    [playBtn.layer addAnimation:animation forKey:nil];
-    
+
     
     CABasicAnimation *animation4a = nil;
     animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];

@@ -20,8 +20,6 @@
 -(void)touchVerificationViewTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 -(void)touchVerificationViewTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
 -(void)touchVerificationViewTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
-
-
 -(void)visualizeShapeFromData:(NSArray*)pointComparison andRecognizer:(UITouchShapeRecognizer*)shapeRec withTouchGroup:(UITouchGroup*)group;
 @end
 
@@ -41,7 +39,6 @@
     NSMutableArray *detectedPoints;
     BOOL isContaintSelfPoint;
     
-//    UIView *testView;
     NSMutableArray *allTestViews;
     
     int circleShpDetected;
@@ -54,21 +51,20 @@
 @property (nonatomic,strong) NSMutableArray * touchCache;
 @property (nonatomic, unsafe_unretained)BOOL renderShapesToSelf, captureTouchesBegin, captureTouchesMoved, captureTouchesEnded, stampShapes, fadeShapes, writeMode, activated;
 
-// ROhit : In this proj writeMode is alwaya "NO"
+
 @property (nonatomic, strong)NSString *shapeRequest, *mode;
 @property (nonatomic, unsafe_unretained)CGPoint recognitionPoint;
 @property (nonatomic, strong)id<UITouchVerificationViewDelegate> delegate;
 @property (nonatomic, strong)NSArray *detectedPoints;
 @property (nonatomic, strong)UITouchGroup *cachedGroup;
 @property (nonatomic, assign) BOOL isWithShape;
--(void)pickShape;
+
 -(void)configure;
--(BOOL)confirmShape:(NSString*)request;
 -(void)requestShape:(NSString*)request;
 -(BOOL)calculateShape:(UITouchGroup*)group;
 -(void)loadShapesWithSet:(NSMutableSet*)shapesSet;
 -(void)loadShape:(UITouchShapeRecognizer*)shape;
 -(void)removeAllShapes;
-
 -(void)loadPlistDataForWriteMode:(NSMutableDictionary *)dic;
+
 @end

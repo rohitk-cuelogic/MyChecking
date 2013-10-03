@@ -202,6 +202,8 @@ static void logNetworkStatus_(const char *name, int line, NetworkStatus status) 
 
 - (void) dealloc {
 	
+    [super dealloc];
+    
 	[self stopNotifier];
 	if(reachabilityRef) {
 		

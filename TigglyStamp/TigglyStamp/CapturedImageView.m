@@ -59,7 +59,6 @@
             NSString *strFile = [imgName lastPathComponent];
             UIImage *thumb = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:strFile];
             imageView = [[UIImageView alloc] initWithImage:thumb];
-//            imageView.frame = CGRectMake(100, 80,800,600);
             imageView.frame = CGRectMake(140, 120,750,563);
             [self addSubview:imageView];
             
@@ -72,40 +71,78 @@
             btnPlay.hidden = YES;
             [self addSubview:btnPlay];
             
-            //adding home button and next scene button
-            btnNext = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btnNext setBackgroundImage:[UIImage imageNamed:@"arrow_right_3.png"] forState:UIControlStateNormal];
-            [btnNext setBackgroundImage:[UIImage imageNamed:@"arrow_right_3.png"] forState:UIControlStateSelected];
-            [btnNext addTarget:self action:@selector(btnNextClicked)forControlEvents:UIControlEventTouchUpInside];
-            btnNext.frame = CGRectMake(900, 10, 80, 80);
-           // btnNext.transform=CGAffineTransformMakeRotation(M_PI);
-            [self addSubview:btnNext];
-            
-            btnHome = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateNormal];
-            [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateSelected];
-            [btnHome addTarget:self action:@selector(btnHomeClicked)forControlEvents:UIControlEventTouchUpInside];
-            btnHome.frame = CGRectMake(44, 10, 75, 75);
-            [self addSubview:btnHome];
-            
-            
-            btnSend = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btnSend setBackgroundImage:[UIImage imageNamed:@"send_icon.png"] forState:UIControlStateNormal];
-            [btnSend setBackgroundImage:[UIImage imageNamed:@"send_icon.png"] forState:UIControlStateSelected];
-            [btnSend addTarget:self action:@selector(btnSendClicked)forControlEvents:UIControlEventTouchUpInside];
-            btnSend.frame = CGRectMake(472, 10, 80, 80);
-            [self addSubview:btnSend];
-            
             
         }else{
+
+            UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 740, 540)];
+            view.image = [UIImage imageNamed:@"photo_bg.png"];
+            view.center = CGPointMake(512, 1000);
+            view.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
+            view.layer.cornerRadius = 20.0f;
+            [self addSubview:view];
             
-//            UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
-//            imgView.image = [UIImage imageNamed:@"yellow_bg_2.png"];
-//            [self addSubview:imgView];
+            NSDate* currentDate = [NSDate date];
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+            [dateFormat setDateFormat:@"MM/dd/yyyy"];
+            NSString *dateString = [dateFormat stringFromDate:currentDate];
             
-            [self showPhotoPreview:imgName];
+            UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 450, 700, 50)];
+            lblDate.textAlignment = UITextAlignmentCenter;
+            lblDate.backgroundColor = [UIColor clearColor];
+            lblDate.text = dateString;
+            lblDate.textColor = [UIColor blueColor];
+            lblDate.font = [UIFont fontWithName:APP_FONT size:30.0f];
+            [view addSubview:lblDate];
+            
+            NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imgName]]];
+            UIGraphicsBeginImageContext(CGSizeMake(800, 600));
+            [image drawInRect:CGRectMake(0, 0, 800, 600)];
+            UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+            UIImage *imagenew = [thumbnailImage imageByScalingAndCroppingForSize:CGSizeMake(665,405)];
+            imageView = [[UIImageView alloc] initWithImage:imagenew];
+            imageView.frame = CGRectMake(20,20, 665, 405);
+            imageView.center = CGPointMake(503, 965);
+            [self addSubview:imageView];
+            
+            imageView.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
+            
+            
+            [UIView animateWithDuration:1.2
+                             animations:^{
+                                 imageView.center = CGPointMake(503, 365);
+                                 view.center = CGPointMake(512, 400);
+                             }
+                             completion:^(BOOL finished){
+                             }];
 
         }
+        
+        //adding home button and next scene button
+        btnNext = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnNext setBackgroundImage:[UIImage imageNamed:@"arrow_right_3.png"] forState:UIControlStateNormal];
+        [btnNext setBackgroundImage:[UIImage imageNamed:@"arrow_right_3.png"] forState:UIControlStateSelected];
+        [btnNext addTarget:self action:@selector(btnNextClicked)forControlEvents:UIControlEventTouchUpInside];
+        btnNext.frame = CGRectMake(900, 10, 80, 80);
+        [self addSubview:btnNext];
+        
+        btnHome = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateNormal];
+        [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateSelected];
+        [btnHome addTarget:self action:@selector(btnHomeClicked)forControlEvents:UIControlEventTouchUpInside];
+        btnHome.frame = CGRectMake(44, 10, 75, 75);
+        [self addSubview:btnHome];
+        
+        
+        btnSend = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnSend setBackgroundImage:[UIImage imageNamed:@"send_icon.png"] forState:UIControlStateNormal];
+        [btnSend setBackgroundImage:[UIImage imageNamed:@"send_icon.png"] forState:UIControlStateSelected];
+        [btnSend addTarget:self action:@selector(btnSendClicked)forControlEvents:UIControlEventTouchUpInside];
+        btnSend.frame = CGRectMake(472, 10, 80, 80);
+        [self addSubview:btnSend];
+        
 
     }
     
@@ -115,16 +152,6 @@
 #pragma mark - ============================
 #pragma mark - button  and image touch handling
 #pragma mark - ============================
-//
-//-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-//    DebugLog(@"");
-//      CGPoint point = [[touches anyObject] locationInView:self];
-//    if (CGRectContainsPoint(imageView.frame, point)) {
-//        // call delegate
-//       // [delegate onImageClicked:self];
-//    }
-//    
-//}
 
 -(void)btnNextClicked{
     DebugLog(@"");
@@ -160,60 +187,6 @@
     [self addSubview:gestureView];
     [self bringSubviewToFront:gestureView];
     
-//    [delegate onSendButton:self];
-//    
-//#ifdef GOOGLE_ANALYTICS_START
-//    NSMutableDictionary *event =
-//    [[GAIDictionaryBuilder createEventWithCategory:@"Gallery"
-//                                            action:@"Gallery opened"
-//                                             label:@"Save Image/ Video"
-//                                             value:nil] build];
-//    [[GAI sharedInstance].defaultTracker send:event];
-//    [[GAI sharedInstance] dispatch];
-//#else
-//    
-//#endif
-//    
-//
-//    
-//    NSString *strFile = [imageName lastPathComponent];
-//    
-//    lblImageSaved = [[UILabel alloc] initWithFrame:CGRectMake(442, 91,  140, 50)];
-//    lblImageSaved.backgroundColor = [UIColor whiteColor];
-//    lblImageSaved.layer.cornerRadius = 13.0f;
-//    lblImageSaved.layer.masksToBounds = YES;
-//    lblImageSaved.layer.borderColor =  [UIColor blackColor].CGColor;
-//    lblImageSaved.layer.borderWidth = 1.0f;
-//    
-//    [self addSubview:lblImageSaved];
-//    lblImageSaved.font = [UIFont fontWithName:APP_FONT size:20.0f];
-//    lblImageSaved.textAlignment = UITextAlignmentCenter;
-//    if([[strFile pathExtension] isEqualToString:@"mov"]) {
-//        
-//        NSString *exportPath = [[NSString alloc] initWithFormat:@"%@/%@",
-//                                [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], strFile];
-//        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (exportPath)) {
-//            UISaveVideoAtPathToSavedPhotosAlbum (exportPath, nil, nil, nil);
-//        }
-//        lblImageSaved.text = @"Video Saved";
-//        
-//    }else{
-//        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
-//        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imageName]]];
-//        
-//        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-//        
-//        lblImageSaved.text = @"Image Saved";
-//    }
-//    
-//    [UIView animateWithDuration:3.0
-//                     animations:^{
-//                         lblImageSaved.alpha = 0;
-//                     }
-//                     completion:^(BOOL finished){
-//                         [lblImageSaved removeFromSuperview];
-//                     }];
-//    
 }
 
 -(void)btnPlayClicked{
@@ -223,86 +196,6 @@
 }
 
 
--(void)showPhotoPreview:(NSString *)imgName {
-    DebugLog(@"");
-    
-    UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 740, 540)];
-    //view.backgroundColor = [UIColor whiteColor];
-    view.image = [UIImage imageNamed:@"photo_bg.png"];
-    view.center = CGPointMake(512, 1000);
-    view.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
-    view.layer.cornerRadius = 20.0f;
-    
-    [self addSubview:view];
-    
-    NSDate* currentDate = [NSDate date];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"MM/dd/yyyy"];
-    // convert it to a string
-    NSString *dateString = [dateFormat stringFromDate:currentDate];
-    
-    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 460, 700, 50)];
-    lblDate.textAlignment = UITextAlignmentCenter;
-    lblDate.backgroundColor = [UIColor clearColor];
-    lblDate.text = dateString;
-    lblDate.textColor = [UIColor blueColor];
-    lblDate.font = [UIFont fontWithName:APP_FONT size:30.0f];
-    [view addSubview:lblDate];
-    
-    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imgName]]];
-    UIGraphicsBeginImageContext(CGSizeMake(800, 600));
-    [image drawInRect:CGRectMake(0, 0, 800, 600)];
-    UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    UIImage *imagenew = [thumbnailImage imageByScalingAndCroppingForSize:CGSizeMake(665,405)];
-    imageView = [[UIImageView alloc] initWithImage:imagenew];
-    imageView.frame = CGRectMake(20,20, 665, 405);
-    imageView.center = CGPointMake(503, 935);
-    [self addSubview:imageView];
-    
-    imageView.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
-    
-//    imageView.layer.shadowColor = [UIColor whiteColor].CGColor;
-//    imageView.layer.shadowOffset = CGSizeMake(-3.0, 3.0);
-//    imageView.layer.shadowOpacity = 1.0;
-//    imageView.layer.shadowRadius = 3.0;
-    
-    [UIView animateWithDuration:1.2
-                     animations:^{
-                         imageView.center = CGPointMake(503, 365);
-                         view.center = CGPointMake(512, 400);
-                     }
-                     completion:^(BOOL finished){
-                     }];
-
-    //adding home button and next scene button
-    btnNext = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnNext setBackgroundImage:[UIImage imageNamed:@"arrow_right_3.png"] forState:UIControlStateNormal];
-    [btnNext setBackgroundImage:[UIImage imageNamed:@"arrow_right_3.png"] forState:UIControlStateSelected];
-    [btnNext addTarget:self action:@selector(btnNextClicked)forControlEvents:UIControlEventTouchUpInside];
-    btnNext.frame = CGRectMake(900, 10, 80, 80);
-    // btnNext.transform=CGAffineTransformMakeRotation(M_PI);
-    [self addSubview:btnNext];
-    
-    btnHome = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateNormal];
-    [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateSelected];
-    [btnHome addTarget:self action:@selector(btnHomeClicked)forControlEvents:UIControlEventTouchUpInside];
-    btnHome.frame = CGRectMake(44, 10, 80, 80);
-    [self addSubview:btnHome];
-    
-    
-    btnSend = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnSend setBackgroundImage:[UIImage imageNamed:@"send_icon.png"] forState:UIControlStateNormal];
-    [btnSend setBackgroundImage:[UIImage imageNamed:@"send_icon.png"] forState:UIControlStateSelected];
-    [btnSend addTarget:self action:@selector(btnSendClicked)forControlEvents:UIControlEventTouchUpInside];
-    btnSend.frame = CGRectMake(472, 10, 80, 80);
-    [self addSubview:btnSend];
-    
-    
-}
 
 -(void) gestureViewOnGestureConfirmed:(GestureConfirmationView *) gView {
     DebugLog(@"");

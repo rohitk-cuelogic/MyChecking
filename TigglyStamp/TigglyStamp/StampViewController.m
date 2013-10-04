@@ -287,8 +287,9 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
 
 -(void) addRainbowEffectAnimation {
+    DebugLog(@"");
     
-    CAShapeLayer * rainBowLayer = [CAShapeLayer layer];
+    rainBowLayer = [CAShapeLayer layer];
     rainBowLayer.frame = CGRectMake(0,0, 1024, 768);
     rainBowLayer.name=@"rainBowLayer";
     [self.mainView.layer addSublayer:rainBowLayer];
@@ -311,7 +312,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     animation3.duration =2.0;
     animation3.repeatCount =1;
     animation3.values = arrRainbowImages;
-    [animation3 setValue:@"spinAnim" forKey:@"id"];
+    [animation3 setValue:@"spinAnim" forKey:@"contents"];
     [rainBowLayer addAnimation: animation3 forKey: @"contents"];
 
 }
@@ -811,6 +812,13 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     DebugLog(@"");
     UIButton *btn = sender;
     if ([btn tag] == TAG_RIGHT_TICK_BTN) {
+        
+        if(rainBowLayer != nil){
+            [rainBowLayer removeFromSuperlayer];
+            [rainBowLayer removeAllAnimations];
+            [rainBowLayer removeAnimationForKey:@"contents"];
+            rainBowLayer = nil;
+        }
         
         [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
 

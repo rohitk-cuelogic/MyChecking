@@ -57,6 +57,8 @@
     SceneType sceneType;
     
     TSHomeViewController *homeViewController;
+    
+    CAShapeLayer * rainBowLayer;
 }
 @property(nonatomic,strong) IBOutlet  ScreenCaptureView *screenCapture;
 @property(nonatomic, strong) NSMutableArray * shapes;

@@ -24,7 +24,7 @@
 @synthesize allFiles;
 
 /******* Set your tracking ID here *******/
-static NSString *const kTrackingId = @"UA-43978705-5";
+static NSString *const kTrackingId =   @"UA-43978705-5";
 static NSString *const kAllowTracking = @"allowTracking";
 
 

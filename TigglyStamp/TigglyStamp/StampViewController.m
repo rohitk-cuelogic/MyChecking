@@ -259,6 +259,15 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
     }
     
+    arrRainbowImages = [[NSMutableArray alloc] initWithCapacity:1];
+    
+    for(int i =1 ; i <= 23 ; i++ ) {
+        NSString *imgName = [NSString stringWithFormat:@"r%d.png",i];
+        DebugLog(@"Img Name : %@",imgName);
+        UIImage *img =  [UIImage imageNamed:imgName];
+        [arrRainbowImages addObject:(id) img.CGImage];
+    }
+    
 }
 
 
@@ -294,17 +303,6 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     rainBowLayer.name=@"rainBowLayer";
     [self.mainView.layer addSublayer:rainBowLayer];
     [self.mainView bringSubviewToFront:RigthTickButton];
-   
-    
-    NSMutableArray *arrRainbowImages = [[NSMutableArray alloc] initWithCapacity:1];
-    
-    for(int i =1 ; i <= 23 ; i++ ) {
-        NSString *imgName = [NSString stringWithFormat:@"r%d.png",i];
-        DebugLog(@"Img Name : %@",imgName);
-        UIImage *img =  [UIImage imageNamed:imgName];
-        [arrRainbowImages addObject:(id) img.CGImage];        
-    }
-    
     
     CAKeyframeAnimation *animation3 = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
     animation3.calculationMode = kCAAnimationDiscrete;

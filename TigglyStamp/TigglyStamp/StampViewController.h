@@ -59,6 +59,7 @@
     TSHomeViewController *homeViewController;
     
     CAShapeLayer * rainBowLayer;
+    NSMutableArray *arrRainbowImages;
 }
 @property(nonatomic,strong) IBOutlet  ScreenCaptureView *screenCapture;
 @property(nonatomic, strong) NSMutableArray * shapes;

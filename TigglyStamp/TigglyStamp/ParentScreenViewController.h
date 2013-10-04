@@ -21,6 +21,7 @@
 #import "SettingsView.h"
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import "TSHomeViewController.h"
 
 #ifdef GOOGLE_ANALYTICS_START
 #import "GAI.h"
@@ -45,6 +46,8 @@
     
     MBProgressHUD* hud;
     BOOL            isConnection;
+    
+    TSHomeViewController *homeViewController;
 }
 @property (nonatomic) BOOL isConnection;
 @property (nonatomic,strong) IBOutlet UIButton *homeBTN;
@@ -101,4 +104,7 @@
 -(IBAction)actionClosePrivacyPolicy:(id)sender;
 -(IBAction)actionPrivacyPolicy:(id)sender;
 -(IBAction)actionReview:(id)sender;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withHomeView:(TSHomeViewController *) homeView;
+
 @end

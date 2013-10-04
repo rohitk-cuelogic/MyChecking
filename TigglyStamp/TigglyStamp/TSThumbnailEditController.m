@@ -30,11 +30,13 @@ int swipeTextCnt;
 #pragma mark View Life Cycle
 #pragma mark======================
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withImage:(UIImage *)img imageName:(NSString *)imgName{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withImage:(UIImage *)img imageName:(NSString *)imgName withHomeView:(TSHomeViewController *) homeView{
     DebugLog(@"");
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        homeViewController = homeView;
         
         if([[imgName pathExtension] isEqualToString:@"mov"]) {
             playBtn.hidden = NO;
@@ -707,8 +709,8 @@ int swipeTextCnt;
 
 -(IBAction)goToHomeScreen:(id)sender{
     [moviePlayer stop];
-    TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
-    [self.navigationController pushViewController:homeView animated:YES];
+//    TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
+     [self.navigationController popToViewController:homeViewController animated:YES];
 }
 
 -(IBAction)saveImageToGallary:(id)sender{

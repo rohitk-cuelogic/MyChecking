@@ -61,11 +61,11 @@ UIActivityIndicatorView *activityIndicator;
 #pragma mark Init
 #pragma mark =======================================
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withHomeView:(TSHomeViewController *) homeView
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        homeViewController = homeView;
     }
     return self;
 }
@@ -248,7 +248,7 @@ UIActivityIndicatorView *activityIndicator;
 -(void) launchUnlockScreen {
     DebugLog(@"");
     
-    UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil];
+    UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil entryFrom:kScreenEntryFromSettingView withHomeView:homeViewController];
     [self.navigationController pushViewController:unlockScreen animated:YES];
     
 }
@@ -315,8 +315,8 @@ UIActivityIndicatorView *activityIndicator;
     
     UIButton *btn = sender;
     if ([btn tag] == TAG_HOME_BTN) {
-        TSHomeViewController *tSHomeViewController = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:Nil];
-        [self.navigationController pushViewController:tSHomeViewController animated:YES];
+//        TSHomeViewController *tSHomeViewController = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:Nil];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     if ([btn tag] == TAG_SUBSCRIBE_BTN) {
         

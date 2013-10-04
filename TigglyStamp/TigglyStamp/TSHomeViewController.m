@@ -349,7 +349,7 @@ int swipeTxtCnt;
         readyToParentScreen = NO;
         
         [playBtnTimer invalidate];
-        ParentScreenViewController *parentViewCOntroller = [[ParentScreenViewController alloc] initWithNibName:@"ParentScreenViewController" bundle:nil];
+        ParentScreenViewController *parentViewCOntroller = [[ParentScreenViewController alloc] initWithNibName:@"ParentScreenViewController" bundle:nil withHomeView:self];
         [self.navigationController pushViewController:parentViewCOntroller animated:YES];
     }
     
@@ -382,10 +382,9 @@ int swipeTxtCnt;
         
 #endif
 
-
         
         [playBtnTimer invalidate];
-        UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil];
+        UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil entryFrom:kScreenEntryFromHomeView withHomeView:self];
          [self.navigationController pushViewController:unlockScreen animated:YES];
     }
     
@@ -510,7 +509,7 @@ int swipeTxtCnt;
     
     [playBtnTimer invalidate];
     
-    SeasonSelectionViewController *hmView = [[SeasonSelectionViewController alloc]initWithNibName:@"SeasonSelectionViewController" bundle:nil];
+    SeasonSelectionViewController *hmView = [[SeasonSelectionViewController alloc]initWithNibName:@"SeasonSelectionViewController" bundle:nil withHomeView:self];
     [self.navigationController pushViewController:hmView animated:YES];
 }
 
@@ -652,7 +651,7 @@ int swipeTxtCnt;
     
     DebugLog(@"Tapped Thumbnail Name: %@",thumbnail.imageName);
     
-    TSThumbnailEditController *thumbnailEditor = [[TSThumbnailEditController alloc] initWithNibName:@"TSThumbnailEditController" bundle:nil withImage:thumbnail.actulaImage imageName:thumbnail.imageName];
+    TSThumbnailEditController *thumbnailEditor = [[TSThumbnailEditController alloc] initWithNibName:@"TSThumbnailEditController" bundle:nil withImage:thumbnail.actulaImage imageName:thumbnail.imageName withHomeView:self];
     [self.navigationController pushViewController:thumbnailEditor animated:YES];
 }
 

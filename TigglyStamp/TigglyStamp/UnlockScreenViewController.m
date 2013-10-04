@@ -33,7 +33,7 @@
 #pragma mark Init
 #pragma mark =======================================
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil entryFrom:(UnlockScreenEntry ) fromScreen withHomeView:(TSHomeViewController *) homeView {
     DebugLog(@"");
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -44,6 +44,10 @@
         
         isPromptDisplayed = NO;
         promptsArray = [[NSMutableArray alloc] initWithObjects:@"circle",@"square",@"triangle",@"star", nil];
+        
+        screenFrom = fromScreen;
+        
+        homeViewController = homeView;
     }
     return self;
 }
@@ -317,8 +321,16 @@
     double delayInSeconds = 5.0f;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
-        [self.navigationController pushViewController:homeView animated:YES];
+        if(screenFrom == kScreenEntryFromHomeView){
+            [self.navigationController popViewControllerAnimated:YES];
+        }else if (screenFrom == kScreenEntryFromIntroView){
+            TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
+            [self.navigationController pushViewController:homeView animated:YES];
+        }else if (screenFrom == kScreenEntryFromSettingView){
+            TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
+            [self.navigationController popToViewController:homeView animated:YES];
+        }
+
     });
     
     

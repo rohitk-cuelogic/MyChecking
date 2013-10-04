@@ -132,7 +132,7 @@
         [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateNormal];
         [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateSelected];
         [btnHome addTarget:self action:@selector(btnHomeClicked)forControlEvents:UIControlEventTouchUpInside];
-        btnHome.frame = CGRectMake(44, 10, 75, 75);
+        btnHome.frame = CGRectMake(44, 10, 80, 80);
         [self addSubview:btnHome];
         
         

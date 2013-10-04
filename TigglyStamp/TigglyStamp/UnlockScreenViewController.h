@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UITouchVerificationView.h"
 #import "TDSoundManager.h"
-
+#import "TSHomeViewController.h"
 
 #ifdef GOOGLE_ANALYTICS_START
 #import "GAITrackedViewController.h"
@@ -35,6 +35,9 @@
     NSTimer *promptTimer;
     NSMutableArray *promptsArray;
     
+    UnlockScreenEntry screenFrom;
+    
+    TSHomeViewController *homeViewController;
 }
 
 @property(nonatomic, strong)UITouchVerificationView * touchView;
@@ -47,8 +50,11 @@
 @property (nonatomic, strong) IBOutlet UIButton *btnBack;
 @property (nonatomic, strong) IBOutlet UIButton *btnLearnMore;
 @property (nonatomic, strong) IBOutlet UIButton *btnBuyShapes;
-
 @property (nonatomic, strong) NSString *shapeToBeDetected;
+
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil entryFrom:(UnlockScreenEntry ) fromScreen withHomeView:(TSHomeViewController *) homeView;
+
 
 -(IBAction)actionBack;
 -(IBAction)actionBuyNow;

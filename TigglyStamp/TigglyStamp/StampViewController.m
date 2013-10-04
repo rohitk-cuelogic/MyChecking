@@ -77,11 +77,12 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 #pragma mark =======================================
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withSceneType:(SceneType) scene{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withSceneType:(SceneType) scene withHomeView:(TSHomeViewController *) homeView{
     DebugLog(@"");
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         sceneType = scene;
+        homeViewController = homeView;
     }
     return self;
 }
@@ -296,19 +297,13 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     NSMutableArray *arrRainbowImages = [[NSMutableArray alloc] initWithCapacity:1];
     
-    for(int i =1 ; i <= 6 ; i++ ) {
-        NSString *imgName = [NSString stringWithFormat:@"R%d.png",i];
+    for(int i =1 ; i <= 23 ; i++ ) {
+        NSString *imgName = [NSString stringWithFormat:@"r%d.png",i];
         DebugLog(@"Img Name : %@",imgName);
         UIImage *img =  [UIImage imageNamed:imgName];
         [arrRainbowImages addObject:(id) img.CGImage];        
     }
     
-    for(int i =2 ; i <= 6 ; i++ ) {
-        NSString *imgName = [NSString stringWithFormat:@"R-%d.png",i];
-        DebugLog(@"Img Name : %@",imgName);
-        UIImage *img =  [UIImage imageNamed:imgName];
-        [arrRainbowImages addObject:(id) img.CGImage];
-    }
     
     CAKeyframeAnimation *animation3 = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
     animation3.calculationMode = kCAAnimationDiscrete;
@@ -808,8 +803,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     DebugLog(@"");
     [[TDSoundManager sharedManager] stopSound];
     [[TDSoundManager sharedManager] stopMusic];
-    TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
-    [self.navigationController pushViewController:homeView animated:YES];
+    [self.navigationController popToViewController:homeViewController animated:YES];
 }
 
 
@@ -1890,9 +1884,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     [moviePlayer stop];
     
-    TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
-    [self.navigationController pushViewController:homeView animated:YES];
     [cImageView removeFromSuperview];
+    
+     [self.navigationController popToViewController:homeViewController animated:YES];
+    
 }
 
 -(void) onPlayButtonClicked:(CapturedImageView *)cImageView {

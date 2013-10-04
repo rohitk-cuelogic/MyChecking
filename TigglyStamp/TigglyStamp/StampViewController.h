@@ -22,6 +22,7 @@
 #import "XBPageCurlView.h"
 #import "TDSoundManager.h"
 #import "PhysicalShapesView.h"
+#import "TSHomeViewController.h"
 
 @interface StampViewController : KTViewController<UITouchVerificationViewDelegate,ShapeToDrawProtocol,FruitViewProtocol,AVAudioRecorderDelegate,CapturedImageViewDelegate,ScreenCaptureViewDelegate,FallSceneShapeToDrawProtocol,PhysicalShapeViewProtocol,XBPageCurlViewDelegate>{
    
@@ -55,6 +56,7 @@
     
     SceneType sceneType;
     
+    TSHomeViewController *homeViewController;
 }
 @property(nonatomic,strong) IBOutlet  ScreenCaptureView *screenCapture;
 @property(nonatomic, strong) NSMutableArray * shapes;
@@ -86,6 +88,6 @@
 -(IBAction)actionRecording:(id)sender;
 -(IBAction)onHomeButton:(id)sender;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withSceneType:(SceneType) scene;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withSceneType:(SceneType) scene withHomeView:(TSHomeViewController *) homeView;
 
 @end

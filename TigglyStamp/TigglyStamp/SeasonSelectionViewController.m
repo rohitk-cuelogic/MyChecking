@@ -26,11 +26,10 @@ int swipeTxtCnt;
 
 //============================================================================================
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withHomeView:(TSHomeViewController *) homeView{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        homeViewController = homeView;
     }
     return self;
 }
@@ -161,7 +160,7 @@ int swipeTxtCnt;
 #endif
 
         
-        stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneWinter];
+        stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneWinter withHomeView:homeViewController];
         [self.navigationController pushViewController:stampViewController animated:YES];
         
     }else if (btn.tag == TAG_FALL_BTN){
@@ -179,7 +178,7 @@ int swipeTxtCnt;
 #endif
 
         
-        stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneFall];
+        stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneFall withHomeView:homeViewController];
         [self.navigationController pushViewController:stampViewController animated:YES];
     }
     

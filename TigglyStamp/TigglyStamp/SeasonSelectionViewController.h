@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "StampViewController.h"
+#import "TSHomeViewController.h"
 
 @interface SeasonSelectionViewController : UIViewController
 {
@@ -15,6 +16,8 @@
     IBOutlet UIImageView *confirmationViewBKG;
     IBOutlet UIButton *notConfirm;
     IBOutlet UITextView *txtView;
+    
+    TSHomeViewController *homeViewController;
 }
 @property (nonatomic,strong) IBOutlet UIButton *winterSeasonBtn;
 @property (nonatomic,strong) IBOutlet UIButton *fallSeasonBtn;
@@ -28,5 +31,7 @@
 -(IBAction)actionHomeButtonClicked:(id)sender;
 -(IBAction)actionLearnMore:(id)sender;
 -(IBAction)noConfirmation:(id)sender;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withHomeView:(TSHomeViewController *) homeView;
 
 @end

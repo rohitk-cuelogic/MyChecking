@@ -71,7 +71,7 @@
     [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:MUSIC];
     
     self.navigationController.navigationBar.hidden = YES;
-    // Do any additional setup after loading the view from its nib.
+
     bkgImageViewlang.alpha = 0.0;
     bkgImageView.alpha = 0.0;
     CALayer * logo = [CALayer layer];
@@ -106,17 +106,14 @@
     
     [btnWithoutShape setHidden:true];
     [btnWithShape setHidden:true];
-    
-
-    
+        
     arrLanguage = [[NSMutableArray alloc] initWithObjects:@"English",@"Portuguese",@"Russian",@"Spanish",@"French",@"German",@"Italian", nil];
     
     tblView.layer.cornerRadius = 30;
     tblView.layer.masksToBounds = YES;
     
     
-    NSString *str = [[TigglyStampUtils sharedInstance] getCurrentLanguage]; //[[NSUserDefaults standardUserDefaults] objectForKey:LANGUAGE_SELECTED];
-//    lblLunguage.text = str;
+    NSString *str = [[TigglyStampUtils sharedInstance] getCurrentLanguage]; 
     int count=0;
     for(int i=0; i< arrLanguage.count;i++){
         NSString *lang = [arrLanguage objectAtIndex:i];
@@ -149,9 +146,8 @@
             bkgImageViewlang.alpha = 1.0;
             bkgImageView.alpha = 1.0;
             
-//             [[NSUserDefaults standardUserDefaults] setValue:@"English" forKey:LANGUAGE_SELECTED];
             [[TigglyStampUtils sharedInstance] setCurrentLanguage:@"English"];
-//            lblLunguage.text = @"English";
+
             [self displayLanguageSelectionView];
             [btnWithoutShape setHidden:false];
             [btnWithShape setHidden:false];
@@ -177,6 +173,7 @@
         }];
         return;
 #endif
+        
         TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];
         [self.navigationController pushViewController:homeViewController animated:NO];
     }
@@ -250,7 +247,7 @@
     
     if (btn.tag == TAG_BTN_WITHSHAPE) {     
         if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
-            UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil];
+            UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil entryFrom:kScreenEntryFromIntroView withHomeView:nil];
             [self.navigationController pushViewController:unlockScreen animated:YES];
         }else{
             [[TigglyStampUtils sharedInstance] setShapeMode:YES];

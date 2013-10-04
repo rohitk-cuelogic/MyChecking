@@ -12,7 +12,7 @@
 #import "UIView+Genie.h"
 #import "TigglyStampUtils.h"
 #import <MediaPlayer/MediaPlayer.h>
-
+#import "TSHomeViewController.h"
 
 #ifdef GOOGLE_ANALYTICS_START
 #import "GAITrackedViewController.h"
@@ -35,11 +35,13 @@
     IBOutlet UIButton *playBtn;
     UIImageView *editorImgView;
     MPMoviePlayerController *moviePlayer;
+    
+    TSHomeViewController *homeViewController;
 }
 
 
 
-- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withImage:(UIImage *)img imageName:(NSString *)imgName;
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withImage:(UIImage *)img imageName:(NSString *)imgName withHomeView:(TSHomeViewController *) homeView;
 -(IBAction) goToHomeScreen:(id)sender;
 -(IBAction) saveImageToGallary:(id)sender;
 -(IBAction)saveImageConfirmed:(id)sender;

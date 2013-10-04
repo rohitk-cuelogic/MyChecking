@@ -76,6 +76,9 @@ typedef enum {
     kSceneFall    
 } SceneType;
 
-@interface TConstant : NSObject
+typedef enum {
+        kScreenEntryFromHomeView,
+        kScreenEntryFromIntroView,
+        kScreenEntryFromSettingView,
+} UnlockScreenEntry;
 
-@end

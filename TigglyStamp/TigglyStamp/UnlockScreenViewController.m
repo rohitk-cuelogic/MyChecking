@@ -327,8 +327,7 @@
             TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
             [self.navigationController pushViewController:homeView animated:YES];
         }else if (screenFrom == kScreenEntryFromSettingView){
-            TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
-            [self.navigationController popToViewController:homeView animated:YES];
+            [self.navigationController popToViewController:homeViewController animated:YES];
         }
 
     });

@@ -11,7 +11,7 @@
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icon-72.png</string>
-		<string>144x144.png</string>
+		<string>144X144.png</string>
 	</array>
 	<key>CFBundleIconFiles~ipad</key>
 	<array>

@@ -337,13 +337,13 @@ UIActivityIndicatorView *activityIndicator;
             if ([self isValidEmailAddress:emailidTextField.text] == YES) {
    
 #ifdef GOOGLE_ANALYTICS_START
-                NSMutableDictionary *event =
-                [[GAIDictionaryBuilder createEventWithCategory:@"Tiggly Subscription"
-                                                        action:@"Subscribe"
-                                                         label:emailidTextField.text
-                                                         value:nil] build];
-                [[GAI sharedInstance].defaultTracker send:event];
-                [[GAI sharedInstance] dispatch];
+//                NSMutableDictionary *event =
+//                [[GAIDictionaryBuilder createEventWithCategory:@"Tiggly Subscription"
+//                                                        action:@"Subscribe"
+//                                                         label:emailidTextField.text
+//                                                         value:nil] build];
+//                [[GAI sharedInstance].defaultTracker send:event];
+//                [[GAI sharedInstance] dispatch];
 #else
 #endif
                  [emailidTextField resignFirstResponder];

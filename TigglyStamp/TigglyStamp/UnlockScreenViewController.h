@@ -10,6 +10,7 @@
 #import "UITouchVerificationView.h"
 #import "TDSoundManager.h"
 #import "TSHomeViewController.h"
+#import "GestureConfirmationView.h"
 
 #ifdef GOOGLE_ANALYTICS_START
 #import "GAITrackedViewController.h"
@@ -20,7 +21,7 @@
 
 #endif
 
-@interface UnlockScreenViewController : UIViewController <UITouchVerificationViewDelegate> {
+@interface UnlockScreenViewController : UIViewController <UITouchVerificationViewDelegate,GestireViewProtocol> {
     
     UIImageView *promtView;
     UIImageView *shapeView;
@@ -38,6 +39,8 @@
     UnlockScreenEntry screenFrom;
     
     TSHomeViewController *homeViewController;
+    
+    GestureConfirmationView *gestureView;
 }
 
 @property(nonatomic, strong)UITouchVerificationView * touchView;

@@ -203,7 +203,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="430690704"/>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">home_icon_2.png</string>
+							<string key="NSResourceName">home_icon_1.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="119722583">
 							<int key="type">2</int>
@@ -745,7 +745,7 @@
 			<string key="close_btn.png">{120, 120}</string>
 			<string key="fall_btn.png">{591, 572}</string>
 			<string key="green_bg_2.png">{1024, 768}</string>
-			<string key="home_icon_2.png">{274, 274}</string>
+			<string key="home_icon_1.png">{199, 199}</string>
 			<string key="learn_more.png">{416, 372}</string>
 			<string key="lock.png">{209, 280}</string>
 			<string key="parent_gesture_black_bg.png">{2048, 1536}</string>

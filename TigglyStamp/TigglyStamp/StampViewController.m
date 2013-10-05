@@ -811,62 +811,64 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     UIButton *btn = sender;
     if ([btn tag] == TAG_RIGHT_TICK_BTN) {
         
-        if(rainBowLayer != nil){
-            [rainBowLayer removeFromSuperlayer];
-            [rainBowLayer removeAllAnimations];
-            [rainBowLayer removeAnimationForKey:@"contents"];
-            rainBowLayer = nil;
-        }
+//        if(rainBowLayer != nil){
+//            [rainBowLayer removeFromSuperlayer];
+//            [rainBowLayer removeAllAnimations];
+//            [rainBowLayer removeAnimationForKey:@"contents"];
+//            rainBowLayer = nil;
+//        }
+//        
+//        [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
+//
+//        [tickBtnTimer invalidate];
+//        [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+//
+//        if(!isWithShape)
+//            [self removeShapesTray];
+//        
+//        [self addRainbowEffectAnimation];
+//        
+//        [self.mainView bringSubviewToFront:RigthTickButton];
+//        
+//        videoButton.hidden = YES;
+//        cameraButton.hidden = YES;
+//        
+//        btnView.frame = CGRectMake(256, 384, 512, 90);
+//        cameraButton.frame = CGRectMake(cameraButton.frame.origin.x + 100, cameraButton.frame.origin.y, cameraButton.frame.size.width, cameraButton.frame.size.height);
+//        videoButton.frame = CGRectMake(videoButton.frame.origin.x - 100, videoButton.frame.origin.y, videoButton.frame.size.width, videoButton.frame.size.height);
+//        [cameraButton.layer setTransform:CATransform3DMakeScale(2.5, 2.5, 1.0)];
+//        [videoButton.layer setTransform:CATransform3DMakeScale(2.5, 2.5, 1.0)];
+//        
+//        double delayInSeconds = 1.8;
+//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//
+//            [self removeShapesTray];
+//            
+//            [self showVideoCameraButtons];
+//
+//        
+//        });
+        
         
         [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
-
+        
+        [homeButton setHidden:false];
+        RigthTickButton.hidden = YES;
+        [self.mainView bringSubviewToFront:homeButton];
+        
+        [NSTimer scheduledTimerWithTimeInterval:0.29 + 0.1 target:self selector:@selector(playDragSound) userInfo:nil repeats:NO];
+        
+        [self sendEmail];
+        
+        [self showVideoCameraButtons];
+        
         [tickBtnTimer invalidate];
         [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
-
+        
         if(!isWithShape)
             [self removeShapesTray];
         
-        [self addRainbowEffectAnimation];
-        
-        [self.mainView bringSubviewToFront:RigthTickButton];
-        
-        videoButton.hidden = YES;
-        cameraButton.hidden = YES;
-        
-        btnView.frame = CGRectMake(256, 384, 512, 90);
-        cameraButton.frame = CGRectMake(cameraButton.frame.origin.x + 100, cameraButton.frame.origin.y, cameraButton.frame.size.width, cameraButton.frame.size.height);
-        videoButton.frame = CGRectMake(videoButton.frame.origin.x - 100, videoButton.frame.origin.y, videoButton.frame.size.width, videoButton.frame.size.height);
-        [cameraButton.layer setTransform:CATransform3DMakeScale(2.5, 2.5, 1.0)];
-        [videoButton.layer setTransform:CATransform3DMakeScale(2.5, 2.5, 1.0)];
-        
-        double delayInSeconds = 1.8;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-
-            [self removeShapesTray];
-            
-            [self showVideoCameraButtons];
-
-        
-        });
-        
-//       
-//
-//        [homeButton setHidden:false];
-//        RigthTickButton.hidden = YES;
-//        [self.mainView bringSubviewToFront:homeButton];
-//        
-//        [NSTimer scheduledTimerWithTimeInterval:0.29 + 0.1 target:self selector:@selector(playDragSound) userInfo:nil repeats:NO];
-//        
-//        [self sendEmail];
-//
-//        [self showVideoCameraButtons];
-//        
-//        [tickBtnTimer invalidate];
-//        [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
-//        
-//        if(!isWithShape)
-//            [self removeShapesTray];
     }
     
     if ([btn tag] == TAG_CURL_BTN) {
@@ -1742,26 +1744,61 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 -(void) showVideoCameraButtons {
     DebugLog(@"");
 
+//    isBtnViewHidden = NO;
+//    videoButton.hidden = NO;
+//    cameraButton.hidden = NO;
+//
+//    [self.mainView bringSubviewToFront:btnView];
+//    
+//
+//    [UIView animateWithDuration:0.8 animations:^{
+//        btnView.frame = CGRectMake(256, 0, 512, 90);
+//        [cameraButton.layer setTransform:CATransform3DMakeScale(1.0, 1.0, 1.0)];
+//        [videoButton.layer setTransform:CATransform3DMakeScale(1.0, 1.0, 1.0)];
+//        cameraButton.frame = CGRectMake(cameraButton.frame.origin.x - 100, cameraButton.frame.origin.y, cameraButton.frame.size.width, cameraButton.frame.size.height);
+//        videoButton.frame = CGRectMake(videoButton.frame.origin.x + 100, videoButton.frame.origin.y, videoButton.frame.size.width, videoButton.frame.size.height);
+//    }completion:^(BOOL finished) {
+//        
+//        [self.mainView bringSubviewToFront:homeButton];
+//        [homeButton setHidden:NO];
+//        RigthTickButton.hidden = YES;
+//
+//        
+//        double delayInSeconds = 2.0;
+//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//            CABasicAnimation *animation4a = nil;
+//            animation4a = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+//            [animation4a setToValue:[NSNumber numberWithDouble:1.5]];
+//            [animation4a setFromValue:[NSNumber numberWithDouble:1]];
+//            [animation4a setAutoreverses:YES];
+//            [animation4a setDuration:1.5f];
+//            [animation4a setBeginTime:0.0f];
+//            [animation4a setRepeatCount:HUGE_VAL];
+//            [videoButton.layer addAnimation:animation4a forKey:@"transform.scale"];
+//
+//            CABasicAnimation *animation4a2 = nil;
+//            animation4a2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+//            [animation4a2 setToValue:[NSNumber numberWithDouble:1.5]];
+//            [animation4a2 setFromValue:[NSNumber numberWithDouble:1]];
+//            [animation4a2 setAutoreverses:YES];
+//            [animation4a2 setDuration:1.5f];
+//            [animation4a2 setBeginTime:0.0f];
+//            [animation4a2 setRepeatCount:HUGE_VAL];
+//            [cameraButton.layer addAnimation:animation4a2 forKey:@"transform.scale"];
+//        });
+//    }];
+
     isBtnViewHidden = NO;
     videoButton.hidden = NO;
     cameraButton.hidden = NO;
-
+    RigthTickButton.hidden = YES;
+    
     [self.mainView bringSubviewToFront:btnView];
     
-
     [UIView animateWithDuration:0.8 animations:^{
         btnView.frame = CGRectMake(256, 0, 512, 90);
-        [cameraButton.layer setTransform:CATransform3DMakeScale(1.0, 1.0, 1.0)];
-        [videoButton.layer setTransform:CATransform3DMakeScale(1.0, 1.0, 1.0)];
-        cameraButton.frame = CGRectMake(cameraButton.frame.origin.x - 100, cameraButton.frame.origin.y, cameraButton.frame.size.width, cameraButton.frame.size.height);
-        videoButton.frame = CGRectMake(videoButton.frame.origin.x + 100, videoButton.frame.origin.y, videoButton.frame.size.width, videoButton.frame.size.height);
     }completion:^(BOOL finished) {
-        
-        [self.mainView bringSubviewToFront:homeButton];
-        [homeButton setHidden:NO];
-        RigthTickButton.hidden = YES;
-
-        
         double delayInSeconds = 2.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -1774,7 +1811,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             [animation4a setBeginTime:0.0f];
             [animation4a setRepeatCount:HUGE_VAL];
             [videoButton.layer addAnimation:animation4a forKey:@"transform.scale"];
-
+            
             CABasicAnimation *animation4a2 = nil;
             animation4a2 = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
             [animation4a2 setToValue:[NSNumber numberWithDouble:1.5]];
@@ -1786,30 +1823,52 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             [cameraButton.layer addAnimation:animation4a2 forKey:@"transform.scale"];
         });
     }];
-
+    
+    
     
 }
 
 -(void) hideVideoCameraButtons {
     DebugLog(@"");
+    
+    
+
+//    if(!isRecording) {
+//        RigthTickButton.hidden = NO;
+//
+//        [cameraButton.layer removeAnimationForKey:@"transform.scale"];
+//        [cameraButton.layer removeAllAnimations];
+//        
+//        [videoButton.layer removeAnimationForKey:@"transform.scale"];
+//        [videoButton.layer removeAllAnimations];
+//       
+//        isBtnViewHidden = YES;
+//        [UIView animateWithDuration:0.3 animations:^{
+//            btnView.frame = CGRectMake(256,-150, 512,90);
+//
+//        }completion:^(BOOL finished) {
+//            videoButton.hidden = YES;
+//            cameraButton.hidden = YES;
+////            btnView.frame = CGRectMake(256,-100, 512,90);
+//        }];
+//    }
 
     if(!isRecording) {
         RigthTickButton.hidden = NO;
-
+        
         [cameraButton.layer removeAnimationForKey:@"transform.scale"];
         [cameraButton.layer removeAllAnimations];
         
         [videoButton.layer removeAnimationForKey:@"transform.scale"];
         [videoButton.layer removeAllAnimations];
-       
+        
         isBtnViewHidden = YES;
         [UIView animateWithDuration:0.3 animations:^{
-            btnView.frame = CGRectMake(256,-150, 512,90);
-
+            btnView.frame = CGRectMake(256,-90, 512,90);
         }completion:^(BOOL finished) {
             videoButton.hidden = YES;
             cameraButton.hidden = YES;
-//            btnView.frame = CGRectMake(256,-100, 512,90);
+            btnView.frame = CGRectMake(-512, 0, 512,90);
         }];
     }
 

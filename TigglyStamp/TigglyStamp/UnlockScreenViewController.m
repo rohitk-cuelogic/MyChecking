@@ -381,20 +381,12 @@
 
 -(IBAction)actionLearnMore {
     DebugLog(@"");
-#ifdef GOOGLE_ANALYTICS_START
-    NSMutableDictionary *event =
-    [[GAIDictionaryBuilder createEventWithCategory:@"About tiggly"
-                                            action:@"Learn more"
-                                             label:@"Learn more"
-                                             value:nil] build];
-    [[GAI sharedInstance].defaultTracker send:event];
-    [[GAI sharedInstance] dispatch];
-#else
     
-#endif
+    gestureView = [[GestureConfirmationView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+    gestureView.delegate = self;
+    gestureView.layer.zPosition = 1500;
+    [self.view addSubview:gestureView];
 
-    
-     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.myshopify.com/products/tiggly-shapes"]];
 }
 
 
@@ -468,6 +460,33 @@
 -(void)touchVerificationViewTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     DebugLog(@"");
     
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Gesture View Protocol
+#pragma mark =======================================
+
+-(void) gestureViewOnGestureConfirmed:(GestureConfirmationView *)gView {
+    DebugLog(@"");
+    
+    
+#ifdef GOOGLE_ANALYTICS_START
+    NSMutableDictionary *event =
+    [[GAIDictionaryBuilder createEventWithCategory:@"About tiggly"
+                                            action:@"Learn more"
+                                             label:@"Learn more"
+                                             value:nil] build];
+    [[GAI sharedInstance].defaultTracker send:event];
+    [[GAI sharedInstance] dispatch];
+#else
+    
+#endif
+    
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.myshopify.com/products/tiggly-shapes"]];
+    
+    gestureView = nil;
 }
 
 

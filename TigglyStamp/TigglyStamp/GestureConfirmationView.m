@@ -45,6 +45,8 @@
         
         txtView = [[UITextView alloc] initWithFrame:CGRectMake(90, 80, 415, 160)];
         txtView.textAlignment = UITextAlignmentCenter;
+        [txtView setEditable:NO];
+        txtView.userInteractionEnabled =NO;
         txtView.font = [UIFont fontWithName:APP_FONT_BOLD size:35.0f];
         txtView.backgroundColor =[UIColor clearColor];
         [confirmationView addSubview:txtView];

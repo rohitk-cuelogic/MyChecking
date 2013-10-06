@@ -9,6 +9,7 @@
 #import "TSThumbnailEditController.h"
 #import "TDSoundManager.h"
 #import "TSHomeViewController.h"
+#import "TSTempData.h"
 
 @interface TSThumbnailEditController ()
 

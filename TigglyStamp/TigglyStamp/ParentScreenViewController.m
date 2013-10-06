@@ -336,16 +336,6 @@ UIActivityIndicatorView *activityIndicator;
         if (emailidTextField.text.length != 0) {
             if ([self isValidEmailAddress:emailidTextField.text] == YES) {
    
-#ifdef GOOGLE_ANALYTICS_START
-//                NSMutableDictionary *event =
-//                [[GAIDictionaryBuilder createEventWithCategory:@"Tiggly Subscription"
-//                                                        action:@"Subscribe"
-//                                                         label:emailidTextField.text
-//                                                         value:nil] build];
-//                [[GAI sharedInstance].defaultTracker send:event];
-//                [[GAI sharedInstance] dispatch];
-#else
-#endif
                 TSTempData *tempData = [[TSTempData alloc] initWithEmailId:emailidTextField.text];
                 [[TigglyStampUtils sharedInstance] packTempData:tempData toFolder:FOLDER_SUBSCRIPTION_DATA];
                 

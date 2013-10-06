@@ -38,7 +38,7 @@
     UIButton *btnSend;
     NSString *imageName;
     UILabel *lblImageSaved;
-
+    GestureConfirmationView *gestureView;
 }
 @property(nonatomic,strong) id<CapturedImageViewDelegate>delegate;
 @property (nonatomic,strong) UIImageView *imageView;

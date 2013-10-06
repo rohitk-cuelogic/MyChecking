@@ -182,7 +182,7 @@
 -(void)btnSendClicked{
     DebugLog(@"");
     
-    GestureConfirmationView *gestureView = [[GestureConfirmationView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+    gestureView = [[GestureConfirmationView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
     gestureView.delegate = self;
     [self addSubview:gestureView];
     [self bringSubviewToFront:gestureView];
@@ -251,6 +251,15 @@
                          [lblImageSaved removeFromSuperview];
                      }];
 
+}
+
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+    double delayInSeconds = 0.3;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [gestureView removeFromSuperview];
+    });
 }
 
 @end

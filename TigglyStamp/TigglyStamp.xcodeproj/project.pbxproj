@@ -1140,6 +1140,8 @@
 		C0F814E617F1A6680051C2B5 /* NSStream+SKPSMTPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F814DE17F1A6680051C2B5 /* NSStream+SKPSMTPExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C0F814E717F1A6680051C2B5 /* SKPSMTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F814E017F1A6680051C2B5 /* SKPSMTPMessage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C0F814E917F1A68B0051C2B5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F814E817F1A68B0051C2B5 /* CFNetwork.framework */; };
+		C0F85EC61800588100045212 /* TSTempData.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F85EC51800588100045212 /* TSTempData.m */; };
+		C0F85EC818005A3100045212 /* Tiggly_SFX_MAGIC_20.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0F85EC718005A3100045212 /* Tiggly_SFX_MAGIC_20.mp3 */; };
 		EB11AF8117AA36FE0013B1B4 /* IntroScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC31D64317A94CE1008C5361 /* IntroScreenViewController.xib */; };
 		EB1A593417ABD138001749D2 /* pattern_0_1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB1A593317ABD138001749D2 /* pattern_0_1.png */; };
 		EB2B02C717C4DE9F00340A20 /* tick2@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2B02C517C4DE9F00340A20 /* tick2@2x~ipad.png */; };
@@ -2463,6 +2465,9 @@
 		C0F814DF17F1A6680051C2B5 /* SKPSMTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPSMTPMessage.h; sourceTree = "<group>"; };
 		C0F814E017F1A6680051C2B5 /* SKPSMTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPSMTPMessage.m; sourceTree = "<group>"; };
 		C0F814E817F1A68B0051C2B5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C0F85EC41800588100045212 /* TSTempData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTempData.h; sourceTree = "<group>"; };
+		C0F85EC51800588100045212 /* TSTempData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTempData.m; sourceTree = "<group>"; };
+		C0F85EC718005A3100045212 /* Tiggly_SFX_MAGIC_20.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_MAGIC_20.mp3; sourceTree = "<group>"; };
 		EB1A593317ABD138001749D2 /* pattern_0_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pattern_0_1.png; sourceTree = "<group>"; };
 		EB2B02C517C4DE9F00340A20 /* tick2@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick2@2x~ipad.png"; sourceTree = "<group>"; };
 		EB2B02C617C4DE9F00340A20 /* tick1@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick1@2x~ipad.png"; sourceTree = "<group>"; };
@@ -4102,6 +4107,8 @@
 			children = (
 				631A51F317EB2F9B00D88E2C /* GoogleAnalyticLibrary */,
 				EB6F33981781AD0600FC479F /* TConstant.h */,
+				C0F85EC41800588100045212 /* TSTempData.h */,
+				C0F85EC51800588100045212 /* TSTempData.m */,
 				EBEDE48817951667002151E5 /* TigglyStampUtils.h */,
 				EBEDE48917951667002151E5 /* TigglyStampUtils.m */,
 				EB6F339F1781B8C900FC479F /* WinterScene.h */,
@@ -4364,6 +4371,7 @@
 		EBFCF29017942329003C82CC /* tiggly_stamp_audio */ = {
 			isa = PBXGroup;
 			children = (
+				C0F85EC718005A3100045212 /* Tiggly_SFX_MAGIC_20.mp3 */,
 				C01F422217EB2D810093AA53 /* Incorrect_01.mp3 */,
 				C02F431617D60CFC007AEA39 /* Winter_Words_For_Objects */,
 				C02F433B17D60CFC007AEA39 /* Chosen_Greeting */,
@@ -5640,6 +5648,7 @@
 				C055642517FDA3C700818639 /* r7@2x~ipad.png in Resources */,
 				C055642617FDA3C700818639 /* r8@2x~ipad.png in Resources */,
 				C055642717FDA3C700818639 /* r9@2x~ipad.png in Resources */,
+				C0F85EC818005A3100045212 /* Tiggly_SFX_MAGIC_20.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5705,6 +5714,7 @@
 				C0F814E617F1A6680051C2B5 /* NSStream+SKPSMTPExtensions.m in Sources */,
 				C0F814E717F1A6680051C2B5 /* SKPSMTPMessage.m in Sources */,
 				C0D3CAD917FAE52B009C5B3D /* UIImage+Resize.m in Sources */,
+				C0F85EC61800588100045212 /* TSTempData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -61,6 +61,9 @@
 #define SENDER_EMAIL_ID @"tigglytwitter@gmail.com"
 #define SENDER_EMAIL_ID_PASSWORD @"tiggly123"
 
+#define FOLDER_CHILD_DATA @"TigglyChildData"
+#define FOLDER_SUBSCRIPTION_DATA @"TigglySubscriptionData"
+
 #define GALLERY_LIMIT 60
 
 //Do not change the sequence

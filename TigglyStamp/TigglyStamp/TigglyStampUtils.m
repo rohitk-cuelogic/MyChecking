@@ -590,4 +590,86 @@ static TigglyStampUtils *sharedInstance = nil;
     return totalFreeSpace;
 }
 
+#pragma mark -
+#pragma mark =======================================
+#pragma mark
+#pragma mark =======================================
+
+- (BOOL) createFolderForProject: (NSString *) folder {
+    DebugLog(@"");
+    
+    //Create a path for new mtally folder
+    NSString *docsDirectory = [self getDocumentDirPath];
+    NSString *path = [docsDirectory stringByAppendingPathComponent:folder];
+    DebugLog(@"Project saved at Path: %@", path);
+    NSError *error = nil;
+    
+    //Create the folder
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        
+        [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error];
+        
+        if(error != nil) {
+            DebugLog(@"Error creating the folder: %@",[error localizedDescription]);
+        } else {
+            DebugLog(@"Folder created sucessfully");
+        }
+    }
+    return YES;
+}
+
+-(BOOL) packTempData:(TSTempData *) pInfo toFolder:(NSString *) folder{
+    
+    //Encode the project info object into NSData
+    NSMutableData *data = [[NSMutableData alloc]init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:data];
+    [archiver encodeObject:pInfo];
+    [archiver finishEncoding];
+    
+    //Save the data to the specified file
+    NSString *path = [self getDocumentDirPath];
+    [self createFolderForProject:folder] ;
+    NSString *directory = [path stringByAppendingPathComponent:folder];
+    DebugLog(@"Directory after adding project name: %@",directory);
+    NSString *datapath = [directory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%d.tiggly",folder,[self getTempFilesCountInFolder:folder]]];
+    DebugLog(@"Metadata file saved at path: %@",datapath);
+    [data writeToFile:datapath atomically:YES];
+    
+    return YES;
+}
+
+- (NSMutableArray *) getAllTempDataFromFolder:(NSString *)folder {
+    DebugLog(@"");
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithCapacity:1];
+    NSString *path = [self getDocumentDirPath];
+    NSString *directory = [path stringByAppendingPathComponent:folder];
+    DebugLog(@"directory : %@",directory);
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *directoryContents = [fileManager contentsOfDirectoryAtPath:directory error:NULL];
+    
+    for (NSString *file in directoryContents) {
+        DebugLog(@"FFile : %@",file);
+        NSMutableData *data = [[NSMutableData alloc]initWithContentsOfFile:[directory stringByAppendingPathComponent:file]];
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        TSTempData *tempData = (TSTempData *)[unarchiver decodeObject];
+        
+        if(tempData != nil)
+            [arr addObject:tempData];
+    }
+    
+    return arr;
+}
+
+-(int) getTempFilesCountInFolder:(NSString *) folder {
+    DebugLog(@"");
+    
+    NSString *path = [self getDocumentDirPath];
+    NSString *directory = [path stringByAppendingPathComponent:folder];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *directoryContents = [fileManager contentsOfDirectoryAtPath:directory error:NULL];
+    
+    return directoryContents.count;
+}
+
 @end

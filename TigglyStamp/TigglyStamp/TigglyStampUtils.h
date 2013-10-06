@@ -10,6 +10,8 @@
 #import "TConstant.h"
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "TSTempData.h"
+
 @interface TigglyStampUtils : NSObject{
     NSMutableString *strCsvKyes;
     int thumbnailCount;
@@ -53,5 +55,8 @@
 -(void)unlockAppForShapes:(BOOL) boolean;
 
 -(uint64_t)getFreeDiskspace;
+
+-(BOOL) packTempData:(TSTempData *) pInfo toFolder:(NSString *) folder;
+- (NSMutableArray *) getAllTempDataFromFolder:(NSString *)folder;
 
 @end

@@ -13,6 +13,7 @@
 #import "MovingView.h"
 #import "TDSoundManager.h"
 #import "UnlockScreenViewController.h"
+#import "TSTempData.h"
 
 @interface TSHomeViewController ()
 
@@ -124,6 +125,10 @@ int swipeTxtCnt;
     [self.view addGestureRecognizer:hmSwpeRecognizer];
     
 
+    NSArray *arr2 = [[TigglyStampUtils sharedInstance] getAllTempDataFromFolder:FOLDER_SUBSCRIPTION_DATA];
+    for(TSTempData *td in arr2){
+        DebugLog(@"Email : %@",td.subscriptionEmailId);
+    }
 
 }
 

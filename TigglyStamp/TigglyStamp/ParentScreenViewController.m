@@ -346,6 +346,10 @@ UIActivityIndicatorView *activityIndicator;
 //                [[GAI sharedInstance] dispatch];
 #else
 #endif
+                TSTempData *tempData = [[TSTempData alloc] initWithEmailId:emailidTextField.text];
+                [[TigglyStampUtils sharedInstance] packTempData:tempData toFolder:FOLDER_SUBSCRIPTION_DATA];
+                
+                
                  [emailidTextField resignFirstResponder];
                 [self.view addSubview:confView];
                 [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(removeConfirmationDilog:) userInfo:nil repeats:NO];

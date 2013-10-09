@@ -1116,6 +1116,10 @@
 		C0C3E3FB17F3152000BD3B29 /* privacypolicy.html in Resources */ = {isa = PBXBuildFile; fileRef = C0C3E3FA17F3152000BD3B29 /* privacypolicy.html */; };
 		C0C3E3FD17F3203000BD3B29 /* list_dotblack.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C3E3FC17F3203000BD3B29 /* list_dotblack.png */; };
 		C0D3CAD917FAE52B009C5B3D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D3CAD817FAE52B009C5B3D /* UIImage+Resize.m */; };
+		C0D8B044180435580096448B /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D8B042180435580096448B /* GalleryViewController.m */; };
+		C0D8B045180435580096448B /* GalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0D8B043180435580096448B /* GalleryViewController.xib */; };
+		C0D8B04818043B490096448B /* TDSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D8B04718043B490096448B /* TDSignatureView.m */; };
+		C0D8B04A180440EC0096448B /* color_splash.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D8B049180440EC0096448B /* color_splash.png */; };
 		C0D8C92417C772C000A037B8 /* play_btn_circle_3.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D8C92217C772C000A037B8 /* play_btn_circle_3.png */; };
 		C0D8C92517C772C000A037B8 /* play_btn_circle_5.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D8C92317C772C000A037B8 /* play_btn_circle_5.png */; };
 		C0DDFCBF17A6384D001F846D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C00C973617A292A300224283 /* SettingsViewController.m */; };
@@ -2433,6 +2437,12 @@
 		C0C3E3FC17F3203000BD3B29 /* list_dotblack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_dotblack.png; sourceTree = SOURCE_ROOT; };
 		C0D3CAD717FAE52B009C5B3D /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Resize.h"; path = "UIImage+Resize/UIImage+Resize.h"; sourceTree = "<group>"; };
 		C0D3CAD817FAE52B009C5B3D /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Resize.m"; path = "UIImage+Resize/UIImage+Resize.m"; sourceTree = "<group>"; };
+		C0D8B041180435580096448B /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
+		C0D8B042180435580096448B /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
+		C0D8B043180435580096448B /* GalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryViewController.xib; sourceTree = "<group>"; };
+		C0D8B04618043B490096448B /* TDSignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDSignatureView.h; sourceTree = "<group>"; };
+		C0D8B04718043B490096448B /* TDSignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDSignatureView.m; sourceTree = "<group>"; };
+		C0D8B049180440EC0096448B /* color_splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color_splash.png; sourceTree = "<group>"; };
 		C0D8C92217C772C000A037B8 /* play_btn_circle_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_btn_circle_3.png; sourceTree = "<group>"; };
 		C0D8C92317C772C000A037B8 /* play_btn_circle_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_btn_circle_5.png; sourceTree = "<group>"; };
 		C0DF529817FC00A6009C6790 /* 29X29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 29X29.png; sourceTree = "<group>"; };
@@ -3431,6 +3441,7 @@
 				C09DBD6117F47D5C00FC1507 /* new_try_out.png */,
 				C0C3E3FC17F3203000BD3B29 /* list_dotblack.png */,
 				6319F73E17F0829D00EDE527 /* tick_mark.png */,
+				C0D8B049180440EC0096448B /* color_splash.png */,
 				6319F73C17F081AC00EDE527 /* subscribe_btn_3.png */,
 				6319F73617F07B4400EDE527 /* review_app_btn.png */,
 				6319F73717F07B4400EDE527 /* subscribe_bg.png */,
@@ -4126,6 +4137,8 @@
 				C074891F17A94650001943E0 /* ScreenCaptureView.m */,
 				EBF42C94178A9480004FECEE /* FruitView.h */,
 				EBF42C95178A9480004FECEE /* FruitView.m */,
+				C0D8B04618043B490096448B /* TDSignatureView.h */,
+				C0D8B04718043B490096448B /* TDSignatureView.m */,
 				63CEE1B317A1228B0060DC42 /* CapturedImageView.h */,
 				63CEE1B417A1228B0060DC42 /* CapturedImageView.m */,
 				C060B41D17CDF643000AD202 /* TDSoundManager.h */,
@@ -4163,6 +4176,9 @@
 				C0F814C917F157EB0051C2B5 /* SettingsView.m */,
 				C0F814CC17F179A10051C2B5 /* GestureConfirmationView.h */,
 				C0F814CD17F179A10051C2B5 /* GestureConfirmationView.m */,
+				C0D8B041180435580096448B /* GalleryViewController.h */,
+				C0D8B042180435580096448B /* GalleryViewController.m */,
+				C0D8B043180435580096448B /* GalleryViewController.xib */,
 			);
 			path = TigglyStamp;
 			sourceTree = "<group>";
@@ -5649,6 +5665,8 @@
 				C055642617FDA3C700818639 /* r8@2x~ipad.png in Resources */,
 				C055642717FDA3C700818639 /* r9@2x~ipad.png in Resources */,
 				C0F85EC818005A3100045212 /* Tiggly_SFX_MAGIC_20.mp3 in Resources */,
+				C0D8B045180435580096448B /* GalleryViewController.xib in Resources */,
+				C0D8B04A180440EC0096448B /* color_splash.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5715,6 +5733,8 @@
 				C0F814E717F1A6680051C2B5 /* SKPSMTPMessage.m in Sources */,
 				C0D3CAD917FAE52B009C5B3D /* UIImage+Resize.m in Sources */,
 				C0F85EC61800588100045212 /* TSTempData.m in Sources */,
+				C0D8B044180435580096448B /* GalleryViewController.m in Sources */,
+				C0D8B04818043B490096448B /* TDSignatureView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

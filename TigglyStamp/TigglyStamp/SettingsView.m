@@ -27,6 +27,7 @@ UIView *langView;
 UITableView *tblView;
 NSArray *langArr;
 BOOL isLanguageScreenDisplayed;
+UIButton *btnClose;
 
 @synthesize delegate;
 
@@ -43,7 +44,7 @@ BOOL isLanguageScreenDisplayed;
         self.layer.cornerRadius = 20.0f;
         self.userInteractionEnabled = YES;
         
-        UIButton *btnClose = [UIButton buttonWithType:UIButtonTypeCustom];
+        btnClose = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnClose setBackgroundImage:[UIImage imageNamed:@"close_btn.png"] forState:UIControlStateNormal];
         [btnClose setBackgroundImage:[UIImage imageNamed:@"close_btn.png"] forState:UIControlStateSelected];
         [btnClose addTarget:self action:@selector(actionClose)forControlEvents:UIControlEventTouchUpInside];
@@ -92,7 +93,7 @@ BOOL isLanguageScreenDisplayed;
         UILabel *lblShape = [[UILabel alloc] initWithFrame:CGRectMake(80, 240, 345, 32)];
         lblShape.textAlignment = UITextAlignmentRight;
         lblShape.backgroundColor = [UIColor clearColor];
-        lblShape.text = @"I have shapes";
+        lblShape.text = @"Play with Tiggly Shapes";
         lblShape.textColor = [UIColor whiteColor];
         lblShape.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
         [self addSubview:lblShape];
@@ -185,6 +186,9 @@ BOOL isLanguageScreenDisplayed;
     }else{
         [self launchLanguageView];
     }
+    
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateNormal];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateSelected];
 }
 
 -(void)actionGallery {
@@ -195,6 +199,9 @@ BOOL isLanguageScreenDisplayed;
     }else{
         [[NSUserDefaults standardUserDefaults] setValue:@"no" forKey:LIMIT_GALLERY];
     }
+    
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateNormal];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateSelected];
 }
 
 -(void)actionShape {
@@ -209,6 +216,8 @@ BOOL isLanguageScreenDisplayed;
     }else{
         [[TigglyStampUtils sharedInstance] setShapeMode:NO];
     }
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateNormal];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateSelected];
 }
 
 -(void)actionMusic {
@@ -219,6 +228,9 @@ BOOL isLanguageScreenDisplayed;
     }else{
         [[NSUserDefaults standardUserDefaults] setValue:@"no" forKey:MUSIC];
     }
+    
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateNormal];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateSelected];
 }
 
 -(void) actionArt{
@@ -228,6 +240,9 @@ BOOL isLanguageScreenDisplayed;
     }else{
         [[NSUserDefaults standardUserDefaults] setValue:@"no" forKey:SAVE_ART];
     }
+    
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateNormal];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateSelected];
 }
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{

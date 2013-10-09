@@ -10,6 +10,9 @@
 #import "KTViewController.h"
 #import "GestureConfirmationView.h"
 #import "UIImage+Resize.h"
+#import "TDSignatureView.h"
+
+
 #ifdef GOOGLE_ANALYTICS_START
 #import "GAITrackedViewController.h"
 #import "GAI.h"
@@ -17,6 +20,10 @@
 #import "GAIFields.h"
 #else
 #endif
+
+#define FRAME_VIEW_FOR_SIGN CGRectMake(200, 515, 490, 100)
+#define BTN_COLOR_SPLASH_CENTER_ALT CGPointMake(950, 700)
+#define BTN_COLOR_SPLASH_CENTER CGPointMake(950, 650)
 
 @class CapturedImageView;
 
@@ -39,6 +46,11 @@
     NSString *imageName;
     UILabel *lblImageSaved;
     GestureConfirmationView *gestureView;
+    UIView *viewForPreview;
+    TDSignatureView *viewForSign;
+    UIButton *btnColorSplash;
+    NSMutableArray *colorArray;
+    int colorCnt;
 }
 @property(nonatomic,strong) id<CapturedImageViewDelegate>delegate;
 @property (nonatomic,strong) UIImageView *imageView;

@@ -33,6 +33,7 @@
 @property (nonatomic, strong) UIImageView *imgView;
 @property (nonatomic, strong) UIImage *actulaImage;
 @property (nonatomic, strong) NSString *imageName;
+@property (nonatomic, strong) NSString *imageNameWithBorder;
 @property (unsafe_unretained, nonatomic) id<ThumbnailViewProtocol> delegate;
 
 - (id)initWithFrame:(CGRect)frame withThumbnailImagePath:(NSString *) imgePath;

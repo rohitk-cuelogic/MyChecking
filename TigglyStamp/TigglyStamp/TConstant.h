@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-//#define DEBUG_MODE
+#define DEBUG_MODE
 //#define IS_RUN_WITHOUT_SHAPE_FOR_TESTING 1
 //#define IS_RUN_ON_SIMULATOR
 //#define TEST_MODE 1
@@ -39,6 +39,8 @@
 #define RECT_THUMBNAIL_FRAME CGRectMake(0, 0, 200, 184)
 #define RECT_ACTUAL_THUMBNAIL_IMAGE_FRAME CGRectMake(0, 0, 200, 184)
 
+
+
 // Setting screen 
 #define LANGUAGE_SELECTED @"language"
 #define MUSIC @"music"
@@ -65,6 +67,8 @@
 #define FOLDER_SUBSCRIPTION_DATA @"TigglySubscriptionData"
 
 #define GALLERY_LIMIT 60
+
+#define STR_WITH_BORDER @"Border"
 
 //Do not change the sequence
 typedef enum {

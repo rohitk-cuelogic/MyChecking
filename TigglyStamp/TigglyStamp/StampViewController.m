@@ -294,15 +294,45 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 #pragma mark Game Animation
 #pragma mark =======================================
 
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    DebugLog(@"");
+    
+    if(rainBowLayer != nil){
+        [rainBowLayer removeFromSuperlayer];
+        [rainBowLayer removeAllAnimations];
+        [rainBowLayer removeAnimationForKey:@"contents"];
+        rainBowLayer = nil;
+    }
+    
+    if(rainBowBtnLayer != nil){
+        [rainBowBtnLayer removeFromSuperlayer];
+        [rainBowBtnLayer removeAllAnimations];
+        [rainBowBtnLayer removeAnimationForKey:@"contents"];
+        rainBowBtnLayer = nil;
+    }
+    
+    //[RigthTickButton.layer removeFromSuperlayer];
+}
 
 -(void) addRainbowEffectAnimation {
     DebugLog(@"");
     
+    RigthTickButton.hidden = YES;
+  
     rainBowLayer = [CAShapeLayer layer];
     rainBowLayer.frame = CGRectMake(0,0, 1024, 768);
     rainBowLayer.name=@"rainBowLayer";
-    [self.mainView.layer addSublayer:rainBowLayer];
-    [self.mainView bringSubviewToFront:RigthTickButton];
+    [self.view.layer addSublayer:rainBowLayer];
+
+    rainBowBtnLayer = [CAShapeLayer layer];
+    rainBowBtnLayer.contents = (id)[UIImage imageNamed:@"star_btn_1.png"].CGImage;
+    rainBowBtnLayer.frame = CGRectMake(20,15, 100, 100);
+    rainBowBtnLayer.name=@"rainBowBtnLayer";
+    [self.view.layer addSublayer:rainBowBtnLayer];
+
+
+    rainBowLayer.zPosition = 1000;
+    rainBowBtnLayer.zPosition = 1200;
     
     
     CAKeyframeAnimation *animation3 = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
@@ -310,6 +340,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     animation3.removedOnCompletion = NO;
     animation3.duration =2.0;
     animation3.repeatCount =1;
+    animation3.delegate = self;
     animation3.values = arrRainbowImages;
     [animation3 setValue:@"spinAnim" forKey:@"contents"];
     [rainBowLayer addAnimation: animation3 forKey: @"contents"];
@@ -427,6 +458,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
 -(void) startScreenRecording{
     DebugLog(@"");
+    
+    videoButton.userInteractionEnabled = YES;
 
     screenCapture.delegate = self;
     [screenCapture startRecording];
@@ -469,7 +502,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         [self.view bringSubviewToFront:self.viewForCurl];
         self.mainView.hidden = NO;
         [self.view bringSubviewToFront:self.mainView];
-        
+
         [self addFlippedPageAnimation];
     });
 }
@@ -821,6 +854,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             rainBowLayer = nil;
         }
         
+
+        
 //        [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
        [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_MAGIC_20" withFormat:@"mp3"];
 
@@ -966,6 +1001,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     }else{
         
         isRecording = YES;
+        
+        videoButton.userInteractionEnabled = NO;
         
         [[TDSoundManager sharedManager] stopMusic];
         
@@ -1162,6 +1199,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             }
             fruit.delegate = self;
             [self.mainView addSubview:fruit];
+
             [fruitObjectArray addObject:fruit];            
             
             NSString *objName = shapeImage;
@@ -1175,7 +1213,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             continuityTimer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(playGreetingSoundForObject:) userInfo:objName repeats:NO];
             isGreetingSoundPlaying = YES;
             
-            [self.mainView bringSubviewToFront:fruit];
+//            [self.mainView bringSubviewToFront:fruit];
             [self.mainView bringSubviewToFront:RigthTickButton];
             [self.mainView bringSubviewToFront:homeButton];
             [self.mainView bringSubviewToFront:videoButton];
@@ -2055,7 +2093,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                              selector:@selector(didExitFullScreen:)
                                                  name:MPMoviePlayerDidExitFullscreenNotification
                                                object:nil];
-    [moviePlayer.view setFrame:CGRectMake(140, 120,750,563)];
+    [moviePlayer.view setFrame:CGRectMake(130, 120,750,563)];
     moviePlayer.controlStyle = MPMovieControlStyleDefault;
     moviePlayer.shouldAutoplay = YES;
     [self.view addSubview:moviePlayer.view];

@@ -74,7 +74,7 @@ int swipeTextCnt;
         [swipeRightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
         [editorImgView addGestureRecognizer:swipeRightGesture];
         
-     
+  
     }
     return self;
 }
@@ -236,7 +236,9 @@ int swipeTextCnt;
     NSArray *directoryContents = [[TigglyStampUtils sharedInstance] getAllImagesAndMovies];
 
     for (NSString *file in directoryContents) {
-            [savedImgArry addObject:[file lastPathComponent]];
+        if([file hasSuffix:[NSString stringWithFormat:@"%@.png",STR_WITH_BORDER]] || [[file pathExtension] isEqualToString: @"mov"]){
+               [savedImgArry addObject:[file lastPathComponent]];
+        }
     }
 
     savedImgArry = (NSMutableArray *)[[savedImgArry reverseObjectEnumerator] allObjects];

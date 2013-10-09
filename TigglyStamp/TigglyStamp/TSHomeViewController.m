@@ -306,7 +306,16 @@ int swipeTxtCnt;
 -(void) loadThumbnails {
     DebugLog(@"");
   
-    NSArray *allFiles = [[TigglyStampUtils sharedInstance] getAllImagesAndMovies];
+    NSArray *allImageFiles = [[TigglyStampUtils sharedInstance] getAllImagesAndMovies];
+    NSMutableArray *imageFiles = [[NSMutableArray alloc] initWithCapacity:1];
+    
+    for(NSString *file in allImageFiles){
+        if(![file hasSuffix:[NSString stringWithFormat:@"%@.png",STR_WITH_BORDER]]){
+            [imageFiles addObject:file];
+        }
+    }
+    
+    NSArray *allFiles = [NSArray arrayWithArray:imageFiles];
     allFiles = [[allFiles reverseObjectEnumerator] allObjects];
    
     int xPos = 20;
@@ -662,8 +671,17 @@ int swipeTxtCnt;
     
     DebugLog(@"Tapped Thumbnail Name: %@",thumbnail.imageName);
     
-    TSThumbnailEditController *thumbnailEditor = [[TSThumbnailEditController alloc] initWithNibName:@"TSThumbnailEditController" bundle:nil withImage:thumbnail.actulaImage imageName:thumbnail.imageName withHomeView:self];
+    NSString *iName = @"";
+    
+    if([[thumbnail.imageName pathExtension] isEqualToString:@"mov"]){
+        iName = thumbnail.imageName;
+    }else{
+        iName = thumbnail.imageNameWithBorder;
+    }
+    
+    TSThumbnailEditController *thumbnailEditor = [[TSThumbnailEditController alloc] initWithNibName:@"TSThumbnailEditController" bundle:nil withImage:thumbnail.actulaImage imageName:iName withHomeView:self];
     [self.navigationController pushViewController:thumbnailEditor animated:YES];
+    
 }
 
 -(void) thumbnailViewLongPressed {

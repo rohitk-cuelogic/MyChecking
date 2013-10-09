@@ -13,7 +13,7 @@
 
 @implementation ThumbnailView
 
-@synthesize imageName,imgView,actulaImage,delegate;
+@synthesize imageName,imgView,actulaImage,delegate,imageNameWithBorder;
 
 - (id)initWithFrame:(CGRect)frame withThumbnailImagePath:(NSString *) imgePath{
     DebugLog(@"");
@@ -23,8 +23,6 @@
     if (self) {
         
         self.backgroundColor = [UIColor clearColor];
-//        self.layer.cornerRadius = 30.0f;
-//        self.layer.masksToBounds = YES;
         
         imageName = imgePath;
         
@@ -92,7 +90,15 @@
             UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             imgView.image = thumbnailImage;
-            actulaImage = image;
+           // actulaImage = image;
+            
+            NSString *path = [imageName stringByDeletingPathExtension];
+            NSString *iName = [NSString stringWithFormat:@"%@_%@.png",path,STR_WITH_BORDER];
+            DebugLog(@"iName : %@",iName);
+           
+            imageNameWithBorder = iName;
+            actulaImage = [UIImage imageWithData:[NSData dataWithContentsOfFile:iName]];
+            
             playBtn.hidden = YES;
             [busyView stopAnimating];
             busyView.hidden = YES;
@@ -101,12 +107,19 @@
 
             UIImage *thumb = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[imageName lastPathComponent]];
             imgView.image = thumb;
-            actulaImage = thumb;
+                 
+            NSString *path = [imageName stringByDeletingPathExtension];
+            NSString *iName = [NSString stringWithFormat:@"%@_%@.png",path,STR_WITH_BORDER];
+            DebugLog(@"iName : %@",iName);
+            
+            imageNameWithBorder = iName;
+            actulaImage =  thumb;//[UIImage imageWithData:[NSData dataWithContentsOfFile:iName]];
+            
             playBtn.hidden = NO;
             [busyView stopAnimating];
             busyView.hidden = YES;
             
-//            [self playSlidingSounds];
+
         }
 }
 

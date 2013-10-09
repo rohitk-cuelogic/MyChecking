@@ -15,6 +15,8 @@
 @synthesize imageView;
 @synthesize btnPlay;
 
+
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -36,16 +38,15 @@
 
         if([[[imgName lastPathComponent]pathExtension] isEqualToString:@"mov"]) {
             
-            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100,90, 820, 650)];
-            view.backgroundColor = [UIColor whiteColor];
-             view.layer.cornerRadius = 20.0f;
+            viewForPreview = [[UIView alloc] initWithFrame:CGRectMake(100,90, 820, 650)];
+            viewForPreview.backgroundColor = [UIColor whiteColor];
+            viewForPreview.layer.cornerRadius = 20.0f;
             
-            [self addSubview:view];
+            [self addSubview:viewForPreview];
             
             NSDate* currentDate = [NSDate date];
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
             [dateFormat setDateFormat:@"MM/dd/yyyy"];
-            // convert it to a string
             NSString *dateString = [dateFormat stringFromDate:currentDate];
             
             UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 595, 820, 50)];
@@ -54,13 +55,13 @@
             lblDate.text = dateString;
             lblDate.textColor = [UIColor blueColor];
             lblDate.font = [UIFont fontWithName:APP_FONT size:30.0f];
-            [view addSubview:lblDate];
+            [viewForPreview addSubview:lblDate];
             
             NSString *strFile = [imgName lastPathComponent];
             UIImage *thumb = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:strFile];
             imageView = [[UIImageView alloc] initWithImage:thumb];
-            imageView.frame = CGRectMake(140, 120,750,563);
-            [self addSubview:imageView];
+            imageView.frame = CGRectMake(30, 30,750,563);
+            [viewForPreview addSubview:imageView];
             
             btnPlay = [UIButton buttonWithType:UIButtonTypeCustom];
             [btnPlay setBackgroundImage:[UIImage imageNamed:@"play_btn.png"] forState:UIControlStateNormal];
@@ -69,30 +70,34 @@
             btnPlay.frame = CGRectMake(imageView.frame.size.width/2 - 25, imageView.frame.size.height/2 - 25,100, 100);
             btnPlay.center = imageView.center;
             btnPlay.hidden = YES;
-            [self addSubview:btnPlay];
+            [viewForPreview addSubview:btnPlay];
             
             
         }else{
+            
+            viewForPreview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 740, 650)];
+            viewForPreview.backgroundColor = [UIColor clearColor];
+            viewForPreview.center = CGPointMake(512, 1000);
+            viewForPreview.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
+            [self addSubview:viewForPreview];
+            [self bringSubviewToFront:viewForPreview];
 
-            UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 740, 540)];
-            view.image = [UIImage imageNamed:@"photo_bg.png"];
-            view.center = CGPointMake(512, 1000);
-            view.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
-            view.layer.cornerRadius = 20.0f;
-            [self addSubview:view];
+            UIImageView *imgViewBorder = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 740, 650)];
+            imgViewBorder.image = [UIImage imageNamed:@"photo_bg.png"];
+            imgViewBorder.layer.cornerRadius = 20.0f;
+            [viewForPreview addSubview:imgViewBorder];
             
             NSDate* currentDate = [NSDate date];
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
             [dateFormat setDateFormat:@"MM/dd/yyyy"];
-            NSString *dateString = [dateFormat stringFromDate:currentDate];
-            
-            UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 450, 700, 50)];
-            lblDate.textAlignment = UITextAlignmentCenter;
+            NSString *dateString = [dateFormat stringFromDate:currentDate];            
+            UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(40, 500, 180, 50)];
+            lblDate.textAlignment = UITextAlignmentLeft;
             lblDate.backgroundColor = [UIColor clearColor];
             lblDate.text = dateString;
             lblDate.textColor = [UIColor blueColor];
             lblDate.font = [UIFont fontWithName:APP_FONT size:30.0f];
-            [view addSubview:lblDate];
+            [imgViewBorder addSubview:lblDate];
             
             NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
             UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imgName]]];
@@ -101,22 +106,48 @@
             UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             
-//            UIImage *imagenew = [thumbnailImage imageByScalingAndCroppingForSize:CGSizeMake(665,405)];
             imageView = [[UIImageView alloc] initWithImage:thumbnailImage];
-            imageView.frame = CGRectMake(20,20, 665, 405);
-            imageView.center = CGPointMake(503, 965);
-            [self addSubview:imageView];
-            
-            imageView.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
+            imageView.frame = CGRectMake(40,40, 650, 465);
+            [viewForPreview addSubview:imageView];
             
             
             [UIView animateWithDuration:1.2
                              animations:^{
-                                 imageView.center = CGPointMake(503, 365);
-                                 view.center = CGPointMake(512, 400);
+                                 viewForPreview.center = CGPointMake(503, 420);
+                                 
                              }
-                             completion:^(BOOL finished){
-                             }];
+             completion:^(BOOL finished){
+                 btnColorSplash.alpha = 1.0;
+             }];
+            
+            UIImage *img = [self changeImageColor:[UIImage imageNamed:@"color_splash.png"] withColor:[colorArray objectAtIndex:colorCnt]];
+            img = [self changeImageColor:img withColor:[colorArray objectAtIndex:colorCnt]];
+            
+            btnColorSplash = [UIButton buttonWithType:UIButtonTypeCustom];
+            [btnColorSplash setBackgroundImage:img forState:UIControlStateNormal];
+            [btnColorSplash addTarget:self action:@selector(actionChangeColor)forControlEvents:UIControlEventTouchUpInside];
+            btnColorSplash.frame = CGRectMake(0, 0, 100, 100);
+            btnColorSplash.center = BTN_COLOR_SPLASH_CENTER;
+            [self addSubview:btnColorSplash];
+            btnColorSplash.alpha = 0.0;
+            
+            viewForSign = [[TDSignatureView alloc] initWithFrame:FRAME_VIEW_FOR_SIGN];
+            [imgViewBorder addSubview:viewForSign];
+            [self bringSubviewToFront:viewForSign];
+            
+            colorCnt = 0;
+            
+            //red, yellow, blue, green, orange, purple
+            colorArray = [[NSMutableArray alloc] initWithObjects:
+                          [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0],
+                          [UIColor colorWithRed:1.0  green:176.0/255.0  blue:22.0/255.0 alpha:1.0],
+                          [UIColor colorWithRed:96.0/255.0  green:170.0/255.0  blue:0.0 alpha:1.0],
+                          [UIColor colorWithRed:131.0/255.0  green:48.0/255.0  blue:185.0/255.0 alpha:1.0],
+                          [UIColor colorWithRed:208.0/255.0  green:48.0/255.0  blue:31.0/255.0 alpha:1.0],
+                          [UIColor colorWithRed:240.0/255.0  green:221.0/255.0  blue:11.0/255.0 alpha:1.0],
+                          [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0],
+                          nil];
+ 
 
         }
         
@@ -125,14 +156,14 @@
         [btnNext setBackgroundImage:[UIImage imageNamed:@"arrow_right_3.png"] forState:UIControlStateNormal];
         [btnNext setBackgroundImage:[UIImage imageNamed:@"arrow_right_3.png"] forState:UIControlStateSelected];
         [btnNext addTarget:self action:@selector(btnNextClicked)forControlEvents:UIControlEventTouchUpInside];
-        btnNext.frame = CGRectMake(900, 10, 80, 80);
+        btnNext.frame = CGRectMake(925, 10, 80, 80);
         [self addSubview:btnNext];
         
         btnHome = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateNormal];
         [btnHome setBackgroundImage:[UIImage imageNamed:@"home_icon_1.png"] forState:UIControlStateSelected];
         [btnHome addTarget:self action:@selector(btnHomeClicked)forControlEvents:UIControlEventTouchUpInside];
-        btnHome.frame = CGRectMake(44, 10, 80, 80);
+        btnHome.frame = CGRectMake(35, 10, 80, 80);
         [self addSubview:btnHome];
         
         
@@ -149,32 +180,146 @@
     return self;
 }
 
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Helpers
+#pragma mark =======================================
+
+-(UIImage *) changeImageColor:(UIImage *) image withColor:(UIColor *) color {
+    DebugLog(@"");
+    
+    CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextClipToMask(context, rect, image.CGImage);
+    CGContextSetFillColorWithColor(context,color.CGColor);
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImage *flippedImage = [UIImage imageWithCGImage:img.CGImage
+                                                scale:1.0 orientation: UIImageOrientationUp];
+    
+    return flippedImage;
+}
+
+-(void)actionChangeColor{
+    DebugLog(@"");
+    
+    colorCnt++;
+    if(colorCnt > 6){
+        colorCnt = 0;
+        
+        //this will anything written on signboard
+        [viewForSign.myPath removeAllPoints];
+    }
+    
+    UIImage *img = [self changeImageColor:[UIImage imageNamed:@"color_splash.png"] withColor:[colorArray objectAtIndex:colorCnt]];
+    img = [self changeImageColor:img withColor:[colorArray objectAtIndex:colorCnt]];
+    [btnColorSplash setBackgroundImage:img forState:UIControlStateNormal];
+    
+    viewForSign.lineColor = [colorArray objectAtIndex:colorCnt];
+    [viewForSign setNeedsDisplay];
+    
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Image Capturing
+#pragma mark =======================================
+
+-(void)saveImageWithBorderToGallary:(BOOL)toPhotoGallary{
+    DebugLog(@"");
+    [self setBackgroundColor:[UIColor clearColor]];
+    
+    btnPlay.hidden = YES;
+    
+    viewForPreview.transform = CGAffineTransformMakeRotation(0);
+    
+    UIGraphicsBeginImageContext(viewForPreview.frame.size);
+    [[UIColor clearColor] set];
+    UIRectFill(CGRectMake(0.0, 0.0,viewForPreview.frame.size.width, viewForPreview.frame.size.height));
+    [viewForPreview.layer.presentationLayer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage *imgToSave = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    if ([[[NSUserDefaults standardUserDefaults] valueForKey:SAVE_ART] isEqualToString:@"yes"]) {
+        
+        if(toPhotoGallary){
+            NSData *imageData = UIImagePNGRepresentation(imgToSave);
+            UIImage *img = [UIImage imageWithData:imageData];
+            UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);
+            
+        }else{
+            NSString *iName = @"";
+            if([[imageName pathExtension] isEqualToString:@"mov"]){
+                iName =[[imageName lastPathComponent ]stringByDeletingPathExtension];
+            }else{
+                iName  =[imageName stringByDeletingPathExtension];
+            }
+           
+            DebugLog(@"iName: %@",iName);
+            NSString *imgName1 = [NSString stringWithFormat:@"%@_%@.png",iName, STR_WITH_BORDER];
+            DebugLog(@"Image Name : %@",imgName1);
+            
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:imgName1];
+            DebugLog(@"Image Path: %@",savedImagePath);
+            
+            NSData *imageData = UIImagePNGRepresentation(imgToSave);
+            
+            BOOL isSuccess =  [imageData writeToFile:savedImagePath atomically:YES];
+            if(isSuccess)
+                DebugLog(@"Imaged saved successfully");
+            else
+                DebugLog(@"Failed to save the image");
+        }
+    }
+    
+    viewForPreview.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
+    
+}
+
+
 #pragma mark - ============================
-#pragma mark - button  and image touch handling
+#pragma mark - Action Handling
 #pragma mark - ============================
 
 -(void)btnNextClicked{
     DebugLog(@"");
     //call delegate
-    [delegate onNextButtonClicked:self];
+    
+    if([[imageName pathExtension] isEqualToString:@"mov"]){
+        
+    }else{
+        [self saveImageWithBorderToGallary:NO];
+    }
+    
+      [delegate onNextButtonClicked:self];
 }
 
 -(void)btnHomeClicked{
     DebugLog(@"");
     //call delegate
-#ifdef GOOGLE_ANALYTICS_START
-    NSMutableDictionary *event =
-    [[GAIDictionaryBuilder createEventWithCategory:@"Home Button"
-                                            action:@"Home button Clicked"
-                                             label:@"Home From Photo page"
-                                             value:nil] build];
-    [[GAI sharedInstance].defaultTracker send:event];
-    [[GAI sharedInstance] dispatch];
-#else
     
-#endif
+    #ifdef GOOGLE_ANALYTICS_START
+        NSMutableDictionary *event =
+        [[GAIDictionaryBuilder createEventWithCategory:@"Home Button"
+                                                action:@"Home button Clicked"
+                                                 label:@"Home From Photo page"
+                                                 value:nil] build];
+        [[GAI sharedInstance].defaultTracker send:event];
+        [[GAI sharedInstance] dispatch];
+    #else
+        
+    #endif
     
-
+     if([[imageName pathExtension] isEqualToString:@"mov"]){
+         
+     }else{
+         [self saveImageWithBorderToGallary:NO];    
+    }
     
     [delegate onHomeButtonClicked:self];
 }
@@ -195,6 +340,11 @@
     [delegate onPlayButtonClicked:self];
 }
 
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Gesture View Protocol
+#pragma mark =======================================
 
 
 -(void) gestureViewOnGestureConfirmed:(GestureConfirmationView *) gView {
@@ -235,10 +385,12 @@
         lblImageSaved.text = @"Video Saved";
 
     }else{
-        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imageName]]];
-
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+//        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+//        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imageName]]];
+//
+//        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        
+        [self saveImageWithBorderToGallary:YES];
 
         lblImageSaved.text = @"Image Saved";
     }
@@ -253,13 +405,63 @@
 
 }
 
--(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Touch Handling
+#pragma mark =======================================
+
+
+
+#pragma mark-
+#pragma mark======================
+#pragma mark Touch Responders
+#pragma mark======================
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    DebugLog(@"");
     
-    double delayInSeconds = 0.3;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [gestureView removeFromSuperview];
-    });
+    if(gestureView != nil){
+        
+        double delayInSeconds = 0.3;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [gestureView removeFromSuperview];
+        });
+    }
+    
+    CGPoint point = CGPointMake([[touches anyObject] locationInView:viewForSign].x + 200, [[touches anyObject] locationInView:viewForSign].y + 440);
+    if(CGRectContainsPoint(viewForSign.frame, point) && !CGPointEqualToPoint(btnColorSplash.center, BTN_COLOR_SPLASH_CENTER_ALT)){
+        
+        [UIView animateWithDuration:0.5
+                         animations:^(void){
+                         } completion:^(BOOL finished){
+                         }];
+    }
+    
+    [viewForSign touchesBegan:touches withEvent:event];
 }
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    DebugLog(@"");
+    
+    CGPoint point = CGPointMake([[touches anyObject] locationInView:viewForSign].x + 200, [[touches anyObject] locationInView:viewForSign].y + 440);
+    if(CGRectContainsPoint(viewForSign.frame, point) && !CGPointEqualToPoint(btnColorSplash.center, BTN_COLOR_SPLASH_CENTER_ALT)){
+        
+        [UIView animateWithDuration:0.5
+                         animations:^(void){
+                         } completion:^(BOOL finished){
+                         }];
+    }
+    
+    
+    [viewForSign touchesMoved:touches withEvent:event];
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    DebugLog(@"");
+    
+    [viewForSign touchesEnded:touches withEvent:event];
+}
+
 
 @end

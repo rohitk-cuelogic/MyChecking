@@ -11,6 +11,7 @@
 @implementation TDSignatureView
 
 @synthesize lineColor, myPath;
+@synthesize delegate;
 
 CGPoint freeFormVeryFirstStartPoint,freeFormStartPoint,freeFormPrevPoint;
 BOOL boolTouchMoved;
@@ -68,6 +69,7 @@ BOOL boolTouchMoved;
     freeFormStartPoint = [mytouch locationInView:self];
     [myPath moveToPoint:[mytouch locationInView:self]];
     
+    [self.delegate signatureViewOnTouchesBegan:self];
     
 }
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -81,6 +83,8 @@ BOOL boolTouchMoved;
     [myPath addLineToPoint:[mytouch locationInView:self]];
     [self setNeedsDisplay];
     
+    [self.delegate signatureViewOnTouchesMoved:self];
+    
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -90,6 +94,8 @@ BOOL boolTouchMoved;
         [myPath addLineToPoint:CGPointMake(freeFormStartPoint.x + 1, freeFormStartPoint.y)];
         [self setNeedsDisplay];
     }
+    
+    [self.delegate signatureViewOnTouchesEnded:self];
     
 }
 

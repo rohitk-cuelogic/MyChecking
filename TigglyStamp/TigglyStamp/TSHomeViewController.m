@@ -308,13 +308,14 @@ int swipeTxtCnt;
   
     NSArray *allImageFiles = [[TigglyStampUtils sharedInstance] getAllImagesAndMovies];
     NSMutableArray *imageFiles = [[NSMutableArray alloc] initWithCapacity:1];
-    
+    DebugLog(@"All Files : %@",imageFiles);
     for(NSString *file in allImageFiles){
-        if(![file hasSuffix:[NSString stringWithFormat:@"%@.png",STR_WITH_BORDER]]){
+        if(![file hasSuffix:[NSString stringWithFormat:@"%@.png",STR_WITH_BORDER]] && ![file hasSuffix:[NSString stringWithFormat:@"%@.png",STR_WITH_MOVIE_BORDER]]){
             [imageFiles addObject:file];
         }
     }
-    
+    DebugLog(@"allImageFiles : %@",allImageFiles);
+    DebugLog(@"imageFiles : %@",imageFiles);
     NSArray *allFiles = [NSArray arrayWithArray:imageFiles];
     allFiles = [[allFiles reverseObjectEnumerator] allObjects];
    
@@ -641,6 +642,7 @@ int swipeTxtCnt;
     NSFileManager *fileManager = [NSFileManager defaultManager];
   
     [fileManager removeItemAtPath:thumbnail.imageName error:nil];
+    [fileManager removeItemAtPath:thumbnail.imageNameWithBorder error:nil];
     thumbnail.transform = CGAffineTransformIdentity;
     [UIView animateWithDuration:0.2 animations:^{
         thumbnail.alpha = 0;

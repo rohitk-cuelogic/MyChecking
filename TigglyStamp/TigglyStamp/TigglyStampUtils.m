@@ -372,6 +372,15 @@ static TigglyStampUtils *sharedInstance = nil;
     return thumb;
 }
 
+-(NSString *) getImagePathOfMovieThumbnailWithBorder:(NSString *) moveName {
+    DebugLog(@"");
+    NSString *path = [[TigglyStampUtils sharedInstance]getDocumentDirPath];
+    NSString *iName = [NSString stringWithFormat:@"%@_%@.png",[moveName stringByDeletingPathExtension],STR_WITH_MOVIE_BORDER];
+    path = [path stringByAppendingPathComponent:iName];
+    
+    return path;
+}
+
 #pragma mark -
 #pragma mark =============================================
 #pragma mark Writing csv file for key of shape detection

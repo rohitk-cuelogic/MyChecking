@@ -109,7 +109,7 @@
             imgView.image = thumb;
                  
             NSString *path = [imageName stringByDeletingPathExtension];
-            NSString *iName = [NSString stringWithFormat:@"%@_%@.png",path,STR_WITH_BORDER];
+            NSString *iName = [NSString stringWithFormat:@"%@_%@.png",path,STR_WITH_MOVIE_BORDER];
             DebugLog(@"iName : %@",iName);
             
             imageNameWithBorder = iName;

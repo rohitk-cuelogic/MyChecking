@@ -294,6 +294,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 #pragma mark Game Animation
 #pragma mark =======================================
 
+-(void) animationDidStart:(CAAnimation *)anim{
+    DebugLog(@"");
+}
+
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     DebugLog(@"");
     
@@ -334,10 +338,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     rainBowLayer.zPosition = 1000;
     rainBowBtnLayer.zPosition = 1200;
     
-    
+    DebugLog(@"Animation Code Started");
     CAKeyframeAnimation *animation3 = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
     animation3.calculationMode = kCAAnimationDiscrete;
-    animation3.removedOnCompletion = NO;
+    animation3.removedOnCompletion = YES;
     animation3.duration =2.0;
     animation3.repeatCount =1;
     animation3.delegate = self;
@@ -853,10 +857,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             [rainBowLayer removeAnimationForKey:@"contents"];
             rainBowLayer = nil;
         }
-        
 
-        
-//        [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
        [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_MAGIC_20" withFormat:@"mp3"];
 
         [tickBtnTimer invalidate];
@@ -2093,7 +2094,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                              selector:@selector(didExitFullScreen:)
                                                  name:MPMoviePlayerDidExitFullscreenNotification
                                                object:nil];
-    [moviePlayer.view setFrame:CGRectMake(130, 120,750,563)];
+    [moviePlayer.view setFrame:CGRectMake(185, 120,650,488)];
     moviePlayer.controlStyle = MPMovieControlStyleDefault;
     moviePlayer.shouldAutoplay = YES;
     [self.view addSubview:moviePlayer.view];

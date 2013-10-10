@@ -28,6 +28,7 @@
 
 -(UIImage *) getThumbnailImageOfMovieFile:(NSString *) filePath;
 
+-(NSString *) getImagePathOfMovieThumbnailWithBorder:(NSString *) moveName;
 
 //for writing csv for keys
 -(BOOL)getDebugModeForWriteKeyInCsvOn;

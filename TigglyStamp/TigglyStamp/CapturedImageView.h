@@ -36,7 +36,7 @@
 
 @end
 
-@interface CapturedImageView : UIView<GestireViewProtocol>
+@interface CapturedImageView : UIView<GestireViewProtocol,SignatureViewProtocol>
 {
     UIImageView *imageView ;
     UIButton *btnHome;

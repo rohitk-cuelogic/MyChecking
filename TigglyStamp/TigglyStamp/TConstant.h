@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-#define DEBUG_MODE
+//#define DEBUG_MODE
 //#define IS_RUN_WITHOUT_SHAPE_FOR_TESTING 1
 //#define IS_RUN_ON_SIMULATOR
 //#define TEST_MODE 1
@@ -33,8 +33,8 @@
 #define SPEED_TIME_EASY 12
 #define SPEED_TIME_MEDIUM 8
 #define SPEED_TIME_HARD 4
-#define RECT_THUMBNAIL_EDITOR_FRAME CGRectMake(0, 0, 735, 551)
-#define RECT_MAIN_SCREEN_FRAME CGRectMake(0, 0, 1024, 768)
+#define RECT_THUMBNAIL_EDITOR_FRAME CGRectMake(0, 0, 800, 600)
+#define RECT_MAIN_SCREEN_FRAME CGRectMake(0, 0, 1000, 750)
 
 #define RECT_THUMBNAIL_FRAME CGRectMake(0, 0, 200, 184)
 #define RECT_ACTUAL_THUMBNAIL_IMAGE_FRAME CGRectMake(0, 0, 200, 184)
@@ -59,7 +59,7 @@
 #define FLOAT_FULL_CURL_TIME 0.8
 #define FLOAT_CURL_TIME 0.3
 
-#define SUBSCRIPTION_EMAIL_ID  @"sachin.patil@cuelogic.co.in"//@"subscription@tiggly.com"
+#define SUBSCRIPTION_EMAIL_ID  @"subscription@tiggly.com"
 #define SENDER_EMAIL_ID @"tigglytwitter@gmail.com"
 #define SENDER_EMAIL_ID_PASSWORD @"tiggly123"
 
@@ -69,6 +69,7 @@
 #define GALLERY_LIMIT 60
 
 #define STR_WITH_BORDER @"Border"
+#define STR_WITH_MOVIE_BORDER @"BorderMovie"
 
 //Do not change the sequence
 typedef enum {

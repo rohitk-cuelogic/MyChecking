@@ -39,13 +39,18 @@ int swipeTextCnt;
         
         homeViewController = homeView;
         
+        imageToBeEdit = img;
+       
         if([[imgName pathExtension] isEqualToString:@"mov"]) {
             playBtn.hidden = NO;
+            NSString *imgPath = [[TigglyStampUtils sharedInstance] getImagePathOfMovieThumbnailWithBorder:[imgName lastPathComponent]];
+            DebugLog(@"imgPath : %@",imgPath);
+            img = [UIImage imageWithContentsOfFile:imgPath];
         }else{
             playBtn.hidden = YES;
         }
         
-        imageToBeEdit = img;
+        
         editImgName = [imgName lastPathComponent];
         
         upperPanel = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 100)];
@@ -58,7 +63,7 @@ int swipeTextCnt;
         
         editorImgView = [[UIImageView alloc] initWithFrame:RECT_THUMBNAIL_EDITOR_FRAME];
         [editorImgView setContentMode:UIViewContentModeScaleAspectFit];
-        editorImgView.center = CGPointMake(512, 400);
+        editorImgView.center = CGPointMake(512, 420);
         editorImgView.image = img;
         editorImgView.userInteractionEnabled = YES;
         [self.view addSubview:editorImgView];
@@ -264,7 +269,7 @@ int swipeTextCnt;
         upperPanel.hidden = NO;
         
         editorImgView.frame = RECT_THUMBNAIL_EDITOR_FRAME;
-        editorImgView.center = CGPointMake(512, 400);
+        editorImgView.center = CGPointMake(512, 420);
     }
     readyToZoom = !readyToZoom;
 }
@@ -308,61 +313,16 @@ int swipeTextCnt;
     UIImageView *viewToDelete = [[UIImageView alloc] initWithFrame:editorImgView.frame];
     [viewToDelete setContentMode:UIViewContentModeScaleAspectFit];
     viewToDelete.image = editorImgView.image;
+    
+    if([[editImgName pathExtension] isEqualToString:@"mov"]){
+        NSString *imgPath = [[TigglyStampUtils sharedInstance] getImagePathOfMovieThumbnailWithBorder:editImgName];
+        DebugLog(@"imgPath : %@",imgPath);
+        UIImage *img = [UIImage imageWithContentsOfFile:imgPath];
+        viewToDelete.image = img;
+    }
+    
     [self.view addSubview:viewToDelete];
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSMutableArray *directoryContents = [[NSMutableArray alloc]initWithCapacity:1];
-    NSArray *dContents = [[TigglyStampUtils sharedInstance] getAllImagesAndMovies];
-   
-    for (NSString *file in dContents) {
-            [directoryContents addObject:file];
-    }
-    directoryContents = (NSMutableArray*)[[directoryContents reverseObjectEnumerator] allObjects];
-   
-    int cnt = -1;
-    for(NSString *file in directoryContents){
-        cnt++;
-        if([[file lastPathComponent] isEqualToString:editImgName]){
-            NSString *fullPath = file;
-            [fileManager removeItemAtPath:fullPath error:nil];
-            break;
-        }
-    }
-    
-    directoryContents = [[NSMutableArray alloc]initWithCapacity:1];
-    dContents = [[TigglyStampUtils sharedInstance] getAllImagesAndMovies];
-    for (NSString *file in dContents) {
-            [directoryContents addObject:file];
-    }
-    directoryContents = (NSMutableArray*)[[directoryContents reverseObjectEnumerator] allObjects];
-    
-    if([directoryContents count] == 0){
-        [UIView beginAnimations:nil context:nil];
-        [UIView animateWithDuration:1 animations:nil];
-        editorImgView.image = nil;
-        [UIView commitAnimations];
-        
-        imageToBeEdit = nil;
-        editImgName = nil;
-    }else{
-        if(cnt >= [directoryContents count]){
-            cnt = 0;
-        }
-        if([[[directoryContents objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
-            UIImage *img = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[[directoryContents objectAtIndex:cnt]lastPathComponent]];
-            imageToBeEdit = img;
-            playBtn.hidden = NO;
-        }else{
-            imageToBeEdit = [UIImage imageWithData:[NSData dataWithContentsOfFile:[directoryContents objectAtIndex:cnt]]];
-            playBtn.hidden = YES;
-        }
-        editorImgView.image = imageToBeEdit;
-        editImgName = [[directoryContents objectAtIndex:cnt]lastPathComponent];
-    }
-    
-    //animations
-    
-    [self.view bringSubviewToFront:deleteBtn];
     CGRect endRect = CGRectMake(deleteBtn.frame.origin.x + 40, deleteBtn.frame.origin.y + 40, 10, 10);
     [viewToDelete genieInTransitionWithDuration:1.0
                                 destinationRect:endRect
@@ -377,6 +337,84 @@ int swipeTextCnt;
                                          }
                                          [viewToDelete removeFromSuperview];
                                      }];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSMutableArray *directoryContents = [[NSMutableArray alloc]initWithCapacity:1];
+    NSArray *dContents = [[TigglyStampUtils sharedInstance] getAllImagesAndMovies];
+   
+    for (NSString *file in dContents) {
+          if([file hasSuffix:[NSString stringWithFormat:@"%@.png",STR_WITH_BORDER]] || [[file pathExtension] isEqualToString: @"mov"]){
+              [directoryContents addObject:file];
+          }
+    }
+    directoryContents = (NSMutableArray*)[[directoryContents reverseObjectEnumerator] allObjects];
+   
+    int cnt = -1;
+    for(NSString *file in directoryContents){
+        cnt++;
+        if([[file lastPathComponent] isEqualToString:editImgName]){
+            NSString *fullPath = file;
+            
+            if([[fullPath pathExtension] isEqualToString:@"mov"]){
+                NSString *tempStr = [fullPath stringByDeletingPathExtension];
+                tempStr = [NSString stringWithFormat:@"%@_%@.png",tempStr,STR_WITH_MOVIE_BORDER];
+                DebugLog(@"Filed to be deleted:%@",tempStr);
+                [fileManager removeItemAtPath:tempStr error:nil];
+            }else if([[fullPath pathExtension] isEqualToString:@"png"]){
+                NSString *tempStr = [fullPath stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"_%@",STR_WITH_BORDER]  withString:@""];
+                DebugLog(@"Filed to be deleted:%@",tempStr);
+                [fileManager removeItemAtPath:tempStr error:nil];
+            }
+            
+            DebugLog(@"Filed  deleted:%@",fullPath);
+            [fileManager removeItemAtPath:fullPath error:nil];
+                        
+            break;
+        }
+    }
+    
+    directoryContents = [[NSMutableArray alloc]initWithCapacity:1];
+    dContents = [[TigglyStampUtils sharedInstance] getAllImagesAndMovies];
+    for (NSString *file in dContents) {
+           if([file hasSuffix:[NSString stringWithFormat:@"%@.png",STR_WITH_BORDER]] || [[file pathExtension] isEqualToString: @"mov"]){
+               [directoryContents addObject:file];
+           }
+    }
+    directoryContents = (NSMutableArray*)[[directoryContents reverseObjectEnumerator] allObjects];
+    DebugLog(@"directoryContents : %@",directoryContents);
+    if([directoryContents count] == 0){
+        [UIView beginAnimations:nil context:nil];
+        [UIView animateWithDuration:1 animations:nil];
+        editorImgView.image = nil;
+        [UIView commitAnimations];
+        
+        imageToBeEdit = nil;
+        editImgName = nil;
+    }else{
+        if(cnt >= [directoryContents count]){
+            cnt = 0;
+        }
+        if([[[directoryContents objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
+//            UIImage *img = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[[directoryContents objectAtIndex:cnt]lastPathComponent]];
+//            imageToBeEdit = img;
+            NSString *imgPath = [[TigglyStampUtils sharedInstance] getImagePathOfMovieThumbnailWithBorder:[[directoryContents objectAtIndex:cnt]lastPathComponent]];
+            DebugLog(@"imgPath : %@",imgPath);
+            UIImage *img = [UIImage imageWithContentsOfFile:imgPath];
+            imageToBeEdit = img;
+            playBtn.hidden = NO;
+        }else{
+            imageToBeEdit = [UIImage imageWithData:[NSData dataWithContentsOfFile:[directoryContents objectAtIndex:cnt]]];
+            playBtn.hidden = YES;
+        }
+        
+        editorImgView.image = imageToBeEdit;
+        editImgName = [[directoryContents objectAtIndex:cnt]lastPathComponent];
+    }
+    
+    //animations
+    
+    [self.view bringSubviewToFront:deleteBtn];
+
 }
 
 -(void)swippedLeftEditorImage
@@ -409,11 +447,11 @@ int swipeTextCnt;
     if(cnt == [savedImgArry count]){
         //image found at last position in savedImgArray
         if(readyToZoom){
-            goingView.center = CGPointMake(512, 400);
+            goingView.center = CGPointMake(512, 420);
             
             [UIView animateWithDuration:0.3
                              animations:^{
-                                 goingView.center = CGPointMake(300, 400);
+                                 goingView.center = CGPointMake(300, 420);
                              }
                              completion:^(BOOL finished){
                                  [goingView removeFromSuperview];
@@ -439,7 +477,9 @@ int swipeTextCnt;
       //  [self playSlidingSounds];
         
         if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
-            UIImage *img = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[savedImgArry objectAtIndex:cnt]];
+            NSString *imgPath = [[TigglyStampUtils sharedInstance] getImagePathOfMovieThumbnailWithBorder:[savedImgArry objectAtIndex:cnt]];
+            DebugLog(@"imgPath : %@",imgPath);
+            UIImage *img = [UIImage imageWithContentsOfFile:imgPath];
             imageToBeEdit = img;
             playBtn.hidden = NO;
         
@@ -457,15 +497,15 @@ int swipeTextCnt;
         [self.view addSubview:comingView];
         
         if(readyToZoom){
-            goingView.center = CGPointMake(512, 400);
-            comingView.center = CGPointMake(1500, 400);
+            goingView.center = CGPointMake(512, 420);
+            comingView.center = CGPointMake(1500, 420);
             if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
                 playBtn.hidden = YES;
             }
             [UIView animateWithDuration:1
                              animations:^{
-                                 goingView.center = CGPointMake(-700, 400);
-                                 comingView.center = CGPointMake(512, 400);
+                                 goingView.center = CGPointMake(-700, 420);
+                                 comingView.center = CGPointMake(512, 420);
                              }
                              completion:^(BOOL finished){
                                  if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
@@ -532,11 +572,11 @@ int swipeTextCnt;
     if(cnt < 0){
         //image found at first position in savedImgArray
         if(readyToZoom){
-            goingView.center = CGPointMake(512, 400);
+            goingView.center = CGPointMake(512, 420);
             
             [UIView animateWithDuration:0.3
                              animations:^{
-                                 goingView.center = CGPointMake(800, 400);
+                                 goingView.center = CGPointMake(800, 420);
                              }
                              completion:^(BOOL finished){
                                  [goingView removeFromSuperview];
@@ -561,7 +601,10 @@ int swipeTextCnt;
       //  [self playSlidingSounds];
         
         if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
-            UIImage *img = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[savedImgArry objectAtIndex:cnt]];
+ 
+            NSString *imgPath = [[TigglyStampUtils sharedInstance] getImagePathOfMovieThumbnailWithBorder:[savedImgArry objectAtIndex:cnt]];
+            DebugLog(@"imgPath : %@",imgPath);
+            UIImage *img = [UIImage imageWithContentsOfFile:imgPath];
             imageToBeEdit = img;
             playBtn.hidden = NO;
         }else{
@@ -577,15 +620,15 @@ int swipeTextCnt;
         [self.view addSubview:comingView];
         
         if(readyToZoom){
-            goingView.center = CGPointMake(512, 400);
-            comingView.center = CGPointMake(-500, 400);
+            goingView.center = CGPointMake(512, 420);
+            comingView.center = CGPointMake(-500, 420);
             if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
                 playBtn.hidden = YES;
             }
             [UIView animateWithDuration:1
                              animations:^{
-                                 goingView.center = CGPointMake(1500, 400);
-                                 comingView.center = CGPointMake(512, 400);
+                                 goingView.center = CGPointMake(1500, 420);
+                                 comingView.center = CGPointMake(512, 420);
                              }
                              completion:^(BOOL finished){
                                  if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
@@ -641,12 +684,12 @@ int swipeTextCnt;
     
     if (readyToZoom == NO) {
         [moviePlayer.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.x, self.view.frame.size.width, self.view.frame.size.height)];
-
     }else{
-        [moviePlayer.view setFrame:CGRectMake(512-(735/2), 400-(551/2), 735, 551)];
+        [moviePlayer.view setFrame:CGRectMake(512-(600/2), 148, 600, 450)];
+
     }
     
-    moviePlayer.controlStyle = MPMovieControlStyleDefault;
+    
     moviePlayer.shouldAutoplay = YES;
     [self.view addSubview:moviePlayer.view];
     [moviePlayer prepareToPlay];
@@ -675,6 +718,7 @@ int swipeTextCnt;
     DebugLog(@"");
     playBtn.hidden = NO;
 
+    
     moviePlayer = [notification object];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -689,9 +733,23 @@ int swipeTextCnt;
   
 }
 
--(void)didExitFullScreen:(id)sender{
+-(void)didExitFullScreen:(NSNotification*)notification{
     DebugLog(@"");
-    playBtn.hidden = YES;
+    playBtn.hidden = NO;
+    
+    moviePlayer = [notification object];
+    
+    readyToZoom = NO;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification
+                                                  object:moviePlayer];
+    
+    if ([moviePlayer  respondsToSelector:@selector(setFullscreen:animated:)])
+    {
+        
+        [moviePlayer.view removeFromSuperview];
+    }
 
 }
 

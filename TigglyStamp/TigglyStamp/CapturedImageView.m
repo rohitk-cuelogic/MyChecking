@@ -38,9 +38,20 @@
 
         if([[[imgName lastPathComponent]pathExtension] isEqualToString:@"mov"]) {
             
-            viewForPreview = [[UIView alloc] initWithFrame:CGRectMake(100,90, 820, 650)];
+            viewForPreview = [[UIView alloc] initWithFrame:CGRectMake(155,90, 710, 650)];
             viewForPreview.backgroundColor = [UIColor whiteColor];
             viewForPreview.layer.cornerRadius = 20.0f;
+            viewForPreview.layer.masksToBounds = YES;
+            
+            [viewForPreview.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+            [viewForPreview.layer setBorderWidth:1.5f];
+            
+            // drop shadow
+            [viewForPreview.layer setShadowColor:[UIColor blackColor].CGColor];
+            [viewForPreview.layer setShadowOpacity:0.8];
+            [viewForPreview.layer setShadowRadius:3.0];
+            [viewForPreview.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+    
             
             [self addSubview:viewForPreview];
             
@@ -49,7 +60,7 @@
             [dateFormat setDateFormat:@"MM/dd/yyyy"];
             NSString *dateString = [dateFormat stringFromDate:currentDate];
             
-            UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 595, 820, 50)];
+            UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(20, 520, 180, 50)];
             lblDate.textAlignment = UITextAlignmentCenter;
             lblDate.backgroundColor = [UIColor clearColor];
             lblDate.text = dateString;
@@ -60,7 +71,7 @@
             NSString *strFile = [imgName lastPathComponent];
             UIImage *thumb = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:strFile];
             imageView = [[UIImageView alloc] initWithImage:thumb];
-            imageView.frame = CGRectMake(30, 30,750,563);
+            imageView.frame = CGRectMake(30, 30,650,488);
             [viewForPreview addSubview:imageView];
             
             btnPlay = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -72,6 +83,36 @@
             btnPlay.hidden = YES;
             [viewForPreview addSubview:btnPlay];
             
+            
+            UIImage *img = [self changeImageColor:[UIImage imageNamed:@"color_splash.png"] withColor:[colorArray objectAtIndex:colorCnt]];
+            img = [self changeImageColor:img withColor:[colorArray objectAtIndex:colorCnt]];
+            
+            btnColorSplash = [UIButton buttonWithType:UIButtonTypeCustom];
+            [btnColorSplash setBackgroundImage:img forState:UIControlStateNormal];
+            [btnColorSplash addTarget:self action:@selector(actionChangeColor)forControlEvents:UIControlEventTouchUpInside];
+            btnColorSplash.frame = CGRectMake(0, 0, 100, 100);
+            btnColorSplash.center = CGPointMake(950, 680);
+            [self addSubview:btnColorSplash];
+            btnColorSplash.alpha = 0.0;
+            
+            viewForSign = [[TDSignatureView alloc] initWithFrame:CGRectMake(200, 530, 480, 100)];
+            viewForSign.delegate = self;
+            [viewForPreview addSubview:viewForSign];
+            [self bringSubviewToFront:viewForSign];
+            
+            colorCnt = 0;
+            
+            //red, yellow, blue, green, orange, purple
+            colorArray = [[NSMutableArray alloc] initWithObjects:
+                          [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0],
+                          [UIColor colorWithRed:1.0  green:176.0/255.0  blue:22.0/255.0 alpha:1.0],
+                          [UIColor colorWithRed:96.0/255.0  green:170.0/255.0  blue:0.0 alpha:1.0],
+                          [UIColor colorWithRed:131.0/255.0  green:48.0/255.0  blue:185.0/255.0 alpha:1.0],
+                          [UIColor colorWithRed:208.0/255.0  green:48.0/255.0  blue:31.0/255.0 alpha:1.0],
+                          [UIColor colorWithRed:240.0/255.0  green:221.0/255.0  blue:11.0/255.0 alpha:1.0],
+                          [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0],
+                          nil];
+
             
         }else{
             
@@ -117,7 +158,7 @@
                                  
                              }
              completion:^(BOOL finished){
-                 btnColorSplash.alpha = 1.0;
+                
              }];
             
             UIImage *img = [self changeImageColor:[UIImage imageNamed:@"color_splash.png"] withColor:[colorArray objectAtIndex:colorCnt]];
@@ -131,8 +172,9 @@
             [self addSubview:btnColorSplash];
             btnColorSplash.alpha = 0.0;
             
-            viewForSign = [[TDSignatureView alloc] initWithFrame:FRAME_VIEW_FOR_SIGN];
-            [imgViewBorder addSubview:viewForSign];
+            viewForSign = [[TDSignatureView alloc] initWithFrame:CGRectMake(200, 515, 490, 100)];
+            viewForSign.delegate = self;
+            [viewForPreview addSubview:viewForSign];
             [self bringSubviewToFront:viewForSign];
             
             colorCnt = 0;
@@ -229,9 +271,8 @@
 
 -(void)saveImageWithBorderToGallary:(BOOL)toPhotoGallary{
     DebugLog(@"");
-    [self setBackgroundColor:[UIColor clearColor]];
-    
-    btnPlay.hidden = YES;
+
+    [btnPlay removeFromSuperview];
     
     viewForPreview.transform = CGAffineTransformMakeRotation(0);
     
@@ -251,16 +292,19 @@
             UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);
             
         }else{
+            NSString *imgName1;
             NSString *iName = @"";
             if([[imageName pathExtension] isEqualToString:@"mov"]){
                 iName =[[imageName lastPathComponent ]stringByDeletingPathExtension];
+                DebugLog(@"iName: %@",iName);
+                imgName1 = [NSString stringWithFormat:@"%@_%@.png",iName, STR_WITH_MOVIE_BORDER];
+                DebugLog(@"Image Name : %@",imgName1);
             }else{
                 iName  =[imageName stringByDeletingPathExtension];
+                DebugLog(@"iName: %@",iName);
+                imgName1 = [NSString stringWithFormat:@"%@_%@.png",iName, STR_WITH_BORDER];
+                DebugLog(@"Image Name : %@",imgName1);
             }
-           
-            DebugLog(@"iName: %@",iName);
-            NSString *imgName1 = [NSString stringWithFormat:@"%@_%@.png",iName, STR_WITH_BORDER];
-            DebugLog(@"Image Name : %@",imgName1);
             
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -290,11 +334,7 @@
     DebugLog(@"");
     //call delegate
     
-    if([[imageName pathExtension] isEqualToString:@"mov"]){
-        
-    }else{
-        [self saveImageWithBorderToGallary:NO];
-    }
+      [self saveImageWithBorderToGallary:NO];   
     
       [delegate onNextButtonClicked:self];
 }
@@ -315,11 +355,9 @@
         
     #endif
     
-     if([[imageName pathExtension] isEqualToString:@"mov"]){
-         
-     }else{
-         [self saveImageWithBorderToGallary:NO];    
-    }
+
+   [self saveImageWithBorderToGallary:NO];    
+   
     
     [delegate onHomeButtonClicked:self];
 }
@@ -385,10 +423,6 @@
         lblImageSaved.text = @"Video Saved";
 
     }else{
-//        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
-//        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imageName]]];
-//
-//        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
         
         [self saveImageWithBorderToGallary:YES];
 
@@ -405,12 +439,6 @@
 
 }
 
-#pragma mark -
-#pragma mark =======================================
-#pragma mark Touch Handling
-#pragma mark =======================================
-
-
 
 #pragma mark-
 #pragma mark======================
@@ -420,47 +448,58 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     DebugLog(@"");
     
-    if(gestureView != nil){
-        
+    if(gestureView != nil){        
         double delayInSeconds = 0.3;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [gestureView removeFromSuperview];
         });
     }
-    
-    CGPoint point = CGPointMake([[touches anyObject] locationInView:viewForSign].x + 200, [[touches anyObject] locationInView:viewForSign].y + 440);
-    if(CGRectContainsPoint(viewForSign.frame, point) && !CGPointEqualToPoint(btnColorSplash.center, BTN_COLOR_SPLASH_CENTER_ALT)){
-        
-        [UIView animateWithDuration:0.5
-                         animations:^(void){
-                         } completion:^(BOOL finished){
-                         }];
-    }
-    
-    [viewForSign touchesBegan:touches withEvent:event];
+
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     DebugLog(@"");
     
-    CGPoint point = CGPointMake([[touches anyObject] locationInView:viewForSign].x + 200, [[touches anyObject] locationInView:viewForSign].y + 440);
-    if(CGRectContainsPoint(viewForSign.frame, point) && !CGPointEqualToPoint(btnColorSplash.center, BTN_COLOR_SPLASH_CENTER_ALT)){
-        
-        [UIView animateWithDuration:0.5
-                         animations:^(void){
-                         } completion:^(BOOL finished){
-                         }];
-    }
-    
-    
-    [viewForSign touchesMoved:touches withEvent:event];
+
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     DebugLog(@"");
     
-    [viewForSign touchesEnded:touches withEvent:event];
+    
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Signature View Protocol
+#pragma mark =======================================
+
+-(void) signatureViewOnTouchesBegan:(TDSignatureView *)signView {
+    DebugLog(@"");
+    
+    [UIView animateWithDuration:0.5
+                     animations:^(void){
+                         btnColorSplash.alpha = 1.0;
+                     } completion:^(BOOL finished){
+                     }];
+
+}
+
+-(void) signatureViewOnTouchesMoved:(TDSignatureView *)signView {
+    DebugLog(@"");
+
+    [UIView animateWithDuration:0.5
+                     animations:^(void){
+                         btnColorSplash.alpha = 1.0;
+                     } completion:^(BOOL finished){
+                     }];
+
+}
+
+-(void) signatureViewOnTouchesEnded:(TDSignatureView *)signView {
+    DebugLog(@"");
+    
 }
 
 

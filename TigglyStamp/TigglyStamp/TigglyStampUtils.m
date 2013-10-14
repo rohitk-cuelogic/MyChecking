@@ -308,6 +308,18 @@ static TigglyStampUtils *sharedInstance = nil;
     return color;
 }
 
+-(void) setMusicStatus:(NSString *) status{
+    DebugLog(@"");
+    
+    [[NSUserDefaults standardUserDefaults] setValue:status forKey:MUSIC];
+}
+
+-(NSString *) getMusicStatus {
+    DebugLog(@"");
+    
+    return  [[NSUserDefaults standardUserDefaults] objectForKey:MUSIC];
+}
+
 
 -(void)setShapeMode:(BOOL) bVar{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -680,5 +692,6 @@ static TigglyStampUtils *sharedInstance = nil;
     
     return directoryContents.count;
 }
+
 
 @end

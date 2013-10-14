@@ -187,8 +187,8 @@ UIButton *btnClose;
         [self launchLanguageView];
     }
     
-    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateNormal];
-    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateSelected];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"green_check.png"] forState:UIControlStateNormal];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"green_check.png"] forState:UIControlStateSelected];
 }
 
 -(void)actionGallery {
@@ -200,8 +200,8 @@ UIButton *btnClose;
         [[NSUserDefaults standardUserDefaults] setValue:@"no" forKey:LIMIT_GALLERY];
     }
     
-    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateNormal];
-    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateSelected];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"green_check.png"] forState:UIControlStateNormal];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"green_check.png"] forState:UIControlStateSelected];
 }
 
 -(void)actionShape {
@@ -216,8 +216,9 @@ UIButton *btnClose;
     }else{
         [[TigglyStampUtils sharedInstance] setShapeMode:NO];
     }
-    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateNormal];
-    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateSelected];
+    
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"green_check.png"] forState:UIControlStateNormal];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"green_check.png"] forState:UIControlStateSelected];
 }
 
 -(void)actionMusic {
@@ -229,8 +230,8 @@ UIButton *btnClose;
         [[NSUserDefaults standardUserDefaults] setValue:@"no" forKey:MUSIC];
     }
     
-    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateNormal];
-    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateSelected];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"green_check.png"] forState:UIControlStateNormal];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"green_check.png"] forState:UIControlStateSelected];
 }
 
 -(void) actionArt{
@@ -241,8 +242,8 @@ UIButton *btnClose;
         [[NSUserDefaults standardUserDefaults] setValue:@"no" forKey:SAVE_ART];
     }
     
-    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateNormal];
-    [btnClose setBackgroundImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateSelected];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"green_check.png"] forState:UIControlStateNormal];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"green_check.png"] forState:UIControlStateSelected];
 }
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{

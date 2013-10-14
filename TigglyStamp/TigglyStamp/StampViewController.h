@@ -61,7 +61,7 @@
     CAShapeLayer * rainBowLayer;
     CAShapeLayer * rainBowBtnLayer;
     NSMutableArray *arrRainbowImages;
-    
+    BOOL isRainbowMusicStarted;
 }
 @property(nonatomic,strong) IBOutlet  ScreenCaptureView *screenCapture;
 @property(nonatomic, strong) NSMutableArray * shapes;
@@ -70,7 +70,7 @@
 @property (nonatomic,strong) NSMutableArray * multiTouchForFruitObject;
 @property (nonatomic,strong) NSMutableArray * multiTouchForTouchView;
 @property (nonatomic,strong) IBOutlet UIButton *garbageCan;
-@property (nonatomic , assign) BOOL isWithShape;
+@property (nonatomic,readwrite) BOOL isWithShape;
 @property (nonatomic,strong) IBOutlet UIButton *cameraButton;
 @property (nonatomic,strong) IBOutlet UIButton *homeButton;
 @property (nonatomic,strong) IBOutlet UIButton *videoButton;

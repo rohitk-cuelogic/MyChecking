@@ -315,6 +315,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         rainBowBtnLayer = nil;
     }
     
+    isRainbowMusicStarted = NO;
+    
     //[RigthTickButton.layer removeFromSuperlayer];
 }
 
@@ -430,15 +432,18 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             return;
         }
 
-        [[TDSoundManager sharedManager] playSound:[winterSceneObject getAnimalNameSoundForObject:str] withFormat:@"mp3"];
+        if(!isRainbowMusicStarted) {
+            [[TDSoundManager sharedManager] playSound:[winterSceneObject getAnimalNameSoundForObject:str] withFormat:@"mp3"];
+        }
     }else if (sceneType == kSceneFall){
         
         if(isRecording){
             isGreetingSoundPlaying = NO;
             return;
         }
-        
-        [[TDSoundManager sharedManager] playSound:[fallSceneObject getAnimalNameSoundForObject:str] withFormat:@"mp3"];
+        if(!isRainbowMusicStarted) {
+            [[TDSoundManager sharedManager] playSound:[fallSceneObject getAnimalNameSoundForObject:str] withFormat:@"mp3"];
+        }
     }
     
     double delayInSeconds = [[TDSoundManager sharedManager] getSoundDuration] + 0.3;
@@ -858,8 +863,9 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             rainBowLayer = nil;
         }
 
-       [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_MAGIC_20" withFormat:@"mp3"];
-
+       [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_MAGIC_19" withFormat:@"mp3"];
+        isRainbowMusicStarted = YES;
+        
         [tickBtnTimer invalidate];
         [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
 
@@ -1666,14 +1672,18 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                 return;
             }
             
-            NSString *sound = [winterSceneObject getAnimalDropSoundForObject:fruit.objectName];
-            [[TDSoundManager sharedManager] playSound:sound withFormat:@"mp3"];
+            if(!isRainbowMusicStarted) {
+                NSString *sound = [winterSceneObject getAnimalDropSoundForObject:fruit.objectName];
+                [[TDSoundManager sharedManager] playSound:sound withFormat:@"mp3"];
+            }
         }else if (sceneType == kSceneFall) {
             if(isRecording){
                 return;
             }
-            NSString *sound = [fallSceneObject getAnimalDropSoundForObject:fruit.objectName];
-            [[TDSoundManager sharedManager] playSound:sound withFormat:@"mp3"];
+             if(!isRainbowMusicStarted) {
+                 NSString *sound = [fallSceneObject getAnimalDropSoundForObject:fruit.objectName];
+                 [[TDSoundManager sharedManager] playSound:sound withFormat:@"mp3"];
+             }
         }
     }
     

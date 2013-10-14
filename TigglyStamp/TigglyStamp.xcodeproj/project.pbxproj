@@ -957,6 +957,9 @@
 		C02F450017D60CFC007AEA39 /* Tiggly_Word_Raincoat_Ah_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02F440B17D60CFC007AEA39 /* Tiggly_Word_Raincoat_Ah_01.mp3 */; };
 		C02F450117D60CFC007AEA39 /* Tiggly_Word_Shirt_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02F440C17D60CFC007AEA39 /* Tiggly_Word_Shirt_01.mp3 */; };
 		C02F450217D60CFC007AEA39 /* Tiggly_Word_Shirt_Gasp_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02F440D17D60CFC007AEA39 /* Tiggly_Word_Shirt_Gasp_01.mp3 */; };
+		C037C232180BDA0000B2417C /* pinkRaincoat@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C037C22F180BDA0000B2417C /* pinkRaincoat@2x~ipad.png */; };
+		C037C233180BDA0000B2417C /* orangeRaincoat@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C037C230180BDA0000B2417C /* orangeRaincoat@2x~ipad.png */; };
+		C037C234180BDA0000B2417C /* yellowRaincoat@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C037C231180BDA0000B2417C /* yellowRaincoat@2x~ipad.png */; };
 		C03989C217DF51D90079EB90 /* StampViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03989C017DF51D90079EB90 /* StampViewController.m */; };
 		C03C64D317B280E8006666F4 /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C03C64D017B280E8006666F4 /* Pinterest.framework */; };
 		C03C64D417B280E8006666F4 /* PinterestSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C03C64D217B280E8006666F4 /* PinterestSDKResources.bundle */; };
@@ -2250,6 +2253,9 @@
 		C02F440B17D60CFC007AEA39 /* Tiggly_Word_Raincoat_Ah_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Raincoat_Ah_01.mp3; sourceTree = "<group>"; };
 		C02F440C17D60CFC007AEA39 /* Tiggly_Word_Shirt_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Shirt_01.mp3; sourceTree = "<group>"; };
 		C02F440D17D60CFC007AEA39 /* Tiggly_Word_Shirt_Gasp_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Shirt_Gasp_01.mp3; sourceTree = "<group>"; };
+		C037C22F180BDA0000B2417C /* pinkRaincoat@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinkRaincoat@2x~ipad.png"; sourceTree = "<group>"; };
+		C037C230180BDA0000B2417C /* orangeRaincoat@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orangeRaincoat@2x~ipad.png"; sourceTree = "<group>"; };
+		C037C231180BDA0000B2417C /* yellowRaincoat@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellowRaincoat@2x~ipad.png"; sourceTree = "<group>"; };
 		C03989BF17DF51D80079EB90 /* StampViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampViewController.h; sourceTree = "<group>"; };
 		C03989C017DF51D90079EB90 /* StampViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampViewController.m; sourceTree = "<group>"; };
 		C03C64D017B280E8006666F4 /* Pinterest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pinterest.framework; sourceTree = "<group>"; };
@@ -3905,6 +3911,9 @@
 		C08291DD17A7CB230023F08A /* triangle_fall_objects */ = {
 			isa = PBXGroup;
 			children = (
+				C037C22F180BDA0000B2417C /* pinkRaincoat@2x~ipad.png */,
+				C037C230180BDA0000B2417C /* orangeRaincoat@2x~ipad.png */,
+				C037C231180BDA0000B2417C /* yellowRaincoat@2x~ipad.png */,
 				C08291DE17A7CB230023F08A /* bee@2x~ipad.png */,
 				C08291DF17A7CB230023F08A /* broom@2x~ipad.png */,
 				C08291E017A7CB230023F08A /* cat@2x~ipad.png */,
@@ -5126,6 +5135,7 @@
 				6304DE1F17D9A6F00075DE97 /* bear_sp.mp3 in Resources */,
 				6304DE2017D9A6F00075DE97 /* bell_sp.mp3 in Resources */,
 				6304DE2117D9A6F00075DE97 /* bird_sp.mp3 in Resources */,
+				C037C232180BDA0000B2417C /* pinkRaincoat@2x~ipad.png in Resources */,
 				6304DE2217D9A6F00075DE97 /* broom_sp.mp3 in Resources */,
 				6304DE2317D9A6F00075DE97 /* candy_sp.mp3 in Resources */,
 				6304DE2417D9A6F00075DE97 /* cat_sp.mp3 in Resources */,
@@ -5195,6 +5205,7 @@
 				C021F77B17E8279A00EBD6B6 /* cranberries_ita.mp3 in Resources */,
 				C021F77C17E8279A00EBD6B6 /* cupcake_ita.mp3 in Resources */,
 				C021F77D17E8279A00EBD6B6 /* Donkey_ita.mp3 in Resources */,
+				C037C233180BDA0000B2417C /* orangeRaincoat@2x~ipad.png in Resources */,
 				C021F77E17E8279A00EBD6B6 /* duck_ita.mp3 in Resources */,
 				C021F77F17E8279A00EBD6B6 /* dulphin_ita.mp3 in Resources */,
 				C021F78017E8279A00EBD6B6 /* elephant_ita.mp3 in Resources */,
@@ -5309,6 +5320,7 @@
 				C021F7F117E8279A00EBD6B6 /* hot_chocolate_gr.mp3 in Resources */,
 				C021F7F217E8279A00EBD6B6 /* igloo_gr.mp3 in Resources */,
 				C021F7F317E8279A00EBD6B6 /* it's_a_gr.mp3 in Resources */,
+				C037C234180BDA0000B2417C /* yellowRaincoat@2x~ipad.png in Resources */,
 				C021F7F417E8279A00EBD6B6 /* it's_an_gr.mp3 in Resources */,
 				C021F7F517E8279A00EBD6B6 /* jelly_fish_gr.mp3 in Resources */,
 				C021F7F617E8279A00EBD6B6 /* Jungle_gr.mp3 in Resources */,

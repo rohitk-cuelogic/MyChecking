@@ -160,10 +160,19 @@ static TigglyStampUtils *sharedInstance = nil;
             color = [UIColor colorWithRed:209.0/255.0 green:51.0/255.0 blue:35.0/255.0 alpha:1];
         }
         if ([shapeToDraw isEqualToString:@"pear"]) {
-            color = [UIColor colorWithRed:178.0/255.0 green:210.0/255.0 blue:53.0/255.0 alpha:1];
+            color = [UIColor colorWithRed:255.0/255.0 green:175.0/255.0 blue:3.0/255.0 alpha:1];
         }
         if ([shapeToDraw isEqualToString:@"raincoat"]) {
             color = [UIColor colorWithRed:255.0/255.0 green:197.0/255.0 blue:14.0/255.0 alpha:1];
+        }
+        if ([shapeToDraw isEqualToString:@"pinkRaincoat"]) {
+            color = [UIColor colorWithRed:255.0/255.0 green:103.0/255.0 blue:148.0/255.0 alpha:1];
+        }
+        if ([shapeToDraw isEqualToString:@"orangeRaincoat"]) {
+            color = [UIColor colorWithRed:248.0/255.0 green:147.0/255.0 blue:29.0/255.0 alpha:1];
+        }
+        if ([shapeToDraw isEqualToString:@"yellowRaincoat"]) {
+            color = [UIColor colorWithRed:248.0/255.0 green:235.0/255.0 blue:120.0/255.0 alpha:1];
         }
         if ([shapeToDraw isEqualToString:@"three_color"]) {
             color = [UIColor colorWithRed:254.0/255.0 green:208.0/255.0 blue:10.0/255.0 alpha:1];

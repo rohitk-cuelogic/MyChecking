@@ -1196,6 +1196,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         dispatch_after(p, dispatch_get_main_queue(), ^(void){
             [layer removeFromSuperlayer];
             UIImage *imgOfShape= [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",shapeImage]];
+            DebugLog(@"FruitSize : %@",NSStringFromCGSize(imgOfShape.size));
             FruitView *fruit;
             if([shape isEqualToString:@"square"]){
                 fruit = [[FruitView alloc] initWithFrame:CGRectMake(0,0, imgOfShape.size.width, imgOfShape.size.height) withShape:shapeImage];
@@ -1206,6 +1207,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             }
             fruit.delegate = self;
             [self.mainView addSubview:fruit];
+            
+            DebugLog(@"FruitFinalSize : %@",NSStringFromCGRect(fruit.frame));
 
             [fruitObjectArray addObject:fruit];            
             

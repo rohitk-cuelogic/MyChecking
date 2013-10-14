@@ -18,6 +18,7 @@
 }
 
 + (id)sharedInstance;
+
 -(UIColor *)getRGBValueForShape:(NSString *)shapeToDraw withBasicShape:(NSString *)basicShape;
 
 -(void)setShapeMode:(BOOL) bVar;

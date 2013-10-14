@@ -49,6 +49,9 @@
 @property(nonatomic,strong)NSMutableArray *witches_hatShapeArray;
 @property(nonatomic,strong)NSMutableArray *zebra_2ShapeArray;
 @property(nonatomic,strong)NSMutableArray *duck_1ShapeArray;
+@property(nonatomic, strong) NSMutableArray *pinkRaincoatArray;
+@property(nonatomic, strong) NSMutableArray *orangeRaincoatArray;
+@property(nonatomic, strong) NSMutableArray *yellowRaincoatArray;
 
 //Circle
 @property(nonatomic,strong)NSMutableArray *apple_redShapeArray;

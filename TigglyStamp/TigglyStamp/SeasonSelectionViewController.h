@@ -10,7 +10,11 @@
 #import "StampViewController.h"
 #import "TSHomeViewController.h"
 
-@interface SeasonSelectionViewController : UIViewController
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
+
+@interface SeasonSelectionViewController : GAITrackedViewController
 {
     IBOutlet UIView *confirmationView;
     IBOutlet UIImageView *confirmationViewBKG;

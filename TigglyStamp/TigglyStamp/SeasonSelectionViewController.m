@@ -155,10 +155,29 @@ int swipeTxtCnt;
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];
         [[GAI sharedInstance] dispatch];
+        
+        NSString *strLockStatus = nil;
+        if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
+            
+            strLockStatus = @"Unlocked";
+            
+        }else{
+            
+            strLockStatus = @"Locked";
+            
+        }
+        NSMutableDictionary *event1 =
+        [[GAIDictionaryBuilder createEventWithCategory:@"App Status"
+                                                action:@"Lock Status"
+                                                 label:strLockStatus
+                                                 value:nil] build];
+        [[GAI sharedInstance].defaultTracker send:event1];
+        [[GAI sharedInstance] dispatch];
 #else
         
 #endif
 
+        
         
         stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneWinter withHomeView:homeViewController];
         [self.navigationController pushViewController:stampViewController animated:YES];
@@ -173,10 +192,29 @@ int swipeTxtCnt;
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];
         [[GAI sharedInstance] dispatch];
+        
+        NSString *strLockStatus = nil;
+        if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
+            
+            strLockStatus = @"Unlocked";
+            
+        }else{
+            
+            strLockStatus = @"Locked";
+            
+        }
+        NSMutableDictionary *event2 =
+        [[GAIDictionaryBuilder createEventWithCategory:@"App Status"
+                                                action:@"Lock Status"
+                                                 label:strLockStatus
+                                                 value:nil] build];
+        [[GAI sharedInstance].defaultTracker send:event2];
+        [[GAI sharedInstance] dispatch];
 #else
         
 #endif
 
+        
         
         stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneFall withHomeView:homeViewController];
         [self.navigationController pushViewController:stampViewController animated:YES];

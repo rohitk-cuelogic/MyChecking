@@ -51,6 +51,10 @@
     DebugLog(@"");
     [super viewDidLoad];
     
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+    
     [[TigglyStampUtils sharedInstance] isItemCountBelowTheLimit];
     
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {

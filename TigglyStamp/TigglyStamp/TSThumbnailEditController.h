@@ -37,6 +37,8 @@
     MPMoviePlayerController *moviePlayer;
     
     TSHomeViewController *homeViewController;
+    
+    BOOL isVideoPlaying;
 }
 
 

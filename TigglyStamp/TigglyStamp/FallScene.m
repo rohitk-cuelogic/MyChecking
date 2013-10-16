@@ -14,11 +14,11 @@
 
 @synthesize batShapeArray,blue_candyShapeArray,green_leafShapeArray,haybaleShapeArray,orange_candyShapeArray,orange_leafShapeArray,purple_spirderShapeArray,spiderShapeArray,yellow_candyShapeArray,pirateShapeArray,barn_2ShapeArray;
 
-@synthesize beeShapeArray,broomShapeArray,horseShapeArray,leavesShapeArray,mushroomShapeArray,pearShapeArray,raincoatShapeArray,three_colorShapeArray,witches_hat_purpleShapeArray,witches_hatShapeArray,zebra_2ShapeArray,duck_1ShapeArray,pinkRaincoatArray,orangeRaincoatArray,yellowRaincoatArray;
+@synthesize beeShapeArray,broomShapeArray,horseShapeArray,leavesShapeArray,mushroomShapeArray,pearShapeArray,raincoatShapeArray,three_colorShapeArray,witches_hat_purpleShapeArray,witches_hatShapeArray,zebra_2ShapeArray,duck_1ShapeArray,pinkRaincoatArray,orangeRaincoatArray,yellowRaincoatArray,roosterArray;
 
 @synthesize apple_redShapeArray,blue_turkeyShapeArray,cranberries_leavesShapeArray,cranberriesShapeArray,green_appleShapeArray,greyish_catShapeArray,litepurple_racoonShapeArray,orange_turkeyShapeArray,pink_catShapeArray,pumkin_1ShapeArray,pumpkin_3ShapeArray,racoonShapeArray;
 
-@synthesize green_leaf_2ShapeArray,hampsterShapeArray,orange_leaf_2ShapeArray,pink_leafShapeArray,scare_crowShapeArray,yellow_leafShapeArray,rooster_2ShapeArray,roosterShapeArray;
+@synthesize green_leaf_2ShapeArray,hampsterShapeArray,orange_leaf_2ShapeArray,pink_leafShapeArray,scare_crowShapeArray,yellow_leafShapeArray,chickenShapeArray;
 
 int currentObject;
 
@@ -36,12 +36,12 @@ int currentObject;
                              @"bat", @"blue_candy",@"green_leaf",@"haybale",@"orange_candy",@"orange_leaf",@"purple_spirder",@"spider",@"yellow_candy",@"pirate",@"barn_2",nil];
         
         fallTriangleObjects = [[NSMutableArray alloc] initWithObjects:
-                               @"bee", @"broom", @"horse",@"leaves",@"mushroom",@"pear",@"raincoat",@"three_color",@"witches_hat_purple",@"witches_hat",@"zebra_2",@"duck_1",@"pinkRaincoat",@"orangeRaincoat",@"yellowRaincoat",nil];
+                               @"bee", @"broom", @"horse",@"leaves",@"mushroom",@"pear",@"raincoat",@"three_color",@"witches_hat_purple",@"witches_hat",@"zebra_2",@"duck_1",@"pinkRaincoat",@"orangeRaincoat",@"yellowRaincoat",@"rooster",nil];
         
         fallCircleObjects = [[NSMutableArray alloc] initWithObjects:                             @"apple_red",@"blue_turkey",@"cranberries_leaves",@"cranberries",@"green_apple",@"greyish_cat",@"litepurple_racoon",@"orange_turkey",@"pink_cat",@"pumkin_1",@"pumpkin_3",@"racoon",nil];
         
         fallStarObjects = [[NSMutableArray alloc] initWithObjects:
-                           @"green_leaf_2",@"hampster",@"orange_leaf_2",@"pink_leaf",@"scare_crow",@"yellow_leaf",@"rooster_2",@"rooster",nil];
+                           @"green_leaf_2",@"hampster",@"orange_leaf_2",@"pink_leaf",@"scare_crow",@"yellow_leaf",@"chicken",nil];
         
         batShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
         blue_candyShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
@@ -71,7 +71,7 @@ int currentObject;
         pinkRaincoatArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         orangeRaincoatArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         yellowRaincoatArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        
+        roosterArray =[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         
         apple_redShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
         blue_turkeyShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
@@ -93,8 +93,7 @@ int currentObject;
         pink_leafShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
         scare_crowShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
         yellow_leafShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        roosterShapeArray= [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        rooster_2ShapeArray= [[NSMutableArray alloc] initWithObjects:@"star", nil];
+        chickenShapeArray= [[NSMutableArray alloc] initWithObjects:@"star", nil];
         
         
         fallObjectWithShapes = [[NSMutableDictionary alloc] init];
@@ -129,6 +128,7 @@ int currentObject;
         [fallObjectWithShapes setObject:pinkRaincoatArray forKey:@"pinkRaincoat"];
         [fallObjectWithShapes setObject:orangeRaincoatArray forKey:@"orangeRaincoat"];
         [fallObjectWithShapes setObject:yellowRaincoatArray forKey:@"yellowRaincoat"];
+        [fallObjectWithShapes setObject:roosterArray forKey:@"rooster"];
         
         
         //circle
@@ -152,9 +152,7 @@ int currentObject;
         [fallObjectWithShapes setObject:pink_leafShapeArray forKey:@"pink_leaf"];
         [fallObjectWithShapes setObject:scare_crowShapeArray forKey:@"care_crow"];
         [fallObjectWithShapes setObject:yellow_leafShapeArray forKey:@"yellow_leaf"];
-        [fallObjectWithShapes setObject:rooster_2ShapeArray forKey:@"rooster_2"];
-        [fallObjectWithShapes setObject:roosterShapeArray forKey:@"rooster"];
-;
+        [fallObjectWithShapes setObject:chickenShapeArray forKey:@"chicken"];
         
     }
     return self;
@@ -186,8 +184,9 @@ int currentObject;
             [fallTriangleObjects addObject:@"pinkRaincoat"];
             [fallTriangleObjects addObject:@"orangeRaincoat"];
             [fallTriangleObjects addObject:@"yellowRaincoat"];
+             [fallTriangleObjects addObject:@"rooster"];
             
-            size = 15;
+            size = 16;
         }
         currentObject =  arc4random()%size;
         objectName = [fallTriangleObjects objectAtIndex:currentObject];
@@ -245,9 +244,8 @@ int currentObject;
             [fallStarObjects addObject:@"pink_leaf"];
             [fallStarObjects addObject:@"scare_crow"];
             [fallStarObjects addObject:@"yellow_leaf"];
-            [fallStarObjects addObject:@"rooster_2"];
-            [fallStarObjects addObject:@"rooster"];
-            size = 8;
+            [fallStarObjects addObject:@"chicken"];
+            size = 7;
         }
         currentObject =  arc4random()%size;
         objectName = [fallStarObjects objectAtIndex:currentObject];
@@ -334,7 +332,7 @@ int currentObject;
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"French"]){
             soundFile = @"Turkey_01_fr";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"German"]){
-            soundFile = @"Turkey_01_gr";
+            soundFile = @"turkey_gr";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"Turkey_01_ita";
         }
@@ -803,6 +801,22 @@ int currentObject;
         
        
         
+    }else if([fallObject isEqualToString:@"chicken"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+            
+            int ranNo = arc4random()%1;
+            
+            if(ranNo == 0){
+                soundFile = @"Tiggly_GenGreeting_Chicken_00";
+            }            
+        }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"French"]){
+            soundFile = @"chicken_fr";
+        }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"German"]){
+            soundFile = @"chicken_gr";
+        }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
+            soundFile = @"chicken_ita";
+        }
+        
     }else if([fallObject isEqualToString:@"scare_crow"]) {
        
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
@@ -1166,27 +1180,40 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"greyish_cat"] || [fallObject isEqualToString:@"pink_cat"]|| [fallObject isEqualToString:@"cat"]) {
-        int ranNo = arc4random()%4;
-        
-        if(ranNo == 0){
-            soundFile = @"Tiggly_GenGreeting_Cat_01";
-        }else if (ranNo == 1) {
-            soundFile = @"Tiggly_GenGreeting_Cat_02";
-        }else if (ranNo == 2) {
-            soundFile = @"Tiggly_GenGreeting_Cat_03";
-        }else if (ranNo == 3) {
-            soundFile = @"Tiggly_GenGreeting_Cat_04";
-        }
+         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+            int ranNo = arc4random()%4;
+            if(ranNo == 0){
+                soundFile = @"Tiggly_GenGreeting_Cat_01";
+            }else if (ranNo == 1) {
+                soundFile = @"Tiggly_GenGreeting_Cat_02";
+            }else if (ranNo == 2) {
+                soundFile = @"Tiggly_GenGreeting_Cat_03";
+            }else if (ranNo == 3) {
+                soundFile = @"Tiggly_GenGreeting_Cat_04";
+            }
+         }else{
+             int ranNo = arc4random()%3;
+             if(ranNo == 0){
+                 soundFile = @"Tiggly_GenGreeting_Cat_01";
+             }else if (ranNo == 1) {
+                 soundFile = @"Tiggly_GenGreeting_Cat_02";
+             }else if (ranNo == 2) {
+                 soundFile = @"Tiggly_GenGreeting_Cat_03";
+             }
+         }
     }else if([fallObject isEqualToString:@"litepurple_racoon"] || [fallObject isEqualToString:@"racoon"]) {
-        int ranNo = arc4random()%3;
-        
-        if(ranNo == 0){
-            soundFile = @"Tiggly_GenGreeting_Raccoon_04";
-        }else if (ranNo == 1) {
-            soundFile = @"Tiggly_GenGreeting_Raccoon_05";
-        }else if (ranNo == 2) {
-            soundFile = @"Tiggly_GenGreeting_Raccoon_12";
-        }
+      if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+            int ranNo = arc4random()%3;
+            if(ranNo == 0){
+                soundFile = @"Tiggly_GenGreeting_Raccoon_04";
+            }else if (ranNo == 1) {
+                soundFile = @"Tiggly_GenGreeting_Raccoon_05";
+            }else if (ranNo == 2) {
+                soundFile = @"Tiggly_GenGreeting_Raccoon_12";
+            }
+      }else{
+          soundFile = @"Tiggly_GenGreeting_Raccoon_14";
+      }
         
     }else if([fallObject isEqualToString:@"pumpkin_3"]) {
        
@@ -1228,14 +1255,16 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"bat"]) {
-        int ranNo = arc4random()%2;
-        
-        if(ranNo == 0){
-            soundFile = @"Tiggly_GenGreeting_Bat_02";
-        }else if (ranNo == 1) {
-            soundFile = @"Tiggly_GenGreeting_Bat_03";
-        }
-        
+       if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+            int ranNo = arc4random()%2;
+            if(ranNo == 0){
+                soundFile = @"Tiggly_GenGreeting_Bat_02";
+            }else if (ranNo == 1) {
+                soundFile = @"Tiggly_GenGreeting_Bat_03";
+            }
+       }else{
+           soundFile = @"Tiggly_SFX_BAT";
+       }
     }else if([fallObject isEqualToString:@"blue_candy"] || [fallObject isEqualToString:@"orange_candy"]|| [fallObject isEqualToString:@"yellow_candy"] ) {
         
         int ranNo = arc4random()%2;
@@ -1287,12 +1316,19 @@ int currentObject;
         }
         
     }else if([fallObject isEqualToString:@"purple_spirder"] ) {
-        int ranNo = arc4random()%2;
-        
-        if(ranNo == 0){
-            soundFile = @"Tiggly_GenGreeting_Fly_03";
-        }else if (ranNo == 1) {
-            soundFile = @"Tiggly_GenGreeting_Fly_06";
+      
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+                int ranNo = arc4random()%2;
+                if(ranNo == 0){
+                    soundFile = @"Tiggly_GenGreeting_Fly_03";
+                }else if (ranNo == 1) {
+                    soundFile = @"Tiggly_GenGreeting_Fly_06";
+                }
+        }else{
+            int ranNo = arc4random()%1;
+            if(ranNo == 0){
+                soundFile = @"Tiggly_GenGreeting_Fly_03";
+            }
         }
         
     }else if([fallObject isEqualToString:@"hampster"]) {
@@ -1313,19 +1349,46 @@ int currentObject;
             soundFile = @"rooster_Animal";
         }
         
-    }else if([fallObject isEqualToString:@"scare_crow"]) {
-        int ranNo = arc4random()%5;
+    }else if([fallObject isEqualToString:@"chicken"]) {
         
-        if(ranNo == 0){
-            soundFile = @"Tiggly_GenGreeting_Scarecrow_03";
-        }else if (ranNo == 1) {
-            soundFile = @"Tiggly_GenGreeting_Scarecrow_05";
-        }else if (ranNo == 2) {
-            soundFile = @"Tiggly_GenGreeting_Scarecrow_06";
-        }else if (ranNo == 3) {
-            soundFile = @"Tiggly_GenGreeting_Scarecrow_07";
-        }else if (ranNo == 4) {
-            soundFile = @"Tiggly_GenGreeting_Scarecrow_09";
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+            int ranNo = arc4random()%3;
+            if(ranNo == 0){
+                soundFile = @"Tiggly_GenGreeting_Chicken_01";
+            }else if (ranNo == 1) {
+                soundFile = @"Tiggly_GenGreeting_Chicken_02";
+            }else if (ranNo == 2) {
+                soundFile = @"Tiggly_GenGreeting_Chicken_03";
+            }
+        }else{
+            soundFile = @"Tiggly_SFX_CHICKEN";
+        }
+        
+        
+    }else if([fallObject isEqualToString:@"scare_crow"]) {
+       
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+            int ranNo = arc4random()%5;
+            
+            if(ranNo == 0){
+                soundFile = @"Tiggly_GenGreeting_Scarecrow_03";
+            }else if (ranNo == 1) {
+                soundFile = @"Tiggly_GenGreeting_Scarecrow_05";
+            }else if (ranNo == 2) {
+                soundFile = @"Tiggly_GenGreeting_Scarecrow_06";
+            }else if (ranNo == 3) {
+                soundFile = @"Tiggly_GenGreeting_Scarecrow_07";
+            }else if (ranNo == 4) {
+                soundFile = @"Tiggly_GenGreeting_Scarecrow_09";
+            }
+        }else{
+            int ranNo = arc4random()%2;
+            
+            if(ranNo == 0){
+                soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+            }else if (ranNo == 1) {
+                soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+            }
         }
         
     }else if([fallObject isEqualToString:@"bee"]) {

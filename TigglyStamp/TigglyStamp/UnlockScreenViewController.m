@@ -65,6 +65,10 @@
     DebugLog(@"");
     [super viewDidLoad];
     
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+    
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         // iOS 7
         [self prefersStatusBarHidden];
@@ -91,8 +95,8 @@
     lblInstructionText.font = [UIFont fontWithName:APP_FONT size:20.0f];
     lblRemainingShapes.font = [UIFont fontWithName:APP_FONT_BOLD size:20.0f];
     lblAboutTiggly.font = [UIFont fontWithName:APP_FONT_BOLD size:20.0f];
-    lblAboutTigglyText.font = [UIFont fontWithName:APP_FONT size:17.0f];
-
+    lblAboutTigglyText.font = [UIFont fontWithName:APP_FONT_BOLD size:17.0f];
+    
 
 }
 

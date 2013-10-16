@@ -51,6 +51,10 @@ int swipeTxtCnt;
     DebugLog(@"");
     [super viewDidLoad];
     
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+    
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         // iOS 7
         [self prefersStatusBarHidden];
@@ -310,7 +314,7 @@ int swipeTxtCnt;
     NSMutableArray *imageFiles = [[NSMutableArray alloc] initWithCapacity:1];
     DebugLog(@"All Files : %@",imageFiles);
     for(NSString *file in allImageFiles){
-        if(![file hasSuffix:[NSString stringWithFormat:@"%@.png",STR_WITH_BORDER]] && ![file hasSuffix:[NSString stringWithFormat:@"%@.png",STR_WITH_MOVIE_BORDER]]){
+        if(![file hasSuffix:[NSString stringWithFormat:@"%@.png",STR_WITH_BORDER]] && ![file hasSuffix:[NSString stringWithFormat:@"%@.png",STR_WITH_MOVIE_BORDER]] && ![file hasSuffix:@"_thumb.png"] ){
             [imageFiles addObject:file];
         }
     }
@@ -640,7 +644,9 @@ int swipeTxtCnt;
     DebugLog(@"");
     DebugLog(@"ImageName : %@",thumbnail.imageName);
     NSFileManager *fileManager = [NSFileManager defaultManager];
-  
+    
+    NSString *movieFileName = [thumbnail.imageName stringByReplacingOccurrencesOfString:@".mov" withString:@"_thumb.png"];
+     [fileManager removeItemAtPath:movieFileName error:nil];
     [fileManager removeItemAtPath:thumbnail.imageName error:nil];
     [fileManager removeItemAtPath:thumbnail.imageNameWithBorder error:nil];
     thumbnail.transform = CGAffineTransformIdentity;

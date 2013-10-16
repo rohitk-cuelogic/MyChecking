@@ -31,7 +31,7 @@
     self = [super initWithFrame:rect];
     if (self) {
         imageName = imgName;
-        
+    
         [self setUserInteractionEnabled:YES];
         
         [self setBackgroundColor:[UIColor colorWithRed:150.0f/255.0f green:199.0f/255.0f blue:87.0f/255.0f alpha:1.0f]];
@@ -80,7 +80,7 @@
             [btnPlay addTarget:self action:@selector(btnPlayClicked)forControlEvents:UIControlEventTouchUpInside];
             btnPlay.frame = CGRectMake(imageView.frame.size.width/2 - 25, imageView.frame.size.height/2 - 25,100, 100);
             btnPlay.center = imageView.center;
-            btnPlay.hidden = YES;
+            btnPlay.hidden = NO;
             [viewForPreview addSubview:btnPlay];
             
             
@@ -284,8 +284,7 @@
     UIImage *imgToSave = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    if ([[[NSUserDefaults standardUserDefaults] valueForKey:SAVE_ART] isEqualToString:@"yes"]) {
-        
+    
         if(toPhotoGallary){
             NSData *imageData = UIImagePNGRepresentation(imgToSave);
             UIImage *img = [UIImage imageWithData:imageData];
@@ -319,7 +318,6 @@
             else
                 DebugLog(@"Failed to save the image");
         }
-    }
     
     viewForPreview.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
     

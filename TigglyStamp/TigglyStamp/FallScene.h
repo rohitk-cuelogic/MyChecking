@@ -52,6 +52,7 @@
 @property(nonatomic, strong) NSMutableArray *pinkRaincoatArray;
 @property(nonatomic, strong) NSMutableArray *orangeRaincoatArray;
 @property(nonatomic, strong) NSMutableArray *yellowRaincoatArray;
+@property(nonatomic, strong) NSMutableArray *roosterArray;
 
 //Circle
 @property(nonatomic,strong)NSMutableArray *apple_redShapeArray;
@@ -74,8 +75,7 @@
 @property(nonatomic,strong)NSMutableArray *pink_leafShapeArray;
 @property(nonatomic,strong)NSMutableArray *scare_crowShapeArray;
 @property(nonatomic,strong)NSMutableArray *yellow_leafShapeArray;
-@property(nonatomic,strong)NSMutableArray *rooster_2ShapeArray;
-@property(nonatomic,strong)NSMutableArray *roosterShapeArray;
+@property(nonatomic,strong)NSMutableArray *chickenShapeArray;
 @property(nonatomic,strong)NSMutableDictionary *fallObjectWithShapes;
 
 -(NSMutableArray *)shapeForObject:(NSString *)shape;

@@ -144,6 +144,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     DebugLog(@"");
     [super viewDidLoad];
     
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+    
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         // iOS 7
         [self prefersStatusBarHidden];
@@ -531,9 +535,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         [self hideVideoCameraButtons];
         [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
         RigthTickButton.hidden = NO;
-//        cameraButton.hidden = NO;
-//        videoButton.hidden = NO;
-        
+       
         
         UIImageView *tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
         if (sceneType == kSceneWinter) {
@@ -552,7 +554,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                         }];
         
         if(!isWithShape){
-            [self displayShapesTray];
+            [self initShapesTray];
         }
     }
     else{
@@ -595,10 +597,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
 }
 
--(void) initShapesTray{
+-(void) removeShapesTray {
     DebugLog(@"");
-    
-    isShapesTrayHidden = NO;
     
     if(viewShapesTray!= nil){
         for(PhysicalShapesView *shape in arrPhysicalShapes) {
@@ -606,13 +606,21 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         }
         [arrPhysicalShapes removeAllObjects];
         arrPhysicalShapes = nil;
-
+        
         [viewShapesTray removeFromSuperview];
         viewShapesTray = nil;
         
         [btnShapesTray removeFromSuperview];
         btnShapesTray = nil;
     }
+}
+
+-(void) initShapesTray{
+    DebugLog(@"");
+    
+    isShapesTrayHidden = NO;
+    
+    [self removeShapesTray];
     
     viewShapesTray= [[UIImageView alloc]initWithFrame:CGRectMake(0,150, 200, 550)];
     viewShapesTray.image = [UIImage imageNamed:@"new_try_out_2.png"];
@@ -673,7 +681,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
 }
 
--(void) removeShapesTray {
+-(void) hideShapesTray {
     DebugLog(@"");
     isShapesTrayHidden = YES;
     [UIView animateWithDuration:0.2
@@ -700,7 +708,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     if(isShapesTrayHidden)
         [self displayShapesTray];
     else
-        [self removeShapesTray];
+        [self hideShapesTray];
 }
 
 -(IBAction)screenShot:(id)sender {
@@ -862,6 +870,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             [rainBowLayer removeAnimationForKey:@"contents"];
             rainBowLayer = nil;
         }
+        
+        [self removeShapesTray];
 
        [[TDSoundManager sharedManager] playSound:@"Tiggly_SFX_MAGIC_19" withFormat:@"mp3"];
         isRainbowMusicStarted = YES;
@@ -870,7 +880,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
 
         if(!isWithShape)
-            [self removeShapesTray];
+            [self hideShapesTray];
         
         [self addRainbowEffectAnimation];
         
@@ -889,7 +899,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
 
-            [self removeShapesTray];
+            [self hideShapesTray];
             
             [self showVideoCameraButtons];
 
@@ -1015,7 +1025,45 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         
         [NSThread detachNewThreadSelector:@selector(hideButtons) toTarget:self withObject:nil];
         
-        [self playTellUsStorySound];
+         [self playTellUsStorySound];
+        
+        videoButton.alpha = 0.0;
+        
+        UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
+        [[UIColor whiteColor] set];
+        UIRectFill(CGRectMake(0.0, 0.0,1024,768));
+        [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+        
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        NSDate* currentDate = [NSDate date];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+        [dateFormat setDateFormat:@"MM-dd-yyyy_HH:mm:ss"];
+        // convert it to a string
+        NSString *movieDateString = [dateFormat stringFromDate:currentDate];
+        NSString *imgName = [NSString stringWithFormat:@"TigglyStamp_%@_thumb.png",movieDateString];
+        DebugLog(@"Image Name : %@",imgName);
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:imgName];
+        DebugLog(@"Image Path: %@",savedImagePath);
+        NSData *imageData = UIImagePNGRepresentation(image);
+        BOOL isSuccess = [imageData writeToFile:savedImagePath atomically:YES];
+        if(isSuccess){
+            DebugLog(@"Imaged saved successfully");
+            videoButton.alpha = 1.0;
+        }
+        else {
+            DebugLog(@"Failed to save the image");
+            videoButton.alpha = 1.0;
+        }
+        
+        
+        screenCapture.movieString = movieDateString;
+        
+       
         
                 
         [videoButton setBackgroundImage:[UIImage imageNamed:@"record_icon_stop_2"] forState:UIControlStateNormal];
@@ -2042,12 +2090,12 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     //Create and add the Activity Indicator to splashView
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityIndicator.alpha = 1.0;
+    activityIndicator.alpha = 0.0;
     activityIndicator.color = [UIColor blackColor];
     activityIndicator.center = self.view.center;
     activityIndicator.hidesWhenStopped = NO;
     [self.mainView addSubview:activityIndicator];
-    [activityIndicator startAnimating];
+//    [activityIndicator startAnimating];
     
 }
 

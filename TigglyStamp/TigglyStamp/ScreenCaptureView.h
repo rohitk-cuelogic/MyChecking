@@ -64,6 +64,7 @@
 @property(assign) float frameRate;
 @property(nonatomic, assign) id<ScreenCaptureViewDelegate> delegate;
 @property(nonatomic, strong) NSURL *exportUrl;
+@property(nonatomic, strong) NSString *movieString;
 
 
 @end

@@ -10,7 +10,7 @@
 @implementation ScreenCaptureView
 
 @synthesize currentScreen, frameRate, delegate;
-@synthesize exportUrl;
+@synthesize exportUrl,movieString;
 
 - (void) initialize {
     DebugLog(@"");
@@ -75,12 +75,12 @@
     
     AVAssetExportSession* _assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetPassthrough];
     
-    NSDate* currentDate = [NSDate date];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"MM-dd-yyyy_HH:mm:ss"];
-    // convert it to a string
-    NSString *dateString = [dateFormat stringFromDate:currentDate];
-    NSString *videoName = [NSString stringWithFormat:@"TigglyStamp_%@.mov",dateString];
+//    NSDate* currentDate = [NSDate date];
+//    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+//    [dateFormat setDateFormat:@"MM-dd-yyyy_HH:mm:ss"];
+//    // convert it to a string
+//    NSString *dateString = [dateFormat stringFromDate:currentDate];
+    NSString *videoName = [NSString stringWithFormat:@"TigglyStamp_%@.mov",self.movieString];
     DebugLog(@"Image Name : %@",videoName);
 
     NSString *exportPath = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], videoName];
@@ -112,6 +112,9 @@
 //            UISaveVideoAtPathToSavedPhotosAlbum (path, nil, nil, nil);
 //        }
 //    }
+    
+
+
     
 }
 

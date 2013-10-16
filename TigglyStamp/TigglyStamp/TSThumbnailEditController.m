@@ -92,6 +92,10 @@ int swipeTextCnt;
     DebugLog(@"");
     [super viewDidLoad];
     
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+    
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         // iOS 7
         [self prefersStatusBarHidden];
@@ -360,6 +364,10 @@ int swipeTextCnt;
                 tempStr = [NSString stringWithFormat:@"%@_%@.png",tempStr,STR_WITH_MOVIE_BORDER];
                 DebugLog(@"Filed to be deleted:%@",tempStr);
                 [fileManager removeItemAtPath:tempStr error:nil];
+                
+                NSString *movieFileName = [fullPath stringByReplacingOccurrencesOfString:@".mov" withString:@"_thumb.png"];
+                [fileManager removeItemAtPath:movieFileName error:nil];
+                
             }else if([[fullPath pathExtension] isEqualToString:@"png"]){
                 NSString *tempStr = [fullPath stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"_%@",STR_WITH_BORDER]  withString:@""];
                 DebugLog(@"Filed to be deleted:%@",tempStr);
@@ -426,7 +434,8 @@ int swipeTextCnt;
         return;
     }
     
-    
+    if(isVideoPlaying)
+        return;
     
     editorImgView.hidden = YES;
     editorImgView.userInteractionEnabled = NO;
@@ -551,6 +560,8 @@ int swipeTextCnt;
         return;
     }
     
+    if(isVideoPlaying)
+        return;
     
     editorImgView.hidden = YES;
     editorImgView.userInteractionEnabled = NO;
@@ -718,6 +729,7 @@ int swipeTextCnt;
     DebugLog(@"");
     playBtn.hidden = NO;
 
+    isVideoPlaying = NO;
     
     moviePlayer = [notification object];
 
@@ -736,6 +748,8 @@ int swipeTextCnt;
 -(void)didExitFullScreen:(NSNotification*)notification{
     DebugLog(@"");
     playBtn.hidden = NO;
+    
+    isVideoPlaying = NO;
     
     moviePlayer = [notification object];
     
@@ -765,6 +779,7 @@ int swipeTextCnt;
     if([[[editImgName lastPathComponent] pathExtension]isEqualToString:@"mov"]) {
         NSURL *url = [NSURL fileURLWithPath:[[[TigglyStampUtils sharedInstance] getDocumentDirPath] stringByAppendingPathComponent:editImgName]];
         [self playVideoWithURL:url];
+        isVideoPlaying = YES;
     }
 }
 

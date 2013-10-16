@@ -189,6 +189,9 @@ static TigglyStampUtils *sharedInstance = nil;
         if ([shapeToDraw isEqualToString:@"duck_1"]) {
             color = [UIColor colorWithRed:249.0/255.0 green:160.0/255.0 blue:28.0/255.0 alpha:1];
         }
+        if ([shapeToDraw isEqualToString:@"rooster"]) {
+            color = [UIColor colorWithRed:234.0/255.0 green:109.0/255.0 blue:8.0/255.0 alpha:1];
+        }
         
     }
     if([basicShape isEqualToString:@"circle"]){
@@ -307,12 +310,10 @@ static TigglyStampUtils *sharedInstance = nil;
         if ([shapeToDraw isEqualToString:@"yellow_leaf"]) {
             color = [UIColor colorWithRed:255.0/255.0 green:222.0/255.0 blue:3.0/255.0 alpha:1];
         }
-        if ([shapeToDraw isEqualToString:@"rooster_2"]) {
-            color = [UIColor colorWithRed:255.0/255.0 green:236.0/255.0 blue:220.0/255.0 alpha:1];
+        if ([shapeToDraw isEqualToString:@"chicken"]) {
+            color = [UIColor colorWithRed:251.0/255.0 green:242.0/255.0 blue:195.0/255.0 alpha:1];
         }
-        if ([shapeToDraw isEqualToString:@"rooster"]) {
-            color = [UIColor colorWithRed:234.0/255.0 green:109.0/255.0 blue:8.0/255.0 alpha:1];
-        }
+
         }
     return color;
 }
@@ -370,25 +371,30 @@ static TigglyStampUtils *sharedInstance = nil;
 -(UIImage *) getThumbnailImageOfMovieFile:(NSString *) filePath {
     DebugLog(@"");
     
-    NSString *path = [[TigglyStampUtils sharedInstance]getDocumentDirPath];
-    path = [path stringByAppendingPathComponent:filePath];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:url options:nil];
-    AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
-    gen.appliesPreferredTrackTransform = YES;
-    CMTime time = CMTimeMakeWithSeconds(0.0, HUGE_VAL);
-    NSError *error = nil;
-    CMTime actualTime;
-    
-    CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
-    UIImage *thumb = [[UIImage alloc] initWithCGImage:image];
-    CGImageRelease(image);
-    
-//    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:url];
-//    UIImage *thumbnail = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionNearestKeyFrame];
-//    //Player autoplays audio on init
-//    [player stop];
+//    NSString *path = [[TigglyStampUtils sharedInstance]getDocumentDirPath];
+//    path = [path stringByAppendingPathComponent:filePath];
+//    NSURL *url = [NSURL fileURLWithPath:path];
+//    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:url options:nil];
+//    AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+//    gen.appliesPreferredTrackTransform = YES;
+//    CMTime time = CMTimeMakeWithSeconds(0.0, 30.0);
+//    NSError *error = nil;
+//    //CMTime actualTime = CMTimeMakeWithSeconds(0.0, 180.0);;
 //    
+//    CGImageRef image = [gen copyCGImageAtTime:time actualTime:NULL error:&error];
+//    UIImage *thumb = [[UIImage alloc] initWithCGImage:image];
+//    CGImageRelease(image);
+
+//    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:url];
+//    UIImage  *thumb = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionExact];
+//    player.shouldAutoplay = NO;
+//    [player stop];
+//    player = nil;
+    
+    NSString *fileName=[filePath stringByReplacingOccurrencesOfString:@".mov" withString:@"_thumb.png" ];
+    NSString *path = [[TigglyStampUtils sharedInstance]getDocumentDirPath];
+    path = [path stringByAppendingPathComponent:fileName];
+    UIImage *thumb = [UIImage imageWithContentsOfFile:path];
     
     return thumb;
 }

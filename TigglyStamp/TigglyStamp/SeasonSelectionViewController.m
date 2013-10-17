@@ -58,14 +58,15 @@ int swipeTxtCnt;
     if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
         [lockWinter setHidden:FALSE];
         [learnMoreBtn setHidden:FALSE];
-        [fallSeasonBtn setAlpha:0.5f];
+        [winterSeasonBtn setAlpha:0.5f];
        // [winterSeasonBtn  setBackgroundImage:[UIImage imageNamed:@"btnLock.png"] forState:UIControlStateNormal];
-        fallSeasonBtn.userInteractionEnabled = NO;
+        winterSeasonBtn.userInteractionEnabled = NO;
     }else{
         [lockWinter setHidden:TRUE];
         [learnMoreBtn setHidden:TRUE];
         //[winterSeasonBtn  setBackgroundImage:[UIImage imageNamed:@"winter_btn.png"] forState:UIControlStateNormal];
-        fallSeasonBtn.userInteractionEnabled = YES;
+        winterSeasonBtn.userInteractionEnabled = YES;
+        [winterSeasonBtn setAlpha:1.0f];
     }
     
     
@@ -146,7 +147,7 @@ int swipeTxtCnt;
     
     StampViewController *stampViewController = nil;
     
-    if (btn.tag == TAG_WINTER_BTN) {
+    if (btn.tag == TAG_FALL_BTN) {
 
         
 #ifdef GOOGLE_ANALYTICS_START
@@ -181,10 +182,10 @@ int swipeTxtCnt;
 
         
         
-        stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneWinter withHomeView:homeViewController];
+        stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneFall withHomeView:homeViewController];
         [self.navigationController pushViewController:stampViewController animated:YES];
         
-    }else if (btn.tag == TAG_FALL_BTN){
+    }else if (btn.tag == TAG_WINTER_BTN){
         if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
             return;
         }
@@ -220,7 +221,7 @@ int swipeTxtCnt;
 
         
         
-        stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneFall withHomeView:homeViewController];
+        stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneWinter withHomeView:homeViewController];
         [self.navigationController pushViewController:stampViewController animated:YES];
     }
     

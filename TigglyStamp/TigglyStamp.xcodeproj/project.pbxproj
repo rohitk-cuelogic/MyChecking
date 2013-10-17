@@ -1121,6 +1121,7 @@
 		C0DF52A917FC00A6009C6790 /* 144X144.png in Resources */ = {isa = PBXBuildFile; fileRef = C0DF529F17FC00A6009C6790 /* 144X144.png */; };
 		C0DF52AA17FC00A6009C6790 /* 152X152.png in Resources */ = {isa = PBXBuildFile; fileRef = C0DF52A017FC00A6009C6790 /* 152X152.png */; };
 		C0DF52AB17FC00A6009C6790 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = C0DF52A117FC00A6009C6790 /* Icon-72.png */; };
+		C0EDD065180E9376007051A8 /* ImageAnimatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EDD064180E9376007051A8 /* ImageAnimatorView.m */; };
 		C0F20DD217D9D09900340C20 /* rooster_Animal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0F20DD117D9D09900340C20 /* rooster_Animal.mp3 */; };
 		C0F814CA17F157EB0051C2B5 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F814C917F157EB0051C2B5 /* SettingsView.m */; };
 		C0F814CE17F179A10051C2B5 /* GestureConfirmationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F814CD17F179A10051C2B5 /* GestureConfirmationView.m */; };
@@ -2430,6 +2431,8 @@
 		C0DF529F17FC00A6009C6790 /* 144X144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 144X144.png; sourceTree = "<group>"; };
 		C0DF52A017FC00A6009C6790 /* 152X152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 152X152.png; sourceTree = "<group>"; };
 		C0DF52A117FC00A6009C6790 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		C0EDD063180E9376007051A8 /* ImageAnimatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAnimatorView.h; sourceTree = "<group>"; };
+		C0EDD064180E9376007051A8 /* ImageAnimatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAnimatorView.m; sourceTree = "<group>"; };
 		C0F20DD117D9D09900340C20 /* rooster_Animal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rooster_Animal.mp3; sourceTree = "<group>"; };
 		C0F814C817F157EB0051C2B5 /* SettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsView.h; sourceTree = "<group>"; };
 		C0F814C917F157EB0051C2B5 /* SettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsView.m; sourceTree = "<group>"; };
@@ -4140,6 +4143,8 @@
 				C0F814C917F157EB0051C2B5 /* SettingsView.m */,
 				C0F814CC17F179A10051C2B5 /* GestureConfirmationView.h */,
 				C0F814CD17F179A10051C2B5 /* GestureConfirmationView.m */,
+				C0EDD063180E9376007051A8 /* ImageAnimatorView.h */,
+				C0EDD064180E9376007051A8 /* ImageAnimatorView.m */,
 			);
 			path = TigglyStamp;
 			sourceTree = "<group>";
@@ -5681,6 +5686,7 @@
 				C0F814E417F1A6680051C2B5 /* HSK_CFUtilities.m in Sources */,
 				C0F814E517F1A6680051C2B5 /* NSData+Base64Additions.m in Sources */,
 				C0F814E617F1A6680051C2B5 /* NSStream+SKPSMTPExtensions.m in Sources */,
+				C0EDD065180E9376007051A8 /* ImageAnimatorView.m in Sources */,
 				C0F814E717F1A6680051C2B5 /* SKPSMTPMessage.m in Sources */,
 				C0D3CAD917FAE52B009C5B3D /* UIImage+Resize.m in Sources */,
 				C0F85EC61800588100045212 /* TSTempData.m in Sources */,

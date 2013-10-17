@@ -23,6 +23,7 @@
 #import "TDSoundManager.h"
 #import "PhysicalShapesView.h"
 #import "TSHomeViewController.h"
+#import "ImageAnimatorView.h"
 
 @interface StampViewController : KTViewController<UITouchVerificationViewDelegate,ShapeToDrawProtocol,FruitViewProtocol,AVAudioRecorderDelegate,CapturedImageViewDelegate,ScreenCaptureViewDelegate,FallSceneShapeToDrawProtocol,PhysicalShapeViewProtocol,XBPageCurlViewDelegate>{
    
@@ -62,7 +63,10 @@
     CAShapeLayer * rainBowBtnLayer;
     NSMutableArray *arrRainbowImages;
     BOOL isRainbowMusicStarted;
+    
+    ImageAnimatorView *rainbowAnimationView;
 }
+@property (strong, nonatomic)  ImageAnimatorView *rainbowAnimationView;
 @property(nonatomic,strong) IBOutlet  ScreenCaptureView *screenCapture;
 @property(nonatomic, strong) NSMutableArray * shapes;
 @property(nonatomic,strong)NSMutableArray *fruitObjectArray;

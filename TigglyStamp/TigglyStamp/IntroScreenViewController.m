@@ -180,6 +180,12 @@
         
         TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];
         [self.navigationController pushViewController:homeViewController animated:NO];
+//        if([self respondsToSelector:@selector(presentViewController:animated:completion:)]){
+//            [self presentViewController:homeViewController animated:YES completion:nil];
+//            self.modalPresentationStyle = UIModal
+//        }else{
+//            [self presentModalViewController:homeViewController animated:YES];
+//        }
     }
     
 

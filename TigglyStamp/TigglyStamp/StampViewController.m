@@ -30,6 +30,7 @@ int sec= 0;
 #pragma mark Synthesize
 #pragma mark =======================================
 
+@synthesize rainbowAnimationView;
 @synthesize shapes;
 @synthesize fruitObjectArray;
 @synthesize pointComparison;
@@ -327,36 +328,92 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 -(void) addRainbowEffectAnimation {
     DebugLog(@"");
     
-    RigthTickButton.hidden = YES;
+    
   
-    rainBowLayer = [CAShapeLayer layer];
-    rainBowLayer.frame = CGRectMake(0,0, 1024, 768);
-    rainBowLayer.name=@"rainBowLayer";
-    [self.view.layer addSublayer:rainBowLayer];
-
+//    rainBowLayer = [CAShapeLayer layer];
+//    rainBowLayer.frame = CGRectMake(0,0, 1024, 768);
+//    rainBowLayer.name=@"rainBowLayer";
+//    [self.view.layer addSublayer:rainBowLayer];
+//
+//    rainBowBtnLayer = [CAShapeLayer layer];
+//    rainBowBtnLayer.contents = (id)[UIImage imageNamed:@"star_btn_1.png"].CGImage;
+//    rainBowBtnLayer.frame = CGRectMake(20,15, 100, 100);
+//    rainBowBtnLayer.name=@"rainBowBtnLayer";
+//    [self.view.layer addSublayer:rainBowBtnLayer];
+//
+//
+//    rainBowLayer.zPosition = 1000;
+//    rainBowBtnLayer.zPosition = 1200;
+//    
+//    DebugLog(@"Animation Code Started");
+//    CAKeyframeAnimation *animation3 = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+//    animation3.calculationMode = kCAAnimationDiscrete;
+//    animation3.removedOnCompletion = YES;
+//    animation3.duration =2.0;
+//    animation3.repeatCount =1;
+//    animation3.delegate = self;
+//    animation3.values = arrRainbowImages;
+//    [animation3 setValue:@"spinAnim" forKey:@"contents"];
+//    [rainBowLayer addAnimation: animation3 forKey: @"contents"];
+    
+    RigthTickButton.hidden = YES;
+    
+    rainbowAnimationView = [ImageAnimatorView ImageAnimatorView];
+    
+    NSArray *names1 = [ImageAnimatorView arrayWithNumberedNames:@"r"
+                                                               rangeStart:1
+                                                                 rangeEnd:23
+                                                             suffixFormat:@"%i.png"];
+    
+	NSArray *bURLs = [ImageAnimatorView arrayWithResourcePrefixedURLs:names1];
+    
+	rainbowAnimationView.animationOrientation = UIImageOrientationUp; // Rotate 90 deg CCW
+	rainbowAnimationView.animationFrameDuration = ImageAnimator15FPS;
+	rainbowAnimationView.animationURLs = bURLs;
+	rainbowAnimationView.animationRepeatCount = 0;
+    
+	// Show animator before starting animation
+    rainbowAnimationView.frame = CGRectMake(0,0,1024,768);
+    [rainbowAnimationView LoadAnimationData];
+    [rainbowAnimationView loadView];
+	[self.view addSubview:rainbowAnimationView];
+    [rainbowAnimationView startAnimating];
+    
     rainBowBtnLayer = [CAShapeLayer layer];
     rainBowBtnLayer.contents = (id)[UIImage imageNamed:@"star_btn_1.png"].CGImage;
     rainBowBtnLayer.frame = CGRectMake(20,15, 100, 100);
     rainBowBtnLayer.name=@"rainBowBtnLayer";
     [self.view.layer addSublayer:rainBowBtnLayer];
-
-
-    rainBowLayer.zPosition = 1000;
+    
+    rainbowAnimationView.layer.zPosition = 1000;
     rainBowBtnLayer.zPosition = 1200;
     
-    DebugLog(@"Animation Code Started");
-    CAKeyframeAnimation *animation3 = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
-    animation3.calculationMode = kCAAnimationDiscrete;
-    animation3.removedOnCompletion = YES;
-    animation3.duration =2.0;
-    animation3.repeatCount =1;
-    animation3.delegate = self;
-    animation3.values = arrRainbowImages;
-    [animation3 setValue:@"spinAnim" forKey:@"contents"];
-    [rainBowLayer addAnimation: animation3 forKey: @"contents"];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(animationDidStartNotification:)
+												 name:ImageAnimatorDidStartNotification
+											   object:rainbowAnimationView];
     
-    
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(animationDidStopNotification:)
+												 name:ImageAnimatorDidStopNotification
+											   object:rainbowAnimationView];
 
+}
+
+- (void)animationDidStartNotification:(NSNotification*)notification {
+	DebugLog(@"");
+    
+}
+
+
+- (void)animationDidStopNotification:(NSNotification*)notification {
+	DebugLog(@"");
+
+    [rainbowAnimationView removeFromSuperview];
+    rainbowAnimationView = nil;
+    
+    [rainBowBtnLayer removeFromSuperlayer];
+    rainBowBtnLayer = nil;
 }
 
 - (void) addFlippedPageAnimation {

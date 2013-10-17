@@ -58,14 +58,14 @@ int swipeTxtCnt;
     if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
         [lockWinter setHidden:FALSE];
         [learnMoreBtn setHidden:FALSE];
-        [winterSeasonBtn setAlpha:0.5f];
+        [fallSeasonBtn setAlpha:0.5f];
        // [winterSeasonBtn  setBackgroundImage:[UIImage imageNamed:@"btnLock.png"] forState:UIControlStateNormal];
-        winterSeasonBtn.userInteractionEnabled = NO;
+        fallSeasonBtn.userInteractionEnabled = NO;
     }else{
         [lockWinter setHidden:TRUE];
         [learnMoreBtn setHidden:TRUE];
         //[winterSeasonBtn  setBackgroundImage:[UIImage imageNamed:@"winter_btn.png"] forState:UIControlStateNormal];
-        winterSeasonBtn.userInteractionEnabled = YES;
+        fallSeasonBtn.userInteractionEnabled = YES;
     }
     
     
@@ -147,9 +147,7 @@ int swipeTxtCnt;
     StampViewController *stampViewController = nil;
     
     if (btn.tag == TAG_WINTER_BTN) {
-         if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
-             return;
-         }
+
         
 #ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
@@ -187,7 +185,9 @@ int swipeTxtCnt;
         [self.navigationController pushViewController:stampViewController animated:YES];
         
     }else if (btn.tag == TAG_FALL_BTN){
-        
+        if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
+            return;
+        }
 #ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
         [[GAIDictionaryBuilder createEventWithCategory:@"Game Scene"

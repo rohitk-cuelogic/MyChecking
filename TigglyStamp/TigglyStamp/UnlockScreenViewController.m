@@ -54,6 +54,33 @@
 
 #pragma mark -
 #pragma mark =======================================
+#pragma mark Memory Management
+#pragma mark =======================================
+
+-(void) nullifyAllData{
+    DebugLog(@"");
+    
+    if(promptsArray != nil) {
+        [promptsArray removeAllObjects];
+        promptsArray = nil;
+    }
+    
+    if(promptTimer != nil) {
+        promptTimer = nil;
+    }
+    
+    if(homeViewController != nil) {
+        homeViewController = nil;
+    }
+    
+    if(touchView != nil) {
+        touchView = nil;
+    }
+    
+}
+
+#pragma mark -
+#pragma mark =======================================
 #pragma mark View Lifecycle
 #pragma mark =======================================
 
@@ -330,8 +357,11 @@
         }else if (screenFrom == kScreenEntryFromIntroView){
             TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
             [self.navigationController pushViewController:homeView animated:YES];
+            [self nullifyAllData];
         }else if (screenFrom == kScreenEntryFromSettingView){
             [self.navigationController popToViewController:homeViewController animated:YES];
+            homeViewController = nil;
+            [self nullifyAllData];
         }
 
     });
@@ -361,6 +391,7 @@
     DebugLog(@"");
     
     [self.navigationController popViewControllerAnimated:YES];
+    [self nullifyAllData];
 }
 
 

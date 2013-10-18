@@ -35,28 +35,45 @@
 @synthesize gameTypeView;
 @synthesize btnGoLanguage;
 
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Init
+#pragma mark =======================================
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        DebugLog(@"");
     }
     return self;
 }
 
-- (BOOL)prefersStatusBarHidden {
-    return YES;
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Memory
+#pragma mark =======================================
+
+- (void)didReceiveMemoryWarning{
+    DebugLog(@"");
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark View Lifecycle
+#pragma mark =======================================
 
 - (void)viewDidLoad {
     DebugLog(@"");
     [super viewDidLoad];
     
+    //Disable swiping of UINavigationController in ios7
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
     
-    [[TigglyStampUtils sharedInstance] isItemCountBelowTheLimit];
-    
+   //Hide status bar
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         // iOS 7
         [self prefersStatusBarHidden];
@@ -66,6 +83,8 @@
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
     
+    self.navigationController.navigationBar.hidden = YES;
+    
     self.gameTypeView.frame = CGRectMake(1024, 0, 1024, 768);
     
     isLanguageScreenDisplayed = NO;
@@ -74,8 +93,6 @@
     [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:SAVE_ART];
     [[NSUserDefaults standardUserDefaults] setValue:@"yes" forKey:MUSIC];
     
-    self.navigationController.navigationBar.hidden = YES;
-
     bkgImageViewlang.alpha = 0.0;
     bkgImageView.alpha = 0.0;
     CALayer * logo = [CALayer layer];
@@ -130,8 +147,38 @@
     [tblView selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionNone];
 }
 
+
+-(void) viewWillAppear:(BOOL)animated {
+    DebugLog(@"");
+    
+}
+
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+}
+-(BOOL)shouldAutorotate{
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Animation Delegates
+#pragma mark =======================================
+
+
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
-    // Language selection shows only onces when app launch first time
+    DebugLog(@"");
+    
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]){
 #ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
@@ -180,23 +227,13 @@
         
         TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];
         [self.navigationController pushViewController:homeViewController animated:NO];
-//        if([self respondsToSelector:@selector(presentViewController:animated:completion:)]){
-//            [self presentViewController:homeViewController animated:YES completion:nil];
-//            self.modalPresentationStyle = UIModal
-//        }else{
-//            [self presentModalViewController:homeViewController animated:YES];
-//        }
     }
-    
-
-    
 }
 
--(void) viewWillAppear:(BOOL)animated {
-    DebugLog(@"");
-
-}
-
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Helpers
+#pragma mark =======================================
 
 - (void) displayLanguageSelectionView {
     DebugLog(@"");
@@ -214,46 +251,28 @@
 - (void)swipedScreen:(UISwipeGestureRecognizer*)gesture {
     DebugLog(@"");
     if(isLanguageScreenDisplayed) {
-//        [UIView transitionFromView:self.languageSubView  toView:self.gameTypeView duration:1.0 options: UIViewAnimationOptionTransitionFlipFromRight
-//                        completion: ^(BOOL inFinished) {
-//                            isLanguageScreenDisplayed = NO;
-//                            [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
-////                            [self.languageView removeFromSuperview];
-//                        }];
+
         [self.view bringSubviewToFront:self.gameTypeView];
         [UIView animateWithDuration:0.4 animations:^{
             self.gameTypeView.frame = CGRectMake(0, 0, 1024, 768);
         } completion:^(BOOL finished) {
-            isLanguageScreenDisplayed = NO;
-//            [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
+             isLanguageScreenDisplayed = NO;
              [[TigglyStampUtils sharedInstance] setCurrentLanguage: [[TigglyStampUtils sharedInstance] getCurrentLanguage]];
-//            [self.languageView removeFromSuperview];
         }];
     }
 }
 
-- (void)didReceiveMemoryWarning{
-    DebugLog(@"");
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
-}
--(BOOL)shouldAutorotate{
-    return YES;
-}
+#pragma mark -
+#pragma mark =======================================
+#pragma mark IBAction
+#pragma mark =======================================
 
--(NSUInteger)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskLandscape;
-}
 
 -(IBAction) onButtonTouched:(id)sender{
-
- [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
+    DebugLog(@"");
+    [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
     
     UIButton *btn = (UIButton *) sender;
-
     
     if (btn.tag == TAG_BTN_WITHSHAPE) {     
         if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
@@ -270,19 +289,18 @@
          [self.navigationController pushViewController:homeViewController animated:YES];
     }
     
-   
-
+    //Clear array for memory mgmt
+    [arrLanguage removeAllObjects];
+    arrLanguage = nil;
 }
 
--(IBAction)actionGoLanguage {
+-(IBAction)actionGoBackToLanguage {
     DebugLog(@"");
-    //    [self displayLanguageSelectionView];
     
     [UIView animateWithDuration:0.3 animations:^{
         self.gameTypeView.frame = CGRectMake(1024, 0, 1024, 768);
     } completion:^(BOOL finished) {
         isLanguageScreenDisplayed = YES;
-        //self.gameTypeView.frame = CGRectMake(1024, 0, 1024, 768);
     }];
     
 }
@@ -294,55 +312,11 @@
         self.gameTypeView.frame = CGRectMake(0, 0, 1024, 768);
     } completion:^(BOOL finished) {        
         isLanguageScreenDisplayed = NO;
-//         [self.languageView removeFromSuperview];
         [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
-        
-//        [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
        
     }];
 
          [[TigglyStampUtils sharedInstance] setCurrentLanguage:lblLunguage.text];
-       // [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
-        
-}
-
--(IBAction)languageButtonClicked:(id)sender
-{
-    // Shows the drop down menu for language
-    [self popOverUIPicker:sender];
-}
-
-#pragma mark- PickerView delegate
--(void) popOverUIPicker:(id)sender
-{
-    UIViewController* popoverContent = [[UIViewController alloc] init]; //ViewController
-    
-    UIView *popoverView = [[UIView alloc] init]; //view
-    popoverView.backgroundColor = [UIColor clearColor];
-
-    popoverContent.view = popoverView;
-    
-    UIToolbar *toolbar = [[UIToolbar alloc] init];
-    toolbar.barStyle = UIBarStyleBlack;
-    toolbar.frame = CGRectMake(0.0, 0.0, 320.0, 44.0);
-    
-    // set toolbar title
-    UILabel *lbl=[[UILabel alloc]initWithFrame:CGRectMake(5,7,310,30)];
-    [lbl setBackgroundColor:[UIColor clearColor]];
-    [lbl setTextColor:[UIColor whiteColor]];
-    [lbl setTextAlignment:UITextAlignmentCenter];
-    [lbl setFont:[UIFont boldSystemFontOfSize:18.0f]];
-    [lbl setText:@"Language"];
-    
-    //Set the toolbar to fit the width of the app.
-    [toolbar addSubview:lbl];
-    [popoverContent.view addSubview:toolbar];
-    
-    popoverController = [[UIPopoverController alloc] initWithContentViewController:popoverContent] ;
-    popoverController.popoverContentSize = CGSizeMake(320, 264);
-    //present the popover view
-    UIButton* senderButton = (UIButton*)sender;
-    [popoverController presentPopoverFromRect:senderButton.frame inView:self.languageSubView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
 -(NSString*) languageSelectedStringForKey:(NSString*) key withSelectedLanguage:(NSString*)selectedLanguage{
@@ -366,20 +340,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     DebugLog(@"");
-    
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     DebugLog(@"");
-    
     return [self.arrLanguage count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     return 60.0f;
-    
 }
 
 
@@ -401,9 +371,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     DebugLog(@"");
-    
-//    lblLunguage.text = [self.arrLanguage objectAtIndex:indexPath.row];
-    
+ 
 #ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Language"
@@ -417,16 +385,12 @@
 #endif
 
     
-    
     [self.view bringSubviewToFront:self.gameTypeView];
     [UIView animateWithDuration:0.4 animations:^{
         self.gameTypeView.frame = CGRectMake(0, 0, 1024, 768);
     } completion:^(BOOL finished) {
         isLanguageScreenDisplayed = NO;
-        //         [self.languageView removeFromSuperview];
         [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
-        
-        //        [[NSUserDefaults standardUserDefaults] setValue:lblLunguage.text forKey:LANGUAGE_SELECTED];
         
     }];
     

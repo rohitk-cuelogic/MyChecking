@@ -61,13 +61,32 @@ UIActivityIndicatorView *activityIndicator;
 #pragma mark Init
 #pragma mark =======================================
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withHomeView:(TSHomeViewController *) homeView
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withHomeView:(TSHomeViewController *) homeView{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        DebugLog(@"");
         homeViewController = homeView;
     }
     return self;
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Memory Management
+#pragma mark =======================================
+
+- (void)didReceiveMemoryWarning {
+    DebugLog(@"");
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void) nullifyAllData{
+    DebugLog(@"");
+    
+    viewForWeb = nil;
+    webView = nil;
+    settingView = nil;
 }
 
 #pragma mark -
@@ -168,15 +187,11 @@ UIActivityIndicatorView *activityIndicator;
     
 }
 
-- (void)didReceiveMemoryWarning {
-    DebugLog(@"");
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
+
 -(BOOL)shouldAutorotate{
     return YES;
 }
@@ -192,27 +207,6 @@ UIActivityIndicatorView *activityIndicator;
 
 -(void) launchSettingScreen {
     DebugLog(@"");
-//    SettingsViewController *settingsView = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
-//    settingsView.parentScreen = self;
-//    settingsView.modalPresentationStyle = UIModalPresentationPageSheet;
-//    
-//    if([self respondsToSelector:@selector(presentModalViewController:animated:)])
-//        [self presentModalViewController:settingsView animated:YES];
-//    else
-//        [self presentViewController:settingsView animated:YES completion:nil];
-//    
-//    [settingsView.view.superview setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
-//    int height;
-//    if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes])
-//        height = 390;
-//    else
-//        height = 450;
-//    
-//    [settingsView.view.superview setFrame:CGRectMake(512-400, 384-(height/2), 800, height)]; //(128, 177, 768, 414)
-//    settingsView.view.superview.layer.cornerRadius = 25.0f;
-//    settingsView.view.superview.layer.masksToBounds = YES;
-    
-//    [self disableAllButtons];
     
     int height;
     if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes])
@@ -318,8 +312,9 @@ UIActivityIndicatorView *activityIndicator;
     
     UIButton *btn = sender;
     if ([btn tag] == TAG_HOME_BTN) {
-//        TSHomeViewController *tSHomeViewController = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:Nil];
         [self.navigationController popViewControllerAnimated:YES];
+        homeViewController = nil;
+        [self nullifyAllData];
     }
     if ([btn tag] == TAG_SUBSCRIBE_BTN) {
         
@@ -426,6 +421,7 @@ UIActivityIndicatorView *activityIndicator;
         }
     }
     if([btn tag] == TAG_TIGGLY_NEWS_BTN){
+        
 #ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
         [[GAIDictionaryBuilder createEventWithCategory:@"Button Click"
@@ -494,6 +490,7 @@ UIActivityIndicatorView *activityIndicator;
 }
 
 -(void)setInfoForLetterTabWebView {
+    DebugLog(@"");
     tabTitleIMGVIEW.image = [UIImage imageNamed:@"tab_letter.png"];
     
     NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"tiggly" ofType:@"html" inDirectory:nil];
@@ -505,6 +502,7 @@ UIActivityIndicatorView *activityIndicator;
 }
 
 -(void)setInfoForPlayTabWebView {
+    DebugLog(@"");
     tabTitleIMGVIEW.image = [UIImage imageNamed:@"tab_play.png"];
     
     NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"play" ofType:@"html" inDirectory:nil];
@@ -514,7 +512,10 @@ UIActivityIndicatorView *activityIndicator;
     [self.webViewTab loadHTMLString:htmlString baseURL:[[NSBundle mainBundle] bundleURL]];
     
 }
+
+
 -(void)setInfoForTipTabWebView {
+    DebugLog(@"");
     tabTitleIMGVIEW.image = [UIImage imageNamed:@"tab_learning.png"];
     
     NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"learning" ofType:@"html" inDirectory:nil];
@@ -524,6 +525,7 @@ UIActivityIndicatorView *activityIndicator;
     [self.webViewTab loadHTMLString:htmlString baseURL:[[NSBundle mainBundle] bundleURL]];
     
 }
+
 
 -(void)setInfoForPhilosophyTabWebView {
     DebugLog(@"");
@@ -537,8 +539,10 @@ UIActivityIndicatorView *activityIndicator;
     
 }
 
+
 -(void) launchTigglyNews {
     DebugLog(@"");
+    
 #ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Parent Control"
@@ -567,6 +571,7 @@ UIActivityIndicatorView *activityIndicator;
                          
                      }];
 }
+
 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
     DebugLog(@"");
@@ -684,7 +689,10 @@ UIActivityIndicatorView *activityIndicator;
 //    Rockwell-BoldItalic
 
 }
+
+
 -(void)setInfoForPlayTab {
+    DebugLog(@"");
     tabHeading1TEXT.font = [UIFont fontWithName:APP_FONT size:14];
     tabHeading2TEXT.font = [UIFont fontWithName:APP_FONT size:14];
     tabHeading3TEXT.font = [UIFont fontWithName:APP_FONT size:14];
@@ -738,7 +746,10 @@ UIActivityIndicatorView *activityIndicator;
     tabHeading3TEXT.hidden = NO;
 
 }
+
+
 -(void)setInfoForTipTab {
+    DebugLog(@"");
     tabHeading1TEXT.font = [UIFont fontWithName:APP_FONT size:14];
     tabHeading2TEXT.font = [UIFont fontWithName:APP_FONT size:14];
     tabHeading3TEXT.font = [UIFont fontWithName:APP_FONT size:14];
@@ -803,165 +814,13 @@ UIActivityIndicatorView *activityIndicator;
     
 }
 
+#pragma mark -
+#pragma mark =======================================
+#pragma mark TextField Delegate
+#pragma mark =======================================
 
-//#pragma mark- Facebook Integration
-//-(void)signInWithFacebook:(id)sender
-//{
-//    [self facebookLogout];
-//    [self facebookAuthentication];
-//}
-//
-//- (void) facebookLogout
-//{
-//    [FBSession.activeSession closeAndClearTokenInformation];
-//    [FBSession.activeSession close];
-//    [FBSession setActiveSession:nil];
-//    NSHTTPCookie *cookie;
-//    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-//    for (cookie in [storage cookies])
-//    {
-//        NSString *domainName = [cookie domain];
-//        NSRange domainRange = [domainName rangeOfString:@"facebook"];
-//        if(domainRange.length > 0)
-//        {
-//            [storage deleteCookie:cookie];
-//        }
-//    }
-//    //    activeSession = [[FBSession alloc] initWithPermissions:permissions];
-//}
-//
-//
-//
-//- (void) facebookAuthentication
-//{
-//    // FBSample logic
-//    // Check to see whether we have already opened a session.
-//    
-//    userFieldsRequired = @"id,name,first_name, last_name, gender,birthday,email,username, work";
-//    permissions = [[NSArray alloc] initWithObjects:
-//                   @"email" , @"user_about_me",@"user_birthday", @"user_work_history",@"user_interests", @"user_activities",@"user_status",@"user_photos",@"user_likes",
-//                   nil];
-//    
-//    if (!FBSession.activeSession.isOpen)
-//    {
-//        activeSession = [[FBSession alloc] initWithPermissions:permissions];
-//        
-//        [activeSession openWithBehavior:FBSessionLoginBehaviorForcingWebView
-//                      completionHandler:^(FBSession *session,
-//                                          FBSessionState status,
-//                                          NSError *error) {
-//                          // if login fails for any reason, we alert
-//                          if (error) {
-//
-////                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tiggly" message:@"Do you want to try again?" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-////                              
-//                              // if otherwise we check to see if the session is open, an alternative to
-//                              // to the FB_ISSESSIONOPENWITHSTATE helper-macro would be to check the isOpen
-//                              // property of the session object; the macros are useful, however, for more
-//                              // detailed state checking for FBSession objects
-//                          } else if (FB_ISSESSIONOPENWITHSTATE(session.state)) {
-//                              // send our requests if we successfully logged in
-//                              [self sendRequests:[NSString stringWithFormat:@"me?access_token=%@",activeSession.accessToken] params:[NSDictionary dictionaryWithObject:userFieldsRequired forKey:@"fields"]];
-//                          }
-//                          else
-//                          {
-//                              [activeSession closeAndClearTokenInformation];
-//                          }
-//                      }];
-//        
-//    }else
-//    {
-//        [self sendRequests:[NSString stringWithFormat:@"me?access_token=%@",activeSession.accessToken] params:[NSDictionary dictionaryWithObject:userFieldsRequired forKey:@"fields"]];
-//    }
-//    
-//}
-//
-//-(void) sendRequests:(NSString *) fbid
-//{
-//    [self sendRequests:fbid params:NULL];
-//}
-//
-//-(void) sendRequests:(NSString *) fbid params:(NSDictionary *) params
-//{
-//    // create the connection object
-//    FBRequestConnection *newConnection = [[FBRequestConnection alloc] init];
-//    
-//    // create a handler block to handle the results of the request for fbid's profile
-//    FBRequestHandler handler =
-//    ^(FBRequestConnection *connection, id result, NSError *error) {
-//        // output the results of the request
-//        [self requestCompleted:connection forFbID:fbid result:result error:error];
-//    };
-//    
-//    // create the request object, using the fbid as the graph path
-//    // as an alternative the request* static methods of the FBRequest class could
-//    // be used to fetch common requests, such as /me and /me/friends
-//    FBRequest *request = NULL;
-//    if(params != NULL)
-//    {
-//        request = [[FBRequest alloc] initWithSession:activeSession
-//                                           graphPath:fbid parameters:params HTTPMethod:@"GET"] ;
-//    }
-//    else
-//    {
-//        request = [[FBRequest alloc] initWithSession:activeSession
-//                                           graphPath:fbid];
-//    }
-//    
-//    // add the request to the connection object, if more than one request is added
-//    // the connection object will compose the requests as a batch request; whether or
-//    // not the request is a batch or a singleton, the handler behavior is the same,
-//    // allowing the application to be dynamic in regards to whether a single or multiple
-//    // requests are occuring
-//    [newConnection addRequest:request completionHandler:handler];
-//    
-//    
-//    // if there's an outstanding connection, just cancel
-//    //    [self.requestConnection cancel];
-//    //
-//    //    // keep track of our connection, and start it
-//    //    self.requestConnection = newConnection;
-//    [newConnection start];
-//}
-//
-//
-//// FBSample logic
-//// Report any results.  Invoked once for each request we make.
-//- (void)requestCompleted:(FBRequestConnection *)connection
-//                 forFbID:fbID
-//                  result:(id)result
-//                   error:(NSError *)error
-//{
-//    
-//}
-//
-//#pragma mark- Twitter Integration
-//-(void)signInWithTwitter:(id)sender
-//{
-//    [[FHSTwitterEngine sharedEngine]permanentlySetConsumerKey:kOAuthConsumerKey andSecret:kOAuthConsumerSecret];
-//    [[FHSTwitterEngine sharedEngine]setDelegate:self];
-//    
-//    [[FHSTwitterEngine sharedEngine]showOAuthLoginControllerFromViewController:self withCompletion:^(BOOL success) {
-//        NSLog(success?@"L0L success":@"O noes!!! Loggen faylur!!!");
-//        NSDictionary *twitterDict =  [[FHSTwitterEngine sharedEngine] getTwitterAccountDetails:[[FHSTwitterEngine sharedEngine]loggedInUsername]];
-//        NSLog(@"USER DICT _ %@",twitterDict);
-//    }];
-//}
-//
-//#pragma mark- Pinterest Integration
-//-(void)signInWithPinterest:(id)sender
-//{
-//    _pinterest = [[Pinterest alloc] initWithClientId:@"1432658"];
-//    
-//    [_pinterest createPinWithImageURL:[NSURL URLWithString:@"http://placekitten.com/500/400"]
-//                            sourceURL:[NSURL URLWithString:@"http://placekitten.com"]
-//                          description:@"Pinning from Tiggly Application"];
-//
-//}
-
-#pragma mark- UITextField Delegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    DebugLog(@"");
     if (textField == nameTextField) {
         [ageTextField becomeFirstResponder];
     }else{
@@ -970,9 +829,12 @@ UIActivityIndicatorView *activityIndicator;
     return YES;
 }
 
-#pragma mark - Data Validation
-- (BOOL)isValidEmailAddress:(NSString*)emailAddress
-{
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Email Validation
+#pragma mark =======================================
+
+- (BOOL)isValidEmailAddress:(NSString*)emailAddress{
 	if (emailAddress.length > 160)
 		return NO;
     
@@ -981,13 +843,11 @@ UIActivityIndicatorView *activityIndicator;
 	return [predicate evaluateWithObject:emailAddress];
 }
 
-- (void)showValidationError:(NSString*)message
-{
+- (void)showValidationError:(NSString*)message {
 	[self showValidationError:message title:NSLocalizedString(@"Tiggly", @"")];
 }
 
-- (void)showValidationError:(NSString*)message title:(NSString*)theTitle
-{
+- (void)showValidationError:(NSString*)message title:(NSString*)theTitle {
 	UIAlertView *alertView = [[UIAlertView alloc]
                               initWithTitle:theTitle
                               message:message
@@ -998,8 +858,8 @@ UIActivityIndicatorView *activityIndicator;
 	[alertView show];
 }
 
-- (BOOL)requiredField:(NSString*)fieldValue named:(NSString*)fieldName
-{
+- (BOOL)requiredField:(NSString*)fieldValue named:(NSString*)fieldName {
+    DebugLog(@"");
 	if (fieldValue.length == 0)
 	{
 		[self showValidationError:[NSString stringWithFormat:NSLocalizedString(@"Please enter %@", nil), fieldName]];
@@ -1008,8 +868,8 @@ UIActivityIndicatorView *activityIndicator;
 	return YES;
 }
 
-- (BOOL)validateData
-{
+- (BOOL)validateData {
+    DebugLog(@"");
 	if (![self requiredField:nameTextField.text named:NSLocalizedString(@"child's name", nil)])
 		return NO;
     if (![self requiredField:ageTextField.text named:NSLocalizedString(@"child's age", nil)])
@@ -1023,16 +883,13 @@ UIActivityIndicatorView *activityIndicator;
 #pragma mark Webview Delegates
 #pragma mark =======================================
 
--(void)webViewDidStartLoad:(UIWebView *)webView
-{
+-(void)webViewDidStartLoad:(UIWebView *)webView{
     [activityIndicator startAnimating];
 }
--(void)webViewDidFinishLoad:(UIWebView *)webView
-{
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
     [activityIndicator stopAnimating];
 }
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [activityIndicator stopAnimating];
 }
 
@@ -1043,9 +900,7 @@ UIActivityIndicatorView *activityIndicator;
 
 -(void) settingViewOnCloseButtonClick:(SettingsView *)sView {
     DebugLog(@"");
-  
-//    [self enableAllButtons];
-    
+
     [clearView removeFromSuperview];
     
     int height;
@@ -1064,17 +919,19 @@ UIActivityIndicatorView *activityIndicator;
 
 -(void) settingViewOnShapeSwitchClick:(SettingsView *) sView{
     DebugLog(@"");
-    
-//     [self enableAllButtons];
+
     [clearView removeFromSuperview];
     
     [self launchUnlockScreen];
 }
 
-#pragma mark- Mail
-- (void)sendMessageTo:(NSString *)reciverEmail withMessagebody:(NSString *)messageBody
-{
-    NSLog(@"Start Sending");
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Automatic Mail
+#pragma mark =======================================
+
+- (void)sendMessageTo:(NSString *)reciverEmail withMessagebody:(NSString *)messageBody{
+    DebugLog(@"");
     SKPSMTPMessage *emailMessage = [[SKPSMTPMessage alloc] init];
     emailMessage.fromEmail = SENDER_EMAIL_ID; //sender email address
     emailMessage.toEmail = reciverEmail;  //receiver email address
@@ -1119,9 +976,14 @@ UIActivityIndicatorView *activityIndicator;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     [alert show];
 }
-#pragma mark - Network Connection
--(void)CheckNetworkConnection
-{
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Network Connection
+#pragma mark =======================================
+
+-(void)CheckNetworkConnection {
+    DebugLog(@"");
     UIAlertView *errorView;
     NetworkStatus internetStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
     
@@ -1180,7 +1042,7 @@ UIActivityIndicatorView *activityIndicator;
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
-	// Notifies users about errors associated with the interface
+	DebugLog(@"");
     [emailidTextField resignFirstResponder];
     
 	switch (result)
@@ -1212,3 +1074,158 @@ UIActivityIndicatorView *activityIndicator;
 
 
 @end
+
+//#pragma mark- Facebook Integration
+//-(void)signInWithFacebook:(id)sender
+//{
+//    [self facebookLogout];
+//    [self facebookAuthentication];
+//}
+//
+//- (void) facebookLogout
+//{
+//    [FBSession.activeSession closeAndClearTokenInformation];
+//    [FBSession.activeSession close];
+//    [FBSession setActiveSession:nil];
+//    NSHTTPCookie *cookie;
+//    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+//    for (cookie in [storage cookies])
+//    {
+//        NSString *domainName = [cookie domain];
+//        NSRange domainRange = [domainName rangeOfString:@"facebook"];
+//        if(domainRange.length > 0)
+//        {
+//            [storage deleteCookie:cookie];
+//        }
+//    }
+//    //    activeSession = [[FBSession alloc] initWithPermissions:permissions];
+//}
+//
+//
+//
+//- (void) facebookAuthentication
+//{
+//    // FBSample logic
+//    // Check to see whether we have already opened a session.
+//
+//    userFieldsRequired = @"id,name,first_name, last_name, gender,birthday,email,username, work";
+//    permissions = [[NSArray alloc] initWithObjects:
+//                   @"email" , @"user_about_me",@"user_birthday", @"user_work_history",@"user_interests", @"user_activities",@"user_status",@"user_photos",@"user_likes",
+//                   nil];
+//
+//    if (!FBSession.activeSession.isOpen)
+//    {
+//        activeSession = [[FBSession alloc] initWithPermissions:permissions];
+//
+//        [activeSession openWithBehavior:FBSessionLoginBehaviorForcingWebView
+//                      completionHandler:^(FBSession *session,
+//                                          FBSessionState status,
+//                                          NSError *error) {
+//                          // if login fails for any reason, we alert
+//                          if (error) {
+//
+////                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tiggly" message:@"Do you want to try again?" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+////
+//                              // if otherwise we check to see if the session is open, an alternative to
+//                              // to the FB_ISSESSIONOPENWITHSTATE helper-macro would be to check the isOpen
+//                              // property of the session object; the macros are useful, however, for more
+//                              // detailed state checking for FBSession objects
+//                          } else if (FB_ISSESSIONOPENWITHSTATE(session.state)) {
+//                              // send our requests if we successfully logged in
+//                              [self sendRequests:[NSString stringWithFormat:@"me?access_token=%@",activeSession.accessToken] params:[NSDictionary dictionaryWithObject:userFieldsRequired forKey:@"fields"]];
+//                          }
+//                          else
+//                          {
+//                              [activeSession closeAndClearTokenInformation];
+//                          }
+//                      }];
+//
+//    }else
+//    {
+//        [self sendRequests:[NSString stringWithFormat:@"me?access_token=%@",activeSession.accessToken] params:[NSDictionary dictionaryWithObject:userFieldsRequired forKey:@"fields"]];
+//    }
+//
+//}
+//
+//-(void) sendRequests:(NSString *) fbid
+//{
+//    [self sendRequests:fbid params:NULL];
+//}
+//
+//-(void) sendRequests:(NSString *) fbid params:(NSDictionary *) params
+//{
+//    // create the connection object
+//    FBRequestConnection *newConnection = [[FBRequestConnection alloc] init];
+//
+//    // create a handler block to handle the results of the request for fbid's profile
+//    FBRequestHandler handler =
+//    ^(FBRequestConnection *connection, id result, NSError *error) {
+//        // output the results of the request
+//        [self requestCompleted:connection forFbID:fbid result:result error:error];
+//    };
+//
+//    // create the request object, using the fbid as the graph path
+//    // as an alternative the request* static methods of the FBRequest class could
+//    // be used to fetch common requests, such as /me and /me/friends
+//    FBRequest *request = NULL;
+//    if(params != NULL)
+//    {
+//        request = [[FBRequest alloc] initWithSession:activeSession
+//                                           graphPath:fbid parameters:params HTTPMethod:@"GET"] ;
+//    }
+//    else
+//    {
+//        request = [[FBRequest alloc] initWithSession:activeSession
+//                                           graphPath:fbid];
+//    }
+//
+//    // add the request to the connection object, if more than one request is added
+//    // the connection object will compose the requests as a batch request; whether or
+//    // not the request is a batch or a singleton, the handler behavior is the same,
+//    // allowing the application to be dynamic in regards to whether a single or multiple
+//    // requests are occuring
+//    [newConnection addRequest:request completionHandler:handler];
+//
+//
+//    // if there's an outstanding connection, just cancel
+//    //    [self.requestConnection cancel];
+//    //
+//    //    // keep track of our connection, and start it
+//    //    self.requestConnection = newConnection;
+//    [newConnection start];
+//}
+//
+//
+//// FBSample logic
+//// Report any results.  Invoked once for each request we make.
+//- (void)requestCompleted:(FBRequestConnection *)connection
+//                 forFbID:fbID
+//                  result:(id)result
+//                   error:(NSError *)error
+//{
+//
+//}
+//
+//#pragma mark- Twitter Integration
+//-(void)signInWithTwitter:(id)sender
+//{
+//    [[FHSTwitterEngine sharedEngine]permanentlySetConsumerKey:kOAuthConsumerKey andSecret:kOAuthConsumerSecret];
+//    [[FHSTwitterEngine sharedEngine]setDelegate:self];
+//
+//    [[FHSTwitterEngine sharedEngine]showOAuthLoginControllerFromViewController:self withCompletion:^(BOOL success) {
+//        NSLog(success?@"L0L success":@"O noes!!! Loggen faylur!!!");
+//        NSDictionary *twitterDict =  [[FHSTwitterEngine sharedEngine] getTwitterAccountDetails:[[FHSTwitterEngine sharedEngine]loggedInUsername]];
+//        NSLog(@"USER DICT _ %@",twitterDict);
+//    }];
+//}
+//
+//#pragma mark- Pinterest Integration
+//-(void)signInWithPinterest:(id)sender
+//{
+//    _pinterest = [[Pinterest alloc] initWithClientId:@"1432658"];
+//
+//    [_pinterest createPinWithImageURL:[NSURL URLWithString:@"http://placekitten.com/500/400"]
+//                            sourceURL:[NSURL URLWithString:@"http://placekitten.com"]
+//                          description:@"Pinning from Tiggly Application"];
+//
+//}

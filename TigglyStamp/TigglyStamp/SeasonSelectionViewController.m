@@ -128,6 +128,7 @@ int swipeTxtCnt;
 
 -(IBAction)actionHomeButtonClicked:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
+    homeViewController = nil;
 }
 //============================================================================================
 

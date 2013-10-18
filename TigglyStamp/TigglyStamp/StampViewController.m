@@ -98,6 +98,69 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     [super didReceiveMemoryWarning];
 }
 
+-(void) nullifyAllData{
+    DebugLog(@"");
+    
+    if(winterSceneObject != nil) {
+        winterSceneObject = nil;
+    }
+    
+    if(fallSceneObject != nil) {
+        fallSceneObject = nil;
+    }
+    
+    if(introView != nil) {
+        introView = nil;
+    }
+    
+    if(screenCapture != nil) {
+        screenCapture = nil;
+    }
+    
+    if(homeViewController != nil) {
+        homeViewController = nil;
+    }
+    
+    if(rainbowAnimationView != nil) {
+        rainbowAnimationView = nil;
+    }
+    
+    if(mplayer != nil) {
+        mplayer = nil;
+    }
+    
+    if(moviePlayer != nil) {
+        moviePlayer = nil;
+    }
+    
+    if(continuityTimer != nil) {
+        continuityTimer = nil;
+    }
+    
+    if(videoPlayTimer != nil) {
+        videoPlayTimer = nil;
+    }
+    
+    if(fruitObjectArray != nil) {
+        [fruitObjectArray removeAllObjects];
+        fruitObjectArray = nil;
+    }
+    
+    if(pointComparison != nil) {
+        pointComparison = nil;
+    }
+    
+    if(multiTouchForFruitObject != nil) {
+        [multiTouchForFruitObject removeAllObjects];
+        multiTouchForFruitObject = nil;
+    }
+    
+    if(multiTouchForTouchView != nil) {
+        [multiTouchForTouchView removeAllObjects];
+        multiTouchForTouchView = nil;
+    }
+    
+}
 
 #pragma mark-
 #pragma mark======================
@@ -822,12 +885,12 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 //    [curlButton setHidden:YES];
     
     UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
-    [[UIColor whiteColor] set];
+    [[UIColor clearColor] set];
     UIRectFill(CGRectMake(0.0, 0.0,1024,768));
     [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
     
     NSDate* currentDate = [NSDate date];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
@@ -851,7 +914,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     [cameraButton setHidden:NO];
     [videoButton setHidden:NO];
     [garbageCan setHidden:NO];
-//    [curlButton setHidden:NO];
+
     
 #ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
@@ -913,6 +976,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     [[TDSoundManager sharedManager] stopSound];
     [[TDSoundManager sharedManager] stopMusic];
     [self.navigationController popToViewController:homeViewController animated:YES];
+    homeViewController = nil;
+    [self nullifyAllData];
 }
 
 
@@ -2085,6 +2150,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     [self.navigationController popViewControllerAnimated:YES];
     [cImageView removeFromSuperview];
+    [self nullifyAllData];
 }
 
 
@@ -2111,8 +2177,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     [cImageView removeFromSuperview];
     
-     [self.navigationController popToViewController:homeViewController animated:YES];
+    [self.navigationController popToViewController:homeViewController animated:YES];
+    homeViewController = nil;
     
+    [self nullifyAllData];
 }
 
 -(void) onPlayButtonClicked:(CapturedImageView *)cImageView {

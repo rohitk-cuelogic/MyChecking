@@ -22,32 +22,26 @@
 #endif
 
 
-@interface IntroScreenViewController:KTViewController<UIPopoverControllerDelegate>
-{
-//    IBOutlet UIButton *winterScene;
-//    IBOutlet UIButton *springScene;
-//    IBOutlet UIButton *summerScene;
-//    IBOutlet UIButton *fallScene;
-    UIPickerView *pickerView;
-    UIPopoverController *popoverController;
+@interface IntroScreenViewController:KTViewController<UIPopoverControllerDelegate> {
+
     BOOL isLanguageScreenDisplayed;
+    
 }
-@property (nonatomic,strong) IBOutlet UIButton *btnGoLanguage;
-@property (nonatomic,strong) IBOutlet UIButton *btnWithShape;
-@property (nonatomic,strong) IBOutlet UIButton *btnWithoutShape;
-@property (nonatomic, assign) BOOL isShowLogo;
-@property (nonatomic,strong) IBOutlet UIView *languageView;
-@property (nonatomic,strong) IBOutlet UIView *languageSubView;
-@property (nonatomic,retain) NSMutableArray *arrLanguage;
+@property (nonatomic, strong) IBOutlet UIButton *btnGoLanguage;
+@property (nonatomic, strong) IBOutlet UIButton *btnWithShape;
+@property (nonatomic, strong) IBOutlet UIButton *btnWithoutShape;
+@property (nonatomic, strong) IBOutlet UIView *languageView;
+@property (nonatomic, strong) IBOutlet UIView *languageSubView;
 @property (nonatomic, strong) IBOutlet UILabel *lblLunguage;
 @property (nonatomic, strong) IBOutlet UILabel *lblLunguageTest;
 @property (nonatomic, strong) IBOutlet UIImageView *bkgImageView;
 @property (nonatomic, strong) IBOutlet UIImageView *bkgImageViewlang;
 @property (nonatomic, strong) IBOutlet UITableView *tblView;
 @property (nonatomic, strong) IBOutlet UIView *gameTypeView;
+@property (nonatomic, readwrite) BOOL isShowLogo;
+@property (nonatomic, strong) NSMutableArray *arrLanguage;
 
 -(IBAction)onButtonTouched:(id)sender;
--(IBAction)languageButtonClicked:(id)sender;
 -(IBAction)closeButtonClicked:(id)sender;
--(IBAction)actionGoLanguage;
+-(IBAction)actionGoBackToLanguage;
 @end

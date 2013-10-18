@@ -39,6 +39,16 @@
     TSHomeViewController *homeViewController;
     
     BOOL isVideoPlaying;
+    
+    UISwipeGestureRecognizer *emSwipeRecognizer;
+    UIImage *imageToBeEdit;
+    NSString * editImgName;
+    UIView *upperPanel;
+    BOOL readyToSave, readyToDelete, readyToZoom;
+    NSMutableArray *savedImgArry;
+    NSMutableArray *swipeTextArray;
+    int swipeTextCnt;
+
 }
 
 

@@ -394,7 +394,7 @@ static TigglyStampUtils *sharedInstance = nil;
     NSString *fileName=[filePath stringByReplacingOccurrencesOfString:@".mov" withString:@"_thumb.png" ];
     NSString *path = [[TigglyStampUtils sharedInstance]getDocumentDirPath];
     path = [path stringByAppendingPathComponent:fileName];
-    UIImage *thumb = [UIImage imageWithContentsOfFile:path];
+    UIImage *thumb = [UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
     
     return thumb;
 }

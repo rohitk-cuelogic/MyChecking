@@ -88,8 +88,8 @@
             UIGraphicsBeginImageContext(RECT_ACTUAL_THUMBNAIL_IMAGE_FRAME.size);
             [image drawInRect:RECT_ACTUAL_THUMBNAIL_IMAGE_FRAME];
             UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
             imgView.image = thumbnailImage;
+            UIGraphicsEndImageContext();
            // actulaImage = image;
             
             NSString *path = [imageName stringByDeletingPathExtension];
@@ -105,7 +105,10 @@
 
         }else if([[[imageName lastPathComponent] pathExtension] isEqualToString:@"mov"]){
 
-            UIImage *thumb = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[imageName lastPathComponent]];
+            NSString *fileName=[[imageName lastPathComponent] stringByReplacingOccurrencesOfString:@".mov" withString:@"_thumb.png" ];
+            NSString *path2 = [[TigglyStampUtils sharedInstance]getDocumentDirPath];
+            path2 = [path2 stringByAppendingPathComponent:fileName];
+            UIImage *thumb = [UIImage imageWithData:[NSData dataWithContentsOfFile:path2]];
             imgView.image = thumb;
                  
             NSString *path = [imageName stringByDeletingPathExtension];
@@ -121,6 +124,11 @@
             
 
         }
+}
+
+-(void) getMovieImage{
+    DebugLog(@"");
+    
 }
 
 -(void) playSlidingSounds{

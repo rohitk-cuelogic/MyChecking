@@ -29,12 +29,12 @@ BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail,readyToLearnM
 NSMutableArray *swipeTxtArray;
 int swipeTxtCnt;
 
-#pragma mark-
-#pragma mark======================
-#pragma mark View Life Cycles
-#pragma mark======================
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Init
+#pragma mark =======================================
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     DebugLog(@"");
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -42,6 +42,38 @@ int swipeTxtCnt;
     }
     return self;
 }
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Memory Management
+#pragma mark =======================================
+
+
+- (void)didReceiveMemoryWarning {
+    DebugLog(@"");
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void) nullifyAllData{
+    DebugLog(@"");
+    
+    if(diskImages != nil) {
+        [diskImages removeAllObjects];
+        diskImages = nil;
+    }
+    
+    if(allThumbnails != nil) {
+        [allThumbnails removeAllObjects];
+        allThumbnails = nil;
+    }
+
+}
+
+#pragma mark-
+#pragma mark======================
+#pragma mark View Life Cycles
+#pragma mark======================
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
@@ -143,11 +175,6 @@ int swipeTxtCnt;
 }
 
 
-- (void)didReceiveMemoryWarning {
-    DebugLog(@"");
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
@@ -222,52 +249,6 @@ int swipeTxtCnt;
 -(void) animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     DebugLog(@"");
  
-}
-
-
-
--(void) addMovingObjects{
-    DebugLog(@"");
-    arrMovingObj = [[NSMutableArray alloc] initWithCapacity:1];
-    NSString *strImgName;
-    CGRect rect;
-    for(int i =0; i<4;i++) {
-        switch (i) {
-            case 0:
-                strImgName = @"circle_shape";
-                rect = CGRectMake(70, 70, 200, 200);
-                break;
-                
-            case 1:
-                strImgName = @"triangle_shape";
-                rect = CGRectMake(800, 250, 200, 200);
-                break;
-                
-            case 2:
-                strImgName = @"square_shape";
-                rect = CGRectMake(512, 90, 200, 200);
-                break;
-                
-            case 3:
-                strImgName = @"star_shape";
-                rect = CGRectMake(200, 300, 200, 200);
-                break;
-                
-            default:
-                break;
-        }
-      
-        MovingView *movingView = [[MovingView alloc] initWithFrame:rect withImageName:strImgName];
-        [self.containerView addSubview:movingView];
-        [arrMovingObj addObject:movingView];
-        
-    }
-        
-}
-
--(void) moveObjects : (NSTimer*)theTimer {
-    DebugLog(@"");
-
 }
 
 #pragma mark-
@@ -370,6 +351,8 @@ int swipeTxtCnt;
         [playBtnTimer invalidate];
         ParentScreenViewController *parentViewCOntroller = [[ParentScreenViewController alloc] initWithNibName:@"ParentScreenViewController" bundle:nil withHomeView:self];
         [self.navigationController pushViewController:parentViewCOntroller animated:YES];
+        [self nullifyAllData];
+        
     }
     
     if(readyToNewsScreen){
@@ -405,6 +388,8 @@ int swipeTxtCnt;
         [playBtnTimer invalidate];
         UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil entryFrom:kScreenEntryFromHomeView withHomeView:self];
          [self.navigationController pushViewController:unlockScreen animated:YES];
+         [self nullifyAllData];
+        
     }
     
     if(readyToDeleteThumbnail) {
@@ -524,12 +509,14 @@ int swipeTxtCnt;
 -(void)playGame:(id)sender{
     DebugLog(@"");
     
- [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
+    [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
     
     [playBtnTimer invalidate];
     
     SeasonSelectionViewController *hmView = [[SeasonSelectionViewController alloc]initWithNibName:@"SeasonSelectionViewController" bundle:nil withHomeView:self];
     [self.navigationController pushViewController:hmView animated:YES];
+    
+    [self nullifyAllData];
 }
 
 -(IBAction)goToParentsScreen:(id)sender{
@@ -689,6 +676,7 @@ int swipeTxtCnt;
     
     TSThumbnailEditController *thumbnailEditor = [[TSThumbnailEditController alloc] initWithNibName:@"TSThumbnailEditController" bundle:nil withImage:thumbnail.actulaImage imageName:iName withHomeView:self];
     [self.navigationController pushViewController:thumbnailEditor animated:YES];
+    [self nullifyAllData];
     
 }
 

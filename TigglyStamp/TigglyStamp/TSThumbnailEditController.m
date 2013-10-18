@@ -17,19 +17,11 @@
 
 @implementation TSThumbnailEditController
 
-UISwipeGestureRecognizer *emSwipeRecognizer;
-UIImage *imageToBeEdit;
-NSString * editImgName;
-UIView *upperPanel;
-BOOL readyToSave, readyToDelete, readyToZoom;
-NSMutableArray *savedImgArry;
-NSMutableArray *swipeTextArray;
-int swipeTextCnt;
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Init
+#pragma mark =======================================
 
-#pragma mark-
-#pragma mark======================
-#pragma mark View Life Cycle
-#pragma mark======================
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withImage:(UIImage *)img imageName:(NSString *)imgName withHomeView:(TSHomeViewController *) homeView{
     DebugLog(@"");
@@ -40,7 +32,7 @@ int swipeTextCnt;
         homeViewController = homeView;
         
         imageToBeEdit = img;
-       
+        
         if([[imgName pathExtension] isEqualToString:@"mov"]) {
             playBtn.hidden = NO;
             NSString *imgPath = [[TigglyStampUtils sharedInstance] getImagePathOfMovieThumbnailWithBorder:[imgName lastPathComponent]];
@@ -79,10 +71,45 @@ int swipeTextCnt;
         [swipeRightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
         [editorImgView addGestureRecognizer:swipeRightGesture];
         
-  
+        
     }
     return self;
 }
+
+
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark memory Management
+#pragma mark =======================================
+
+-(void) nullifyAllData{
+    DebugLog(@"");
+    
+    if(savedImgArry != nil) {
+        [savedImgArry removeAllObjects];
+        savedImgArry = nil;
+    }
+    
+    if(swipeTextArray != nil) {
+        [swipeTextArray removeAllObjects];
+        swipeTextArray = nil;
+    }
+    
+    if(moviePlayer != nil) {
+        moviePlayer = nil;
+    }
+    
+    if(editorImgView != nil) {
+        editorImgView = nil;
+    }
+    
+}
+
+#pragma mark-
+#pragma mark======================
+#pragma mark View Life Cycle
+#pragma mark======================
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
@@ -784,9 +811,11 @@ int swipeTextCnt;
 }
 
 -(IBAction)goToHomeScreen:(id)sender{
+    DebugLog(@"");
     [moviePlayer stop];
-//    TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
-     [self.navigationController popToViewController:homeViewController animated:YES];
+    [self.navigationController popToViewController:homeViewController animated:YES];
+    homeViewController = nil;
+    [self nullifyAllData];
 }
 
 -(IBAction)saveImageToGallary:(id)sender{

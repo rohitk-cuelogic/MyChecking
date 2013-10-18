@@ -19,24 +19,26 @@
     IBOutlet UIScrollView *imgScrollView;
     IBOutlet UILabel *lblForParents;
     IBOutlet UIView *confirmationView;
-     IBOutlet UIImageView *confirmationViewBKG;
+    IBOutlet UIImageView *confirmationViewBKG;
     IBOutlet UITextView *txtView;
     IBOutlet UIButton *notConfirm;
-    NSMutableArray *diskImages;
     IBOutlet UIImageView *bkgImageView;
-    NSMutableArray *arrMovingObj;
     IBOutlet UIView *containerView;
+    
+    NSMutableArray *diskImages;
+    NSMutableArray *allThumbnails;
+    
     NSTimer *playBtnTimer;
     CALayer *bkgLayer;
+    
     BOOL isFirstTimePlay;
     BOOL isThumbnailLongPressed;
-    NSMutableArray *allThumbnails;
 }
 
-@property(nonatomic, strong)UIScrollView *imgScrollView;
-@property(nonatomic, strong)UIImageView *bkgImageView;
-@property (nonatomic, strong) UIView *containerView;
-@property (nonatomic,strong) IBOutlet UIButton *learnMoreBtn;
+@property(nonatomic, strong) UIScrollView *imgScrollView;
+@property(nonatomic, strong) UIImageView *bkgImageView;
+@property(nonatomic, strong) UIView *containerView;
+@property(nonatomic,strong) IBOutlet UIButton *learnMoreBtn;
 
 -(IBAction)playGame:(id)sender;
 -(IBAction)goToParentsScreen:(id)sender;

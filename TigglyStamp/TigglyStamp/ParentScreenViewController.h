@@ -23,12 +23,16 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "TSHomeViewController.h"
 
+
 #ifdef GOOGLE_ANALYTICS_START
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+
 @interface ParentScreenViewController : GAITrackedViewController<UITextFieldDelegate,UIWebViewDelegate, SettingViewProtocol,MFMailComposeViewControllerDelegate,SKPSMTPMessageDelegate>
 #else
+
+
 @interface ParentScreenViewController : UIViewController<UITextFieldDelegate,UIWebViewDelegate, SettingViewProtocol,MFMailComposeViewControllerDelegate,SKPSMTPMessageDelegate>
 #endif
 
@@ -45,11 +49,15 @@
     IBOutlet UIButton *btnTigglyNews;
     
     MBProgressHUD* hud;
-    BOOL            isConnection;
+    BOOL  isConnection;
     
     TSHomeViewController *homeViewController;
 }
-@property (nonatomic) BOOL isConnection;
+
+@property (nonatomic,strong) FBSession *activeSession;
+@property (nonatomic,strong) NSString *userFieldsRequired;
+@property (nonatomic,strong) NSArray *permissions;
+@property (nonatomic, readwrite) BOOL isConnection;
 @property (nonatomic,strong) IBOutlet UIButton *homeBTN;
 @property (nonatomic,strong) IBOutlet UIButton *subscribeBTN;
 @property (nonatomic,strong) IBOutlet UIButton *settingsBTN;
@@ -65,9 +73,6 @@
 @property (nonatomic,strong) IBOutlet UITextField *emailidTextField;
 @property (nonatomic,strong) IBOutlet UITextField *nameTextField;
 @property (nonatomic,strong) IBOutlet UITextField *ageTextField;
-@property (nonatomic, retain) FBSession *activeSession;
-@property (nonatomic, retain) NSString *userFieldsRequired;
-@property (nonatomic, retain) NSArray *permissions;
 @property (nonatomic,strong) IBOutlet UIButton *tabLetterBTN;
 @property (nonatomic,strong) IBOutlet UIButton *tabPlayBTN;
 @property (nonatomic,strong) IBOutlet UIButton *tabLearningTipBTN;
@@ -85,21 +90,16 @@
 @property (nonatomic,strong) IBOutlet UITextView *lettertabBodyTEXT;
 @property (nonatomic,strong) IBOutlet UIButton *lettertabCloseBTN;
 @property (nonatomic,strong) IBOutlet UIView *letterTabView;
-
 @property (nonatomic,strong) IBOutlet UIButton *tabLetterMotarBTN;
 @property (nonatomic,strong) IBOutlet UIButton *tabLetterLanguageBTN;
 @property (nonatomic,strong) IBOutlet UIButton *tabLetterSpatialBTN;
 @property (nonatomic,strong) IBOutlet UIScrollView *tabInforSCROLL;
-
 @property (nonatomic,strong) IBOutlet UIWebView *webViewTab;
-
-@property (nonatomic, strong) IBOutlet UIButton *btnPrivacyPolicy;
-@property (nonatomic,strong)IBOutlet UIView *privacymainView;
-
+@property (nonatomic,strong) IBOutlet UIButton *btnPrivacyPolicy;
+@property (nonatomic,strong) IBOutlet UIView *privacymainView;
 @property (nonatomic,strong) IBOutlet UIView *clearView;
 
 -(void) launchUnlockScreen;
-
 -(IBAction)onButtonClicked:(id)sender;
 -(IBAction)actionClosePrivacyPolicy:(id)sender;
 -(IBAction)actionPrivacyPolicy:(id)sender;

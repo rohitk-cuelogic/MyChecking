@@ -66,15 +66,19 @@
     
     ImageAnimatorView *rainbowAnimationView;
 }
-@property (strong, nonatomic)  ImageAnimatorView *rainbowAnimationView;
-@property(nonatomic,strong) IBOutlet  ScreenCaptureView *screenCapture;
-@property(nonatomic, strong) NSMutableArray * shapes;
-@property(nonatomic,strong)NSMutableArray *fruitObjectArray;
-@property(nonatomic,strong)NSArray *pointComparison;
+
+@property (nonatomic,strong) IntroScreenViewController *introView;
+@property (nonatomic,strong) XBCurlView *curlView;
+@property (nonatomic,strong) ImageAnimatorView *rainbowAnimationView;
+
+@property (nonatomic,strong) NSMutableArray * shapes;
+@property (nonatomic,strong) NSMutableArray *fruitObjectArray;
+@property (nonatomic,strong) NSArray *pointComparison;
 @property (nonatomic,strong) NSMutableArray * multiTouchForFruitObject;
 @property (nonatomic,strong) NSMutableArray * multiTouchForTouchView;
+
+@property (nonatomic,strong) IBOutlet  ScreenCaptureView *screenCapture;
 @property (nonatomic,strong) IBOutlet UIButton *garbageCan;
-@property (nonatomic,readwrite) BOOL isWithShape;
 @property (nonatomic,strong) IBOutlet UIButton *cameraButton;
 @property (nonatomic,strong) IBOutlet UIButton *homeButton;
 @property (nonatomic,strong) IBOutlet UIButton *videoButton;
@@ -85,12 +89,12 @@
 @property (nonatomic,strong) IBOutlet UIView *backView;
 @property (nonatomic,strong) IBOutlet UIView *viewForCurl;
 @property (nonatomic,strong) IBOutlet UILabel *lblTimer;
-@property (nonatomic,strong) IntroScreenViewController *introView;
-@property (nonatomic, retain) XBCurlView *curlView;
-@property (nonatomic,readwrite)  BOOL isCameraClick;
 @property (nonatomic,strong) IBOutlet UIImageView *backViewImage;
 @property (nonatomic,strong) IBOutlet UIImageView *curlViewImage;
 @property (nonatomic,strong) IBOutlet UIView *btnView;
+
+@property (nonatomic,readwrite)  BOOL isCameraClick;
+@property (nonatomic,readwrite) BOOL isWithShape;
 
 -(IBAction)screenShot:(id)sender;
 -(IBAction)onButtonClicked:(id)sender;

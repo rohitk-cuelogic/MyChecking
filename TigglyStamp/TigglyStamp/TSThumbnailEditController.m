@@ -35,14 +35,10 @@
         
         if([[imgName pathExtension] isEqualToString:@"mov"]) {
             playBtn.hidden = NO;
-            NSString *imgPath = [[TigglyStampUtils sharedInstance] getImagePathOfMovieThumbnailWithBorder:[imgName lastPathComponent]];
-            DebugLog(@"imgPath : %@",imgPath);
-            img = [UIImage imageWithContentsOfFile:imgPath];
         }else{
             playBtn.hidden = YES;
         }
-        
-        
+                
         editImgName = [imgName lastPathComponent];
         
         upperPanel = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 100)];
@@ -169,8 +165,11 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     DebugLog(@"");
+    
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    
     [self loadSavedImagesIntoArray];
+    
     confirmationView.hidden = YES;
     confirmationViewBKG.hidden = YES;
     readyToSave = NO;
@@ -272,9 +271,7 @@
     NSArray *directoryContents = [[TigglyStampUtils sharedInstance] getAllImagesAndMovies];
 
     for (NSString *file in directoryContents) {
-        if([file hasSuffix:[NSString stringWithFormat:@"%@.png",STR_WITH_BORDER]] || [[file pathExtension] isEqualToString: @"mov"]){
-               [savedImgArry addObject:[file lastPathComponent]];
-        }
+           [savedImgArry addObject:[file lastPathComponent]];
     }
 
     savedImgArry = (NSMutableArray *)[[savedImgArry reverseObjectEnumerator] allObjects];
@@ -346,9 +343,7 @@
     viewToDelete.image = editorImgView.image;
     
     if([[editImgName pathExtension] isEqualToString:@"mov"]){
-        NSString *imgPath = [[TigglyStampUtils sharedInstance] getImagePathOfMovieThumbnailWithBorder:editImgName];
-        DebugLog(@"imgPath : %@",imgPath);
-        UIImage *img = [UIImage imageWithContentsOfFile:imgPath];
+        UIImage *img = [[TigglyStampUtils sharedInstance] getMovieImageForMovieName:editImgName];
         viewToDelete.image = img;
     }
     
@@ -359,7 +354,9 @@
                                 destinationRect:endRect
                                 destinationEdge:BCRectEdgeBottom
                                      completion:^{
+                                         
                                          [self loadSavedImagesIntoArray];
+                                         
                                          homeBtn.enabled = YES;
                                          if([savedImgArry count]){
                                              saveImageBtn.enabled = YES;
@@ -374,10 +371,9 @@
     NSArray *dContents = [[TigglyStampUtils sharedInstance] getAllImagesAndMovies];
    
     for (NSString *file in dContents) {
-          if([file hasSuffix:[NSString stringWithFormat:@"%@.png",STR_WITH_BORDER]] || [[file pathExtension] isEqualToString: @"mov"]){
-              [directoryContents addObject:file];
-          }
+        [directoryContents addObject:file];
     }
+    
     directoryContents = (NSMutableArray*)[[directoryContents reverseObjectEnumerator] allObjects];
    
     int cnt = -1;
@@ -387,36 +383,36 @@
             NSString *fullPath = file;
             
             if([[fullPath pathExtension] isEqualToString:@"mov"]){
-                NSString *tempStr = [fullPath stringByDeletingPathExtension];
-                tempStr = [NSString stringWithFormat:@"%@_%@.png",tempStr,STR_WITH_MOVIE_BORDER];
-                DebugLog(@"Filed to be deleted:%@",tempStr);
-                [fileManager removeItemAtPath:tempStr error:nil];
                 
-                NSString *movieFileName = [fullPath stringByReplacingOccurrencesOfString:@".mov" withString:@"_thumb.png"];
-                [fileManager removeItemAtPath:movieFileName error:nil];
+                //delete mov file
+                [fileManager removeItemAtPath:fullPath error:nil];
+                
+                NSString *moviePngPath = [[TigglyStampUtils sharedInstance] getMovieImagePathForMovieName:fullPath];
+                DebugLog(@"moviePngPath:%@",moviePngPath);
+                
+                //delete png file
+                [fileManager removeItemAtPath:moviePngPath error:nil];
+
                 
             }else if([[fullPath pathExtension] isEqualToString:@"png"]){
-                NSString *tempStr = [fullPath stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"_%@",STR_WITH_BORDER]  withString:@""];
-                DebugLog(@"Filed to be deleted:%@",tempStr);
-                [fileManager removeItemAtPath:tempStr error:nil];
+                DebugLog(@"Filed  deleted:%@",fullPath);
+                [fileManager removeItemAtPath:fullPath error:nil];
             }
             
-            DebugLog(@"Filed  deleted:%@",fullPath);
-            [fileManager removeItemAtPath:fullPath error:nil];
-                        
             break;
         }
     }
     
     directoryContents = [[NSMutableArray alloc]initWithCapacity:1];
     dContents = [[TigglyStampUtils sharedInstance] getAllImagesAndMovies];
+    
     for (NSString *file in dContents) {
-           if([file hasSuffix:[NSString stringWithFormat:@"%@.png",STR_WITH_BORDER]] || [[file pathExtension] isEqualToString: @"mov"]){
-               [directoryContents addObject:file];
-           }
+        [directoryContents addObject:file];
     }
+    
     directoryContents = (NSMutableArray*)[[directoryContents reverseObjectEnumerator] allObjects];
     DebugLog(@"directoryContents : %@",directoryContents);
+    
     if([directoryContents count] == 0){
         [UIView beginAnimations:nil context:nil];
         [UIView animateWithDuration:1 animations:nil];
@@ -425,16 +421,14 @@
         
         imageToBeEdit = nil;
         editImgName = nil;
+        
     }else{
+        
         if(cnt >= [directoryContents count]){
             cnt = 0;
         }
         if([[[directoryContents objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
-//            UIImage *img = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[[directoryContents objectAtIndex:cnt]lastPathComponent]];
-//            imageToBeEdit = img;
-            NSString *imgPath = [[TigglyStampUtils sharedInstance] getImagePathOfMovieThumbnailWithBorder:[[directoryContents objectAtIndex:cnt]lastPathComponent]];
-            DebugLog(@"imgPath : %@",imgPath);
-            UIImage *img = [UIImage imageWithContentsOfFile:imgPath];
+            UIImage *img = [[TigglyStampUtils sharedInstance] getMovieImageForMovieName:[directoryContents objectAtIndex:cnt]];
             imageToBeEdit = img;
             playBtn.hidden = NO;
         }else{
@@ -446,15 +440,12 @@
         editImgName = [[directoryContents objectAtIndex:cnt]lastPathComponent];
     }
     
-    //animations
-    
     [self.view bringSubviewToFront:deleteBtn];
 
 }
 
--(void)swippedLeftEditorImage
-{
-    
+-(void)swippedLeftEditorImage {
+    DebugLog(@"");
     DebugLog(@"Saved Image Array : %@",savedImgArry);
     
     if([savedImgArry count] == 0){
@@ -513,9 +504,7 @@
       //  [self playSlidingSounds];
         
         if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
-            NSString *imgPath = [[TigglyStampUtils sharedInstance] getImagePathOfMovieThumbnailWithBorder:[savedImgArry objectAtIndex:cnt]];
-            DebugLog(@"imgPath : %@",imgPath);
-            UIImage *img = [UIImage imageWithContentsOfFile:imgPath];
+            UIImage *img = [[TigglyStampUtils sharedInstance] getMovieImageForMovieName:[savedImgArry objectAtIndex:cnt]];
             imageToBeEdit = img;
             playBtn.hidden = NO;
         
@@ -639,10 +628,7 @@
       //  [self playSlidingSounds];
         
         if([[[savedImgArry objectAtIndex:cnt] pathExtension] isEqualToString:@"mov"]) {
- 
-            NSString *imgPath = [[TigglyStampUtils sharedInstance] getImagePathOfMovieThumbnailWithBorder:[savedImgArry objectAtIndex:cnt]];
-            DebugLog(@"imgPath : %@",imgPath);
-            UIImage *img = [UIImage imageWithContentsOfFile:imgPath];
+            UIImage *img = [[TigglyStampUtils sharedInstance] getMovieImageForMovieName:[savedImgArry objectAtIndex:cnt]];
             imageToBeEdit = img;
             playBtn.hidden = NO;
         }else{
@@ -860,7 +846,7 @@
             UISaveVideoAtPathToSavedPhotosAlbum (exportPath, nil, nil, nil);
         }
         
-    }else{        
+    }else{
         UIImageWriteToSavedPhotosAlbum(imageToBeEdit, nil, nil, nil);
         [confirmSaveBtn setTitle:@"Image Saved" forState:UIControlStateNormal];
     }

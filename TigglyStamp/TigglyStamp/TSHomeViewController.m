@@ -24,10 +24,7 @@
 @synthesize bkgImageView;
 @synthesize containerView,learnMoreBtn;
 
-UISwipeGestureRecognizer *hmSwpeRecognizer;
 BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail,readyToLearnMore;
-NSMutableArray *swipeTxtArray;
-int swipeTxtCnt;
 
 #pragma mark -
 #pragma mark =======================================
@@ -102,14 +99,6 @@ int swipeTxtCnt;
     // Do any additional setup after loading the view from its nib.
     imgScrollView.frame = CGRectMake(0,768 - (RECT_THUMBNAIL_FRAME.size.height + 40), 1024, RECT_THUMBNAIL_FRAME.size.height + 40);
     
-    confirmationView.layer.cornerRadius = 20.0f;
-    confirmationView.layer.masksToBounds = YES;
-    
-//    newsBtn.layer.cornerRadius = 20.0f;
-//    newsBtn.layer.masksToBounds = YES;
-    
-
-    
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -144,6 +133,7 @@ int swipeTxtCnt;
     
     isThumbnailLongPressed = NO;
     allThumbnails = [[NSMutableArray alloc] initWithCapacity:1];
+
     [self loadThumbnails];
 
     bkgLayer=[CALayer layer];
@@ -155,12 +145,8 @@ int swipeTxtCnt;
     isFirstTimePlay = YES;
     playBtnTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(animatePlayButton) userInfo:nil repeats:YES];
     
-    swipeTxtArray = [[NSMutableArray alloc] initWithObjects:@"RIGHT\nwith 2", @"RIGHT\nwith 2", @"LEFT\nwith 2", @"LEFT\nwith 2", @"UP\nwith 2", @"UP\nwith 2", @"DOWN\nwith 2", @"DOWN\nwith 2", nil];
-    
-    hmSwpeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swippedforConfirmation)];
-    [self.view addGestureRecognizer:hmSwpeRecognizer];
-    
 
+    
     NSArray *arr2 = [[TigglyStampUtils sharedInstance] getAllTempDataFromFolder:FOLDER_SUBSCRIPTION_DATA];
     for(TSTempData *td in arr2){
         DebugLog(@"Email : %@",td.subscriptionEmailId);
@@ -170,8 +156,7 @@ int swipeTxtCnt;
 
 -(void) viewDidDisappear:(BOOL)animated{
     DebugLog(@"");
-    
-    [self.view removeGestureRecognizer:hmSwpeRecognizer];
+
 }
 
 
@@ -236,11 +221,6 @@ int swipeTxtCnt;
     
 }
 
--(void) addRipples {
-    
-}
-
-
 -(void) animationDidStart:(CAAnimation *)anim {
     DebugLog(@"");
     
@@ -256,37 +236,6 @@ int swipeTxtCnt;
 #pragma mark Game Handlers
 #pragma mark======================
 
--(void) loadAllThumbnailsData {
-    DebugLog(@"");
-    //loads all the saved images into the scroll view
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *path = [[TigglyStampUtils sharedInstance]getDocumentDirPath];
-    NSArray *directoryContents = [fileManager contentsOfDirectoryAtPath:path error:NULL];
-    
-    //revers the array
-    directoryContents = [[directoryContents reverseObjectEnumerator] allObjects];
-    int xPos = 10;
-    for (NSString *file in directoryContents) {
-        if([file hasPrefix:@"TigglyStamp"] && [[[file lastPathComponent] pathExtension] isEqualToString:@"png"]){
-            DebugLog(@"Image Name : %@",[path stringByAppendingPathComponent:file]);
-            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:file]]];
-            
-            UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(xPos, 0, RECT_THUMBNAIL_FRAME.size.width, RECT_THUMBNAIL_FRAME.size.height)];
-            imgView.image = [UIImage imageNamed:@"frame.png"];
-            [imgScrollView addSubview:imgView];
-            
-            TDThumbnailView *actualImage = [[TDThumbnailView alloc] initWithFrame:CGRectMake(xPos + 10, 30, RECT_ACTUAL_THUMBNAIL_IMAGE_FRAME.size.width, RECT_ACTUAL_THUMBNAIL_IMAGE_FRAME.size.height) withImage:image imageName:file];
-            //actualImage.delegate = self;
-            [imgScrollView addSubview:actualImage];
-            
-            xPos = xPos + RECT_THUMBNAIL_FRAME.size.width + 60;
-            [imgScrollView setContentSize:CGSizeMake(xPos, 0)];
-            
-        }
-    }
-    
-}
 
 -(void) loadThumbnails {
     DebugLog(@"");
@@ -295,25 +244,31 @@ int swipeTxtCnt;
     NSMutableArray *imageFiles = [[NSMutableArray alloc] initWithCapacity:1];
     DebugLog(@"All Files : %@",imageFiles);
     for(NSString *file in allImageFiles){
-        if(![file hasSuffix:[NSString stringWithFormat:@"%@.png",STR_WITH_BORDER]] && ![file hasSuffix:[NSString stringWithFormat:@"%@.png",STR_WITH_MOVIE_BORDER]] && ![file hasSuffix:@"_thumb.png"] ){
             [imageFiles addObject:file];
-        }
     }
     DebugLog(@"allImageFiles : %@",allImageFiles);
-    DebugLog(@"imageFiles : %@",imageFiles);
     NSArray *allFiles = [NSArray arrayWithArray:imageFiles];
     allFiles = [[allFiles reverseObjectEnumerator] allObjects];
-   
+    
     int xPos = 20;
     for (NSString *file in allFiles) {
             
-        ThumbnailView *thumbnail = [[ThumbnailView alloc] initWithFrame:CGRectMake(xPos,10, RECT_THUMBNAIL_FRAME.size.width, RECT_THUMBNAIL_FRAME.size.height) withThumbnailImagePath:file];
+        ThumbnailView *thumbnail = [[ThumbnailView alloc] initWithFrame:CGRectMake(xPos,20, RECT_THUMBNAIL_FRAME.size.width, RECT_THUMBNAIL_FRAME.size.height) withThumbnailImagePath:file];
         thumbnail.delegate = self;
         [imgScrollView addSubview:thumbnail];
         [allThumbnails addObject:thumbnail];
         
-        xPos = xPos + RECT_THUMBNAIL_FRAME.size.width + 60;
+        xPos = xPos + RECT_THUMBNAIL_FRAME.size.width + 20;
         [imgScrollView setContentSize:CGSizeMake(xPos, 0)];
+        
+    }
+    
+}
+
+-(void) loadThumbnailImages{
+    DebugLog(@"");
+    for(ThumbnailView *tv in allThumbnails){
+        [tv displayImages];
     }
 }
 
@@ -323,31 +278,19 @@ int swipeTxtCnt;
     int xPos = 20;
     for (ThumbnailView *thumbnail in allThumbnails) {
         
-        thumbnail.frame =  CGRectMake(xPos,10, RECT_THUMBNAIL_FRAME.size.width, RECT_THUMBNAIL_FRAME.size.height);
+        thumbnail.frame =  CGRectMake(xPos,20, RECT_THUMBNAIL_FRAME.size.width, RECT_THUMBNAIL_FRAME.size.height);
         [imgScrollView addSubview:thumbnail];
         
-        xPos = xPos + RECT_THUMBNAIL_FRAME.size.width + 60;
+        xPos = xPos + RECT_THUMBNAIL_FRAME.size.width + 20;
         [imgScrollView setContentSize:CGSizeMake(xPos, 0)];
     }
 }
 
 -(void)swippedforConfirmation{
+    DebugLog(@"");
+    
     if(readyToParentScreen){
-        DebugLog(@"");
-        confirmationView.hidden = YES;
-        confirmationViewBKG.hidden = YES;
-        forParentsBtn.alpha = 1;
-        newsBtn.alpha = 1;
-        playBtn.alpha = 1;
-        imgScrollView.alpha = 1;
-        
-        forParentsBtn.enabled = YES;
-        newsBtn.enabled = YES;
-        playBtn.enabled = YES;
-        learnMoreBtn.enabled = YES;
-        [imgScrollView setUserInteractionEnabled:YES];
         readyToParentScreen = NO;
-        
         [playBtnTimer invalidate];
         ParentScreenViewController *parentViewCOntroller = [[ParentScreenViewController alloc] initWithNibName:@"ParentScreenViewController" bundle:nil withHomeView:self];
         [self.navigationController pushViewController:parentViewCOntroller animated:YES];
@@ -357,18 +300,6 @@ int swipeTxtCnt;
     
     if(readyToNewsScreen){
         DebugLog(@"");
-        confirmationView.hidden = YES;
-        confirmationViewBKG.hidden = YES;
-        forParentsBtn.alpha = 1;
-        newsBtn.alpha = 1;
-        playBtn.alpha = 1;
-        imgScrollView.alpha = 1;
-        
-        forParentsBtn.enabled = YES;
-        playBtn.enabled = YES;
-        newsBtn.enabled = YES;
-        learnMoreBtn.enabled = YES;
-        [imgScrollView setUserInteractionEnabled:YES];        
         readyToNewsScreen = NO;
         
 #ifdef GOOGLE_ANALYTICS_START
@@ -379,9 +310,6 @@ int swipeTxtCnt;
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];
         [[GAI sharedInstance] dispatch];
-        
-#else
-        
 #endif
 
         
@@ -397,38 +325,10 @@ int swipeTxtCnt;
         for(ThumbnailView *thumbnail in allThumbnails) {
             [thumbnail startAnimation];
         }
-        
-        confirmationView.hidden = YES;
-        confirmationViewBKG.hidden = YES;
-        forParentsBtn.alpha = 1;
-        newsBtn.alpha = 1;
-        playBtn.alpha = 1;
-        imgScrollView.alpha = 1;
-        bkgLayer.opacity  =1.0;
-        
-        forParentsBtn.enabled = YES;
-        playBtn.enabled = YES;
-        newsBtn.enabled = YES;
-         learnMoreBtn.enabled = YES;
-        [imgScrollView setUserInteractionEnabled:YES];
-
     }
     
     if(readyToLearnMore) {
-        confirmationView.hidden = YES;
-        confirmationViewBKG.hidden = YES;
-        forParentsBtn.alpha = 1;
-        newsBtn.alpha = 1;
-        playBtn.alpha = 1;
-        imgScrollView.alpha = 1;
-        
-        forParentsBtn.enabled = YES;
-        playBtn.enabled = YES;
-        newsBtn.enabled = YES;
-        learnMoreBtn.enabled = YES;
-        [imgScrollView setUserInteractionEnabled:YES];
         readyToLearnMore = NO;
-        
         
 #ifdef GOOGLE_ANALYTICS_START
         NSMutableDictionary *event =
@@ -438,9 +338,6 @@ int swipeTxtCnt;
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];
         [[GAI sharedInstance] dispatch];
-        
-#else
-        
 #endif
 
         
@@ -450,55 +347,12 @@ int swipeTxtCnt;
 
 -(void) showConfirmationView{
     DebugLog(@"");
-    bkgLayer.opacity = 0.0;
-    swipeTxtCnt = arc4random()%7;
-    
-    [txtView setText:[NSString stringWithFormat:@"To continue,\nswipe %@ fingers.", [swipeTxtArray objectAtIndex:swipeTxtCnt]]];
-    txtView.font = [UIFont fontWithName:APP_FONT_BOLD size:35.0f];
-    txtView.textColor = [UIColor whiteColor];
-    
-    switch (swipeTxtCnt) {
-        case 0:
-            [hmSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
-            [hmSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 1:
-            [hmSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
-            [hmSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 2:
-            [hmSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
-            [hmSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 3:
-            [hmSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
-            [hmSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 4:
-            [hmSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
-            [hmSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 5:
-            [hmSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
-            [hmSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 6:
-            [hmSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
-            [hmSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 7:
-            [hmSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
-            [hmSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        default:
-            break;
-    }
-    
-    confirmationView.hidden = NO;
-    confirmationViewBKG.hidden = NO;
-    [self.view bringSubviewToFront:confirmationViewBKG];
-    [self.view bringSubviewToFront:confirmationView];
-    [confirmationView  bringSubviewToFront:notConfirm];
+   
+    gestureView = [[GestureConfirmationView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+    gestureView.delegate = self;
+    gestureView.layer.zPosition = 1500;
+    [self.view addSubview:gestureView];
+
 }
 
 #pragma mark-
@@ -510,96 +364,29 @@ int swipeTxtCnt;
     DebugLog(@"");
     
     [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
-    
     [playBtnTimer invalidate];
-    
     SeasonSelectionViewController *hmView = [[SeasonSelectionViewController alloc]initWithNibName:@"SeasonSelectionViewController" bundle:nil withHomeView:self];
     [self.navigationController pushViewController:hmView animated:YES];
-    
     [self nullifyAllData];
 }
 
 -(IBAction)goToParentsScreen:(id)sender{
     DebugLog(@"");
     readyToParentScreen = YES;
-    
-    forParentsBtn.alpha = 0.3;
-    newsBtn.alpha = 0.3;
-    playBtn.alpha = 0.3;
-    imgScrollView.alpha = 0.3;
-    bkgLayer.opacity = 0.0;
-    
-    forParentsBtn.enabled = NO;
-    newsBtn.enabled = NO;
-    playBtn.enabled = NO;
-    learnMoreBtn.enabled = NO;
-    [imgScrollView setUserInteractionEnabled:NO];
-    
     [self showConfirmationView];
+}
+
+-(IBAction)actionLearnMore {
+    DebugLog(@"");
+    readyToLearnMore = YES;
+    [self showConfirmationView];
+    
 }
 
 -(IBAction)goToNewsScreen:(id)sender{
     DebugLog(@"");
     readyToNewsScreen = YES;
-    
-    forParentsBtn.alpha = 0.3;
-    newsBtn.alpha = 0.3;
-    playBtn.alpha = 0.3;
-    imgScrollView.alpha = 0.3;
-    bkgLayer.opacity = 0.0;
-    
-    forParentsBtn.enabled = NO;
-    playBtn.enabled = NO;
-    newsBtn.enabled = NO;
-    learnMoreBtn.enabled = NO;
-    [imgScrollView setUserInteractionEnabled:NO];
-    
     [self showConfirmationView];
-}
-
--(IBAction)noConfirmation:(id)sender{
-    DebugLog(@"");
-    readyToParentScreen = NO;
-    readyToNewsScreen = NO;
-    readyToDeleteThumbnail = NO;
-    readyToLearnMore = NO;
-    
-    isThumbnailLongPressed = NO;
-    
-    confirmationView.hidden = YES;
-    confirmationViewBKG.hidden = YES;
-    forParentsBtn.alpha = 1;
-    newsBtn.alpha = 1;
-    playBtn.alpha = 1;
-    imgScrollView.alpha = 1;
-    bkgLayer.opacity = 1.0;
-    
-    forParentsBtn.enabled = YES;
-    newsBtn.enabled = YES;
-    playBtn.enabled = YES;
-    learnMoreBtn.enabled = YES;
-    [imgScrollView setUserInteractionEnabled:YES];
-}
-
--(IBAction)actionLearnMore {
-    DebugLog(@"");
-    
-    readyToLearnMore = YES;;
-    
-    forParentsBtn.alpha = 0.3;
-    newsBtn.alpha = 0.3;
-    playBtn.alpha = 0.3;
-    imgScrollView.alpha = 0.3;
-    bkgLayer.opacity = 0.0;
-    
-    forParentsBtn.enabled = NO;
-    playBtn.enabled = NO;
-    newsBtn.enabled = NO;
-    learnMoreBtn.enabled = NO;
-    [imgScrollView setUserInteractionEnabled:NO];
-    
-    [self showConfirmationView];
-
 }
 
 #pragma mark -
@@ -618,7 +405,8 @@ int swipeTxtCnt;
     double delayInSeconds = 0.3;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self noConfirmation:nil];
+        [gestureView removeFromSuperview];
+        gestureView = nil;
     });
 }
 
@@ -650,8 +438,6 @@ int swipeTxtCnt;
             [thumbnail removeFromSuperview];
         }
         
-//        [[TDSoundManager sharedManager] playSound:@"trashsweep" withFormat:@"mp3"];
-        
         [self reloadThumbnails];
     }];
     
@@ -666,15 +452,8 @@ int swipeTxtCnt;
     
     DebugLog(@"Tapped Thumbnail Name: %@",thumbnail.imageName);
     
-    NSString *iName = @"";
     
-    if([[thumbnail.imageName pathExtension] isEqualToString:@"mov"]){
-        iName = thumbnail.imageName;
-    }else{
-        iName = thumbnail.imageNameWithBorder;
-    }
-    
-    TSThumbnailEditController *thumbnailEditor = [[TSThumbnailEditController alloc] initWithNibName:@"TSThumbnailEditController" bundle:nil withImage:thumbnail.actulaImage imageName:iName withHomeView:self];
+    TSThumbnailEditController *thumbnailEditor = [[TSThumbnailEditController alloc] initWithNibName:@"TSThumbnailEditController" bundle:nil withImage:thumbnail.actulaImage imageName:thumbnail.imageName withHomeView:self];
     [self.navigationController pushViewController:thumbnailEditor animated:YES];
     [self nullifyAllData];
     
@@ -691,6 +470,28 @@ int swipeTxtCnt;
         
     }
     
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark gestureView Protocol
+#pragma mark =======================================
+
+-(void) gestureViewOnGestureConfirmed:(GestureConfirmationView *)gView {
+    DebugLog(@"");
+    
+    [self swippedforConfirmation];
+    [gestureView removeFromSuperview];
+    gestureView = nil;
+    
+}
+
+-(void) gestureViewOnCancel:(GestureConfirmationView *)gView {
+    DebugLog(@"");
+    
+    if(isThumbnailLongPressed){
+        isThumbnailLongPressed = NO;
+    }
 }
 
 @end

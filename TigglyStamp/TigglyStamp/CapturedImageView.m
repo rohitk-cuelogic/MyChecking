@@ -11,55 +11,42 @@
 #import "TigglyStampUtils.h"
 
 @implementation CapturedImageView
+
 @synthesize delegate;
 @synthesize imageView;
 @synthesize btnPlay;
+@synthesize moviePngName;
 
-
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
--(id) initWithFrame:(CGRect )rect ImageName:(NSString *) imgName{
+-(id) initWithFrame:(CGRect )rect withImage:(UIImage *) img isVideo:(BOOL) isVideo{
     DebugLog(@"");
     self = [super initWithFrame:rect];
     if (self) {
-        imageName = imgName;
-    
-        [self setUserInteractionEnabled:YES];
+        
+        isVideoImage = isVideo;
         
         [self setBackgroundColor:[UIColor colorWithRed:150.0f/255.0f green:199.0f/255.0f blue:87.0f/255.0f alpha:1.0f]];
-
-        if([[[imgName lastPathComponent]pathExtension] isEqualToString:@"mov"]) {
+        
+        if(isVideo){
+            //Its a video
             
+            //Adding white background to image
             viewForPreview = [[UIView alloc] initWithFrame:CGRectMake(155,90, 710, 650)];
             viewForPreview.backgroundColor = [UIColor whiteColor];
             viewForPreview.layer.cornerRadius = 20.0f;
             viewForPreview.layer.masksToBounds = YES;
-            
             [viewForPreview.layer setBorderColor:[UIColor lightGrayColor].CGColor];
             [viewForPreview.layer setBorderWidth:1.5f];
-            
-            // drop shadow
             [viewForPreview.layer setShadowColor:[UIColor blackColor].CGColor];
             [viewForPreview.layer setShadowOpacity:0.8];
             [viewForPreview.layer setShadowRadius:3.0];
             [viewForPreview.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
-    
-            
             [self addSubview:viewForPreview];
             
+            //Adding the date
             NSDate* currentDate = [NSDate date];
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
             [dateFormat setDateFormat:@"MM/dd/yyyy"];
             NSString *dateString = [dateFormat stringFromDate:currentDate];
-            
             UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(20, 520, 180, 50)];
             lblDate.textAlignment = UITextAlignmentCenter;
             lblDate.backgroundColor = [UIColor clearColor];
@@ -68,9 +55,9 @@
             lblDate.font = [UIFont fontWithName:APP_FONT size:30.0f];
             [viewForPreview addSubview:lblDate];
             
-            NSString *strFile = [imgName lastPathComponent];
-            UIImage *thumb = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:strFile];
-            imageView = [[UIImageView alloc] initWithImage:thumb];
+   
+            //Adding the image
+            imageView = [[UIImageView alloc] initWithImage:img];
             imageView.frame = CGRectMake(30, 30,650,488);
             [viewForPreview addSubview:imageView];
             
@@ -84,11 +71,11 @@
             [viewForPreview addSubview:btnPlay];
             
             
-            UIImage *img = [self changeImageColor:[UIImage imageNamed:@"color_splash.png"] withColor:[colorArray objectAtIndex:colorCnt]];
-            img = [self changeImageColor:img withColor:[colorArray objectAtIndex:colorCnt]];
+            UIImage *colorImg = [self changeImageColor:[UIImage imageNamed:@"color_splash.png"] withColor:[colorArray objectAtIndex:colorCnt]];
+            colorImg = [self changeImageColor:colorImg withColor:[colorArray objectAtIndex:colorCnt]];
             
             btnColorSplash = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btnColorSplash setBackgroundImage:img forState:UIControlStateNormal];
+            [btnColorSplash setBackgroundImage:colorImg forState:UIControlStateNormal];
             [btnColorSplash addTarget:self action:@selector(actionChangeColor)forControlEvents:UIControlEventTouchUpInside];
             btnColorSplash.frame = CGRectMake(0, 0, 100, 100);
             btnColorSplash.center = CGPointMake(950, 680);
@@ -115,6 +102,7 @@
 
             
         }else{
+           //Its a image
             
             viewForPreview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 740, 650)];
             viewForPreview.backgroundColor = [UIColor clearColor];
@@ -122,8 +110,9 @@
             viewForPreview.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
             [self addSubview:viewForPreview];
             [self bringSubviewToFront:viewForPreview];
-
+            
             UIImageView *imgViewBorder = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 740, 650)];
+            imgViewBorder.backgroundColor = [UIColor clearColor];
             imgViewBorder.image = [UIImage imageNamed:@"photo_bg.png"];
             imgViewBorder.layer.cornerRadius = 20.0f;
             [viewForPreview addSubview:imgViewBorder];
@@ -131,7 +120,7 @@
             NSDate* currentDate = [NSDate date];
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
             [dateFormat setDateFormat:@"MM/dd/yyyy"];
-            NSString *dateString = [dateFormat stringFromDate:currentDate];            
+            NSString *dateString = [dateFormat stringFromDate:currentDate];
             UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(40, 500, 180, 50)];
             lblDate.textAlignment = UITextAlignmentLeft;
             lblDate.backgroundColor = [UIColor clearColor];
@@ -139,33 +128,26 @@
             lblDate.textColor = [UIColor blueColor];
             lblDate.font = [UIFont fontWithName:APP_FONT size:30.0f];
             [imgViewBorder addSubview:lblDate];
-            
-            NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
-            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[path stringByAppendingPathComponent:imgName]]];
-            UIGraphicsBeginImageContext(CGSizeMake(800, 600));
-            [image drawInRect:CGRectMake(0, 0, 800, 600)];
-            UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            
-            imageView = [[UIImageView alloc] initWithImage:thumbnailImage];
+
+            imageView = [[UIImageView alloc] initWithImage:img];
             imageView.frame = CGRectMake(40,40, 650, 465);
-            [viewForPreview addSubview:imageView];
+            imageView.backgroundColor = [UIColor clearColor];
+            [viewForPreview addSubview:imageView];;
             
             
             [UIView animateWithDuration:1.2
                              animations:^{
                                  viewForPreview.center = CGPointMake(503, 420);
-                                 
                              }
-             completion:^(BOOL finished){
-                
-             }];
+                             completion:^(BOOL finished){
+                                 
+            }];
             
-            UIImage *img = [self changeImageColor:[UIImage imageNamed:@"color_splash.png"] withColor:[colorArray objectAtIndex:colorCnt]];
-            img = [self changeImageColor:img withColor:[colorArray objectAtIndex:colorCnt]];
+            UIImage *colorImg = [self changeImageColor:[UIImage imageNamed:@"color_splash.png"] withColor:[colorArray objectAtIndex:colorCnt]];
+            colorImg = [self changeImageColor:colorImg withColor:[colorArray objectAtIndex:colorCnt]];
             
             btnColorSplash = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btnColorSplash setBackgroundImage:img forState:UIControlStateNormal];
+            [btnColorSplash setBackgroundImage:colorImg forState:UIControlStateNormal];
             [btnColorSplash addTarget:self action:@selector(actionChangeColor)forControlEvents:UIControlEventTouchUpInside];
             btnColorSplash.frame = CGRectMake(0, 0, 100, 100);
             btnColorSplash.center = BTN_COLOR_SPLASH_CENTER;
@@ -189,8 +171,8 @@
                           [UIColor colorWithRed:240.0/255.0  green:221.0/255.0  blue:11.0/255.0 alpha:1.0],
                           [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0],
                           nil];
- 
-
+            
+            
         }
         
         //adding home button and next scene button
@@ -216,11 +198,89 @@
         btnSend.frame = CGRectMake(472, 10, 80, 80);
         [self addSubview:btnSend];
         
-
     }
     
     return self;
 }
+
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Image Capturing
+#pragma mark =======================================
+
+-(void)saveImageToDisk{
+    DebugLog(@"");
+    
+    [btnPlay removeFromSuperview];
+    
+    viewForPreview.transform = CGAffineTransformMakeRotation(0);
+    
+//    UIGraphicsBeginImageContext(viewForPreview.frame.size);
+    UIGraphicsBeginImageContextWithOptions(viewForPreview.frame.size, NO, 0.0);
+    [[UIColor clearColor] set];
+    UIRectFill(CGRectMake(0.0, 0.0,viewForPreview.frame.size.width, viewForPreview.frame.size.height));
+    [viewForPreview.layer.presentationLayer renderInContext:UIGraphicsGetCurrentContext()];
+    imgToSave = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    NSString *imgName;
+    
+    if(isVideoImage){
+        
+        imgName = [NSString stringWithFormat:@"Movie%@",moviePngName];
+        DebugLog(@"Movie Png File Name: %@",imgName);
+        
+    }else{
+        //Save to disk
+        NSDate* currentDate = [NSDate date];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+        [dateFormat setDateFormat:@"MM-dd-yyyy_HH:mm:ss"];
+        NSString *dateString = [dateFormat stringFromDate:currentDate];
+        imgName = [NSString stringWithFormat:@"TigglyStamp_%@.png",dateString];
+        DebugLog(@"Photo Png File Name : %@",imgName);
+    }
+    
+    NSString *documentsDirectory = [[TigglyStampUtils sharedInstance] getDocumentDirPath];
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:imgName];
+    DebugLog(@"Image Path: %@",savedImagePath);
+    NSData *imageData = UIImagePNGRepresentation(imgToSave);
+    BOOL isSuccess = [imageData writeToFile:savedImagePath atomically:YES];
+    if(isSuccess)
+        DebugLog(@"Imaged saved successfully");
+    else
+        DebugLog(@"Failed to save the image");
+        
+  
+    
+}
+
+-(void) saveImageOrVideoToAlbum {
+    DebugLog(@"");
+    
+    if(isVideoImage) {
+        //Save video to album
+        NSString *documentsDirectory = [[TigglyStampUtils sharedInstance] getDocumentDirPath];
+        NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:[moviePngName stringByReplacingOccurrencesOfString:@"png" withString:@"mov"]];
+        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (savedImagePath)) {
+            UISaveVideoAtPathToSavedPhotosAlbum (savedImagePath, nil, nil, nil);
+             lblImageSaved.text = @"Video Saved";
+        }
+        
+    }else{
+        //Save image to album
+        viewForPreview.transform = CGAffineTransformMakeRotation(0);
+        UIGraphicsBeginImageContextWithOptions(viewForPreview.frame.size, YES, 0.0);
+        [[UIColor clearColor] set];
+        UIRectFill(CGRectMake(0.0, 0.0,viewForPreview.frame.size.width, viewForPreview.frame.size.height));
+        [viewForPreview.layer.presentationLayer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+         lblImageSaved.text = @"Image Saved";
+    }
+}
+
 
 #pragma mark -
 #pragma mark =======================================
@@ -264,64 +324,6 @@
     
 }
 
-#pragma mark -
-#pragma mark =======================================
-#pragma mark Image Capturing
-#pragma mark =======================================
-
--(void)saveImageWithBorderToGallary:(BOOL)toPhotoGallary{
-    DebugLog(@"");
-
-    [btnPlay removeFromSuperview];
-    
-    viewForPreview.transform = CGAffineTransformMakeRotation(0);
-    
-    UIGraphicsBeginImageContext(viewForPreview.frame.size);
-    [[UIColor clearColor] set];
-    UIRectFill(CGRectMake(0.0, 0.0,viewForPreview.frame.size.width, viewForPreview.frame.size.height));
-    [viewForPreview.layer.presentationLayer renderInContext:UIGraphicsGetCurrentContext()];
-    
-    UIImage *imgToSave = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    
-        if(toPhotoGallary){
-            NSData *imageData = UIImagePNGRepresentation(imgToSave);
-            UIImage *img = [UIImage imageWithData:imageData];
-            UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);
-            
-        }else{
-            NSString *imgName1;
-            NSString *iName = @"";
-            if([[imageName pathExtension] isEqualToString:@"mov"]){
-                iName =[[imageName lastPathComponent ]stringByDeletingPathExtension];
-                DebugLog(@"iName: %@",iName);
-                imgName1 = [NSString stringWithFormat:@"%@_%@.png",iName, STR_WITH_MOVIE_BORDER];
-                DebugLog(@"Image Name : %@",imgName1);
-            }else{
-                iName  =[imageName stringByDeletingPathExtension];
-                DebugLog(@"iName: %@",iName);
-                imgName1 = [NSString stringWithFormat:@"%@_%@.png",iName, STR_WITH_BORDER];
-                DebugLog(@"Image Name : %@",imgName1);
-            }
-            
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            NSString *documentsDirectory = [paths objectAtIndex:0];
-            NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:imgName1];
-            DebugLog(@"Image Path: %@",savedImagePath);
-            
-            NSData *imageData = UIImagePNGRepresentation(imgToSave);
-            
-            BOOL isSuccess =  [imageData writeToFile:savedImagePath atomically:YES];
-            if(isSuccess)
-                DebugLog(@"Imaged saved successfully");
-            else
-                DebugLog(@"Failed to save the image");
-        }
-    
-    viewForPreview.transform = CGAffineTransformMakeRotation(-5 * M_PI / 180);
-    
-}
 
 
 #pragma mark - ============================
@@ -330,11 +332,10 @@
 
 -(void)btnNextClicked{
     DebugLog(@"");
-    //call delegate
+   
+    [self saveImageToDisk];
     
-      [self saveImageWithBorderToGallary:NO];   
-    
-      [delegate onNextButtonClicked:self];
+    [delegate onNextButtonClicked:self];
 }
 
 -(void)btnHomeClicked{
@@ -354,10 +355,10 @@
     #endif
     
 
-   [self saveImageWithBorderToGallary:NO];    
-   
+    [self saveImageToDisk];
     
     [delegate onHomeButtonClicked:self];
+    
 }
 
 -(void)btnSendClicked{
@@ -398,34 +399,18 @@
 #endif
 
 
-
-    NSString *strFile = [imageName lastPathComponent];
-
     lblImageSaved = [[UILabel alloc] initWithFrame:CGRectMake(442, 91,  140, 50)];
     lblImageSaved.backgroundColor = [UIColor whiteColor];
     lblImageSaved.layer.cornerRadius = 13.0f;
     lblImageSaved.layer.masksToBounds = YES;
     lblImageSaved.layer.borderColor =  [UIColor blackColor].CGColor;
     lblImageSaved.layer.borderWidth = 1.0f;
-
-    [self addSubview:lblImageSaved];
     lblImageSaved.font = [UIFont fontWithName:APP_FONT size:20.0f];
     lblImageSaved.textAlignment = UITextAlignmentCenter;
-    if([[strFile pathExtension] isEqualToString:@"mov"]) {
-
-        NSString *exportPath = [[NSString alloc] initWithFormat:@"%@/%@",
-                                [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], strFile];
-        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (exportPath)) {
-            UISaveVideoAtPathToSavedPhotosAlbum (exportPath, nil, nil, nil);
-        }
-        lblImageSaved.text = @"Video Saved";
-
-    }else{
-        
-        [self saveImageWithBorderToGallary:YES];
-
-        lblImageSaved.text = @"Image Saved";
-    }
+    
+    [self addSubview:lblImageSaved];
+    
+    [self saveImageOrVideoToAlbum];
 
     [UIView animateWithDuration:3.0
                      animations:^{
@@ -433,7 +418,7 @@
                      }
                      completion:^(BOOL finished){
                          [lblImageSaved removeFromSuperview];
-                     }];
+    }];
 
 }
 

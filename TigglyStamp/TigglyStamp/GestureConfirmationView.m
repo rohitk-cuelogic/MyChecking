@@ -119,6 +119,8 @@
 -(void) actionClose{
     DebugLog(@"");
     
+    [self.delegate gestureViewOnCancel:self];
+    
     [self removeGestureRecognizer:swipeGesture];
     [self removeFromSuperview];
 }

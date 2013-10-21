@@ -55,6 +55,9 @@
     NSTimer *videoPlayTimer;
     UIButton *btnShapesTray;
     
+    NSString *movieScreenshotName;
+    UIImage *movieScreenshotImage;
+    
     SceneType sceneType;
     
     TSHomeViewController *homeViewController;

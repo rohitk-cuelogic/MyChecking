@@ -37,6 +37,8 @@
 @property (unsafe_unretained, nonatomic) id<ThumbnailViewProtocol> delegate;
 
 - (id)initWithFrame:(CGRect)frame withThumbnailImagePath:(NSString *) imgePath;
+- (id)initWithFrame:(CGRect)frame;
+- (void) displayImages;
 - (void) startAnimation;
 - (void) stopAnimation;
 @end

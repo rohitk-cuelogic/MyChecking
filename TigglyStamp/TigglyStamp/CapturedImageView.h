@@ -36,8 +36,7 @@
 
 @end
 
-@interface CapturedImageView : UIView<GestireViewProtocol,SignatureViewProtocol>
-{
+@interface CapturedImageView : UIView<GestireViewProtocol,SignatureViewProtocol> {
     UIImageView *imageView ;
     UIButton *btnHome;
     UIButton *btnNext;
@@ -51,10 +50,16 @@
     UIButton *btnColorSplash;
     NSMutableArray *colorArray;
     int colorCnt;
+    
+    BOOL isVideoImage;
+    NSString *moviePngName;
+    UIImage *imgToSave;
 }
 @property(nonatomic,strong) id<CapturedImageViewDelegate>delegate;
 @property (nonatomic,strong) UIImageView *imageView;
 @property (nonatomic,strong) UIButton *btnPlay;
+@property (nonatomic, strong) NSString *moviePngName;
 
--(id) initWithFrame:(CGRect )rect ImageName:(NSString *) imgName;
+-(id) initWithFrame:(CGRect )rect withImage:(UIImage *) img isVideo:(BOOL) isVideo;
+
 @end

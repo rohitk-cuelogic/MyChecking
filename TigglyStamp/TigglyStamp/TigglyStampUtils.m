@@ -368,36 +368,6 @@ static TigglyStampUtils *sharedInstance = nil;
     return dirArray;
 }
 
--(UIImage *) getThumbnailImageOfMovieFile:(NSString *) filePath {
-    DebugLog(@"");
-    
-//    NSString *path = [[TigglyStampUtils sharedInstance]getDocumentDirPath];
-//    path = [path stringByAppendingPathComponent:filePath];
-//    NSURL *url = [NSURL fileURLWithPath:path];
-//    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:url options:nil];
-//    AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
-//    gen.appliesPreferredTrackTransform = YES;
-//    CMTime time = CMTimeMakeWithSeconds(0.0, 30.0);
-//    NSError *error = nil;
-//    //CMTime actualTime = CMTimeMakeWithSeconds(0.0, 180.0);;
-//    
-//    CGImageRef image = [gen copyCGImageAtTime:time actualTime:NULL error:&error];
-//    UIImage *thumb = [[UIImage alloc] initWithCGImage:image];
-//    CGImageRelease(image);
-
-//    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:url];
-//    UIImage  *thumb = [player thumbnailImageAtTime:1.0 timeOption:MPMovieTimeOptionExact];
-//    player.shouldAutoplay = NO;
-//    [player stop];
-//    player = nil;
-    
-    NSString *fileName=[filePath stringByReplacingOccurrencesOfString:@".mov" withString:@"_thumb.png" ];
-    NSString *path = [[TigglyStampUtils sharedInstance]getDocumentDirPath];
-    path = [path stringByAppendingPathComponent:fileName];
-    UIImage *thumb = [UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
-    
-    return thumb;
-}
 
 -(NSString *) getImagePathOfMovieThumbnailWithBorder:(NSString *) moveName {
     DebugLog(@"");
@@ -406,6 +376,42 @@ static TigglyStampUtils *sharedInstance = nil;
     path = [path stringByAppendingPathComponent:iName];
     
     return path;
+}
+
+-(UIImage *) getMovieImageForMovieName:(NSString *) moviePath {
+    DebugLog(@"");
+    
+    NSString *movieName = [[moviePath lastPathComponent] stringByReplacingOccurrencesOfString:@"mov" withString:@"png"];
+    NSString *fileName=[NSString stringWithFormat:@"%@/Movie%@",[[TigglyStampUtils sharedInstance]getDocumentDirPath],movieName];
+    UIImage *img;
+    
+     if (![[NSFileManager defaultManager] fileExistsAtPath:fileName]) {
+         //MovieImage not found. Create thumbnail
+         DebugLog(@"MovieImage not found. Create thumbnail");
+        NSString *path = [[TigglyStampUtils sharedInstance]getDocumentDirPath];
+        path = [path stringByAppendingPathComponent:moviePath];
+        NSURL *url = [NSURL fileURLWithPath:path];
+        AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:url options:nil];
+        AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+        gen.appliesPreferredTrackTransform = YES;
+        CMTime time = CMTimeMakeWithSeconds(0.0, 30.0);
+        NSError *error = nil;
+
+        CGImageRef image = [gen copyCGImageAtTime:time actualTime:NULL error:&error];
+        img= [[UIImage alloc] initWithCGImage:image];
+        CGImageRelease(image);
+     }else{
+         DebugLog(@"MovieImage found.");
+         img = [UIImage imageWithContentsOfFile:fileName];
+     }
+    return img;
+}
+
+-(NSString *) getMovieImagePathForMovieName:(NSString *) moviePath{
+    DebugLog(@"");
+    NSString *movieName = [[moviePath lastPathComponent] stringByReplacingOccurrencesOfString:@"mov" withString:@"png"];
+    NSString *fileName=[NSString stringWithFormat:@"%@/Movie%@",[[TigglyStampUtils sharedInstance]getDocumentDirPath],movieName];
+    return fileName;
 }
 
 #pragma mark -
@@ -473,19 +479,7 @@ static TigglyStampUtils *sharedInstance = nil;
     DebugLog(@"");
     
     NSString *filename = NULL;
-//    ShapeType sType = [self getCurrentSahpeForStoringKeys];
-//    if (sType == kShapeTypeCircle) {
-//        filename = [NSString stringWithFormat:@"CircleShape.csv"];
-//    }
-//    if (sType == kShapeTypeSquare) {
-//        filename = [NSString stringWithFormat:@"SquareShape.csv"];
-//    }
-//    if (sType == kShapeTypeStar) {
-//        filename = [NSString stringWithFormat:@"StarShape.csv"];
-//    }
-//    if (sType == kShapeTypeTriangle) {
-//        filename = [NSString stringWithFormat:@"TriangleShape.csv"];
-//    }
+
     filename = [NSString stringWithFormat:@"ShapeTouchPoints.csv"];
 	NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 					  stringByAppendingPathComponent:filename];
@@ -496,35 +490,7 @@ static TigglyStampUtils *sharedInstance = nil;
 
 - (void) deleteCSVFile{
     DebugLog(@"");
-//        NSString *pathCircle = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
-//                          stringByAppendingPathComponent:@"CircleShape.csv"];
-//        NSError *errorCircle = nil;
-//        [[NSFileManager defaultManager] removeItemAtPath:pathCircle error:&errorCircle];
-//        if (errorCircle != nil) {
-//            DebugLog(@"Error deleting file: %@ withError:%@", pathCircle, [errorCircle localizedDescription]);
-//        }
-//        NSString *pathSquare = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
-//                          stringByAppendingPathComponent:@"SquareShape.csv"];
-//        NSError *errorShape = nil;
-//        [[NSFileManager defaultManager] removeItemAtPath:pathSquare error:&errorShape];
-//        if (errorShape != nil) {
-//            DebugLog(@"Error deleting file: %@ withError:%@", pathSquare, [errorShape localizedDescription]);
-//        }
-//        NSString *pathStar = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
-//                          stringByAppendingPathComponent:@"StarShape.csv"];
-//        NSError *errorStar = nil;
-//        [[NSFileManager defaultManager] removeItemAtPath:pathStar error:&errorStar];
-//        if (errorStar != nil) {
-//            DebugLog(@"Error deleting file: %@ withError:%@", pathStar, [errorStar localizedDescription]);
-//        }
-//        NSString *pathTriangle = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
-//                          stringByAppendingPathComponent:@"TriangleShape.csv"];
-//        NSError *errorTriangle = nil;
-//        [[NSFileManager defaultManager] removeItemAtPath:pathTriangle error:&errorTriangle];
-//        if (errorTriangle != nil) {
-//            DebugLog(@"Error deleting file: %@ withError:%@", pathTriangle, [errorTriangle localizedDescription]);
-//        }
-    
+
     NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
                               stringByAppendingPathComponent:@"ShapeTouchPoints.csv"];
     NSError *error = nil;

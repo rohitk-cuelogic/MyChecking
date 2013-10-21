@@ -15,6 +15,19 @@
 
 @synthesize imageName,imgView,actulaImage,delegate,imageNameWithBorder;
 
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Init
+#pragma mark =======================================
+
+- (id)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = [UIColor grayColor];
+    }
+    return self;
+}
+
 - (id)initWithFrame:(CGRect)frame withThumbnailImagePath:(NSString *) imgePath{
     DebugLog(@"");
     DebugLog(@"Frame : %@",NSStringFromCGRect(frame));
@@ -26,11 +39,13 @@
         
         imageName = imgePath;
         
-        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(10,10, frame.size.width-20, frame.size.height-20)];
+        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(10,10, self.frame.size.width-20, self.frame.size.height-20) ];
         [imgView setContentMode:UIViewContentModeScaleToFill];
         imgView.layer.cornerRadius = 30.0f;
         imgView.layer.masksToBounds = YES;
-        imgView.backgroundColor = [UIColor lightGrayColor];
+        imgView.backgroundColor = [UIColor clearColor];
+        [self addSubview:imgView];
+        
 
         busyView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         busyView.frame = CGRectMake(imgView.frame.size.width/2 - 20, imgView.frame.size.height/2 - 20, 40, 40);
@@ -43,16 +58,12 @@
         [imgView addSubview:playBtn];
         [imgView bringSubviewToFront:playBtn];
         playBtn.hidden = YES;
-        
-        [NSThread detachNewThreadSelector:@selector(displayImages) toTarget:self withObject:nil];
-        
-        [self addSubview:imgView];
 
         closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [closeBtn setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
         [closeBtn setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateSelected];
         [closeBtn addTarget:self action:@selector(actionClose)forControlEvents:UIControlEventTouchUpInside];
-        closeBtn.frame = CGRectMake(imgView.frame.size.width - 22,0,44, 44);
+        closeBtn.frame = CGRectMake(self.frame.size.width - 22,0,44, 44);
         closeBtn.hidden =YES;
         [self addSubview:closeBtn];
         closeBtn.userInteractionEnabled = YES;
@@ -69,54 +80,56 @@
         gesture.allowableMovement = 600;
         [self addGestureRecognizer:gesture];
 
+//        [self displayImages];
+//        [NSThread detachNewThreadSelector:@selector(displayImages) toTarget:self withObject:nil];
+      
         
-        
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+              [self performSelectorInBackground:@selector(displayImages) withObject:nil];
+        });
     }
     return self;
 }
 
 #pragma mark-
 #pragma mark======================
-#pragma mark Game Handlers
+#pragma mark Helpers
 #pragma mark======================
 
 -(void) displayImages {
     DebugLog(@"");
+
         UIImage *image = nil;
         if([[[imageName lastPathComponent] pathExtension] isEqualToString:@"png"]){
-            image = [UIImage imageWithData:[NSData dataWithContentsOfFile:imageName]];
-            UIGraphicsBeginImageContext(RECT_ACTUAL_THUMBNAIL_IMAGE_FRAME.size);
-            [image drawInRect:RECT_ACTUAL_THUMBNAIL_IMAGE_FRAME];
-            UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
-            imgView.image = thumbnailImage;
-            UIGraphicsEndImageContext();
-           // actulaImage = image;
+            image = [UIImage imageWithContentsOfFile:imageName];
             
-            NSString *path = [imageName stringByDeletingPathExtension];
-            NSString *iName = [NSString stringWithFormat:@"%@_%@.png",path,STR_WITH_BORDER];
-            DebugLog(@"iName : %@",iName);
-           
-            imageNameWithBorder = iName;
-            actulaImage = [UIImage imageWithData:[NSData dataWithContentsOfFile:iName]];
+            //Crop the image to remove the border
+            CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], CGRectMake(40, 40,650, 460));
+            UIImage *cropped = [UIImage imageWithCGImage:imageRef];
+            CGImageRelease(imageRef);
+            
+            imgView.image = cropped;
+            UIGraphicsEndImageContext();
+            
+            actulaImage = image;
             
             playBtn.hidden = YES;
             [busyView stopAnimating];
             busyView.hidden = YES;
 
         }else if([[[imageName lastPathComponent] pathExtension] isEqualToString:@"mov"]){
-
-            NSString *fileName=[[imageName lastPathComponent] stringByReplacingOccurrencesOfString:@".mov" withString:@"_thumb.png" ];
-            NSString *path2 = [[TigglyStampUtils sharedInstance]getDocumentDirPath];
-            path2 = [path2 stringByAppendingPathComponent:fileName];
-            UIImage *thumb = [UIImage imageWithData:[NSData dataWithContentsOfFile:path2]];
-            imgView.image = thumb;
-                 
-            NSString *path = [imageName stringByDeletingPathExtension];
-            NSString *iName = [NSString stringWithFormat:@"%@_%@.png",path,STR_WITH_MOVIE_BORDER];
-            DebugLog(@"iName : %@",iName);
             
-            imageNameWithBorder = iName;
-            actulaImage =  thumb;//[UIImage imageWithData:[NSData dataWithContentsOfFile:iName]];
+            UIImage *img = [[TigglyStampUtils sharedInstance] getMovieImageForMovieName:[imageName lastPathComponent]];
+          
+            //Crop the image to remove the border
+            CGImageRef imageRef = CGImageCreateWithImageInRect([img CGImage], CGRectMake(40, 40,640, 460));
+            UIImage *cropped = [UIImage imageWithCGImage:imageRef];
+            CGImageRelease(imageRef);
+            
+            imgView.image = cropped;
+            UIGraphicsEndImageContext();
+         
+            actulaImage =  img;
             
             playBtn.hidden = NO;
             [busyView stopAnimating];

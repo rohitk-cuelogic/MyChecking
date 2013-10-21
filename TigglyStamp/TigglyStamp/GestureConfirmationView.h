@@ -11,7 +11,9 @@
 @class GestureConfirmationView;
 
 @protocol GestireViewProtocol <NSObject>
+@optional
 -(void) gestureViewOnGestureConfirmed:(GestureConfirmationView *) gView;
+-(void) gestureViewOnCancel:(GestureConfirmationView *) gView;
 @end
 
 @interface GestureConfirmationView : UIView{

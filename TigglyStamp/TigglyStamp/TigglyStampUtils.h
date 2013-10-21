@@ -27,19 +27,13 @@
 - (NSString *) getDocumentDirPath;
 - (NSArray *) getAllImagesAndMovies;
 
--(UIImage *) getThumbnailImageOfMovieFile:(NSString *) filePath;
-
--(NSString *) getImagePathOfMovieThumbnailWithBorder:(NSString *) moveName;
-
 //for writing csv for keys
 -(BOOL)getDebugModeForWriteKeyInCsvOn;
-    
 -(void)setDebugModeForWriteKeyInCsvOn:(BOOL) isOn;
-
-- (void) saveCSVFileData;
-- (void) deleteCSVFile;
+-(void) saveCSVFileData;
+-(void) deleteCSVFile;
 -(void)appendKeyDatatoString:(NSString *)str;
-- (BOOL) isMailSupported;
+-(BOOL) isMailSupported;
 -(NSString *)getCsvKeys;
 -(BOOL)getSendMailOn;
 -(void)setSendMailOn:(BOOL) isOn;
@@ -63,5 +57,8 @@
 
 -(void) setMusicStatus:(NSString *) status;
 -(NSString *) getMusicStatus;
+
+-(UIImage *) getMovieImageForMovieName:(NSString *) moviePath;
+-(NSString *) getMovieImagePathForMovieName:(NSString *) moviePath;
 
 @end

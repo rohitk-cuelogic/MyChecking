@@ -11,8 +11,9 @@
 #import "TSThumbnailView.h"
 #import "TigglyStampUtils.h"
 #import "ThumbnailView.h"
+#import "GestureConfirmationView.h"
 
-@interface TSHomeViewController : UIViewController<ThumbnailViewProtocol>{
+@interface TSHomeViewController : UIViewController<ThumbnailViewProtocol,GestireViewProtocol>{
     IBOutlet UIButton *playBtn;
     IBOutlet UIButton *forParentsBtn;
     IBOutlet UIButton *newsBtn;
@@ -33,6 +34,8 @@
     
     BOOL isFirstTimePlay;
     BOOL isThumbnailLongPressed;
+    
+    GestureConfirmationView *gestureView;
 }
 
 @property(nonatomic, strong) UIScrollView *imgScrollView;

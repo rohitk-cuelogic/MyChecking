@@ -882,34 +882,14 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     [cameraButton setHidden:YES];
     [videoButton setHidden:YES];
     [garbageCan setHidden:YES];
-//    [curlButton setHidden:YES];
     
-    UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
+//    UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(1024, 768), NO, 0.0);
     [[UIColor clearColor] set];
     UIRectFill(CGRectMake(0.0, 0.0,1024,768));
     [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
-    
-    NSDate* currentDate = [NSDate date];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"MM-dd-yyyy_HH:mm:ss"];
-    // convert it to a string
-    NSString *dateString = [dateFormat stringFromDate:currentDate];
-    NSString *imgName = [NSString stringWithFormat:@"TigglyStamp_%@.png",dateString];
-    DebugLog(@"Image Name : %@",imgName);
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:imgName];
-    DebugLog(@"Image Path: %@",savedImagePath);
-    NSData *imageData = UIImagePNGRepresentation(image);
-    BOOL isSuccess = [imageData writeToFile:savedImagePath atomically:YES];
-    if(isSuccess)
-        DebugLog(@"Imaged saved successfully");
-    else
-        DebugLog(@"Failed to save the image");
     
     [cameraButton setHidden:NO];
     [videoButton setHidden:NO];
@@ -924,12 +904,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
-    
-#else
-    
 #endif
 
-    
     
     UIView *flashView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
     flashView.backgroundColor = [UIColor whiteColor];
@@ -959,7 +935,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                                   [self playSlidingSounds];
                                               });
                                               
-                                              CapturedImageView *cImageView = [[CapturedImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768) ImageName:imgName];
+                                              CapturedImageView *cImageView = [[CapturedImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768) withImage:image isVideo:NO];
                                               cImageView.delegate = self;
                                               [self.mainView addSubview:cImageView];
                                               [self.mainView bringSubviewToFront:cImageView];
@@ -1151,7 +1127,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         
         videoButton.alpha = 0.0;
         
-        UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
+//        UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(1024, 768), NO, 0.0);
         [[UIColor whiteColor] set];
         UIRectFill(CGRectMake(0.0, 0.0,1024,768));
         [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -1159,34 +1136,19 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
+        videoButton.alpha = 1.0;
+        
         NSDate* currentDate = [NSDate date];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"MM-dd-yyyy_HH:mm:ss"];
-        // convert it to a string
         NSString *movieDateString = [dateFormat stringFromDate:currentDate];
-        NSString *imgName = [NSString stringWithFormat:@"TigglyStamp_%@_thumb.png",movieDateString];
+        NSString *imgName = [NSString stringWithFormat:@"TigglyStamp_%@.png",movieDateString];
         DebugLog(@"Image Name : %@",imgName);
         
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:imgName];
-        DebugLog(@"Image Path: %@",savedImagePath);
-        NSData *imageData = UIImagePNGRepresentation(image);
-        BOOL isSuccess = [imageData writeToFile:savedImagePath atomically:YES];
-        if(isSuccess){
-            DebugLog(@"Imaged saved successfully");
-            videoButton.alpha = 1.0;
-        }
-        else {
-            DebugLog(@"Failed to save the image");
-            videoButton.alpha = 1.0;
-        }
-        
+        movieScreenshotImage = image;
+        movieScreenshotName = imgName;
         
         screenCapture.movieString = movieDateString;
-        
-       
-        
                 
         [videoButton setBackgroundImage:[UIImage imageNamed:@"record_icon_stop_2"] forState:UIControlStateNormal];
         
@@ -1196,21 +1158,6 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         
         [cameraButton.layer removeAllAnimations];
         [cameraButton.layer removeAnimationForKey:@"transform.scale"];
-        
-         
-//        double delayInSeconds = 1.0;
-//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-//        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//            CABasicAnimation *theAnimation;
-//            theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
-//            theAnimation.duration=1.0;
-//            theAnimation.repeatCount=HUGE_VALF;
-//            theAnimation.autoreverses=NO;
-//            theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
-//            theAnimation.toValue=[NSNumber numberWithFloat:0.5];
-//            [videoButton.layer addAnimation:theAnimation forKey:@"opacity"]; //animateOpacity
-//        });
-        
         
     }
 }
@@ -2205,11 +2152,9 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     [videoButton setHidden:YES];
     [garbageCan setHidden:YES];
     
-    NSString *imageStr = [NSString stringWithFormat:@"%@",screenCapture.exportUrl];
-    
-    ccImageView = [[CapturedImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768) ImageName:imageStr];
+    ccImageView = [[CapturedImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768) withImage:movieScreenshotImage isVideo:YES];
     ccImageView.delegate = self;
-    
+    ccImageView.moviePngName = movieScreenshotName;
     [self.mainView addSubview:ccImageView];
     [self.mainView bringSubviewToFront:ccImageView];
     
@@ -2227,7 +2172,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 - (void) recordingFinished:(NSString*)outputPathOrNil{
     DebugLog(@"");
     NSURL *url = screenCapture.exportUrl;
-    // [self playRandomPraiseSound];
+    
+    
 #ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
     [[GAIDictionaryBuilder createEventWithCategory:@"Gallery"
@@ -2236,9 +2182,6 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
-    
-#else
-    
 #endif
 
     
@@ -2248,8 +2191,6 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         [self playSlidingSounds];
     });
     
-    UIImage *thumbnail = [[TigglyStampUtils sharedInstance] getThumbnailImageOfMovieFile:[url lastPathComponent]];
-    ccImageView.imageView.image = thumbnail;
     [activityIndicator removeFromSuperview];
     ccImageView.btnPlay.hidden = NO;
     [self playSlidingSounds];

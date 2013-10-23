@@ -69,12 +69,6 @@ int swipeTxtCnt;
         [winterSeasonBtn setAlpha:1.0f];
     }
     
-    
-    confirmationView.layer.cornerRadius = 20.0f;
-    confirmationView.layer.masksToBounds = YES;
-    
-    
-    confirmationView.hidden = YES;
     confirmationViewBKG.hidden = YES;
     
 
@@ -234,54 +228,10 @@ int swipeTxtCnt;
 -(void) showConfirmationView{
     DebugLog(@"");
     
-    swipeTxtCnt = arc4random()%7;
-    
-    [txtView setText:[NSString stringWithFormat:@"To continue,\nswipe %@ fingers.", [swipeTxtArray objectAtIndex:swipeTxtCnt]]];
-    txtView.font = [UIFont fontWithName:APP_FONT_BOLD size:35.0f];
-    txtView.textColor = [UIColor whiteColor];
-    
-    switch (swipeTxtCnt) {
-        case 0:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 1:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 2:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 3:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 4:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 5:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 6:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 7:
-            [mSwpeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
-            [mSwpeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        default:
-            break;
-    }
-    
-    confirmationView.hidden = NO;
-    confirmationViewBKG.hidden = NO;
-    [self.view bringSubviewToFront:confirmationViewBKG];
-    [self.view bringSubviewToFront:confirmationView];
-    [confirmationView  bringSubviewToFront:notConfirm];
+    gestureView = [[GestureConfirmationView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+    gestureView.delegate = self;
+    gestureView.layer.zPosition = 1500;
+    [self.view addSubview:gestureView];
 }
 
 -(void)swippedforConfirmation{
@@ -307,15 +257,18 @@ int swipeTxtCnt;
 
 -(IBAction)noConfirmation:(id)sender{
     DebugLog(@"");
-    
-    
-    confirmationView.hidden = YES;
+
     confirmationViewBKG.hidden = YES;
     
     fallSeasonBtn.enabled = YES;
     winterSeasonBtn.enabled = YES;
      homeBtn.enabled = YES;
     learnMoreBtn.enabled = YES;
+    
+    if(gestureView != nil){
+        [gestureView removeFromSuperview];
+        gestureView = nil;
+    }
     
 }
 
@@ -328,5 +281,24 @@ int swipeTxtCnt;
     });
 }
 
+#pragma mark -
+#pragma mark =======================================
+#pragma mark gestureView Protocol
+#pragma mark =======================================
+
+-(void) gestureViewOnGestureConfirmed:(GestureConfirmationView *)gView {
+    DebugLog(@"");
+    
+    [self swippedforConfirmation];
+    [gestureView removeFromSuperview];
+    gestureView = nil;
+    
+}
+
+-(void) gestureViewOnCancel:(GestureConfirmationView *) gView{
+    DebugLog(@"");
+    
+     [self noConfirmation:nil];
+}
 
 @end

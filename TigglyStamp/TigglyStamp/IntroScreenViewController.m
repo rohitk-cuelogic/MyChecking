@@ -59,6 +59,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) releaseAllData{
+    DebugLog(@"");
+    
+    if(arrLanguage != nil){
+        [arrLanguage removeAllObjects];
+        arrLanguage= nil;
+    }
+    
+//    if(languageView != nil){
+//        [languageView removeFromSuperview];
+//        languageView = nil;
+//    }
+//    
+//    if(gameTypeView != nil){
+//        [gameTypeView removeFromSuperview];
+//        gameTypeView = nil;
+//    }
+    
+}
+
 #pragma mark -
 #pragma mark =======================================
 #pragma mark View Lifecycle
@@ -292,6 +312,8 @@
     //Clear array for memory mgmt
     [arrLanguage removeAllObjects];
     arrLanguage = nil;
+    
+    [self releaseAllData];
 }
 
 -(IBAction)actionGoBackToLanguage {

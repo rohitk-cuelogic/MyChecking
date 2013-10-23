@@ -275,7 +275,7 @@ imageView, animationData, animationTimer, animationStep, animationDuration, anim
 		return;
 
 	NSTimeInterval currentTime;
-	NSUInteger frameNow;
+	NSInteger frameNow;
 
 	if (avAudioPlayer == nil) {
 		self.animationStep += 1;
@@ -295,11 +295,11 @@ imageView, animationData, animationTimer, animationStep, animationDuration, anim
 	}
 
 	[self animationShowFrame: frameNow];
-    NSLog(@"frame no : %d",frameNow);
+//    NSLog(@"frame no : %d",frameNow);
 //	animationStep = frameNow + 1;
 
 	if (animationStep >= animationNumFrames) {
-        NSLog(@"animationStep >= animationNumFrames");
+//        NSLog(@"animationStep >= animationNumFrames");
 		[self stopAnimating];
 
 		// Continue to loop animation until loop counter reaches 0

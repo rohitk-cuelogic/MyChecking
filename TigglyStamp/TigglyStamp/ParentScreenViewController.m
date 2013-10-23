@@ -7,7 +7,6 @@
 //
 
 #import "ParentScreenViewController.h"
-#import "SettingsViewController.h"
 #import "UnlockScreenViewController.h"
 
 #define TAG_SUBSCRIBE_BTN 1

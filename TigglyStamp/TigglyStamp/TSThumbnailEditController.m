@@ -51,7 +51,7 @@
         
         editorImgView = [[UIImageView alloc] initWithFrame:RECT_THUMBNAIL_EDITOR_FRAME];
         [editorImgView setContentMode:UIViewContentModeScaleAspectFit];
-        editorImgView.center = CGPointMake(512, 420);
+           editorImgView.center = CGPointMake(512, 420);
         editorImgView.image = img;
         editorImgView.userInteractionEnabled = YES;
         [self.view addSubview:editorImgView];
@@ -280,6 +280,10 @@
 
 -(void) zoomTappedImage{
     DebugLog(@"");
+    
+    if(isVideoPlaying)
+        return;
+    
     if(readyToZoom){
         homeBtn.hidden = YES;
         saveImageBtn.hidden = YES;

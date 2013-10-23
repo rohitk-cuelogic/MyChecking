@@ -9,19 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "StampViewController.h"
 #import "TSHomeViewController.h"
+#import "GestureConfirmationView.h"
 
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 
-@interface SeasonSelectionViewController : GAITrackedViewController
+@interface SeasonSelectionViewController : GAITrackedViewController<GestireViewProtocol>
 {
-    IBOutlet UIView *confirmationView;
     IBOutlet UIImageView *confirmationViewBKG;
     IBOutlet UIButton *notConfirm;
     IBOutlet UITextView *txtView;
     
     TSHomeViewController *homeViewController;
+    
+    GestureConfirmationView *gestureView;
 }
 @property (nonatomic,strong) IBOutlet UIButton *winterSeasonBtn;
 @property (nonatomic,strong) IBOutlet UIButton *fallSeasonBtn;

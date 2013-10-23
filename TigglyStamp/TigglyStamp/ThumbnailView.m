@@ -20,13 +20,6 @@
 #pragma mark Init
 #pragma mark =======================================
 
-- (id)initWithFrame:(CGRect)frame{
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.backgroundColor = [UIColor grayColor];
-    }
-    return self;
-}
 
 - (id)initWithFrame:(CGRect)frame withThumbnailImagePath:(NSString *) imgePath{
     DebugLog(@"");
@@ -43,7 +36,7 @@
         [imgView setContentMode:UIViewContentModeScaleToFill];
         imgView.layer.cornerRadius = 30.0f;
         imgView.layer.masksToBounds = YES;
-        imgView.backgroundColor = [UIColor clearColor];
+        imgView.backgroundColor = [UIColor grayColor];
         [self addSubview:imgView];
         
 
@@ -63,7 +56,7 @@
         [closeBtn setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
         [closeBtn setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateSelected];
         [closeBtn addTarget:self action:@selector(actionClose)forControlEvents:UIControlEventTouchUpInside];
-        closeBtn.frame = CGRectMake(self.frame.size.width - 22,0,44, 44);
+        closeBtn.frame = CGRectMake(imgView.frame.size.width - 22,0,44, 44);
         closeBtn.hidden =YES;
         [self addSubview:closeBtn];
         closeBtn.userInteractionEnabled = YES;
@@ -80,12 +73,9 @@
         gesture.allowableMovement = 600;
         [self addGestureRecognizer:gesture];
 
-//        [self displayImages];
-//        [NSThread detachNewThreadSelector:@selector(displayImages) toTarget:self withObject:nil];
-      
         
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-              [self performSelectorInBackground:@selector(displayImages) withObject:nil];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            [self performSelectorInBackground:@selector(displayImages) withObject:nil];
         });
     }
     return self;
@@ -137,11 +127,6 @@
             
 
         }
-}
-
--(void) getMovieImage{
-    DebugLog(@"");
-    
 }
 
 -(void) playSlidingSounds{

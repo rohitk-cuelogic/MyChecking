@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EB6F331F1781867900FC479F"
                BuildableName = "TigglyStamp.app"
-               BlueprintName = "TigglyStamp"
+               BlueprintName = "Tiggly Stamp"
                ReferencedContainer = "container:TigglyStamp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,7 +34,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EB6F331F1781867900FC479F"
             BuildableName = "TigglyStamp.app"
-            BlueprintName = "TigglyStamp"
+            BlueprintName = "Tiggly Stamp"
             ReferencedContainer = "container:TigglyStamp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -53,7 +53,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EB6F331F1781867900FC479F"
             BuildableName = "TigglyStamp.app"
-            BlueprintName = "TigglyStamp"
+            BlueprintName = "Tiggly Stamp"
             ReferencedContainer = "container:TigglyStamp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,7 +71,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EB6F331F1781867900FC479F"
             BuildableName = "TigglyStamp.app"
-            BlueprintName = "TigglyStamp"
+            BlueprintName = "Tiggly Stamp"
             ReferencedContainer = "container:TigglyStamp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

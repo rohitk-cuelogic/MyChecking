@@ -10,7 +10,6 @@
 #import "TSThumbnailEditController.h"
 #import "SeasonSelectionViewController.h"
 #import "ParentScreenViewController.h"
-#import "MovingView.h"
 #import "TDSoundManager.h"
 #import "UnlockScreenViewController.h"
 #import "TSTempData.h"
@@ -25,6 +24,7 @@
 @synthesize containerView,learnMoreBtn;
 
 BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail,readyToLearnMore;
+NSArray *allImageFiles;
 
 #pragma mark -
 #pragma mark =======================================
@@ -64,6 +64,17 @@ BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail,readyToLearnM
         [allThumbnails removeAllObjects];
         allThumbnails = nil;
     }
+    
+    if(playBtnTimer != nil){
+        [playBtnTimer invalidate];
+        playBtnTimer = nil;
+    }
+    
+    if(bkgLayer != nil){
+        [bkgLayer removeFromSuperlayer];
+        bkgLayer = nil;
+    }
+    
 
 }
 
@@ -107,6 +118,9 @@ BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail,readyToLearnM
     readyToNewsScreen = NO;
     confirmationView.hidden = YES;
     confirmationViewBKG.hidden = YES;
+    
+    allImageFiles = [[TigglyStampUtils sharedInstance] getAllImagesAndMovies];
+    
     for(UIView *thumbnail in imgScrollView.subviews){
         [thumbnail removeFromSuperview];
     }
@@ -240,14 +254,8 @@ BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail,readyToLearnM
 -(void) loadThumbnails {
     DebugLog(@"");
   
-    NSArray *allImageFiles = [[TigglyStampUtils sharedInstance] getAllImagesAndMovies];
-    NSMutableArray *imageFiles = [[NSMutableArray alloc] initWithCapacity:1];
-    DebugLog(@"All Files : %@",imageFiles);
-    for(NSString *file in allImageFiles){
-            [imageFiles addObject:file];
-    }
     DebugLog(@"allImageFiles : %@",allImageFiles);
-    NSArray *allFiles = [NSArray arrayWithArray:imageFiles];
+    NSArray *allFiles = [NSArray arrayWithArray:allImageFiles];
     allFiles = [[allFiles reverseObjectEnumerator] allObjects];
     
     int xPos = 20;
@@ -265,12 +273,6 @@ BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail,readyToLearnM
     
 }
 
--(void) loadThumbnailImages{
-    DebugLog(@"");
-    for(ThumbnailView *tv in allThumbnails){
-        [tv displayImages];
-    }
-}
 
 -(void) reloadThumbnails {
     DebugLog(@"");

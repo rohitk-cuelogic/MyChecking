@@ -35,7 +35,6 @@ NSMutableDictionary *calculationHash;
 -(BOOL)calculateShape:(UITouchGroup *)group{
     DebugLog(@"");
     if ([mode isEqualToString:vVerificationMode3Point]) {
-        [super calculateShape:group];
     } else if ([mode isEqualToString:vVerificationMode6Point]){
         calculateShape(group, self);
     } 

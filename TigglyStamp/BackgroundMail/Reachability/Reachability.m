@@ -268,8 +268,8 @@ static void logNetworkStatus_(const char *name, int line, NetworkStatus status) 
 //} // ReachabilityCallback()
 //
 //
-//- (BOOL) startNotifier {
-//	
+- (BOOL) startNotifier {
+	
 //	SCNetworkReachabilityContext	context = {0, self, NULL, NULL, NULL};
 //	
 //	if(SCNetworkReachabilitySetCallback(reachabilityRef, ReachabilityCallback, &context)) {
@@ -281,10 +281,10 @@ static void logNetworkStatus_(const char *name, int line, NetworkStatus status) 
 //		}
 //		
 //	}
-//	
-//	return NO;
-//
-//} // startNotifier
+	
+	return NO;
+
+} // startNotifier
 
 
 - (void) stopNotifier {

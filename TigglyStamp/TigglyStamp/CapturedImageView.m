@@ -40,7 +40,9 @@
             [viewForPreview.layer setShadowOpacity:0.8];
             [viewForPreview.layer setShadowRadius:3.0];
             [viewForPreview.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+            viewForPreview.center = CGPointMake(512, 1000);
             [self addSubview:viewForPreview];
+
             
             //Adding the date
             NSDate* currentDate = [NSDate date];
@@ -60,6 +62,14 @@
             imageView = [[UIImageView alloc] initWithImage:img];
             imageView.frame = CGRectMake(30, 30,650,488);
             [viewForPreview addSubview:imageView];
+            
+            [UIView animateWithDuration:1.2
+                             animations:^{
+                                 viewForPreview.center = CGPointMake(505, 425);
+                             }
+                             completion:^(BOOL finished){
+                                 
+                             }];
             
             btnPlay = [UIButton buttonWithType:UIButtonTypeCustom];
             [btnPlay setBackgroundImage:[UIImage imageNamed:@"play_btn.png"] forState:UIControlStateNormal];

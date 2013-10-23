@@ -17,7 +17,6 @@
 		63019DC517A2636B005B8CA3 /* twitter_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 63019DC317A2636B005B8CA3 /* twitter_logo.png */; };
 		63019DC717A263CF005B8CA3 /* submit_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 63019DC617A263CF005B8CA3 /* submit_btn.png */; };
 		63019DC917A27955005B8CA3 /* greentick.png in Resources */ = {isa = PBXBuildFile; fileRef = 63019DC817A27955005B8CA3 /* greentick.png */; };
-		63019DCF17A2AA03005B8CA3 /* TSThumbnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63019DCE17A2AA03005B8CA3 /* TSThumbnailView.m */; };
 		63019DD317A2AA4C005B8CA3 /* TSThumbnailEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63019DD117A2AA4B005B8CA3 /* TSThumbnailEditController.m */; };
 		63019DD417A2AA4C005B8CA3 /* TSThumbnailEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63019DD217A2AA4C005B8CA3 /* TSThumbnailEditController.xib */; };
 		63019DD717A2B54B005B8CA3 /* deletebtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 63019DD517A2B54B005B8CA3 /* deletebtn.png */; };
@@ -333,7 +332,6 @@
 		C00B875817AA2EED00823454 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = C00B874E17AA2EED00823454 /* OAToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C00B875B17AA33E500823454 /* ThumbnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = C00B875A17AA33E500823454 /* ThumbnailView.m */; };
 		C00D920217C5EB1400FECBAF /* language_block.png in Resources */ = {isa = PBXBuildFile; fileRef = C00D920017C5EB1400FECBAF /* language_block.png */; };
-		C00D920617C6169000FECBAF /* MovingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C00D920517C6169000FECBAF /* MovingView.m */; };
 		C00D920E17C618F000FECBAF /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = C00D920917C618F000FECBAF /* square.png */; };
 		C01487DD17CB829B00824E52 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = C01487DC17CB829A00824E52 /* close.png */; };
 		C01E527A17C738B800B749F3 /* arrow_right_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C01E525E17C738B800B749F3 /* arrow_right_1.png */; };
@@ -1077,7 +1075,6 @@
 		C082921E17A7CB230023F08A /* witches_hat_purple@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08291E917A7CB230023F08A /* witches_hat_purple@2x~ipad.png */; };
 		C082921F17A7CB230023F08A /* zebra_2@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08291EA17A7CB230023F08A /* zebra_2@2x~ipad.png */; };
 		C082922117A7F4270023F08A /* recordingStarted@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C082922017A7F4260023F08A /* recordingStarted@2x~ipad.png */; };
-		C082922317A80B7F0023F08A /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C082922217A80B7F0023F08A /* SettingsViewController.xib */; };
 		C082922717A80D490023F08A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C082922917A80D490023F08A /* Localizable.strings */; };
 		C08EC11C17EB49680092F5A7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C08EC11B17EB49680092F5A7 /* CoreData.framework */; };
 		C08EC12017EB54A70092F5A7 /* unlock_using_shapes.png in Resources */ = {isa = PBXBuildFile; fileRef = C08EC11E17EB54A70092F5A7 /* unlock_using_shapes.png */; };
@@ -1105,6 +1102,7 @@
 		C0A82D5017EC935B00F85793 /* pic_3.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A82D4617EC935B00F85793 /* pic_3.png */; };
 		C0A82D5117EC935B00F85793 /* spatialthinking.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A82D4717EC935B00F85793 /* spatialthinking.png */; };
 		C0A82D5217EC935B00F85793 /* TigglyShapes.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A82D4817EC935B00F85793 /* TigglyShapes.png */; };
+		C0B7FC5F1816ACCC0059D983 /* close@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B7FC5E1816ACCC0059D983 /* close@2x~ipad.png */; };
 		C0C3E3FB17F3152000BD3B29 /* privacypolicy.html in Resources */ = {isa = PBXBuildFile; fileRef = C0C3E3FA17F3152000BD3B29 /* privacypolicy.html */; };
 		C0C3E3FD17F3203000BD3B29 /* list_dotblack.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C3E3FC17F3203000BD3B29 /* list_dotblack.png */; };
 		C0D3CAD917FAE52B009C5B3D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D3CAD817FAE52B009C5B3D /* UIImage+Resize.m */; };
@@ -1112,7 +1110,6 @@
 		C0D8B04A180440EC0096448B /* color_splash.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D8B049180440EC0096448B /* color_splash.png */; };
 		C0D8C92417C772C000A037B8 /* play_btn_circle_3.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D8C92217C772C000A037B8 /* play_btn_circle_3.png */; };
 		C0D8C92517C772C000A037B8 /* play_btn_circle_5.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D8C92317C772C000A037B8 /* play_btn_circle_5.png */; };
-		C0DDFCBF17A6384D001F846D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C00C973617A292A300224283 /* SettingsViewController.m */; };
 		C0DF52A217FC00A6009C6790 /* 29X29.png in Resources */ = {isa = PBXBuildFile; fileRef = C0DF529817FC00A6009C6790 /* 29X29.png */; };
 		C0DF52A317FC00A6009C6790 /* 40X40.png in Resources */ = {isa = PBXBuildFile; fileRef = C0DF529917FC00A6009C6790 /* 40X40.png */; };
 		C0DF52A417FC00A6009C6790 /* 50X50.png in Resources */ = {isa = PBXBuildFile; fileRef = C0DF529A17FC00A6009C6790 /* 50X50.png */; };
@@ -1288,8 +1285,6 @@
 		63019DC317A2636B005B8CA3 /* twitter_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_logo.png; sourceTree = "<group>"; };
 		63019DC617A263CF005B8CA3 /* submit_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = submit_btn.png; sourceTree = "<group>"; };
 		63019DC817A27955005B8CA3 /* greentick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greentick.png; sourceTree = "<group>"; };
-		63019DCD17A2AA03005B8CA3 /* TSThumbnailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSThumbnailView.h; sourceTree = "<group>"; };
-		63019DCE17A2AA03005B8CA3 /* TSThumbnailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSThumbnailView.m; sourceTree = "<group>"; };
 		63019DD017A2AA4B005B8CA3 /* TSThumbnailEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSThumbnailEditController.h; sourceTree = "<group>"; };
 		63019DD117A2AA4B005B8CA3 /* TSThumbnailEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSThumbnailEditController.m; sourceTree = "<group>"; };
 		63019DD217A2AA4C005B8CA3 /* TSThumbnailEditController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSThumbnailEditController.xib; sourceTree = "<group>"; };
@@ -1638,11 +1633,7 @@
 		C00B874F17AA2EED00823454 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
 		C00B875917AA33E500823454 /* ThumbnailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailView.h; sourceTree = "<group>"; };
 		C00B875A17AA33E500823454 /* ThumbnailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbnailView.m; sourceTree = "<group>"; };
-		C00C973517A292A300224283 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		C00C973617A292A300224283 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		C00D920017C5EB1400FECBAF /* language_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = language_block.png; sourceTree = "<group>"; };
-		C00D920417C6169000FECBAF /* MovingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovingView.h; sourceTree = "<group>"; };
-		C00D920517C6169000FECBAF /* MovingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovingView.m; sourceTree = "<group>"; };
 		C00D920917C618F000FECBAF /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
 		C01487DC17CB829A00824E52 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		C01E525E17C738B800B749F3 /* arrow_right_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right_1.png; sourceTree = "<group>"; };
@@ -2388,7 +2379,6 @@
 		C08291E917A7CB230023F08A /* witches_hat_purple@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "witches_hat_purple@2x~ipad.png"; sourceTree = "<group>"; };
 		C08291EA17A7CB230023F08A /* zebra_2@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zebra_2@2x~ipad.png"; sourceTree = "<group>"; };
 		C082922017A7F4260023F08A /* recordingStarted@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "recordingStarted@2x~ipad.png"; path = "FallObjects/recordingStarted@2x~ipad.png"; sourceTree = "<group>"; };
-		C082922217A80B7F0023F08A /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		C082922817A80D490023F08A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C08EC11B17EB49680092F5A7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C08EC11E17EB54A70092F5A7 /* unlock_using_shapes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlock_using_shapes.png; sourceTree = "<group>"; };
@@ -2416,6 +2406,7 @@
 		C0A82D4617EC935B00F85793 /* pic_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_3.png; sourceTree = SOURCE_ROOT; };
 		C0A82D4717EC935B00F85793 /* spatialthinking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spatialthinking.png; sourceTree = SOURCE_ROOT; };
 		C0A82D4817EC935B00F85793 /* TigglyShapes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TigglyShapes.png; sourceTree = SOURCE_ROOT; };
+		C0B7FC5E1816ACCC0059D983 /* close@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close@2x~ipad.png"; sourceTree = "<group>"; };
 		C0C3E3FA17F3152000BD3B29 /* privacypolicy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacypolicy.html; sourceTree = "<group>"; };
 		C0C3E3FC17F3203000BD3B29 /* list_dotblack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_dotblack.png; sourceTree = SOURCE_ROOT; };
 		C0D3CAD717FAE52B009C5B3D /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Resize.h"; path = "UIImage+Resize/UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -3078,6 +3069,7 @@
 		C01E525D17C738B800B749F3 /* NavigationImages */ = {
 			isa = PBXGroup;
 			children = (
+				C0B7FC5E1816ACCC0059D983 /* close@2x~ipad.png */,
 				C01FE0A41810205A008F00FE /* fall_btn.png */,
 				C01FE0A51810205A008F00FE /* winter_btn.png */,
 				C01487DC17CB829A00824E52 /* close.png */,
@@ -4091,8 +4083,8 @@
 			children = (
 				631A51F317EB2F9B00D88E2C /* GoogleAnalyticLibrary */,
 				EB6F33981781AD0600FC479F /* TConstant.h */,
-				C0F85EC41800588100045212 /* TSTempData.h */,
-				C0F85EC51800588100045212 /* TSTempData.m */,
+				EB6F33331781867900FC479F /* AppDelegate.h */,
+				EB6F33341781867900FC479F /* AppDelegate.m */,
 				EBEDE48817951667002151E5 /* TigglyStampUtils.h */,
 				EBEDE48917951667002151E5 /* TigglyStampUtils.m */,
 				EB6F339F1781B8C900FC479F /* WinterScene.h */,
@@ -4133,15 +4125,6 @@
 				63CEE1A317A0EA010060DC42 /* SeasonSelectionViewController.h */,
 				63CEE1A417A0EA010060DC42 /* SeasonSelectionViewController.m */,
 				63CEE1A517A0EA010060DC42 /* SeasonSelectionViewController.xib */,
-				63019DCD17A2AA03005B8CA3 /* TSThumbnailView.h */,
-				63019DCE17A2AA03005B8CA3 /* TSThumbnailView.m */,
-				EB6F33331781867900FC479F /* AppDelegate.h */,
-				EB6F33341781867900FC479F /* AppDelegate.m */,
-				C00C973517A292A300224283 /* SettingsViewController.h */,
-				C00C973617A292A300224283 /* SettingsViewController.m */,
-				C082922217A80B7F0023F08A /* SettingsViewController.xib */,
-				C00D920417C6169000FECBAF /* MovingView.h */,
-				C00D920517C6169000FECBAF /* MovingView.m */,
 				C027AE5417EAD8920066632E /* UnlockScreenViewController.h */,
 				C027AE5517EAD8920066632E /* UnlockScreenViewController.m */,
 				C027AE5617EAD8920066632E /* UnlockScreenViewController.xib */,
@@ -4151,6 +4134,8 @@
 				C0F814CD17F179A10051C2B5 /* GestureConfirmationView.m */,
 				C0EDD063180E9376007051A8 /* ImageAnimatorView.h */,
 				C0EDD064180E9376007051A8 /* ImageAnimatorView.m */,
+				C0F85EC41800588100045212 /* TSTempData.h */,
+				C0F85EC51800588100045212 /* TSTempData.m */,
 			);
 			path = TigglyStamp;
 			sourceTree = "<group>";
@@ -4393,9 +4378,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EB6F331F1781867900FC479F /* TigglyStamp */ = {
+		EB6F331F1781867900FC479F /* Tiggly Stamp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EB6F334A1781867900FC479F /* Build configuration list for PBXNativeTarget "TigglyStamp" */;
+			buildConfigurationList = EB6F334A1781867900FC479F /* Build configuration list for PBXNativeTarget "Tiggly Stamp" */;
 			buildPhases = (
 				EB6F331C1781867900FC479F /* Sources */,
 				EB6F331D1781867900FC479F /* Frameworks */,
@@ -4405,7 +4390,7 @@
 			);
 			dependencies = (
 			);
-			name = TigglyStamp;
+			name = "Tiggly Stamp";
 			productName = TigglyStamp;
 			productReference = EB6F33201781867900FC479F /* TigglyStamp.app */;
 			productType = "com.apple.product-type.application";
@@ -4432,7 +4417,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EB6F331F1781867900FC479F /* TigglyStamp */,
+				EB6F331F1781867900FC479F /* Tiggly Stamp */,
 			);
 		};
 /* End PBXProject section */
@@ -4443,7 +4428,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB11AF8117AA36FE0013B1B4 /* IntroScreenViewController.xib in Resources */,
-				C082922317A80B7F0023F08A /* SettingsViewController.xib in Resources */,
 				EB6F332F1781867900FC479F /* InfoPlist.strings in Resources */,
 				EB6F33371781867900FC479F /* Default.png in Resources */,
 				EB6F33391781867900FC479F /* Default@2x.png in Resources */,
@@ -5236,6 +5220,7 @@
 				C021F77217E8279A00EBD6B6 /* candy_ita.mp3 in Resources */,
 				C021F77317E8279A00EBD6B6 /* cat_ita.mp3 in Resources */,
 				C021F77417E8279A00EBD6B6 /* catch_me_ita.mp3 in Resources */,
+				C0B7FC5F1816ACCC0059D983 /* close@2x~ipad.png in Resources */,
 				C021F77517E8279A00EBD6B6 /* chicken_ita.mp3 in Resources */,
 				C021F77617E8279A00EBD6B6 /* chipmunk_ita.mp3 in Resources */,
 				C021F77717E8279A00EBD6B6 /* circle_ita.mp3 in Resources */,
@@ -5665,9 +5650,7 @@
 				63CEE1E117A14DB80060DC42 /* XBPageDragView.m in Sources */,
 				63CEE1E217A14DB80060DC42 /* XBSnappingPoint.m in Sources */,
 				63019DBA17A24FCE005B8CA3 /* ParentScreenViewController.m in Sources */,
-				63019DCF17A2AA03005B8CA3 /* TSThumbnailView.m in Sources */,
 				63019DD317A2AA4C005B8CA3 /* TSThumbnailEditController.m in Sources */,
-				C0DDFCBF17A6384D001F846D /* SettingsViewController.m in Sources */,
 				C08291B017A79D580023F08A /* FallScene.m in Sources */,
 				C074892017A94650001943E0 /* ScreenCaptureView.m in Sources */,
 				C00B873817AA2EDF00823454 /* UIView+Genie.m in Sources */,
@@ -5681,7 +5664,6 @@
 				C00B875717AA2EED00823454 /* OAServiceTicket.m in Sources */,
 				C00B875817AA2EED00823454 /* OAToken.m in Sources */,
 				C00B875B17AA33E500823454 /* ThumbnailView.m in Sources */,
-				C00D920617C6169000FECBAF /* MovingView.m in Sources */,
 				C060B41F17CDF643000AD202 /* TDSoundManager.m in Sources */,
 				C03989C217DF51D90079EB90 /* StampViewController.m in Sources */,
 				C02F012C17E70CC7007405C0 /* PhysicalShapesView.m in Sources */,
@@ -5850,7 +5832,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EB6F334A1781867900FC479F /* Build configuration list for PBXNativeTarget "TigglyStamp" */ = {
+		EB6F334A1781867900FC479F /* Build configuration list for PBXNativeTarget "Tiggly Stamp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB6F334B1781867900FC479F /* Debug */,

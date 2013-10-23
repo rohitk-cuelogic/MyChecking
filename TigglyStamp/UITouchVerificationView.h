@@ -61,10 +61,8 @@
 
 -(void)configure;
 -(void)requestShape:(NSString*)request;
--(BOOL)calculateShape:(UITouchGroup*)group;
 -(void)loadShapesWithSet:(NSMutableSet*)shapesSet;
 -(void)loadShape:(UITouchShapeRecognizer*)shape;
--(void)removeAllShapes;
 -(void)loadPlistDataForWriteMode:(NSMutableDictionary *)dic;
 
 @end

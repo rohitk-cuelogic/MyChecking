@@ -167,6 +167,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 #pragma mark View Life Cycles
 #pragma mark======================
 
+
 - (void)viewDidAppear:(BOOL)animated{
     DebugLog(@"");
     [super viewDidAppear:YES];
@@ -195,14 +196,9 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             pv.hidden = YES;
         }
     }
-//    [self addFlippedPageAnimation];
 
 }
 
-
-- (BOOL)prefersStatusBarHidden {
-    return YES;
-}
 
 - (void)viewDidLoad {
     DebugLog(@"");
@@ -295,10 +291,6 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     multiTouchForFruitObject = [[NSMutableArray alloc]init];
     multiTouchForTouchView = [[NSMutableArray alloc]init];
 
-//    UITapGestureRecognizer *doubleFingerTap =
-//    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
-//    doubleFingerTap.numberOfTapsRequired = 2;
-    
     UITapGestureRecognizer *doubleFingerTapOnGarbage =
     [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(clearScreen:)];
     doubleFingerTapOnGarbage.numberOfTapsRequired = 2;
@@ -344,6 +336,11 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 #pragma mark======================
 #pragma mark View Orientation
 #pragma mark======================
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return UIInterfaceOrientationIsLandscape(interfaceOrientation);
@@ -600,8 +597,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
     min = 0;
     sec= 0;
+    
     if(videoPlayTimer != nil)
-        [videoPlayTimer invalidate];    
+        [videoPlayTimer invalidate];
+    
     videoPlayTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
     
      lblTimer.textColor = [UIColor blueColor];
@@ -2171,8 +2170,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
 - (void) recordingFinished:(NSString*)outputPathOrNil{
     DebugLog(@"");
-    NSURL *url = screenCapture.exportUrl;
-    
+   
     
 #ifdef GOOGLE_ANALYTICS_START
     NSMutableDictionary *event =
@@ -2221,7 +2219,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                              selector:@selector(didExitFullScreen:)
                                                  name:MPMoviePlayerDidExitFullscreenNotification
                                                object:nil];
-    [moviePlayer.view setFrame:CGRectMake(185, 120,650,488)];
+    [moviePlayer.view setFrame:CGRectMake(180, 130,650,488)];
     moviePlayer.controlStyle = MPMovieControlStyleDefault;
     moviePlayer.shouldAutoplay = YES;
     [self.view addSubview:moviePlayer.view];

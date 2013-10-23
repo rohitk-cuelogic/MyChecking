@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "TConstant.h"
-#import "TSThumbnailView.h"
 #import "TigglyStampUtils.h"
 #import "ThumbnailView.h"
 #import "GestureConfirmationView.h"
@@ -45,7 +44,6 @@
 
 -(IBAction)playGame:(id)sender;
 -(IBAction)goToParentsScreen:(id)sender;
--(IBAction)noConfirmation:(id)sender;
 -(IBAction)goToNewsScreen:(id)sender;
 -(IBAction)actionLearnMore;
 

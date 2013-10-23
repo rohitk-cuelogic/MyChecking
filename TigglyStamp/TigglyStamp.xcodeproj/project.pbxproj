@@ -2454,7 +2454,7 @@
 		EB1A593317ABD138001749D2 /* pattern_0_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pattern_0_1.png; sourceTree = "<group>"; };
 		EB2B02C517C4DE9F00340A20 /* tick2@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick2@2x~ipad.png"; sourceTree = "<group>"; };
 		EB2B02C617C4DE9F00340A20 /* tick1@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick1@2x~ipad.png"; sourceTree = "<group>"; };
-		EB6F33201781867900FC479F /* TigglyStamp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TigglyStamp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB6F33201781867900FC479F /* Tiggly Stamp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tiggly Stamp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB6F33241781867900FC479F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EB6F33261781867900FC479F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EB6F33281781867900FC479F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -4047,7 +4047,7 @@
 		EB6F33211781867900FC479F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EB6F33201781867900FC479F /* TigglyStamp.app */,
+				EB6F33201781867900FC479F /* Tiggly Stamp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4392,7 +4392,7 @@
 			);
 			name = "Tiggly Stamp";
 			productName = TigglyStamp;
-			productReference = EB6F33201781867900FC479F /* TigglyStamp.app */;
+			productReference = EB6F33201781867900FC479F /* Tiggly Stamp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -5748,8 +5748,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Charles Clareman (3NP42L9YQL)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Charles Clareman (3NP42L9YQL)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: kidtellect Inc. (DA7F7F2G9X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: kidtellect Inc. (DA7F7F2G9X)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -5758,8 +5758,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = TigglyStamp;
-				PROVISIONING_PROFILE = "85078654-B26E-41DD-80CB-F7ED8C28F018";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "85078654-B26E-41DD-80CB-F7ED8C28F018";
+				PROVISIONING_PROFILE = "13E73555-0366-40E5-9E7C-EE6BE50113BF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "13E73555-0366-40E5-9E7C-EE6BE50113BF";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -5796,8 +5796,8 @@
 		EB6F334C1781867900FC479F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Charles Clareman (3NP42L9YQL)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Charles Clareman (3NP42L9YQL)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: kidtellect Inc. (DA7F7F2G9X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: kidtellect Inc. (DA7F7F2G9X)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/cuelogic/Documents/FacebookSDK,
@@ -5814,8 +5814,8 @@
 					"\"$(SRCROOT)/TigglyStamp/GoogleAnalyticLibrary\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "85078654-B26E-41DD-80CB-F7ED8C28F018";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "85078654-B26E-41DD-80CB-F7ED8C28F018";
+				PROVISIONING_PROFILE = "13E73555-0366-40E5-9E7C-EE6BE50113BF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "13E73555-0366-40E5-9E7C-EE6BE50113BF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

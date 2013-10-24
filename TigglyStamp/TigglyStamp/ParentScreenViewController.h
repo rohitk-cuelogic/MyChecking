@@ -52,7 +52,7 @@
     IBOutlet UILabel *lblSubscribeBtn;
     IBOutlet UILabel *lblSettingBtn;
     IBOutlet UILabel *lblReviewAppBtn;
-    
+    IBOutlet UILabel *lblSubscribConfirm;
     MBProgressHUD* hud;
     BOOL  isConnection;
     

@@ -20,6 +20,7 @@
     IBOutlet UIImageView *confirmationViewBKG;
     IBOutlet UIButton *notConfirm;
     IBOutlet UITextView *txtView;
+    IBOutlet UILabel *lblLearnmore;
     
     TSHomeViewController *homeViewController;
     

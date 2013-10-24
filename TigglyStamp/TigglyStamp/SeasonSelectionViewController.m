@@ -56,12 +56,27 @@ int swipeTxtCnt;
     }
   
     if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
+        float fontSize = 0.0;
+        if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+            fontSize = 22.0f;
+        }else  if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
+            fontSize = 18.0f;
+        }else{
+            fontSize = 20.0f;
+        }
+        
+        if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
+            fontSize = 16.0f;
+        }
+        lblLearnmore.text =[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLearnmore"];
+        lblLearnmore.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
         [lockWinter setHidden:FALSE];
         [learnMoreBtn setHidden:FALSE];
         [winterSeasonBtn setAlpha:0.5f];
        // [winterSeasonBtn  setBackgroundImage:[UIImage imageNamed:@"btnLock.png"] forState:UIControlStateNormal];
         winterSeasonBtn.userInteractionEnabled = NO;
     }else{
+        lblLearnmore.hidden = YES;
         [lockWinter setHidden:TRUE];
         [learnMoreBtn setHidden:TRUE];
         //[winterSeasonBtn  setBackgroundImage:[UIImage imageNamed:@"winter_btn.png"] forState:UIControlStateNormal];

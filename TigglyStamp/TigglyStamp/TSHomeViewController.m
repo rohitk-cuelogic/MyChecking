@@ -519,6 +519,18 @@ NSArray *allImageFiles;
     if(isThumbnailLongPressed){
         isThumbnailLongPressed = NO;
     }
+    
+    if(readyToLearnMore){
+        readyToLearnMore = NO;
+    }
+    
+    if(readyToNewsScreen){
+        readyToNewsScreen = NO;
+    }
+    
+    if(readyToParentScreen){
+        readyToParentScreen = NO;
+    }
 }
 
 @end

@@ -63,49 +63,64 @@
 }
 
 -(void) showTextView{
-       DebugLog(@"");
-        int swipeTxtCnt = arc4random()%7;
+    
+        DebugLog(@"");
+        swipeTxtCnt = arc4random()%7;
 
-        [txtView setText:[NSString stringWithFormat:@"To continue,\nswipe %@ fingers.", [swipeTextArray objectAtIndex:swipeTxtCnt]]];
-        txtView.font = [UIFont fontWithName:APP_FONT_BOLD size:35.0f];
+        NSString *lang = [[NSUserDefaults standardUserDefaults] valueForKey:LANGUAGE_SELECTED];
+        
+        float fSize = 30.0;
+        if ([lang isEqualToString:@"English"] ) {
+            fSize = 40.0;
+        }
+        
+        txtView.font = [UIFont fontWithName:APP_FONT_BOLD size:fSize];
         txtView.textColor = [UIColor whiteColor];
 
-        switch (swipeTxtCnt) {
-            case 0:
-                [swipeGesture setDirection: UISwipeGestureRecognizerDirectionRight];
-                [swipeGesture setNumberOfTouchesRequired: 2];
-                break;
-            case 1:
-                [swipeGesture setDirection: UISwipeGestureRecognizerDirectionRight];
-                [swipeGesture setNumberOfTouchesRequired: 2];
-                break;
-            case 2:
-                [swipeGesture setDirection: UISwipeGestureRecognizerDirectionLeft];
-                [swipeGesture setNumberOfTouchesRequired: 2];
-                break;
-            case 3:
-                [swipeGesture setDirection: UISwipeGestureRecognizerDirectionLeft];
-                [swipeGesture setNumberOfTouchesRequired: 2];
-                break;
-            case 4:
-                [swipeGesture setDirection: UISwipeGestureRecognizerDirectionUp];
-                [swipeGesture setNumberOfTouchesRequired: 2];
-                break;
-            case 5:
-                [swipeGesture setDirection: UISwipeGestureRecognizerDirectionUp];
-                [swipeGesture setNumberOfTouchesRequired: 2];
-                break;
-            case 6:
-                [swipeGesture setDirection: UISwipeGestureRecognizerDirectionDown];
-                [swipeGesture setNumberOfTouchesRequired: 2];
-                break;
-            case 7:
-                [swipeGesture setDirection: UISwipeGestureRecognizerDirectionDown];
-                [swipeGesture setNumberOfTouchesRequired: 2];
-                break;
-            default:
-                break;
-        }
+    switch (swipeTxtCnt)   {
+        case 0:
+            [txtView setText:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSwipeInstructionRight"]];
+            [swipeGesture setDirection: UISwipeGestureRecognizerDirectionRight];
+            [swipeGesture setNumberOfTouchesRequired: 2];
+            break;
+        case 1:
+            [txtView setText:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSwipeInstructionRight"]];
+            [swipeGesture setDirection: UISwipeGestureRecognizerDirectionRight];
+            [swipeGesture setNumberOfTouchesRequired: 2];
+            break;
+        case 2:
+            [txtView setText:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSwipeInstructionLeft"]];
+            [swipeGesture setDirection: UISwipeGestureRecognizerDirectionLeft];
+            [swipeGesture setNumberOfTouchesRequired: 2];
+            break;
+        case 3:
+            [txtView setText:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSwipeInstructionLeft"]];
+            [swipeGesture setDirection: UISwipeGestureRecognizerDirectionLeft];
+            [swipeGesture setNumberOfTouchesRequired: 2];
+            break;
+        case 4:
+            [txtView setText:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSwipeInstructionUp"]];
+            [swipeGesture setDirection: UISwipeGestureRecognizerDirectionUp];
+            [swipeGesture setNumberOfTouchesRequired: 2];
+            break;
+        case 5:
+            [txtView setText:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSwipeInstructionUp"]];
+            [swipeGesture setDirection: UISwipeGestureRecognizerDirectionUp];
+            [swipeGesture setNumberOfTouchesRequired: 2];
+            break;
+        case 6:
+            [txtView setText:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSwipeInstructionDown"]];
+            [swipeGesture setDirection: UISwipeGestureRecognizerDirectionDown];
+            [swipeGesture setNumberOfTouchesRequired: 2];
+            break;
+        case 7:
+            [txtView setText:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSwipeInstructionDown"]];
+            [swipeGesture setDirection: UISwipeGestureRecognizerDirectionDown];
+            [swipeGesture setNumberOfTouchesRequired: 2];
+            break;
+        default:
+            break;
+    }
 }
 
 -(void)swippedforConfirmation{

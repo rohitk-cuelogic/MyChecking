@@ -169,9 +169,7 @@ UIActivityIndicatorView *activityIndicator;
 -(void)viewDidAppear:(BOOL)animated{
     DebugLog(@"");
     
-    //Manual
-    // May return nil if a tracker has not already been initialized with a
-    // property ID.
+
 #ifdef GOOGLE_ANALYTICS_START
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     
@@ -181,14 +179,10 @@ UIActivityIndicatorView *activityIndicator;
            value:@"Parent Control Screen"];
     
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
-#else
 #endif
     
-    [btnPrivacyPolicy setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPrivacyPolicy"] forState:UIControlStateNormal];
-    [subscribeBTN setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSubscribe"] forState:UIControlStateNormal];
-    [btnReviewApp setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kReviewtheapp"] forState:UIControlStateNormal];
-    [settingsBTN setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSettings"] forState:UIControlStateNormal];
-    lblSubscribeHead.text =[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSubscriptionWindowTitle"];
+    [self updateLabelsForCurrentLanguage];
+   
 }
 
 
@@ -289,6 +283,29 @@ UIActivityIndicatorView *activityIndicator;
     btnPrivacyPolicy.enabled = NO;
 }
 
+-(void) updateLabelsForCurrentLanguage {
+    DebugLog(@"");
+    
+    [btnPrivacyPolicy setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPrivacyPolicy"] forState:UIControlStateNormal];
+    lblSubscribeBtn.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSubscribe"];
+    lblSettingBtn.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSettings"];
+    lblReviewAppBtn.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kReviewtheapp"];
+    lblSubscribeHead.text =[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSubscriptionWindowTitle"];
+    emailidTextField.placeholder = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kEnterEmail"];
+    
+    float fontSize = 0.0;
+    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+        fontSize = 18.0f;
+    }else{
+        fontSize = 16.0f;
+    }
+    
+    btnPrivacyPolicy.titleLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    lblSubscribeBtn.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    lblSettingBtn.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    lblReviewAppBtn.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    lblSubscribeHead.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+}
 
 #pragma mark -
 #pragma mark =======================================
@@ -350,7 +367,15 @@ UIActivityIndicatorView *activityIndicator;
                 
                 
                  [emailidTextField resignFirstResponder];
+                
+                float fontSize = 18.0;
+                if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"] ) {
+                    fontSize = 20.0;
+                }
+                lblSubscribConfirm.font= [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+                lblSubscribConfirm.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kConfirmationMsgText"];
                 [self.view addSubview:confView];
+                
                 [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(removeConfirmationDilog:) userInfo:nil repeats:NO];
                 
 //                [self CheckNetworkConnection];
@@ -369,11 +394,11 @@ UIActivityIndicatorView *activityIndicator;
 //                [self sendEmail];
                 
             }else{
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tiggly" message:@"Please enter valid email address" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tiggly" message:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPleaseEnterValidEmail"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                 [alert show];
             }
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tiggly" message:@"Please enter email address" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tiggly" message:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPleaseEnterEmail"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
         }
     }
@@ -912,11 +937,7 @@ UIActivityIndicatorView *activityIndicator;
 -(void) settingViewOnCloseButtonClick:(SettingsView *)sView {
     DebugLog(@"");
     
-    [btnPrivacyPolicy setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPrivacyPolicy"] forState:UIControlStateNormal];
-    lblSubscribeBtn.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSubscribe"];
-    lblSettingBtn.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kReviewtheapp"];
-    lblReviewAppBtn.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSettings"];
-    lblSubscribeHead.text =[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSubscriptionWindowTitle"];
+    [self updateLabelsForCurrentLanguage];
 
     [clearView removeFromSuperview];
     

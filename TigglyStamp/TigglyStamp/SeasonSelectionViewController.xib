@@ -12,6 +12,7 @@
                 <outlet property="confirmationViewBKG" destination="339" id="344"/>
                 <outlet property="fallSeasonBtn" destination="26" id="326"/>
                 <outlet property="homeBtn" destination="330" id="331"/>
+                <outlet property="lblLearnmore" destination="eDI-GI-XjF" id="Bbo-cv-kKx"/>
                 <outlet property="learnMoreBtn" destination="333" id="334"/>
                 <outlet property="lockWinter" destination="328" id="329"/>
                 <outlet property="view" destination="2" id="3"/>
@@ -111,7 +112,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="333">
-                    <rect key="frame" x="644" y="352" width="161" height="125"/>
+                    <rect key="frame" x="623" y="327" width="203" height="170"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" backgroundImage="learn_more.png">
@@ -125,6 +126,13 @@
                         <action selector="actionLearnMore:" destination="-1" eventType="touchUpInside" id="335"/>
                     </connections>
                 </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eDI-GI-XjF">
+                    <rect key="frame" x="632" y="340" width="180" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>

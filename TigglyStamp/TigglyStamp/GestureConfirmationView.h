@@ -20,6 +20,7 @@
     UITextView *txtView;
     NSArray *swipeTextArray;
     UISwipeGestureRecognizer *swipeGesture;
+    int swipeTxtCnt;;
 }
 
 @property (nonatomic, unsafe_unretained) id<GestireViewProtocol> delegate;

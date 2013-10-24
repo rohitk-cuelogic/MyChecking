@@ -17,6 +17,7 @@
                 <outlet property="homeBTN" destination="4" id="1474"/>
                 <outlet property="lblReviewAppBtn" destination="uFg-qk-Ctw" id="CxZ-ke-QMd"/>
                 <outlet property="lblSettingBtn" destination="zIH-mb-Frl" id="C8c-0o-bnC"/>
+                <outlet property="lblSubscribConfirm" destination="1505" id="s9j-vI-w8p"/>
                 <outlet property="lblSubscribeBtn" destination="z1g-rT-kns" id="UdZ-XU-vWk"/>
                 <outlet property="lblSubscribeHead" destination="qgt-lK-UNL" id="zdw-38-u2K"/>
                 <outlet property="lblTigglyPrivacyPolicy" destination="Vhe-FO-P30" id="UBR-zi-v10"/>
@@ -72,7 +73,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="subscribe_bg.png" id="VbF-hx-Ec0">
-                    <rect key="frame" x="0.0" y="111" width="345" height="222"/>
+                    <rect key="frame" x="0.0" y="111" width="356" height="222"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4">
@@ -91,11 +92,11 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="textfieldback.png" id="1476">
-                    <rect key="frame" x="40" y="194" width="256" height="35"/>
+                    <rect key="frame" x="20" y="197" width="256" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" enter email" minimumFontSize="17" clearButtonMode="whileEditing" id="98">
-                    <rect key="frame" x="46" y="196" width="244" height="30"/>
+                    <rect key="frame" x="31" y="200" width="230" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -104,7 +105,7 @@
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="103">
-                    <rect key="frame" x="36" y="244" width="161" height="54"/>
+                    <rect key="frame" x="20" y="244" width="161" height="54"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" backgroundImage="subscribe_btn_3.png">
@@ -178,7 +179,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Hzd-Lp-x5D">
-                    <rect key="frame" x="46" y="673" width="235" height="62"/>
+                    <rect key="frame" x="46" y="673" width="223" height="62"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" backgroundImage="review_app_btn.png">
@@ -270,7 +271,7 @@
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </webView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2ZH-0R-h0x">
-                    <rect key="frame" x="40" y="288" width="276" height="34"/>
+                    <rect key="frame" x="28" y="288" width="300" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
                     <state key="normal" title="privacy policy">
@@ -284,15 +285,15 @@
                         <action selector="actionPrivacyPolicy:" destination="-1" eventType="touchUpInside" id="xgx-Te-2af"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qgt-lK-UNL">
-                    <rect key="frame" x="15" y="126" width="301" height="49"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qgt-lK-UNL">
+                    <rect key="frame" x="7" y="115" width="328" height="69"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z1g-rT-kns">
-                    <rect key="frame" x="46" y="253" width="136" height="27"/>
+                    <rect key="frame" x="31" y="253" width="136" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -306,7 +307,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uFg-qk-Ctw">
-                    <rect key="frame" x="59" y="688" width="204" height="26"/>
+                    <rect key="frame" x="59" y="685" width="188" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -330,7 +331,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1505">
-                            <rect key="frame" x="199" y="28" width="260" height="69"/>
+                            <rect key="frame" x="135" y="14" width="415" height="107"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <string key="text" base64-UTF8="YES">
 V2Ugc2VudCB5b3UgYW4gZW1haWwgZm9yIA0KeW91ciBjb25maXJtYXRpb24ALg
@@ -340,7 +341,7 @@ V2Ugc2VudCB5b3UgYW4gZW1haWwgZm9yIA0KeW91ciBjb25maXJtYXRpb24ALg
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="tick_mark.png" id="1506">
-                            <rect key="frame" x="1" y="1" width="133" height="134"/>
+                            <rect key="frame" x="15" y="12" width="110" height="109"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                     </subviews>

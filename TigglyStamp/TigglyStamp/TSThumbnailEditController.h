@@ -13,6 +13,7 @@
 #import "TigglyStampUtils.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "TSHomeViewController.h"
+#import "GestureConfirmationView.h"
 
 #ifdef GOOGLE_ANALYTICS_START
 #import "GAITrackedViewController.h"
@@ -23,7 +24,7 @@
 
 #endif
 
-@interface TSThumbnailEditController : UIViewController{
+@interface TSThumbnailEditController : UIViewController<GestireViewProtocol>{
     IBOutlet UIButton *homeBtn;
     IBOutlet UIButton *saveImageBtn;
     IBOutlet UIButton *confirmSaveBtn;
@@ -48,6 +49,8 @@
     NSMutableArray *savedImgArry;
     NSMutableArray *swipeTextArray;
     int swipeTextCnt;
+    
+    GestureConfirmationView *gestureView;
 
 }
 

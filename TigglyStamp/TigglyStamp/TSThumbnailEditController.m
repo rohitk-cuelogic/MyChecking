@@ -216,53 +216,10 @@
 
 -(void) showConfirmationView{
     DebugLog(@"");
-    
-    swipeTextCnt = arc4random()%7;
-    [textView setText:[NSString stringWithFormat:@"To continue,\nswipe %@ fingers.", [swipeTextArray objectAtIndex:swipeTextCnt]]];
-    textView.font = [UIFont fontWithName:APP_FONT_BOLD size:35.0f];
-    textView.textColor = [UIColor whiteColor];
-    
-    switch (swipeTextCnt) {
-        case 0:
-            [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
-            [emSwipeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 1:
-            [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionRight];
-            [emSwipeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 2:
-            [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
-            [emSwipeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 3:
-            [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionLeft];
-            [emSwipeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 4:
-            [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
-            [emSwipeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 5:
-            [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionUp];
-            [emSwipeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 6:
-            [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
-            [emSwipeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        case 7:
-            [emSwipeRecognizer setDirection: UISwipeGestureRecognizerDirectionDown];
-            [emSwipeRecognizer setNumberOfTouchesRequired: 2];
-            break;
-        default:
-            break;
-    }
-    confirmationView.hidden = NO;
-    confirmationViewBKG.hidden = NO;
-    [self.view bringSubviewToFront:confirmationViewBKG];
-    [self.view bringSubviewToFront:confirmationView];
-    
+    gestureView = [[GestureConfirmationView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+    gestureView.delegate = self;
+    gestureView.layer.zPosition = 1500;
+    [self.view addSubview:gestureView];
 }
 
 -(void)loadSavedImagesIntoArray{
@@ -941,8 +898,37 @@
     double delayInSeconds = 0.3;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self noConfirmation:nil];
+        [gestureView removeFromSuperview];
+        gestureView = nil;
     });
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark gestureView Protocol
+#pragma mark =======================================
+
+-(void) gestureViewOnGestureConfirmed:(GestureConfirmationView *)gView {
+    DebugLog(@"");
+    
+    [self swippedforConfirmation];
+    [gestureView removeFromSuperview];
+    gestureView = nil;
+    
+}
+
+-(void) gestureViewOnCancel:(GestureConfirmationView *)gView {
+    DebugLog(@"");
+
+    [self noConfirmation:nil];
+    
+    if(readyToDelete){
+        readyToDelete = NO;
+    }
+    
+    if(readyToSave){
+        readyToSave = NO;
+    }
 }
 
 @end

@@ -16,6 +16,7 @@
 @protocol SettingViewProtocol <NSObject>
 -(void) settingViewOnCloseButtonClick:(SettingsView *) sView;
 -(void) settingViewOnShapeSwitchClick:(SettingsView *) sView;
+-(void) settingViewOnLanguageSelected:(SettingsView *) sView;
 @end
 
 @interface SettingsView : UIView <UITableViewDataSource, UITableViewDelegate>{

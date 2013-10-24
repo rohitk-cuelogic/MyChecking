@@ -274,7 +274,7 @@
         NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:[moviePngName stringByReplacingOccurrencesOfString:@"png" withString:@"mov"]];
         if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (savedImagePath)) {
             UISaveVideoAtPathToSavedPhotosAlbum (savedImagePath, nil, nil, nil);
-             lblImageSaved.text = @"Video Saved";
+            lblImageSaved.text = [[TigglyStampUtils sharedInstance]getLocalisedStringForKey:@"kVideoSaved"];
         }
         
     }else{
@@ -287,7 +287,7 @@
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-         lblImageSaved.text = @"Image Saved";
+        lblImageSaved.text = [[TigglyStampUtils sharedInstance]getLocalisedStringForKey:@"kImageSaved"];
     }
 }
 
@@ -409,14 +409,21 @@
 #endif
 
 
-    lblImageSaved = [[UILabel alloc] initWithFrame:CGRectMake(442, 91,  140, 50)];
+    lblImageSaved = [[UILabel alloc] initWithFrame:CGRectMake(400, 91,  225, 50)];
     lblImageSaved.backgroundColor = [UIColor whiteColor];
     lblImageSaved.layer.cornerRadius = 13.0f;
     lblImageSaved.layer.masksToBounds = YES;
     lblImageSaved.layer.borderColor =  [UIColor blackColor].CGColor;
     lblImageSaved.layer.borderWidth = 1.0f;
-    lblImageSaved.font = [UIFont fontWithName:APP_FONT size:20.0f];
     lblImageSaved.textAlignment = UITextAlignmentCenter;
+    float fontSize = 0.0;
+    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
+        fontSize = 16.0f;
+    }else{
+        fontSize = 20.0f;
+    }
+    lblImageSaved.font = [UIFont fontWithName:APP_FONT size:fontSize];
+    
     
     [self addSubview:lblImageSaved];
     
@@ -432,6 +439,10 @@
 
 }
 
+-(void) gestureViewOnCancel:(GestureConfirmationView *)gView {
+    DebugLog(@"");
+    
+}
 
 #pragma mark-
 #pragma mark======================

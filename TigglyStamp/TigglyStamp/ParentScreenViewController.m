@@ -181,8 +181,14 @@ UIActivityIndicatorView *activityIndicator;
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 #endif
     
+}
+
+-(void) viewWillAppear:(BOOL)animated {
+    DebugLog(@"");
+    
+    
     [self updateLabelsForCurrentLanguage];
-   
+
 }
 
 
@@ -961,6 +967,12 @@ UIActivityIndicatorView *activityIndicator;
     [clearView removeFromSuperview];
     
     [self launchUnlockScreen];
+}
+
+-(void) settingViewOnLanguageSelected:(SettingsView *)sView {
+    DebugLog(@"");
+    
+    [self updateLabelsForCurrentLanguage];
 }
 
 #pragma mark -

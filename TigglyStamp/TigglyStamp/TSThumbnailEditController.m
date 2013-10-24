@@ -805,11 +805,12 @@
                                 [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], editImgName];
         if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (exportPath)) {
             UISaveVideoAtPathToSavedPhotosAlbum (exportPath, nil, nil, nil);
+             [confirmSaveBtn setTitle:[[TigglyStampUtils sharedInstance]getLocalisedStringForKey:@"kVideoSaved"]  forState:UIControlStateNormal];
         }
         
     }else{
         UIImageWriteToSavedPhotosAlbum(imageToBeEdit, nil, nil, nil);
-        [confirmSaveBtn setTitle:@"Image Saved" forState:UIControlStateNormal];
+        [confirmSaveBtn setTitle:[[TigglyStampUtils sharedInstance]getLocalisedStringForKey:@"kImageSaved"]  forState:UIControlStateNormal];
     }
     
     [UIView animateWithDuration:0.50
@@ -901,6 +902,14 @@
         [gestureView removeFromSuperview];
         gestureView = nil;
         [self noConfirmation:nil];
+        
+        if(readyToDelete){
+            readyToDelete = NO;
+        }
+        
+        if(readyToSave){
+            readyToSave = NO;
+        }
     });
 }
 

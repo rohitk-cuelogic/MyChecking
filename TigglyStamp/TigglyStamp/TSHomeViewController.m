@@ -434,6 +434,22 @@ NSArray *allImageFiles;
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [gestureView removeFromSuperview];
         gestureView = nil;
+        
+        if(isThumbnailLongPressed){
+            isThumbnailLongPressed = NO;
+        }
+        
+        if(readyToLearnMore){
+            readyToLearnMore = NO;
+        }
+        
+        if(readyToNewsScreen){
+            readyToNewsScreen = NO;
+        }
+        
+        if(readyToParentScreen){
+            readyToParentScreen = NO;
+        }
     });
 }
 

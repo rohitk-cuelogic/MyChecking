@@ -545,6 +545,11 @@
     gestureView = nil;
 }
 
+-(void) gestureViewOnCancel:(GestureConfirmationView *)gView {
+    DebugLog(@"");
+    
+}
+
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     
     double delayInSeconds = 0.3;

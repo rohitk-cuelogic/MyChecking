@@ -403,6 +403,8 @@ UILabel *lblBuyShapes;
     lblShape.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
     lblGallery.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
     lblBuyShapes.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    
+    [self.delegate settingViewOnLanguageSelected:self];
 }
 
 @end

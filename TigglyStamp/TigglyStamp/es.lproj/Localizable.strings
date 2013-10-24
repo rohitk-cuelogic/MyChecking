@@ -41,6 +41,11 @@
 "kSwipeInstructionRight" = "Deslice derecho\ncon dos dedos por la pantalla\npara continuar.";
 "kSwipeInstructionLeft" = "Deslice izquierda\ncon dos dedos por la pantalla\npara continuar.";
 
+"kSaveImage"="Guardar imagen";
+"kImageSaved"="imagen guardada";
+"kSaveVideo"="Guardar video";
+"kVideoSaved"="vídeo Guardado";
+
 "kUnlockingInstructions" = "Instrucciones para desbloquear :";
 "kUnlockingInstructionText" = "Coloque la figura Tiggly superponiéndola a la figura de la pantalla. Al combinar correctamente 6 figuras seguidas se desbloqueará la aplicación.";
 "kMatchedOutOfText" = "Desbloqueadas %d de 6. ";

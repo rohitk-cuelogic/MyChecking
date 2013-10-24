@@ -42,6 +42,11 @@
 "kSwipeInstructionRight" = "Um fortzufahren,\nberühre rechts\nmit 2 Fingern.";
 "kSwipeInstructionLeft" = "Um fortzufahren,\nberühre links\nmit 2 Fingern.";
 
+"kSaveImage"="Bild speichern";
+"kImageSaved"="Bild Gespeichert";
+"kSaveVideo"="Speichern Video";
+"kVideoSaved"="Video Gespeichert";
+
 "kUnlockingInstructions" = "Anweisung zur Freischaltung :";
 "kUnlockingInstructionText" = "Tippe auf die Tiggly-Form auf dem Bildschirm, die zu dem passt, was du siehst. Sobald du 6 passende Formen hintereinander findest, wird die App freigeschaltet.";
 "kMatchedOutOfText" = "%d von 6 Übereinstimmungen gefunden.";

@@ -268,9 +268,9 @@
         confirmSaveBtn.hidden = NO;
         
         if([[editImgName pathExtension] isEqualToString:@"mov"]) {
-            [confirmSaveBtn setTitle:@"Save Video" forState:UIControlStateNormal];
+            [confirmSaveBtn setTitle:[[TigglyStampUtils sharedInstance]getLocalisedStringForKey:@"kSaveVideo"] forState:UIControlStateNormal];
         }else{
-            [confirmSaveBtn setTitle:@"Save Image" forState:UIControlStateNormal];
+            [confirmSaveBtn setTitle:[[TigglyStampUtils sharedInstance]getLocalisedStringForKey:@"kSaveImage"] forState:UIControlStateNormal];
         }
         
         [self.view bringSubviewToFront:confirmSaveBtn];
@@ -819,7 +819,7 @@
                      completion:^(BOOL finished){
                          confirmSaveBtn.alpha = 1;
                          confirmSaveBtn.hidden = YES;
-                         [confirmSaveBtn setTitle:@"Save Image" forState:UIControlStateNormal];
+                         [confirmSaveBtn setTitle:[[TigglyStampUtils sharedInstance]getLocalisedStringForKey:@"kSaveImage"] forState:UIControlStateNormal];
     }];
     
     upperPanel.alpha = 1;
@@ -900,6 +900,7 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [gestureView removeFromSuperview];
         gestureView = nil;
+        [self noConfirmation:nil];
     });
 }
 

@@ -42,6 +42,11 @@
 "kSwipeInstructionRight" = "Para continuar,\narraste para esquerda\ncom dois dedos.";
 "kSwipeInstructionLeft" = "Para continuar,\narraste para direita\ncom dois dedos.";
 
+"kSaveImage"="Salvar imagem";
+"kImageSaved"="imagem Guardar";
+"kSaveVideo"="Salvar vídeo";
+"kVideoSaved"="vídeo Salvo";
+
 "kUnlockingInstructions" = "Instruções para desbloquear o aplicativo :";
 "kUnlockingInstructionText" = "Toque na forma Tiggly no ecrã que combina com o que se vê. Uma vez que você acertar 6 formas consecutivas, o aplicativo será desbloqueado.";
 "kMatchedOutOfText" = "%d correspondências de 6.";

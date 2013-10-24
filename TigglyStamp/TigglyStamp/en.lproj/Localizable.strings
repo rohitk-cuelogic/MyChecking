@@ -42,6 +42,11 @@
 "kSwipeInstructionRight" = "To continue,\nswipe RIGHT\nwith 2 fingers.";
 "kSwipeInstructionLeft" = "To continue,\nswipe LEFT\nwith 2 fingers.";
 
+"kSaveImage"="Save Image";
+"kImageSaved"="Image Saved";
+"kSaveVideo"="Save Video";
+"kVideoSaved"="Video Saved";
+
 "kUnlockingInstructions" = "Unlocking Instructions :";
 "kUnlockingInstructionText" = "Tap the Tiggly shape on the screen that matches what you see. Once you match 6 shapes in a row, the app will be unlocked.";
 "kMatchedOutOfText" = "Matched %d out of 6.";

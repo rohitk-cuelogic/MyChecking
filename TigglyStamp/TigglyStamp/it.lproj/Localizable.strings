@@ -42,6 +42,11 @@
 "kSwipeInstructionRight" = "Per continuare,\nscorri con due dita\nverso destra.";
 "kSwipeInstructionLeft" = "Per continuare,\nscorri con due dita\nverso sinistra.";
 
+"kSaveImage"="Salva Immagine";
+"kImageSaved"="immagine salvata";
+"kSaveVideo"="Salva video";
+"kVideoSaved"="video salvati";
+
 "kUnlockingInstructions" = "Istruzioni per lo sblocco :";
 "kUnlockingInstructionText" = "Tocca la forma di Tiggly sullo schermo che corrisponde a quello che vedi. L’app si sblocca se indovini 6 forme di seguito.";
 "kMatchedOutOfText" = "Hai indovinato %d su 6.";

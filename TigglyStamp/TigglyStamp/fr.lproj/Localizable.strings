@@ -42,6 +42,11 @@
 "kSwipeInstructionRight" = "Pour continuer,\nbalayez vers la gauche\navec 2 doigts.";
 "kSwipeInstructionLeft" = "Pour continuer,\nbalayez vers la droite\navec 2 doigts.";
 
+"kSaveImage"="Enregistrer l'image";
+"kImageSaved"="image enregistrée";
+"kSaveVideo"="Enregistrer la vidéo";
+"kVideoSaved"="vidéo enregistrée";
+
 "kUnlockingInstructions" = "Instructions de déverrouillage :";
 "kUnlockingInstructionText" = "Posez sur l’écran la forme Tiggly correspondant à ce qui est affiché. Une fois que vous avez fait correspondre 6 formes d’affilée, l’appli est déverrouillée.";
 "kMatchedOutOfText" = "%d correspondances sur 6.";

@@ -79,10 +79,6 @@
                                 <action selector="actionGoBackToLanguage" destination="-1" eventType="touchUpInside" id="YSA-Y1-j6N"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="or.png" id="175">
-                            <rect key="frame" x="482" y="369" width="60" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlock with Tiggly Shapes" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I9t-jw-EsY">
                             <rect key="frame" x="187" y="275" width="205" height="219"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -150,7 +146,6 @@
         <image name="btnBack.png" width="201" height="201"/>
         <image name="language_block.png" width="512" height="909"/>
         <image name="language_stamp_bg.png" width="1024" height="768"/>
-        <image name="or.png" width="143" height="75"/>
         <image name="play_using_shapes.png" width="712" height="713"/>
         <image name="play_without_shapes.png" width="712" height="713"/>
     </resources>

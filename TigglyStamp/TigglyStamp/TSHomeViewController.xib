@@ -13,6 +13,8 @@
                 <outlet property="containerView" destination="38" id="39"/>
                 <outlet property="forParentsBtn" destination="22" id="29"/>
                 <outlet property="imgScrollView" destination="11" id="12"/>
+                <outlet property="lblLearnMore" destination="gSd-nc-0ln" id="LI0-H7-r8N"/>
+                <outlet property="lblUnlockWithShapes" destination="I3y-XC-dXY" id="kyD-4K-2I7"/>
                 <outlet property="learnMoreBtn" destination="44" id="45"/>
                 <outlet property="newsBtn" destination="21" id="34"/>
                 <outlet property="notConfirm" destination="27" id="31"/>
@@ -86,6 +88,12 @@
                                 <action selector="goToNewsScreen:" destination="-1" eventType="touchUpInside" id="35"/>
                             </connections>
                         </button>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlock with Tiggly shapes" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I3y-XC-dXY">
+                            <rect key="frame" x="884" y="45" width="91" height="102"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="44">
                             <rect key="frame" x="860" y="183" width="144" height="130"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -101,6 +109,13 @@
                                 <action selector="actionLearnMore" destination="-1" eventType="touchUpInside" id="46"/>
                             </connections>
                         </button>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learn More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gSd-nc-0ln">
+                            <rect key="frame" x="869" y="191" width="123" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="parent_gesture_black_bg.png" id="42">
                             <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

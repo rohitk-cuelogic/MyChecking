@@ -1,6 +1,6 @@
 //
 //  PhysicalShapesView.h
-//  Tiggly Safari
+//  Tiggly Stamp
 //
 //  Created by Sachin Patil on 25/06/13.
 //  Copyright (c) 2013 Tiggly. All rights reserved.

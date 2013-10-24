@@ -16,6 +16,8 @@
                 <outlet property="languageSubView" destination="143" id="151"/>
                 <outlet property="languageView" destination="138" id="152"/>
                 <outlet property="lblLunguage" destination="148" id="153"/>
+                <outlet property="lblWithShape" destination="I9t-jw-EsY" id="agp-QZ-Qpj"/>
+                <outlet property="lblWithoutShape" destination="etD-Re-Mfj" id="UEQ-25-oZ5"/>
                 <outlet property="tblView" destination="163" id="166"/>
                 <outlet property="view" destination="2" id="169"/>
             </connections>
@@ -81,6 +83,20 @@
                             <rect key="frame" x="482" y="369" width="60" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlock with Tiggly Shapes" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I9t-jw-EsY">
+                            <rect key="frame" x="187" y="275" width="205" height="219"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Try me without Tiggly Shapes" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="etD-Re-Mfj">
+                            <rect key="frame" x="632" y="275" width="206" height="219"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                            <color key="textColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>

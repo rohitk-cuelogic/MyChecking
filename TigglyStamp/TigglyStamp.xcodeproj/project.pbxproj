@@ -2407,6 +2407,12 @@
 		C0A82D4717EC935B00F85793 /* spatialthinking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spatialthinking.png; sourceTree = SOURCE_ROOT; };
 		C0A82D4817EC935B00F85793 /* TigglyShapes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TigglyShapes.png; sourceTree = SOURCE_ROOT; };
 		C0B7FC5E1816ACCC0059D983 /* close@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close@2x~ipad.png"; sourceTree = "<group>"; };
+		C0B7FC651817A3370059D983 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
+		C0B7FC661817A3440059D983 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C0B7FC671817A3F10059D983 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C0B7FC681817A3F90059D983 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C0B7FC691817A4020059D983 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C0B7FC6A1817A40C0059D983 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C0C3E3FA17F3152000BD3B29 /* privacypolicy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacypolicy.html; sourceTree = "<group>"; };
 		C0C3E3FC17F3203000BD3B29 /* list_dotblack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_dotblack.png; sourceTree = SOURCE_ROOT; };
 		C0D3CAD717FAE52B009C5B3D /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Resize.h"; path = "UIImage+Resize/UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -2599,8 +2605,8 @@
 		EBF351F7179D2CE7004A1C14 /* videocamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videocamera.png; sourceTree = "<group>"; };
 		EBF351FB179D2DBD004A1C14 /* camera@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x~ipad.png"; sourceTree = "<group>"; };
 		EBF351FC179D2DBD004A1C14 /* videocamera@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocamera@2x~ipad.png"; sourceTree = "<group>"; };
-		EBF42C94178A9480004FECEE /* FruitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FruitView.h; sourceTree = "<group>"; };
-		EBF42C95178A9480004FECEE /* FruitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FruitView.m; sourceTree = "<group>"; };
+		EBF42C94178A9480004FECEE /* FruitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FruitView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		EBF42C95178A9480004FECEE /* FruitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FruitView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EBF797A217BE0317003C7888 /* camera_click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = camera_click.mp3; sourceTree = "<group>"; };
 		EBFCF29117942329003C82CC /* trashsweep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = trashsweep.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -4411,6 +4417,11 @@
 			knownRegions = (
 				en,
 				fr,
+				de,
+				es,
+				pt,
+				ru,
+				it,
 			);
 			mainGroup = EB6F33151781867900FC479F;
 			productRefGroup = EB6F33211781867900FC479F /* Products */;
@@ -5691,6 +5702,12 @@
 			isa = PBXVariantGroup;
 			children = (
 				C082922817A80D490023F08A /* en */,
+				C0B7FC651817A3370059D983 /* pt */,
+				C0B7FC661817A3440059D983 /* ru */,
+				C0B7FC671817A3F10059D983 /* es */,
+				C0B7FC681817A3F90059D983 /* fr */,
+				C0B7FC691817A4020059D983 /* de */,
+				C0B7FC6A1817A40C0059D983 /* it */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

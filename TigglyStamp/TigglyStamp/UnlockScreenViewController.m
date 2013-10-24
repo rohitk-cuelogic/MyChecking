@@ -26,7 +26,7 @@
 @synthesize bkgView;
 @synthesize touchView;
 @synthesize shapeToBeDetected;
-
+@synthesize lblLearnMore;
 
 #pragma mark -
 #pragma mark =======================================
@@ -43,7 +43,7 @@
         countShapeSound = 1;
         
         isPromptDisplayed = NO;
-        promptsArray = [[NSMutableArray alloc] initWithObjects:@"circle",@"square",@"triangle",@"star", nil];
+        promptsArray = [[NSMutableArray alloc] initWithObjects:@"circle",@"triangle",@"star", nil];
         
         screenFrom = fromScreen;
         
@@ -112,6 +112,7 @@
     [self.view bringSubviewToFront:btnBack];
     [self.view bringSubviewToFront:btnLearnMore];
     [self.view bringSubviewToFront:btnBuyShapes];
+     [self.view bringSubviewToFront:lblLearnMore];
     
     bkgView.layer.cornerRadius = 20.0f;
     bkgView.layer.masksToBounds  =YES;
@@ -124,7 +125,30 @@
     lblAboutTiggly.font = [UIFont fontWithName:APP_FONT_BOLD size:20.0f];
     lblAboutTigglyText.font = [UIFont fontWithName:APP_FONT_BOLD size:17.0f];
     
+    lblInstructionHead.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockingInstructions"];
+    lblInstructionText.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockingInstructionText"];
+    lblAboutTiggly.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kAboutTigglyStamp"];
+    lblAboutTigglyText.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kAboutTigglyStampText"];
 
+    
+    NSString *strStat = [NSString stringWithFormat: [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kMatchedOutOfText"],shapeCount];
+    lblRemainingShapes.text = strStat;
+    
+
+    float fontSize = 0.0;
+    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+        fontSize = 22.0f;
+    }else  if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
+        fontSize = 18.0f;
+    }else{
+        fontSize = 20.0f;
+    }
+
+    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
+        fontSize = 16.0f;
+    }
+    lblLearnMore.text =[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLearnmore"];
+    lblLearnMore.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -218,7 +242,7 @@
         [promptsArray removeObjectAtIndex:rNo];
         
     }else{
-            int ranNo = arc4random()%4;
+            int ranNo = arc4random()%3;
         
             
             switch (ranNo) {
@@ -231,10 +255,6 @@
                     break;
 
                 case 2:
-                    prompt = @"square";
-                    break;
-
-                case 3:
                     prompt = @"star";
                     break;
 
@@ -259,10 +279,10 @@
         [self.view addSubview:promtView];
         isPromptDisplayed = YES;
         
-        if([lblInstructionText.text isEqualToString:INSTRUCTION_RESTART]) {
-            lblInstructionText.text = INSTRUCTION_TEXT1;
-
+        if([lblInstructionText.text isEqualToString:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kRestart"]]) {
+            lblInstructionText.text =[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockingInstructionText"];
         }
+
     }
 }
 
@@ -285,11 +305,11 @@
             shapeView.transform = CGAffineTransformMakeScale(1.0, 1.0);
             
             shapeCount++;
-            lblRemainingShapes.text = [NSString stringWithFormat:@"matched %d out of %d",shapeCount, totalShapes];
-            //lblInstructionHead.hidden = YES;
+            NSString *strStat = [NSString stringWithFormat: [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kMatchedOutOfText"],shapeCount];
+            lblRemainingShapes.text = strStat;
             
             if(shapeCount == 6) {
-                lblInstructionText.text = INSTRUCTION_TEXT2;
+                lblInstructionText.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kCongratulationsText"];
                 
                 [self setUnlockStatus];
             }
@@ -462,9 +482,10 @@
             shapeCount = 0;
             [promptsArray removeAllObjects];
             promptsArray = nil;
-            promptsArray = [[NSMutableArray alloc] initWithObjects:@"circle",@"square",@"triangle",@"star", nil];
-            lblInstructionText.text = INSTRUCTION_RESTART;
-            lblRemainingShapes.text = [NSString stringWithFormat:@"matched %d out of %d",shapeCount, totalShapes];
+            promptsArray = [[NSMutableArray alloc] initWithObjects:@"circle",@"triangle",@"star", nil];
+            lblInstructionText.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kRestart"];
+            NSString *strStat = [NSString stringWithFormat: [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kMatchedOutOfText"],shapeCount];
+            lblRemainingShapes.text = strStat;
             [promtView removeFromSuperview];
             promtView = nil;
             

@@ -24,6 +24,8 @@
     IBOutlet UIButton *notConfirm;
     IBOutlet UIImageView *bkgImageView;
     IBOutlet UIView *containerView;
+    IBOutlet UILabel *lblUnlockWithShapes;
+     IBOutlet UILabel *lblLearnMore;
     
     NSMutableArray *diskImages;
     NSMutableArray *allThumbnails;

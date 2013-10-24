@@ -1,6 +1,6 @@
 //
 //  TConstant.h
-//  Tiggly Safari
+//  Tiggly Stamp
 //
 //  Created by Rohit Kale on 15/04/13.
 //  Copyright (c) 2013 Tiggly. All rights reserved.
@@ -12,7 +12,7 @@
 //#define DEBUG_MODE
 //#define IS_RUN_WITHOUT_SHAPE_FOR_TESTING 1
 //#define IS_RUN_ON_SIMULATOR
-//#define TEST_MODE 1
+#define TEST_MODE 1
 
 #ifdef IS_RUN_ON_SIMULATOR
 #else

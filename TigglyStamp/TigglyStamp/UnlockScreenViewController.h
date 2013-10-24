@@ -54,6 +54,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *btnLearnMore;
 @property (nonatomic, strong) IBOutlet UIButton *btnBuyShapes;
 @property (nonatomic, strong) NSString *shapeToBeDetected;
+@property (nonatomic, strong) IBOutlet UILabel *lblLearnMore;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil entryFrom:(UnlockScreenEntry ) fromScreen withHomeView:(TSHomeViewController *) homeView;

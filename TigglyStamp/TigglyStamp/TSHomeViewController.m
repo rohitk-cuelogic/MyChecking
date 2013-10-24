@@ -129,17 +129,42 @@ NSArray *allImageFiles;
     
     if ([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
         
+        lblUnlockWithShapes.hidden = YES;
+        lblLearnMore.hidden = YES;
+        
         newsBtn.hidden = YES;
         newsBtn.userInteractionEnabled = NO;
         
         learnMoreBtn.hidden = YES;
         learnMoreBtn.userInteractionEnabled = NO;
+    }else{
+        float fontSize = 0.0;
+        if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+            fontSize = 18.0f;
+        }else  if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
+            fontSize = 14.0f;
+        }else{
+            fontSize = 16.0f;
+        }
+        
+        lblUnlockWithShapes.text =[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockwithTigglyshapes"];
+        lblUnlockWithShapes.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+       
+        if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
+            fontSize = 10.0f;
+        }
+        lblLearnMore.text =[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLearnmore"];
+        lblLearnMore.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
     }
     
-    
-    forParentsBtn.titleLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:22.0f];
-    
-
+    float fontSize = 0.0;
+    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+        fontSize = 24.0f;
+    }else{
+        fontSize = 18.0f;
+    }
+    forParentsBtn.titleLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    [forParentsBtn setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kForParents"] forState:UIControlStateNormal];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

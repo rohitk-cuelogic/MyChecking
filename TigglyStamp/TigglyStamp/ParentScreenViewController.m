@@ -52,6 +52,8 @@
 @synthesize privacymainView;
 @synthesize isConnection;
 @synthesize clearView;
+@synthesize lblTigglyPrivacyPolicy,txtViewPrivacyPolicy;
+
 
 UIActivityIndicatorView *activityIndicator;
 
@@ -182,8 +184,11 @@ UIActivityIndicatorView *activityIndicator;
 #else
 #endif
     
-
-    
+    [btnPrivacyPolicy setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPrivacyPolicy"] forState:UIControlStateNormal];
+    [subscribeBTN setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSubscribe"] forState:UIControlStateNormal];
+    [btnReviewApp setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kReviewtheapp"] forState:UIControlStateNormal];
+    [settingsBTN setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSettings"] forState:UIControlStateNormal];
+    lblSubscribeHead.text =[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSubscriptionWindowTitle"];
 }
 
 
@@ -303,6 +308,13 @@ UIActivityIndicatorView *activityIndicator;
 
 -(IBAction)actionPrivacyPolicy:(id)sender{
     DebugLog(@"");
+    txtViewPrivacyPolicy.text= [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPrivacyPolicytext"];
+    txtViewPrivacyPolicy.font = [UIFont fontWithName:APP_FONT size:15.0f];
+    
+    
+    lblTigglyPrivacyPolicy.text =[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPrivacyPolicyHeading"];
+    lblTigglyPrivacyPolicy.font = [UIFont fontWithName:APP_FONT size:25.0f];
+    
     [self.view addSubview:privacymainView];
 }
 
@@ -479,7 +491,7 @@ UIActivityIndicatorView *activityIndicator;
 
     }
     if([btn tag] == TAG_LETTER_SPATIAL_BTN){
-        [self showValidationError:@"Tiggly Safari encourages children to recognize and match basic shapes— circles, squares, triangles, and stars in various orientations. By manipulating real shapes, and grabbing, rotating, moving, and placing them on a target, children learn about spatial relations and transformations. Finally, by turning simple shapes into animals, they practice their ability to create complex images" title:@"Spatial Thinking"];
+        [self showValidationError:@"Tiggly Stamp encourages children to recognize and match basic shapes— circles, squares, triangles, and stars in various orientations. By manipulating real shapes, and grabbing, rotating, moving, and placing them on a target, children learn about spatial relations and transformations. Finally, by turning simple shapes into animals, they practice their ability to create complex images" title:@"Spatial Thinking"];
     }
 
     if([btn tag] == TAG_LETTER_TAB_POPUP_CLOSE_BTN){
@@ -618,13 +630,13 @@ UIActivityIndicatorView *activityIndicator;
                 [letterTabView removeFromSuperview];
                 
                 // spatialThinking clicked
-                //                [self showValidationError:@"Tiggly Safari encourages children to recognize and match basic shapes— circles, squares, triangles, and stars in various orientations. By manipulating real shapes, and grabbing, rotating, moving, and placing them on a target, children learn about spatial relations and transformations. Finally, by turning simple shapes into animals, they practice their ability to create complex images" title:@"Spatial Thinking"];
+                //                [self showValidationError:@"Tiggly Stamp encourages children to recognize and match basic shapes— circles, squares, triangles, and stars in various orientations. By manipulating real shapes, and grabbing, rotating, moving, and placing them on a target, children learn about spatial relations and transformations. Finally, by turning simple shapes into animals, they practice their ability to create complex images" title:@"Spatial Thinking"];
                 
                 lettertabHeadingLBL.font = [UIFont fontWithName:APP_FONT_BOLD size:24.0f];
                 lettertabBodyTEXT.font = [UIFont fontWithName:APP_FONT size:16.0f];
                 
                 lettertabHeadingLBL.text = @"Spatial Thinking";
-                lettertabBodyTEXT.text =[NSString stringWithFormat:@"Tiggly Safari encourages children to recognize and match basic shapes— circles, squares, triangles, and stars in various orientations. By manipulating real shapes, and grabbing, rotating, moving, and placing them on a target, children learn about spatial relations and transformations. Finally, by turning simple shapes into animals, they practice their ability to create complex images"];
+                lettertabBodyTEXT.text =[NSString stringWithFormat:@"Tiggly Stamp encourages children to recognize and match basic shapes— circles, squares, triangles, and stars in various orientations. By manipulating real shapes, and grabbing, rotating, moving, and placing them on a target, children learn about spatial relations and transformations. Finally, by turning simple shapes into animals, they practice their ability to create complex images"];
                 [self.view addSubview:letterTabView];
                 
             }
@@ -652,14 +664,14 @@ UIActivityIndicatorView *activityIndicator;
     tabHeading3TEXT.hidden = NO;
     
     tabHeading2TEXT.frame =CGRectMake(tabHeading2TEXT.frame.origin.x, tabHeading3TEXT.frame.origin.y +160, tabHeading2TEXT.frame.size.width, 50);
-    tabHeading2TEXT.text = @"About Tiggly Safari:";
+    tabHeading2TEXT.text = @"About Tiggly Stamp:";
     tabHeading2TEXT.hidden = NO;
     tabHeading2TEXT.font = [UIFont fontWithName:APP_FONT_BOLD_ITALIC size:14];
 
     
     
     tabBody1TEXT.frame =CGRectMake(tabBody1TEXT.frame.origin.x, tabHeading2TEXT.frame.origin.y +30, tabBody1TEXT.frame.size.width, 350);
-    tabBody1TEXT.text = @"I remember the first time I visited the zoo as a little girl and my sense of awe and wonder as I saw exotic animals from each corner of the globe, ones that I never even knew existed. When we were developing our first app to work with Tiggly Shapes, I knew there was no better place to start than by trying to capture the sense of wonder that the animal kingdom holds for children. Inspired by the artwork of Chaley Harper and Ed Emberley, we envisioned a farm, a jungle, and an ocean full of animals – all made from simple shapes awaiting your child as they enter the world of Tiggly!\n\nIn Tiggly Safari, your children use Tiggly Shapes to construct a series of fun and friendly animals – cows, turkeys, lions, owls, crabs, and many more! We designed each level in the game based on what we know about children’s spatial cognition development.\n\nIn the first level, children simply match shapes with what they see on the screen and create simple animals out of single shapes. As the levels proceed, children are challenged to create more complex animals with combination of shapes, recognize and match basic shapes in various orientations, and practice their hand-eye coordination by catching moving objects— all while being amazed by the cute animals of their creation!";
+    tabBody1TEXT.text = @"I remember the first time I visited the zoo as a little girl and my sense of awe and wonder as I saw exotic animals from each corner of the globe, ones that I never even knew existed. When we were developing our first app to work with Tiggly Shapes, I knew there was no better place to start than by trying to capture the sense of wonder that the animal kingdom holds for children. Inspired by the artwork of Chaley Harper and Ed Emberley, we envisioned a farm, a jungle, and an ocean full of animals – all made from simple shapes awaiting your child as they enter the world of Tiggly!\n\nIn Tiggly Stamp, your children use Tiggly Shapes to construct a series of fun and friendly animals – cows, turkeys, lions, owls, crabs, and many more! We designed each level in the game based on what we know about children’s spatial cognition development.\n\nIn the first level, children simply match shapes with what they see on the screen and create simple animals out of single shapes. As the levels proceed, children are challenged to create more complex animals with combination of shapes, recognize and match basic shapes in various orientations, and practice their hand-eye coordination by catching moving objects— all while being amazed by the cute animals of their creation!";
     
     tabLetterMotarBTN.frame =CGRectMake(tabLetterMotarBTN.frame.origin.x,tabBody1TEXT.frame.origin.y+ 350, tabLetterMotarBTN.frame.size.width, tabLetterMotarBTN.frame.size.height);
     tabLetterLanguageBTN.frame =CGRectMake(tabLetterLanguageBTN.frame.origin.x, tabBody1TEXT.frame.origin.y+ 350, tabLetterLanguageBTN.frame.size.width, tabLetterLanguageBTN.frame.size.height);
@@ -780,7 +792,7 @@ UIActivityIndicatorView *activityIndicator;
     tabHeading2TEXT.text = @"Tips to enhance your child’s learning experience outside the app";
     tabHeading2TEXT.font = [UIFont fontWithName:@"Rockwell-BoldItalic" size:14];
     [tabInforSCROLL bringSubviewToFront:tabBody2TEXT];
-    tabBody2TEXT.text = @"Your child’s education does not begin and end in one setting. Learning is fluid; the most effective learning experiences are the ones that transfer from one setting to another. Here is a list of suggested activities for you to help your little ones develop their spatial thinking and language skills outside the app. You will help them take what they learn in the app and apply the lessons to the outside world!\n\n	•	Talk with your child about shapes, spatial relations, and spatial transformations. Research shows that parents who use spatial words in their vocabulary have children with better spatial skills. Include words such as name of shapes (square, circle, triangle, star, rectangle, trapezoid, etc.), relational words (up, down, below, above, left, right, beside), and spatial-transformation verbs (rotate, flip, slide) when talking to your child.\n	•	Encourage your child to see shapes around them. When you notice a circular object around your home or a triangle in a book, point that out to your child.\n	•	Help your child construct complex objects using simple shapes. Why not make paper cutouts of shapes and encourage your child to create their own animals or objects? Send us pictures, we’d love to include them in our next Safari update!\n	•	Solve puzzles together.\n	•	Have fun with the shapes beyond the tablet… We’ve seen many kids building towers with them or wear them as bracelets! \n";
+    tabBody2TEXT.text = @"Your child’s education does not begin and end in one setting. Learning is fluid; the most effective learning experiences are the ones that transfer from one setting to another. Here is a list of suggested activities for you to help your little ones develop their spatial thinking and language skills outside the app. You will help them take what they learn in the app and apply the lessons to the outside world!\n\n	•	Talk with your child about shapes, spatial relations, and spatial transformations. Research shows that parents who use spatial words in their vocabulary have children with better spatial skills. Include words such as name of shapes (square, circle, triangle, star, rectangle, trapezoid, etc.), relational words (up, down, below, above, left, right, beside), and spatial-transformation verbs (rotate, flip, slide) when talking to your child.\n	•	Encourage your child to see shapes around them. When you notice a circular object around your home or a triangle in a book, point that out to your child.\n	•	Help your child construct complex objects using simple shapes. Why not make paper cutouts of shapes and encourage your child to create their own animals or objects? Send us pictures, we’d love to include them in our next Stamp update!\n	•	Solve puzzles together.\n	•	Have fun with the shapes beyond the tablet… We’ve seen many kids building towers with them or wear them as bracelets! \n";
     
 }
 -(void)setInfoForPhilosophyTab {
@@ -899,6 +911,12 @@ UIActivityIndicatorView *activityIndicator;
 
 -(void) settingViewOnCloseButtonClick:(SettingsView *)sView {
     DebugLog(@"");
+    
+    [btnPrivacyPolicy setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPrivacyPolicy"] forState:UIControlStateNormal];
+    lblSubscribeBtn.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSubscribe"];
+    lblSettingBtn.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kReviewtheapp"];
+    lblReviewAppBtn.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSettings"];
+    lblSubscribeHead.text =[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSubscriptionWindowTitle"];
 
     [clearView removeFromSuperview];
     

@@ -62,20 +62,6 @@
 -(void) releaseAllData{
     DebugLog(@"");
     
-    if(arrLanguage != nil){
-        [arrLanguage removeAllObjects];
-        arrLanguage= nil;
-    }
-    
-//    if(languageView != nil){
-//        [languageView removeFromSuperview];
-//        languageView = nil;
-//    }
-//    
-//    if(gameTypeView != nil){
-//        [gameTypeView removeFromSuperview];
-//        gameTypeView = nil;
-//    }
     
 }
 
@@ -171,6 +157,18 @@
 -(void) viewWillAppear:(BOOL)animated {
     DebugLog(@"");
     
+    float fontSize = 0.0;
+    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+        fontSize = 45.0f;
+    }else{
+        fontSize = 28.0f;
+    }
+    lblWithoutShape.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    lblWithShape.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    lblWithShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockwithTigglyshapes"];
+    lblWithoutShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kTrymewithoutTigglyshapes"];
+    lblWithShape.minimumFontSize = 15.0f;
+    lblWithoutShape.minimumFontSize = 15.0f;
 }
 
 
@@ -260,8 +258,10 @@
     isLanguageScreenDisplayed = YES;
     self.languageSubView.layer.cornerRadius = 30.0f;
     self.languageSubView.layer.masksToBounds = YES;
-    [self.view addSubview:self.languageView];
     lblLunguage.font = [UIFont fontWithName:APP_FONT_BOLD size:26.0f];
+    lblLunguage.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLanguage"];
+    [self.view addSubview:self.languageView];
+    
     
     UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedScreen:)];
     swipeGesture.direction = UISwipeGestureRecognizerDirectionLeft;
@@ -275,6 +275,20 @@
         [self.view bringSubviewToFront:self.gameTypeView];
         [UIView animateWithDuration:0.4 animations:^{
             self.gameTypeView.frame = CGRectMake(0, 0, 1024, 768);
+            
+            float fontSize = 0.0;
+            if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+                fontSize = 45.0f;
+            }else{
+                fontSize = 28.0f;
+            }
+            lblWithoutShape.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+            lblWithShape.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+            lblWithShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockwithTigglyshapes"];
+            lblWithoutShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kTrymewithoutTigglyshapes"];
+            lblWithShape.minimumFontSize = 15.0f;
+            lblWithoutShape.minimumFontSize = 15.0f;
+            
         } completion:^(BOOL finished) {
              isLanguageScreenDisplayed = NO;
              [[TigglyStampUtils sharedInstance] setCurrentLanguage: [[TigglyStampUtils sharedInstance] getCurrentLanguage]];
@@ -308,10 +322,6 @@
         TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];        
          [self.navigationController pushViewController:homeViewController animated:YES];
     }
-    
-    //Clear array for memory mgmt
-    [arrLanguage removeAllObjects];
-    arrLanguage = nil;
     
     [self releaseAllData];
 }
@@ -405,19 +415,37 @@
 #else
     
 #endif
+    
+    
+    [[TigglyStampUtils sharedInstance] setCurrentLanguage:[self.arrLanguage objectAtIndex:indexPath.row]];
+    
+    lblLunguage.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLanguage"];
+    
+    float fontSize = 0.0;
+    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+        fontSize = 45.0f;
+    }else{
+        fontSize = 28.0f;
+    }
+    lblWithoutShape.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    lblWithShape.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    lblWithShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockwithTigglyshapes"];
+    lblWithoutShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kTrymewithoutTigglyshapes"];
+    lblWithShape.minimumFontSize = 15.0f;
+    lblWithoutShape.minimumFontSize = 15.0f;
 
     
     [self.view bringSubviewToFront:self.gameTypeView];
+    
     [UIView animateWithDuration:0.4 animations:^{
         self.gameTypeView.frame = CGRectMake(0, 0, 1024, 768);
+        
     } completion:^(BOOL finished) {
         isLanguageScreenDisplayed = NO;
         [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
         
     }];
-    
-    [[TigglyStampUtils sharedInstance] setCurrentLanguage:[self.arrLanguage objectAtIndex:indexPath.row]];
-    
+
 }
 
 @end

@@ -1,6 +1,6 @@
 //
 //  TSTempData.h
-//  TigglySafari
+//  TigglyStamp
 //
 //  Created by Sachin Patil on 05/10/13.
 //  Copyright (c) 2013 Sachin Patil. All rights reserved.

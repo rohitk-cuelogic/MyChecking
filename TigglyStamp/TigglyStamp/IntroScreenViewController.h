@@ -25,6 +25,8 @@
 @interface IntroScreenViewController:KTViewController<UIPopoverControllerDelegate> {
 
     BOOL isLanguageScreenDisplayed;
+    IBOutlet UILabel *lblWithoutShape;
+    IBOutlet UILabel *lblWithShape;
     
 }
 @property (nonatomic, strong) IBOutlet UIButton *btnGoLanguage;

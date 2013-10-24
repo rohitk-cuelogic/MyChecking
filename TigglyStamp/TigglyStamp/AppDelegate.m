@@ -42,7 +42,7 @@ static NSString *const kAllowTracking = @"allowTracking";
     DebugLog(@"AllFilesCount : %d",allFiles.count);
     
 #ifdef GOOGLE_ANALYTICS_START
-    [[GAI sharedInstance] trackerWithName:@"iOSTigglySafari"
+    [[GAI sharedInstance] trackerWithName:@"iOSTigglyStamp"
                                trackingId:kTrackingId];
     
     NSMutableDictionary *event =

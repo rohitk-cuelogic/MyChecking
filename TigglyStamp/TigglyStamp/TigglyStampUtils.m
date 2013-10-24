@@ -594,7 +594,7 @@ static TigglyStampUtils *sharedInstance = nil;
 
 #pragma mark -
 #pragma mark =======================================
-#pragma mark
+#pragma mark Temp Data
 #pragma mark =======================================
 
 - (BOOL) createFolderForProject: (NSString *) folder {
@@ -672,6 +672,37 @@ static TigglyStampUtils *sharedInstance = nil;
     NSArray *directoryContents = [fileManager contentsOfDirectoryAtPath:directory error:NULL];
     
     return directoryContents.count;
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Localization
+#pragma mark =======================================
+
+-(NSString*) getLocalisedStringForKey:(NSString*) key {
+    DebugLog(@"");
+    NSString *selectedLanguage = [self getCurrentLanguage];
+	NSString *path;
+    if([selectedLanguage isEqualToString:@"Portuguese"])
+		path = [[NSBundle mainBundle] pathForResource:@"pt" ofType:@"lproj"];
+    else if([selectedLanguage isEqualToString:@"Russian"])
+		path = [[NSBundle mainBundle] pathForResource:@"ru" ofType:@"lproj"];
+    else if([selectedLanguage isEqualToString:@"Spanish"])
+		path = [[NSBundle mainBundle] pathForResource:@"es" ofType:@"lproj"];
+    else if([selectedLanguage isEqualToString:@"English"])
+		path = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"];
+    else if([selectedLanguage isEqualToString:@"French"])
+		path = [[NSBundle mainBundle] pathForResource:@"fr" ofType:@"lproj"];
+    else if([selectedLanguage isEqualToString:@"German"])
+		path = [[NSBundle mainBundle] pathForResource:@"de" ofType:@"lproj"];
+    else if([selectedLanguage isEqualToString:@"Italian"])
+		path = [[NSBundle mainBundle] pathForResource:@"it" ofType:@"lproj"];
+    else
+        path = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"];
+    
+	NSBundle* languageBundle = [NSBundle bundleWithPath:path];
+	NSString* str=[languageBundle localizedStringForKey:key value:@"" table:nil];
+	return str;
 }
 
 

@@ -47,6 +47,11 @@
     IBOutlet UIWebView *webView;
     IBOutlet UIButton *btnClose;
     IBOutlet UIButton *btnTigglyNews;
+    IBOutlet UIButton *btnReviewApp;
+    IBOutlet UILabel *lblSubscribeHead;
+    IBOutlet UILabel *lblSubscribeBtn;
+    IBOutlet UILabel *lblSettingBtn;
+    IBOutlet UILabel *lblReviewAppBtn;
     
     MBProgressHUD* hud;
     BOOL  isConnection;
@@ -98,6 +103,8 @@
 @property (nonatomic,strong) IBOutlet UIButton *btnPrivacyPolicy;
 @property (nonatomic,strong) IBOutlet UIView *privacymainView;
 @property (nonatomic,strong) IBOutlet UIView *clearView;
+@property (nonatomic,strong) IBOutlet UILabel *lblTigglyPrivacyPolicy;
+@property (nonatomic,strong) IBOutlet UITextView *txtViewPrivacyPolicy;
 
 -(void) launchUnlockScreen;
 -(IBAction)onButtonClicked:(id)sender;

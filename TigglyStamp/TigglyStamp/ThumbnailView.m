@@ -32,7 +32,7 @@
         
         imageName = imgePath;
         
-        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(10,10, self.frame.size.width-20, self.frame.size.height-20) ];
+        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, self.frame.size.width-20, self.frame.size.height-20) ];
         [imgView setContentMode:UIViewContentModeScaleToFill];
         imgView.layer.cornerRadius = 30.0f;
         imgView.layer.masksToBounds = YES;
@@ -90,11 +90,17 @@
     DebugLog(@"");
 
         UIImage *image = nil;
+    
+        CGRect rect = CGRectMake(40, 40, 640, 460);
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+            rect = CGRectMake(80, 80, 1280,920);
+        }
+    
         if([[[imageName lastPathComponent] pathExtension] isEqualToString:@"png"]){
             image = [UIImage imageWithContentsOfFile:imageName];
             
             //Crop the image to remove the border
-            CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], CGRectMake(40, 40,650, 460));
+            CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], rect);
             UIImage *cropped = [UIImage imageWithCGImage:imageRef];
             CGImageRelease(imageRef);
             
@@ -112,7 +118,7 @@
             UIImage *img = [[TigglyStampUtils sharedInstance] getMovieImageForMovieName:[imageName lastPathComponent]];
           
             //Crop the image to remove the border
-            CGImageRef imageRef = CGImageCreateWithImageInRect([img CGImage], CGRectMake(40, 40,640, 460));
+            CGImageRef imageRef = CGImageCreateWithImageInRect([img CGImage], rect);
             UIImage *cropped = [UIImage imageWithCGImage:imageRef];
             CGImageRelease(imageRef);
             

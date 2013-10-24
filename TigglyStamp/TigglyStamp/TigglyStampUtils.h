@@ -46,6 +46,7 @@
 
 -(void)setCurrentLanguage:(NSString *)lang;
 -(NSString *)getCurrentLanguage;
+-(NSString*) getLocalisedStringForKey:(NSString*) key;
 
 -(BOOL) isAppUnlockedForShapes;
 -(void)unlockAppForShapes:(BOOL) boolean;

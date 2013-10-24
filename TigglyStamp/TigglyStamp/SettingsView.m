@@ -29,6 +29,13 @@ NSArray *langArr;
 BOOL isLanguageScreenDisplayed;
 UIButton *btnClose;
 
+UILabel *lblLang;
+UILabel *lblMusic;
+UILabel *lblSaveArt;
+UILabel *lblShape;
+UILabel *lblGallery;
+UILabel *lblBuyShapes;
+
 @synthesize delegate;
 
 #pragma mark -
@@ -44,6 +51,13 @@ UIButton *btnClose;
         self.layer.cornerRadius = 20.0f;
         self.userInteractionEnabled = YES;
         
+        float fontSize = 0.0;
+        if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+            fontSize = 28.0f;
+        }else{
+            fontSize = 20.0f;
+        }
+        
         btnClose = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnClose setBackgroundImage:[UIImage imageNamed:@"close_btn.png"] forState:UIControlStateNormal];
         [btnClose setBackgroundImage:[UIImage imageNamed:@"close_btn.png"] forState:UIControlStateSelected];
@@ -51,12 +65,12 @@ UIButton *btnClose;
         btnClose.frame = CGRectMake(730, 0, 70, 70);
         [self addSubview:btnClose];
         
-        UILabel *lblLang = [[UILabel alloc] initWithFrame:CGRectMake(80, 75, 345, 32)];
+        lblLang = [[UILabel alloc] initWithFrame:CGRectMake(80, 75, 345, 32)];
         lblLang.textAlignment = UITextAlignmentRight;
         lblLang.backgroundColor = [UIColor clearColor];
-        lblLang.text = @"Language";
+        lblLang.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLanguage"];
         lblLang.textColor = [UIColor whiteColor];
-        lblLang.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
+        lblLang.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
         [self addSubview:lblLang];
         
         UIButton *btnLang = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -66,48 +80,48 @@ UIButton *btnClose;
         btnLang.frame = CGRectMake(485, 65, 50, 50);
         [self addSubview:btnLang];
         
-        UILabel *lblMusic= [[UILabel alloc] initWithFrame:CGRectMake(80, 130, 345, 32)];
+        lblMusic = [[UILabel alloc] initWithFrame:CGRectMake(80, 130, 345, 32)];
         lblMusic.textAlignment = UITextAlignmentRight;
         lblMusic.backgroundColor = [UIColor clearColor];
-        lblMusic.text = @"Music";
+        lblMusic.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kMusic"];
         lblMusic.textColor = [UIColor whiteColor];
-        lblMusic.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
+        lblMusic.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
         [self addSubview:lblMusic];
         
         swtchMusic = [[UISwitch alloc] initWithFrame:CGRectMake(485,130,79,27)];
         [swtchMusic addTarget:self action:@selector(actionMusic) forControlEvents:UIControlEventValueChanged];
         [self addSubview:swtchMusic];
         
-        UILabel *lblSaveArt = [[UILabel alloc] initWithFrame:CGRectMake(80, 185, 345, 32)];
+        lblSaveArt= [[UILabel alloc] initWithFrame:CGRectMake(80, 185, 345, 32)];
         lblSaveArt.textAlignment = UITextAlignmentRight;
         lblSaveArt.backgroundColor = [UIColor clearColor];
-        lblSaveArt.text = @"Save Art";
+        lblSaveArt.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSaveArt"];
         lblSaveArt.textColor = [UIColor whiteColor];
-        lblSaveArt.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
+        lblSaveArt.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
         [self addSubview:lblSaveArt];
         
         swtchArt = [[UISwitch alloc] initWithFrame:CGRectMake(485,185,79,27)];
         [swtchArt addTarget:self action:@selector(actionArt) forControlEvents:UIControlEventValueChanged];
         [self addSubview:swtchArt];
         
-        UILabel *lblShape = [[UILabel alloc] initWithFrame:CGRectMake(80, 240, 345, 32)];
+        lblShape = [[UILabel alloc] initWithFrame:CGRectMake(20, 240, 405, 32)];
         lblShape.textAlignment = UITextAlignmentRight;
         lblShape.backgroundColor = [UIColor clearColor];
-        lblShape.text = @"Play with Tiggly Shapes";
+        lblShape.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPlaywithTigglyShapes"];
         lblShape.textColor = [UIColor whiteColor];
-        lblShape.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
+        lblShape.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
         [self addSubview:lblShape];
         
         swtchShape = [[UISwitch alloc] initWithFrame:CGRectMake(485,240,79,27)];
         [swtchShape addTarget:self action:@selector(actionShape) forControlEvents:UIControlEventValueChanged];
         [self addSubview:swtchShape];
         
-        UILabel *lblGallery = [[UILabel alloc] initWithFrame:CGRectMake(80, 295, 345, 32)];
+        lblGallery= [[UILabel alloc] initWithFrame:CGRectMake(20, 295, 405, 32)];
         lblGallery.textAlignment = UITextAlignmentRight;
         lblGallery.backgroundColor = [UIColor clearColor];
-        lblGallery.text = @"Limit gallery to 60 items";
+        lblGallery.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLimitGallery"];
         lblGallery.textColor = [UIColor whiteColor];
-        lblGallery.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
+        lblGallery.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
         [self addSubview:lblGallery];
         
         swtchGallery = [[UISwitch alloc] initWithFrame:CGRectMake(485,295,79,27)];
@@ -115,12 +129,12 @@ UIButton *btnClose;
         [self addSubview:swtchGallery];
   
         if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
-                UILabel *lblBuyShapes = [[UILabel alloc] initWithFrame:CGRectMake(80, 350, 345, 32)];
+                lblBuyShapes = [[UILabel alloc] initWithFrame:CGRectMake(80, 350, 345, 32)];
                 lblBuyShapes.textAlignment = UITextAlignmentRight;
                 lblBuyShapes.backgroundColor = [UIColor clearColor];
-                lblBuyShapes.text = @"Buy Shapes";
+                lblBuyShapes.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kBuyshapes"];
                 lblBuyShapes.textColor = [UIColor whiteColor];
-                lblBuyShapes.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
+                lblBuyShapes.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
                 [self addSubview:lblBuyShapes];
         
 
@@ -369,6 +383,26 @@ UIButton *btnClose;
 
     [self removeLanguageView];
     
+    lblLang.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLanguage"];
+    lblMusic.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kMusic"];
+    lblSaveArt.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSaveArt"];
+    lblShape.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPlaywithTigglyShapes"];
+    lblGallery.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLimitGallery"];
+    lblBuyShapes.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kBuyshapes"];
+    
+    float fontSize = 0.0;
+    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+        fontSize = 28.0f;
+    }else{
+        fontSize = 20.0f;
+    }
+    
+    lblLang.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    lblMusic.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    lblSaveArt.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    lblShape.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    lblGallery.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    lblBuyShapes.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
 }
 
 @end

@@ -463,10 +463,8 @@ NSArray *allImageFiles;
     DebugLog(@"ImageName : %@",thumbnail.imageName);
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    NSString *movieFileName = [thumbnail.imageName stringByReplacingOccurrencesOfString:@".mov" withString:@"_thumb.png"];
-     [fileManager removeItemAtPath:movieFileName error:nil];
     [fileManager removeItemAtPath:thumbnail.imageName error:nil];
-    [fileManager removeItemAtPath:thumbnail.imageNameWithBorder error:nil];
+    [fileManager removeItemAtPath:[[TigglyStampUtils sharedInstance] getMovieImagePathForMovieName:thumbnail.imageName] error:nil];
     thumbnail.transform = CGAffineTransformIdentity;
     [UIView animateWithDuration:0.2 animations:^{
         thumbnail.alpha = 0;

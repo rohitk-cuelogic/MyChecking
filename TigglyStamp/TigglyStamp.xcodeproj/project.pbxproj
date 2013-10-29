@@ -5732,8 +5732,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Bart Clareman (Z6K82CXZMB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bart Clareman (Z6K82CXZMB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Azadeh Jamalian (9FC2Z9RN3X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Azadeh Jamalian (9FC2Z9RN3X)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -5749,8 +5749,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = TigglyStamp;
-				PROVISIONING_PROFILE = "902E0E41-8755-4871-A76A-C2722B419487";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "902E0E41-8755-4871-A76A-C2722B419487";
+				PROVISIONING_PROFILE = "B72EA43D-8813-4866-AAED-9CC617482E1D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B72EA43D-8813-4866-AAED-9CC617482E1D";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -5786,8 +5786,8 @@
 		EB6F334B1781867900FC479F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Bart Clareman (Z6K82CXZMB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bart Clareman (Z6K82CXZMB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Azadeh Jamalian (9FC2Z9RN3X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Azadeh Jamalian (9FC2Z9RN3X)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/cuelogic/Documents/FacebookSDK,
@@ -5804,8 +5804,8 @@
 					"\"$(SRCROOT)/TigglyStamp/GoogleAnalyticLibrary\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "902E0E41-8755-4871-A76A-C2722B419487";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "902E0E41-8755-4871-A76A-C2722B419487";
+				PROVISIONING_PROFILE = "B72EA43D-8813-4866-AAED-9CC617482E1D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B72EA43D-8813-4866-AAED-9CC617482E1D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

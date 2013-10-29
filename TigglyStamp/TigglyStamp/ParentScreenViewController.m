@@ -34,24 +34,20 @@
 
 @implementation ParentScreenViewController
 
-@synthesize subscribeBTN,settingsBTN,faceBookBTN,twitterBTN,pathBTN,childInfoView,confView,homeBTN,skipBTN,submitBTN;
-@synthesize childInfoSubView;
+@synthesize subscribeBTN,settingsBTN,faceBookBTN,twitterBTN,pathBTN,confView,homeBTN,skipBTN,submitBTN;
 @synthesize confSubView;
 @synthesize emailidTextField;
 @synthesize nameTextField;
-@synthesize ageTextField;
 @synthesize activeSession;
 @synthesize userFieldsRequired;
 @synthesize permissions;
 @synthesize tabInforSCROLL;
 @synthesize tabLetterBTN,tabLearningTipBTN,tabPlayBTN,tabLearPhilosophyBTN,tabTitleIMGVIEW,tabBody1TEXT,tabHeading1TEXT,tabBody2TEXT,tabHeading2TEXT,tabHeading3TEXT;
-@synthesize lblLanguageTEXT,lblMotarTEXT,lblSpatialTEXT;
-@synthesize tabLetterMotarBTN,tabLetterLanguageBTN,tabLetterSpatialBTN,lettertabBodyTEXT,lettertabCloseBTN,lettertabHeadingLBL,letterTabView;
+@synthesize tabLetterMotarBTN,tabLetterLanguageBTN,tabLetterSpatialBTN;
 @synthesize btnPrivacyPolicy;
 @synthesize webViewTab;
 @synthesize privacymainView;
 @synthesize isConnection;
-@synthesize clearView;
 @synthesize lblTigglyPrivacyPolicy,txtViewPrivacyPolicy;
 
 
@@ -124,7 +120,6 @@ UIActivityIndicatorView *activityIndicator;
     [skipBTN setTag:TAG_SKIP_BTN];
     [submitBTN setTag:TAG_SUBMIT_BTN];
     [homeBTN setTag:TAG_HOME_BTN];
-    [btnTigglyNews setTag:TAG_TIGGLY_NEWS_BTN];
     [btnClose setTag:TAG_CLOSE_WEB_BTN];
     [tabLetterBTN setTag:TAG_LETTER_TAB_BTN];
     [tabPlayBTN setTag:TAG_PLAY_TAB_BTN];
@@ -132,15 +127,11 @@ UIActivityIndicatorView *activityIndicator;
     [tabLetterMotarBTN setTag:TAG_LETTER_MOTAR_BTN];
     [tabLetterLanguageBTN setTag:TAG_LETTER_LANGUAGE_BTN];
     [tabLetterSpatialBTN setTag:TAG_LETTER_SPATIAL_BTN];
-    [lettertabCloseBTN setTag:TAG_LETTER_TAB_POPUP_CLOSE_BTN];
     
     emailidTextField.font =  [UIFont fontWithName:APP_FONT size:18.0f];
     
     [self setInfoForLetterTabWebView];
 
-    childInfoSubView.layer.cornerRadius = 30.0f;
-    childInfoSubView.layer.masksToBounds = YES;
-    
     confSubView.layer.cornerRadius = 25.0f;
     confSubView.layer.masksToBounds = YES;
     confSubView.layer.borderColor =  [UIColor blueColor].CGColor;
@@ -163,6 +154,8 @@ UIActivityIndicatorView *activityIndicator;
     [webView bringSubviewToFront:activityIndicator];
     
     btnPrivacyPolicy.titleLabel.font = [UIFont fontWithName:APP_FONT size:16.0f];
+    
+    
 
 }
 
@@ -222,11 +215,6 @@ UIActivityIndicatorView *activityIndicator;
         [settingView removeFromSuperview];
         settingView = nil;
     }
-    
-    clearView = [[UIView alloc] initWithFrame:self.view.frame];
-    clearView.backgroundColor = [UIColor blackColor];
-    clearView.alpha = 0.5;
-    [self.view addSubview:clearView];
     
     settingView = [[SettingsView alloc] initWithFrame:CGRectMake(512-400, 800, 800, height)];
     settingView.delegate = self;
@@ -311,6 +299,31 @@ UIActivityIndicatorView *activityIndicator;
     lblSettingBtn.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
     lblReviewAppBtn.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
     lblSubscribeHead.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    
+    
+    float tabFontSize = 0.0;
+    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+        tabFontSize = 15.0f;
+    }else{
+        tabFontSize = 12.0f;
+    }if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
+        tabFontSize = 10.0f;
+    }
+    tabLetterBTN.titleLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:tabFontSize];
+    tabPlayBTN.titleLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:tabFontSize];
+    tabLearningTipBTN.titleLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:tabFontSize];
+    tabLearPhilosophyBTN.titleLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:tabFontSize];
+    
+    [tabLetterBTN setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLetter"] forState:UIControlStateNormal];
+    [tabPlayBTN setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPlay"] forState:UIControlStateNormal];
+    [tabLearningTipBTN setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLearningTips"] forState:UIControlStateNormal];
+    [tabLearPhilosophyBTN setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLearningPhilosophy"] forState:UIControlStateNormal];
+   
+    tabLetterBTN.titleLabel.adjustsFontSizeToFitWidth = YES;
+    tabPlayBTN.titleLabel.adjustsFontSizeToFitWidth = YES;
+    tabLearningTipBTN.titleLabel.adjustsFontSizeToFitWidth = YES;
+    tabLearPhilosophyBTN.titleLabel.adjustsFontSizeToFitWidth = YES;
+    
 }
 
 #pragma mark -
@@ -438,8 +451,6 @@ UIActivityIndicatorView *activityIndicator;
     }
     if ([btn tag] == TAG_PATH_BTN) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.pinterest.com/tigglykids/"]];
-
-        
 //        NSMutableDictionary *event =
 //        [[GAIDictionaryBuilder createEventWithCategory:@"UI"
 //                                                action:@"buttonPress"
@@ -449,15 +460,11 @@ UIActivityIndicatorView *activityIndicator;
 //        [[GAI sharedInstance] dispatch];
 //        [self signInWithPinterest:sender];
     }
-    if ([btn tag] == TAG_SKIP_BTN) {
-        [self.childInfoView removeFromSuperview];
-    }
+
     if ([btn tag] == TAG_SUBMIT_BTN) {
         if ([self validateData] == YES) {
-            [self.childInfoView removeFromSuperview];
             [self.view addSubview:confView];
             nameTextField.text = @"";
-            ageTextField.text = @"";
             [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(removeConfirmationDilog:) userInfo:nil repeats:NO];
             
         }
@@ -525,10 +532,7 @@ UIActivityIndicatorView *activityIndicator;
         [self showValidationError:@"Tiggly Stamp encourages children to recognize and match basic shapes— circles, squares, triangles, and stars in various orientations. By manipulating real shapes, and grabbing, rotating, moving, and placing them on a target, children learn about spatial relations and transformations. Finally, by turning simple shapes into animals, they practice their ability to create complex images" title:@"Spatial Thinking"];
     }
 
-    if([btn tag] == TAG_LETTER_TAB_POPUP_CLOSE_BTN){
-        [letterTabView removeFromSuperview];
-        
-    }
+   
 }
 
 -(void)setInfoForLetterTabWebView {
@@ -630,47 +634,7 @@ UIActivityIndicatorView *activityIndicator;
                 // tiggly logo clicked
                 [self launchTigglyNews];
             }
-            if ([methodName isEqualToString:@"MotarSkill"] ) {
-                [letterTabView removeFromSuperview];
-                
-                // MotarSkill clicked
-                //                [self showValidationError:@"Grabbing and holding the shapes, moving them, and placing them on the screen help your child enhance their fine motor skills. " title:@"Motor skills"];
-                 lettertabHeadingLBL.font = [UIFont fontWithName:APP_FONT_BOLD size:24.0f];
-                 lettertabBodyTEXT.font = [UIFont fontWithName:APP_FONT size:16.0f];
-                
-                lettertabHeadingLBL.text = @"Motor skills";
-                lettertabBodyTEXT.text =[NSString stringWithFormat:@"Grabbing and holding the shapes, moving them, and placing them on the screen help your child enhance their fine motor skills."];
-                [self.view addSubview:letterTabView];
-                
-            }
-            if ([methodName isEqualToString:@"LanguageDevelopment"] ) {
-                [letterTabView removeFromSuperview];
-                
-                // language clicked
-                //                [self showValidationError:@"Children will hear the names of animals, fruits, and objects as they appear on screen and greet your child. They will also practice storytelling and producing language as part of their play" title:@"Language Development"];
-                
-                lettertabHeadingLBL.font = [UIFont fontWithName:APP_FONT_BOLD size:24.0f];
-                lettertabBodyTEXT.font = [UIFont fontWithName:APP_FONT size:16.0f];
-                
-                lettertabHeadingLBL.text = @"Language Development";
-                lettertabBodyTEXT.text =[NSString stringWithFormat:@"Children will hear the names of animals, fruits, and objects as they appear on screen and greet your child. They will also practice storytelling and producing language as part of their play"];
-                [self.view addSubview:letterTabView];
-                
-            }
-            if ([methodName isEqualToString:@"SpatialThinking"] ) {
-                [letterTabView removeFromSuperview];
-                
-                // spatialThinking clicked
-                //                [self showValidationError:@"Tiggly Stamp encourages children to recognize and match basic shapes— circles, squares, triangles, and stars in various orientations. By manipulating real shapes, and grabbing, rotating, moving, and placing them on a target, children learn about spatial relations and transformations. Finally, by turning simple shapes into animals, they practice their ability to create complex images" title:@"Spatial Thinking"];
-                
-                lettertabHeadingLBL.font = [UIFont fontWithName:APP_FONT_BOLD size:24.0f];
-                lettertabBodyTEXT.font = [UIFont fontWithName:APP_FONT size:16.0f];
-                
-                lettertabHeadingLBL.text = @"Spatial Thinking";
-                lettertabBodyTEXT.text =[NSString stringWithFormat:@"Tiggly Stamp encourages children to recognize and match basic shapes— circles, squares, triangles, and stars in various orientations. By manipulating real shapes, and grabbing, rotating, moving, and placing them on a target, children learn about spatial relations and transformations. Finally, by turning simple shapes into animals, they practice their ability to create complex images"];
-                [self.view addSubview:letterTabView];
-                
-            }
+
         }
     }
     return YES;
@@ -707,18 +671,7 @@ UIActivityIndicatorView *activityIndicator;
     tabLetterMotarBTN.frame =CGRectMake(tabLetterMotarBTN.frame.origin.x,tabBody1TEXT.frame.origin.y+ 350, tabLetterMotarBTN.frame.size.width, tabLetterMotarBTN.frame.size.height);
     tabLetterLanguageBTN.frame =CGRectMake(tabLetterLanguageBTN.frame.origin.x, tabBody1TEXT.frame.origin.y+ 350, tabLetterLanguageBTN.frame.size.width, tabLetterLanguageBTN.frame.size.height);
     tabLetterSpatialBTN.frame =CGRectMake(tabLetterSpatialBTN.frame.origin.x, tabBody1TEXT.frame.origin.y+ 350, tabLetterSpatialBTN.frame.size.width, tabLetterSpatialBTN.frame.size.height);
-    
-    lblLanguageTEXT.hidden =NO;
-    lblMotarTEXT.hidden =NO;
-    lblSpatialTEXT.hidden =NO;
-    lblLanguageTEXT.frame =CGRectMake(lblLanguageTEXT.frame.origin.x,tabLetterMotarBTN.frame.origin.y+130, lblLanguageTEXT.frame.size.width, lblLanguageTEXT.frame.size.height);
-    
-    lblMotarTEXT.frame =CGRectMake(lblMotarTEXT.frame.origin.x,tabLetterMotarBTN.frame.origin.y+130, lblMotarTEXT.frame.size.width, lblMotarTEXT.frame.size.height);
 
-    lblSpatialTEXT.frame =CGRectMake(lblSpatialTEXT.frame.origin.x,tabLetterMotarBTN.frame.origin.y+130, lblSpatialTEXT.frame.size.width, lblSpatialTEXT.frame.size.height);
-    lblLanguageTEXT.font = [UIFont fontWithName:APP_FONT size:14];
-    lblMotarTEXT.font = [UIFont fontWithName:APP_FONT size:14];
-    lblSpatialTEXT.font = [UIFont fontWithName:APP_FONT size:14];
 
     tabLetterMotarBTN.hidden =NO;
     tabLetterLanguageBTN.hidden =NO;
@@ -741,9 +694,6 @@ UIActivityIndicatorView *activityIndicator;
     tabBody1TEXT.font = [UIFont fontWithName:APP_FONT size:14];
     tabBody2TEXT.font = [UIFont fontWithName:APP_FONT size:14];
 
-    lblLanguageTEXT.hidden =YES;
-    lblMotarTEXT.hidden =YES;
-    lblSpatialTEXT.hidden =YES;
     tabInforSCROLL.contentSize = CGSizeMake(tabInforSCROLL.contentSize.width, 500);
     tabInforSCROLL.contentOffset = CGPointMake(0, 0);
     for (NSString *familyName in [UIFont familyNames]) {
@@ -797,9 +747,6 @@ UIActivityIndicatorView *activityIndicator;
     tabHeading3TEXT.font = [UIFont fontWithName:APP_FONT size:14];
     tabBody1TEXT.font = [UIFont fontWithName:APP_FONT size:14];
     tabBody2TEXT.font = [UIFont fontWithName:APP_FONT size:14];
-    lblLanguageTEXT.hidden =YES;
-    lblMotarTEXT.hidden =YES;
-    lblSpatialTEXT.hidden =YES;
     tabHeading3TEXT.hidden = YES;
     tabInforSCROLL.contentSize = CGSizeMake(tabInforSCROLL.contentSize.width, 630);
     tabInforSCROLL.contentOffset = CGPointMake(0, 0);
@@ -832,9 +779,6 @@ UIActivityIndicatorView *activityIndicator;
     tabHeading3TEXT.font = [UIFont fontWithName:APP_FONT size:14];
     tabBody1TEXT.font = [UIFont fontWithName:APP_FONT size:14];
     tabBody2TEXT.font = [UIFont fontWithName:APP_FONT size:14];
-    lblLanguageTEXT.hidden =YES;
-    lblMotarTEXT.hidden =YES;
-    lblSpatialTEXT.hidden =YES;
     tabHeading3TEXT.hidden = YES;
     tabInforSCROLL.contentSize = CGSizeMake(tabInforSCROLL.contentSize.width, 1180);
     tabInforSCROLL.contentOffset = CGPointMake(0, 0);
@@ -864,7 +808,6 @@ UIActivityIndicatorView *activityIndicator;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     DebugLog(@"");
     if (textField == nameTextField) {
-        [ageTextField becomeFirstResponder];
     }else{
         [textField resignFirstResponder];
     }
@@ -912,9 +855,8 @@ UIActivityIndicatorView *activityIndicator;
 
 - (BOOL)validateData {
     DebugLog(@"");
+    
 	if (![self requiredField:nameTextField.text named:NSLocalizedString(@"child's name", nil)])
-		return NO;
-    if (![self requiredField:ageTextField.text named:NSLocalizedString(@"child's age", nil)])
 		return NO;
     
    	return YES;
@@ -945,8 +887,6 @@ UIActivityIndicatorView *activityIndicator;
     
     [self updateLabelsForCurrentLanguage];
 
-    [clearView removeFromSuperview];
-    
     int height;
     if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes])
         height = 390;
@@ -963,9 +903,6 @@ UIActivityIndicatorView *activityIndicator;
 
 -(void) settingViewOnShapeSwitchClick:(SettingsView *) sView{
     DebugLog(@"");
-
-    [clearView removeFromSuperview];
-    
     [self launchUnlockScreen];
 }
 
@@ -986,29 +923,16 @@ UIActivityIndicatorView *activityIndicator;
     emailMessage.fromEmail = SENDER_EMAIL_ID; //sender email address
     emailMessage.toEmail = reciverEmail;  //receiver email address
     emailMessage.relayHost = @"smtp.gmail.com";
-    //emailMessage.ccEmail =@"your cc address";
-    //emailMessage.bccEmail =@"your bcc address";
     emailMessage.requiresAuth = YES;
     emailMessage.login = SENDER_EMAIL_ID; //sender email address
     emailMessage.pass = SENDER_EMAIL_ID_PASSWORD; //sender email password
     emailMessage.subject =@"Tiggly Subscription";
     emailMessage.wantsSecure = YES;
     emailMessage.delegate = self; // you must include <SKPSMTPMessageDelegate> to your class
-    
-    //for example :   NSString *messageBody = [NSString stringWithFormat:@"Tour Name: %@\nName: %@\nEmail: %@\nContact No: %@\nAddress: %@\nNote: %@",selectedTour,nameField.text,emailField.text,foneField.text,addField.text,txtView.text];
-    // Now creating plain text email message
     NSDictionary *plainMsg = [NSDictionary
                               dictionaryWithObjectsAndKeys:@"text/plain",kSKPSMTPPartContentTypeKey,
                               messageBody,kSKPSMTPPartMessageKey,@"8bit",kSKPSMTPPartContentTransferEncodingKey,nil];
     emailMessage.parts = [NSArray arrayWithObjects:plainMsg,nil];
-    //in addition : Logic for attaching file with email message.
-    /*
-     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"filename" ofType:@"JPG"];
-     NSData *fileData = [NSData dataWithContentsOfFile:filePath];
-     NSDictionary *fileMsg = [NSDictionary dictionaryWithObjectsAndKeys:@"text/directory;\r\n\tx-
-     unix-mode=0644;\r\n\tname=\"filename.JPG\"",kSKPSMTPPartContentTypeKey,@"attachment;\r\n\tfilename=\"filename.JPG\"",kSKPSMTPPartContentDispositionKey,[fileData encodeBase64ForData],kSKPSMTPPartMessageKey,@"base64",kSKPSMTPPartContentTransferEncodingKey,nil];
-     emailMessage.parts = [NSArray arrayWithObjects:plainMsg,fileMsg,nil]; //including plain msg and attached file msg
-     */
     [emailMessage send];
     // sending email- will take little time to send so its better to use indicator with message showing sending...
 }

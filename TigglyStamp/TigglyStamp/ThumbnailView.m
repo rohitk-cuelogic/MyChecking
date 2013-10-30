@@ -56,7 +56,7 @@
         [closeBtn setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
         [closeBtn setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateSelected];
         [closeBtn addTarget:self action:@selector(actionClose)forControlEvents:UIControlEventTouchUpInside];
-        closeBtn.frame = CGRectMake(imgView.frame.size.width - 22,-10,44, 44);
+        closeBtn.frame = CGRectMake(imgView.frame.size.width - 30,-5,44, 44);
         closeBtn.hidden =YES;
         [self addSubview:closeBtn];
         closeBtn.userInteractionEnabled = YES;

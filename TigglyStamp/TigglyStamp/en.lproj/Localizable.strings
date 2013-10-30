@@ -48,8 +48,8 @@
 "kVideoSaved"="Video Saved";
 
 "kUnlockingInstructions" = "Unlocking Instructions :";
-"kUnlockingInstructionText" = "Tap the Tiggly shape on the screen that matches what you see. Once you match 6 shapes in a row, the app will be unlocked.";
-"kMatchedOutOfText" = "Matched %d out of 6.";
+"kUnlockingInstructionText" = "Tap the Tiggly shape on the screen that matches what you see. Once you match 4 shapes in a row, the app will be unlocked.";
+"kMatchedOutOfText" = "Matched %d out of 4.";
 "kCongratulationsText" = "Congratulations! You unlocked the full version of Tiggly Stamp. To play the app without the shapes, you can change the settings in the parents’ section.";
 "kAboutTigglyStamp" = "About Tiggly Stamp";
 "kAboutTigglyStampText" = "Tiggly Stamp is designed to interact with Tiggly shapes, a set of 4 geometric shapes that unlock the optimal learning experience for your child by combining the best of physical and digital play. Tiggly shapes are safe for your toddler and your tablet.";

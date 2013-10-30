@@ -12,7 +12,7 @@
                 <outlet property="btnBuyShapes" destination="11" id="17"/>
                 <outlet property="btnLearnMore" destination="12" id="18"/>
                 <outlet property="lblAboutTiggly" destination="13" id="19"/>
-                <outlet property="lblAboutTigglyText" destination="33" id="34"/>
+                <outlet property="lblAboutTigglyText" destination="6h5-p6-Q0Z" id="Sd2-MC-4Dv"/>
                 <outlet property="lblInstructionHead" destination="30" id="32"/>
                 <outlet property="lblInstructionText" destination="29" id="31"/>
                 <outlet property="lblLearnMore" destination="8uy-mJ-XGS" id="lE3-Ss-eUa"/>
@@ -103,25 +103,23 @@
                     </connections>
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="About Tiggly Stamp" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="13">
-                    <rect key="frame" x="753" y="95" width="257" height="43"/>
+                    <rect key="frame" x="753" y="95" width="257" height="51"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" id="33">
-                    <rect key="frame" x="743" y="140" width="267" height="297"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <string key="text">Tiggly Stamp is designed to interact with Tiggly Shapes, a set of 4 geometric shapes that unlock the optimal learning experience for your child by combining the best of physical and digital play. Tiggly Shapes are safe for your toddler and your tablet.</string>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learn more" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8uy-mJ-XGS">
                     <rect key="frame" x="757" y="519" width="234" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="12" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6h5-p6-Q0Z">
+                    <rect key="frame" x="753" y="154" width="257" height="280"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>

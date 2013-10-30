@@ -11,7 +11,7 @@
 #import "TigglyStampUtils.h"
 #import "TSHomeViewController.h"
 
-#define INSTRUCTION_TEXT1 @"Tap the Tiggly shape on the screen that matches what you see. Once you match 6 shapes in a row, the app will be unlocked."
+#define INSTRUCTION_TEXT1 @"Tap the Tiggly shape on the screen that matches what you see. Once you match 4 shapes in a row, the app will be unlocked."
 #define INSTRUCTION_TEXT2 @"Congratulations! You unlocked the full version of Tiggly Stamp. To play the app without the shapes, you can change the settings in parents section."
 #define INSTRUCTION_RESTART @"Restart..."
 
@@ -38,7 +38,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        totalShapes = 6;
+        totalShapes = 4;
         shapeCount = 0;
         countShapeSound = 1;
         
@@ -129,8 +129,9 @@
     lblInstructionText.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockingInstructionText"];
     lblAboutTiggly.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kAboutTigglyStamp"];
     lblAboutTigglyText.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kAboutTigglyStampText"];
-
-    
+    lblAboutTigglyText.numberOfLines = 0;
+    [lblAboutTigglyText sizeToFit];
+        
     NSString *strStat = [NSString stringWithFormat: [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kMatchedOutOfText"],shapeCount];
     lblRemainingShapes.text = strStat;
     
@@ -263,7 +264,7 @@
             }
     }
     
-    if(shapeCount == 6){
+    if(shapeCount == 4){
         prompt = @"tick_mark";
         promtView = [[UIImageView alloc] initWithFrame:CGRectMake(215,240,400, 400)];
         promtView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",prompt]];
@@ -308,7 +309,7 @@
             NSString *strStat = [NSString stringWithFormat: [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kMatchedOutOfText"],shapeCount];
             lblRemainingShapes.text = strStat;
             
-            if(shapeCount == 6) {
+            if(shapeCount == 4) {
                 lblInstructionText.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kCongratulationsText"];
                 
                 [self setUnlockStatus];
@@ -325,9 +326,9 @@
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
 
-                    if(shapeCount < 6){
+                    if(shapeCount < 4){
                         [self displayPrompt];
-                    }else if (shapeCount == 6){
+                    }else if (shapeCount == 4){
                         [self displayPrompt];
                     }
 

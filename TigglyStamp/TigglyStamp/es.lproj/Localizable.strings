@@ -47,8 +47,8 @@
 "kVideoSaved"="vídeo Guardado";
 
 "kUnlockingInstructions" = "Instrucciones para desbloquear :";
-"kUnlockingInstructionText" = "Coloque la figura Tiggly superponiéndola a la figura de la pantalla. Al combinar correctamente 6 figuras seguidas se desbloqueará la aplicación.";
-"kMatchedOutOfText" = "Desbloqueadas %d de 6. ";
+"kUnlockingInstructionText" = "Coloque la figura Tiggly superponiéndola a la figura de la pantalla. Al combinar correctamente 4 figuras seguidas se desbloqueará la aplicación.";
+"kMatchedOutOfText" = "Desbloqueadas %d de 4. ";
 "kCongratulationsText" = "¡Enhorabuena! Ha desbloqueado la versión completa de  Tiggly Stamp. Para jugar sin las figuras, puede cambiar las opciones en la parte dedicada a los padres.";
 "kAboutTigglyStamp" = "Sobre Tiggly Stamp";
 "kAboutTigglyStampText" = "Tiggly Stamp ha sido diseñado para utilizar las figuras Tiggly, un juego de 4 figuras geométricas que dan acceso a un aprendizaje óptimo, combinando lo mejor de los juegos físicos y de los digitales. Las figuras Tiggly son seguras para su hijo/a y su tablet.";

@@ -522,9 +522,10 @@ NSArray *allImageFiles;
     DebugLog(@"");
     
     [self swippedforConfirmation];
-    [gestureView removeFromSuperview];
-    gestureView = nil;
-    
+    if(gestureView != nil) {
+        [gestureView removeFromSuperview];
+        gestureView = nil;
+    }
 }
 
 -(void) gestureViewOnCancel:(GestureConfirmationView *)gView {

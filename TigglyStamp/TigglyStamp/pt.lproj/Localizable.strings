@@ -19,8 +19,8 @@
 "kSettings" = "Definições";
 "kReviewtheapp" = "Comente o aplicativo";
 "kLetter" = "Carta";
-"kPlay" = "Jogar";
-"kLearningTips" = "Dicas de aprendizagem";
+"kPlay" = "Jogo";
+"kLearningTips" = "Dicas de Aprendizagem";
 "kLearningPhilosophy" = "Filosofia de aprendizagem";
 "kUnder1year" = "Menores de 1 ano";
 "k1-1.5year" = "1 ano - 1,5 anos ";
@@ -48,8 +48,8 @@
 "kVideoSaved"="vídeo Salvo";
 
 "kUnlockingInstructions" = "Instruções para desbloquear o aplicativo :";
-"kUnlockingInstructionText" = "Toque na forma Tiggly no ecrã que combina com o que se vê. Uma vez que você acertar 6 formas consecutivas, o aplicativo será desbloqueado.";
-"kMatchedOutOfText" = "%d correspondências de 6.";
+"kUnlockingInstructionText" = "Toque na forma Tiggly no ecrã que combina com o que se vê. Uma vez que você acertar 4 formas consecutivas, o aplicativo será desbloqueado.";
+"kMatchedOutOfText" = "%d correspondências de 4.";
 "kCongratulationsText" = "Parabéns! Você desbloqueou a versão completa do Tiggly Stamp. Para jogar o aplicativo sem as formas, você pode alterar as configurações na secção para os adultos.";
 "kAboutTigglyStamp" = "Sobre o Tiggly Stamp";
 "kAboutTigglyStampText" = "O Tiggly Stamp é projetado para interagir com formas Tiggly, um conjunto de quatro formas geométricas que desbloqueiam a experiência de aprendizagem ideal para a sua criança, combinando o melhor do jogo físico e digital. Formas Tiggly são seguras para o seu bebê e seu tablet.";

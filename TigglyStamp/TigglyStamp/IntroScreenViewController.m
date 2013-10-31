@@ -311,16 +311,16 @@
     if (btn.tag == TAG_BTN_WITHSHAPE) {     
         if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
             UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil entryFrom:kScreenEntryFromIntroView withHomeView:nil];
-            [self.navigationController pushViewController:unlockScreen animated:YES];
+            [self.navigationController pushViewController:unlockScreen animated:NO];
         }else{
             [[TigglyStampUtils sharedInstance] setShapeMode:YES];
             TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];            
-            [self.navigationController pushViewController:homeViewController animated:YES];
+            [self.navigationController pushViewController:homeViewController animated:NO];
         }
     }else if (btn.tag == TAG_BTN_WITHOUTSHAPE){
         [[TigglyStampUtils sharedInstance] setShapeMode:NO];
         TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];        
-         [self.navigationController pushViewController:homeViewController animated:YES];
+         [self.navigationController pushViewController:homeViewController animated:NO];
     }
     
     [self releaseAllData];

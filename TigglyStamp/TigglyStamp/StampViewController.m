@@ -179,7 +179,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     if (isWithShape) {
         [self playShapeinstructionSounds];
     }else{
-        //[self playFingerInstructionSound];
+        [self playFingerInstructionSound];
     }
     
     
@@ -217,6 +217,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
     
+   
     isWithShape = [[TigglyStampUtils sharedInstance] getShapeMode];
     
     touchView = [[UITouchVerificationView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
@@ -238,16 +239,11 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     [self.mainView bringSubviewToFront:RigthTickButton];
     [self.mainView bringSubviewToFront:videoButton];
     [self.mainView bringSubviewToFront:cameraButton];
-//    [self.mainView bringSubviewToFront:curlButton];
-
     
     homeButton.hidden = YES;
 
-//    [curlButton setTag:TAG_CURL_BTN];
     [RigthTickButton setTag:TAG_RIGHT_TICK_BTN];
-//    [curlConfirmedButton setTag:TAG_CURL_CONFIRMED_BTN];
-    
-//    [self configureViewForCurl];
+
     self.mainView.backgroundColor = [UIColor clearColor];
     
     [touchView configure];
@@ -950,7 +946,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     DebugLog(@"");
     [[TDSoundManager sharedManager] stopSound];
     [[TDSoundManager sharedManager] stopMusic];
-    [self.navigationController popToViewController:homeViewController animated:YES];
+    [self.navigationController popToViewController:homeViewController animated:NO];
     homeViewController = nil;
     [self nullifyAllData];
 }
@@ -2094,7 +2090,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     [moviePlayer stop];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:NO];
     [cImageView removeFromSuperview];
     [self nullifyAllData];
 }
@@ -2123,7 +2119,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     [cImageView removeFromSuperview];
     
-    [self.navigationController popToViewController:homeViewController animated:YES];
+    [self.navigationController popToViewController:homeViewController animated:NO];
     homeViewController = nil;
     
     [self nullifyAllData];
@@ -2528,10 +2524,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             
             switch (ranNo) {
                 case 0:
-                    [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TouchTheScreenWithYourFingerToMakeAPicture_01" withFormat:@"mp3"];
+                    [[TDSoundManager sharedManager] playSound:@"Tiggly_Instructions_Dragashapetomakeapicture_01" withFormat:@"mp3"];
                     break;
                 case 1:
-                    [[TDSoundManager sharedManager] playSound:@"Tiggly_Word_TouchTheScreenWithYourFinger_01" withFormat:@"mp3"];
+                    [[TDSoundManager sharedManager] playSound:@"Tiggly_Instructions_Dragashapetomakeapicture_02" withFormat:@"mp3"];
                     break;
                     
                 default:

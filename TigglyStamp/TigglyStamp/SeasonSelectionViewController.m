@@ -136,7 +136,7 @@ int swipeTxtCnt;
 //============================================================================================
 
 -(IBAction)actionHomeButtonClicked:(id)sender{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:NO];
     homeViewController = nil;
 }
 //============================================================================================
@@ -193,7 +193,7 @@ int swipeTxtCnt;
         
         
         stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneFall withHomeView:homeViewController];
-        [self.navigationController pushViewController:stampViewController animated:YES];
+        [self.navigationController pushViewController:stampViewController animated:NO];
         
     }else if (btn.tag == TAG_WINTER_BTN){
         if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
@@ -232,7 +232,7 @@ int swipeTxtCnt;
         
         
         stampViewController = [[StampViewController alloc] initWithNibName:@"StampViewController" bundle:nil withSceneType:kSceneWinter withHomeView:homeViewController];
-        [self.navigationController pushViewController:stampViewController animated:YES];
+        [self.navigationController pushViewController:stampViewController animated:NO];
     }
     
     

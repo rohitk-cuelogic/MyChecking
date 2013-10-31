@@ -179,7 +179,7 @@
                           [UIColor colorWithRed:131.0/255.0  green:48.0/255.0  blue:185.0/255.0 alpha:1.0],
                           [UIColor colorWithRed:208.0/255.0  green:48.0/255.0  blue:31.0/255.0 alpha:1.0],
                           [UIColor colorWithRed:240.0/255.0  green:221.0/255.0  blue:11.0/255.0 alpha:1.0],
-                          [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0],
+//                          [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0],
                           nil];
             
             
@@ -318,11 +318,11 @@
     DebugLog(@"");
     
     colorCnt++;
-    if(colorCnt > 6){
+    if(colorCnt > 5){
         colorCnt = 0;
         
         //this will anything written on signboard
-        [viewForSign.myPath removeAllPoints];
+       // [viewForSign.myPath removeAllPoints];
     }
     
     UIImage *img = [self changeImageColor:[UIImage imageNamed:@"color_splash.png"] withColor:[colorArray objectAtIndex:colorCnt]];

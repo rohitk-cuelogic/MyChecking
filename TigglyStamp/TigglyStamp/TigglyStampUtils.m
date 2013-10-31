@@ -226,7 +226,7 @@ static TigglyStampUtils *sharedInstance = nil;
             color = [UIColor colorWithRed:173.0/255.0 green:223.0/255.0 blue:232.0/255.0 alpha:1];
         }
         if ([shapeToDraw isEqualToString:@"snowman"]) {
-            color = [UIColor colorWithRed:199.0/255.0 green:234.0/255.0 blue:245.0/255.0 alpha:1];
+            color = [UIColor colorWithRed:255.0/255.0 green:249.0/255.0 blue:241.0/255.0 alpha:1];
         }
         /************************************* fall *******************************************/
         if ([shapeToDraw isEqualToString:@"apple_red"]) {

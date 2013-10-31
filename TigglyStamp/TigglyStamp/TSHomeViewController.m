@@ -320,7 +320,7 @@ NSArray *allImageFiles;
         readyToParentScreen = NO;
         [playBtnTimer invalidate];
         ParentScreenViewController *parentViewCOntroller = [[ParentScreenViewController alloc] initWithNibName:@"ParentScreenViewController" bundle:nil withHomeView:self];
-        [self.navigationController pushViewController:parentViewCOntroller animated:YES];
+        [self.navigationController pushViewController:parentViewCOntroller animated:NO];
         [self nullifyAllData];
         
     }
@@ -342,7 +342,7 @@ NSArray *allImageFiles;
         
         [playBtnTimer invalidate];
         UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil entryFrom:kScreenEntryFromHomeView withHomeView:self];
-         [self.navigationController pushViewController:unlockScreen animated:YES];
+         [self.navigationController pushViewController:unlockScreen animated:NO];
          [self nullifyAllData];
         
     }
@@ -393,7 +393,7 @@ NSArray *allImageFiles;
     [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
     [playBtnTimer invalidate];
     SeasonSelectionViewController *hmView = [[SeasonSelectionViewController alloc]initWithNibName:@"SeasonSelectionViewController" bundle:nil withHomeView:self];
-    [self.navigationController pushViewController:hmView animated:YES];
+    [self.navigationController pushViewController:hmView animated:NO];
     [self nullifyAllData];
 }
 
@@ -495,7 +495,7 @@ NSArray *allImageFiles;
     
     
     TSThumbnailEditController *thumbnailEditor = [[TSThumbnailEditController alloc] initWithNibName:@"TSThumbnailEditController" bundle:nil withImage:thumbnail.actulaImage imageName:thumbnail.imageName withHomeView:self];
-    [self.navigationController pushViewController:thumbnailEditor animated:YES];
+    [self.navigationController pushViewController:thumbnailEditor animated:NO];
     [self nullifyAllData];
     
 }

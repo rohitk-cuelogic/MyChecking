@@ -374,13 +374,13 @@
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         if(screenFrom == kScreenEntryFromHomeView){
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:NO];
         }else if (screenFrom == kScreenEntryFromIntroView){
             TSHomeViewController *homeView = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:nil];
-            [self.navigationController pushViewController:homeView animated:YES];
+            [self.navigationController pushViewController:homeView animated:NO];
             [self nullifyAllData];
         }else if (screenFrom == kScreenEntryFromSettingView){
-            [self.navigationController popToViewController:homeViewController animated:YES];
+            [self.navigationController popToViewController:homeViewController animated:NO];
             homeViewController = nil;
             [self nullifyAllData];
         }
@@ -411,7 +411,7 @@
 -(IBAction)actionBack {
     DebugLog(@"");
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:NO];
     [self nullifyAllData];
 }
 

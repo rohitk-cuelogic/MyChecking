@@ -555,13 +555,13 @@ int currentObject;
             int ranNo =arc4random()%4;
             
             if(ranNo == 0){
-                soundFile = @"Tiggly_Word_Hat_Gasp_01";
+                soundFile = @"Tiggly_Word_Pinkhat_01";
             }else if (ranNo == 1) {
-                soundFile = @"Tiggly_Word_Hat_Ooh_01";
+                soundFile = @"Tiggly_Word_Pinkhat_Var1_01";
             }else if (ranNo == 2) {
-                soundFile = @"Tiggly_Word_Hat_Wow_01";
+                soundFile = @"Tiggly_Word_Pinkhat_Var2_01";
             }else if (ranNo == 3) {
-                soundFile = @"Tiggly_Word_Hat_Wow_02";
+                soundFile = @"Tiggly_Word_Pinkhat_Var2_02";
             }
             
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
@@ -1104,11 +1104,13 @@ int currentObject;
             int ranNo =arc4random()%3;
             
             if(ranNo == 0){
-                soundFile = @"Tiggly_Word_SnowMan_DaDaa_01";
+                soundFile = @"Tiggly_Word_Snowman_Var1_01";
             }else if (ranNo == 1) {
-                soundFile = @"Tiggly_Word_SnowMan_DaDaa_02";
+                soundFile = @"Tiggly_Word_Snowman_Var2_02";
             }else if (ranNo == 2) {
-                soundFile = @"Tiggly_Word_SnowMan_DaDaa_03";
+                soundFile = @"Tiggly_Word_Snowman_Var2_03";
+            }else if (ranNo == 3) {
+                soundFile = @"Tiggly_Word_Snowman_Var2_04";
             }
             
             

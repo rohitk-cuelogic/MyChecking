@@ -279,16 +279,20 @@ int currentObject;
     
     NSString *soundFile;
  
-    if([fallObject isEqualToString:@"apple_red"] || [fallObject isEqualToString:@"green_apple"]) {
+    if([fallObject isEqualToString:@"apple_red"]) {
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
-            int ranNo = arc4random()%2;
+            int ranNo = arc4random()%4;
             
             if(ranNo == 0){
-                soundFile = @"Tiggly_Word_Apple_01";
+                soundFile = @"Tiggly_Word_RedApple_Var2_03";
             }else if (ranNo == 1) {
-                soundFile = @"Tiggly_Word_Apple_Wow_01";
+                soundFile = @"Tiggly_Word_RedApple_Var2_02";
+            }else if (ranNo == 2) {
+                soundFile = @"Tiggly_Word_RedApple_Var2_01";
+            }else if (ranNo == 3) {
+                soundFile = @"Tiggly_Word_RedApple_01";
             }
             
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
@@ -309,17 +313,49 @@ int currentObject;
         
        
         
-    }else if([fallObject isEqualToString:@"blue_turkey"] || [fallObject isEqualToString:@"orange_turkey"]) {
+    }else if([fallObject isEqualToString:@"green_apple"]) {
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             
-            int ranNo = arc4random()%2;
+            int ranNo = arc4random()%3;
             
+            if(ranNo == 0){
+                soundFile = @"Tiggly_Word_Greenapple_01";
+            }else if (ranNo == 1) {
+                soundFile = @"Tiggly_Word_Greenapple_Var2_03";
+            }else if (ranNo == 2) {
+                soundFile = @"Tiggly_Word_Greenapple_Var2_04";
+            }
+            
+        }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
+            soundFile = @"Apple_breng";
+        }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Portuguese"]){
+            soundFile = @"Apple_prtgs";
+        }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
+            soundFile = @"Apple_ru";
+        }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Spanish"]){
+            soundFile = @"Apple_sp";
+        }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"French"]){
+            soundFile = @"Apple_fr";
+        }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"German"]){
+            soundFile = @"Apple_gr";
+        }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
+            soundFile = @"Apple_ita";
+        }
+        
+        
+        
+    } else if([fallObject isEqualToString:@"blue_turkey"] || [fallObject isEqualToString:@"orange_turkey"]) {
+    
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+        
+            int ranNo = arc4random()%2;
+        
             if(ranNo == 0){
                 soundFile = @"Tiggly_GenGreeting_Turkey_01";
             }else if (ranNo == 1) {
                 soundFile = @"Tiggly_GenGreeting_Turkey_05";
-            }
+        }
             
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
             soundFile = @"Turkey_01_breng";

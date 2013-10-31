@@ -760,7 +760,7 @@
 -(IBAction)goToHomeScreen:(id)sender{
     DebugLog(@"");
     [moviePlayer stop];
-    [self.navigationController popToViewController:homeViewController animated:YES];
+    [self.navigationController popToViewController:homeViewController animated:NO];
     homeViewController = nil;
     [self nullifyAllData];
 }

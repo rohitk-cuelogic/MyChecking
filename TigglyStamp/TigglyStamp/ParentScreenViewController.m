@@ -150,13 +150,13 @@ UIActivityIndicatorView *activityIndicator;
 
     activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     activityIndicator.center = webView.center;
+    
     [webView addSubview:activityIndicator];
     [webView bringSubviewToFront:activityIndicator];
     
     btnPrivacyPolicy.titleLabel.font = [UIFont fontWithName:APP_FONT size:16.0f];
     
-    
-
+    self.webViewTab.scrollView.bounces = NO;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -238,7 +238,7 @@ UIActivityIndicatorView *activityIndicator;
     DebugLog(@"");
     
     UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil entryFrom:kScreenEntryFromSettingView withHomeView:homeViewController];
-    [self.navigationController pushViewController:unlockScreen animated:YES];
+    [self.navigationController pushViewController:unlockScreen animated:NO];
     
 }
 
@@ -359,7 +359,7 @@ UIActivityIndicatorView *activityIndicator;
     
     UIButton *btn = sender;
     if ([btn tag] == TAG_HOME_BTN) {
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:NO];
         homeViewController = nil;
         [self nullifyAllData];
     }

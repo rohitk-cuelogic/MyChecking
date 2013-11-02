@@ -518,18 +518,16 @@ int currentObject;
     }else if([winterObject isEqualToString:@"blue_hat"] ) {
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
-            int ranNo =arc4random()%4;
+         
+            int ranNo =arc4random()%3;
             
             if(ranNo == 0){
-                soundFile = @"Tiggly_Word_Hat_Gasp_01";
+                soundFile = @"Tiggly_Word_Bluehat_Var2_01";
             }else if (ranNo == 1) {
-                soundFile = @"Tiggly_Word_Hat_Ooh_01";
+                soundFile = @"Tiggly_Word_Bluehat_Var1_01";
             }else if (ranNo == 2) {
-                soundFile = @"Tiggly_Word_Hat_Wow_01";
-            }else if (ranNo == 3) {
-                soundFile = @"Tiggly_Word_Hat_Wow_02";
+                soundFile = @"Tiggly_Word_Bluehat_01";
             }
-
             
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
             soundFile = @"hat_breng";

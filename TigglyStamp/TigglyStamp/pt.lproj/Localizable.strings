@@ -59,6 +59,12 @@
 "kHowOldYourSon" = "Informe-nos a idade das crianças. Isso nos ajudará a personalizar o conteúdo para elas, melhorando a experiência de aprendizagem.";
 "kConfirmationMsgText" = "Enviamos um e-mail para a sua confirmação.";
 
+"kMotorSkillHead"="Coordenação Motora";
+"kMotorSkillBody"="Ao agarrar e segurar as formas, movendo-as e colocando-as no ecrã ajuda o seu filho a melhorar a sua coordenação motora fina.";
+"kLangDevHead"="Desenvolvimento da Fala";
+"kLangDevBody"="As crianças vão ouvir os nomes de animais, frutas e objetos na medida em que eles aparecem no ecrã e cumprimentam o seu filho. Eles também irão praticar narrativa e linguagem como parte de seu jogo.";
+"kSpatialThinkHead"="Cognição Espacial";
+"kSpatialThinkBody"="O Tiggly Stamp incentiva as crianças a reconhecer e combinar formas básicas: Círculos, quadrados, triângulos e estrelas em diversas orientações. Ao manusear formas reais, apanhando, girando, movendo e colocando-as num alvo, as crianças aprendem sobre relações espaciais e transformações. Finalmente, transformando formas simples em animais, elas praticam a sua capacidade de criar imagens complexas";
 
 "kPrivacyPolicyHeading" = "Tiggly Política de Privacidade";
 

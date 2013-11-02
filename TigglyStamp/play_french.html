@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+     <script language="javascript">
+            
+                       
+            function callToLogoClick(){
+                
+                      
+                JsHandler.jsLogoClicked();
+                
+            }
+                       
+            </script>
+        <meta charset="utf-8">
+            <title>Tiggly</title>
+            <style type="text/css">
+                @charset "utf-8";
+                /* CSS Document */
+                
+                html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd,q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center,dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr,th, td , input[type="radio"], input[type="checkbox"] {margin:0; padding:0; border:0; outline:0; font-size:100%; background:transparent; resize:none}
+                body {line-height:1}
+                a, a:hover {text-decoration:none; outline:none}
+                a:active, a:focus {outline:0} /* to avoid link borders on new browsers */
+                img {border:none; vertical-align:-2px}
+                table {border-collapse:collapse; border-spacing:0}
+                textarea {resize:none}
+                a {color:#006699}
+                input:focus, textarea:focus {outline:none}
+                
+                /* Fonts */
+                @font-face {font-family:rockwell; src:url('Rockwell.TTF?#iefix')  format('truetype');}
+                @font-face {font-family:rockwell-bold; src:url('Rockwell-Bold.TTF?#iefix')  format('truetype');}
+                @font-face {font-family:rockwell-bolditalic; src:url('Rockwell-BoldItalic.TTF?#iefix')  format('truetype');}
+                
+                body {font-family:rockwell; font-size:15px}
+                
+                /*** COMMON CLASSES ***/
+                .fl {float:left} .fr {float:right} .clr {clear:both; width:0; height:0; overflow:hidden} .strong {font-weight:bold} .reset {list-style:none} .centerAlign {text-align:center} .ovflhidden {overflow:hidden} .allcaps {text-transform:capitalize} .uppercase {text-transform:uppercase} .normal {font-weight:normal} .rightalign {text-align:right} .smlTxt {font-size:11px} .margBtm {margin-bottom:10px} .posrel {position:relative}
+                
+                .italick {font-family:rockwell-bolditalic}
+                
+                #container {padding:20px; width:580px}
+                
+                #logo {text-align:right; margin-bottom:20px}
+                #logo button {background:url(logoparent.png) 0 0 no-repeat; width:50px; height:50px; cursor:pointer; border:none}
+                
+                .para-title {font-size:15px; margin-bottom:10px; color:#000; font-family:rockwell-bold}
+                .paragraph {font-size:15px; margin-bottom:20px; line-height:25px; color:#000}
+                .tiggly-info {margin-bottom:20px}
+                .grid-col {float:left; width:250px; margin:0 15px; text-align:center; font-size:15px}
+                .motorskill {background:url(motorskills.png) 0 0 no-repeat; width:220px; height:220px; border:none; cursor:pointer}
+                .language {background:url(language.png) 0 0 no-repeat; width:220px; height:220px; border:none; cursor:pointer}
+                .specialthinnk {background:url(spatialthinking.png) 0 0 no-repeat; width:220px; height:220px; border:none; cursor:pointer}
+                
+                .para-subtitle {font-size:15px; margin-bottom:10px; color:#000}
+                ul.play-info {margin-left:30px}
+                ul.play-info li {margin-bottom:10px; line-height:25px; font-size:15px; color:#000}
+                
+                ul.learning-info {margin:0 0 20px 30px}
+                ul.learning-info li {margin-bottom:15px; line-height:25px; font-size:15px; color:96 170 0; overflow:hidden; background:url(list_dot.png) 0 8px no-repeat; padding-left:25px}
+                
+                .pholishophy-img {margin-bottom:20px; text-align:center}
+                .pholishophy-img img {margin:0 15px}
+                
+                .play-shapes {background:url(TigglyShapes.png) 100% center no-repeat; padding-right:220px; min-height:200px}
+                .play-without {background:url(finger_icon.png) 100% center no-repeat; padding-right:150px; min-height:150px}
+                </style>
+    </head>
+    
+    <body>
+        <div id="container">
+           <p id="logo" onClick="callToLogoClick()" value="Call Java Fn"><button>&nbsp;</button></p>
+            <p class="para-title">Comment jouer :</p>
+            <div class="play-shapes">
+                <p class="para-subtitle italick">Jouer avec les formes :</p>
+                <ul class="reset play-info">
+                    <li>	Posez simplement une forme sur l’écran et regardez l’image se transformer !</li>
+                    <li>Enlevez la forme de l’écran pour voir ce qui se passe.</li>
+                </ul>
+            </div>
+            <div class="play-without"><p class="para-subtitle italick">Jouer sans les formes :</p>
+                <ul class="reset play-info">
+                    <li>Faites glisser des formes du plateau sur la toile pour voir ce que cela donne.</li>
+                </ul></div>
+        </div>
+        <div class=""><p class="para-subtitle italick">Instructions générales  :</p>
+            <ul class="reset play-info">
+                <li>	Vous pouvez faire glisser des objets sur l’écran pour créer votre scène.</li>
+                <li>Vous pouvez effacer un objet en le faisant glisser vers la poubelle située dans le coin inférieur droit.</li>
+                    <li>	Vous pouvez commencer sur une page vierge en appuyant deux fois sur le coin supérieur droit.</li>
+                        <li>	Une fois que vous en avez terminé avec votre création, appuyez sur l’icône d’étoile dans le coin supérieur gauche, et deux icônes apparaîtront : appareil photo et caméra.</li>
+                            <li>	Vous pouvez prendre une photo de la scène en appuyant sur l’icône de la caméra.</li>
+                            <li>	Vous pouvez enregistrer votre histoire dans le mode vidéo en appuyant sur l’icône de la caméra. Pendant l’enregistrement, vous pouvez faire glisser des objets dans la scène et raconter une histoire. La vidéo enregistrera votre voix ainsi que l’écran. </li>
+            </ul></div>
+        </div>
+    </body>
+</html>

@@ -59,6 +59,12 @@
 "kHowOldYourSon" = "Sagen Sie uns, wie alt Ihre Kinder sind. Das wird uns helfen, die Inhalte für sie individuell anzupassen und ihre Lernerfahrung zu verbessern.";
 "kConfirmationMsgText" = "Wir haben Ihnen eine Bestätigungsemail gesendet.";
 
+"kMotorSkillHead"="Motorische Fähigkeiten";
+"kMotorSkillBody"="Das Greifen und Halten der Formen, sie zu bewegen und auf dem Bildschirm zu platzieren, hilft Ihrem Kind, seine feinmotorischen Fähigkeiten zu verbessern. ";
+"kLangDevHead"="Sprachentwicklung";
+"kLangDevBody"="Die Kinder werden die Namen von Tieren, Früchten und Objekten hören, wenn sie auf dem Bildschirm erscheinen und Ihre Kinder begrüßen. Sie werden auch das Geschichtenerzählen üben und Sprache als Teil ihres Spiels produzieren";
+"kSpatialThinkHead"="Kreativität";
+"kSpatialThinkBody"="Bei Tiggly Stempel kreieren Grundformen komplexe Bilder von Tieren, Früchten und Objekten. Dadurch, dass man die Kinder die Muster von Kombinationen aus Grundformen vorausahnen lässt, hilft ihnen Tiggly Stempel dabei, ihre Vorstellungskraft zu verbessern. Neben der visuellen Entdeckung, werden Kinder dazu ermuntert, Szenen zu erschaffen und ihre eigenen Geschichten zu erfinden. Rollenspiel, Geschichtenerzählen und Fantasie sind Schlüssel zur Entwicklung von Kreativität. ";
 
 "kPrivacyPolicyHeading" = "Tiggly Datenschutzrichtlinie";
 

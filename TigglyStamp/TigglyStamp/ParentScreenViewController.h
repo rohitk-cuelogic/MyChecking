@@ -23,6 +23,12 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "TSHomeViewController.h"
 
+typedef enum{
+        kTabLetter,
+        kTabPlay,
+        kTabTips,
+        kTabPhilosophy
+}CurrentTab;
 
 #ifdef GOOGLE_ANALYTICS_START
 #import "GAI.h"
@@ -54,6 +60,8 @@
     IBOutlet UILabel *lblSubscribConfirm;
     MBProgressHUD* hud;
     BOOL  isConnection;
+    
+    CurrentTab currTab;
     
     TSHomeViewController *homeViewController;
 }
@@ -93,6 +101,10 @@
 @property (nonatomic,strong) IBOutlet UIView *privacymainView;
 @property (nonatomic,strong) IBOutlet UILabel *lblTigglyPrivacyPolicy;
 @property (nonatomic,strong) IBOutlet UITextView *txtViewPrivacyPolicy;
+@property (nonatomic,strong) IBOutlet UIView *letterTabView;
+@property (nonatomic,strong) IBOutlet UILabel *lettertabHeadingLBL;
+@property (nonatomic,strong) IBOutlet UITextView *lettertabBodyTEXT;
+@property (nonatomic,strong) IBOutlet UIButton *lettertabCloseBTN;
 
 -(void) launchUnlockScreen;
 -(IBAction)onButtonClicked:(id)sender;

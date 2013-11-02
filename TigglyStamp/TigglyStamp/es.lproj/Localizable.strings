@@ -53,6 +53,12 @@
 "kAboutTigglyStamp" = "Sobre Tiggly Stamp";
 "kAboutTigglyStampText" = "Tiggly Stamp ha sido diseñado para utilizar las figuras Tiggly, un juego de 4 figuras geométricas que dan acceso a un aprendizaje óptimo, combinando lo mejor de los juegos físicos y de los digitales. Las figuras Tiggly son seguras para su hijo/a y su tablet.";
 
+"kMotorSkillHead"="Psicomotricidad";
+"kMotorSkillBody"="Agarrar y sujetar las formas, moverlas y colocarlas en la pantalla ayudará a su hijo a desarrollar sus habilidades motoras finas. ";
+"kLangDevHead"="Desarrollo del lenguaje";
+"kLangDevBody"="Los niños oirán los nombres de los animales, frutas y objetos que aparecen en pantalla y saludan a su hijo. También practicarán la narración y la producción de lenguaje como parte de su obra";
+"kSpatialThinkHead"="Creatividad";
+"kSpatialThinkBody"="En Tiggly Stamp, las formas básicas crean imágenes complejos de animales, frutas y objetos. Al permitir que los niños se anticipen a los patrones de combinación de formas básicas, Tiggly Stamp contribuye a mejorar su imaginación. Además de fomentar el descubrimiento visual, se anima a los niños a crear escenas e inventar sus propias historias. Los juegos de roles, la narración de cuentos y la imaginación son claves para desarrollar la creatividad";
 
 "kSubscriptionWindowTitle" = "Nos gustaría poder darle consejos útiles para el aprendizaje. Regístrese para recibir nuestros emails.";
 "kHowOldYourSon" = "Díganos la edad de sus hijos. Nos ayuda a personalizar su contenido y mejorar su proceso de aprendizaje.";

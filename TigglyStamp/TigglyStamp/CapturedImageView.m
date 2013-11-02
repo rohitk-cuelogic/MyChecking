@@ -179,7 +179,7 @@
                           [UIColor colorWithRed:131.0/255.0  green:48.0/255.0  blue:185.0/255.0 alpha:1.0],
                           [UIColor colorWithRed:208.0/255.0  green:48.0/255.0  blue:31.0/255.0 alpha:1.0],
                           [UIColor colorWithRed:240.0/255.0  green:221.0/255.0  blue:11.0/255.0 alpha:1.0],
-//                          [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0],
+                          [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0],
                           nil];
             
             
@@ -318,7 +318,7 @@
     DebugLog(@"");
     
     colorCnt++;
-    if(colorCnt > 5){
+    if(colorCnt > 6){
         colorCnt = 0;
         
         //this will anything written on signboard
@@ -329,8 +329,13 @@
     img = [self changeImageColor:img withColor:[colorArray objectAtIndex:colorCnt]];
     [btnColorSplash setBackgroundImage:img forState:UIControlStateNormal];
     
+
     viewForSign.lineColor = [colorArray objectAtIndex:colorCnt];
-    [viewForSign setNeedsDisplay];
+
+    if(colorCnt < 6){
+        [viewForSign setNeedsDisplay];
+    }
+    
     
 }
 

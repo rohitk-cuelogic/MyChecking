@@ -283,7 +283,7 @@ NSArray *allImageFiles;
     NSArray *allFiles = [NSArray arrayWithArray:allImageFiles];
     allFiles = [[allFiles reverseObjectEnumerator] allObjects];
     
-    int xPos = 20;
+    int xPos = 30;
     for (NSString *file in allFiles) {
             
         ThumbnailView *thumbnail = [[ThumbnailView alloc] initWithFrame:CGRectMake(xPos,20, RECT_THUMBNAIL_FRAME.size.width, RECT_THUMBNAIL_FRAME.size.height) withThumbnailImagePath:file];
@@ -302,7 +302,7 @@ NSArray *allImageFiles;
 -(void) reloadThumbnails {
     DebugLog(@"");
 
-    int xPos = 20;
+    int xPos = 30;
     for (ThumbnailView *thumbnail in allThumbnails) {
         
         thumbnail.frame =  CGRectMake(xPos,20, RECT_THUMBNAIL_FRAME.size.width, RECT_THUMBNAIL_FRAME.size.height);

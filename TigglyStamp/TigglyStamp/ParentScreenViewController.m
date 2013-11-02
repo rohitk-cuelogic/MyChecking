@@ -49,6 +49,7 @@
 @synthesize privacymainView;
 @synthesize isConnection;
 @synthesize lblTigglyPrivacyPolicy,txtViewPrivacyPolicy;
+@synthesize letterTabView,lettertabBodyTEXT,lettertabCloseBTN,lettertabHeadingLBL;
 
 
 UIActivityIndicatorView *activityIndicator;
@@ -99,6 +100,8 @@ UIActivityIndicatorView *activityIndicator;
     DebugLog(@"");
     [super viewDidLoad];
     
+    [self updateLabelsForCurrentLanguage];
+    
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
@@ -127,6 +130,7 @@ UIActivityIndicatorView *activityIndicator;
     [tabLetterMotarBTN setTag:TAG_LETTER_MOTAR_BTN];
     [tabLetterLanguageBTN setTag:TAG_LETTER_LANGUAGE_BTN];
     [tabLetterSpatialBTN setTag:TAG_LETTER_SPATIAL_BTN];
+    [lettertabCloseBTN setTag:TAG_LETTER_TAB_POPUP_CLOSE_BTN];
     
     emailidTextField.font =  [UIFont fontWithName:APP_FONT size:18.0f];
     
@@ -157,6 +161,7 @@ UIActivityIndicatorView *activityIndicator;
     btnPrivacyPolicy.titleLabel.font = [UIFont fontWithName:APP_FONT size:16.0f];
     
     self.webViewTab.scrollView.bounces = NO;
+
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -179,8 +184,7 @@ UIActivityIndicatorView *activityIndicator;
 -(void) viewWillAppear:(BOOL)animated {
     DebugLog(@"");
     
-    
-    [self updateLabelsForCurrentLanguage];
+
 
 }
 
@@ -324,6 +328,15 @@ UIActivityIndicatorView *activityIndicator;
     tabLearningTipBTN.titleLabel.adjustsFontSizeToFitWidth = YES;
     tabLearPhilosophyBTN.titleLabel.adjustsFontSizeToFitWidth = YES;
     
+    if(currTab == kTabLetter){
+        [self setInfoForLetterTabWebView];
+    }else if (currTab == kTabPlay){
+        [self setInfoForPlayTabWebView];
+    }else if (currTab == kTabTips){
+        [self setInfoForTipTabWebView];
+    }else if(currTab == kTabPhilosophy){
+        [self setInfoForPhilosophyTabWebView];
+    }
 }
 
 #pragma mark -
@@ -522,14 +535,16 @@ UIActivityIndicatorView *activityIndicator;
         [self setInfoForPhilosophyTabWebView];
     }
     if([btn tag] == TAG_LETTER_MOTAR_BTN){
-        [self showValidationError:@"Grabbing and holding the shapes, moving them, and placing them on the screen help your child enhance their fine motor skills. " title:@"Motor skills"];
+
     }
     if([btn tag] == TAG_LETTER_LANGUAGE_BTN){
-        [self showValidationError:@"Children will hear the names of animals, fruits, and objects as they appear on screen and greet your child. They will also practice storytelling and producing language as part of their play" title:@"Language Development"];
 
     }
     if([btn tag] == TAG_LETTER_SPATIAL_BTN){
-        [self showValidationError:@"Tiggly Stamp encourages children to recognize and match basic shapes— circles, squares, triangles, and stars in various orientations. By manipulating real shapes, and grabbing, rotating, moving, and placing them on a target, children learn about spatial relations and transformations. Finally, by turning simple shapes into animals, they practice their ability to create complex images" title:@"Spatial Thinking"];
+ 
+    }
+    if([btn tag] == TAG_LETTER_TAB_POPUP_CLOSE_BTN){
+        [letterTabView removeFromSuperview];
     }
 
    
@@ -537,9 +552,31 @@ UIActivityIndicatorView *activityIndicator;
 
 -(void)setInfoForLetterTabWebView {
     DebugLog(@"");
+    
+    currTab = kTabLetter;
+    
     tabTitleIMGVIEW.image = [UIImage imageNamed:@"tab_letter.png"];
     
-    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"tiggly" ofType:@"html" inDirectory:nil];
+    NSString *fileName = @"tiggly";
+    if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+        fileName   = @"tiggly";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
+        fileName   = @"tiggly";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Portuguese"]){
+        fileName   = @"tiggly_portuguese";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
+        fileName   = @"tiggly_russian";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Spanish"]){
+        fileName   = @"tiggly_spanish";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"French"]){
+        fileName   = @"tiggly_french";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"German"]){
+        fileName   = @"tiggly_German";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
+        fileName   = @"tiggly_italian";
+    }
+    
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:fileName ofType:@"html" inDirectory:nil];
     NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
     
     self.webViewTab.delegate = self;
@@ -549,9 +586,31 @@ UIActivityIndicatorView *activityIndicator;
 
 -(void)setInfoForPlayTabWebView {
     DebugLog(@"");
+    
+    currTab = kTabPlay;
+    
     tabTitleIMGVIEW.image = [UIImage imageNamed:@"tab_play.png"];
     
-    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"play" ofType:@"html" inDirectory:nil];
+    NSString *fileName = @"play";
+    if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+        fileName   = @"play";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
+        fileName   = @"play";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Portuguese"]){
+        fileName   = @"play_portuguese";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
+        fileName   = @"play_russian";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Spanish"]){
+        fileName   = @"play_spanish";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"French"]){
+        fileName   = @"play_french";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"German"]){
+        fileName   = @"play_German";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
+        fileName   = @"play_italian";
+    }
+    
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:fileName ofType:@"html" inDirectory:nil];
     NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
     
     self.webViewTab.delegate = self;
@@ -562,9 +621,31 @@ UIActivityIndicatorView *activityIndicator;
 
 -(void)setInfoForTipTabWebView {
     DebugLog(@"");
+    
+    currTab = kTabTips;
+    
     tabTitleIMGVIEW.image = [UIImage imageNamed:@"tab_learning.png"];
     
-    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"learning" ofType:@"html" inDirectory:nil];
+    NSString *fileName = @"learning";
+    if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+        fileName   = @"learning";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
+        fileName   = @"learning";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Portuguese"]){
+        fileName   = @"learning_tips_portuguese";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
+        fileName   = @"learning_tips_russian";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Spanish"]){
+        fileName   = @"learning_tips_spanish";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"French"]){
+        fileName   = @"learning_tips_french";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"German"]){
+        fileName   = @"learning_tips_german";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
+        fileName   = @"learning_tips_italian";
+    }
+    
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:fileName ofType:@"html" inDirectory:nil];
     NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
     
     self.webViewTab.delegate = self;
@@ -575,9 +656,31 @@ UIActivityIndicatorView *activityIndicator;
 
 -(void)setInfoForPhilosophyTabWebView {
     DebugLog(@"");
+    
+    currTab = kTabPhilosophy;
+    
     tabTitleIMGVIEW.image = [UIImage imageNamed:@"tab_learning_philosophy.png"];
     
-    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"learning_philoshophy" ofType:@"html" inDirectory:nil];
+    NSString *fileName = @"learning_philoshophy";
+    if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+        fileName   = @"learning_philoshophy";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
+        fileName   = @"learning_philoshophy";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Portuguese"]){
+        fileName   = @"learning_philoshophy_portuguese";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
+        fileName   = @"learning_philoshophy_russian";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Spanish"]){
+        fileName   = @"learning_philoshophy_spanish";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"French"]){
+        fileName   = @"learning_philoshophy_french";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"German"]){
+        fileName   = @"learning_philoshophy_german";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
+        fileName   = @"learning_philoshophy_italian";
+    }
+    
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:fileName ofType:@"html" inDirectory:nil];
     NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
     
     self.webViewTab.delegate = self;
@@ -616,28 +719,6 @@ UIActivityIndicatorView *activityIndicator;
                      completion:^(BOOL finished){
                          
                      }];
-}
-
-
-- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
-    DebugLog(@"");
-    NSURL *URL = [request URL];
-    if ([[URL scheme] isEqualToString:@"callmycode"]) {
-        NSString *urlString = [[request URL] absoluteString];
-        NSArray *urlParts = [urlString componentsSeparatedByString:@":"];
-        //check to see if we just got the scheme
-        if ([urlParts count] > 1) {
-            NSArray *parameters = [[urlParts objectAtIndex:1] componentsSeparatedByString:@"&"];
-            NSString *methodName = [parameters objectAtIndex:0];
-            
-            if ([methodName isEqualToString:@"logoItem"] ) {
-                // tiggly logo clicked
-                [self launchTigglyNews];
-            }
-
-        }
-    }
-    return YES;
 }
 
 
@@ -876,6 +957,64 @@ UIActivityIndicatorView *activityIndicator;
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [activityIndicator stopAnimating];
 }
+
+
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+    DebugLog(@"");
+    NSURL *URL = [request URL];
+    if ([[URL scheme] isEqualToString:@"callmycode"]) {
+        NSString *urlString = [[request URL] absoluteString];
+        NSArray *urlParts = [urlString componentsSeparatedByString:@":"];
+        //check to see if we just got the scheme
+        if ([urlParts count] > 1) {
+            NSArray *parameters = [[urlParts objectAtIndex:1] componentsSeparatedByString:@"&"];
+            NSString *methodName = [parameters objectAtIndex:0];
+            
+            
+            if ([methodName isEqualToString:@"logoItem"] ) {
+                // tiggly logo clicked
+                [self launchTigglyNews];
+            }
+            if ([methodName isEqualToString:@"MotarSkill"] ) {
+                [letterTabView removeFromSuperview];
+                
+                lettertabHeadingLBL.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kMotorSkillHead"];
+                lettertabHeadingLBL.font = [UIFont fontWithName:APP_FONT_BOLD size:22];
+                lettertabBodyTEXT.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kMotorSkillBody"];
+                lettertabBodyTEXT.font = [UIFont fontWithName:APP_FONT_BOLD size:14];
+                
+                [self.view addSubview:letterTabView];
+                
+            }
+            if ([methodName isEqualToString:@"LanguageDevelopment"] ) {
+                [letterTabView removeFromSuperview];
+
+                lettertabHeadingLBL.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLangDevHead"];
+                lettertabHeadingLBL.font = [UIFont fontWithName:APP_FONT_BOLD size:22];
+                
+                lettertabBodyTEXT.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLangDevBody"];
+                lettertabBodyTEXT.font = [UIFont fontWithName:APP_FONT_BOLD size:14];
+                
+                [self.view addSubview:letterTabView];
+                
+            }
+            if ([methodName isEqualToString:@"SpatialThinking"] ) {
+                [letterTabView removeFromSuperview];
+
+                lettertabHeadingLBL.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSpatialThinkHead"];
+                lettertabHeadingLBL.font = [UIFont fontWithName:APP_FONT_BOLD size:22];
+                
+                lettertabBodyTEXT.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSpatialThinkBody"];
+                lettertabBodyTEXT.font = [UIFont fontWithName:APP_FONT_BOLD size:14];
+                
+                [self.view addSubview:letterTabView];
+                
+            }
+        }
+    }
+    return YES;
+}
+
 
 #pragma mark -
 #pragma mark =======================================

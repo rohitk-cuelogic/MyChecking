@@ -21,6 +21,10 @@
                 <outlet property="lblSubscribeBtn" destination="z1g-rT-kns" id="UdZ-XU-vWk"/>
                 <outlet property="lblSubscribeHead" destination="qgt-lK-UNL" id="zuM-FZ-4bo"/>
                 <outlet property="lblTigglyPrivacyPolicy" destination="Vhe-FO-P30" id="UBR-zi-v10"/>
+                <outlet property="letterTabView" destination="vGf-FA-iMn" id="UVU-nY-ZCR"/>
+                <outlet property="lettertabBodyTEXT" destination="e9Q-sy-lvP" id="q7f-HH-1SI"/>
+                <outlet property="lettertabCloseBTN" destination="1Gk-n9-s9G" id="7oI-E3-kgi"/>
+                <outlet property="lettertabHeadingLBL" destination="E3g-ct-xgt" id="vUm-8i-OKA"/>
                 <outlet property="pathBTN" destination="792" id="1256"/>
                 <outlet property="privacymainView" destination="kgL-t3-Uws" id="XyJ-vR-QqE"/>
                 <outlet property="settingsBTN" destination="123" id="1250"/>
@@ -459,11 +463,59 @@ Google Analytics. Google Analytics uses cookies, to help us analyze how users us
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
         </view>
+        <view contentMode="scaleToFill" id="vGf-FA-iMn">
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" id="nrD-Y2-3Ne">
+                    <rect key="frame" x="262" y="229" width="500" height="309"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email_block.png" id="m8e-b7-djq">
+                            <rect key="frame" x="0.0" y="0.0" width="500" height="309"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" id="e9Q-sy-lvP">
+                            <rect key="frame" x="4" y="85" width="490" height="204"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Letter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E3g-ct-xgt">
+                            <rect key="frame" x="70" y="34" width="360" height="43"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" tag="18" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1Gk-n9-s9G">
+                            <rect key="frame" x="429" y="0.0" width="65" height="65"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" image="cross.png">
+                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onButtonClicked:" destination="-1" eventType="touchUpInside" id="hz0-QD-EHd"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+        </view>
     </objects>
     <resources>
         <image name="blue_bg.png" width="2048" height="1536"/>
         <image name="btnBack.png" width="201" height="201"/>
         <image name="close_btn.png" width="120" height="120"/>
+        <image name="cross.png" width="104" height="104"/>
         <image name="email_block.png" width="1740" height="1076"/>
         <image name="fb_btn.png" width="181" height="180"/>
         <image name="home_icon_2.png" width="274" height="274"/>

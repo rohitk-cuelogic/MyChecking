@@ -901,6 +901,15 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     [[GAI sharedInstance] dispatch];
 #endif
 
+    for(FruitView *f in fruitObjectArray){
+        [f removeFromSuperview];
+    }
+    homeButton.hidden = YES;
+    cameraButton.hidden = YES;
+    videoButton.hidden = YES;
+    [self hideVideoCameraButtons];
+    [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+    RigthTickButton.hidden = NO;
     
     UIView *flashView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
     flashView.backgroundColor = [UIColor whiteColor];
@@ -2143,9 +2152,16 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
 -(void)screenVideoShotStop {
     DebugLog(@"");
-    [cameraButton setHidden:YES];
-    [videoButton setHidden:YES];
-    [garbageCan setHidden:YES];
+    
+    for(FruitView *f in fruitObjectArray){
+        [f removeFromSuperview];
+    }
+    homeButton.hidden = YES;
+    cameraButton.hidden = YES;
+    videoButton.hidden = YES;
+    [self hideVideoCameraButtons];
+    [RigthTickButton.layer removeAnimationForKey:@"transform.scale"];
+    RigthTickButton.hidden = NO;
     
     ccImageView = [[CapturedImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768) withImage:movieScreenshotImage isVideo:YES];
     ccImageView.delegate = self;

@@ -15,7 +15,7 @@
 
 CGPoint freeFormVeryFirstStartPoint,freeFormStartPoint,freeFormPrevPoint;
 BOOL boolTouchMoved;
-
+NSMutableArray *arr;
 #pragma mark-
 #pragma mark======================
 #pragma mark Init
@@ -34,7 +34,7 @@ BOOL boolTouchMoved;
         myPath.miterLimit = 0;
         myPath.lineWidth = 8;
         self.lineColor = [UIColor blackColor];
-        
+         arr = [[NSMutableArray alloc] initWithCapacity:1];
         
     }
     return self;
@@ -50,8 +50,34 @@ BOOL boolTouchMoved;
 - (void)drawRect:(CGRect)rect
 {
     DebugLog(@"");
-    [lineColor setStroke];
-    [myPath strokeWithBlendMode:kCGBlendModeNormal alpha:1.0];
+    
+    for (NSMutableDictionary *dict in arr) {
+        UIBezierPath *path = [dict valueForKey:@"path"];
+        NSString *flag =[dict valueForKey:@"flag"];
+        if ([flag isEqualToString:@"0"]) {
+            [[UIColor whiteColor] setStroke];
+        }else{
+            if ([lineColor isEqual:[UIColor whiteColor]]) {
+                [ [UIColor colorWithRed:240.0/255.0  green:221.0/255.0  blue:11.0/255.0 alpha:1.0] setStroke];
+            }else{
+                [lineColor setStroke];
+            }
+            // [lineColor setStroke];
+        }
+        [path strokeWithBlendMode:kCGBlendModeNormal alpha:1.0];
+    }
+    
+    if (boolTouchMoved) {
+        
+        if ([lineColor isEqual:[UIColor whiteColor]]) {
+            [[UIColor whiteColor] setStroke];
+        }else{
+            [lineColor setStroke];
+        }
+        
+        [myPath strokeWithBlendMode:kCGBlendModeNormal alpha:1.0];
+    }
+
 }
 
 #pragma mark-
@@ -62,6 +88,11 @@ BOOL boolTouchMoved;
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     DebugLog(@"");
+    
+    myPath = [[UIBezierPath alloc] init];
+    myPath.lineCapStyle = kCGLineCapRound;
+    myPath.miterLimit = 0;
+    myPath.lineWidth = 8;
     
     boolTouchMoved = NO;
     
@@ -94,6 +125,17 @@ BOOL boolTouchMoved;
         [myPath addLineToPoint:CGPointMake(freeFormStartPoint.x + 1, freeFormStartPoint.y)];
         [self setNeedsDisplay];
     }
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc ] initWithCapacity:1];
+    [dict setValue:myPath forKey:@"path"];
+    if ([lineColor isEqual:[UIColor whiteColor]]) {
+        [dict setValue:@"0" forKey:@"flag"];
+    }else{
+        [dict setValue:@"1" forKey:@"flag"];
+    }
+    [arr addObject:dict];
+    
+    boolTouchMoved = NO;
     
     [self.delegate signatureViewOnTouchesEnded:self];
     

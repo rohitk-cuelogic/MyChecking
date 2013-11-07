@@ -329,8 +329,12 @@
     img = [self changeImageColor:img withColor:[colorArray objectAtIndex:colorCnt]];
     [btnColorSplash setBackgroundImage:img forState:UIControlStateNormal];
     
-
-    viewForSign.lineColor = [colorArray objectAtIndex:colorCnt];
+    if (colorCnt == 6) {
+        viewForSign.lineColor = [UIColor whiteColor];
+    }else{
+        viewForSign.lineColor = [colorArray objectAtIndex:colorCnt];
+    }
+//    viewForSign.lineColor = [colorArray objectAtIndex:colorCnt];
 
     if(colorCnt < 6){
         [viewForSign setNeedsDisplay];

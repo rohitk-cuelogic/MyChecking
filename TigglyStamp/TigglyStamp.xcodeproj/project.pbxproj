@@ -308,6 +308,8 @@
 		63CEE1E217A14DB80060DC42 /* XBSnappingPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CEE1D217A14DB80060DC42 /* XBSnappingPoint.m */; };
 		63CEE1E417A14EEF0060DC42 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63CEE1E317A14EEF0060DC42 /* OpenGLES.framework */; };
 		B1D4077117C3727600E26814 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D4077017C3727600E26814 /* MessageUI.framework */; };
+		B1FF3D99182B59360013DAD7 /* tiggly.mov in Resources */ = {isa = PBXBuildFile; fileRef = B1FF3D97182B59360013DAD7 /* tiggly.mov */; };
+		B1FF3D9A182B59360013DAD7 /* tiggly_converted.mov in Resources */ = {isa = PBXBuildFile; fileRef = B1FF3D98182B59360013DAD7 /* tiggly_converted.mov */; };
 		BC31D62D17A8F047008C5361 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = BC31D62C17A8F047008C5361 /* cross.png */; };
 		BC31D62F17A8F556008C5361 /* square_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = BC31D62E17A8F555008C5361 /* square_blue.png */; };
 		C0034ABA17B36C9900C2ED96 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0034AB917B36C9900C2ED96 /* FacebookSDK.framework */; };
@@ -1644,6 +1646,8 @@
 		63CEE1D217A14DB80060DC42 /* XBSnappingPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XBSnappingPoint.m; path = XBPageCurl/XBSnappingPoint.m; sourceTree = SOURCE_ROOT; };
 		63CEE1E317A14EEF0060DC42 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		B1D4077017C3727600E26814 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		B1FF3D97182B59360013DAD7 /* tiggly.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = tiggly.mov; sourceTree = SOURCE_ROOT; };
+		B1FF3D98182B59360013DAD7 /* tiggly_converted.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = tiggly_converted.mov; sourceTree = SOURCE_ROOT; };
 		BC31D62C17A8F047008C5361 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 		BC31D62E17A8F555008C5361 /* square_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_blue.png; sourceTree = "<group>"; };
 		BC31D64317A94CE1008C5361 /* IntroScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroScreenViewController.xib; sourceTree = "<group>"; };
@@ -3602,6 +3606,8 @@
 		C027AE6117EAE3C40066632E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				B1FF3D97182B59360013DAD7 /* tiggly.mov */,
+				B1FF3D98182B59360013DAD7 /* tiggly_converted.mov */,
 				C0A82D3917EC934900F85793 /* Rockwell-Bold.TTF */,
 				C0A82D3A17EC934900F85793 /* Rockwell-BoldItalic.TTF */,
 				C0A82D3B17EC934900F85793 /* Rockwell.TTF */,
@@ -5068,6 +5074,7 @@
 				C02F44A617D60CFC007AEA39 /* Tiggly_GenGreeting_Penguin_10.mp3 in Resources */,
 				C02F44A717D60CFC007AEA39 /* Tiggly_GenGreeting_Penguin_11.mp3 in Resources */,
 				C02F44A817D60CFC007AEA39 /* Tiggly_GenGreeting_Penguin_12.mp3 in Resources */,
+				B1FF3D99182B59360013DAD7 /* tiggly.mov in Resources */,
 				C02F44A917D60CFC007AEA39 /* Tiggly_GenGreeting_Pumpkin_01.mp3 in Resources */,
 				C02F44AA17D60CFC007AEA39 /* Tiggly_GenGreeting_Pumpkin_02.mp3 in Resources */,
 				C02F44AB17D60CFC007AEA39 /* Tiggly_GenGreeting_Pumpkin_03.mp3 in Resources */,
@@ -5439,6 +5446,7 @@
 				C021F79217E8279A00EBD6B6 /* jelly_fish_ita.mp3 in Resources */,
 				C021F79317E8279A00EBD6B6 /* Jungle_ita.mp3 in Resources */,
 				C021F79417E8279A00EBD6B6 /* leaf_ita.mp3 in Resources */,
+				B1FF3D9A182B59360013DAD7 /* tiggly_converted.mov in Resources */,
 				C021F79517E8279A00EBD6B6 /* leaves_ita.mp3 in Resources */,
 				C021F79617E8279A00EBD6B6 /* lights_ita.mp3 in Resources */,
 				C021F79717E8279A00EBD6B6 /* Lion_ita.mp3 in Resources */,

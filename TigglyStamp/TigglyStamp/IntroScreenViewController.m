@@ -59,11 +59,26 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) releaseAllData{
+-(void) removeAllObjectForIntroScreen {
     DebugLog(@"");
     
-    
+    if (arrLanguage!=NULL) {
+        [arrLanguage removeAllObjects];
+        arrLanguage = NULL;
+    }
+    btnGoLanguage = NULL;
+    btnWithShape = NULL;
+    btnWithoutShape = NULL;
+    languageView = NULL;
+    languageSubView = NULL;
+    lblLunguage = NULL;
+    lblLunguageTest = NULL;
+    bkgImageView = NULL;
+    bkgImageViewlang = NULL;
+    tblView = NULL;
+    gameTypeView = NULL;
 }
+
 
 #pragma mark -
 #pragma mark =======================================
@@ -88,6 +103,7 @@
         // iOS 6
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
+    _isRemoveAllElement = NO;
     
     self.navigationController.navigationBar.hidden = YES;
     
@@ -171,7 +187,13 @@
     lblWithoutShape.minimumFontSize = 15.0f;
 }
 
-
+-(void) viewDidDisappear:(BOOL)animated {
+    DebugLog(@"");
+    if (_isRemoveAllElement == YES) {
+        [self removeAllObjectForIntroScreen];
+        
+    }
+}
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
@@ -318,12 +340,12 @@
             [self.navigationController pushViewController:homeViewController animated:NO];
         }
     }else if (btn.tag == TAG_BTN_WITHOUTSHAPE){
-        [[TigglyStampUtils sharedInstance] setShapeMode:NO];
-        TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];        
-         [self.navigationController pushViewController:homeViewController animated:NO];
+        [self playVideo];
+//        [[TigglyStampUtils sharedInstance] setShapeMode:NO];
+//        TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];        
+//         [self.navigationController pushViewController:homeViewController animated:NO];
     }
     
-    [self releaseAllData];
 }
 
 -(IBAction)actionGoBackToLanguage {
@@ -364,6 +386,108 @@
 	NSString* str=[languageBundle localizedStringForKey:key value:@"" table:nil];
 	return str;
 }
+
+
+#pragma mark-
+#pragma mark======================
+#pragma mark Video Player
+#pragma mark======================
+
+-(void) playVideo{
+    DebugLog(@"");
+    
+    //    moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:videoUrl];
+    viewForVideo = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+    viewForVideo.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:viewForVideo];
+    
+    
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *moviePath = [bundle pathForResource:@"tiggly" ofType:@"mov"];
+    NSURL *movieURL = [NSURL fileURLWithPath:moviePath];
+    
+    moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(moviePlayBackDidFinish:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:moviePlayer];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didExitFullScreen:)
+                                                 name:MPMoviePlayerDidExitFullscreenNotification
+                                               object:nil];
+    
+    //    [[NSNotificationCenter defaultCenter] addObserver:self
+    //                                             selector:@selector(didExitFullScreen:)
+    //                                                 name:MPMoviePlayer
+    //                                               object:nil];
+    
+    [moviePlayer.view setFrame:CGRectMake(0, 0, 825, 610)];
+    moviePlayer.view.center = CGPointMake(512, 384);
+    moviePlayer.shouldAutoplay = YES;
+    [viewForVideo addSubview:moviePlayer.view];
+    [moviePlayer prepareToPlay];
+    [moviePlayer play];
+    
+    tmrCloseBtn = [NSTimer scheduledTimerWithTimeInterval:15
+                                                   target:self
+                                                 selector:@selector(showCloseBtn)
+                                                 userInfo:nil
+                                                  repeats:NO];
+    
+    
+    
+}
+
+-(void)didExitFullScreen:(id)sender{
+    DebugLog(@"");
+    
+}
+
+- (void) moviePlayBackDidFinish:(NSNotification*)notification {
+    DebugLog(@"");
+    
+}
+
+-(void)showCloseBtn{
+    DebugLog(@"");
+    
+    UIButton *btnClose = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"cross.png"] forState:UIControlStateNormal];
+    [btnClose setBackgroundImage:[UIImage imageNamed:@"cross.png"] forState:UIControlStateSelected];
+    [btnClose addTarget:self action:@selector(actionCloseViewForVideo)forControlEvents:UIControlEventTouchUpInside];
+    btnClose.frame = CGRectMake(0, 0, 70, 70);
+    btnClose.center = CGPointMake(moviePlayer.view.frame.origin.x + moviePlayer.view.frame.size.width, moviePlayer.view.frame.origin.y);
+    btnClose.alpha = 0;
+    [viewForVideo addSubview:btnClose];
+    
+    [UIView animateWithDuration:1
+                     animations:^{
+                         
+                         btnClose.alpha = 1;
+                         
+                     }];
+    
+    
+}
+
+-(void)actionCloseViewForVideo{
+    DebugLog(@"");
+    
+    [moviePlayer stop];
+    moviePlayer = nil;
+    [viewForVideo removeFromSuperview];
+    viewForVideo = nil;
+    
+    [[TigglyStampUtils sharedInstance] setShapeMode:NO];
+    _isRemoveAllElement = YES;
+    TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];
+    [self.navigationController pushViewController:homeViewController animated:YES];
+}
+
+
+
 
 #pragma mark -
 #pragma mark =======================================

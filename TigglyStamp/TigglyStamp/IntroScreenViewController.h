@@ -27,7 +27,11 @@
     BOOL isLanguageScreenDisplayed;
     IBOutlet UILabel *lblWithoutShape;
     IBOutlet UILabel *lblWithShape;
-    
+    MPMoviePlayerController *moviePlayer;
+    UIView *viewForVideo;
+    NSTimer *tmrCloseBtn;
+    BOOL _isRemoveAllElement;
+
 }
 @property (nonatomic, strong) IBOutlet UIButton *btnGoLanguage;
 @property (nonatomic, strong) IBOutlet UIButton *btnWithShape;

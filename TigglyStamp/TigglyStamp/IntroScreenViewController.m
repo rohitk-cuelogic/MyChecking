@@ -483,7 +483,7 @@
     [[TigglyStampUtils sharedInstance] setShapeMode:NO];
     _isRemoveAllElement = YES;
     TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];
-    [self.navigationController pushViewController:homeViewController animated:YES];
+    [self.navigationController pushViewController:homeViewController animated:NO];
 }
 
 

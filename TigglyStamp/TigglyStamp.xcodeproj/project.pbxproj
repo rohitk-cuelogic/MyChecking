@@ -12,9 +12,6 @@
 		63019DBB17A24FCE005B8CA3 /* ParentScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63019DB917A24FCE005B8CA3 /* ParentScreenViewController.xib */; };
 		63019DBD17A254CF005B8CA3 /* box.png in Resources */ = {isa = PBXBuildFile; fileRef = 63019DBC17A254CE005B8CA3 /* box.png */; };
 		63019DBF17A260C8005B8CA3 /* textfieldback.png in Resources */ = {isa = PBXBuildFile; fileRef = 63019DBE17A260C8005B8CA3 /* textfieldback.png */; };
-		63019DC117A26352005B8CA3 /* fb_login.png in Resources */ = {isa = PBXBuildFile; fileRef = 63019DC017A26352005B8CA3 /* fb_login.png */; };
-		63019DC417A2636B005B8CA3 /* path_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 63019DC217A2636B005B8CA3 /* path_logo.png */; };
-		63019DC517A2636B005B8CA3 /* twitter_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 63019DC317A2636B005B8CA3 /* twitter_logo.png */; };
 		63019DC717A263CF005B8CA3 /* submit_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 63019DC617A263CF005B8CA3 /* submit_btn.png */; };
 		63019DC917A27955005B8CA3 /* greentick.png in Resources */ = {isa = PBXBuildFile; fileRef = 63019DC817A27955005B8CA3 /* greentick.png */; };
 		63019DD317A2AA4C005B8CA3 /* TSThumbnailEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63019DD117A2AA4B005B8CA3 /* TSThumbnailEditController.m */; };
@@ -1294,9 +1291,6 @@
 		63019DB917A24FCE005B8CA3 /* ParentScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParentScreenViewController.xib; sourceTree = "<group>"; };
 		63019DBC17A254CE005B8CA3 /* box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box.png; sourceTree = "<group>"; };
 		63019DBE17A260C8005B8CA3 /* textfieldback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textfieldback.png; sourceTree = "<group>"; };
-		63019DC017A26352005B8CA3 /* fb_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fb_login.png; sourceTree = "<group>"; };
-		63019DC217A2636B005B8CA3 /* path_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = path_logo.png; sourceTree = "<group>"; };
-		63019DC317A2636B005B8CA3 /* twitter_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_logo.png; sourceTree = "<group>"; };
 		63019DC617A263CF005B8CA3 /* submit_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = submit_btn.png; sourceTree = "<group>"; };
 		63019DC817A27955005B8CA3 /* greentick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greentick.png; sourceTree = "<group>"; };
 		63019DD017A2AA4B005B8CA3 /* TSThumbnailEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSThumbnailEditController.h; sourceTree = "<group>"; };
@@ -4172,7 +4166,6 @@
 				EBEDE4C817958902002151E5 /* deer_2.png */,
 				63019DD517A2B54B005B8CA3 /* deletebtn.png */,
 				63CEE1B117A1045D0060DC42 /* fallView.png */,
-				63019DC017A26352005B8CA3 /* fb_login.png */,
 				EBEDE4AB179588E3002151E5 /* fireplace.png */,
 				EBEDE4B7179588F0002151E5 /* fox.png */,
 				63CEE1AD17A0FC920060DC42 /* frame.png */,
@@ -4186,7 +4179,6 @@
 				EBEDE4CC17958903002151E5 /* lightbulb.png */,
 				EBEDE4AD179588E3002151E5 /* ornament.png */,
 				EBEDE4B8179588F0002151E5 /* ornament_purple.png */,
-				63019DC217A2636B005B8CA3 /* path_logo.png */,
 				EB1A593317ABD138001749D2 /* pattern_0_1.png */,
 				EBEDE49C179588D0002151E5 /* penguin.png */,
 				EBEDE49A179588D0002151E5 /* penguin_blue.png */,
@@ -4213,7 +4205,6 @@
 				EBF2841017869F6900082F64 /* Tiggly_stamp_Winter_BG.png */,
 				EBEDE491179566B0002151E5 /* trashcan_icon.png */,
 				EBF2843F1786A05B00082F64 /* triangle.png */,
-				63019DC317A2636B005B8CA3 /* twitter_logo.png */,
 			);
 			path = iPadImages;
 			sourceTree = "<group>";
@@ -4506,9 +4497,6 @@
 				63019DBB17A24FCE005B8CA3 /* ParentScreenViewController.xib in Resources */,
 				63019DBD17A254CF005B8CA3 /* box.png in Resources */,
 				63019DBF17A260C8005B8CA3 /* textfieldback.png in Resources */,
-				63019DC117A26352005B8CA3 /* fb_login.png in Resources */,
-				63019DC417A2636B005B8CA3 /* path_logo.png in Resources */,
-				63019DC517A2636B005B8CA3 /* twitter_logo.png in Resources */,
 				63019DC717A263CF005B8CA3 /* submit_btn.png in Resources */,
 				63019DC917A27955005B8CA3 /* greentick.png in Resources */,
 				63019DD417A2AA4C005B8CA3 /* TSThumbnailEditController.xib in Resources */,

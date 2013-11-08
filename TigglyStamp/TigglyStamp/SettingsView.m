@@ -188,7 +188,8 @@ UILabel *lblBuyShapes;
 
 -(void) actionBuyShapes{
     DebugLog(@"");
-    NSString* launchUrl = @"http://tiggly.myshopify.com";
+//    NSString* launchUrl = @"http://tiggly.myshopify.com";
+    NSString* launchUrl = @"http://tiggly.com/shop";
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
 }
 

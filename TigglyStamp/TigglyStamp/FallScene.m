@@ -1147,17 +1147,14 @@ int currentObject;
     }else if([fallObject isEqualToString:@"witches_hat"] || [fallObject isEqualToString:@"witches_hat_purple"]) {
         
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
-            int ranNo = arc4random()%4;
+            int ranNo = arc4random()%2;
             
             if(ranNo == 0){
-                soundFile = @"Tiggly_Word_Hat_Gasp_01";
+                soundFile = @"Tiggly_Word_Hat_Var2_02";
             }else if (ranNo == 1) {
-                soundFile = @"Tiggly_Word_Hat_Ooh_01";
-            }else if (ranNo == 2) {
-                soundFile = @"Tiggly_Word_Hat_Wow_01";
-            }else if (ranNo == 3) {
-                soundFile = @"Tiggly_Word_Hat_Wow_02";
+                soundFile = @"Tiggly_Word_Hat_Var2_03";
             }
+            
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
             soundFile = @"hat_breng";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Portuguese"]){

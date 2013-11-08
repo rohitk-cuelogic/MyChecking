@@ -1132,6 +1132,8 @@
 		C08EC12717EB5CFF0092F5A7 /* spatial thinking.png in Resources */ = {isa = PBXBuildFile; fileRef = C08EC12417EB5CFF0092F5A7 /* spatial thinking.png */; };
 		C09DBD6217F47D5C00FC1507 /* new_try_out_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C09DBD6017F47D5C00FC1507 /* new_try_out_2.png */; };
 		C09DBD6317F47D5C00FC1507 /* new_try_out.png in Resources */ = {isa = PBXBuildFile; fileRef = C09DBD6117F47D5C00FC1507 /* new_try_out.png */; };
+		C0A1EC59182C06470032D6FC /* Tiggly_Word_Hat_Var2_02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0A1EC57182C06470032D6FC /* Tiggly_Word_Hat_Var2_02.mp3 */; };
+		C0A1EC5A182C06470032D6FC /* Tiggly_Word_Hat_Var2_03.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0A1EC58182C06470032D6FC /* Tiggly_Word_Hat_Var2_03.mp3 */; };
 		C0A4E61817BA6A89008EB0C9 /* fallView@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A4E61717BA6A89008EB0C9 /* fallView@2x~ipad.png */; };
 		C0A751DF1807D0F100D27647 /* Tiggly_SFX_MAGIC_19.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0A751DE1807D0F100D27647 /* Tiggly_SFX_MAGIC_19.mp3 */; };
 		C0A82D3517EC932300F85793 /* learning_philoshophy.html in Resources */ = {isa = PBXBuildFile; fileRef = C0A82D3117EC932300F85793 /* learning_philoshophy.html */; };
@@ -2485,6 +2487,8 @@
 		C08EC12417EB5CFF0092F5A7 /* spatial thinking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spatial thinking.png"; sourceTree = "<group>"; };
 		C09DBD6017F47D5C00FC1507 /* new_try_out_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_try_out_2.png; sourceTree = "<group>"; };
 		C09DBD6117F47D5C00FC1507 /* new_try_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_try_out.png; sourceTree = "<group>"; };
+		C0A1EC57182C06470032D6FC /* Tiggly_Word_Hat_Var2_02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Hat_Var2_02.mp3; sourceTree = "<group>"; };
+		C0A1EC58182C06470032D6FC /* Tiggly_Word_Hat_Var2_03.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Hat_Var2_03.mp3; sourceTree = "<group>"; };
 		C0A4E61717BA6A89008EB0C9 /* fallView@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fallView@2x~ipad.png"; sourceTree = "<group>"; };
 		C0A751DE1807D0F100D27647 /* Tiggly_SFX_MAGIC_19.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_MAGIC_19.mp3; sourceTree = "<group>"; };
 		C0A82D3117EC932300F85793 /* learning_philoshophy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = learning_philoshophy.html; sourceTree = "<group>"; };
@@ -3899,6 +3903,8 @@
 		C02F43F517D60CFC007AEA39 /* Fall_Words_For_Objects */ = {
 			isa = PBXGroup;
 			children = (
+				C0A1EC57182C06470032D6FC /* Tiggly_Word_Hat_Var2_02.mp3 */,
+				C0A1EC58182C06470032D6FC /* Tiggly_Word_Hat_Var2_03.mp3 */,
 				C028606C17D7685A001EAE9E /* Tiggly_Word_Spider_Ooh_01.mp3 */,
 				C028606D17D7685A001EAE9E /* Tiggly_Word_Hat_Gasp_01.mp3 */,
 				C028606E17D7685A001EAE9E /* Tiggly_Word_Hat_Ooh_01.mp3 */,
@@ -4589,6 +4595,7 @@
 				EB6F332F1781867900FC479F /* InfoPlist.strings in Resources */,
 				EB6F33371781867900FC479F /* Default.png in Resources */,
 				EB6F33391781867900FC479F /* Default@2x.png in Resources */,
+				C0A1EC5A182C06470032D6FC /* Tiggly_Word_Hat_Var2_03.mp3 in Resources */,
 				EB6F333B1781867900FC479F /* Default-568h@2x.png in Resources */,
 				EB6F335617818AF500FC479F /* circle2Data.plist in Resources */,
 				EB6F335717818AF500FC479F /* circleData.plist in Resources */,
@@ -4757,6 +4764,7 @@
 				C08291FD17A7CB230023F08A /* haybale@2x~ipad.png in Resources */,
 				C08291FE17A7CB230023F08A /* mole_rat@2x~ipad.png in Resources */,
 				C08291FF17A7CB230023F08A /* orange_candy@2x~ipad.png in Resources */,
+				C0A1EC59182C06470032D6FC /* Tiggly_Word_Hat_Var2_02.mp3 in Resources */,
 				C082920017A7CB230023F08A /* orange_leaf@2x~ipad.png in Resources */,
 				C082920117A7CB230023F08A /* pirate@2x~ipad.png in Resources */,
 				C082920217A7CB230023F08A /* pumkin_bag@2x~ipad.png in Resources */,

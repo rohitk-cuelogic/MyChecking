@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>Tiggly</title>
+            <style type="text/css">
+                @charset "utf-8";
+                /* CSS Document */
+                
+                html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd,q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center,dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr,th, td , input[type="radio"], input[type="checkbox"] {margin:0; padding:0; border:0; outline:0; font-size:100%; background:transparent; resize:none}
+                body {line-height:1}
+                a, a:hover {text-decoration:none; outline:none}
+                a:active, a:focus {outline:0} /* to avoid link borders on new browsers */
+                img {border:none; vertical-align:-2px}
+                table {border-collapse:collapse; border-spacing:0}
+                textarea {resize:none}
+                a {color:#006699}
+                input:focus, textarea:focus {outline:none}
+                
+                /* Fonts */
+                @font-face {font-family:rockwell; src:url('Rockwell.TTF?#iefix')  format('truetype');}
+                @font-face {font-family:rockwell-bold; src:url('Rockwell-Bold.TTF?#iefix')  format('truetype');}
+                @font-face {font-family:rockwell-bolditalic; src:url('Rockwell-BoldItalic.TTF?#iefix')  format('truetype');}
+                
+                body {font-family:rockwell; font-size:15px}
+                
+                /*** COMMON CLASSES ***/
+                .fl {float:left} .fr {float:right} .clr {clear:both; width:0; height:0; overflow:hidden} .strong {font-weight:bold} .reset {list-style:none} .centerAlign {text-align:center} .ovflhidden {overflow:hidden} .allcaps {text-transform:capitalize} .uppercase {text-transform:uppercase} .normal {font-weight:normal} .rightalign {text-align:right} .smlTxt {font-size:11px} .margBtm {margin-bottom:10px} .posrel {position:relative}
+                
+                .italick {font-family:rockwell-bolditalic}
+                
+                #container {padding:20px; width:580px}
+                
+                #logo {text-align:right; margin-bottom:20px}
+                #logo button {background:url(logoparent.png) 0 0 no-repeat; width:50px; height:50px; cursor:pointer; border:none}
+                
+                .para-title {font-size:15px; margin-bottom:10px; color:#000}
+                .paragraph {font-size:15px; margin-bottom:20px; line-height:25px; color:#000}
+                .tiggly-info {margin-bottom:20px}
+                .grid-col {float:left; width:150px; margin:0 15px; text-align:center; font-size:15px}
+                .motorskill {background:url(motorskills.png) 0 0 no-repeat; width:150px; height:150px; border:none; cursor:pointer}
+                .language {background:url(language.png) 0 0 no-repeat; width:150px; height:150px; border:none; cursor:pointer}
+                .specialthinnk {background:url(spatialthinking.png) 0 0 no-repeat; width:150px; height:150px; border:none; cursor:pointer}
+                
+                .para-subtitle {font-size:15px; margin-bottom:10px; color:#000}
+                ul.play-info {list-style:disc; margin-left:30px}
+                ul.play-info li {margin-bottom:10px; line-height:25px; font-size:18px; color:#000}
+                
+                ul.learning-info {margin:0 0 20px 30px}
+                ul.learning-info li {margin-bottom:15px; line-height:25px; font-size:15px; color:96 170 0; overflow:hidden}
+                
+                .pholishophy-img {margin-bottom:20px; text-align:center}
+                .pholishophy-img img {margin:0 15px}
+                </style>
+    </head>
+    
+    <body>
+        <div id="container">
+            <p id="logo" onclick='window.location="callmycode:logoItem&var=myVar"'><button>&nbsp;</button></p>
+            <p class="para-title">Dear Parent,</p>
+            <p class="paragraph">So glad you found us! At Tiggly, we respect the challenges of modern-day parenthood. It is a tough job! We founded Tiggly because we wanted to help parents introduce their children to the digital world in an easy yet educational way. Just like you, we are deeply invested in your child’s early development, and we believe we can create the best learning experiences for them by combining physical and digital play. Read more about our learning philosophy.</p>
+            <p class="para-title italick">About Tiggly Stamp:</p>
+            <p class="paragraph">Tiggly Stamp is all about creativity — creating amusing scenes and coming up with inspiring stories. In Tiggly Stamp, children use their shapes to construct a series of fun and imaginative characters, objects, and fruits and veggies related to each of the four seasons. They may also put together pieces to build increasingly complex creations as their development allows. Imagine a fox wearing a sweater holding on a cup of hot chocolate in one hand and a snow shovel in another hand, or a scarecrow raking colorful leaves into a pile…. Your child’s awakening imagination is the limit.</p>
+            <p class="paragraph">Children can take a picture of the scene they’ve created by tapping on the camera icon, or they can tell a story and create a video by tapping on the video recorder icon.</p>
+            <p class="paragraph">Tiggly Stamp helps even very young children express themselves, reflect on their own view of the world, and develop their creativity, social, and linguistic skills through storytelling. And keep in mind that stories are shared cultural practices, so get involved and be creative along with them! Let your child’s imagination be the guide and you can follow their lead.</p>
+            <p class="paragraph">Tap on icons below to read more about your child learning opportunities.</p>
+                <div class="ovflhidden tiggly-info">
+                <div class="grid-col">
+                    <p><button class="motorskill" onclick='window.location="callmycode:MotarSkill&var"'>&nbsp;</button></p>
+                    <p>Motor Skills</p>
+                </div>
+                <div class="grid-col">
+                    <p><button class="language" onclick='window.location="callmycode:LanguageDevelopment&var"'>&nbsp;</button></p>
+                    <p>Language Development</p>
+                </div>
+                <div class="grid-col">
+                    <p><button class="specialthinnk" onclick='window.location="callmycode:SpatialThinking&var"'>&nbsp;</button></p>
+                    <p>Creativity</p>
+                </div>
+            </div>
+            <p class="paragraph">Our goal is to produce learning toys and apps that you love to share with your children, and we hope that this is the start of a long relationship.</p>
+            <p class="para-title">Warm regards,</p>
+            <p class="paragraph">
+            Azadeh Jamalian<br />
+            Chief Learning Officer<br />
+            Tiggly
+            </p>
+        </div>
+    </body>
+</html>

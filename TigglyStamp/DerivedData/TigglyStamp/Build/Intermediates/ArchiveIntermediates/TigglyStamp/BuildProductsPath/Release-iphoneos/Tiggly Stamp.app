@@ -1,0 +1,1 @@
+/Users/SachinP/Work/Projects/Live/iOS_TigglyStamp/trunk/TigglyStamp/DerivedData/TigglyStamp/Build/Intermediates/ArchiveIntermediates/TigglyStamp/InstallationBuildProductsLocation/Applications/Tiggly Stamp.app

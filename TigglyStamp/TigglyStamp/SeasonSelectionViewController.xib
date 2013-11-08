@@ -140,12 +140,13 @@
     </objects>
     <resources>
         <image name="btnCommingSoon.png" width="295" height="286"/>
+        <image name="btnCommingSoon.png" width="295" height="286"/>
         <image name="fall_btn.png" width="338" height="717"/>
         <image name="green_bg_2.png" width="1024" height="768"/>
         <image name="home_icon_1.png" width="199" height="199"/>
         <image name="learn_more.png" width="416" height="372"/>
-        <image name="lock.png" width="134" height="133"/>
-        <image name="parent_gesture_black_bg.png" width="1024" height="768"/>
+        <image name="lock.png" width="209" height="280"/>
+        <image name="parent_gesture_black_bg.png" width="2048" height="1536"/>
         <image name="winter_btn.png" width="338" height="717"/>
     </resources>
 </document>

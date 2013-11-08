@@ -1051,68 +1051,7 @@ UIActivityIndicatorView *activityIndicator;
     [self updateLabelsForCurrentLanguage];
 }
 
-#pragma mark -
-#pragma mark =======================================
-#pragma mark Automatic Mail
-#pragma mark =======================================
 
-- (void)sendMessageTo:(NSString *)reciverEmail withMessagebody:(NSString *)messageBody{
-    DebugLog(@"");
-    SKPSMTPMessage *emailMessage = [[SKPSMTPMessage alloc] init];
-    emailMessage.fromEmail = SENDER_EMAIL_ID; //sender email address
-    emailMessage.toEmail = reciverEmail;  //receiver email address
-    emailMessage.relayHost = @"smtp.gmail.com";
-    emailMessage.requiresAuth = YES;
-    emailMessage.login = SENDER_EMAIL_ID; //sender email address
-    emailMessage.pass = SENDER_EMAIL_ID_PASSWORD; //sender email password
-    emailMessage.subject =@"Tiggly Subscription";
-    emailMessage.wantsSecure = YES;
-    emailMessage.delegate = self; // you must include <SKPSMTPMessageDelegate> to your class
-    NSDictionary *plainMsg = [NSDictionary
-                              dictionaryWithObjectsAndKeys:@"text/plain",kSKPSMTPPartContentTypeKey,
-                              messageBody,kSKPSMTPPartMessageKey,@"8bit",kSKPSMTPPartContentTransferEncodingKey,nil];
-    emailMessage.parts = [NSArray arrayWithObjects:plainMsg,nil];
-    [emailMessage send];
-    // sending email- will take little time to send so its better to use indicator with message showing sending...
-}
-
-
--(void)messageSent:(SKPSMTPMessage *)message{
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    [self.view addSubview:confView];
-    [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(removeConfirmationDilog:) userInfo:nil repeats:NO];
-}
-
--(void)messageFailed:(SKPSMTPMessage *)message error:(NSError *)error{
-    // open an alert with just an OK button
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-    [alert show];
-}
-
-#pragma mark -
-#pragma mark =======================================
-#pragma mark Network Connection
-#pragma mark =======================================
-
--(void)CheckNetworkConnection {
-    DebugLog(@"");
-    UIAlertView *errorView;
-    NetworkStatus internetStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
-    
-    if(internetStatus== NotReachable){
-        
-        errorView = [[UIAlertView alloc]
-                     initWithTitle: @"Tiggly"
-                     message: @"It seems that your internet connection is not working. Please check your internet connection."
-                     delegate: nil
-                     cancelButtonTitle: @"Ok" otherButtonTitles: nil];
-        [errorView show];
-        isConnection=NO;
-    }
-    else
-        isConnection=YES;
-}
 
 #pragma mark -
 #pragma mark =======================================

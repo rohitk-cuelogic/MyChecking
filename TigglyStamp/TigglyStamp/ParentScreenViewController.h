@@ -9,14 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "TConstant.h"
 #import <QuartzCore/QuartzCore.h>
-#import "FHSTwitterEngine.h"
 #import <FacebookSDK/FacebookSDK.h>
-#import <Pinterest/Pinterest.h>
 #import <CFNetwork/CFNetwork.h>
-#import "SKPSMTPMessage.h"
-#import "NSData+Base64Additions.h"
-#import "MBProgressHUD.h"
-#import "Reachability.h"
 #import "TSHomeViewController.h"
 #import "SettingsView.h"
 #import <MessageUI/MessageUI.h>
@@ -35,7 +29,7 @@ typedef enum{
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 
-@interface ParentScreenViewController : GAITrackedViewController<UITextFieldDelegate,UIWebViewDelegate, SettingViewProtocol,MFMailComposeViewControllerDelegate,SKPSMTPMessageDelegate>
+@interface ParentScreenViewController : GAITrackedViewController<UITextFieldDelegate,UIWebViewDelegate, SettingViewProtocol,MFMailComposeViewControllerDelegate>
 #else
 
 
@@ -45,8 +39,7 @@ typedef enum{
 
 
 {
-    Pinterest*  _pinterest;
-    
+
     SettingsView *settingView;
     
     IBOutlet UIView *viewForWeb;
@@ -58,7 +51,6 @@ typedef enum{
     IBOutlet UILabel *lblSettingBtn;
     IBOutlet UILabel *lblReviewAppBtn;
     IBOutlet UILabel *lblSubscribConfirm;
-    MBProgressHUD* hud;
     BOOL  isConnection;
     
     CurrentTab currTab;

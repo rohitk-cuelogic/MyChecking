@@ -140,7 +140,6 @@
     </objects>
     <resources>
         <image name="btnCommingSoon.png" width="295" height="286"/>
-        <image name="btnCommingSoon.png" width="295" height="286"/>
         <image name="fall_btn.png" width="338" height="717"/>
         <image name="green_bg_2.png" width="1024" height="768"/>
         <image name="home_icon_1.png" width="199" height="199"/>

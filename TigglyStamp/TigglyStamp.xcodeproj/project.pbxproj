@@ -308,6 +308,7 @@
 		B1FF3D9A182B59360013DAD7 /* tiggly_converted.mov in Resources */ = {isa = PBXBuildFile; fileRef = B1FF3D98182B59360013DAD7 /* tiggly_converted.mov */; };
 		BC31D62D17A8F047008C5361 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = BC31D62C17A8F047008C5361 /* cross.png */; };
 		BC31D62F17A8F556008C5361 /* square_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = BC31D62E17A8F555008C5361 /* square_blue.png */; };
+		BC4AA2D8182D2BBE0093BEDC /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4AA2D7182D2BBE0093BEDC /* libGoogleAnalyticsServices.a */; };
 		C0034ABA17B36C9900C2ED96 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0034AB917B36C9900C2ED96 /* FacebookSDK.framework */; };
 		C00559D5180D75C6001977A8 /* chicken@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C00559D4180D75C6001977A8 /* chicken@2x~ipad.png */; };
 		C00559D9180D7C46001977A8 /* Tiggly_GenGreeting_Chicken_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C00559D6180D7C46001977A8 /* Tiggly_GenGreeting_Chicken_01.mp3 */; };
@@ -384,7 +385,6 @@
 		C01F422117EB2AC20093AA53 /* or.png in Resources */ = {isa = PBXBuildFile; fileRef = 631A51F017EB0D4600D88E2C /* or.png */; };
 		C01F422317EB2D810093AA53 /* Incorrect_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C01F422217EB2D810093AA53 /* Incorrect_01.mp3 */; };
 		C01F422617EB47340093AA53 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C01F422517EB47340093AA53 /* libz.dylib */; };
-		C01F422717EB48AA0093AA53 /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 631A51FA17EB2FC900D88E2C /* libGoogleAnalytics_debug.a */; };
 		C01FE0A61810205B008F00FE /* fall_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = C01FE0A41810205A008F00FE /* fall_btn.png */; };
 		C01FE0A71810205B008F00FE /* winter_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = C01FE0A51810205A008F00FE /* winter_btn.png */; };
 		C021F76A17E8279A00EBD6B6 /* 3_2_1_GO_ita.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C021F64E17E8279A00EBD6B6 /* 3_2_1_GO_ita.mp3 */; };
@@ -1609,6 +1609,7 @@
 		BC31D62C17A8F047008C5361 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
 		BC31D62E17A8F555008C5361 /* square_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_blue.png; sourceTree = "<group>"; };
 		BC31D64317A94CE1008C5361 /* IntroScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroScreenViewController.xib; sourceTree = "<group>"; };
+		BC4AA2D7182D2BBE0093BEDC /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = GoogleAnalyticLibrary/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		C0034AB917B36C9900C2ED96 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		C00559D4180D75C6001977A8 /* chicken@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chicken@2x~ipad.png"; sourceTree = "<group>"; };
 		C00559D6180D7C46001977A8 /* Tiggly_GenGreeting_Chicken_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_GenGreeting_Chicken_01.mp3; sourceTree = "<group>"; };
@@ -2638,7 +2639,7 @@
 				EB6F33271781867900FC479F /* Foundation.framework in Frameworks */,
 				EB6F33291781867900FC479F /* CoreGraphics.framework in Frameworks */,
 				C0034ABA17B36C9900C2ED96 /* FacebookSDK.framework in Frameworks */,
-				C01F422717EB48AA0093AA53 /* libGoogleAnalytics_debug.a in Frameworks */,
+				BC4AA2D8182D2BBE0093BEDC /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2876,6 +2877,7 @@
 		631A51F317EB2F9B00D88E2C /* GoogleAnalyticLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				BC4AA2D7182D2BBE0093BEDC /* libGoogleAnalyticsServices.a */,
 				631A51F417EB2FC900D88E2C /* GAI.h */,
 				631A51F517EB2FC900D88E2C /* GAIDictionaryBuilder.h */,
 				631A51F617EB2FC900D88E2C /* GAIFields.h */,

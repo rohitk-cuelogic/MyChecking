@@ -20,7 +20,14 @@
 
 
 @implementation TigglyStampUtils
+
 static TigglyStampUtils *sharedInstance = nil;
+
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Init
+#pragma mark =======================================
 
 // Get the shared instance and create it if necessary.
 + (TigglyStampUtils *)sharedInstance {
@@ -44,8 +51,17 @@ static TigglyStampUtils *sharedInstance = nil;
     return self;
 }
 
--(UIColor *)getRGBValueForShape:(NSString *)shapeToDraw withBasicShape:(NSString *)basicShape
-{
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Game Scene Data
+#pragma mark =======================================
+
+
+-(UIColor *)getRGBValueForShape:(NSString *)shapeToDraw withBasicShape:(NSString *)basicShape {
+    DebugLog(@"");
+    
+    /*This function returns the color of basic shapes of the objects used in Fall and Winter Scene*/
+    
     UIColor *color;
     if([basicShape isEqualToString:@"square"]){
         
@@ -318,9 +334,15 @@ static TigglyStampUtils *sharedInstance = nil;
     return color;
 }
 
+#pragma mark -
+#pragma mark =======================================
+#pragma mark App Settings Data
+#pragma mark =======================================
+
+
 -(void) setMusicStatus:(NSString *) status{
     DebugLog(@"");
-    
+    /*This function persists the value of Music settings */
     [[NSUserDefaults standardUserDefaults] setValue:status forKey:MUSIC];
 }
 
@@ -332,25 +354,78 @@ static TigglyStampUtils *sharedInstance = nil;
 
 
 -(void)setShapeMode:(BOOL) bVar{
+    /*This function persists the value of Shape settings */
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setBool:bVar forKey:IS_WITH_SHAPE];
     
 }
+
 -(BOOL)getShapeMode{
      NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     BOOL isWithShape = [userDefaults boolForKey:IS_WITH_SHAPE];
     return isWithShape;
+}
+
+-(void)setCurrentLanguage:(NSString *)lang{
+    
+    /*This function persists the value of Language settings */
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:lang forKey:KEY_CURRENT_LANGUAGE];
+}
+
+-(NSString *)getCurrentLanguage{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *lang = [userDefaults valueForKey:KEY_CURRENT_LANGUAGE];
+    return lang;
+}
+
+-(BOOL) isAppUnlockedForShapes {
+    DebugLog(@"");
+    
+    return [[NSUserDefaults standardUserDefaults] boolForKey:IS_UNLOCKED_FOR_SHAPES];
+}
+
+-(void)unlockAppForShapes:(BOOL) boolean{
+    DebugLog(@"");
+    
+    /*This function persists the value of App's Shape/NoShape mode settings */
+    [[NSUserDefaults standardUserDefaults] setBool:boolean forKey:IS_UNLOCKED_FOR_SHAPES];
     
 }
 
+
+-(BOOL) isSpaceAvailableOnDisk{
+    DebugLog(@"");
+    /* This functions checks if the available disk space is above 50mb*/
+    
+    if([self getFreeDiskspace] < 50)
+        return NO;
+    
+    return YES;
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark File Sysytem Handling
+#pragma mark =======================================
+
+
 - (NSString *) getDocumentDirPath {
     DebugLog(@"");
+    /*This function returns the App's Document directory path*/
     NSString *docsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     return docsDirectory;
 }
 
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Artwork Names Handling
+#pragma mark =======================================
+
 - (NSArray *) getAllImagesAndMovies{
     DebugLog(@"");
+    /*This function returns all the images and movie files stored in documents directory path*/
     
     NSMutableArray *dirArray = [[NSMutableArray alloc] initWithCapacity:1];
     
@@ -359,6 +434,7 @@ static TigglyStampUtils *sharedInstance = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *directoryContents = [fileManager contentsOfDirectoryAtPath:path error:NULL];
 
+    //Filter only the png and mov files
     for (NSString *file in directoryContents) {
         if([file hasPrefix:@"TigglyStamp"] && ([[[file lastPathComponent] pathExtension] isEqualToString:@"png"] ||[[[file lastPathComponent] pathExtension] isEqualToString:@"mov"] )){
             [dirArray addObject:[path stringByAppendingPathComponent:file]];
@@ -371,6 +447,8 @@ static TigglyStampUtils *sharedInstance = nil;
 
 -(NSString *) getImagePathOfMovieThumbnailWithBorder:(NSString *) moveName {
     DebugLog(@"");
+    /*This function takes the movie file name and forms a name that will give the image name of the movie's thumbnail with white border*/
+    
     NSString *path = [[TigglyStampUtils sharedInstance]getDocumentDirPath];
     NSString *iName = [NSString stringWithFormat:@"%@_%@.png",[moveName stringByDeletingPathExtension],STR_WITH_MOVIE_BORDER];
     path = [path stringByAppendingPathComponent:iName];
@@ -380,13 +458,14 @@ static TigglyStampUtils *sharedInstance = nil;
 
 -(UIImage *) getMovieImageForMovieName:(NSString *) moviePath {
     DebugLog(@"");
+    /*This function returns the thumbnail image of the movie*/
     
     NSString *movieName = [[moviePath lastPathComponent] stringByReplacingOccurrencesOfString:@"mov" withString:@"png"];
     NSString *fileName=[NSString stringWithFormat:@"%@/Movie%@",[[TigglyStampUtils sharedInstance]getDocumentDirPath],movieName];
     UIImage *img;
     
      if (![[NSFileManager defaultManager] fileExistsAtPath:fileName]) {
-         //MovieImage not found. Create thumbnail
+         //If MovieImage not found. Create a thumbnail from the movie file
          DebugLog(@"MovieImage not found. Create thumbnail");
         NSString *path = [[TigglyStampUtils sharedInstance]getDocumentDirPath];
         path = [path stringByAppendingPathComponent:moviePath];
@@ -409,14 +488,48 @@ static TigglyStampUtils *sharedInstance = nil;
 
 -(NSString *) getMovieImagePathForMovieName:(NSString *) moviePath{
     DebugLog(@"");
+    /*This function returns the path of movie's thumbnail image*/
     NSString *movieName = [[moviePath lastPathComponent] stringByReplacingOccurrencesOfString:@"mov" withString:@"png"];
     NSString *fileName=[NSString stringWithFormat:@"%@/Movie%@",[[TigglyStampUtils sharedInstance]getDocumentDirPath],movieName];
     return fileName;
 }
 
 #pragma mark -
+#pragma mark =======================================
+#pragma mark Localization
+#pragma mark =======================================
+
+-(NSString*) getLocalisedStringForKey:(NSString*) key {
+    DebugLog(@"");
+    /*This function returns the localised string for the given key */
+    NSString *selectedLanguage = [self getCurrentLanguage];
+	NSString *path;
+    if([selectedLanguage isEqualToString:@"Portuguese"])
+		path = [[NSBundle mainBundle] pathForResource:@"pt" ofType:@"lproj"];
+    else if([selectedLanguage isEqualToString:@"Russian"])
+		path = [[NSBundle mainBundle] pathForResource:@"ru" ofType:@"lproj"];
+    else if([selectedLanguage isEqualToString:@"Spanish"])
+		path = [[NSBundle mainBundle] pathForResource:@"es" ofType:@"lproj"];
+    else if([selectedLanguage isEqualToString:@"English"])
+		path = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"];
+    else if([selectedLanguage isEqualToString:@"French"])
+		path = [[NSBundle mainBundle] pathForResource:@"fr" ofType:@"lproj"];
+    else if([selectedLanguage isEqualToString:@"German"])
+		path = [[NSBundle mainBundle] pathForResource:@"de" ofType:@"lproj"];
+    else if([selectedLanguage isEqualToString:@"Italian"])
+		path = [[NSBundle mainBundle] pathForResource:@"it" ofType:@"lproj"];
+    else
+        path = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"];
+    
+	NSBundle* languageBundle = [NSBundle bundleWithPath:path];
+	NSString* str=[languageBundle localizedStringForKey:key value:@"" table:nil];
+	return str;
+}
+
+
+#pragma mark -
 #pragma mark =============================================
-#pragma mark Writing csv file for key of shape detection
+#pragma mark Debugging Shape Detection
 #pragma mark =============================================
 
 -(void)setDebugModeForWriteKeyInCsvOn:(BOOL) isOn{
@@ -465,15 +578,6 @@ static TigglyStampUtils *sharedInstance = nil;
     return sType;
 }
 
--(void)setCurrentLanguage:(NSString *)lang{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setValue:lang forKey:KEY_CURRENT_LANGUAGE];
-}
--(NSString *)getCurrentLanguage{
-     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *lang = [userDefaults valueForKey:KEY_CURRENT_LANGUAGE];
-    return lang;
-}
 
 - (void) saveCSVFileData {
     DebugLog(@"");
@@ -532,28 +636,7 @@ static TigglyStampUtils *sharedInstance = nil;
     return strCsvKyes;
 }
 
--(BOOL) isAppUnlockedForShapes {
-    DebugLog(@"");
-    
-    return [[NSUserDefaults standardUserDefaults] boolForKey:IS_UNLOCKED_FOR_SHAPES];
-}
 
--(void)unlockAppForShapes:(BOOL) boolean{
-    DebugLog(@"");
-    
-    [[NSUserDefaults standardUserDefaults] setBool:boolean forKey:IS_UNLOCKED_FOR_SHAPES];
-    
-}
-
-
--(BOOL) isSpaceAvailableOnDisk{
-    DebugLog(@"");
-    
-    if([self getFreeDiskspace] < 50)
-        return NO;
-    
-    return YES;
-}
 
 -(BOOL) isItemCountBelowTheLimit{
     DebugLog(@"");
@@ -674,36 +757,6 @@ static TigglyStampUtils *sharedInstance = nil;
     return directoryContents.count;
 }
 
-#pragma mark -
-#pragma mark =======================================
-#pragma mark Localization
-#pragma mark =======================================
-
--(NSString*) getLocalisedStringForKey:(NSString*) key {
-    DebugLog(@"");
-    NSString *selectedLanguage = [self getCurrentLanguage];
-	NSString *path;
-    if([selectedLanguage isEqualToString:@"Portuguese"])
-		path = [[NSBundle mainBundle] pathForResource:@"pt" ofType:@"lproj"];
-    else if([selectedLanguage isEqualToString:@"Russian"])
-		path = [[NSBundle mainBundle] pathForResource:@"ru" ofType:@"lproj"];
-    else if([selectedLanguage isEqualToString:@"Spanish"])
-		path = [[NSBundle mainBundle] pathForResource:@"es" ofType:@"lproj"];
-    else if([selectedLanguage isEqualToString:@"English"])
-		path = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"];
-    else if([selectedLanguage isEqualToString:@"French"])
-		path = [[NSBundle mainBundle] pathForResource:@"fr" ofType:@"lproj"];
-    else if([selectedLanguage isEqualToString:@"German"])
-		path = [[NSBundle mainBundle] pathForResource:@"de" ofType:@"lproj"];
-    else if([selectedLanguage isEqualToString:@"Italian"])
-		path = [[NSBundle mainBundle] pathForResource:@"it" ofType:@"lproj"];
-    else
-        path = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"];
-    
-	NSBundle* languageBundle = [NSBundle bundleWithPath:path];
-	NSString* str=[languageBundle localizedStringForKey:key value:@"" table:nil];
-	return str;
-}
 
 
 @end

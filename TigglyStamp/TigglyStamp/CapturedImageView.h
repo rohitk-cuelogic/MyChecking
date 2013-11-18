@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KTViewController.h"
 #import "GestureConfirmationView.h"
 #import "TDSignatureView.h"
 

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KTViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import "TConstant.h"
 
 
@@ -22,7 +22,7 @@
 #endif
 
 
-@interface IntroScreenViewController:KTViewController<UIPopoverControllerDelegate> {
+@interface IntroScreenViewController:UIViewController<UIPopoverControllerDelegate> {
 
     BOOL isLanguageScreenDisplayed;
     IBOutlet UILabel *lblWithoutShape;

@@ -21,15 +21,14 @@
 
 @implementation AppDelegate
 @synthesize navController;
-@synthesize allFiles;
 
 /******* Set your tracking ID here *******/
 static NSString *const kTrackingId =   @"UA-43978705-5";
 static NSString *const kAllowTracking = @"allowTracking";
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    DebugLog(@"");
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.viewController =[[IntroScreenViewController alloc]initWithNibName:@"IntroScreenViewController" bundle:nil];
     self.navController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
@@ -38,9 +37,7 @@ static NSString *const kAllowTracking = @"allowTracking";
     
     [self.window makeKeyAndVisible];
     
-    allFiles = [[TigglyStampUtils sharedInstance]getAllImagesAndMovies];
-    DebugLog(@"AllFilesCount : %d",allFiles.count);
-    
+   
 #ifdef GOOGLE_ANALYTICS_START
     [[GAI sharedInstance] trackerWithName:@"iOSTigglyStamp"
                                trackingId:kTrackingId];
@@ -52,8 +49,6 @@ static NSString *const kAllowTracking = @"allowTracking";
                                              value:nil] build];
     [[GAI sharedInstance].defaultTracker send:event];
     [[GAI sharedInstance] dispatch];
-#else
-    
 #endif
 
     

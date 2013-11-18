@@ -10,6 +10,8 @@
 #import "TigglyStampUtils.h"
 
 @implementation WinterScene
+
+
 @synthesize winterSquareObjects,winterTriangleObjects,winterCircleObjects,winterStarObjects,winterObjectWithShapes,delegate;
 
 @synthesize presentBoxShapeArray,cupShapeArray,sledShapeArray,chooShapeArray,fireplaceShapeArray,green_sweaterShapeArray,ornamentShapeArray,pink_hatShapeArray,
@@ -24,6 +26,11 @@ penguin_blueShapeArray,penguin_skateShapeArray,penguinShapeArray,snowglobeShapeA
 @synthesize chipmunkShapeArray,foxShapeArray,ornament_purpleShapeArray,snowflake_1ShapeArray,snowflake_2ShapeArray,snowflake_3ShapeArray,star_cookieShapeArray,star_cookie_2ShapeArray;
 
 int currentObject;
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Init
+#pragma mark =======================================
 
 - (id)init{
     DebugLog(@"");
@@ -132,6 +139,13 @@ int currentObject;
     }
     return self;
 }
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Helpers
+#pragma mark =======================================
+
+
 -(NSMutableArray *)shapeForObject:(NSString *)shape {
     DebugLog(@"");
     NSString *objectName = nil;
@@ -232,6 +246,12 @@ int currentObject;
     }
         
 }
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Sound Handling
+#pragma mark =======================================
+
 
 -(NSString *) getAnimalNameSoundForObject:(NSString *) winterObject{
     DebugLog(@"");

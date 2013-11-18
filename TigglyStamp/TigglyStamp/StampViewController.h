@@ -10,13 +10,14 @@
 #import "TConstant.h"
 #import "FallScene.h"
 #import "WinterScene.h"
-#import "KTViewController.h"
 #import "UITouchVerificationView.h"
 #import "IntroScreenViewController.h"
 #import "FruitView.h"
 #import "CapturedImageView.h"
 #import "ScreenCaptureView.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 #import "UIView+Genie.h"
 #import "XBCurlView.h"
 #import "XBPageCurlView.h"
@@ -25,7 +26,7 @@
 #import "TSHomeViewController.h"
 #import "ImageAnimatorView.h"
 
-@interface StampViewController : KTViewController<UITouchVerificationViewDelegate,ShapeToDrawProtocol,FruitViewProtocol,AVAudioRecorderDelegate,CapturedImageViewDelegate,ScreenCaptureViewDelegate,FallSceneShapeToDrawProtocol,PhysicalShapeViewProtocol,XBPageCurlViewDelegate>{
+@interface StampViewController : UIViewController<UITouchVerificationViewDelegate,ShapeToDrawProtocol,FruitViewProtocol,AVAudioRecorderDelegate,CapturedImageViewDelegate,ScreenCaptureViewDelegate,FallSceneShapeToDrawProtocol,PhysicalShapeViewProtocol,XBPageCurlViewDelegate,MFMailComposeViewControllerDelegate>{
    
     WinterScene *winterSceneObject;
     FallScene *fallSceneObject;

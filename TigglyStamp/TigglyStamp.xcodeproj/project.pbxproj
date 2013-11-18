@@ -1179,7 +1179,6 @@
 		EB6F336E17818C5400FC479F /* triangle2Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F336B17818C5400FC479F /* triangle2Data.plist */; };
 		EB6F336F17818C5400FC479F /* triangleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F336C17818C5400FC479F /* triangleData.plist */; };
 		EB6F337017818C5400FC479F /* triangleData3.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F336D17818C5400FC479F /* triangleData3.plist */; };
-		EB6F33831781977200FC479F /* KTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F337417818CED00FC479F /* KTViewController.m */; };
 		EB6F3386178198B700FC479F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6F3385178198B700FC479F /* AudioToolbox.framework */; };
 		EB6F3388178198BC00FC479F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6F3387178198BC00FC479F /* AVFoundation.framework */; };
 		EB6F338A178198D500FC479F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6F3389178198D500FC479F /* QuartzCore.framework */; };
@@ -1188,7 +1187,6 @@
 		EB6F33971781AB4B00FC479F /* UITouchVerificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F337E17818CED00FC479F /* UITouchVerificationView.m */; };
 		EB6F339B1781AD6300FC479F /* UITouchRecognizerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F337A17818CED00FC479F /* UITouchRecognizerView.m */; };
 		EB6F339C1781AD6800FC479F /* UITouchGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F337817818CED00FC479F /* UITouchGroup.m */; };
-		EB6F339D1781AD6E00FC479F /* MacroMite.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F337617818CED00FC479F /* MacroMite.m */; };
 		EB6F339E1781AD7100FC479F /* CALayer+CALayer_Fade.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F337217818CAE00FC479F /* CALayer+CALayer_Fade.m */; };
 		EB6F33A11781B8CA00FC479F /* WinterScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F33A01781B8CA00FC479F /* WinterScene.m */; };
 		EBE3BBB21797CBB20089D4A7 /* sled.png in Resources */ = {isa = PBXBuildFile; fileRef = EBE3BBAF1797CBB20089D4A7 /* sled.png */; };
@@ -1515,7 +1513,6 @@
 		631A51F717EB2FC900D88E2C /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = GoogleAnalyticLibrary/GAILogger.h; sourceTree = "<group>"; };
 		631A51F817EB2FC900D88E2C /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = GoogleAnalyticLibrary/GAITrackedViewController.h; sourceTree = "<group>"; };
 		631A51F917EB2FC900D88E2C /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = GoogleAnalyticLibrary/GAITracker.h; sourceTree = "<group>"; };
-		631A51FA17EB2FC900D88E2C /* libGoogleAnalytics_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics_debug.a; path = GoogleAnalyticLibrary/libGoogleAnalytics_debug.a; sourceTree = "<group>"; };
 		6354DFB217CF549400DDFD67 /* CakeCandle1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle1.mp3; sourceTree = "<group>"; };
 		6354DFB317CF549400DDFD67 /* CakeCandle2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle2.mp3; sourceTree = "<group>"; };
 		6354DFB417CF549400DDFD67 /* CakeCandle3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CakeCandle3.mp3; sourceTree = "<group>"; };
@@ -2502,10 +2499,6 @@
 		EB6F336D17818C5400FC479F /* triangleData3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = triangleData3.plist; sourceTree = "<group>"; };
 		EB6F337117818CAE00FC479F /* CALayer+CALayer_Fade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+CALayer_Fade.h"; sourceTree = "<group>"; };
 		EB6F337217818CAE00FC479F /* CALayer+CALayer_Fade.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+CALayer_Fade.m"; sourceTree = "<group>"; };
-		EB6F337317818CED00FC479F /* KTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KTViewController.h; sourceTree = "<group>"; };
-		EB6F337417818CED00FC479F /* KTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KTViewController.m; sourceTree = "<group>"; };
-		EB6F337517818CED00FC479F /* MacroMite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroMite.h; sourceTree = "<group>"; };
-		EB6F337617818CED00FC479F /* MacroMite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MacroMite.m; sourceTree = "<group>"; };
 		EB6F337717818CED00FC479F /* UITouchGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITouchGroup.h; sourceTree = "<group>"; };
 		EB6F337817818CED00FC479F /* UITouchGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITouchGroup.m; sourceTree = "<group>"; };
 		EB6F337917818CED00FC479F /* UITouchRecognizerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITouchRecognizerView.h; sourceTree = "<group>"; };
@@ -2884,7 +2877,6 @@
 				631A51F717EB2FC900D88E2C /* GAILogger.h */,
 				631A51F817EB2FC900D88E2C /* GAITrackedViewController.h */,
 				631A51F917EB2FC900D88E2C /* GAITracker.h */,
-				631A51FA17EB2FC900D88E2C /* libGoogleAnalytics_debug.a */,
 			);
 			name = GoogleAnalyticLibrary;
 			path = TigglyStamp;
@@ -4030,6 +4022,8 @@
 				EB6F33341781867900FC479F /* AppDelegate.m */,
 				EBEDE48817951667002151E5 /* TigglyStampUtils.h */,
 				EBEDE48917951667002151E5 /* TigglyStampUtils.m */,
+				C060B41D17CDF643000AD202 /* TDSoundManager.h */,
+				C060B41E17CDF643000AD202 /* TDSoundManager.m */,
 				EB6F339F1781B8C900FC479F /* WinterScene.h */,
 				EB6F33A01781B8CA00FC479F /* WinterScene.m */,
 				C08291AE17A79D580023F08A /* FallScene.h */,
@@ -4049,8 +4043,6 @@
 				C0D8B04718043B490096448B /* TDSignatureView.m */,
 				63CEE1B317A1228B0060DC42 /* CapturedImageView.h */,
 				63CEE1B417A1228B0060DC42 /* CapturedImageView.m */,
-				C060B41D17CDF643000AD202 /* TDSoundManager.h */,
-				C060B41E17CDF643000AD202 /* TDSoundManager.m */,
 				C00B875917AA33E500823454 /* ThumbnailView.h */,
 				C00B875A17AA33E500823454 /* ThumbnailView.m */,
 				63019DD017A2AA4B005B8CA3 /* TSThumbnailEditController.h */,
@@ -4114,11 +4106,6 @@
 			children = (
 				EB6F337117818CAE00FC479F /* CALayer+CALayer_Fade.h */,
 				EB6F337217818CAE00FC479F /* CALayer+CALayer_Fade.m */,
-				EB6F336B17818C5400FC479F /* triangle2Data.plist */,
-				EB6F337317818CED00FC479F /* KTViewController.h */,
-				EB6F337417818CED00FC479F /* KTViewController.m */,
-				EB6F337517818CED00FC479F /* MacroMite.h */,
-				EB6F337617818CED00FC479F /* MacroMite.m */,
 				EB6F337717818CED00FC479F /* UITouchGroup.h */,
 				EB6F337817818CED00FC479F /* UITouchGroup.m */,
 				EB6F337917818CED00FC479F /* UITouchRecognizerView.h */,
@@ -4127,6 +4114,7 @@
 				EB6F337C17818CED00FC479F /* UITouchShapeRecognizer.m */,
 				EB6F337D17818CED00FC479F /* UITouchVerificationView.h */,
 				EB6F337E17818CED00FC479F /* UITouchVerificationView.m */,
+				EB6F336B17818C5400FC479F /* triangle2Data.plist */,
 				EB6F336C17818C5400FC479F /* triangleData.plist */,
 				EB6F336D17818C5400FC479F /* triangleData3.plist */,
 				EB6F336117818C1200FC479F /* star5Data.plist */,
@@ -5597,12 +5585,10 @@
 				EB6F33311781867900FC479F /* main.m in Sources */,
 				EB6F33351781867900FC479F /* AppDelegate.m in Sources */,
 				EB6F33501781879100FC479F /* IntroScreenViewController.m in Sources */,
-				EB6F33831781977200FC479F /* KTViewController.m in Sources */,
 				EB6F33961781AB4700FC479F /* UITouchShapeRecognizer.m in Sources */,
 				EB6F33971781AB4B00FC479F /* UITouchVerificationView.m in Sources */,
 				EB6F339B1781AD6300FC479F /* UITouchRecognizerView.m in Sources */,
 				EB6F339C1781AD6800FC479F /* UITouchGroup.m in Sources */,
-				EB6F339D1781AD6E00FC479F /* MacroMite.m in Sources */,
 				EB6F339E1781AD7100FC479F /* CALayer+CALayer_Fade.m in Sources */,
 				EB6F33A11781B8CA00FC479F /* WinterScene.m in Sources */,
 				EBF42C96178A9480004FECEE /* FruitView.m in Sources */,

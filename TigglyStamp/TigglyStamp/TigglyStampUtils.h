@@ -27,17 +27,6 @@
 - (NSString *) getDocumentDirPath;
 - (NSArray *) getAllImagesAndMovies;
 
-//for writing csv for keys
--(BOOL)getDebugModeForWriteKeyInCsvOn;
--(void)setDebugModeForWriteKeyInCsvOn:(BOOL) isOn;
--(void) saveCSVFileData;
--(void) deleteCSVFile;
--(void)appendKeyDatatoString:(NSString *)str;
--(BOOL) isMailSupported;
--(NSString *)getCsvKeys;
--(BOOL)getSendMailOn;
--(void)setSendMailOn:(BOOL) isOn;
-
 -(ShapeType)getCurrentSahpeForStoringKeys;
 -(void)setCurrentSahpeForStoringKeys:(ShapeType)sType;
 
@@ -61,5 +50,16 @@
 
 -(UIImage *) getMovieImageForMovieName:(NSString *) moviePath;
 -(NSString *) getMovieImagePathForMovieName:(NSString *) moviePath;
+
+//for writing csv for keys
+-(BOOL)getDebugModeForWriteKeyInCsvOn;
+-(void)setDebugModeForWriteKeyInCsvOn:(BOOL) isOn;
+-(void) saveCSVFileData;
+-(void) deleteCSVFile;
+-(void)appendKeyDatatoString:(NSString *)str;
+-(BOOL) isMailSupported;
+-(NSString *)getCsvKeys;
+-(BOOL)getSendMailOn;
+-(void)setSendMailOn:(BOOL) isOn;
 
 @end

@@ -15,7 +15,6 @@
 //#define TEST_MODE 1
 
 
-
 #ifdef IS_RUN_ON_SIMULATOR
 #else
 #define GOOGLE_ANALYTICS_START
@@ -32,28 +31,19 @@
 #define APP_FONT_BOLD @"Rockwell-Bold"
 #define APP_FONT_BOLD_ITALIC @"Rockwell-BoldItalic"
 
-#define SPEED_TIME_EASY 12
-#define SPEED_TIME_MEDIUM 8
-#define SPEED_TIME_HARD 4
 #define RECT_THUMBNAIL_EDITOR_FRAME CGRectMake(0, 0, 800, 600)
 #define RECT_MAIN_SCREEN_FRAME CGRectMake(0, 0, 1000, 750)
 
 #define RECT_THUMBNAIL_FRAME CGRectMake(0, 0, 230, 180)
 #define RECT_ACTUAL_THUMBNAIL_IMAGE_FRAME CGRectMake(0, 0, 230, 180)
 
-
-
-// Setting screen 
+// Setting screen
 #define LANGUAGE_SELECTED @"language"
 #define MUSIC @"music"
 #define SAVE_ART @"saveArt"
 #define LIMIT_GALLERY @"limitGallery"
 #define IS_WITH_SHAPE @"withShape"
 #define IS_UNLOCKED_FOR_SHAPES @"unlockedForShapes"
-
-// Twitter Tokens
-#define kOAuthConsumerKey           @"M3Nq5aWit1KMvxMiK3Vng"
-#define kOAuthConsumerSecret		@"4MhzodK7wiAves9vWFn4qbWIQX77lwS2fkajlJVqNmY"
 
 //page curl
 #define INT_X_LIMIT_TO_FULL_CURL 512
@@ -81,10 +71,12 @@ typedef enum {
     kShapeTypeSquare    
 } ShapeType;
 
+
 typedef enum {
     kSceneWinter,
     kSceneFall    
 } SceneType;
+
 
 typedef enum {
         kScreenEntryFromHomeView,

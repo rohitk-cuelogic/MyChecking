@@ -2287,6 +2287,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     
 }
+
 -(void) playRandomPraiseSound{
     DebugLog(@"");
     // playing sound praise sound randomly

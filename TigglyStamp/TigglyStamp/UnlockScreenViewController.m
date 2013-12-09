@@ -15,6 +15,8 @@
 #define INSTRUCTION_TEXT2 @"Congratulations! You unlocked the full version of Tiggly Stamp. To play the app without the shapes, you can change the settings in parents section."
 #define INSTRUCTION_RESTART @"Restart..."
 
+#define MAX_ITERATION 4
+
 @interface UnlockScreenViewController ()
 
 @end
@@ -38,7 +40,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        totalShapes = 4;
+        totalShapes = MAX_ITERATION;
         shapeCount = 0;
         countShapeSound = 1;
         
@@ -264,7 +266,9 @@
             }
     }
     
-    if(shapeCount == 4){
+//    prompt = @"triangle";
+    
+    if(shapeCount == MAX_ITERATION){
         prompt = @"tick_mark";
         promtView = [[UIImageView alloc] initWithFrame:CGRectMake(215,240,400, 400)];
         promtView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",prompt]];
@@ -309,7 +313,7 @@
             NSString *strStat = [NSString stringWithFormat: [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kMatchedOutOfText"],shapeCount];
             lblRemainingShapes.text = strStat;
             
-            if(shapeCount == 4) {
+            if(shapeCount == MAX_ITERATION) {
                 lblInstructionText.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kCongratulationsText"];
                 
                 [self setUnlockStatus];
@@ -326,9 +330,9 @@
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
 
-                    if(shapeCount < 4){
+                    if(shapeCount < MAX_ITERATION){
                         [self displayPrompt];
-                    }else if (shapeCount == 4){
+                    }else if (shapeCount == MAX_ITERATION){
                         [self displayPrompt];
                     }
 

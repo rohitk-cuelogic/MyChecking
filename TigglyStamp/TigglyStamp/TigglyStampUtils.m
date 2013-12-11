@@ -757,6 +757,21 @@ static TigglyStampUtils *sharedInstance = nil;
     return directoryContents.count;
 }
 
+#pragma mark -
+#pragma mark =======================================
+#pragma mark- Get Device ID
+#pragma mark =======================================
 
+-(NSString *) getDeviceIDMacAddres{
+    DebugLog(@"");
+    NSString *_deviceID;
+    
+    _deviceID =[NSString stringWithFormat:@"%@",
+                [[UIDevice currentDevice] uniqueDeviceIdentifier]];
+    
+    DebugLog(@"DeviceID New %@", _deviceID);
+    
+    return _deviceID;
+}
 
 @end

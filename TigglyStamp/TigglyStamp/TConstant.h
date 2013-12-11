@@ -63,6 +63,26 @@
 #define STR_WITH_BORDER @"Border"
 #define STR_WITH_MOVIE_BORDER @"BorderMovie"
 
+#define APPLICATION_NAME @"Tiggly Stamp"
+
+//Web Services
+#define APP_NAME @"stamp"
+#define REQUEST_ARRAY @"RequestArray"
+#define SERVICE_MAIN_URL @"http://www.cuelogic.co.in/projects/tiggly_web/manageapi?"
+#define SERVICE_URL @"http://www.cuelogic.co.in/projects/tiggly_web/manageapi?f=tig."
+#define SERVICE_URL_PART @"&u=42a6787c06386024958742c737a1bd56&p="
+
+//Web Service names
+#define SERVICE_NAME_SUBSCRIPTION @"subscribe"
+#define SERVICE_URL_SET_DEVICEPROFILE @"setDeviceProfile"
+#define SERVICE_URL_SET_BEHAVIOURCOUNT @"setBehaviourCount"
+#define SERVICE_URL_SHAPEDRAW @"shapeDraw"
+#define SERVICE_URL_NEWSFEED_COUNT @"getUserNewsCount"
+#define SERVICE_URL_NEWSFEED @"newsFeed"
+#define SERVICE_URL_SESSIONDETAILS @"sessionDetails"
+
+#define MAX_QUEUE_COUNT   50
+
 //Do not change the sequence
 typedef enum {
     kShapeTypeCircle,

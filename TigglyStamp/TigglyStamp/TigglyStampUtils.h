@@ -11,6 +11,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "TSTempData.h"
+#import "UIDevice+IdentifierAddition.h"
 
 @interface TigglyStampUtils : NSObject{
     NSMutableString *strCsvKyes;
@@ -61,5 +62,6 @@
 -(NSString *)getCsvKeys;
 -(BOOL)getSendMailOn;
 -(void)setSendMailOn:(BOOL) isOn;
+-(NSString *) getDeviceIDMacAddres;
 
 @end

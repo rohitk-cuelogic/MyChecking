@@ -805,7 +805,7 @@ static TigglyStampUtils *sharedInstance = nil;
     NSString *_deviceID;
     
     _deviceID =[NSString stringWithFormat:@"%@",
-                [[UIDevice currentDevice] uniqueDeviceIdentifier]];
+                [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]];
     
     DebugLog(@"DeviceID New %@", _deviceID);
     

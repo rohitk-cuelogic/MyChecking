@@ -260,9 +260,7 @@
         DebugLog(@"Imaged saved successfully");
     else
         DebugLog(@"Failed to save the image");
-        
-  
-    
+    SavedImageName = imgName;
 }
 
 -(void) saveImageOrVideoToAlbum {
@@ -421,33 +419,39 @@
 #endif
 
 
-    lblImageSaved = [[UILabel alloc] initWithFrame:CGRectMake(400, 91,  225, 50)];
-    lblImageSaved.backgroundColor = [UIColor whiteColor];
-    lblImageSaved.layer.cornerRadius = 13.0f;
-    lblImageSaved.layer.masksToBounds = YES;
-    lblImageSaved.layer.borderColor =  [UIColor blackColor].CGColor;
-    lblImageSaved.layer.borderWidth = 1.0f;
-    lblImageSaved.textAlignment = UITextAlignmentCenter;
-    float fontSize = 0.0;
-    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
-        fontSize = 16.0f;
-    }else{
-        fontSize = 20.0f;
-    }
-    lblImageSaved.font = [UIFont fontWithName:APP_FONT size:fontSize];
-    
-    
-    [self addSubview:lblImageSaved];
-    
-    [self saveImageOrVideoToAlbum];
+//    lblImageSaved = [[UILabel alloc] initWithFrame:CGRectMake(400, 91,  225, 50)];
+//    lblImageSaved.backgroundColor = [UIColor whiteColor];
+//    lblImageSaved.layer.cornerRadius = 13.0f;
+//    lblImageSaved.layer.masksToBounds = YES;
+//    lblImageSaved.layer.borderColor =  [UIColor blackColor].CGColor;
+//    lblImageSaved.layer.borderWidth = 1.0f;
+//    lblImageSaved.textAlignment = UITextAlignmentCenter;
+//    float fontSize = 0.0;
+//    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
+//        fontSize = 16.0f;
+//    }else{
+//        fontSize = 20.0f;
+//    }
+//    lblImageSaved.font = [UIFont fontWithName:APP_FONT size:fontSize];
+//    
+//    
+//    [self addSubview:lblImageSaved];
 
-    [UIView animateWithDuration:3.0
-                     animations:^{
-                         lblImageSaved.alpha = 0;
-                     }
-                     completion:^(BOOL finished){
-                         [lblImageSaved removeFromSuperview];
-    }];
+    if(isVideoImage){
+        [self saveImageOrVideoToAlbum];
+    }else{
+        [self saveImageToDisk];
+        [delegate onSendButton:self withImageName:SavedImageName];
+    }
+    
+
+//    [UIView animateWithDuration:3.0
+//                     animations:^{
+//                         lblImageSaved.alpha = 0;
+//                     }
+//                     completion:^(BOOL finished){
+//                         [lblImageSaved removeFromSuperview];
+//    }];
 
 }
 

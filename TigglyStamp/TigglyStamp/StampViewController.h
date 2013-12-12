@@ -26,7 +26,15 @@
 #import "TSHomeViewController.h"
 #import "ImageAnimatorView.h"
 
-@interface StampViewController : UIViewController<UITouchVerificationViewDelegate,ShapeToDrawProtocol,FruitViewProtocol,AVAudioRecorderDelegate,CapturedImageViewDelegate,ScreenCaptureViewDelegate,FallSceneShapeToDrawProtocol,PhysicalShapeViewProtocol,XBPageCurlViewDelegate,MFMailComposeViewControllerDelegate>{
+#import "FBConnect.h"
+#import "Facebook.h"
+
+#import <Twitter/Twitter.h>
+#import <Accounts/Accounts.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+
+@interface StampViewController : UIViewController<UITouchVerificationViewDelegate,ShapeToDrawProtocol,FruitViewProtocol,AVAudioRecorderDelegate,CapturedImageViewDelegate,ScreenCaptureViewDelegate,FallSceneShapeToDrawProtocol,PhysicalShapeViewProtocol,XBPageCurlViewDelegate,MFMailComposeViewControllerDelegate,FBSessionDelegate, FBRequestDelegate, FBDialogDelegate>{
    
     WinterScene *winterSceneObject;
     FallScene *fallSceneObject;
@@ -68,6 +76,17 @@
     NSMutableArray *arrRainbowImages;
     BOOL isRainbowMusicStarted;
     
+    
+    IBOutlet UIView *viewSharingButtons;
+    IBOutlet UIButton *btnFacebook;
+    IBOutlet UIButton *btnTwitter;
+    IBOutlet UIButton *btnPinterest;
+    IBOutlet UIButton *btnAirdrop;
+    IBOutlet UIButton *btnSave;
+    IBOutlet UIButton *btnMail;
+    MFMailComposeViewController *mailsend;
+    
+    
     ImageAnimatorView *rainbowAnimationView;
 }
 
@@ -106,5 +125,17 @@
 -(IBAction)onHomeButton:(id)sender;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withSceneType:(SceneType) scene withHomeView:(TSHomeViewController *) homeView;
+
+
+-(IBAction)actionFacebook:(id)sender;
+-(IBAction)actionTwitter:(id)sender;
+-(IBAction)actionPinterest:(id)sender;
+-(IBAction)actionAirdrop:(id)sender;
+-(IBAction)actionSaveToGallery:(id)sender;
+-(IBAction)actionSendMail:(id)sender;
+-(IBAction)actionClose:(id)sender;
+
+@property (retain, strong) Facebook *facebook;
+@property (retain, strong) NSArray *permissions;
 
 @end

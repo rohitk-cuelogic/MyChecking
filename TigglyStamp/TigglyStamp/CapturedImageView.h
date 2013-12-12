@@ -30,7 +30,7 @@
 -(void) onNextButtonClicked:(CapturedImageView *)cImageView;
 -(void) onHomeButtonClicked:(CapturedImageView *)cImageView;
 -(void) onPlayButtonClicked:(CapturedImageView *)cImageView;
--(void) onSendButton:(CapturedImageView *)cImageView;
+-(void) onSendButton:(CapturedImageView *)cImageView withImageName:(NSString *)imgName ;
 
 @end
 
@@ -52,6 +52,8 @@
     BOOL isVideoImage;
     NSString *moviePngName;
     UIImage *imgToSave;
+    
+    NSString *SavedImageName;
 }
 @property(nonatomic,strong) id<CapturedImageViewDelegate>delegate;
 @property (nonatomic,strong) UIImageView *imageView;

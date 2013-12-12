@@ -93,23 +93,35 @@
             btnColorSplash.alpha = 0.0;
             
             viewForSign = [[TDSignatureView alloc] initWithFrame:CGRectMake(200, 530, 480, 100)];
+            viewForSign.multipleTouchEnabled = YES;
+             viewForSign.multipleTouchEnabled = YES;
             viewForSign.delegate = self;
             [viewForPreview addSubview:viewForSign];
             [self bringSubviewToFront:viewForSign];
             
             colorCnt = 0;
             
+//            //red, yellow, blue, green, orange, purple
+//            colorArray = [[NSMutableArray alloc] initWithObjects:
+//                          [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0],
+//                          [UIColor colorWithRed:1.0  green:176.0/255.0  blue:22.0/255.0 alpha:1.0],
+//                          [UIColor colorWithRed:96.0/255.0  green:170.0/255.0  blue:0.0 alpha:1.0],
+//                          [UIColor colorWithRed:131.0/255.0  green:48.0/255.0  blue:185.0/255.0 alpha:1.0],
+//                          [UIColor colorWithRed:208.0/255.0  green:48.0/255.0  blue:31.0/255.0 alpha:1.0],
+//                          [UIColor colorWithRed:240.0/255.0  green:221.0/255.0  blue:11.0/255.0 alpha:1.0],
+//                          [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0],
+//                          nil];
+
             //red, yellow, blue, green, orange, purple
             colorArray = [[NSMutableArray alloc] initWithObjects:
                           [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0],
                           [UIColor colorWithRed:1.0  green:176.0/255.0  blue:22.0/255.0 alpha:1.0],
                           [UIColor colorWithRed:96.0/255.0  green:170.0/255.0  blue:0.0 alpha:1.0],
                           [UIColor colorWithRed:131.0/255.0  green:48.0/255.0  blue:185.0/255.0 alpha:1.0],
-                          [UIColor colorWithRed:208.0/255.0  green:48.0/255.0  blue:31.0/255.0 alpha:1.0],
                           [UIColor colorWithRed:240.0/255.0  green:221.0/255.0  blue:11.0/255.0 alpha:1.0],
+                          [UIColor colorWithRed:208.0/255.0  green:48.0/255.0  blue:31.0/255.0 alpha:1.0],
                           [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0],
                           nil];
-
             
         }else{
            //Its a image
@@ -171,14 +183,23 @@
             
             colorCnt = 0;
             
-            //red, yellow, blue, green, orange, purple
+//            //red, yellow, blue, green, orange, purple
+//            colorArray = [[NSMutableArray alloc] initWithObjects:
+//                          [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0],
+//                          [UIColor colorWithRed:1.0  green:176.0/255.0  blue:22.0/255.0 alpha:1.0],
+//                          [UIColor colorWithRed:96.0/255.0  green:170.0/255.0  blue:0.0 alpha:1.0],
+//                          [UIColor colorWithRed:131.0/255.0  green:48.0/255.0  blue:185.0/255.0 alpha:1.0],
+//                          [UIColor colorWithRed:208.0/255.0  green:48.0/255.0  blue:31.0/255.0 alpha:1.0],
+//                          [UIColor colorWithRed:240.0/255.0  green:221.0/255.0  blue:11.0/255.0 alpha:1.0],
+//                          [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0],
+//                          nil];
             colorArray = [[NSMutableArray alloc] initWithObjects:
                           [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0],
                           [UIColor colorWithRed:1.0  green:176.0/255.0  blue:22.0/255.0 alpha:1.0],
                           [UIColor colorWithRed:96.0/255.0  green:170.0/255.0  blue:0.0 alpha:1.0],
                           [UIColor colorWithRed:131.0/255.0  green:48.0/255.0  blue:185.0/255.0 alpha:1.0],
-                          [UIColor colorWithRed:208.0/255.0  green:48.0/255.0  blue:31.0/255.0 alpha:1.0],
                           [UIColor colorWithRed:240.0/255.0  green:221.0/255.0  blue:11.0/255.0 alpha:1.0],
+                          [UIColor colorWithRed:208.0/255.0  green:48.0/255.0  blue:31.0/255.0 alpha:1.0],
                           [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0],
                           nil];
             

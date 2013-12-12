@@ -153,7 +153,7 @@ int previousTouchCount = 0;
         UITouchGroup *tg = [[UITouchGroup alloc]init];
         [touchGroups addObject:tg];
     }
-    if([[self platform] isEqualToString:@"iPad2,5"]){
+    if([[self platform] isEqualToString:@"iPad2,5"]||[[self platform] isEqualToString:@"iPad2,6"]||[[self platform] isEqualToString:@"iPad2,7"]||[[self platform] isEqualToString:@"iPad4,4"]||[[self platform] isEqualToString:@"iPad4,5"]){
         scale = 0.8;
     }
     shapeDicionary = [[NSMutableDictionary alloc]init];

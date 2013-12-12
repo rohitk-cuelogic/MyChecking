@@ -1233,7 +1233,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         
         SLComposeViewController *mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         
-        [mySLComposerSheet setInitialText:@"My kid is loving #TigglyDraw. Check their master piece @Tiggly: the first iPad toy for toddlers"];
+        [mySLComposerSheet setInitialText:@"My kid is loving #TigglyStamp. Check their master piece @Tiggly: the first iPad toy for toddlers"];
         
         UIImage *originalImage = [UIImage imageWithContentsOfFile:currentImagePath];
         
@@ -1270,7 +1270,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     TWTweetComposeViewController *twitter = [[TWTweetComposeViewController alloc] init];
     
-    [twitter setInitialText:@"My kid is loving #TigglyDraw. Check their master piece @TigglyKids"];
+    [twitter setInitialText:@"My kid is loving #TigglyStamp. Check their master piece @TigglyKids"];
     [twitter addImage:originalImage];
     
     [self presentViewController:twitter animated:YES completion:nil];
@@ -1343,7 +1343,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         [mailsend setSubject: @"My masterpiece" ];//@" Exciting App \"Tiggly Christmas \""];
         
         // Attach an image to the email
-        NSString *fileName = @"Tiggly Draw artwork";
+        NSString *fileName = @"Tiggly Stamp artwork";
         fileName = [fileName stringByAppendingPathExtension:@"jpg"];
         
         NSData *myData = UIImageJPEGRepresentation(originalImage, 1.0);
@@ -1351,7 +1351,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         [mailsend addAttachmentData:myData mimeType:@"image/jpeg" fileName:fileName];
         
         // Fill out the email body text
-        NSString *emailBody = [NSString stringWithFormat:@"%@ %@ %@",@"I created this masterpiece with Tiggly Draw.",@"Check it out at",@"www.tiggly.com"];
+        NSString *emailBody = [NSString stringWithFormat:@"%@ %@ %@",@"I created this masterpiece with Tiggly Stamp.",@"Check it out at",@"www.tiggly.com"];
         [mailsend setMessageBody:emailBody isHTML:NO];
         [self presentModalViewController:mailsend animated:YES];
     }
@@ -1456,8 +1456,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     NSData *imageDate = UIImagePNGRepresentation(originalImage);
     
     [params1 setObject:imageDate forKey:@"source"];
-    [params1 setObject:@"post from Tiggly Application" forKey:@"message"];
-    [params1 setObject:@"Tiggly Draw" forKey:@"name"];
+    [params1 setObject:@"My kid is loving #TigglyStamp. Check their master piece @Tiggly: the first iPad toy for toddlers" forKey:@"message"];
+    [params1 setObject:@"Tiggly Stamp" forKey:@"name"];
     
     NSString *post=@"/me/photos";
     [facebook requestWithGraphPath:post andParams:params1 andHttpMethod:@"POST" andDelegate:self];

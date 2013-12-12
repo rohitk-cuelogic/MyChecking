@@ -951,7 +951,7 @@
         
         SLComposeViewController *mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         
-        [mySLComposerSheet setInitialText:@"My kid is loving #TigglyDraw. Check their master piece @Tiggly: the first iPad toy for toddlers"];
+        [mySLComposerSheet setInitialText:@"My kid is loving #TigglyStamp. Check their master piece @Tiggly: the first iPad toy for toddlers"];
         
         UIImage *originalImage = [UIImage imageWithContentsOfFile:currentImagePath];
         
@@ -988,7 +988,7 @@
     
     TWTweetComposeViewController *twitter = [[TWTweetComposeViewController alloc] init];
     
-    [twitter setInitialText:@"My kid is loving #TigglyDraw. Check their master piece @TigglyKids"];
+    [twitter setInitialText:@"My kid is loving #TigglyStamp. Check their master piece @TigglyKids"];
     [twitter addImage:originalImage];
     
     [self presentViewController:twitter animated:YES completion:nil];
@@ -1061,7 +1061,7 @@
         [mailsend setSubject: @"My masterpiece" ];//@" Exciting App \"Tiggly Christmas \""];
         
         // Attach an image to the email
-        NSString *fileName = @"Tiggly Draw artwork";
+        NSString *fileName = @"Tiggly Stamp artwork";
         fileName = [fileName stringByAppendingPathExtension:@"jpg"];
         
         NSData *myData = UIImageJPEGRepresentation(originalImage, 1.0);
@@ -1069,7 +1069,7 @@
         [mailsend addAttachmentData:myData mimeType:@"image/jpeg" fileName:fileName];
         
         // Fill out the email body text
-        NSString *emailBody = [NSString stringWithFormat:@"%@ %@ %@",@"I created this masterpiece with Tiggly Draw.",@"Check it out at",@"www.tiggly.com"];
+        NSString *emailBody = [NSString stringWithFormat:@"%@ %@ %@",@"I created this masterpiece with Tiggly Stamp.",@"Check it out at",@"www.tiggly.com"];
         [mailsend setMessageBody:emailBody isHTML:NO];
         [self presentModalViewController:mailsend animated:YES];
     }

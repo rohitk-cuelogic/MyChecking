@@ -63,6 +63,10 @@
 #define STR_WITH_BORDER @"Border"
 #define STR_WITH_MOVIE_BORDER @"BorderMovie"
 
+
+// Facebook sharing
+#define FACEBOOK_APP_KEY @"1384325061792521"
+
 #define APPLICATION_NAME @"Tiggly Stamp"
 
 //Web Services
@@ -82,6 +86,13 @@
 #define SERVICE_URL_SESSIONDETAILS @"sessionDetails"
 
 #define MAX_QUEUE_COUNT   50
+
+
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
 //Do not change the sequence
 typedef enum {

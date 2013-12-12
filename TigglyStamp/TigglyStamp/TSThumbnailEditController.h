@@ -15,6 +15,16 @@
 #import "TSHomeViewController.h"
 #import "GestureConfirmationView.h"
 #import "ServerController.h"
+#import "FBConnect.h"
+#import "Facebook.h"
+
+#import <Twitter/Twitter.h>
+#import <Accounts/Accounts.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+
+#import "AppDelegate.h"
+
 #ifdef GOOGLE_ANALYTICS_START
 #import "GAITrackedViewController.h"
 #import "GAI.h"
@@ -24,7 +34,7 @@
 
 #endif
 
-@interface TSThumbnailEditController : UIViewController<GestireViewProtocol>{
+@interface TSThumbnailEditController : UIViewController<GestireViewProtocol,FBSessionDelegate, FBRequestDelegate, FBDialogDelegate,MFMailComposeViewControllerDelegate>{
     IBOutlet UIButton *homeBtn;
     IBOutlet UIButton *saveImageBtn;
     IBOutlet UIButton *confirmSaveBtn;
@@ -50,6 +60,16 @@
     NSMutableArray *swipeTextArray;
     int swipeTextCnt;
     
+    IBOutlet UIView *viewSharingButtons;
+    IBOutlet UIButton *btnFacebook;
+    IBOutlet UIButton *btnTwitter;
+    IBOutlet UIButton *btnPinterest;
+    IBOutlet UIButton *btnAirdrop;
+    IBOutlet UIButton *btnSave;
+    IBOutlet UIButton *btnMail;
+    MFMailComposeViewController *mailsend;
+    
+    
     GestureConfirmationView *gestureView;
 
 }
@@ -63,5 +83,16 @@
 -(IBAction) deleteImage:(id)sender;
 -(IBAction)noConfirmation:(id)sender;
 -(IBAction)actionPlayVideo;
+
+-(IBAction)actionFacebook:(id)sender;
+-(IBAction)actionTwitter:(id)sender;
+-(IBAction)actionPinterest:(id)sender;
+-(IBAction)actionAirdrop:(id)sender;
+-(IBAction)actionSaveToGallery:(id)sender;
+-(IBAction)actionSendMail:(id)sender;
+-(IBAction)actionClose:(id)sender;
+
+@property (retain, strong) Facebook *facebook;
+@property (retain, strong) NSArray *permissions;
 
 @end

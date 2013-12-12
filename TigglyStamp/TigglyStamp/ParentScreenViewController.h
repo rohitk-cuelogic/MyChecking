@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "TConstant.h"
 #import <QuartzCore/QuartzCore.h>
-#import <FacebookSDK/FacebookSDK.h>
 #import <CFNetwork/CFNetwork.h>
 #import "TSHomeViewController.h"
 #import "SettingsView.h"
@@ -59,7 +58,6 @@ typedef enum{
     TSHomeViewController *homeViewController;
 }
 
-@property (nonatomic,strong) FBSession *activeSession;
 @property (nonatomic,strong) NSString *userFieldsRequired;
 @property (nonatomic,strong) NSArray *permissions;
 @property (nonatomic, readwrite) BOOL isConnection;

@@ -15,8 +15,12 @@
 
 @end
 
-@implementation TSThumbnailEditController
-
+@implementation TSThumbnailEditController{
+    NSString *currentImagePath;
+    BOOL isSharingViewDisplayed;
+}
+@synthesize facebook;
+@synthesize permissions;
 #pragma mark -
 #pragma mark =======================================
 #pragma mark Init
@@ -67,6 +71,8 @@
         [swipeRightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
         [editorImgView addGestureRecognizer:swipeRightGesture];
         
+        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        currentImagePath = [path stringByAppendingPathComponent:editImgName];
         
     }
     return self;
@@ -149,6 +155,14 @@
     
     confirmationView.layer.cornerRadius = 20.0f;
     confirmationView.layer.masksToBounds = YES;
+    
+    
+    
+    permissions = [NSArray arrayWithObjects:@"read_stream", @"publish_stream", nil] ;
+    
+    // Set the Facebook object we declared. We’ll use the declared object from the application
+    // delegate.
+    facebook = [[Facebook alloc] initWithAppId:FACEBOOK_APP_KEY andDelegate:self];
     
 }
 
@@ -265,16 +279,21 @@
 -(void)swippedforConfirmation{
     if(readyToSave){
         DebugLog(@"");
-        confirmSaveBtn.hidden = NO;
+        
         
         if([[editImgName pathExtension] isEqualToString:@"mov"]) {
+            confirmSaveBtn.hidden = NO;
             [confirmSaveBtn setTitle:[[TigglyStampUtils sharedInstance]getLocalisedStringForKey:@"kSaveVideo"] forState:UIControlStateNormal];
+             [self.view bringSubviewToFront:confirmSaveBtn];
         }else{
-            [confirmSaveBtn setTitle:[[TigglyStampUtils sharedInstance]getLocalisedStringForKey:@"kSaveImage"] forState:UIControlStateNormal];
+            [self displaySharingButtons];
         }
+//        else{
+//            [confirmSaveBtn setTitle:[[TigglyStampUtils sharedInstance]getLocalisedStringForKey:@"kSaveImage"] forState:UIControlStateNormal];
+//        }
         
-        [self.view bringSubviewToFront:confirmSaveBtn];
         
+    
         confirmationView.hidden = YES;
         confirmationViewBKG.hidden = YES;
         readyToSave = NO;
@@ -742,6 +761,62 @@
 }
 
 
+-(void) displaySharingButtons{
+    DebugLog(@"");
+    isSharingViewDisplayed = YES;
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    
+    NSArray *directoryContents = [fileManager contentsOfDirectoryAtPath:path error:NULL];
+    directoryContents = [[directoryContents reverseObjectEnumerator] allObjects];
+    for(NSString *file in directoryContents){
+        if([file isEqualToString:editImgName]){
+            NSString *fullPath = [path stringByAppendingPathComponent:editImgName];
+            currentImagePath = fullPath;
+            break;
+        }
+    }
+    
+    viewSharingButtons.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:viewSharingButtons];
+    [self.view bringSubviewToFront:viewSharingButtons];
+    
+    
+    NSArray *arrPlatform = [NSArray arrayWithObjects:@"iPad3,4",@"iPad2,5",@"iPad4,1",@"iPad4,2",@"iPad4,4",@"iPad4,5",@"iPhone5,1",@"iPhone5,2",@"iPhone5,3",@"iPhone5,4",@"iPhone6,1",@"iPhone6,2",nil];
+    BOOL isSupported = NO;
+    
+    for(NSString *strPlatform in arrPlatform){
+        if([[[TigglyStampUtils sharedInstance] platformString] isEqualToString:strPlatform]){
+            isSupported = YES;
+            break;
+        }
+    }
+    
+    
+    //        viewSharingButtons.frame = CGRectMake(self.view.bounds.size.width/2 - 250/2, self.view.bounds.size.height/2 - 425/2, 250, 425);
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") && isSupported) {
+        DebugLog(@"iOS version 7.0");
+        btnAirdrop.enabled = YES;
+        
+    }else{
+        btnAirdrop.enabled = NO;
+        btnAirdrop.hidden = YES;
+        
+        btnSave.frame =CGRectMake(btnTwitter.frame.origin.x,378,btnSave.frame.size.width,btnSave.frame.size.height);
+        btnMail.frame =CGRectMake(btnFacebook.frame.origin.x , btnMail.frame.origin.y,btnMail.frame.size.width,btnMail.frame.size.height);
+        
+    }
+    
+    if ([[[NSUserDefaults standardUserDefaults] valueForKey:SAVE_ART] isEqualToString:@"yes"]) {
+        btnSave.hidden = NO;
+    }else{
+        btnSave.hidden = YES;
+    }
+    
+}
+
 #pragma mark-
 #pragma mark======================
 #pragma mark IBActions
@@ -869,6 +944,298 @@
     editorImgView.userInteractionEnabled = YES;
 }
 
+
+-(IBAction)actionFacebook:(id)sender{
+    DebugLog(@"");
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
+        
+        SLComposeViewController *mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        
+        [mySLComposerSheet setInitialText:@"My kid is loving #TigglyDraw. Check their master piece @Tiggly: the first iPad toy for toddlers"];
+        
+        UIImage *originalImage = [UIImage imageWithContentsOfFile:currentImagePath];
+        
+        [mySLComposerSheet addImage:originalImage];
+        
+        [mySLComposerSheet setCompletionHandler:^(SLComposeViewControllerResult result) {
+            
+            switch (result) {
+                case SLComposeViewControllerResultCancelled:
+                    NSLog(@"Post Canceled");
+                    break;
+                case SLComposeViewControllerResultDone:
+                    NSLog(@"Post Sucessful");
+                    break;
+                    
+                default:
+                    break;
+            }
+        }];
+        
+        [self presentViewController:mySLComposerSheet animated:YES completion:nil];
+        
+    }else{
+        [self fbSessionLogout];
+        [facebook authorize:permissions];
+    }
+}
+
+-(IBAction)actionTwitter:(id)sender
+{
+    DebugLog(@"");
+    
+    UIImage *originalImage = [UIImage imageWithContentsOfFile:currentImagePath];
+    
+    TWTweetComposeViewController *twitter = [[TWTweetComposeViewController alloc] init];
+    
+    [twitter setInitialText:@"My kid is loving #TigglyDraw. Check their master piece @TigglyKids"];
+    [twitter addImage:originalImage];
+    
+    [self presentViewController:twitter animated:YES completion:nil];
+    
+    twitter.completionHandler = ^(TWTweetComposeViewControllerResult res) {
+        
+        if(res == TWTweetComposeViewControllerResultDone) {
+            
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"The Tweet has been posted successfully." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+            
+            [alert show];
+            
+        }
+        
+        [self dismissModalViewControllerAnimated:YES];
+        
+    };
+    
+}
+
+-(IBAction)actionPinterest:(id)sender{
+    DebugLog(@"");
+    
+}
+
+-(IBAction)actionAirdrop:(id)sender{
+    DebugLog(@"");
+    
+    NSURL *imageurl=[NSURL fileURLWithPath:currentImagePath];
+    NSArray *objectsToShare = @[imageurl];
+    
+    UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+    
+    
+    NSArray *excludedActivities = @[UIActivityTypePostToTwitter, UIActivityTypePostToFacebook,
+                                    UIActivityTypePostToWeibo,
+                                    UIActivityTypeMessage, UIActivityTypeMail,
+                                    UIActivityTypePrint, UIActivityTypeCopyToPasteboard,
+                                    UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll,
+                                    UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr,
+                                    UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
+    controller.excludedActivityTypes = excludedActivities;
+    
+    
+    [self presentViewController:controller animated:YES completion:nil];
+    
+
+}
+
+-(IBAction)actionSaveToGallery:(id)sender{
+    DebugLog(@"");
+    UIImage *originalImage = [UIImage imageWithContentsOfFile:currentImagePath];
+    
+    [[ServerController sharedInstance] sendEvent:@"tab_saveto_gallery" withEventValue:@"yes" withServiceName:SERVICE_URL_SET_BEHAVIOURCOUNT];
+    
+    UIImageWriteToSavedPhotosAlbum(originalImage, nil, nil, nil);
+    UIAlertView *mailAlertV=[[UIAlertView alloc]initWithTitle:@"Image Saved" message:@"Image saved successfully to photo album!!!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [mailAlertV show];
+}
+
+-(IBAction)actionSendMail:(id)sender
+{
+    DebugLog(@"");
+    
+    UIImage *originalImage = [UIImage imageWithContentsOfFile:currentImagePath];
+    if ([MFMailComposeViewController canSendMail]){
+        // Create and show composer
+        mailsend = [[MFMailComposeViewController alloc] init];
+        mailsend.mailComposeDelegate = self;
+        [mailsend setSubject: @"My masterpiece" ];//@" Exciting App \"Tiggly Christmas \""];
+        
+        // Attach an image to the email
+        NSString *fileName = @"Tiggly Draw artwork";
+        fileName = [fileName stringByAppendingPathExtension:@"jpg"];
+        
+        NSData *myData = UIImageJPEGRepresentation(originalImage, 1.0);
+        
+        [mailsend addAttachmentData:myData mimeType:@"image/jpeg" fileName:fileName];
+        
+        // Fill out the email body text
+        NSString *emailBody = [NSString stringWithFormat:@"%@ %@ %@",@"I created this masterpiece with Tiggly Draw.",@"Check it out at",@"www.tiggly.com"];
+        [mailsend setMessageBody:emailBody isHTML:NO];
+        [self presentModalViewController:mailsend animated:YES];
+    }
+    else
+    {
+        // Show some error message here
+        NSLog(@"Mail Setup Error...");
+        UIAlertView *anAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No mail account setup on device" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+        [anAlert addButtonWithTitle:@"Ok"];
+        [anAlert show];
+        
+        
+    }
+    
+}
+
+-(IBAction)actionClose:(id)sender {
+    DebugLog(@"");
+    isSharingViewDisplayed = NO;
+    [viewSharingButtons removeFromSuperview];
+}
+
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Facebook Delegates
+#pragma mark =======================================
+-(void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response {
+    NSLog(@"received response:%@",response);
+    //    NSString *requestType =[request.url stringByReplacingOccurrencesOfString:@"https://graph.facebook.com/" withString:@""];
+    //
+    //    if ([requestType isEqualToString:@"me"])
+    //    {
+    //
+    //    }
+    //    else {
+    //        UIAlertView *al = [[UIAlertView alloc] initWithTitle:APPLICATION_NAME message:@"Your message has been posted on your wall!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    //        [al show];
+    //    }
+}
+
+
+-(void)request:(FBRequest *)request didLoad:(id)result{
+    // With this method we’ll get any Facebook response in the form of an array.
+    // In this example the method will be used twice. Once to get the user’s name to
+    // when showing the welcome message and next to get the ID of the published post.
+    // Inside the result array there the data is stored as a NSDictionary.
+    if ([result isKindOfClass:[NSArray class]]) {
+        // The first object in the result is the data dictionary.
+        result = [result objectAtIndex:0];
+    }
+    
+    // Check it the “first_name” is contained into the returned data.
+    if ([result objectForKey:@"first_name"]) {
+        // If the current result contains the "first_name" key then it's the user's data that have been returned.
+        // Change the lblUser label's text.
+        // Show the publish button.
+    }
+    else if ([result objectForKey:@"id"]) {
+        // Stop showing the activity view.
+        
+        // If the result contains the "id" key then the data have been posted and the id of the published post have been returned.
+        UIAlertView *al = [[UIAlertView alloc] initWithTitle:APPLICATION_NAME message:@"Your message has been posted on your wall!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [al show];
+    }
+}
+
+/**
+ * Called when an error prevents the request from completing successfully.
+ */
+
+- (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
+    NSLog(@"Request failed with error");
+    NSLog(@"%@",[error localizedDescription]);
+    NSLog(@"Err details: %@", [error description]);
+    NSLog(@"Err details: %@",    [error userInfo]);
+    NSDictionary * codes=[error userInfo];
+    NSLog(@"codes is :%@",codes);
+    NSString * messages = [[codes valueForKey:@"error"]valueForKey:@"message"];
+    
+    NSLog(@"message is :%@",messages);
+    NSString * erro=@"";
+    if(![messages rangeOfString:@")"].location ==NSNotFound){
+        erro=[messages substringFromIndex:[messages rangeOfString:@")"].location];
+    }
+    
+    NSLog(@"FBRequest failed:request  %@ :error  %@",request.url, [error localizedRecoverySuggestion]);
+}
+
+-(void)fbDidLogin{
+    // Save the access token key info.
+    //[self saveAccessTokenKeyInfo];
+    [facebook requestWithGraphPath:@"me" andDelegate:self];
+    
+    UIImage *originalImage = [UIImage imageWithContentsOfFile:currentImagePath];
+    NSMutableDictionary *params1 = [[NSMutableDictionary alloc]init];
+    NSData *imageDate = UIImagePNGRepresentation(originalImage);
+    
+    [params1 setObject:imageDate forKey:@"source"];
+    [params1 setObject:@"post from Tiggly Application" forKey:@"message"];
+    [params1 setObject:@"Tiggly Draw" forKey:@"name"];
+    
+    NSString *post=@"/me/photos";
+    [facebook requestWithGraphPath:post andParams:params1 andHttpMethod:@"POST" andDelegate:self];
+}
+
+
+-(void)fbDidNotLogin:(BOOL)cancelled{
+    // Keep this for testing purposes.
+    //NSLog(@"Did not login");
+    
+    UIAlertView *al = [[UIAlertView alloc] initWithTitle:APPLICATION_NAME message:@"Login cancelled." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    [al show];
+}
+-(void)fbSessionLogout
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"FBAccessTokenKey"])
+    {
+        [defaults removeObjectForKey:@"FBAccessTokenKey"];
+        [defaults removeObjectForKey:@"FBExpirationDateKey"];
+        [defaults synchronize];
+    }
+    
+    // Hide the publish button.
+    
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies])
+    {
+        NSString* domainName = [cookie domain];
+        NSRange domainRange = [domainName rangeOfString:@"facebook"];
+        if(domainRange.length > 0)
+        {
+            [storage deleteCookie:cookie];
+        }
+    }
+}
+
+
+
+-(void) fbDidLogout{
+    DebugLog(@"");
+}
+
+-(void) fbSessionInvalidated{
+    DebugLog(@"");
+}
+
+-(void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
+    DebugLog(@"");
+}
+
+#pragma mark MFMailComposeViewControllerDelegate...
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+	NSLog(@"Mail delegate...");
+	[self dismissModalViewControllerAnimated:YES];
+	
+	if(result==MFMailComposeResultSent)
+	{
+		UIAlertView *mailAlertV=[[UIAlertView alloc]initWithTitle:@"E-Mail Sent" message:@"Your mail has been sent successfully!!!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[mailAlertV show];
+	}
+}
 
 #pragma mark ===========================================
 #pragma mark - play sounds

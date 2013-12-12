@@ -38,7 +38,6 @@
 @synthesize confSubView;
 @synthesize emailidTextField;
 @synthesize nameTextField;
-@synthesize activeSession;
 @synthesize userFieldsRequired;
 @synthesize permissions;
 @synthesize tabInforSCROLL;

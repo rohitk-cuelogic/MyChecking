@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -7,6 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TSThumbnailEditController">
             <connections>
+                <outlet property="btnAirdrop" destination="ASz-XC-Ixo" id="Spo-UT-z62"/>
+                <outlet property="btnFacebook" destination="k2H-j9-B8f" id="i2e-9x-gdP"/>
+                <outlet property="btnMail" destination="b7D-KF-2Lc" id="oM0-DY-iSM"/>
+                <outlet property="btnSave" destination="24q-6b-erh" id="RZO-r0-LLy"/>
+                <outlet property="btnTwitter" destination="7pL-HF-rnC" id="y3S-pf-gCJ"/>
                 <outlet property="confirmSaveBtn" destination="19" id="37"/>
                 <outlet property="confirmationView" destination="52" id="58"/>
                 <outlet property="confirmationViewBKG" destination="59" id="60"/>
@@ -17,6 +22,7 @@
                 <outlet property="saveImageBtn" destination="13" id="40"/>
                 <outlet property="textView" destination="54" id="57"/>
                 <outlet property="view" destination="2" id="42"/>
+                <outlet property="viewSharingButtons" destination="Vq6-C0-HIZ" id="OYS-ku-gca"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -134,13 +140,98 @@ Swipe right with 2 fingers to continue.</string>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
         </view>
+        <view contentMode="scaleToFill" id="Vq6-C0-HIZ">
+            <rect key="frame" x="0.0" y="0.0" width="1029" height="768"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="language_block.png" id="pdr-cL-hZn">
+                    <rect key="frame" x="383" y="181" width="250" height="425"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="k2H-j9-B8f">
+                    <rect key="frame" x="418" y="266" width="75" height="75"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" backgroundImage="fb_btn.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="actionFacebook:" destination="-1" eventType="touchUpInside" id="35T-XB-Qtd"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7pL-HF-rnC">
+                    <rect key="frame" x="518" y="266" width="75" height="75"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" backgroundImage="twitter_btn.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="actionTwitter:" destination="-1" eventType="touchUpInside" id="PdT-DI-jTj"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ASz-XC-Ixo">
+                    <rect key="frame" x="418" y="374" width="75" height="75"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" backgroundImage="airdrop_icon.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="actionAirdrop:" destination="-1" eventType="touchUpInside" id="naR-wP-LJ5"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="24q-6b-erh">
+                    <rect key="frame" x="418" y="474" width="75" height="75"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" backgroundImage="save_icon1.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="actionSaveToGallery:" destination="-1" eventType="touchUpInside" id="wZU-ZN-LbF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="b7D-KF-2Lc">
+                    <rect key="frame" x="518" y="374" width="75" height="75"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" backgroundImage="mail_icon.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="actionSendMail:" destination="-1" eventType="touchUpInside" id="EhU-bP-Gsw"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LfK-pb-a6W">
+                    <rect key="frame" x="581" y="162" width="65" height="65"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" backgroundImage="cross.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="actionClose:" destination="-1" eventType="touchUpInside" id="2lS-Mg-xUM"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+        </view>
     </objects>
     <resources>
+        <image name="airdrop_icon.png" width="90" height="90"/>
         <image name="close_btn.png" width="120" height="120"/>
+        <image name="cross.png" width="274" height="274"/>
+        <image name="fb_btn.png" width="181" height="180"/>
         <image name="home_icon_2.png" width="274" height="274"/>
-        <image name="parent_gesture_black_bg.png" width="1024" height="768"/>
+        <image name="language_block.png" width="512" height="909"/>
+        <image name="mail_icon.png" width="90" height="90"/>
+        <image name="parent_gesture_black_bg.png" width="2048" height="1536"/>
         <image name="play_btn.png" width="200" height="199"/>
+        <image name="save_icon1.png" width="90" height="90"/>
         <image name="send_icon.png" width="150" height="150"/>
         <image name="trashcan_icon.png" width="100" height="99"/>
+        <image name="twitter_btn.png" width="181" height="180"/>
     </resources>
 </document>

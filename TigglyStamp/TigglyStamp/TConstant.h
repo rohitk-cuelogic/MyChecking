@@ -73,8 +73,10 @@
 #define APP_NAME @"stamp"
 #define REQUEST_ARRAY @"RequestArray"
 #define SERVICE_MAIN_URL @"http://api.tiggly.com/manageapi?"
-#define SERVICE_URL @"http://api.tiggly.com/manageapi?f=tig."//@"http://www.cuelogic.co.in/projects/tiggly_web/manageapi?f=tig."
-#define SERVICE_URL_PART @"&u=4a6cb8d9ef751088a25bb26a11446910&p="//
+
+////live
+#define SERVICE_URL @"http://api.tiggly.com/manageapi?f=tig."
+#define SERVICE_URL_PART @"&u=4a6cb8d9ef751088a25bb26a11446910&p="
 
 //Web Service names
 #define SERVICE_NAME_SUBSCRIPTION @"subscribe"

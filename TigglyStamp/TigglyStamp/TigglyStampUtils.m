@@ -526,6 +526,31 @@ static TigglyStampUtils *sharedInstance = nil;
 	return str;
 }
 
+-(NSString*) getCurrentLanguageCode {
+    DebugLog(@"");
+    
+    NSString *selectedLanguage = [self getCurrentLanguage];
+    
+	NSString *languageCode;
+    if([selectedLanguage isEqualToString:@"English"])
+		languageCode = @"1";
+    else if([selectedLanguage isEqualToString:@"Italian"])
+        languageCode = @"2";
+    else if([selectedLanguage isEqualToString:@"French"])
+        languageCode = @"3";
+    else if([selectedLanguage isEqualToString:@"Portuguese"])
+        languageCode = @"4";
+    else if([selectedLanguage isEqualToString:@"Spanish"])
+		languageCode = @"5";
+    else if([selectedLanguage isEqualToString:@"German"])
+		languageCode = @"6";
+    else if([selectedLanguage isEqualToString:@"Russian"])
+		languageCode = @"7";
+    else
+		languageCode = @"1";
+    
+	return languageCode;
+}
 
 #pragma mark -
 #pragma mark =============================================

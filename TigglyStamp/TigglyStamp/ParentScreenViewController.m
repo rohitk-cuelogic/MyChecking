@@ -347,6 +347,8 @@ UIActivityIndicatorView *activityIndicator;
 -(IBAction)actionReview:(id)sender{
     DebugLog(@"");
     
+    [[ServerController sharedInstance] sendEvent:@"tab_review" withEventValue:@"yes" withServiceName:SERVICE_URL_SET_BEHAVIOURCOUNT];
+
      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/tiggly-stamp/id716727860?ls=1&mt=8"]];
 }
 
@@ -394,10 +396,11 @@ UIActivityIndicatorView *activityIndicator;
         if (emailidTextField.text.length != 0) {
             if ([self isValidEmailAddress:emailidTextField.text] == YES) {
    
+                [[ServerController sharedInstance] sendSubscriptionEmail:emailidTextField.text];
+                
                 TSTempData *tempData = [[TSTempData alloc] initWithEmailId:emailidTextField.text];
                 [[TigglyStampUtils sharedInstance] packTempData:tempData toFolder:FOLDER_SUBSCRIPTION_DATA];
-                
-                
+               
                  [emailidTextField resignFirstResponder];
                 
                 float fontSize = 18.0;
@@ -463,6 +466,8 @@ UIActivityIndicatorView *activityIndicator;
 //        [self signInWithTwitter:sender];
     }
     if ([btn tag] == TAG_PATH_BTN) {
+        [[ServerController sharedInstance] sendEvent:@"tab_pin_interest" withEventValue:@"yes" withServiceName:SERVICE_URL_SET_BEHAVIOURCOUNT];
+
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.pinterest.com/tigglykids/"]];
 //        NSMutableDictionary *event =
 //        [[GAIDictionaryBuilder createEventWithCategory:@"UI"
@@ -526,12 +531,18 @@ UIActivityIndicatorView *activityIndicator;
         [self setInfoForLetterTabWebView];
     }
     if([btn tag] == TAG_PLAY_TAB_BTN){
+        [[ServerController sharedInstance] sendEvent:@"tab_play" withEventValue:@"yes" withServiceName:SERVICE_URL_SET_BEHAVIOURCOUNT];
+
         [self setInfoForPlayTabWebView];
     }
     if([btn tag] == TAG_TIP_TAB_BTN){
+        [[ServerController sharedInstance] sendEvent:@"tab_learning_tips" withEventValue:@"yes" withServiceName:SERVICE_URL_SET_BEHAVIOURCOUNT];
+
         [self setInfoForTipTabWebView];
     }
     if([btn tag] == TAG_PHILOSOPHY_TAB_BTN){
+        [[ServerController sharedInstance] sendEvent:@"tab_learn_philosophy" withEventValue:@"yes" withServiceName:SERVICE_URL_SET_BEHAVIOURCOUNT];
+
         [self setInfoForPhilosophyTabWebView];
     }
     if([btn tag] == TAG_LETTER_MOTAR_BTN){
@@ -976,6 +987,8 @@ UIActivityIndicatorView *activityIndicator;
                 [self launchTigglyNews];
             }
             if ([methodName isEqualToString:@"MotarSkill"] ) {
+                [[ServerController sharedInstance] sendEvent:@"tab_skill_icon" withEventValue:@"yes" withServiceName:SERVICE_URL_SET_BEHAVIOURCOUNT];
+
                 [letterTabView removeFromSuperview];
                 
                 lettertabHeadingLBL.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kMotorSkillHead"];
@@ -987,6 +1000,7 @@ UIActivityIndicatorView *activityIndicator;
                 
             }
             if ([methodName isEqualToString:@"LanguageDevelopment"] ) {
+                
                 [letterTabView removeFromSuperview];
 
                 lettertabHeadingLBL.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLangDevHead"];

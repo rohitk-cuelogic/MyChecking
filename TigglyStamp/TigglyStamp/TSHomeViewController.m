@@ -492,8 +492,8 @@ NSArray *allImageFiles;
     
     [playBtnTimer invalidate];
     
-    DebugLog(@"Tapped Thumbnail Name: %@",thumbnail.imageName);
-    
+    [[ServerController sharedInstance] sendEvent:@"tab_goto_gallery" withEventValue:@"yes" withServiceName:SERVICE_URL_SET_BEHAVIOURCOUNT];
+
     
     TSThumbnailEditController *thumbnailEditor = [[TSThumbnailEditController alloc] initWithNibName:@"TSThumbnailEditController" bundle:nil withImage:thumbnail.actulaImage imageName:thumbnail.imageName withHomeView:self];
     [self.navigationController pushViewController:thumbnailEditor animated:NO];

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GestureConfirmationView.h"
 #import "TDSignatureView.h"
-
+#import "ServerController.h"
 
 #ifdef GOOGLE_ANALYTICS_START
 #import "GAITrackedViewController.h"

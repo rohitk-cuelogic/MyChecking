@@ -268,6 +268,9 @@
 -(void) saveImageOrVideoToAlbum {
     DebugLog(@"");
     
+    [[ServerController sharedInstance] sendEvent:@"tab_saveto_gallery" withEventValue:@"yes" withServiceName:SERVICE_URL_SET_BEHAVIOURCOUNT];
+
+    
     if(isVideoImage) {
         //Save video to album
         NSString *documentsDirectory = [[TigglyStampUtils sharedInstance] getDocumentDirPath];

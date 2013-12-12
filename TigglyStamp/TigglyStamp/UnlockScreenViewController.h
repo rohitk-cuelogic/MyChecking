@@ -11,7 +11,7 @@
 #import "TDSoundManager.h"
 #import "TSHomeViewController.h"
 #import "GestureConfirmationView.h"
-
+#import "ServerController.h"
 #ifdef GOOGLE_ANALYTICS_START
 #import "GAITrackedViewController.h"
 #import "GAI.h"

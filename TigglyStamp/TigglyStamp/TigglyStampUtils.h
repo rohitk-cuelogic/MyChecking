@@ -63,5 +63,6 @@
 -(BOOL)getSendMailOn;
 -(void)setSendMailOn:(BOOL) isOn;
 -(NSString *) getDeviceIDMacAddres;
+-(NSString*) getCurrentLanguageCode;
 
 @end

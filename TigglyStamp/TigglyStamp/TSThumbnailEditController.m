@@ -768,6 +768,8 @@
 -(IBAction)saveImageToGallary:(id)sender{
     DebugLog(@"");
     
+    [[ServerController sharedInstance] sendEvent:@"tab_saveto_gallery" withEventValue:@"yes" withServiceName:SERVICE_URL_SET_BEHAVIOURCOUNT];
+
     upperPanel.alpha = 0.5;
     editorImgView.alpha = 0.3;
     

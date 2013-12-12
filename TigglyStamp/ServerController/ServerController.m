@@ -181,7 +181,7 @@ static ServerController *sharedInstance = nil;
     NSMutableString *url = [NSMutableString stringWithFormat:@"%@%@%@",SERVICE_URL, serviceName, SERVICE_URL_PART];
     [url appendString:[NSString stringWithFormat:@"{\"user_deviceid\":\"%@\",",[[TigglyStampUtils sharedInstance] getDeviceIDMacAddres]] ];
     [url appendString:[NSString stringWithFormat:@"\"app_name\":\"%@\",",APP_NAME]];
-    [url appendString:[NSString stringWithFormat:@"\"language\":\"%@\",",@"1"]];
+    [url appendString:[NSString stringWithFormat:@"\"language\":\"%@\",",[[TigglyStampUtils sharedInstance] getCurrentLanguageCode]]];
     [url appendString:[NSString stringWithFormat:@"\"%@\":\"%@\"}",eventName,eventValue]];
     DebugLog(@"RequestURL : %@",url);
     NSString *safestring=[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

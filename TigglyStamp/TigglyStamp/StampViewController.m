@@ -1430,7 +1430,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         }
         shapeSoundTimer = [NSTimer scheduledTimerWithTimeInterval:1.5f target:self selector:@selector(playSoundForShape) userInfo:nil repeats:NO];
         
-        
+        [[ServerController sharedInstance] drawShapeWithIsVirtualShape:@"no" withShapeType:UIT.label withShapeCorrect:@"yes"];
+
         [self buildShape:UIT.label];
     }
     int64_t delayInSecondsTodetect = 0.0f;
@@ -1438,6 +1439,8 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     dispatch_after(popTimetoDetect, dispatch_get_main_queue(), ^(void){
         shouldShapeDetected = YES;
     });
+    
+
 }
 
 
@@ -1899,6 +1902,9 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         if(shouldShapeDetected){
             shouldShapeDetected = NO;
 
+            [[ServerController sharedInstance] drawShapeWithIsVirtualShape:@"yes" withShapeType:phyShapeView.shapeName withShapeCorrect:@"yes"];
+
+            
             [self buildShape:phyShapeView.shapeName];
 
             if((sceneType == kSceneFall && isRecording) || (sceneType == kSceneWinter && isRecording)) {

@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "TConstant.h"
-
+#import "ServerController.h"
 
 
 #ifdef GOOGLE_ANALYTICS_START

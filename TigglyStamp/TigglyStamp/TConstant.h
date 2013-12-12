@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-//#define DEBUG_MODE
+#define DEBUG_MODE
 //#define IS_RUN_WITHOUT_SHAPE_FOR_TESTING 1
 //#define IS_RUN_ON_SIMULATOR
 //#define TEST_MODE 1
@@ -68,9 +68,9 @@
 //Web Services
 #define APP_NAME @"stamp"
 #define REQUEST_ARRAY @"RequestArray"
-#define SERVICE_MAIN_URL @"http://www.cuelogic.co.in/projects/tiggly_web/manageapi?"
-#define SERVICE_URL @"http://www.cuelogic.co.in/projects/tiggly_web/manageapi?f=tig."
-#define SERVICE_URL_PART @"&u=42a6787c06386024958742c737a1bd56&p="
+#define SERVICE_MAIN_URL @"http://api.tiggly.com/manageapi?"
+#define SERVICE_URL @"http://api.tiggly.com/manageapi?f=tig."//@"http://www.cuelogic.co.in/projects/tiggly_web/manageapi?f=tig."
+#define SERVICE_URL_PART @"&u=4a6cb8d9ef751088a25bb26a11446910&p="//
 
 //Web Service names
 #define SERVICE_NAME_SUBSCRIPTION @"subscribe"

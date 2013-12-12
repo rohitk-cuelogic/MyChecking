@@ -346,6 +346,8 @@
 
 -(void) setUnlockStatus{
     DebugLog(@"");
+    [[ServerController sharedInstance] sendEvent:@"app_unlock" withEventValue:@"yes" withServiceName:SERVICE_URL_SET_DEVICEPROFILE];
+
     
     [[TigglyStampUtils sharedInstance] setShapeMode:YES];
     

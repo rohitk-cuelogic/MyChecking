@@ -54,6 +54,7 @@
     BOOL isBtnViewHidden;
     BOOL isGreetingSoundPlaying;
     BOOL isShapesTrayHidden;
+    BOOL _isVideo;
     
     MPMoviePlayerController *moviePlayer;    
     UIActivityIndicatorView *activityIndicator;

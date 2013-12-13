@@ -233,11 +233,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     videoButton.hidden = YES;
     cameraButton.hidden = YES;
     btnView.frame = CGRectMake(-512, 0, 512, 90);
-    screenCapture = NULL;
     isRecording = NO;
     countShapeSound = 1;
     isMoveObject = YES;
-    
+    _isVideo = NO;
     [self.mainView addSubview:touchView];
     [self.mainView bringSubviewToFront:touchView];
     [self.mainView bringSubviewToFront:cameraButton];
@@ -1220,7 +1219,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     }else{
         
         isRecording = YES;
-        
+        _isVideo = YES;
         videoButton.userInteractionEnabled = NO;
         
         [[TDSoundManager sharedManager] stopMusic];
@@ -1471,11 +1470,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
 -(BOOL)isVideo{
      DebugLog(@"");
-    if (screenCapture != NULL) {
-        return YES;
-    }
-    
-    return NO;
+    return _isVideo;
 }
 #pragma mark -
 #pragma mark =======================================

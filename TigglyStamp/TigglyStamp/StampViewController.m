@@ -233,7 +233,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     videoButton.hidden = YES;
     cameraButton.hidden = YES;
     btnView.frame = CGRectMake(-512, 0, 512, 90);
-    
+    screenCapture = NULL;
     isRecording = NO;
     countShapeSound = 1;
     isMoveObject = YES;

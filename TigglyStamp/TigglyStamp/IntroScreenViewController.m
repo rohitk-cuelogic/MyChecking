@@ -231,8 +231,6 @@
 #else
         
 #endif
-
-        [[ServerController sharedInstance] sendEvent:@"app_download" withEventValue:@"yes" withServiceName:SERVICE_URL_SET_DEVICEPROFILE];
         
         [UIView animateWithDuration:0.3 animations:^{
             bkgImageViewlang.alpha = 1.0;
@@ -251,6 +249,8 @@
             });
            
         }];
+        
+        [[ServerController sharedInstance] sendEvent:@"app_download" withEventValue:@"yes" withServiceName:SERVICE_URL_SET_DEVICEPROFILE];
         
     }else{
         

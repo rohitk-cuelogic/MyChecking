@@ -458,13 +458,10 @@
 //    
 //    [self addSubview:lblImageSaved];
 
-    if(isVideoImage){
-        [self saveImageOrVideoToAlbum];
-    }else{
-        [self saveImageToDisk];
-        [delegate onSendButton:self withImageName:SavedImageName];
-    }
+
+    [self saveImageToDisk];
     
+     [delegate onSendButton:self withImageName:SavedImageName];
 
 //    [UIView animateWithDuration:3.0
 //                     animations:^{

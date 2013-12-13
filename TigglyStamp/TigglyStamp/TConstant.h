@@ -65,7 +65,7 @@
 
 
 // Facebook sharing
-#define FACEBOOK_APP_KEY @"1384325061792521"
+#define FACEBOOK_APP_KEY @"184233351778353"
 
 #define APPLICATION_NAME @"Tiggly Stamp"
 

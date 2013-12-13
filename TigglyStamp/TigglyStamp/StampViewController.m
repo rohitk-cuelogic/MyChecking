@@ -832,7 +832,6 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     DebugLog(@"");
     isSharingViewDisplayed = YES;
 
-    
     viewSharingButtons.backgroundColor = [UIColor clearColor];
     [self.view addSubview:viewSharingButtons];
     [self.view bringSubviewToFront:viewSharingButtons];
@@ -851,18 +850,60 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     //        viewSharingButtons.frame = CGRectMake(self.view.bounds.size.width/2 - 250/2, self.view.bounds.size.height/2 - 425/2, 250, 425);
     
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") && isSupported) {
-        DebugLog(@"iOS version 7.0");
-        btnAirdrop.enabled = YES;
+    btnTwitter.enabled = YES;
+    btnTwitter.hidden = NO;
+    btnAirdrop.enabled = YES;
+    btnAirdrop.hidden = NO;
+    btnMail.enabled = YES;
+    btnMail.hidden = NO;
+    btnSave.enabled = YES;
+    btnSave.hidden = NO;
+    
+    
+    btnAirdrop.frame = CGRectMake(418,374,btnAirdrop.frame.size.width,btnAirdrop.frame.size.height);
+    btnMail.frame =CGRectMake(518, 374,btnMail.frame.size.width,btnMail.frame.size.height);
+    btnSave.frame =CGRectMake(418,474,btnSave.frame.size.width,btnSave.frame.size.height);
+    
+    if([self isVideo]){
         
+        btnTwitter.enabled = NO;
+        btnTwitter.hidden = YES;
+        
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") && isSupported) {
+            DebugLog(@"iOS version 7.0");
+            btnAirdrop.enabled = YES;
+            
+            btnAirdrop.frame = CGRectMake(518,266,btnAirdrop.frame.size.width,btnAirdrop.frame.size.height);
+            
+            btnMail.frame =CGRectMake(518, 374,btnMail.frame.size.width,btnMail.frame.size.height);
+            btnSave.frame =CGRectMake(418,374,btnSave.frame.size.width,btnSave.frame.size.height);
+            
+            
+        }else{
+            btnAirdrop.enabled = NO;
+            btnAirdrop.hidden = YES;
+            
+            btnMail.frame =CGRectMake(518 , 266,btnMail.frame.size.width,btnMail.frame.size.height);
+            
+            btnSave.frame =CGRectMake(418,374,btnSave.frame.size.width,btnSave.frame.size.height);
+            
+            
+        }
     }else{
-        btnAirdrop.enabled = NO;
-        btnAirdrop.hidden = YES;
-        
-        btnSave.frame =CGRectMake(btnTwitter.frame.origin.x,378,btnSave.frame.size.width,btnSave.frame.size.height);
-        btnMail.frame =CGRectMake(btnFacebook.frame.origin.x , btnMail.frame.origin.y,btnMail.frame.size.width,btnMail.frame.size.height);
-        
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") && isSupported) {
+            DebugLog(@"iOS version 7.0");
+            btnAirdrop.enabled = YES;
+            
+        }else{
+            btnAirdrop.enabled = NO;
+            btnAirdrop.hidden = YES;
+            
+            btnSave.frame =CGRectMake(btnTwitter.frame.origin.x,374,btnSave.frame.size.width,btnSave.frame.size.height);
+            btnMail.frame =CGRectMake(btnFacebook.frame.origin.x , btnMail.frame.origin.y,btnMail.frame.size.width,btnMail.frame.size.height);
+            
+        }
     }
+    
     
     if ([[[NSUserDefaults standardUserDefaults] valueForKey:SAVE_ART] isEqualToString:@"yes"]) {
         btnSave.hidden = NO;
@@ -1227,40 +1268,52 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
 
 
+
 -(IBAction)actionFacebook:(id)sender{
     DebugLog(@"");
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
+    
+    if([self isVideo]){
+        // video sharing..
         
-        SLComposeViewController *mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-        
-        [mySLComposerSheet setInitialText:@"My kid is loving #TigglyStamp. Check their master piece @Tiggly: the first iPad toy for toddlers"];
-        
-        UIImage *originalImage = [UIImage imageWithContentsOfFile:currentImagePath];
-        
-        [mySLComposerSheet addImage:originalImage];
-        
-        [mySLComposerSheet setCompletionHandler:^(SLComposeViewControllerResult result) {
-            
-            switch (result) {
-                case SLComposeViewControllerResultCancelled:
-                    NSLog(@"Post Canceled");
-                    break;
-                case SLComposeViewControllerResultDone:
-                    NSLog(@"Post Sucessful");
-                    break;
-                    
-                default:
-                    break;
-            }
-        }];
-        
-        [self presentViewController:mySLComposerSheet animated:YES completion:nil];
-        
-    }else{
         [self fbSessionLogout];
         [facebook authorize:permissions];
+        
+    }else{
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
+            
+            SLComposeViewController *mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+            
+            [mySLComposerSheet setInitialText:@"My kid is loving #TigglyStamp. Check their masterpiece @Tiggly: the first iPad toy for toddlers"];
+            
+            UIImage *originalImage = [UIImage imageWithContentsOfFile:currentImagePath];
+            
+            [mySLComposerSheet addImage:originalImage];
+            
+            [mySLComposerSheet setCompletionHandler:^(SLComposeViewControllerResult result) {
+                
+                switch (result) {
+                    case SLComposeViewControllerResultCancelled:
+                        NSLog(@"Post Canceled");
+                        break;
+                    case SLComposeViewControllerResultDone:
+                        NSLog(@"Post Sucessful");
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }];
+            
+            [self presentViewController:mySLComposerSheet animated:YES completion:nil];
+            
+        }else{
+            [self fbSessionLogout];
+            [facebook authorize:permissions];
+        }
     }
+    
 }
+
 
 -(IBAction)actionTwitter:(id)sender
 {
@@ -1270,7 +1323,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
     TWTweetComposeViewController *twitter = [[TWTweetComposeViewController alloc] init];
     
-    [twitter setInitialText:@"My kid is loving #TigglyStamp. Check their master piece @TigglyKids"];
+    [twitter setInitialText:@"My kid is loving #TigglyStamp. Check their masterpiece @TigglyKids"];
     [twitter addImage:originalImage];
     
     [self presentViewController:twitter animated:YES completion:nil];
@@ -1331,24 +1384,40 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     [mailAlertV show];
 }
 
+
 -(IBAction)actionSendMail:(id)sender
 {
     DebugLog(@"");
     
-    UIImage *originalImage = [UIImage imageWithContentsOfFile:currentImagePath];
+    
     if ([MFMailComposeViewController canSendMail]){
         // Create and show composer
         mailsend = [[MFMailComposeViewController alloc] init];
         mailsend.mailComposeDelegate = self;
         [mailsend setSubject: @"My masterpiece" ];//@" Exciting App \"Tiggly Christmas \""];
         
-        // Attach an image to the email
-        NSString *fileName = @"Tiggly Stamp artwork";
-        fileName = [fileName stringByAppendingPathExtension:@"jpg"];
+        if([self isVideo]){
+            NSString *fileName = @"Tiggly Stamp artwork";
+            fileName = [fileName stringByAppendingPathExtension:@"MOV"];
+            
+            NSData *videoData=[[NSData alloc] initWithContentsOfFile:currentImagePath ];
+            
+            [mailsend addAttachmentData:videoData mimeType:@"video/MOV" fileName:fileName];
+            
+            //          [mailsend addAttachmentData:[NSData dataWithContentsOfURL:[[NSURL URLWithString:currentImagePath] init]] mimeType:@"video/MOV" fileName:fileName];
+            
+        }else{
+            // Attach an image to the email
+            NSString *fileName = @"Tiggly Stamp artwork";
+            fileName = [fileName stringByAppendingPathExtension:@"jpg"];
+            
+            UIImage *originalImage = [UIImage imageWithContentsOfFile:currentImagePath];
+            
+            NSData *myData = UIImageJPEGRepresentation(originalImage, 1.0);
+            
+            [mailsend addAttachmentData:myData mimeType:@"image/jpeg" fileName:fileName];
+        }
         
-        NSData *myData = UIImageJPEGRepresentation(originalImage, 1.0);
-        
-        [mailsend addAttachmentData:myData mimeType:@"image/jpeg" fileName:fileName];
         
         // Fill out the email body text
         NSString *emailBody = [NSString stringWithFormat:@"%@ %@ %@",@"I created this masterpiece with Tiggly Stamp.",@"Check it out at",@"www.tiggly.com"];
@@ -1368,6 +1437,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     
 }
 
+
 -(IBAction)actionClose:(id)sender {
     DebugLog(@"");
     isSharingViewDisplayed = NO;
@@ -1377,8 +1447,20 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
 -(void)removeImage{
     DebugLog(@"");
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtPath:currentImagePath error:nil];
+    if (![self isVideo]) {
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        [fileManager removeItemAtPath:currentImagePath error:nil];
+    }
+   
+}
+
+-(BOOL)isVideo{
+     DebugLog(@"");
+    if (screenCapture != NULL) {
+        return YES;
+    }
+    
+    return NO;
 }
 #pragma mark -
 #pragma mark =======================================
@@ -1449,18 +1531,35 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 -(void)fbDidLogin{
     // Save the access token key info.
     //[self saveAccessTokenKeyInfo];
-    [facebook requestWithGraphPath:@"me" andDelegate:self];
-    
-    UIImage *originalImage = [UIImage imageWithContentsOfFile:currentImagePath];
-    NSMutableDictionary *params1 = [[NSMutableDictionary alloc]init];
-    NSData *imageDate = UIImagePNGRepresentation(originalImage);
-    
-    [params1 setObject:imageDate forKey:@"source"];
-    [params1 setObject:@"My kid is loving #TigglyStamp. Check their master piece @Tiggly: the first iPad toy for toddlers" forKey:@"message"];
-    [params1 setObject:@"Tiggly Stamp" forKey:@"name"];
-    
-    NSString *post=@"/me/photos";
-    [facebook requestWithGraphPath:post andParams:params1 andHttpMethod:@"POST" andDelegate:self];
+    if([self isVideo]){
+        NSData *videoData = [[NSData alloc] init];
+        videoData = [[NSData alloc] initWithContentsOfFile:currentImagePath];
+        
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       videoData, @"video.mov",
+                                       @"video/quicktime", @"contentType",
+                                       @"Tiggly Stamp", @"title",
+                                       @"My kid is loving #TigglyStamp. Check their masterpiece @Tiggly: the first iPad toy for toddlers", @"description",
+                                       nil];
+        [facebook requestWithGraphPath:@"me/videos"
+                             andParams:params
+                         andHttpMethod:@"POST"
+                           andDelegate:self];
+    }else{
+        [facebook requestWithGraphPath:@"me" andDelegate:self];
+        
+        UIImage *originalImage = [UIImage imageWithContentsOfFile:currentImagePath];
+        NSMutableDictionary *params1 = [[NSMutableDictionary alloc]init];
+        NSData *imageDate = UIImagePNGRepresentation(originalImage);
+        
+        [params1 setObject:imageDate forKey:@"source"];
+        [params1 setObject:@"post from Tiggly Application" forKey:@"message"];
+        [params1 setObject:@"Tiggly Stamp" forKey:@"name"];
+        
+        NSString *post=@"/me/photos";
+        [facebook requestWithGraphPath:post andParams:params1 andHttpMethod:@"POST" andDelegate:self];
+    }
+
 }
 
 
@@ -2506,8 +2605,14 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
 -(void)onSendButton:(CapturedImageView *)cImageView withImageName:(NSString *)imgName{
     DebugLog(@"");
-    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    currentImagePath = [path stringByAppendingPathComponent:imgName];
+    if (![self isVideo]) {
+        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        currentImagePath = [path stringByAppendingPathComponent:imgName];
+    }else {
+        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        currentImagePath =[path stringByAppendingString:[NSString stringWithFormat:@"/TigglyStamp_%@.mov",screenCapture.movieString]];
+    }
+   
  
     [self displaySharingButtons];
 }

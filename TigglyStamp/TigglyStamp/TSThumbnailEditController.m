@@ -1083,9 +1083,24 @@
     
     [[ServerController sharedInstance] sendEvent:@"tab_saveto_gallery" withEventValue:@"yes" withServiceName:SERVICE_URL_SET_BEHAVIOURCOUNT];
     
-    UIImageWriteToSavedPhotosAlbum(originalImage, nil, nil, nil);
-    UIAlertView *mailAlertV=[[UIAlertView alloc]initWithTitle:@"Image Saved" message:@"Image saved successfully to photo album!!!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [mailAlertV show];
+    if([[editImgName pathExtension] isEqualToString:@"mov"]) {
+        
+        //        NSString *exportPath = [[NSString alloc] initWithFormat:@"%@/%@",
+        //                                [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], editImgName];
+        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (currentImagePath)) {
+            UISaveVideoAtPathToSavedPhotosAlbum (currentImagePath, nil, nil, nil);
+            UIAlertView *mailAlertV=[[UIAlertView alloc]initWithTitle:@"Video Saved" message:@"Video saved successfully to Gallery!!!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [mailAlertV show];
+        }
+        
+    }else{
+        
+        UIImageWriteToSavedPhotosAlbum(originalImage, nil, nil, nil);
+        UIAlertView *mailAlertV=[[UIAlertView alloc]initWithTitle:@"Image Saved" message:@"Image saved successfully to photo album!!!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [mailAlertV show];
+    }
+    
+    
 }
 
 

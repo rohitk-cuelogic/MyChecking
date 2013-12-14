@@ -397,6 +397,34 @@ static ServerController *sharedInstance = nil;
     }
 }
 
+- (void) fetchiPadDeviceVersion:(id<ServiceControlerDelegate>) serviceDelegate
+{
+    DebugLog(@"");
+    [self setDelegate:serviceDelegate];
+    
+    CustomizedNetworkChecks*  objCustomizedNetworkChecks =[[CustomizedNetworkChecks alloc]init];
+    [objCustomizedNetworkChecks startObtainingNetworkChangeNotificationWithHostName:@"www.google.com"];
+    
+    if ([objCustomizedNetworkChecks internatIsReachable])
+    {
+        NSMutableString *url = [NSMutableString stringWithFormat:@"%@%@%@",SERVICE_URL, SERVICE_URL_IPAD_DEVICE_VERSION, SERVICE_URL_PART];
+        [url appendString:[NSString stringWithFormat:@"{\"user_deviceid\":\"%@\",",[[TigglyStampUtils sharedInstance] getDeviceIDMacAddres]] ];
+        [url appendString:[NSString stringWithFormat:@"\"app_name\":\"%@\"}",APP_NAME]];
+        
+        DebugLog(@"RequestURL : %@",url);
+        NSString *safestring=[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:safestring]];
+        [request setTimeOutSeconds:80];
+        [request setDidFinishSelector:@selector(iPadMiniDeviceFeatchCompleted:)];
+        [request setDidFailSelector:@selector(iPadMiniDeviceFeatchFailed:)];
+        [request setDelegate:self];
+        [request setUserInfo:nil];
+        [request startAsynchronous];
+    }
+    else
+    {
+    }
+}
 
 
 #pragma mark -
@@ -445,6 +473,24 @@ static ServerController *sharedInstance = nil;
     [objActivityAlertView hideActivityIndicator];
     UIAlertView* networkAlert=[[UIAlertView alloc] initWithTitle:APPLICATION_NAME message:@"There was an error fetching news feed. Please try again later." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [networkAlert show];
+}
+
+-(void)iPadMiniDeviceFeatchCompleted:(ASIHTTPRequest *)request
+{
+    if([request responseData]!=nil)
+    {
+        NSDictionary* responseDict = [NSJSONSerialization
+                                      JSONObjectWithData:[request responseData]
+                                      options:kNilOptions
+                                      error:nil];
+        
+        [_delegate iPadMiniDeviceVersionDataRetrived:responseDict];
+    }
+}
+
+-(void)iPadMiniDeviceFeatchFailed:(ASIHTTPRequest *)request
+{
+    
 }
 
 @end

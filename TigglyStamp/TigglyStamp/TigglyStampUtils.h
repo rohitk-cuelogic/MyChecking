@@ -65,5 +65,6 @@
 -(NSString *) getDeviceIDMacAddres;
 -(NSString*) getCurrentLanguageCode;
 - (NSString *) platformString;
-
+-(void) setiPadMiniDeviceVersion:(NSMutableArray *) deviceArray;
+-(NSMutableArray *) getiPadMiniDeviceVersion;
 @end

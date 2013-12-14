@@ -101,12 +101,27 @@ static NSString *const kAllowTracking = @"allowTracking";
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
     [[ServerController sharedInstance] fetchASIHTTPRequestArrayFromDocumentsDirectory];
+    
+    // Featch iPad mini device version array and save in user default
+    [[ServerController sharedInstance] fetchiPadDeviceVersion:self];
 
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Service Controller Delegate Method
+#pragma mark =======================================
+- (void) iPadMiniDeviceVersionDataRetrived:(NSDictionary *) dict
+{
+    if ([[dict valueForKey:@"result"] isEqualToString:@"Success"]) {
+        NSMutableArray *deviceArray = [dict valueForKey:@"mini_ipad_version"];
+        [[TigglyStampUtils sharedInstance] setiPadMiniDeviceVersion:deviceArray];
+    }
 }
 
 @end

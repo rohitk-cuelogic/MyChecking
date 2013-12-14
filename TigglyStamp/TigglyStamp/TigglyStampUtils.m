@@ -797,6 +797,34 @@ static TigglyStampUtils *sharedInstance = nil;
 
 #pragma mark -
 #pragma mark =======================================
+#pragma mark iPad mini device versions
+#pragma mark =======================================
+-(void) setiPadMiniDeviceVersion:(NSMutableArray *) deviceArray
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:deviceArray forKey:IPADMINI_DEVICE_ARRAY];
+    [userDefaults synchronize];
+}
+
+
+-(NSMutableArray *) getiPadMiniDeviceVersion
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *deviceArr = [userDefaults objectForKey:IPADMINI_DEVICE_ARRAY];
+    NSMutableArray *deviceStaticarr;
+    
+    if ([deviceArr count]!=0 || deviceArr!=nil) {
+        deviceStaticarr = [[NSMutableArray alloc]initWithArray:deviceArr];
+        return deviceStaticarr;
+        
+    }else{
+        deviceStaticarr = [[NSMutableArray alloc] initWithObjects:@"iPad2,5",@"iPad2,6",@"iPad2,7",@"iPad4,4",@"iPad4,5", nil];
+        return deviceStaticarr;
+    }
+}
+
+#pragma mark -
+#pragma mark =======================================
 #pragma mark- Get Device ID
 #pragma mark =======================================
 

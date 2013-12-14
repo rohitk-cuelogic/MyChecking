@@ -73,10 +73,13 @@
 #define APP_NAME @"stamp"
 #define REQUEST_ARRAY @"RequestArray"
 #define SERVICE_MAIN_URL @"http://api.tiggly.com/manageapi?"
-
-////live
-#define SERVICE_URL @"http://api.tiggly.com/manageapi?f=tig."
 #define SERVICE_URL_PART @"&u=4a6cb8d9ef751088a25bb26a11446910&p="
+
+//live
+//#define SERVICE_URL @"http://api.tiggly.com/manageapi?f=tig."
+
+// Dev
+#define SERVICE_URL @"http://development.tiggly.com/version1.0/manageapi?f=tig."
 
 //Web Service names
 #define SERVICE_NAME_SUBSCRIPTION @"subscribe"
@@ -86,7 +89,8 @@
 #define SERVICE_URL_NEWSFEED_COUNT @"getUserNewsCount"
 #define SERVICE_URL_NEWSFEED @"newsFeed"
 #define SERVICE_URL_SESSIONDETAILS @"sessionDetails"
-
+#define SERVICE_URL_IPAD_DEVICE_VERSION @"getiPadMiniDeviceVersion"
+#define IPADMINI_DEVICE_ARRAY @"iPadMiniDeviceArray"
 #define MAX_QUEUE_COUNT   50
 
 

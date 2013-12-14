@@ -19,6 +19,7 @@
 
 - (void) newsDataRetrived:(NSMutableArray *) data;
 - (void) newsCountDataRetrived:(NSDictionary *) dict;
+- (void) iPadMiniDeviceVersionDataRetrived:(NSDictionary *) dict;
 
 @end
 
@@ -59,7 +60,8 @@
 
 // This method should call when use to store the detailed behaviour of how the user's uses app
 - (void) sendEvent :(NSString *)eventName withEventValue:(NSString *)eventValue withServiceName:(NSString *)serviceName;
-
+// Featch device version array
+- (void) fetchiPadDeviceVersion:(id<ServiceControlerDelegate>) serviceDelegate;
 
 -(void)saveASIHTTPRequestArrayInDocumentsDirectory;
 -(void)fetchASIHTTPRequestArrayFromDocumentsDirectory;

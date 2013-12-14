@@ -13,7 +13,7 @@
 @class IntroScreenViewController;
 static NSMutableDictionary *shapeDicionary;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,ServiceControlerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) IntroScreenViewController *viewController;

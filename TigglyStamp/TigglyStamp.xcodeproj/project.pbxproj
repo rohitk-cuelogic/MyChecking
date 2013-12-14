@@ -1162,6 +1162,11 @@
 		C0F85EC818005A3100045212 /* Tiggly_SFX_MAGIC_20.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0F85EC718005A3100045212 /* Tiggly_SFX_MAGIC_20.mp3 */; };
 		C0FD9BF8185B730800D5650D /* main_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0FD9BF6185B730800D5650D /* main_bg.jpg */; };
 		C0FD9BF9185B730800D5650D /* label.png in Resources */ = {isa = PBXBuildFile; fileRef = C0FD9BF7185B730800D5650D /* label.png */; };
+		EB1091BD185BB0ED0027F703 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = EB1091B3185BB0ED0027F703 /* ioapi.c */; };
+		EB1091BE185BB0ED0027F703 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = EB1091B5185BB0ED0027F703 /* mztools.c */; };
+		EB1091BF185BB0ED0027F703 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = EB1091B7185BB0ED0027F703 /* unzip.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EB1091C0185BB0ED0027F703 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = EB1091B9185BB0ED0027F703 /* zip.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EB1091C1185BB0ED0027F703 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB1091BC185BB0ED0027F703 /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EB11AF8117AA36FE0013B1B4 /* IntroScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC31D64317A94CE1008C5361 /* IntroScreenViewController.xib */; };
 		EB1A593417ABD138001749D2 /* pattern_0_1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB1A593317ABD138001749D2 /* pattern_0_1.png */; };
 		EB2B02C717C4DE9F00340A20 /* tick2@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EB2B02C517C4DE9F00340A20 /* tick2@2x~ipad.png */; };
@@ -2517,6 +2522,17 @@
 		C0F85EC718005A3100045212 /* Tiggly_SFX_MAGIC_20.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_MAGIC_20.mp3; sourceTree = "<group>"; };
 		C0FD9BF6185B730800D5650D /* main_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main_bg.jpg; sourceTree = "<group>"; };
 		C0FD9BF7185B730800D5650D /* label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label.png; sourceTree = "<group>"; };
+		EB1091B2185BB0ED0027F703 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		EB1091B3185BB0ED0027F703 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		EB1091B4185BB0ED0027F703 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		EB1091B5185BB0ED0027F703 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		EB1091B6185BB0ED0027F703 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		EB1091B7185BB0ED0027F703 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		EB1091B8185BB0ED0027F703 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		EB1091B9185BB0ED0027F703 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		EB1091BA185BB0ED0027F703 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		EB1091BB185BB0ED0027F703 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		EB1091BC185BB0ED0027F703 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
 		EB1A593317ABD138001749D2 /* pattern_0_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pattern_0_1.png; sourceTree = "<group>"; };
 		EB2B02C517C4DE9F00340A20 /* tick2@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick2@2x~ipad.png"; sourceTree = "<group>"; };
 		EB2B02C617C4DE9F00340A20 /* tick1@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick1@2x~ipad.png"; sourceTree = "<group>"; };
@@ -3953,6 +3969,7 @@
 		C05D9002182CCCC30058A775 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				EB1091B0185BB0ED0027F703 /* Zip Handler */,
 				63306ADC1859816800A09F3D /* FBConnect */,
 				EB488575185734FB0077FA95 /* ASI */,
 				EB48858A185734FC0077FA95 /* DeviceID */,
@@ -4096,6 +4113,32 @@
 				C0C3E3FA17F3152000BD3B29 /* privacypolicy.html */,
 			);
 			name = HTML;
+			sourceTree = "<group>";
+		};
+		EB1091B0185BB0ED0027F703 /* Zip Handler */ = {
+			isa = PBXGroup;
+			children = (
+				EB1091B1185BB0ED0027F703 /* minizip1 */,
+				EB1091BB185BB0ED0027F703 /* ZipArchive.h */,
+				EB1091BC185BB0ED0027F703 /* ZipArchive.mm */,
+			);
+			path = "Zip Handler";
+			sourceTree = "<group>";
+		};
+		EB1091B1185BB0ED0027F703 /* minizip1 */ = {
+			isa = PBXGroup;
+			children = (
+				EB1091B2185BB0ED0027F703 /* crypt.h */,
+				EB1091B3185BB0ED0027F703 /* ioapi.c */,
+				EB1091B4185BB0ED0027F703 /* ioapi.h */,
+				EB1091B5185BB0ED0027F703 /* mztools.c */,
+				EB1091B6185BB0ED0027F703 /* mztools.h */,
+				EB1091B7185BB0ED0027F703 /* unzip.c */,
+				EB1091B8185BB0ED0027F703 /* unzip.h */,
+				EB1091B9185BB0ED0027F703 /* zip.c */,
+				EB1091BA185BB0ED0027F703 /* zip.h */,
+			);
+			path = minizip1;
 			sourceTree = "<group>";
 		};
 		EB488575185734FB0077FA95 /* ASI */ = {
@@ -5822,6 +5865,7 @@
 				EB4885B6185734FC0077FA95 /* SBJsonWriter.m in Sources */,
 				EB6F33351781867900FC479F /* AppDelegate.m in Sources */,
 				EB4885A9185734FC0077FA95 /* ASIDataDecompressor.m in Sources */,
+				EB1091BD185BB0ED0027F703 /* ioapi.c in Sources */,
 				EB6F33501781879100FC479F /* IntroScreenViewController.m in Sources */,
 				EB6F33961781AB4700FC479F /* UITouchShapeRecognizer.m in Sources */,
 				EB6F33971781AB4B00FC479F /* UITouchVerificationView.m in Sources */,
@@ -5848,6 +5892,7 @@
 				EB4885B1185734FC0077FA95 /* NSObject+SBJSON.m in Sources */,
 				63CEE1D317A14DB80060DC42 /* CGPointAdditions.c in Sources */,
 				63CEE1DD17A14DB80060DC42 /* XBAnimation.m in Sources */,
+				EB1091C0185BB0ED0027F703 /* zip.c in Sources */,
 				63CEE1DE17A14DB80060DC42 /* XBAnimationManager.m in Sources */,
 				EB4885B0185734FC0077FA95 /* UIDevice+IdentifierAddition.m in Sources */,
 				63CEE1DF17A14DB80060DC42 /* XBCurlView.m in Sources */,
@@ -5863,13 +5908,16 @@
 				C08291B017A79D580023F08A /* FallScene.m in Sources */,
 				EB4885AF185734FC0077FA95 /* NSString+MD5Addition.m in Sources */,
 				C074892017A94650001943E0 /* ScreenCaptureView.m in Sources */,
+				EB1091C1185BB0ED0027F703 /* ZipArchive.mm in Sources */,
 				C00B873817AA2EDF00823454 /* UIView+Genie.m in Sources */,
 				C00B875B17AA33E500823454 /* ThumbnailView.m in Sources */,
+				EB1091BE185BB0ED0027F703 /* mztools.c in Sources */,
 				63306AEE1859816800A09F3D /* FBRequest.m in Sources */,
 				C060B41F17CDF643000AD202 /* TDSoundManager.m in Sources */,
 				EB4885B3185734FC0077FA95 /* SBJSON.m in Sources */,
 				C03989C217DF51D90079EB90 /* StampViewController.m in Sources */,
 				C02F012C17E70CC7007405C0 /* PhysicalShapesView.m in Sources */,
+				EB1091BF185BB0ED0027F703 /* unzip.c in Sources */,
 				C027AE5717EAD8920066632E /* UnlockScreenViewController.m in Sources */,
 				C0F814CA17F157EB0051C2B5 /* SettingsView.m in Sources */,
 				C0F814CE17F179A10051C2B5 /* GestureConfirmationView.m in Sources */,

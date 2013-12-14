@@ -11,8 +11,9 @@
 #import "TigglyStampUtils.h"
 #import "ThumbnailView.h"
 #import "GestureConfirmationView.h"
+#import "ServerController.h"
 
-@interface TSHomeViewController : UIViewController<ThumbnailViewProtocol,GestireViewProtocol>{
+@interface TSHomeViewController : UIViewController<ThumbnailViewProtocol,GestireViewProtocol,ServiceControlerDelegate>{
     IBOutlet UIButton *playBtn;
     IBOutlet UIButton *forParentsBtn;
     IBOutlet UIButton *newsBtn;
@@ -53,5 +54,6 @@
 -(IBAction)goToParentsScreen:(id)sender;
 -(IBAction)goToNewsScreen:(id)sender;
 -(IBAction)actionLearnMore;
+-(IBAction)actionForNews:(id)sender;
 
 @end

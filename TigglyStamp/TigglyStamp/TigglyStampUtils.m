@@ -839,5 +839,71 @@ static TigglyStampUtils *sharedInstance = nil;
     
     return _deviceID;
 }
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Network Connection
+#pragma mark =======================================
 
+-(BOOL)isNetworkAvailable {
+    DebugLog(@"");
+    //    UIAlertView *errorView;
+    NetworkStatus internetStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
+    
+    if(internetStatus== NotReachable){
+        
+        //        errorView = [[UIAlertView alloc]
+        //                     initWithTitle: @"Tiggly"
+        //                     message: @"It seems that your internet connection is not working. Please check your internet connection."
+        //                     delegate: nil
+        //                     cancelButtonTitle: @"Ok" otherButtonTitles: nil];
+        //        [errorView show];
+        return NO;
+    }
+    
+    return YES;
+}
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Unzip and Save File
+#pragma mark =======================================
+- (void)unzipAndSaveFile:(NSString *)strFileName
+{
+    ZipArchive* za = [[ZipArchive alloc] init];
+    
+    NSString *filePth =[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:strFileName];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePth])
+    {
+       	if([za UnzipOpenFile:filePth])
+        {
+            NSString *strPath=[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+            
+            //Delete the previous files
+            NSFileManager *filemanager=[[NSFileManager alloc] init];
+            if ([filemanager fileExistsAtPath:filePth]) {
+                
+                NSError *error;
+                NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:filePth];
+                [filemanager removeItemAtURL:fileURL error:&error];
+            }
+            //[filemanager release];
+            filemanager=nil;
+            //start unzip
+            BOOL ret = [za UnzipFileTo:[NSString stringWithFormat:@"%@/",strPath] overWrite:YES];
+            
+            if( NO==ret ){
+                // error handler here
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"An unknown error occured"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+                [alert show];
+                //[alert release];
+                alert=nil;
+            }
+            [za UnzipCloseFile];
+        }
+        //[za release];
+    }
+}
 @end

@@ -92,7 +92,8 @@
 #define SERVICE_URL_IPAD_DEVICE_VERSION @"getiPadMiniDeviceVersion"
 #define IPADMINI_DEVICE_ARRAY @"iPadMiniDeviceArray"
 #define MAX_QUEUE_COUNT   50
-
+#define UNREAD_NEWS_COUNT @"UnreadNewsCount"
+#define JSON_RESPONSE @"ResponseDict.json"
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 #define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)

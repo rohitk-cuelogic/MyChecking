@@ -12,6 +12,8 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "TSTempData.h"
 #import "UIDevice+IdentifierAddition.h"
+#import "Reachability.h"
+#import "ZipArchive.h"
 
 @interface TigglyStampUtils : NSObject{
     NSMutableString *strCsvKyes;
@@ -67,4 +69,5 @@
 - (NSString *) platformString;
 -(void) setiPadMiniDeviceVersion:(NSMutableArray *) deviceArray;
 -(NSMutableArray *) getiPadMiniDeviceVersion;
+-(BOOL)isNetworkAvailable;
 @end

@@ -191,6 +191,11 @@ NSArray *allImageFiles;
         DebugLog(@"Email : %@",td.subscriptionEmailId);
     }
 
+    if([[TigglyStampUtils sharedInstance] isNetworkAvailable])
+    {
+        [[ServerController sharedInstance] fetchNewsFeedCountWithService:self];
+        
+    }
 }
 
 -(void) viewDidDisappear:(BOOL)animated{
@@ -382,7 +387,54 @@ NSArray *allImageFiles;
     [self.view addSubview:gestureView];
 
 }
-
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Service Controller Delegate Method
+#pragma mark =======================================
+- (void) newsCountDataRetrived:(NSDictionary *) dict
+{
+    if (dict!=nil) {
+        
+        //        int newsCount = [[dict objectForKey:@"unread_news_count"] integerValue];
+        //        if (newsCount!=0) {
+        //            [[TDGameUtils sharedManager] setNewsCount:newsCount];
+        //        }
+        //
+        //        if ([[TDGameUtils sharedManager] getNewsCount]!=0) {
+        //        }else{
+        //
+        //            [[TDGameUtils sharedManager] setNewsCount:0];
+        //
+        //        }
+        NSDictionary *storedDict=[self readJsonDictFromDocumentDirectoryWithFileName:JSON_RESPONSE];
+        
+        if (![[dict objectForKey:@"unread_news_count"] isEqualToString:[storedDict objectForKey:@"unread_news_count"]])
+        {
+            [self writeJsonInDocumentDirectory:dict saveFileWithName:JSON_RESPONSE];
+            
+            [[ServerController sharedInstance] downloadHTMLFileAtPath:[dict objectForKey:@"zip_path"] service:self];
+        }
+        else
+        {
+            
+            NSArray *arrData=[[dict objectForKey:@"last_news_icon"] componentsSeparatedByString:@"/"];
+            NSString *filePth =[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"usercontent/%@",[arrData objectAtIndex:[arrData count] -1]]];//@"usercontent/index.html"
+            
+            btnNews.hidden = NO;
+            NSData *data = [NSData dataWithContentsOfFile:filePth];
+            UIImage *image = [UIImage imageWithData:data];
+            [btnNews setImage:image forState:UIControlStateNormal];
+            //[self performBtnNewsAnimation];
+            
+        }
+        
+        
+    }else{
+        
+        //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:APPLICATION_NAME message:@"News count are not available" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        //        [alert show];
+    }
+}
 #pragma mark-
 #pragma mark======================
 #pragma mark IBActions
@@ -415,6 +467,11 @@ NSArray *allImageFiles;
     DebugLog(@"");
     readyToNewsScreen = YES;
     [self showConfirmationView];
+}
+
+-(IBAction)actionForNews:(id)sender
+{
+
 }
 
 #pragma mark -
@@ -548,5 +605,65 @@ NSArray *allImageFiles;
         readyToParentScreen = NO;
     }
 }
-
+-(void) writeJsonInDocumentDirectory:(NSDictionary *)dict saveFileWithName:(NSString *)name
+{
+    // Get path to documents directory
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    if ([paths count] > 0)
+    {
+        // Path to save dictionary
+        NSString  *dictPath = [[paths objectAtIndex:0]
+                               stringByAppendingPathComponent:name];
+        // Write dictionary
+        [dict writeToFile:dictPath atomically:YES];
+    }
+    
+}
+-(NSDictionary *) readJsonDictFromDocumentDirectoryWithFileName:(NSString *)name
+{
+    // Get path to documents directory
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    if ([paths count] > 0)
+    {
+        // Path to save dictionary
+        NSString  *dictPath = [[paths objectAtIndex:0]
+                               stringByAppendingPathComponent:name];
+        
+        // Read both back in new collections
+        NSDictionary *dictFromFile = [NSDictionary dictionaryWithContentsOfFile:dictPath];
+        return dictFromFile;
+    }
+    return nil;
+}
+-(void)loadHTMLWebView
+{
+    NSString *filePth =[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"usercontent/index.html"];
+    NSString* htmlString = [NSString stringWithContentsOfFile:filePth encoding:NSUTF8StringEncoding error:nil];
+    [_webView loadHTMLString:htmlString baseURL:[NSURL fileURLWithPath:filePth]];
+}
+-(void)performBtnNewsAnimation
+{
+    
+    [UIView animateWithDuration:0.2
+                     animations:^(void){
+                         btnNews.frame = CGRectMake(890, 0, 120, 120);
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
+    
+    CABasicAnimation *bounceAnimation =
+    [CABasicAnimation animationWithKeyPath:@"position.y"];
+    bounceAnimation.duration = 0.2;
+    bounceAnimation.fromValue = [NSNumber numberWithInt:0];
+    bounceAnimation.toValue = [NSNumber numberWithInt:40];
+    bounceAnimation.repeatCount = 2;
+    bounceAnimation.autoreverses = YES;
+    bounceAnimation.fillMode = kCAFillModeForwards;
+    bounceAnimation.removedOnCompletion = NO;
+    bounceAnimation.additive = YES;
+    [btnNews.layer addAnimation:bounceAnimation forKey:@"bounceAnimation"];
+}
 @end

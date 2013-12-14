@@ -492,5 +492,41 @@ static ServerController *sharedInstance = nil;
 {
     
 }
-
+#pragma mark -
+#pragma mark =======================================
+#pragma mark ASIHTTP Request for Download HTML
+#pragma mark =======================================
+-(void)downloadHTMLFileAtPath:(NSString*)_htmlURL service:(id<ServiceControlerDelegate>) serviceDelegate
+{
+    [self setDelegate:serviceDelegate];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:_htmlURL]];
+    [request setShouldContinueWhenAppEntersBackground:YES];
+    [request setAllowResumeForFileDownloads:YES];
+    [request setTimeOutSeconds:80];
+    [request setNumberOfTimesToRetryOnTimeout:2];
+    [request setAllowResumeForFileDownloads:YES];
+    [request setDownloadDestinationPath:[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"index.zip"]];
+    [request setDidFinishSelector:@selector(downloadHTMLCompleted:)];
+    [request setDidFailSelector:@selector(downloadHTMLFailed:)];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    
+}
+-(void)downloadHTMLCompleted:(id)sender
+{
+    NSString *filePth =[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"index.zip"];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePth])
+    {
+        //[[TDGameUtils sharedManager] unzipAndSaveFile:@"index.zip"];
+    }
+    
+    //[_delegate newsHTMLDownloadComplete:Nil];
+    
+}
+-(void)downloadHTMLFailed:(id)sender
+{
+    
+}
 @end

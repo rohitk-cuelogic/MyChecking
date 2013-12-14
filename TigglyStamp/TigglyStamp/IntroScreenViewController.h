@@ -22,7 +22,7 @@
 #endif
 
 
-@interface IntroScreenViewController:UIViewController<UIPopoverControllerDelegate> {
+@interface IntroScreenViewController:UIViewController<UIPopoverControllerDelegate,ServiceControlerDelegate> {
 
     BOOL isLanguageScreenDisplayed;
     IBOutlet UILabel *lblWithoutShape;

@@ -103,6 +103,10 @@
         // iOS 6
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
+    
+    // Featch iPad mini device version array and save in user default
+    [[ServerController sharedInstance] fetchiPadDeviceVersion:self];
+    
     _isRemoveAllElement = NO;
     
     self.navigationController.navigationBar.hidden = YES;
@@ -317,6 +321,18 @@
              isLanguageScreenDisplayed = NO;
              [[TigglyStampUtils sharedInstance] setCurrentLanguage: [[TigglyStampUtils sharedInstance] getCurrentLanguage]];
         }];
+    }
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Service Controller Delegate Method
+#pragma mark =======================================
+- (void) iPadMiniDeviceVersionDataRetrived:(NSDictionary *) dict
+{
+    if ([[dict valueForKey:@"result"] isEqualToString:@"Success"]) {
+        NSMutableArray *deviceArray = [dict valueForKey:@"mini_ipad_version"];
+        [[TigglyStampUtils sharedInstance] setiPadMiniDeviceVersion:deviceArray];
     }
 }
 

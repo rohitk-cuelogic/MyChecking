@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -10,6 +10,7 @@
                 <outlet property="_webView" destination="Wx8-5X-WL5" id="sc3-ig-JhR"/>
                 <outlet property="activityIndicator" destination="mSa-aE-Thq" id="bIC-31-8Kb"/>
                 <outlet property="bkgImageView" destination="36" id="37"/>
+                <outlet property="btnNews" destination="B8g-Cr-ktb" id="9aP-Cr-SeO"/>
                 <outlet property="confirmationView" destination="25" id="30"/>
                 <outlet property="confirmationViewBKG" destination="42" id="43"/>
                 <outlet property="containerView" destination="38" id="39"/>
@@ -76,8 +77,19 @@
                                 <action selector="goToParentsScreen:" destination="-1" eventType="touchUpInside" id="28"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="B8g-Cr-ktb">
+                            <rect key="frame" x="890" y="0.0" width="120" height="120"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="actionForNews:" destination="-1" eventType="touchUpInside" id="Dpz-3L-Ydd"/>
+                            </connections>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="21">
-                            <rect key="frame" x="854" y="20" width="150" height="150"/>
+                            <rect key="frame" x="854" y="199" width="150" height="150"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                             <state key="normal" backgroundImage="unlock_using_shapes.png">
@@ -92,13 +104,13 @@
                             </connections>
                         </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlock with Tiggly shapes" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I3y-XC-dXY">
-                            <rect key="frame" x="884" y="45" width="91" height="102"/>
+                            <rect key="frame" x="884" y="224" width="91" height="102"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="44">
-                            <rect key="frame" x="860" y="183" width="144" height="130"/>
+                            <rect key="frame" x="860" y="371" width="144" height="130"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" backgroundImage="learn_more.png">
@@ -113,7 +125,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learn More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gSd-nc-0ln">
-                            <rect key="frame" x="869" y="191" width="123" height="21"/>
+                            <rect key="frame" x="869" y="379" width="123" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

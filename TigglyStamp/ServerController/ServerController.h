@@ -65,5 +65,5 @@
 
 -(void)saveASIHTTPRequestArrayInDocumentsDirectory;
 -(void)fetchASIHTTPRequestArrayFromDocumentsDirectory;
-
+-(void)downloadHTMLFileAtPath:(NSString*)_htmlURL service:(id<ServiceControlerDelegate>) serviceDelegate;
 @end

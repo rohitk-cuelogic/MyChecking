@@ -37,6 +37,11 @@
     BOOL isThumbnailLongPressed;
     
     GestureConfirmationView *gestureView;
+    
+    IBOutlet UIWebView *_webView;
+    IBOutlet UIButton *btnNews;    
+    IBOutlet UILabel *lblHappyHolidays;
+    IBOutlet UIActivityIndicatorView *activityIndicator;
 }
 
 @property(nonatomic, strong) UIScrollView *imgScrollView;

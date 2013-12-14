@@ -7,12 +7,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TSHomeViewController">
             <connections>
+                <outlet property="_webView" destination="Wx8-5X-WL5" id="sc3-ig-JhR"/>
+                <outlet property="activityIndicator" destination="mSa-aE-Thq" id="bIC-31-8Kb"/>
                 <outlet property="bkgImageView" destination="36" id="37"/>
                 <outlet property="confirmationView" destination="25" id="30"/>
                 <outlet property="confirmationViewBKG" destination="42" id="43"/>
                 <outlet property="containerView" destination="38" id="39"/>
                 <outlet property="forParentsBtn" destination="22" id="29"/>
                 <outlet property="imgScrollView" destination="11" id="12"/>
+                <outlet property="lblHappyHolidays" destination="tNE-og-jMA" id="NmW-63-fyO"/>
                 <outlet property="lblLearnMore" destination="gSd-nc-0ln" id="LI0-H7-r8N"/>
                 <outlet property="lblUnlockWithShapes" destination="I3y-XC-dXY" id="kyD-4K-2I7"/>
                 <outlet property="learnMoreBtn" destination="44" id="45"/>
@@ -161,12 +164,63 @@ Swipe right with 2 fingers to continue.</string>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
         </view>
+        <view contentMode="scaleToFill" id="lwj-0A-dtL">
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_bg.jpg" id="Ba2-Dq-WcE">
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="label.png" id="Yjb-wR-wdz">
+                    <rect key="frame" x="0.0" y="-24" width="1024" height="75"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Happy Holidays!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tNE-og-jMA">
+                    <rect key="frame" x="386" y="13" width="251" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <webView contentMode="scaleToFill" id="Wx8-5X-WL5">
+                    <rect key="frame" x="0.0" y="47" width="1024" height="721"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </webView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RdG-hA-cTt">
+                    <rect key="frame" x="978" y="2" width="40" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" backgroundImage="cross.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoparent.png" id="dov-GN-yAe">
+                    <rect key="frame" x="10" y="6" width="35" height="35"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="mSa-aE-Thq">
+                    <rect key="frame" x="502" y="398" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+        </view>
     </objects>
     <resources>
         <image name="close_btn.png" width="120" height="120"/>
+        <image name="cross.png" width="274" height="274"/>
         <image name="home_play_btn.png" width="619" height="620"/>
+        <image name="label.png" width="1040" height="65"/>
         <image name="learn_more.png" width="416" height="372"/>
-        <image name="parent_gesture_black_bg.png" width="1024" height="768"/>
+        <image name="logoparent.png" width="50" height="50"/>
+        <image name="main_bg.jpg" width="1024" height="800"/>
+        <image name="parent_gesture_black_bg.png" width="2048" height="1536"/>
         <image name="play_bg.png" width="1024" height="768"/>
         <image name="tiggly_parents_bkg.png" width="395" height="107"/>
         <image name="unlock_using_shapes.png" width="300" height="300"/>

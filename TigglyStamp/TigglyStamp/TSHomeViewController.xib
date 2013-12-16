@@ -57,11 +57,11 @@
                             </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="tiggly_parents_bkg.png" id="40">
-                            <rect key="frame" x="0.0" y="20" width="192" height="46"/>
+                            <rect key="frame" x="0.0" y="19" width="210" height="63"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="22">
-                            <rect key="frame" x="7" y="22" width="159" height="44"/>
+                            <rect key="frame" x="12" y="26" width="178" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="26"/>
                             <state key="normal" title="for parents">
@@ -235,7 +235,7 @@ Swipe right with 2 fingers to continue.</string>
         <image name="main_bg.jpg" width="1024" height="800"/>
         <image name="parent_gesture_black_bg.png" width="2048" height="1536"/>
         <image name="play_bg.png" width="1024" height="768"/>
-        <image name="tiggly_parents_bkg.png" width="395" height="107"/>
+        <image name="tiggly_parents_bkg.png" width="403" height="150"/>
         <image name="unlock_using_shapes.png" width="300" height="300"/>
     </resources>
 </document>

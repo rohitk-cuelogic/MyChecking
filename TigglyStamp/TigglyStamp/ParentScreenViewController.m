@@ -440,7 +440,7 @@ UIActivityIndicatorView *activityIndicator;
         [self launchSettingScreen];
     }
     if ([btn tag] == TAG_FACEBOOK_BTN) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.facebook.com/Tiggly"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://facebook.com/Tiggly"]];
 
 //        NSMutableDictionary *event =
 //        [[GAIDictionaryBuilder createEventWithCategory:@"UI"

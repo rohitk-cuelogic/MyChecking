@@ -81,14 +81,14 @@
                                 <action selector="actionGoBackToLanguage" destination="-1" eventType="touchUpInside" id="YSA-Y1-j6N"/>
                             </connections>
                         </button>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlock with Tiggly Shapes" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I9t-jw-EsY">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have Tiggly Shapes" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I9t-jw-EsY">
                             <rect key="frame" x="187" y="275" width="205" height="219"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Try me without Tiggly Shapes" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="etD-Re-Mfj">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are Tiggly Shapes?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="etD-Re-Mfj">
                             <rect key="frame" x="632" y="275" width="206" height="219"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
@@ -185,7 +185,6 @@
         <image name="close_FL.png" width="84" height="84"/>
         <image name="header_bg_FL.png" width="2048" height="147"/>
         <image name="language_block.png" width="512" height="909"/>
-        <image name="language_stamp_bg.png" width="1024" height="768"/>
         <image name="language_stamp_bg.png" width="1024" height="768"/>
         <image name="play_using_shapes.png" width="712" height="713"/>
         <image name="play_without_shapes.png" width="712" height="713"/>

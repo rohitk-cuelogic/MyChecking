@@ -317,7 +317,6 @@
 		B1D4077117C3727600E26814 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D4077017C3727600E26814 /* MessageUI.framework */; };
 		B1DA589B185EE6ED0081CC21 /* firstLaunch.html in Resources */ = {isa = PBXBuildFile; fileRef = B1DA589A185EE6ED0081CC21 /* firstLaunch.html */; };
 		B1DA58A8185EE72B0081CC21 /* close_FL.png in Resources */ = {isa = PBXBuildFile; fileRef = B1DA589C185EE72B0081CC21 /* close_FL.png */; };
-		B1DA58A9185EE72B0081CC21 /* firstLaunch.html in Resources */ = {isa = PBXBuildFile; fileRef = B1DA589D185EE72B0081CC21 /* firstLaunch.html */; };
 		B1DA58AA185EE72B0081CC21 /* FL_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = B1DA589E185EE72B0081CC21 /* FL_circle.png */; };
 		B1DA58AB185EE72B0081CC21 /* FL_img_3.png in Resources */ = {isa = PBXBuildFile; fileRef = B1DA589F185EE72B0081CC21 /* FL_img_3.png */; };
 		B1DA58AC185EE72B0081CC21 /* FL_img.png in Resources */ = {isa = PBXBuildFile; fileRef = B1DA58A0185EE72B0081CC21 /* FL_img.png */; };
@@ -1674,7 +1673,6 @@
 		B1D4077017C3727600E26814 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B1DA589A185EE6ED0081CC21 /* firstLaunch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = firstLaunch.html; sourceTree = "<group>"; };
 		B1DA589C185EE72B0081CC21 /* close_FL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_FL.png; sourceTree = "<group>"; };
-		B1DA589D185EE72B0081CC21 /* firstLaunch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = firstLaunch.html; sourceTree = "<group>"; };
 		B1DA589E185EE72B0081CC21 /* FL_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FL_circle.png; sourceTree = "<group>"; };
 		B1DA589F185EE72B0081CC21 /* FL_img_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FL_img_3.png; sourceTree = "<group>"; };
 		B1DA58A0185EE72B0081CC21 /* FL_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FL_img.png; sourceTree = "<group>"; };
@@ -3546,7 +3544,6 @@
 				6319F73417F041A900EDE527 /* email_block.png */,
 				C021F8D317E8BC4600EBD6B6 /* fb_btn.png */,
 				C0A82D3F17EC935B00F85793 /* finger_icon.png */,
-				B1DA589D185EE72B0081CC21 /* firstLaunch.html */,
 				B1DA589E185EE72B0081CC21 /* FL_circle.png */,
 				B1DA58A0185EE72B0081CC21 /* FL_img.png */,
 				B1DA589F185EE72B0081CC21 /* FL_img_3.png */,
@@ -5638,7 +5635,6 @@
 				C021F7F917E8279A00EBD6B6 /* lights_gr.mp3 in Resources */,
 				C021F7FA17E8279A00EBD6B6 /* Lion_gr.mp3 in Resources */,
 				C021F7FB17E8279A00EBD6B6 /* lobster_gr.mp3 in Resources */,
-				B1DA58A9185EE72B0081CC21 /* firstLaunch.html in Resources */,
 				C021F7FC17E8279A00EBD6B6 /* Make_a_movie_gr.mp3 in Resources */,
 				C021F7FD17E8279A00EBD6B6 /* monkey_gr.mp3 in Resources */,
 				C021F7FE17E8279A00EBD6B6 /* moose_gr.mp3 in Resources */,

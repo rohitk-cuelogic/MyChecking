@@ -196,22 +196,23 @@
 //    lblWithoutShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kTrymewithoutTigglyshapes"];
 //    
     
-    NSString *lanstr = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kTrymewithoutTigglyshapes"];
-    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
-        lanstr =@"What are Tiggly Shapes";
-    }
-    
-    lblWithoutShape.text = lanstr;
-    lblWithoutShape.adjustsFontSizeToFitWidth = true;
-    
-    lanstr = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockwithTigglyshapes"];
-    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
-        lanstr =@"I have Tiggly Shapes";
-    }
-    
-    lblWithShape.text =lanstr;
-    lblWithShape.adjustsFontSizeToFitWidth = true;
-    
+//    NSString *lanstr = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kTrymewithoutTigglyshapes"];
+//    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+//        lanstr =@"What are Tiggly Shapes?";
+//    }
+//    
+//    lblWithoutShape.text = lanstr;
+//    lblWithoutShape.adjustsFontSizeToFitWidth = true;
+//    
+//    lanstr = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockwithTigglyshapes"];
+//    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+//        lanstr =@"I have Tiggly Shapes";
+//    }
+//    
+//    lblWithShape.text =lanstr;
+//    lblWithShape.adjustsFontSizeToFitWidth = true;
+    [self setShapeButtonLabelTest];
+
     
     
     lblWithShape.minimumFontSize = 15.0f;
@@ -338,8 +339,9 @@
             }
             lblWithoutShape.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
             lblWithShape.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
-            lblWithShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockwithTigglyshapes"];
-            lblWithoutShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kTrymewithoutTigglyshapes"];
+//            lblWithShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockwithTigglyshapes"];
+//            lblWithoutShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kTrymewithoutTigglyshapes"];
+            [self setShapeButtonLabelTest];
             lblWithShape.minimumFontSize = 15.0f;
             lblWithoutShape.minimumFontSize = 15.0f;
             
@@ -600,7 +602,25 @@
 }
 
 
-
+-(void) setShapeButtonLabelTest {
+    DebugLog(@"");
+    NSString *lanstr = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kTrymewithoutTigglyshapes"];
+    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+        lanstr =@"What are Tiggly Shapes?";
+    }
+    
+    lblWithoutShape.text = lanstr;
+    lblWithoutShape.adjustsFontSizeToFitWidth = true;
+    
+    lanstr = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockwithTigglyshapes"];
+    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+        lanstr =@"I have Tiggly Shapes";
+    }
+    lblWithShape.text =lanstr;
+    lblWithShape.adjustsFontSizeToFitWidth = true;
+    
+    
+}
 
 #pragma mark -
 #pragma mark =======================================
@@ -666,8 +686,11 @@
     }
     lblWithoutShape.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
     lblWithShape.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
-    lblWithShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockwithTigglyshapes"];
-    lblWithoutShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kTrymewithoutTigglyshapes"];
+//    lblWithShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockwithTigglyshapes"];
+//    lblWithoutShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kTrymewithoutTigglyshapes"];
+    [self setShapeButtonLabelTest];
+    
+    
     lblWithShape.minimumFontSize = 15.0f;
     lblWithoutShape.minimumFontSize = 15.0f;
 

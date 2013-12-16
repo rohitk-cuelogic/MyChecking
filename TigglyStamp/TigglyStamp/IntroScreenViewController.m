@@ -172,6 +172,12 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:count inSection:0];
     [tblView selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionNone];
     
+    CGRect rect = RECT_IPAD;
+    rect.origin.y = rect.size.height;
+    viewForWeb.frame = rect;
+    [self.view addSubview:viewForWeb];
+    
+    
 }
 
 
@@ -186,8 +192,28 @@
     }
     lblWithoutShape.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
     lblWithShape.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
-    lblWithShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockwithTigglyshapes"];
-    lblWithoutShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kTrymewithoutTigglyshapes"];
+//    lblWithShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockwithTigglyshapes"];
+//    lblWithoutShape.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kTrymewithoutTigglyshapes"];
+//    
+    
+    NSString *lanstr = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kTrymewithoutTigglyshapes"];
+    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+        lanstr =@"What are Tiggly Shapes";
+    }
+    
+    lblWithoutShape.text = lanstr;
+    lblWithoutShape.adjustsFontSizeToFitWidth = true;
+    
+    lanstr = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockwithTigglyshapes"];
+    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+        lanstr =@"I have Tiggly Shapes";
+    }
+    
+    lblWithShape.text =lanstr;
+    lblWithShape.adjustsFontSizeToFitWidth = true;
+    
+    
+    
     lblWithShape.minimumFontSize = 15.0f;
     lblWithoutShape.minimumFontSize = 15.0f;
 }
@@ -358,10 +384,24 @@
             [self.navigationController pushViewController:homeViewController animated:NO];
         }
     }else if (btn.tag == TAG_BTN_WITHOUTSHAPE){
-        [self playVideo];
-//        [[TigglyStampUtils sharedInstance] setShapeMode:NO];
-//        TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];        
-//         [self.navigationController pushViewController:homeViewController animated:NO];
+//        [self playVideo];
+
+        [self.view bringSubviewToFront:viewForWeb];
+        
+        NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"firstLaunch" ofType:@"html" inDirectory:nil];
+        NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+        webViewFirstLaunch.scrollView.bounces = NO;
+        webViewFirstLaunch.delegate = self;
+        [webViewFirstLaunch loadHTMLString:htmlString baseURL:[[NSBundle mainBundle] bundleURL]];
+        [UIView animateWithDuration:0.5
+                         animations:^(void){
+                             viewForWeb.frame = RECT_IPAD ; //CGRectMake(0, 0, 1024, 768);
+                         }
+                         completion:^(BOOL finished){
+                             
+                         }];
+
+        
     }
     
 }
@@ -390,6 +430,28 @@
 
          [[TigglyStampUtils sharedInstance] setCurrentLanguage:lblLunguage.text];
 }
+-(IBAction)closeButtonWebClicked:(id)sender {
+    DebugLog(@"");
+    
+    [webViewFirstLaunch stopLoading];
+    TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];
+    [self.navigationController pushViewController:homeViewController animated:NO];
+    CGRect rect = RECT_IPAD;
+    rect.origin.y = rect.size.height;
+    [UIView animateWithDuration:0.5
+                     animations:^(void){
+                         viewForWeb.frame = rect;
+                     }
+                     completion:^(BOOL finished){
+                         [self.view sendSubviewToBack:viewForWeb];
+                         //                        TCHomeViewController *homeViewController = [[TCHomeViewController alloc]initWithNibName:@"TCHomeViewController" bundle:nil];
+                         //                        [self.navigationController pushViewController:homeViewController animated:NO];
+                         
+                     }];
+    
+}
+
+
 
 -(NSString*) languageSelectedStringForKey:(NSString*) key withSelectedLanguage:(NSString*)selectedLanguage{
 	NSString *path;
@@ -404,6 +466,39 @@
 	NSString* str=[languageBundle localizedStringForKey:key value:@"" table:nil];
 	return str;
 }
+
+#pragma mark -
+#pragma mark ==============================
+#pragma mark WebView Delegate
+#pragma mark ==============================
+
+
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+    DebugLog(@"");
+    
+    NSURL *URL = [request URL];
+    if ([[URL scheme] isEqualToString:@"callmycode"]) {
+        NSString *urlString = [[request URL] absoluteString];
+        NSArray *urlParts = [urlString componentsSeparatedByString:@":"];
+        //check to see if we just got the scheme
+        if ([urlParts count] > 1) {
+            NSArray *parameters = [[urlParts objectAtIndex:1] componentsSeparatedByString:@"&"];
+            NSString *methodName = [parameters objectAtIndex:0];
+            
+            if ([methodName isEqualToString:@"logoItem"] ) {
+                // learnMore UI clicked
+                [webViewFirstLaunch stopLoading];
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+                [self closeButtonWebClicked:NULL];
+                NSString* launchUrl = @"http://tiggly.com/shop";
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
+            }
+        }
+    }
+    return YES;
+}
+
+
 
 
 #pragma mark-

@@ -22,7 +22,7 @@
 #endif
 
 
-@interface IntroScreenViewController:UIViewController<UIPopoverControllerDelegate,ServiceControlerDelegate> {
+@interface IntroScreenViewController:UIViewController<UIPopoverControllerDelegate,UIWebViewDelegate,ServiceControlerDelegate> {
 
     BOOL isLanguageScreenDisplayed;
     IBOutlet UILabel *lblWithoutShape;
@@ -31,6 +31,9 @@
     UIView *viewForVideo;
     NSTimer *tmrCloseBtn;
     BOOL _isRemoveAllElement;
+    IBOutlet UIView *viewForWeb;
+    IBOutlet UIWebView *webViewFirstLaunch;
+    IBOutlet UIButton *btnClose;
 
 }
 @property (nonatomic, strong) IBOutlet UIButton *btnGoLanguage;
@@ -50,4 +53,6 @@
 -(IBAction)onButtonTouched:(id)sender;
 -(IBAction)closeButtonClicked:(id)sender;
 -(IBAction)actionGoBackToLanguage;
+-(IBAction)closeButtonWebClicked:(id)sender;
+
 @end

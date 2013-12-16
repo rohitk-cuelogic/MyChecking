@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 
-//#define DEBUG_MODE
+#define DEBUG_MODE
 //#define IS_RUN_WITHOUT_SHAPE_FOR_TESTING 1
 //#define IS_RUN_ON_SIMULATOR
-//#define TEST_MODE 1
+#define TEST_MODE 1
 
 
 #ifdef IS_RUN_ON_SIMULATOR
@@ -36,6 +36,9 @@
 
 #define RECT_THUMBNAIL_FRAME CGRectMake(0, 0, 230, 180)
 #define RECT_ACTUAL_THUMBNAIL_IMAGE_FRAME CGRectMake(0, 0, 230, 180)
+
+#define RECT_IPAD CGRectMake(0, 0, 1024, 768)
+
 
 // Setting screen
 #define LANGUAGE_SELECTED @"language"

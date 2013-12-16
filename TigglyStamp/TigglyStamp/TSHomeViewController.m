@@ -23,7 +23,7 @@
 @synthesize bkgImageView;
 @synthesize containerView,learnMoreBtn;
 
-BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail,readyToLearnMore;
+BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail,readyToLearnMore,readyToWebNewsScreen;
 NSArray *allImageFiles;
 
 #pragma mark -
@@ -110,12 +110,15 @@ NSArray *allImageFiles;
     // Do any additional setup after loading the view from its nib.
     imgScrollView.frame = CGRectMake(0,768 - (RECT_THUMBNAIL_FRAME.size.height + 40), 1024, RECT_THUMBNAIL_FRAME.size.height + 40);
     
+    viewForNews.frame=CGRectMake(0, 1024, 1024, 768);
+    [self.view addSubview:viewForNews];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
     DebugLog(@"");
     readyToParentScreen = NO;
     readyToNewsScreen = NO;
+    readyToWebNewsScreen = NO;
     confirmationView.hidden = YES;
     confirmationViewBKG.hidden = YES;
     
@@ -196,7 +199,27 @@ NSArray *allImageFiles;
     {
         [[ServerController sharedInstance] fetchNewsFeedCountWithService:self];
         
+    }else{
+        
+        NSDictionary *dictResponse=[self readJsonDictFromDocumentDirectoryWithFileName:JSON_RESPONSE];
+        if(dictResponse != Nil)
+        {
+            
+            NSArray *arrData=[[dictResponse objectForKey:@"last_news_icon"] componentsSeparatedByString:@"/"];
+            NSString *filePth =[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"usercontent/%@",[arrData objectAtIndex:[arrData count] -1]]];//@"usercontent/index.html"
+            
+            btnNews.hidden = NO;
+            NSData *data = [NSData dataWithContentsOfFile:filePth];
+            UIImage *image = [UIImage imageWithData:data];
+            [btnNews setImage:image forState:UIControlStateNormal];
+            [self performBtnNewsAnimation];
+        }
+        else
+        {
+            btnNews.hidden=YES;
+        }
     }
+
 }
 
 -(void) viewDidDisappear:(BOOL)animated{
@@ -405,8 +428,34 @@ NSArray *allImageFiles;
 //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.myshopify.com/products/tiggly-shapes"]];
          [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.com/shop"]];
     }
+    if(readyToWebNewsScreen){
+        DebugLog(@"");
+        //confirmationBackView.hidden = YES;
+        bkgLayer.opacity  =1.0;
+        readyToWebNewsScreen = NO;
+        [playBtnTimer invalidate];
+        
+        [self launchNewsView];
+        
+    }
+    
 }
-
+-(void)launchNewsView{
+    
+    activityIndicator.hidden = YES;
+    //[activityIndicator startAnimating];
+    
+    [self.view bringSubviewToFront:viewForNews];
+    [self loadHTMLWebView];
+    
+    [UIView animateWithDuration:0.5
+                     animations:^(void){
+                         viewForNews.frame = CGRectMake(0, 0, 1024, 768);
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
+}
 -(void) showConfirmationView{
     DebugLog(@"");
    
@@ -464,7 +513,7 @@ NSArray *allImageFiles;
             NSData *data = [NSData dataWithContentsOfFile:filePth];
             UIImage *image = [UIImage imageWithData:data];
             [btnNews setImage:image forState:UIControlStateNormal];
-            //[self performBtnNewsAnimation];
+            [self performBtnNewsAnimation];
             
         }
         
@@ -474,6 +523,18 @@ NSArray *allImageFiles;
         //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:APPLICATION_NAME message:@"News count are not available" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         //        [alert show];
     }
+}
+- (void) newsHTMLDownloadComplete:(NSDictionary*) dict
+{
+    NSDictionary *dictResp = [self readJsonDictFromDocumentDirectoryWithFileName:JSON_RESPONSE];
+    NSArray *arrData=[[dictResp objectForKey:@"last_news_icon"] componentsSeparatedByString:@"/"];
+    NSString *filePth =[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"usercontent/%@",[arrData objectAtIndex:[arrData count] -1]]];//@"usercontent/index.html"
+    
+    btnNews.hidden = NO;
+    NSData *data = [NSData dataWithContentsOfFile:filePth];
+    UIImage *image = [UIImage imageWithData:data];
+    [btnNews setImage:image forState:UIControlStateNormal];
+    [self performBtnNewsAnimation];
 }
 #pragma mark-
 #pragma mark======================
@@ -511,9 +572,21 @@ NSArray *allImageFiles;
 
 -(IBAction)actionForNews:(id)sender
 {
-
+    readyToWebNewsScreen = YES;
+    bkgLayer.opacity = 0.0;
+    
+    [self showConfirmationView];
 }
-
+-(IBAction)crossActionForViewForWeb:(id)sender
+{
+    [UIView animateWithDuration:0.5
+                     animations:^(void){
+                         viewForNews.frame = CGRectMake(0, 1024, 1024, 768);
+                     }
+                     completion:^(BOOL finished){
+                         [self.view sendSubviewToBack:viewForNews];
+                     }];
+}
 #pragma mark -
 #pragma mark =======================================
 #pragma mark Touch Hnadling
@@ -646,10 +719,17 @@ NSArray *allImageFiles;
     }
 }
 
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Save and fetch JSON from documents Directory
+#pragma mark =======================================
+
+
 -(void) gestureViewOnChangeLanguage {
     DebugLog(@"");
     [self initializeLabels];
 }
+
 
 -(void) writeJsonInDocumentDirectory:(NSDictionary *)dict saveFileWithName:(NSString *)name
 {
@@ -711,5 +791,11 @@ NSArray *allImageFiles;
     bounceAnimation.removedOnCompletion = NO;
     bounceAnimation.additive = YES;
     [btnNews.layer addAnimation:bounceAnimation forKey:@"bounceAnimation"];
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [activityIndicator stopAnimating];
+    activityIndicator.hidden = YES;
+    
 }
 @end

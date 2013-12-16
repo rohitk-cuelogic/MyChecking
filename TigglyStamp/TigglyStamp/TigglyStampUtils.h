@@ -70,4 +70,6 @@
 -(void) setiPadMiniDeviceVersion:(NSMutableArray *) deviceArray;
 -(NSMutableArray *) getiPadMiniDeviceVersion;
 -(BOOL)isNetworkAvailable;
+- (void)unzipAndSaveFile:(NSString *)strFileName;
+
 @end

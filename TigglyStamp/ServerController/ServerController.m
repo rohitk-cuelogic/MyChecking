@@ -519,10 +519,10 @@ static ServerController *sharedInstance = nil;
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePth])
     {
-        //[[TDGameUtils sharedManager] unzipAndSaveFile:@"index.zip"];
+        [[TigglyStampUtils sharedInstance] unzipAndSaveFile:@"index.zip"];
     }
     
-    //[_delegate newsHTMLDownloadComplete:Nil];
+    [_delegate newsHTMLDownloadComplete:Nil];
     
 }
 -(void)downloadHTMLFailed:(id)sender

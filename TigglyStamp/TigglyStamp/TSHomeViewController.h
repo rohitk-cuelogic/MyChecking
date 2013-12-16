@@ -43,6 +43,8 @@
     IBOutlet UIButton *btnNews;    
     IBOutlet UILabel *lblHappyHolidays;
     IBOutlet UIActivityIndicatorView *activityIndicator;
+    IBOutlet UIView *viewForNews;
+
 }
 
 @property(nonatomic, strong) UIScrollView *imgScrollView;

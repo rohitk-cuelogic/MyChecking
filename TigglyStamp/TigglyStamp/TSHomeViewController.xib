@@ -25,6 +25,7 @@
                 <outlet property="playBtn" destination="4" id="10"/>
                 <outlet property="txtView" destination="26" id="33"/>
                 <outlet property="view" destination="2" id="3"/>
+                <outlet property="viewForNews" destination="lwj-0A-dtL" id="6zA-b2-9WT"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -158,9 +159,6 @@ Swipe right with 2 fingers to continue.</string>
                                     <state key="highlighted">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
-                                    <connections>
-                                        <action selector="noConfirmation:" destination="-1" eventType="touchUpInside" id="32"/>
-                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.38431372549999998" green="0.67843137249999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -211,6 +209,9 @@ Swipe right with 2 fingers to continue.</string>
                     <state key="highlighted">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="crossActionForViewForWeb:" destination="-1" eventType="touchUpInside" id="tzq-0M-OK9"/>
+                    </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoparent.png" id="dov-GN-yAe">
                     <rect key="frame" x="10" y="6" width="35" height="35"/>

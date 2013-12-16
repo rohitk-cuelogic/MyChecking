@@ -20,6 +20,7 @@
 - (void) newsDataRetrived:(NSMutableArray *) data;
 - (void) newsCountDataRetrived:(NSDictionary *) dict;
 - (void) iPadMiniDeviceVersionDataRetrived:(NSDictionary *) dict;
+- (void) newsHTMLDownloadComplete:(NSDictionary*) dict;
 
 @end
 

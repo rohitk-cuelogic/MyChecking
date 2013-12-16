@@ -218,6 +218,34 @@ NSArray *allImageFiles;
     return UIInterfaceOrientationMaskLandscape;
 }
 
+-(void)initializeLabels{
+     DebugLog(@"");
+    float fontSize = 0.0;
+    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+        fontSize = 18.0f;
+    }else  if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
+        fontSize = 14.0f;
+    }else{
+        fontSize = 16.0f;
+    }
+    
+    lblUnlockWithShapes.text =[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kUnlockwithTigglyshapes"];
+    lblUnlockWithShapes.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    
+    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
+        fontSize = 10.0f;
+    }
+    lblLearnMore.text =[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLearnmore"];
+    lblLearnMore.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    
+    if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+        fontSize = 24.0f;
+    }else{
+        fontSize = 18.0f;
+    }
+    forParentsBtn.titleLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    [forParentsBtn setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kForParents"] forState:UIControlStateNormal];
+}
 #pragma mark -
 #pragma mark =======================================
 #pragma mark Animation
@@ -387,6 +415,17 @@ NSArray *allImageFiles;
     [self.view addSubview:gestureView];
 
 }
+
+-(void) showConfirmationViewWithLangSelOption{
+    DebugLog(@"");
+    
+    gestureView = [[GestureConfirmationView alloc] initLoadLanguageOptionWithFrame:CGRectMake(0, 0, 1024, 768)];
+    gestureView.delegate = self;
+    [self.view addSubview:gestureView];
+    [self.view bringSubviewToFront:gestureView];
+    
+}
+
 #pragma mark -
 #pragma mark =======================================
 #pragma mark Service Controller Delegate Method
@@ -453,7 +492,7 @@ NSArray *allImageFiles;
 -(IBAction)goToParentsScreen:(id)sender{
     DebugLog(@"");
     readyToParentScreen = YES;
-    [self showConfirmationView];
+    [self showConfirmationViewWithLangSelOption];
 }
 
 -(IBAction)actionLearnMore {
@@ -605,6 +644,12 @@ NSArray *allImageFiles;
         readyToParentScreen = NO;
     }
 }
+
+-(void) gestureViewOnChangeLanguage {
+    DebugLog(@"");
+    [self initializeLabels];
+}
+
 -(void) writeJsonInDocumentDirectory:(NSDictionary *)dict saveFileWithName:(NSString *)name
 {
     // Get path to documents directory

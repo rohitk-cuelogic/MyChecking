@@ -125,18 +125,19 @@ NSArray *allImageFiles;
         [thumbnail removeFromSuperview];
     }
     
-
+    lblUnlockWithShapes.hidden = YES;
+    lblLearnMore.hidden = YES;
+    
+    newsBtn.hidden = YES;
+    newsBtn.userInteractionEnabled = NO;
+    
+    learnMoreBtn.hidden = YES;
+    learnMoreBtn.userInteractionEnabled = NO;
+    
     
     if ([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
+    
         
-        lblUnlockWithShapes.hidden = YES;
-        lblLearnMore.hidden = YES;
-        
-        newsBtn.hidden = YES;
-        newsBtn.userInteractionEnabled = NO;
-        
-        learnMoreBtn.hidden = YES;
-        learnMoreBtn.userInteractionEnabled = NO;
     }else{
         float fontSize = 0.0;
         if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){

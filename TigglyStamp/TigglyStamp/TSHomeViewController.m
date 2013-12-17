@@ -147,10 +147,6 @@ NSArray *allImageFiles;
     switchPlayWithShape.hidden = NO;
     
     lblPlayWithShapes.hidden = NO;
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        DebugLog(@"iOS version 7.0");
-        switchPlayWithShape.frame = CGRectMake(switchPlayWithShape.frame.origin.x +25, switchPlayWithShape.frame.origin.y, switchPlayWithShape.frame.size.width, switchPlayWithShape.frame.size.height);
-    }
     lblPlayWithShapes.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPlaywithTigglyShapes"];
     lblPlayWithShapes.font =  [UIFont fontWithName:APP_FONT_BOLD size:20.0];
     if ([[TigglyStampUtils sharedInstance] getShapeMode] == YES) {
@@ -158,6 +154,8 @@ NSArray *allImageFiles;
     }else{
         [switchPlayWithShape setOn:NO];
     }
+    
+    [self playWithTigglyShapeSetDynamicBackgroundwidth];
     
     if ([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
 
@@ -305,6 +303,24 @@ NSArray *allImageFiles;
     [forParentsBtn setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kForParents"] forState:UIControlStateNormal];
     
      lblPlayWithShapes.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPlaywithTigglyShapes"];
+    
+    [self playWithTigglyShapeSetDynamicBackgroundwidth ];
+}
+
+-(void)playWithTigglyShapeSetDynamicBackgroundwidth{
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        float bkWidth;
+        bkWidth = [lblPlayWithShapes.text sizeWithFont:lblPlayWithShapes.font].width;
+        lblPlayWithShapes.frame = CGRectMake(12, 90, bkWidth, 42);
+        imgBKG_PlaywithTigglyShape.frame = CGRectMake(-45, 70, bkWidth+170, 81);
+        switchPlayWithShape.frame = CGRectMake(12+bkWidth+20, 97, 51, 31);
+    }else{
+        float bkWidth;
+        bkWidth = [lblPlayWithShapes.text sizeWithFont:lblPlayWithShapes.font].width;
+        lblPlayWithShapes.frame = CGRectMake(12, 90, bkWidth, 42);
+        imgBKG_PlaywithTigglyShape.frame = CGRectMake(-45, 70, bkWidth+196, 81);
+        switchPlayWithShape.frame = CGRectMake(12+bkWidth+20, 97, 77, 27);
+    }
 }
 #pragma mark -
 #pragma mark =======================================

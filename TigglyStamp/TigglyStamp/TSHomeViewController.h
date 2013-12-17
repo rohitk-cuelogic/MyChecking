@@ -46,6 +46,7 @@
     IBOutlet UIView *viewForNews;
     IBOutlet UILabel *lblPlayWithShapes;
     IBOutlet UISwitch *switchPlayWithShape;
+    IBOutlet UIImageView *imgBKG_PlaywithTigglyShape;
 }
 
 @property(nonatomic, strong) UIScrollView *imgScrollView;

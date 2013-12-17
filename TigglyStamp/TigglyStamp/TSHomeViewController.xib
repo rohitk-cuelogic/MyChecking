@@ -15,6 +15,7 @@
                 <outlet property="confirmationViewBKG" destination="42" id="43"/>
                 <outlet property="containerView" destination="38" id="39"/>
                 <outlet property="forParentsBtn" destination="22" id="29"/>
+                <outlet property="imgBKG_PlaywithTigglyShape" destination="dnL-J2-Sbt" id="oam-H6-DDw"/>
                 <outlet property="imgScrollView" destination="11" id="12"/>
                 <outlet property="lblHappyHolidays" destination="tNE-og-jMA" id="NmW-63-fyO"/>
                 <outlet property="lblLearnMore" destination="gSd-nc-0ln" id="LI0-H7-r8N"/>

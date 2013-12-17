@@ -156,6 +156,16 @@ int previousTouchCount = 0;
     if([[self platform] isEqualToString:@"iPad2,5"]||[[self platform] isEqualToString:@"iPad2,6"]||[[self platform] isEqualToString:@"iPad2,7"]||[[self platform] isEqualToString:@"iPad4,4"]||[[self platform] isEqualToString:@"iPad4,5"]){
         scale = 0.8;
     }
+    
+    NSMutableArray * arr = [[TigglyStampUtils sharedInstance] getiPadMiniDeviceVersion];
+    if(arr != nil){
+        for(NSString *str in arr){
+            if([[self platform] isEqualToString:str]){
+                scale = 0.8;
+            }
+        }
+    }
+    
     shapeDicionary = [[NSMutableDictionary alloc]init];
     
     allTouchPoints = [[NSMutableArray alloc]initWithCapacity:1];

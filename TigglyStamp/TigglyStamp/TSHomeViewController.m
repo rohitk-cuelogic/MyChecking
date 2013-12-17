@@ -145,7 +145,12 @@ NSArray *allImageFiles;
     learnMoreBtn.userInteractionEnabled = NO;
     
     switchPlayWithShape.hidden = NO;
+    
     lblPlayWithShapes.hidden = NO;
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        DebugLog(@"iOS version 7.0");
+        switchPlayWithShape.frame = CGRectMake(switchPlayWithShape.frame.origin.x +25, switchPlayWithShape.frame.origin.y, switchPlayWithShape.frame.size.width, switchPlayWithShape.frame.size.height);
+    }
     lblPlayWithShapes.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPlaywithTigglyShapes"];
     lblPlayWithShapes.font =  [UIFont fontWithName:APP_FONT_BOLD size:20.0];
     if ([[TigglyStampUtils sharedInstance] getShapeMode] == YES) {

@@ -279,16 +279,16 @@ int currentObject;
 -(void)removeDrawnShapeObject:(NSString *)typeOfShape  objectToRemove:(NSString *)objectDrawn{
     
     if([typeOfShape isEqualToString:@"triangle"]){
-        [fallTriangleObjects removeObjectIdenticalTo:objectDrawn];
+        [fallTriangleObjects removeObject:objectDrawn];
     }
     if([typeOfShape isEqualToString:@"square"]){
-        [fallSquareObjects removeObjectIdenticalTo:objectDrawn];
+        [fallSquareObjects removeObject:objectDrawn];
     }
     if([typeOfShape isEqualToString:@"star"]){
-        [fallStarObjects removeObjectIdenticalTo:objectDrawn];
+        [fallStarObjects removeObject:objectDrawn];
     }
     if([typeOfShape isEqualToString:@"circle"]){
-        [fallCircleObjects removeObjectIdenticalTo:objectDrawn];
+        [fallCircleObjects removeObject:objectDrawn];
     }
     
 }

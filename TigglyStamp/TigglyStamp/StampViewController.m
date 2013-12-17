@@ -107,13 +107,13 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 -(void) nullifyAllData{
     DebugLog(@"");
     
-    if(winterSceneObject != nil) {
-        winterSceneObject = nil;
-    }
-    
-    if(fallSceneObject != nil) {
-        fallSceneObject = nil;
-    }
+//    if(winterSceneObject != nil) {
+//        winterSceneObject = nil;
+//    }
+//    
+//    if(fallSceneObject != nil) {
+//        fallSceneObject = nil;
+//    }
     
     if(introView != nil) {
         introView = nil;

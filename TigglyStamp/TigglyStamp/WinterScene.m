@@ -38,7 +38,8 @@ int currentObject;
     DebugLog(@"");
     self = [super init];
     if (self) {
-        winterSquareObjects = [[NSMutableArray alloc] initWithObjects:@"present",
+        winterSquareObjects = [[NSMutableArray alloc] initWithObjects:
+                               @"present",
                                @"cup",
                                @"sled",
                                @"choo",
@@ -51,7 +52,8 @@ int currentObject;
                                @"blueSquareJeans",
                                @"stripped_pants",nil];
         
-        winterTriangleObjects = [[NSMutableArray alloc] initWithObjects:@"bells",
+        winterTriangleObjects = [[NSMutableArray alloc] initWithObjects:
+                                 @"bells",
                                  @"blue_hat",
                                  @"pink_hat",
                                  @"deer",
@@ -64,7 +66,8 @@ int currentObject;
                                  @"winter_coat",
                                  @"winter_coat_purple",nil];
         
-        winterCircleObjects = [[NSMutableArray alloc] initWithObjects:@"bear",
+        winterCircleObjects = [[NSMutableArray alloc] initWithObjects:
+                               @"bear",
                                @"bird",
                                @"candy",
                                @"choclate",
@@ -76,7 +79,8 @@ int currentObject;
                                @"snowglobe",
                                @"snowman",nil];
         
-        winterStarObjects = [[NSMutableArray alloc] initWithObjects:@"chipmunk",
+        winterStarObjects = [[NSMutableArray alloc] initWithObjects:
+                             @"chipmunk",
                              @"fox",
                              @"ornament_purple",
                              @"snowflake_1",
@@ -108,9 +112,7 @@ int currentObject;
         hot_choclateShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         lightbulbShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         purple_umbrellaShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-//        greenTriangleGiftShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         pinkSkirtWinterArray= [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-//        purpleTriangleGiftArray =[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         winterCoatArray =[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         winterCoatPurpleArray =[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         
@@ -135,9 +137,6 @@ int currentObject;
         snowflake_3ShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
         star_cookieShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
         star_cookie_2ShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-//        blueStarGiftArray= [[NSMutableArray alloc] initWithObjects:@"star", nil];
-//        purpleStarGiftArray= [[NSMutableArray alloc] initWithObjects:@"star", nil];
-//        redStarGiftArray =[[NSMutableArray alloc] initWithObjects:@"star", nil];
         
         
         winterObjectWithShapes = [[NSMutableDictionary alloc] init];
@@ -219,11 +218,13 @@ int currentObject;
             [winterTriangleObjects addObject:@"deer_2"];
             [winterTriangleObjects addObject:@"green_umbrella"];
             [winterTriangleObjects addObject:@"hot_choclate"];
+            [winterTriangleObjects addObject:@"lightbulb"];
             [winterTriangleObjects addObject:@"purple_umbrella"];
             [winterTriangleObjects addObject:@"pink_skirt_winter"];
             [winterTriangleObjects addObject:@"winter_coat"];
             [winterTriangleObjects addObject:@"winter_coat_purple"];
-            size = 11;
+            size = 12;
+        
         }
         currentObject =  arc4random()%size;
         objectName = [winterTriangleObjects objectAtIndex:currentObject];
@@ -241,8 +242,10 @@ int currentObject;
             [winterCircleObjects addObject:@"penguin_skate"];
             [winterCircleObjects addObject:@"penguin"];
             [winterCircleObjects addObject:@"snowglobe"];
+            [winterCircleObjects addObject:@"girl"];
+            [winterCircleObjects addObject:@"snowman"];
             size = 9;
-        }
+          }
         currentObject =  arc4random()%size;
         objectName = [winterCircleObjects objectAtIndex:currentObject];
         DebugLog(@"Give array of shape %@", objectName);
@@ -300,16 +303,16 @@ int currentObject;
     DebugLog(@"shape type %@, to remove %@",typeOfShape,objectDrawn);
     
     if([typeOfShape isEqualToString:@"triangle"]){
-        [winterTriangleObjects removeObjectIdenticalTo:objectDrawn];
+        [winterTriangleObjects removeObject:objectDrawn];
     }
     if([typeOfShape isEqualToString:@"square"]){
-        [winterSquareObjects removeObjectIdenticalTo:objectDrawn];
+        [winterSquareObjects removeObject:objectDrawn];
     }
     if([typeOfShape isEqualToString:@"star"]){
-        [winterStarObjects removeObjectIdenticalTo:objectDrawn];
+        [winterStarObjects removeObject:objectDrawn];
     }
     if([typeOfShape isEqualToString:@"circle"]){
-        [winterCircleObjects removeObjectIdenticalTo:objectDrawn];
+        [winterCircleObjects removeObject:objectDrawn];
     }
     
 }

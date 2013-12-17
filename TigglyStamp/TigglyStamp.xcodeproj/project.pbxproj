@@ -1399,6 +1399,7 @@
 		C08EA08F185F3DD100199DE7 /* Tiggly_Word_Yellowpants_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C08E9FFE185F3DD100199DE7 /* Tiggly_Word_Yellowpants_01.mp3 */; };
 		C08EA090185F3DD100199DE7 /* Tiggly_Word_Yellowpants_Var1_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C08E9FFF185F3DD100199DE7 /* Tiggly_Word_Yellowpants_Var1_01.mp3 */; };
 		C08EA091185F3DD100199DE7 /* Tiggly_Word_Yellowpants_Var2_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C08EA000185F3DD100199DE7 /* Tiggly_Word_Yellowpants_Var2_01.mp3 */; };
+		C08EA093185F811A00199DE7 /* bg_playWithShapeSwitch.png in Resources */ = {isa = PBXBuildFile; fileRef = C08EA092185F811A00199DE7 /* bg_playWithShapeSwitch.png */; };
 		C08EC11C17EB49680092F5A7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C08EC11B17EB49680092F5A7 /* CoreData.framework */; };
 		C08EC12017EB54A70092F5A7 /* unlock_using_shapes.png in Resources */ = {isa = PBXBuildFile; fileRef = C08EC11E17EB54A70092F5A7 /* unlock_using_shapes.png */; };
 		C08EC12117EB54A70092F5A7 /* language_stamp_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C08EC11F17EB54A70092F5A7 /* language_stamp_bg.png */; };
@@ -3053,6 +3054,7 @@
 		C08E9FFE185F3DD100199DE7 /* Tiggly_Word_Yellowpants_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Yellowpants_01.mp3; sourceTree = "<group>"; };
 		C08E9FFF185F3DD100199DE7 /* Tiggly_Word_Yellowpants_Var1_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Yellowpants_Var1_01.mp3; sourceTree = "<group>"; };
 		C08EA000185F3DD100199DE7 /* Tiggly_Word_Yellowpants_Var2_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Yellowpants_Var2_01.mp3; sourceTree = "<group>"; };
+		C08EA092185F811A00199DE7 /* bg_playWithShapeSwitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_playWithShapeSwitch.png; sourceTree = "<group>"; };
 		C08EC11B17EB49680092F5A7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C08EC11E17EB54A70092F5A7 /* unlock_using_shapes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlock_using_shapes.png; sourceTree = "<group>"; };
 		C08EC11F17EB54A70092F5A7 /* language_stamp_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = language_stamp_bg.png; sourceTree = "<group>"; };
@@ -4109,6 +4111,7 @@
 		C021F88417E86E4700EBD6B6 /* NewImages */ = {
 			isa = PBXGroup;
 			children = (
+				C08EA092185F811A00199DE7 /* bg_playWithShapeSwitch.png */,
 				C021F8A517E8928600EBD6B6 /* arrow_right.png */,
 				C021F89E17E8928600EBD6B6 /* arrow_right_3.png */,
 				C027AE5B17EADBE00066632E /* blue_bg.png */,
@@ -6276,6 +6279,7 @@
 				C01E52B117C73A4000B749F3 /* spring_btn_lock.png in Resources */,
 				C08EA08A185F3DD100199DE7 /* Tiggly_Word_Stripedpants_01.mp3 in Resources */,
 				C01E52B217C73A4000B749F3 /* summer_btn_lock.png in Resources */,
+				C08EA093185F811A00199DE7 /* bg_playWithShapeSwitch.png in Resources */,
 				C01E52B317C73A4000B749F3 /* tiggly_news_btn.png in Resources */,
 				C01E52B417C73A4000B749F3 /* tiggly_parents_btn.png in Resources */,
 				C01E52B817C7437100B749F3 /* tiggly_news_bkg.png in Resources */,

@@ -483,6 +483,10 @@
                 NSString* launchUrl = @"http://tiggly.com/shop";
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
             }
+            if ([methodName isEqualToString:@"playWihoutShp"] ) {
+                DebugLog(@"playWihoutShp");
+                [self closeButtonWebClicked:NULL];
+            }
         }
     }
     return YES;

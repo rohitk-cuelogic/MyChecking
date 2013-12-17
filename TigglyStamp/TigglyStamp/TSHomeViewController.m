@@ -883,6 +883,10 @@ NSArray *allImageFiles;
                 NSString* launchUrl = @"http://tiggly.com/shop";
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
             }
+            if ([methodName isEqualToString:@"playWihoutShp"] ) {
+                NSLog(@"playWihoutShp");
+                [self crossActionForViewForWeb:NULL];
+            }
         }
     }
     return YES;

@@ -11,6 +11,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "TConstant.h"
 #import "ServerController.h"
+#import "GestureConfirmationView.h"
 
 
 #ifdef GOOGLE_ANALYTICS_START
@@ -22,7 +23,7 @@
 #endif
 
 
-@interface IntroScreenViewController:UIViewController<UIPopoverControllerDelegate,UIWebViewDelegate> {
+@interface IntroScreenViewController:UIViewController<UIPopoverControllerDelegate,UIWebViewDelegate,GestireViewProtocol> {
 
     BOOL isLanguageScreenDisplayed;
     IBOutlet UILabel *lblWithoutShape;

@@ -21,7 +21,9 @@
 
 @end
 
-@implementation IntroScreenViewController
+@implementation IntroScreenViewController{
+    GestureConfirmationView *gestureView;
+}
 
 @synthesize btnWithoutShape,btnWithShape,isShowLogo;
 @synthesize languageView;
@@ -477,11 +479,7 @@
             
             if ([methodName isEqualToString:@"logoItem"] ) {
                 // learnMore UI clicked
-                [webViewFirstLaunch stopLoading];
-                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
-                [self closeButtonWebClicked:NULL];
-                NSString* launchUrl = @"http://tiggly.com/shop";
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
+                [self showConfirmationView];
             }
             if ([methodName isEqualToString:@"playWihoutShp"] ) {
                 DebugLog(@"playWihoutShp");
@@ -492,6 +490,70 @@
     return YES;
 }
 
+    
+#pragma mark -
+#pragma mark ==============================
+#pragma mark touches handling
+#pragma mark ==============================
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+    double delayInSeconds = 0.3;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if (gestureView != NULL) {
+            [gestureView removeFromSuperview];
+            gestureView = NULL;
+        }
+    });
+}
+    
+#pragma mark -
+#pragma mark ==============================
+#pragma mark GestureConfirmationView delegates
+#pragma mark ==============================
+    
+-(void) showConfirmationView{
+    DebugLog(@"");
+    
+    
+    gestureView = [[GestureConfirmationView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+    gestureView.delegate = self;
+    [self.view addSubview:gestureView];
+    [self.view bringSubviewToFront:gestureView];
+}
+    
+-(void) gestureViewOnGestureConfirmed:(GestureConfirmationView *) gView{
+    DebugLog(@"");
+    if (gestureView != NULL) {
+        [gestureView removeFromSuperview];
+        gestureView = NULL;
+    }
+    [webViewFirstLaunch stopLoading];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+    [self closeButtonWebClicked:NULL];
+    NSString* launchUrl = @"http://tiggly.com/shop";
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
+    
+}
+    
+-(void) gestureViewOnCancel:(GestureConfirmationView *) gView{
+    DebugLog(@"");
+    if (gestureView != NULL) {
+        [gestureView removeFromSuperview];
+        gestureView = NULL;
+    }
+}
+    
+    
+-(void) gestureViewOnChangeLanguage {
+    DebugLog(@"");
+    if (gestureView != NULL) {
+        [gestureView removeFromSuperview];
+        gestureView = NULL;
+    }
+    
+}
+    
 
 
 

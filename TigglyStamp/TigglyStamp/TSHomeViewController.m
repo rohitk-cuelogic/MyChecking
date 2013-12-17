@@ -19,6 +19,10 @@
 @end
 
 @implementation TSHomeViewController
+{
+    BOOL _isWebViewLaunched;
+
+}
 @synthesize imgScrollView;
 @synthesize bkgImageView;
 @synthesize containerView,learnMoreBtn;
@@ -90,7 +94,8 @@ NSArray *allImageFiles;
 - (void)viewDidLoad {
     DebugLog(@"");
     [super viewDidLoad];
-    
+    _isWebViewLaunched = NO;
+
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
@@ -116,6 +121,8 @@ NSArray *allImageFiles;
 
 -(void) viewWillAppear:(BOOL)animated{
     DebugLog(@"");
+     lblHappyHolidays.font = [UIFont fontWithName:FONT_ROCKWELL_BOLD size:20.0f];
+    btnNews.hidden=YES;
     readyToParentScreen = NO;
     readyToNewsScreen = NO;
     readyToWebNewsScreen = NO;
@@ -195,7 +202,9 @@ NSArray *allImageFiles;
     [self.view.layer addSublayer:bkgLayer];
     
     isFirstTimePlay = YES;
-    playBtnTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(animatePlayButton) userInfo:nil repeats:YES];
+    if (!_isWebViewLaunched) {
+        playBtnTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(animatePlayButton) userInfo:nil repeats:YES];
+    }
     
 
     
@@ -454,9 +463,14 @@ NSArray *allImageFiles;
         //confirmationBackView.hidden = YES;
         bkgLayer.opacity  =1.0;
         readyToWebNewsScreen = NO;
+        _isWebViewLaunched = YES;
         [playBtnTimer invalidate];
-        
-        [self launchNewsView];
+        if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes] == NO)
+        {
+            [self launchLearnMoreView];
+        }
+        else
+            [self launchNewsView];
         
     }
     
@@ -476,6 +490,27 @@ NSArray *allImageFiles;
                      completion:^(BOOL finished){
                          
                      }];
+}
+-(void)launchLearnMoreView{
+    
+    //[self stopBackgroundMusic];
+    [self.view bringSubviewToFront:viewForNews];
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"firstLaunch" ofType:@"html" inDirectory:nil];
+    NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+    _webView.scrollView.bounces = NO;
+    _webView.delegate = self;
+    [_webView loadHTMLString:htmlString baseURL:[[NSBundle mainBundle] bundleURL]];
+    
+    
+    
+    [UIView animateWithDuration:0.5
+                     animations:^(void){
+                         viewForNews.frame = CGRectMake(0, 0, 1024, 768);
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
+    
 }
 -(void) showConfirmationView{
     DebugLog(@"");
@@ -593,6 +628,8 @@ NSArray *allImageFiles;
 }
 -(IBAction)crossActionForViewForWeb:(id)sender
 {
+    _isWebViewLaunched = NO;
+
     [UIView animateWithDuration:0.5
                      animations:^(void){
                          viewForNews.frame = CGRectMake(0, 1024, 1024, 768);
@@ -821,6 +858,34 @@ NSArray *allImageFiles;
     bounceAnimation.removedOnCompletion = NO;
     bounceAnimation.additive = YES;
     [btnNews.layer addAnimation:bounceAnimation forKey:@"bounceAnimation"];
+}
+#pragma mark -
+#pragma mark ==============================
+#pragma mark WebView Delegate
+#pragma mark ==============================
+
+
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+    DebugLog(@"");
+    
+    NSURL *URL = [request URL];
+    if ([[URL scheme] isEqualToString:@"callmycode"]) {
+        NSString *urlString = [[request URL] absoluteString];
+        NSArray *urlParts = [urlString componentsSeparatedByString:@":"];
+        //check to see if we just got the scheme
+        if ([urlParts count] > 1) {
+            NSArray *parameters = [[urlParts objectAtIndex:1] componentsSeparatedByString:@"&"];
+            NSString *methodName = [parameters objectAtIndex:0];
+            
+            if ([methodName isEqualToString:@"logoItem"] ) {
+                // learnMore UI clicked
+                [webView stopLoading];
+                NSString* launchUrl = @"http://tiggly.com/shop";
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
+            }
+        }
+    }
+    return YES;
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {

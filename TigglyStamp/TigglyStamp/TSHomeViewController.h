@@ -13,7 +13,7 @@
 #import "GestureConfirmationView.h"
 #import "ServerController.h"
 
-@interface TSHomeViewController : UIViewController<ThumbnailViewProtocol,GestireViewProtocol,ServiceControlerDelegate>{
+@interface TSHomeViewController : UIViewController<ThumbnailViewProtocol,GestireViewProtocol,ServiceControlerDelegate,UIWebViewDelegate>{
     IBOutlet UIButton *playBtn;
     IBOutlet UIButton *forParentsBtn;
     IBOutlet UIButton *newsBtn;

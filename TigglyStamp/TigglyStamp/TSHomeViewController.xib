@@ -218,7 +218,7 @@ Swipe right with 2 fingers to continue.</string>
                     <rect key="frame" x="977" y="12" width="42" height="42"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal" backgroundImage="cross.png">
+                    <state key="normal" backgroundImage="close_FL.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -242,8 +242,8 @@ Swipe right with 2 fingers to continue.</string>
         </view>
     </objects>
     <resources>
+        <image name="close_FL.png" width="84" height="84"/>
         <image name="close_btn.png" width="120" height="120"/>
-        <image name="cross.png" width="274" height="274"/>
         <image name="header_bg_FL.png" width="2048" height="147"/>
         <image name="home_play_btn.png" width="619" height="620"/>
         <image name="learn_more.png" width="416" height="372"/>

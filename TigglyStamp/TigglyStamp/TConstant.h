@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-#define DEBUG_MODE
+//#define DEBUG_MODE
 //#define IS_RUN_WITHOUT_SHAPE_FOR_TESTING 1
 //#define IS_RUN_ON_SIMULATOR
 //#define TEST_MODE 1
@@ -97,6 +97,7 @@
 #define MAX_QUEUE_COUNT   50
 #define UNREAD_NEWS_COUNT @"UnreadNewsCount"
 #define JSON_RESPONSE @"ResponseDict.json"
+#define FONT_ROCKWELL_BOLD @"Rockwell-Bold"
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 #define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)

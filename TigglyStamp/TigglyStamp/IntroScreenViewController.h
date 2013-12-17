@@ -22,7 +22,7 @@
 #endif
 
 
-@interface IntroScreenViewController:UIViewController<UIPopoverControllerDelegate,UIWebViewDelegate,ServiceControlerDelegate> {
+@interface IntroScreenViewController:UIViewController<UIPopoverControllerDelegate,UIWebViewDelegate> {
 
     BOOL isLanguageScreenDisplayed;
     IBOutlet UILabel *lblWithoutShape;

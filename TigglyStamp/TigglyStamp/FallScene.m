@@ -1200,22 +1200,53 @@ int currentObject;
         
     }
     
-    if ([fallObject isEqualToString:@"blue_jeans"]) {
+    else if ([fallObject isEqualToString:@"blue_jeans"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+            int ranNo = arc4random()%5;
+            
+            if(ranNo == 0){
+                soundFile = @"Tiggly_Word_BluePants_01";
+            }else if (ranNo == 1) {
+                soundFile = @"Tiggly_Word_BluePants_Var1_01";
+            }else if (ranNo == 2) {
+                soundFile = @"Tiggly_Word_BluePants_Var2_01";
+            }else if (ranNo == 3) {
+                soundFile = @"Tiggly_Word_BluePants_Var2_02";
+            }else if (ranNo == 4) {
+                soundFile = @"Tiggly_Word_BluePants_Var2_03";
+            }
+            
+        }
+    }
+    else if ([fallObject isEqualToString:@"green_skirt"]) {
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+            int ranNo = arc4random()%5;
+            
+            if(ranNo == 0){
+                soundFile = @"Tiggly_Word_Greenskirt_01";
+            }else if (ranNo == 1) {
+                soundFile = @"Tiggly_Word_Greenskirt_Var1_01";
+            }else if (ranNo == 2) {
+                soundFile = @"Tiggly_Word_Greenskirt_Var2_01";
+            }else if (ranNo == 3) {
+                soundFile = @"Tiggly_Word_Greenskirt_Var2_02";
+            }else if (ranNo == 4) {
+                soundFile = @"Tiggly_Word_Greenskirt_Var2_03";
+            }
+            
+        }
+
+    }
+    else if ([fallObject isEqualToString:@"khakis"]) {
         
     }
-    if ([fallObject isEqualToString:@"green_skirt"]) {
+   else  if ([fallObject isEqualToString:@"pink_skirt_fall"]) {
         
     }
-    if ([fallObject isEqualToString:@"khakis"]) {
+    else if ([fallObject isEqualToString:@"purple_pants"]) {
         
     }
-    if ([fallObject isEqualToString:@"pink_skirt_fall"]) {
-        
-    }
-    if ([fallObject isEqualToString:@"purple_pants"]) {
-        
-    }
-    if ([fallObject isEqualToString:@"yellow_skirt"]) {
+    else if ([fallObject isEqualToString:@"yellow_skirt"]) {
         
     }
 

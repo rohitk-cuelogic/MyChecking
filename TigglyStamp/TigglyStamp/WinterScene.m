@@ -25,7 +25,7 @@ penguin_blueShapeArray,penguin_skateShapeArray,penguinShapeArray,snowglobeShapeA
 
 @synthesize chipmunkShapeArray,foxShapeArray,ornament_purpleShapeArray,snowflake_1ShapeArray,snowflake_2ShapeArray,snowflake_3ShapeArray,star_cookieShapeArray,star_cookie_2ShapeArray;
 
-@synthesize blueStarGiftArray,cordoroyPantsArray,greenTriangleGiftShapeArray,blueSquareJeansArray,pinkSkirtWinterArray,purpleStarGiftArray,purpleTriangleGiftArray,redStarGiftArray,strippedPantsShapeArray,winterCoatArray,winterCoatPurpleArray;
+@synthesize cordoroyPantsArray,blueSquareJeansArray,pinkSkirtWinterArray,strippedPantsShapeArray,winterCoatArray,winterCoatPurpleArray;
 
 int currentObject;
 
@@ -60,9 +60,7 @@ int currentObject;
                                  @"hot_choclate",
                                  @"lightbulb",
                                  @"purple_umbrella",
-                                 @"green_triangle_gift",
                                  @"pink_skirt_winter",
-                                 @"purple_triangle_gift",
                                  @"winter_coat",
                                  @"winter_coat_purple",nil];
         
@@ -86,9 +84,7 @@ int currentObject;
                              @"snowflake_3",
                              @"star_cookie",
                              @"star_cookie_2",
-                             @"blue_star_gift",
-                             @"purple_star_gift",
-                             @"red_star_gift",nil];
+                             nil];
         
         presentBoxShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
         cupShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
@@ -112,9 +108,9 @@ int currentObject;
         hot_choclateShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         lightbulbShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         purple_umbrellaShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        greenTriangleGiftShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
+//        greenTriangleGiftShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         pinkSkirtWinterArray= [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        purpleTriangleGiftArray =[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
+//        purpleTriangleGiftArray =[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         winterCoatArray =[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         winterCoatPurpleArray =[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         
@@ -139,9 +135,9 @@ int currentObject;
         snowflake_3ShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
         star_cookieShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
         star_cookie_2ShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        blueStarGiftArray= [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        purpleStarGiftArray= [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        redStarGiftArray =[[NSMutableArray alloc] initWithObjects:@"star", nil];
+//        blueStarGiftArray= [[NSMutableArray alloc] initWithObjects:@"star", nil];
+//        purpleStarGiftArray= [[NSMutableArray alloc] initWithObjects:@"star", nil];
+//        redStarGiftArray =[[NSMutableArray alloc] initWithObjects:@"star", nil];
         
         
         winterObjectWithShapes = [[NSMutableDictionary alloc] init];
@@ -190,17 +186,12 @@ int currentObject;
         [winterObjectWithShapes setObject:star_cookieShapeArray forKey:@"star_cookie"];
         [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"star_cookie_2"];
         
-        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"blue_star_gift"];
-        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"cordoroy_pants"];
-        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"green_triangle_gift"];
-        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"blueSquareJeans"];
-        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"pink_skirt_winter"];
-        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"purple_star_gift"];
-        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"purple_triangle_gift"];
-        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"red_star_gift"];
-        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"stripped_pants"];
-        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"winter_coat"];
-        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"winter_coat_purple"];
+        [winterObjectWithShapes setObject:cordoroyPantsArray forKey:@"cordoroy_pants"];
+        [winterObjectWithShapes setObject:blueSquareJeansArray forKey:@"blueSquareJeans"];
+        [winterObjectWithShapes setObject:pinkSkirtWinterArray forKey:@"pink_skirt_winter"];
+        [winterObjectWithShapes setObject:strippedPantsShapeArray forKey:@"stripped_pants"];
+        [winterObjectWithShapes setObject:winterCoatArray forKey:@"winter_coat"];
+        [winterObjectWithShapes setObject:winterCoatPurpleArray forKey:@"winter_coat_purple"];
         
         
         
@@ -229,12 +220,10 @@ int currentObject;
             [winterTriangleObjects addObject:@"green_umbrella"];
             [winterTriangleObjects addObject:@"hot_choclate"];
             [winterTriangleObjects addObject:@"purple_umbrella"];
-            [winterTriangleObjects addObject:@"green_triangle_gift"];
             [winterTriangleObjects addObject:@"pink_skirt_winter"];
-            [winterTriangleObjects addObject:@"purple_triangle_gift"];
             [winterTriangleObjects addObject:@"winter_coat"];
             [winterTriangleObjects addObject:@"winter_coat_purple"];
-            size = 13;
+            size = 11;
         }
         currentObject =  arc4random()%size;
         objectName = [winterTriangleObjects objectAtIndex:currentObject];
@@ -293,10 +282,7 @@ int currentObject;
             [winterStarObjects addObject:@"snowflake_3"];
             [winterStarObjects addObject:@"star_cookie"];
             [winterStarObjects addObject:@"star_cookie_2"];
-            [winterStarObjects addObject:@"blue_star_gift"];
-            [winterStarObjects addObject:@"purple_star_gift"];
-            [winterStarObjects addObject:@"red_star_gift"];
-            size = 11;
+            size = 8;
         }
         currentObject =  arc4random()%size;
         objectName = [winterStarObjects objectAtIndex:currentObject];

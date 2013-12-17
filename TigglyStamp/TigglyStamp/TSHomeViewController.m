@@ -27,7 +27,7 @@
 @synthesize bkgImageView;
 @synthesize containerView,learnMoreBtn;
 
-BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail,readyToLearnMore,readyToWebNewsScreen;
+BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail,readyToLearnMore,readyToWebNewsScreen,readyToPlayWithShapeOpt;
 NSArray *allImageFiles;
 
 #pragma mark -
@@ -144,20 +144,21 @@ NSArray *allImageFiles;
     learnMoreBtn.hidden = YES;
     learnMoreBtn.userInteractionEnabled = NO;
     
+    switchPlayWithShape.hidden = NO;
+    lblPlayWithShapes.hidden = NO;
+    lblPlayWithShapes.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPlaywithTigglyShapes"];
+    lblPlayWithShapes.font =  [UIFont fontWithName:APP_FONT_BOLD size:20.0];
+    if ([[TigglyStampUtils sharedInstance] getShapeMode] == YES) {
+        [switchPlayWithShape setOn:YES];
+    }else{
+        [switchPlayWithShape setOn:NO];
+    }
     
     if ([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
-        switchPlayWithShape.hidden = NO;
-        lblPlayWithShapes.hidden = NO;
-        lblPlayWithShapes.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPlaywithTigglyShapes"];
-        lblPlayWithShapes.font =  [UIFont fontWithName:APP_FONT_BOLD size:20.0];
-        if ([[TigglyStampUtils sharedInstance] getShapeMode] == YES) {
-            [switchPlayWithShape setOn:YES];
-        }else{
-            [switchPlayWithShape setOn:NO];
-        }
+
     }else{
-        switchPlayWithShape.hidden = YES;
-        lblPlayWithShapes.hidden = YES;
+//        switchPlayWithShape.hidden = YES;
+//        lblPlayWithShapes.hidden = YES;
         float fontSize = 0.0;
         if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
             fontSize = 18.0f;
@@ -458,9 +459,9 @@ NSArray *allImageFiles;
 //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.myshopify.com/products/tiggly-shapes"]];
          [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.com/shop"]];
     }
+    
     if(readyToWebNewsScreen){
         DebugLog(@"");
-        //confirmationBackView.hidden = YES;
         bkgLayer.opacity  =1.0;
         readyToWebNewsScreen = NO;
         _isWebViewLaunched = YES;
@@ -472,6 +473,22 @@ NSArray *allImageFiles;
         else
             [self launchNewsView];
         
+    }
+    
+    if(readyToPlayWithShapeOpt){
+        readyToPlayWithShapeOpt = NO;
+    
+         if ([switchPlayWithShape isOn] == YES) {
+             if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]){
+                 [[TigglyStampUtils sharedInstance] setShapeMode:YES];
+             }else{
+                 UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil entryFrom:kScreenEntryFromHomeView withHomeView:self];
+                 [self.navigationController pushViewController:unlockScreen animated:NO];
+                 [self nullifyAllData];
+             }
+        }else{
+            [[TigglyStampUtils sharedInstance] setShapeMode:NO];
+        }
     }
     
 }
@@ -641,11 +658,9 @@ NSArray *allImageFiles;
 
 -(IBAction)actionTogglePlayWithShape:(id)sender{
     DebugLog(@"");
-    if ([switchPlayWithShape isOn] == YES) {
-        [[TigglyStampUtils sharedInstance] setShapeMode:YES];
-    }else{
-        [[TigglyStampUtils sharedInstance] setShapeMode:NO];
-    }
+    readyToPlayWithShapeOpt = YES;
+    [self showConfirmationViewWithLangSelOption];
+
 }
 
 #pragma mark -
@@ -681,6 +696,15 @@ NSArray *allImageFiles;
         
         if(readyToParentScreen){
             readyToParentScreen = NO;
+        }
+        
+        if(readyToPlayWithShapeOpt){
+            readyToPlayWithShapeOpt = NO;
+            if([switchPlayWithShape isOn]== YES){
+                [switchPlayWithShape setOn:NO];
+            }else{
+                [switchPlayWithShape setOn:YES];
+            }
         }
     });
 }
@@ -777,6 +801,15 @@ NSArray *allImageFiles;
     
     if(readyToParentScreen){
         readyToParentScreen = NO;
+    }
+    
+    if(readyToPlayWithShapeOpt){
+        readyToPlayWithShapeOpt = NO;
+        if([switchPlayWithShape isOn]== YES){
+            [switchPlayWithShape setOn:NO];
+        }else{
+            [switchPlayWithShape setOn:YES];
+        }
     }
 }
 

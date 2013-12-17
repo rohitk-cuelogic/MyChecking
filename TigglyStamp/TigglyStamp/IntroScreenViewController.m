@@ -560,19 +560,19 @@
 -(void)showCloseBtn{
     DebugLog(@"");
     
-    UIButton *btnClose = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnClose setBackgroundImage:[UIImage imageNamed:@"cross.png"] forState:UIControlStateNormal];
-    [btnClose setBackgroundImage:[UIImage imageNamed:@"cross.png"] forState:UIControlStateSelected];
-    [btnClose addTarget:self action:@selector(actionCloseViewForVideo)forControlEvents:UIControlEventTouchUpInside];
-    btnClose.frame = CGRectMake(0, 0, 70, 70);
-    btnClose.center = CGPointMake(moviePlayer.view.frame.origin.x + moviePlayer.view.frame.size.width, moviePlayer.view.frame.origin.y);
-    btnClose.alpha = 0;
-    [viewForVideo addSubview:btnClose];
+    UIButton *btClose = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btClose setBackgroundImage:[UIImage imageNamed:@"cross.png"] forState:UIControlStateNormal];
+    [btClose setBackgroundImage:[UIImage imageNamed:@"cross.png"] forState:UIControlStateSelected];
+    [btClose addTarget:self action:@selector(actionCloseViewForVideo)forControlEvents:UIControlEventTouchUpInside];
+    btClose.frame = CGRectMake(0, 0, 70, 70);
+    btClose.center = CGPointMake(moviePlayer.view.frame.origin.x + moviePlayer.view.frame.size.width, moviePlayer.view.frame.origin.y);
+    btClose.alpha = 0;
+    [viewForVideo addSubview:btClose];
     
     [UIView animateWithDuration:1
                      animations:^{
                          
-                         btnClose.alpha = 1;
+                         btClose.alpha = 1;
                          
                      }];
     

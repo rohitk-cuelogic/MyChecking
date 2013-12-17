@@ -98,6 +98,8 @@
 #define UNREAD_NEWS_COUNT @"UnreadNewsCount"
 #define JSON_RESPONSE @"ResponseDict.json"
 #define FONT_ROCKWELL_BOLD @"Rockwell-Bold"
+#define NOT_FIRST_TIME_LAUNCH @"firstLaunch"
+
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 #define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)

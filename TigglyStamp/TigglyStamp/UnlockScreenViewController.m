@@ -152,6 +152,11 @@
     }
     lblLearnMore.text =[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLearnmore"];
     lblLearnMore.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    
+    CGRect rect = RECT_IPAD;
+    rect.origin.y = rect.size.height;
+    viewForWeb.frame = rect;
+    [self.view addSubview:viewForWeb];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -407,7 +412,30 @@
     }
     
 }
-
+- (void) launchHomeViewController {
+    DebugLog(@"");
+    
+    NSArray* runningVCA = [self.navigationController viewControllers];
+    NSMutableArray *removableVCA = [[NSMutableArray alloc]initWithCapacity:1];
+    for(UIViewController *runningVC in runningVCA)
+    {
+        if([runningVC isKindOfClass:[TSHomeViewController class]])
+        {
+            [removableVCA addObject:runningVC];
+        }
+    }
+    DebugLog(@"Removing view controller :%d",[removableVCA count]);
+    if ([removableVCA count]>=1) {
+        DebugLog(@"Pop to home VC");
+        [self.navigationController popToViewController:[removableVCA objectAtIndex:0] animated:YES];
+    }else {
+        DebugLog(@"Pop to new home VC");
+        TSHomeViewController *tSHomeViewController = [[TSHomeViewController alloc] initWithNibName:@"TSHomeViewController" bundle:Nil];
+        [self.navigationController pushViewController:tSHomeViewController animated:YES];
+    }
+    [removableVCA removeAllObjects];
+    removableVCA = NULL;
+}
 #pragma mark -
 #pragma mark =======================================
 #pragma mark Action Handling
@@ -450,9 +478,57 @@
     [self.view addSubview:gestureView];
 
 }
+-(IBAction)closeButtonWebClicked:(id)sender {
+    DebugLog(@"");
+    
+    [webViewFirstLaunch stopLoading];
+    CGRect rect = RECT_IPAD;
+    rect.origin.y = rect.size.height;
+    [UIView animateWithDuration:0.5
+                     animations:^(void){
+                         viewForWeb.frame = rect;
+                     }
+                     completion:^(BOOL finished){
+                         [self.view sendSubviewToBack:viewForWeb];
+                         
+                         
+                     }];
+    
+}
+
+#pragma mark -
+#pragma mark ==============================
+#pragma mark WebView Delegate
+#pragma mark ==============================
 
 
-
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+    DebugLog(@"");
+    
+    NSURL *URL = [request URL];
+    if ([[URL scheme] isEqualToString:@"callmycode"]) {
+        NSString *urlString = [[request URL] absoluteString];
+        NSArray *urlParts = [urlString componentsSeparatedByString:@":"];
+        //check to see if we just got the scheme
+        if ([urlParts count] > 1) {
+            NSArray *parameters = [[urlParts objectAtIndex:1] componentsSeparatedByString:@"&"];
+            NSString *methodName = [parameters objectAtIndex:0];
+            
+            if ([methodName isEqualToString:@"logoItem"] ) {
+                // learnMore UI clicked
+                [webViewFirstLaunch stopLoading];
+                [self closeButtonWebClicked:NULL];
+                NSString* launchUrl = @"http://tiggly.com/shop";
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
+            }
+            if ([methodName isEqualToString:@"playWihoutShp"] ) {
+                DebugLog(@"playWihoutShp");
+                [self launchHomeViewController];
+            }
+        }
+    }
+    return YES;
+}
 #pragma mark -
 #pragma mark =======================================
 #pragma mark TouchVerification View Delegates
@@ -548,8 +624,22 @@
     
     
 //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.myshopify.com/products/tiggly-shapes"]];
-     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.com/shop"]];
+    // [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.com/shop"]];
+    viewForWeb.layer.zPosition=1005;
+    [self.view bringSubviewToFront:viewForWeb];
     
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"firstLaunch" ofType:@"html" inDirectory:nil];
+    NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+    webViewFirstLaunch.scrollView.bounces = NO;
+    webViewFirstLaunch.delegate = self;
+    [webViewFirstLaunch loadHTMLString:htmlString baseURL:[[NSBundle mainBundle] bundleURL]];
+    [UIView animateWithDuration:0.5
+                     animations:^(void){
+                         viewForWeb.frame = RECT_IPAD ; //CGRectMake(0, 0, 1024, 768);
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
     gestureView = nil;
 }
 

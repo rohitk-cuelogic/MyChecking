@@ -15,7 +15,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 
-@interface SeasonSelectionViewController : GAITrackedViewController<GestireViewProtocol>
+@interface SeasonSelectionViewController : GAITrackedViewController<GestireViewProtocol,UIWebViewDelegate>
 {
     IBOutlet UIImageView *confirmationViewBKG;
     IBOutlet UIButton *notConfirm;
@@ -25,6 +25,10 @@
     TSHomeViewController *homeViewController;
     
     GestureConfirmationView *gestureView;
+    
+    IBOutlet UIView *viewForWeb;
+    IBOutlet UIWebView *webViewFirstLaunch;
+
 }
 @property (nonatomic,strong) IBOutlet UIButton *winterSeasonBtn;
 @property (nonatomic,strong) IBOutlet UIButton *fallSeasonBtn;

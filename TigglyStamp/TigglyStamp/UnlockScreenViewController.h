@@ -21,7 +21,7 @@
 
 #endif
 
-@interface UnlockScreenViewController : UIViewController <UITouchVerificationViewDelegate,GestireViewProtocol> {
+@interface UnlockScreenViewController : UIViewController <UITouchVerificationViewDelegate,GestireViewProtocol,UIWebViewDelegate> {
     
     UIImageView *promtView;
     UIImageView *shapeView;
@@ -41,6 +41,9 @@
     TSHomeViewController *homeViewController;
     
     GestureConfirmationView *gestureView;
+    
+    IBOutlet UIView *viewForWeb;
+    IBOutlet UIWebView *webViewFirstLaunch;
 }
 
 @property(nonatomic, strong)UITouchVerificationView * touchView;

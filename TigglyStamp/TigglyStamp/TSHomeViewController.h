@@ -26,7 +26,7 @@
     IBOutlet UIImageView *bkgImageView;
     IBOutlet UIView *containerView;
     IBOutlet UILabel *lblUnlockWithShapes;
-     IBOutlet UILabel *lblLearnMore;
+    IBOutlet UILabel *lblLearnMore;
     
     NSMutableArray *diskImages;
     NSMutableArray *allThumbnails;
@@ -44,7 +44,8 @@
     IBOutlet UILabel *lblHappyHolidays;
     IBOutlet UIActivityIndicatorView *activityIndicator;
     IBOutlet UIView *viewForNews;
-
+    IBOutlet UILabel *lblPlayWithShapes;
+    IBOutlet UISwitch *switchPlayWithShape;
 }
 
 @property(nonatomic, strong) UIScrollView *imgScrollView;
@@ -57,5 +58,6 @@
 -(IBAction)goToNewsScreen:(id)sender;
 -(IBAction)actionLearnMore;
 -(IBAction)actionForNews:(id)sender;
+-(IBAction)actionTogglePlayWithShape:(id)sender;
 
 @end

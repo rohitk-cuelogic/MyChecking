@@ -14,7 +14,7 @@
 
 @synthesize batShapeArray,blue_candyShapeArray,green_leafShapeArray,haybaleShapeArray,orange_candyShapeArray,orange_leafShapeArray,purple_spirderShapeArray,spiderShapeArray,yellow_candyShapeArray,pirateShapeArray,barn_2ShapeArray;
 
-@synthesize beeShapeArray,broomShapeArray,horseShapeArray,leavesShapeArray,mushroomShapeArray,pearShapeArray,raincoatShapeArray,three_colorShapeArray,witches_hat_purpleShapeArray,witches_hatShapeArray,zebra_2ShapeArray,duck_1ShapeArray,pinkRaincoatArray,orangeRaincoatArray,yellowRaincoatArray,roosterArray;
+@synthesize beeShapeArray,broomShapeArray,horseShapeArray,leavesShapeArray,mushroomShapeArray,pearShapeArray,raincoatShapeArray,three_colorShapeArray,witches_hat_purpleShapeArray,witches_hatShapeArray,zebra_2ShapeArray,duck_1ShapeArray,pinkRaincoatArray,orangeRaincoatArray,yellowRaincoatArray,roosterArray,blue_jeansArray,green_skirtArray,khakisArray,pinkSkirtArray,purplePantsArray,yellowSkirtArray;
 
 @synthesize apple_redShapeArray,blue_turkeyShapeArray,cranberries_leavesShapeArray,cranberriesShapeArray,green_appleShapeArray,greyish_catShapeArray,litepurple_racoonShapeArray,orange_turkeyShapeArray,pink_catShapeArray,pumkin_1ShapeArray,pumpkin_3ShapeArray,racoonShapeArray;
 
@@ -36,7 +36,7 @@ int currentObject;
                              @"bat", @"blue_candy",@"green_leaf",@"haybale",@"orange_candy",@"orange_leaf",@"purple_spirder",@"spider",@"yellow_candy",@"pirate",@"barn_2",nil];
         
         fallTriangleObjects = [[NSMutableArray alloc] initWithObjects:
-                               @"bee", @"broom", @"horse",@"leaves",@"mushroom",@"pear",@"raincoat",@"three_color",@"witches_hat_purple",@"witches_hat",@"zebra_2",@"duck_1",@"pinkRaincoat",@"orangeRaincoat",@"yellowRaincoat",@"rooster",nil];
+                               @"bee", @"broom", @"horse",@"leaves",@"mushroom",@"pear",@"raincoat",@"three_color",@"witches_hat_purple",@"witches_hat",@"zebra_2",@"duck_1",@"pinkRaincoat",@"orangeRaincoat",@"yellowRaincoat",@"rooster",@"blue_jeans",@"green_skirt",@"khakis",@"pink_skirt_fall",@"purple_pants",@"yellow_skirt",nil];
         
         fallCircleObjects = [[NSMutableArray alloc] initWithObjects:                             @"apple_red",@"blue_turkey",@"cranberries_leaves",@"cranberries",@"green_apple",@"greyish_cat",@"litepurple_racoon",@"orange_turkey",@"pink_cat",@"pumkin_1",@"pumpkin_3",@"racoon",nil];
         
@@ -72,6 +72,13 @@ int currentObject;
         orangeRaincoatArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         yellowRaincoatArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         roosterArray =[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
+        blue_jeansArray=[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
+        green_skirtArray=[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
+        khakisArray=[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
+        pinkSkirtArray=[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
+        purplePantsArray=[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
+        yellowSkirtArray=[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
+        
         
         apple_redShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
         blue_turkeyShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
@@ -129,7 +136,14 @@ int currentObject;
         [fallObjectWithShapes setObject:orangeRaincoatArray forKey:@"orangeRaincoat"];
         [fallObjectWithShapes setObject:yellowRaincoatArray forKey:@"yellowRaincoat"];
         [fallObjectWithShapes setObject:roosterArray forKey:@"rooster"];
-        
+        [fallObjectWithShapes setObject:blue_jeansArray forKey:@"blue_jeans"];
+        [fallObjectWithShapes setObject:green_skirtArray forKey:@"green_skirt"];
+        [fallObjectWithShapes setObject:khakisArray forKey:@"khakis"];
+        [fallObjectWithShapes setObject:pinkSkirtArray forKey:@"pink_skirt_fall"];
+        [fallObjectWithShapes setObject:purplePantsArray forKey:@"purple_pants"];
+        [fallObjectWithShapes setObject:yellowSkirtArray forKey:@"yellow_skirt"];
+    
+     
         
         //circle
         [fallObjectWithShapes setObject:apple_redShapeArray forKey:@"apple_red"];
@@ -184,9 +198,15 @@ int currentObject;
             [fallTriangleObjects addObject:@"pinkRaincoat"];
             [fallTriangleObjects addObject:@"orangeRaincoat"];
             [fallTriangleObjects addObject:@"yellowRaincoat"];
-             [fallTriangleObjects addObject:@"rooster"];
+            [fallTriangleObjects addObject:@"rooster"];
+            [fallTriangleObjects addObject:@"blue_jeans"];
+            [fallTriangleObjects addObject:@"green_skirt"];
+            [fallTriangleObjects addObject:@"khakis"];
+            [fallTriangleObjects addObject:@"pink_skirt_fall"];
+            [fallTriangleObjects addObject:@"purple_pants"];
+            [fallTriangleObjects addObject:@"yellow_skirt"];
             
-            size = 16;
+            size = 22;
         }
         currentObject =  arc4random()%size;
         objectName = [fallTriangleObjects objectAtIndex:currentObject];
@@ -1178,7 +1198,27 @@ int currentObject;
 
         
         
-    }    
+    }
+    
+    if ([fallObject isEqualToString:@"blue_jeans"]) {
+        
+    }
+    if ([fallObject isEqualToString:@"green_skirt"]) {
+        
+    }
+    if ([fallObject isEqualToString:@"khakis"]) {
+        
+    }
+    if ([fallObject isEqualToString:@"pink_skirt_fall"]) {
+        
+    }
+    if ([fallObject isEqualToString:@"purple_pants"]) {
+        
+    }
+    if ([fallObject isEqualToString:@"yellow_skirt"]) {
+        
+    }
+
 
     return soundFile;
 }
@@ -1523,6 +1563,67 @@ int currentObject;
             soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
         }
         
+    }
+    
+    else if ([fallObject isEqualToString:@"blue_jeans"]) {
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+
+    }
+    else if ([fallObject isEqualToString:@"green_skirt"]) {
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+
+    }
+    else if ([fallObject isEqualToString:@"khakis"]) {
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+
+    }
+    else if ([fallObject isEqualToString:@"pink_skirt_fall"]) {
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+
+    }
+    else if ([fallObject isEqualToString:@"purple_pants"]) {
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+
+    }
+    else if ([fallObject isEqualToString:@"yellow_skirt"]) {
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+
     }
     
     return soundFile;

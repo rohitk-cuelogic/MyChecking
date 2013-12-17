@@ -354,18 +354,6 @@
 
 #pragma mark -
 #pragma mark =======================================
-#pragma mark Service Controller Delegate Method
-#pragma mark =======================================
-- (void) iPadMiniDeviceVersionDataRetrived:(NSDictionary *) dict
-{
-    if ([[dict valueForKey:@"result"] isEqualToString:@"Success"]) {
-        NSMutableArray *deviceArray = [dict valueForKey:@"mini_ipad_version"];
-        [[TigglyStampUtils sharedInstance] setiPadMiniDeviceVersion:deviceArray];
-    }
-}
-
-#pragma mark -
-#pragma mark =======================================
 #pragma mark IBAction
 #pragma mark =======================================
 

@@ -1121,6 +1121,23 @@
 		C082921F17A7CB230023F08A /* zebra_2@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08291EA17A7CB230023F08A /* zebra_2@2x~ipad.png */; };
 		C082922117A7F4270023F08A /* recordingStarted@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C082922017A7F4260023F08A /* recordingStarted@2x~ipad.png */; };
 		C082922717A80D490023F08A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C082922917A80D490023F08A /* Localizable.strings */; };
+		C08E9E24185F100700199DE7 /* blue_jeans@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E0F185F100700199DE7 /* blue_jeans@2x~ipad.png */; };
+		C08E9E25185F100700199DE7 /* green_skirt@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E10185F100700199DE7 /* green_skirt@2x~ipad.png */; };
+		C08E9E26185F100700199DE7 /* khakis@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E11185F100700199DE7 /* khakis@2x~ipad.png */; };
+		C08E9E29185F100700199DE7 /* pink_skirt_fall@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E14185F100700199DE7 /* pink_skirt_fall@2x~ipad.png */; };
+		C08E9E2A185F100700199DE7 /* purple_pants@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E15185F100700199DE7 /* purple_pants@2x~ipad.png */; };
+		C08E9E2C185F100700199DE7 /* yellow_skirt@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E17185F100700199DE7 /* yellow_skirt@2x~ipad.png */; };
+		C08E9E2D185F100700199DE7 /* blue_star_gift@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E19185F100700199DE7 /* blue_star_gift@2x~ipad.png */; };
+		C08E9E2E185F100700199DE7 /* cordoroy_pants@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E1A185F100700199DE7 /* cordoroy_pants@2x~ipad.png */; };
+		C08E9E2F185F100700199DE7 /* green_triangle_gift@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E1B185F100700199DE7 /* green_triangle_gift@2x~ipad.png */; };
+		C08E9E30185F100700199DE7 /* blueSquareJeans@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E1C185F100700199DE7 /* blueSquareJeans@2x~ipad.png */; };
+		C08E9E31185F100700199DE7 /* pink_skirt_winter@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E1D185F100700199DE7 /* pink_skirt_winter@2x~ipad.png */; };
+		C08E9E32185F100700199DE7 /* purple_star_gift@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E1E185F100700199DE7 /* purple_star_gift@2x~ipad.png */; };
+		C08E9E33185F100700199DE7 /* purple_triangle_gift@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E1F185F100700199DE7 /* purple_triangle_gift@2x~ipad.png */; };
+		C08E9E34185F100700199DE7 /* red_star_gift@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E20185F100700199DE7 /* red_star_gift@2x~ipad.png */; };
+		C08E9E35185F100700199DE7 /* stripped_pants@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E21185F100700199DE7 /* stripped_pants@2x~ipad.png */; };
+		C08E9E36185F100700199DE7 /* winter_coat@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E22185F100700199DE7 /* winter_coat@2x~ipad.png */; };
+		C08E9E37185F100700199DE7 /* winter_coat_purple@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C08E9E23185F100700199DE7 /* winter_coat_purple@2x~ipad.png */; };
 		C08EC11C17EB49680092F5A7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C08EC11B17EB49680092F5A7 /* CoreData.framework */; };
 		C08EC12017EB54A70092F5A7 /* unlock_using_shapes.png in Resources */ = {isa = PBXBuildFile; fileRef = C08EC11E17EB54A70092F5A7 /* unlock_using_shapes.png */; };
 		C08EC12117EB54A70092F5A7 /* language_stamp_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = C08EC11F17EB54A70092F5A7 /* language_stamp_bg.png */; };
@@ -2483,6 +2500,23 @@
 		C08291EA17A7CB230023F08A /* zebra_2@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zebra_2@2x~ipad.png"; sourceTree = "<group>"; };
 		C082922017A7F4260023F08A /* recordingStarted@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "recordingStarted@2x~ipad.png"; path = "FallObjects/recordingStarted@2x~ipad.png"; sourceTree = "<group>"; };
 		C082922817A80D490023F08A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C08E9E0F185F100700199DE7 /* blue_jeans@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue_jeans@2x~ipad.png"; sourceTree = "<group>"; };
+		C08E9E10185F100700199DE7 /* green_skirt@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green_skirt@2x~ipad.png"; sourceTree = "<group>"; };
+		C08E9E11185F100700199DE7 /* khakis@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "khakis@2x~ipad.png"; sourceTree = "<group>"; };
+		C08E9E14185F100700199DE7 /* pink_skirt_fall@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pink_skirt_fall@2x~ipad.png"; sourceTree = "<group>"; };
+		C08E9E15185F100700199DE7 /* purple_pants@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purple_pants@2x~ipad.png"; sourceTree = "<group>"; };
+		C08E9E17185F100700199DE7 /* yellow_skirt@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellow_skirt@2x~ipad.png"; sourceTree = "<group>"; };
+		C08E9E19185F100700199DE7 /* blue_star_gift@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue_star_gift@2x~ipad.png"; sourceTree = "<group>"; };
+		C08E9E1A185F100700199DE7 /* cordoroy_pants@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cordoroy_pants@2x~ipad.png"; sourceTree = "<group>"; };
+		C08E9E1B185F100700199DE7 /* green_triangle_gift@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green_triangle_gift@2x~ipad.png"; sourceTree = "<group>"; };
+		C08E9E1C185F100700199DE7 /* blueSquareJeans@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueSquareJeans@2x~ipad.png"; sourceTree = "<group>"; };
+		C08E9E1D185F100700199DE7 /* pink_skirt_winter@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pink_skirt_winter@2x~ipad.png"; sourceTree = "<group>"; };
+		C08E9E1E185F100700199DE7 /* purple_star_gift@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purple_star_gift@2x~ipad.png"; sourceTree = "<group>"; };
+		C08E9E1F185F100700199DE7 /* purple_triangle_gift@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purple_triangle_gift@2x~ipad.png"; sourceTree = "<group>"; };
+		C08E9E20185F100700199DE7 /* red_star_gift@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red_star_gift@2x~ipad.png"; sourceTree = "<group>"; };
+		C08E9E21185F100700199DE7 /* stripped_pants@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stripped_pants@2x~ipad.png"; sourceTree = "<group>"; };
+		C08E9E22185F100700199DE7 /* winter_coat@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "winter_coat@2x~ipad.png"; sourceTree = "<group>"; };
+		C08E9E23185F100700199DE7 /* winter_coat_purple@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "winter_coat_purple@2x~ipad.png"; sourceTree = "<group>"; };
 		C08EC11B17EB49680092F5A7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C08EC11E17EB54A70092F5A7 /* unlock_using_shapes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlock_using_shapes.png; sourceTree = "<group>"; };
 		C08EC11F17EB54A70092F5A7 /* language_stamp_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = language_stamp_bg.png; sourceTree = "<group>"; };
@@ -3996,6 +4030,7 @@
 		C05D9001182CCC8C0058A775 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C08E9E0D185F100700199DE7 /* Assets */,
 				C021F88417E86E4700EBD6B6 /* NewImages */,
 				C01E525D17C738B800B749F3 /* NavigationImages */,
 				EBD0F92B1782CE3900339BB7 /* iPadRetinaImages */,
@@ -4115,6 +4150,46 @@
 				C08291EA17A7CB230023F08A /* zebra_2@2x~ipad.png */,
 			);
 			path = triangle_fall_objects;
+			sourceTree = "<group>";
+		};
+		C08E9E0D185F100700199DE7 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				C08E9E0E185F100700199DE7 /* Fall */,
+				C08E9E18185F100700199DE7 /* Winter */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		C08E9E0E185F100700199DE7 /* Fall */ = {
+			isa = PBXGroup;
+			children = (
+				C08E9E0F185F100700199DE7 /* blue_jeans@2x~ipad.png */,
+				C08E9E10185F100700199DE7 /* green_skirt@2x~ipad.png */,
+				C08E9E11185F100700199DE7 /* khakis@2x~ipad.png */,
+				C08E9E14185F100700199DE7 /* pink_skirt_fall@2x~ipad.png */,
+				C08E9E15185F100700199DE7 /* purple_pants@2x~ipad.png */,
+				C08E9E17185F100700199DE7 /* yellow_skirt@2x~ipad.png */,
+			);
+			path = Fall;
+			sourceTree = "<group>";
+		};
+		C08E9E18185F100700199DE7 /* Winter */ = {
+			isa = PBXGroup;
+			children = (
+				C08E9E19185F100700199DE7 /* blue_star_gift@2x~ipad.png */,
+				C08E9E1A185F100700199DE7 /* cordoroy_pants@2x~ipad.png */,
+				C08E9E1B185F100700199DE7 /* green_triangle_gift@2x~ipad.png */,
+				C08E9E1C185F100700199DE7 /* blueSquareJeans@2x~ipad.png */,
+				C08E9E1D185F100700199DE7 /* pink_skirt_winter@2x~ipad.png */,
+				C08E9E1E185F100700199DE7 /* purple_star_gift@2x~ipad.png */,
+				C08E9E1F185F100700199DE7 /* purple_triangle_gift@2x~ipad.png */,
+				C08E9E20185F100700199DE7 /* red_star_gift@2x~ipad.png */,
+				C08E9E21185F100700199DE7 /* stripped_pants@2x~ipad.png */,
+				C08E9E22185F100700199DE7 /* winter_coat@2x~ipad.png */,
+				C08E9E23185F100700199DE7 /* winter_coat_purple@2x~ipad.png */,
+			);
+			path = Winter;
 			sourceTree = "<group>";
 		};
 		C0A82D3017EC930500F85793 /* HTML */ = {
@@ -4762,6 +4837,7 @@
 				EBEDE5071795898A002151E5 /* snowflake_3@2x~ipad.png in Resources */,
 				EBEDE5081795898A002151E5 /* star_cookie_2@2x~ipad.png in Resources */,
 				EBEDE5091795898A002151E5 /* star_cookie@2x~ipad.png in Resources */,
+				C08E9E2F185F100700199DE7 /* green_triangle_gift@2x~ipad.png in Resources */,
 				EBEDE51317958998002151E5 /* bells@2x~ipad.png in Resources */,
 				EBEDE51417958998002151E5 /* blue_hat@2x~ipad.png in Resources */,
 				EBEDE51517958998002151E5 /* deer_2@2x~ipad.png in Resources */,
@@ -4797,6 +4873,7 @@
 				63019DBB17A24FCE005B8CA3 /* ParentScreenViewController.xib in Resources */,
 				63019DBD17A254CF005B8CA3 /* box.png in Resources */,
 				63019DBF17A260C8005B8CA3 /* textfieldback.png in Resources */,
+				C08E9E25185F100700199DE7 /* green_skirt@2x~ipad.png in Resources */,
 				63019DC717A263CF005B8CA3 /* submit_btn.png in Resources */,
 				63019DC917A27955005B8CA3 /* greentick.png in Resources */,
 				63019DD417A2AA4C005B8CA3 /* TSThumbnailEditController.xib in Resources */,
@@ -5070,6 +5147,7 @@
 				C02F446117D60CFC007AEA39 /* Tiggly_GenGreeting_Chipmunk_05.mp3 in Resources */,
 				C02F446217D60CFC007AEA39 /* Tiggly_GenGreeting_Chipmunk_06.mp3 in Resources */,
 				C02F446317D60CFC007AEA39 /* Tiggly_GenGreeting_Chipmunk_07.mp3 in Resources */,
+				C08E9E29185F100700199DE7 /* pink_skirt_fall@2x~ipad.png in Resources */,
 				C02F446417D60CFC007AEA39 /* Tiggly_GenGreeting_Chipmunk_08.mp3 in Resources */,
 				C02F446517D60CFC007AEA39 /* Tiggly_GenGreeting_Chipmunk_09.mp3 in Resources */,
 				C02F446617D60CFC007AEA39 /* Tiggly_GenGreeting_Donkey_01.mp3 in Resources */,
@@ -5237,6 +5315,7 @@
 				C02F44F917D60CFC007AEA39 /* Tiggly_Word_Leaves_01.mp3 in Resources */,
 				C02F44FA17D60CFC007AEA39 /* Tiggly_Word_Leaves_Ooh_01.mp3 in Resources */,
 				C02F44FB17D60CFC007AEA39 /* Tiggly_Word_Mushroom_01.mp3 in Resources */,
+				C08E9E35185F100700199DE7 /* stripped_pants@2x~ipad.png in Resources */,
 				C02F44FC17D60CFC007AEA39 /* Tiggly_Word_Mushroom_Wow_01.mp3 in Resources */,
 				C02F44FD17D60CFC007AEA39 /* Tiggly_Word_Pear_01.mp3 in Resources */,
 				C02F44FE17D60CFC007AEA39 /* Tiggly_Word_Pear_Ooh_01.mp3 in Resources */,
@@ -5262,6 +5341,7 @@
 				6304DD8917D9A6F00075DE97 /* barn_breng.mp3 in Resources */,
 				6304DD8A17D9A6F00075DE97 /* bat_breng.mp3 in Resources */,
 				6304DD8B17D9A6F00075DE97 /* bear_breng.mp3 in Resources */,
+				C08E9E33185F100700199DE7 /* purple_triangle_gift@2x~ipad.png in Resources */,
 				6304DD8C17D9A6F00075DE97 /* bell_breng.mp3 in Resources */,
 				6304DD8D17D9A6F00075DE97 /* bird_breng.mp3 in Resources */,
 				6304DD8E17D9A6F00075DE97 /* broom_breng.mp3 in Resources */,
@@ -5414,6 +5494,7 @@
 				6304DE1717D9A6F00075DE97 /* train_ru.mp3 in Resources */,
 				6304DE1817D9A6F00075DE97 /* Turkey-01_ru.mp3 in Resources */,
 				6304DE1917D9A6F00075DE97 /* umbrella_ru.mp3 in Resources */,
+				C08E9E30185F100700199DE7 /* blueSquareJeans@2x~ipad.png in Resources */,
 				6304DE1A17D9A6F00075DE97 /* Zebra_ru.mp3 in Resources */,
 				6304DE1B17D9A6F00075DE97 /* 321GO!_sp.mp3 in Resources */,
 				6304DE1C17D9A6F00075DE97 /* Apple_sp.mp3 in Resources */,
@@ -5439,6 +5520,7 @@
 				6304DE2E17D9A6F00075DE97 /* gift box_sp.mp3 in Resources */,
 				6304DE2F17D9A6F00075DE97 /* hamster_sp.mp3 in Resources */,
 				6304DE3017D9A6F00075DE97 /* hat_sp.mp3 in Resources */,
+				C08E9E34185F100700199DE7 /* red_star_gift@2x~ipad.png in Resources */,
 				6304DE3117D9A6F00075DE97 /* haybale_sp.mp3 in Resources */,
 				6304DE3217D9A6F00075DE97 /* Hello_sp.mp3 in Resources */,
 				6304DE3317D9A6F00075DE97 /* hot chocolate_sp.mp3 in Resources */,
@@ -5551,6 +5633,7 @@
 				C021F7AD17E8279A00EBD6B6 /* scare_crow_ita.mp3 in Resources */,
 				C021F7AE17E8279A00EBD6B6 /* seahorse_ita.mp3 in Resources */,
 				C021F7AF17E8279A00EBD6B6 /* seal_ita.mp3 in Resources */,
+				C08E9E37185F100700199DE7 /* winter_coat_purple@2x~ipad.png in Resources */,
 				63306AEA1859816800A09F3D /* FBDialog.bundle in Resources */,
 				C021F7B017E8279A00EBD6B6 /* shell_crab_ita.mp3 in Resources */,
 				C021F7B117E8279A00EBD6B6 /* shirt_ita.mp3 in Resources */,
@@ -5596,6 +5679,7 @@
 				C021F7D517E8279A00EBD6B6 /* broom_gr.mp3 in Resources */,
 				C021F7D617E8279A00EBD6B6 /* candy_gr.mp3 in Resources */,
 				C021F7D717E8279A00EBD6B6 /* cat_gr.mp3 in Resources */,
+				C08E9E36185F100700199DE7 /* winter_coat@2x~ipad.png in Resources */,
 				C021F7D817E8279A00EBD6B6 /* catch_me_gr.mp3 in Resources */,
 				C021F7D917E8279A00EBD6B6 /* chicken_gr.mp3 in Resources */,
 				C021F7DA17E8279A00EBD6B6 /* chipmunk_gr.mp3 in Resources */,
@@ -5616,6 +5700,7 @@
 				C021F7E817E8279A00EBD6B6 /* Fish_gr.mp3 in Resources */,
 				C021F7E917E8279A00EBD6B6 /* fox_gr.mp3 in Resources */,
 				C021F7EA17E8279A00EBD6B6 /* gift_box_gr.mp3 in Resources */,
+				C08E9E2A185F100700199DE7 /* purple_pants@2x~ipad.png in Resources */,
 				C021F7EB17E8279A00EBD6B6 /* Giraffe_gr.mp3 in Resources */,
 				C021F7EC17E8279A00EBD6B6 /* goose_gr.mp3 in Resources */,
 				C021F7ED17E8279A00EBD6B6 /* hamster_gr.mp3 in Resources */,
@@ -5625,6 +5710,7 @@
 				C021F7F117E8279A00EBD6B6 /* hot_chocolate_gr.mp3 in Resources */,
 				C021F7F217E8279A00EBD6B6 /* igloo_gr.mp3 in Resources */,
 				C021F7F317E8279A00EBD6B6 /* it's_a_gr.mp3 in Resources */,
+				C08E9E26185F100700199DE7 /* khakis@2x~ipad.png in Resources */,
 				C037C234180BDA0000B2417C /* yellowRaincoat@2x~ipad.png in Resources */,
 				C021F7F417E8279A00EBD6B6 /* it's_an_gr.mp3 in Resources */,
 				C021F7F517E8279A00EBD6B6 /* jelly_fish_gr.mp3 in Resources */,
@@ -5662,6 +5748,7 @@
 				C021F81317E8279A00EBD6B6 /* snowglobe_gr.mp3 in Resources */,
 				C021F81417E8279A00EBD6B6 /* spider_gr.mp3 in Resources */,
 				C021F81517E8279A00EBD6B6 /* Spring_gr.mp3 in Resources */,
+				C08E9E24185F100700199DE7 /* blue_jeans@2x~ipad.png in Resources */,
 				C021F81617E8279A00EBD6B6 /* square_gr.mp3 in Resources */,
 				C021F81717E8279A00EBD6B6 /* squid_gr.mp3 in Resources */,
 				C02313041823B2CC0094F5EC /* play_russian.html in Resources */,
@@ -5691,6 +5778,7 @@
 				C021F83217E8279A00EBD6B6 /* broom_fr.mp3 in Resources */,
 				C021F83317E8279A00EBD6B6 /* candy_fr.mp3 in Resources */,
 				C021F83417E8279A00EBD6B6 /* cat_fr.mp3 in Resources */,
+				C08E9E32185F100700199DE7 /* purple_star_gift@2x~ipad.png in Resources */,
 				C021F83517E8279A00EBD6B6 /* catchMe_fr.mp3 in Resources */,
 				C021F83617E8279A00EBD6B6 /* chicken_fr.mp3 in Resources */,
 				C021F83717E8279A00EBD6B6 /* chipmunk_fr.mp3 in Resources */,
@@ -5804,6 +5892,7 @@
 				C021F8D017E8BA3F00EBD6B6 /* tab_play.png in Resources */,
 				C021F8D417E8BC4700EBD6B6 /* pintrest_btn.png in Resources */,
 				C021F8D517E8BC4700EBD6B6 /* twitter_btn.png in Resources */,
+				C08E9E2D185F100700199DE7 /* blue_star_gift@2x~ipad.png in Resources */,
 				C021F8D617E8BC4700EBD6B6 /* fb_btn.png in Resources */,
 				C027AE5217EAD6FB0066632E /* btnLock.png in Resources */,
 				C027AE5317EAD6FB0066632E /* btnLock@2x~ipad.png in Resources */,
@@ -5828,6 +5917,7 @@
 				6374B1C817EC254F00F27364 /* parent_gesture_black_bg.png in Resources */,
 				C02DE81D17EC31C1005AC469 /* photo_bg.png in Resources */,
 				C02DE81F17EC4B9D005AC469 /* btnNext.png in Resources */,
+				C08E9E31185F100700199DE7 /* pink_skirt_winter@2x~ipad.png in Resources */,
 				C02DE83A17EC7B20005AC469 /* circle_shape@2x~ipad.png in Resources */,
 				C02DE83B17EC7B20005AC469 /* square_shape@2x~ipad.png in Resources */,
 				C02DE83C17EC7B20005AC469 /* star_shape@2x~ipad.png in Resources */,
@@ -5835,6 +5925,7 @@
 				C0A82D3517EC932300F85793 /* learning_philoshophy.html in Resources */,
 				C0A82D3617EC932300F85793 /* learning.html in Resources */,
 				C0A82D3717EC932300F85793 /* play.html in Resources */,
+				C08E9E2E185F100700199DE7 /* cordoroy_pants@2x~ipad.png in Resources */,
 				C0A82D3817EC932300F85793 /* tiggly.html in Resources */,
 				C0A82D3C17EC934900F85793 /* Rockwell-Bold.TTF in Resources */,
 				C0A82D3D17EC934900F85793 /* Rockwell-BoldItalic.TTF in Resources */,
@@ -5874,6 +5965,7 @@
 				C0DF52AB17FC00A6009C6790 /* Icon-72.png in Resources */,
 				C05563FA17FDA3C700818639 /* r1.png in Resources */,
 				C05563FB17FDA3C700818639 /* r10.png in Resources */,
+				C08E9E2C185F100700199DE7 /* yellow_skirt@2x~ipad.png in Resources */,
 				C05563FC17FDA3C700818639 /* r11.png in Resources */,
 				C05563FD17FDA3C700818639 /* r12.png in Resources */,
 				C023131A1823B2CC0094F5EC /* learning_tips_spanish.html in Resources */,

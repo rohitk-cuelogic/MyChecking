@@ -63,7 +63,7 @@ static TigglyStampUtils *sharedInstance = nil;
     /*This function returns the color of basic shapes of the objects used in Fall and Winter Scene*/
     
     UIColor *color;
-    if([basicShape isEqualToString:@"square"]){
+    //if([basicShape isEqualToString:@"square"]){
         
         if ([shapeToDraw isEqualToString:@"choo"]) {
            color = [UIColor colorWithRed:255.0/255.0 green:235.0/255.0 blue:55.0/255.0 alpha:1];
@@ -129,8 +129,8 @@ static TigglyStampUtils *sharedInstance = nil;
             color = [UIColor colorWithRed:237.0/255.0 green:28.0/255.0 blue:36.0/255.0 alpha:1];
         }
 
-    }
-    if([basicShape isEqualToString:@"triangle"]){
+   // }
+   // if([basicShape isEqualToString:@"triangle"]){
         if ([shapeToDraw isEqualToString:@"bells"]) {
             color = [UIColor colorWithRed:255.0/255.0 green:235.0/255.0 blue:55.0/255.0 alpha:1];
         }
@@ -208,9 +208,27 @@ static TigglyStampUtils *sharedInstance = nil;
         if ([shapeToDraw isEqualToString:@"rooster"]) {
             color = [UIColor colorWithRed:234.0/255.0 green:109.0/255.0 blue:8.0/255.0 alpha:1];
         }
-        
-    }
-    if([basicShape isEqualToString:@"circle"]){
+        if ([shapeToDraw isEqualToString:@"blue_jeans"]) {
+            color = [UIColor colorWithRed:37.0/255.0 green:205.0/255.0 blue:211.0/255.0 alpha:1];
+        }
+        if ([shapeToDraw isEqualToString:@"green_skirt"]) {
+            color = [UIColor colorWithRed:126.0/255.0 green:177.0/255.0 blue:2.0/255.0 alpha:1];
+        }
+        if ([shapeToDraw isEqualToString:@"khakis"]) {
+            color = [UIColor colorWithRed:230.0/255.0 green:189.0/255.0 blue:125.0/255.0 alpha:1];
+        }
+        if ([shapeToDraw isEqualToString:@"pink_skirt_fall"]) {
+            color = [UIColor colorWithRed:255.0/255.0 green:62.0/255.0 blue:126.0/255.0 alpha:1];
+        }
+        if ([shapeToDraw isEqualToString:@"purple_pants"]) {
+            color = [UIColor colorWithRed:148.0/255.0 green:150.0/255.0 blue:213.0/255.0 alpha:1];
+        }
+        if ([shapeToDraw isEqualToString:@"yellow_skirt"]) {
+            color = [UIColor colorWithRed:254.0/255.0 green:248.0/255.0 blue:212.0/255.0 alpha:1];
+        }
+    
+  //  }
+  //  if([basicShape isEqualToString:@"circle"]){
         if ([shapeToDraw isEqualToString:@"bear"]) {
             color = [UIColor colorWithRed:250.0/255.0 green:184.0/255.0 blue:133.0/255.0 alpha:1];
         }
@@ -281,8 +299,8 @@ static TigglyStampUtils *sharedInstance = nil;
         if ([shapeToDraw isEqualToString:@"racoon"]) {
             color = [UIColor colorWithRed:171.0/255.0 green:73.0/255.0 blue:155.0/255.0 alpha:1];
         }
-    }
-    if([basicShape isEqualToString:@"star"]){
+ //   }
+//    if([basicShape isEqualToString:@"star"]){
         if ([shapeToDraw isEqualToString:@"chipmunk"]) {
             color = [UIColor colorWithRed:250.0/255.0 green:180.0/255.0 blue:111.0/255.0 alpha:1];
         }
@@ -330,7 +348,44 @@ static TigglyStampUtils *sharedInstance = nil;
             color = [UIColor colorWithRed:251.0/255.0 green:242.0/255.0 blue:195.0/255.0 alpha:1];
         }
 
-        }
+    //    }
+    
+    if ([shapeToDraw isEqualToString:@"blue_star_gift"]) {
+        color = [UIColor colorWithRed:78.0/255.0 green:219.0/255.0 blue:249.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"cordoroy_pants"]) {
+        color = [UIColor colorWithRed:234.0/255.0 green:192.0/255.0 blue:80.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"green_triangle_gift"]) {
+        color = [UIColor colorWithRed:182.0/255.0 green:223.0/255.0 blue:16.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"blueSquareJeans"]) {
+        color = [UIColor colorWithRed:2.0/255.0 green:147.0/255.0 blue:229.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"pink_skirt_winter"]) {
+        color = [UIColor colorWithRed:237.0/255.0 green:2.0/255.0 blue:138.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"purple_star_gift"]) {
+        color = [UIColor colorWithRed:156.0/255.0 green:41.0/255.0 blue:140.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"purple_triangle_gift"]) {
+        color = [UIColor colorWithRed:154.0/255.0 green:1.0/255.0 blue:182.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"red_star_gift"]) {
+        color = [UIColor colorWithRed:255.0/255.0 green:66.0/255.0 blue:29.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"stripped_pants"]) {
+        color = [UIColor colorWithRed:229.0/255.0 green:2.0/255.0 blue:82.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"winter_coat"]) {
+        color = [UIColor colorWithRed:3.0/255.0 green:214.0/255.0 blue:217.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"winter_coat_purple"]) {
+        color = [UIColor colorWithRed:180.0/255.0 green:167.0/255.0 blue:224.0/255.0 alpha:1];
+    }
+
+    
+    
     return color;
 }
 

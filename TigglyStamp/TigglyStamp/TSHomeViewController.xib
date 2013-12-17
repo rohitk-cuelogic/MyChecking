@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -18,11 +18,13 @@
                 <outlet property="imgScrollView" destination="11" id="12"/>
                 <outlet property="lblHappyHolidays" destination="tNE-og-jMA" id="NmW-63-fyO"/>
                 <outlet property="lblLearnMore" destination="gSd-nc-0ln" id="LI0-H7-r8N"/>
+                <outlet property="lblPlayWithShapes" destination="R5N-RY-GI3" id="kHe-DC-6bH"/>
                 <outlet property="lblUnlockWithShapes" destination="I3y-XC-dXY" id="kyD-4K-2I7"/>
                 <outlet property="learnMoreBtn" destination="44" id="45"/>
                 <outlet property="newsBtn" destination="21" id="34"/>
                 <outlet property="notConfirm" destination="27" id="31"/>
                 <outlet property="playBtn" destination="4" id="10"/>
+                <outlet property="switchPlayWithShape" destination="vdG-7d-ATU" id="UpT-mq-hix"/>
                 <outlet property="txtView" destination="26" id="33"/>
                 <outlet property="view" destination="2" id="3"/>
                 <outlet property="viewForNews" destination="lwj-0A-dtL" id="6zA-b2-9WT"/>
@@ -136,6 +138,20 @@
                             <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play With Tiggly Shapes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R5N-RY-GI3">
+                            <rect key="frame" x="2" y="76" width="297" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="vdG-7d-ATU">
+                            <rect key="frame" x="306" y="76" width="51" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="actionTogglePlayWithShape:" destination="-1" eventType="valueChanged" id="R9y-Rz-DZt"/>
+                            </connections>
+                        </switch>
                         <view contentMode="scaleToFill" id="25">
                             <rect key="frame" x="228" y="241" width="569" height="286"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

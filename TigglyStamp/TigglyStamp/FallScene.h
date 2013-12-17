@@ -53,6 +53,12 @@
 @property(nonatomic, strong) NSMutableArray *orangeRaincoatArray;
 @property(nonatomic, strong) NSMutableArray *yellowRaincoatArray;
 @property(nonatomic, strong) NSMutableArray *roosterArray;
+@property(nonatomic, strong) NSMutableArray *blue_jeansArray;
+@property(nonatomic, strong) NSMutableArray *green_skirtArray;
+@property(nonatomic, strong) NSMutableArray *khakisArray;
+@property(nonatomic, strong) NSMutableArray *pinkSkirtArray;
+@property(nonatomic, strong) NSMutableArray *purplePantsArray;
+@property(nonatomic, strong) NSMutableArray *yellowSkirtArray;
 
 //Circle
 @property(nonatomic,strong)NSMutableArray *apple_redShapeArray;

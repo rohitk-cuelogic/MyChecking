@@ -63,6 +63,20 @@
 @property(nonatomic,strong)NSMutableArray *snowflake_3ShapeArray;
 @property(nonatomic,strong)NSMutableArray *star_cookieShapeArray;
 @property(nonatomic,strong)NSMutableArray *star_cookie_2ShapeArray;
+
+@property(nonatomic,strong)NSMutableArray *blueStarGiftArray;
+@property(nonatomic,strong)NSMutableArray *cordoroyPantsArray;
+@property(nonatomic,strong)NSMutableArray *greenTriangleGiftShapeArray;
+@property(nonatomic,strong)NSMutableArray *blueSquareJeansArray;
+@property(nonatomic,strong)NSMutableArray *pinkSkirtWinterArray;
+@property(nonatomic,strong)NSMutableArray *purpleStarGiftArray;
+@property(nonatomic,strong)NSMutableArray *purpleTriangleGiftArray;
+@property(nonatomic,strong)NSMutableArray *redStarGiftArray;
+@property(nonatomic,strong)NSMutableArray *strippedPantsShapeArray;
+@property(nonatomic,strong)NSMutableArray *winterCoatArray;
+@property(nonatomic,strong)NSMutableArray *winterCoatPurpleArray;
+
+
 @property(nonatomic,strong)NSMutableDictionary *winterObjectWithShapes;
 
 -(NSMutableArray *)shapeForObject:(NSString *)shape;

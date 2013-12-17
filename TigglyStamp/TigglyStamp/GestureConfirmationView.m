@@ -60,7 +60,7 @@
     txtView = [[UITextView alloc] initWithFrame:CGRectMake(90, 80, 415, 160)];
     txtView.textAlignment = UITextAlignmentCenter;
     txtView.userInteractionEnabled = NO;
-    txtView.font = [UIFont fontWithName:APP_FONT_BOLD size:35.0f];
+    txtView.font = [UIFont fontWithName:APP_FONT_BOLD size:32.0f];
     txtView.backgroundColor =[UIColor clearColor];
     [confirmationView addSubview:txtView];
     txtView.editable = NO;
@@ -99,7 +99,7 @@
     txtView = [[UITextView alloc] initWithFrame:CGRectMake(90, 80, 415, 160)];
     txtView.textAlignment = UITextAlignmentCenter;
     txtView.userInteractionEnabled = NO;
-    txtView.font = [UIFont fontWithName:APP_FONT_BOLD size:35.0f];
+    txtView.font = [UIFont fontWithName:APP_FONT_BOLD size:32.0f];
     txtView.backgroundColor =[UIColor clearColor];
     [confirmationView addSubview:txtView];
     txtView.editable = NO;

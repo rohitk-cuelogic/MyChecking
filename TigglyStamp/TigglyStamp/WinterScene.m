@@ -25,6 +25,8 @@ penguin_blueShapeArray,penguin_skateShapeArray,penguinShapeArray,snowglobeShapeA
 
 @synthesize chipmunkShapeArray,foxShapeArray,ornament_purpleShapeArray,snowflake_1ShapeArray,snowflake_2ShapeArray,snowflake_3ShapeArray,star_cookieShapeArray,star_cookie_2ShapeArray;
 
+@synthesize blueStarGiftArray,cordoroyPantsArray,greenTriangleGiftShapeArray,blueSquareJeansArray,pinkSkirtWinterArray,purpleStarGiftArray,purpleTriangleGiftArray,redStarGiftArray,strippedPantsShapeArray,winterCoatArray,winterCoatPurpleArray;
+
 int currentObject;
 
 #pragma mark -
@@ -36,13 +38,57 @@ int currentObject;
     DebugLog(@"");
     self = [super init];
     if (self) {
-         winterSquareObjects = [[NSMutableArray alloc] initWithObjects:@"present", @"cup", @"sled",@"choo",@"fireplace",@"green_sweater",@"ornament",@"pink_sweater",@"shovel",nil];
+         winterSquareObjects = [[NSMutableArray alloc] initWithObjects:@"present",
+                                @"cup",
+                                @"sled",
+                                @"choo",
+                                @"fireplace",
+                                @"green_sweater",
+                                @"ornament",
+                                @"pink_sweater",
+                                @"shovel",
+                                @"cordoroy_pants",
+                                @"blueSquareJeans",
+                                @"stripped_pants",nil];
         
-         winterTriangleObjects = [[NSMutableArray alloc] initWithObjects:@"bells", @"blue_hat", @"pink_hat",@"deer",@"deer_2",@"green_umbrella",@"hot_choclate",@"lightbulb",@"purple_umbrella",nil];
+         winterTriangleObjects = [[NSMutableArray alloc] initWithObjects:@"bells",
+                                  @"blue_hat",
+                                  @"pink_hat",
+                                  @"deer",
+                                  @"deer_2",
+                                  @"green_umbrella",
+                                  @"hot_choclate",
+                                  @"lightbulb",
+                                  @"purple_umbrella",
+                                  @"green_triangle_gift",
+                                  @"pink_skirt_winter",
+                                  @"purple_triangle_gift",
+                                  @"winter_coat",
+                                  @"winter_coat_purple",nil];
         
-        winterCircleObjects = [[NSMutableArray alloc] initWithObjects:@"bear",@"bird",@"candy",@"choclate",@"girl",@"igloo",@"penguin_blue",@"penguin_skate",@"penguin",@"snowglobe",@"snowman",nil];
+        winterCircleObjects = [[NSMutableArray alloc] initWithObjects:@"bear",
+                               @"bird",
+                               @"candy",
+                               @"choclate",
+                               @"girl",
+                               @"igloo",
+                               @"penguin_blue",
+                               @"penguin_skate",
+                               @"penguin",
+                               @"snowglobe",
+                               @"snowman",nil];
         
-        winterStarObjects = [[NSMutableArray alloc] initWithObjects:@"chipmunk",@"fox",@"ornament_purple",@"snowflake_1",@"snowflake_2",@"snowflake_3",@"star_cookie",@"star_cookie_2",nil];
+        winterStarObjects = [[NSMutableArray alloc] initWithObjects:@"chipmunk",
+                             @"fox",
+                             @"ornament_purple",
+                             @"snowflake_1",
+                             @"snowflake_2",
+                             @"snowflake_3",
+                             @"star_cookie",
+                             @"star_cookie_2",
+                             @"blue_star_gift",
+                             @"purple_star_gift",
+                             @"red_star_gift",nil];
         
         presentBoxShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
         cupShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
@@ -51,9 +97,11 @@ int currentObject;
         fireplaceShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
         green_sweaterShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
         ornamentShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-
+        cordoroyPantsArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
         pink_sweaterShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
         shovelShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
+        blueSquareJeansArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
+        strippedPantsShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
         
         bellsShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         blue_hatShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
@@ -64,7 +112,11 @@ int currentObject;
         hot_choclateShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         lightbulbShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
         purple_umbrellaShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        
+        greenTriangleGiftShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
+        pinkSkirtWinterArray= [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
+        purpleTriangleGiftArray =[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
+        winterCoatArray =[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
+        winterCoatPurpleArray =[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
       
         bearShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
         birdShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
@@ -87,6 +139,9 @@ int currentObject;
         snowflake_3ShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
         star_cookieShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
         star_cookie_2ShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
+        blueStarGiftArray= [[NSMutableArray alloc] initWithObjects:@"star", nil];
+        purpleStarGiftArray= [[NSMutableArray alloc] initWithObjects:@"star", nil];
+        redStarGiftArray =[[NSMutableArray alloc] initWithObjects:@"star", nil];
         
                 
         winterObjectWithShapes = [[NSMutableDictionary alloc] init];
@@ -98,7 +153,6 @@ int currentObject;
         [winterObjectWithShapes setObject:fireplaceShapeArray forKey:@"fireplace"];
         [winterObjectWithShapes setObject:green_sweaterShapeArray forKey:@"green_sweater"];
         [winterObjectWithShapes setObject:ornamentShapeArray forKey:@"ornament"];
-        
         [winterObjectWithShapes setObject:pink_sweaterShapeArray forKey:@"pink_sweater"];
         [winterObjectWithShapes setObject:shovelShapeArray forKey:@"shovel"];
         
@@ -135,6 +189,21 @@ int currentObject;
         [winterObjectWithShapes setObject:snowflake_3ShapeArray forKey:@"snowflake_3"];
         [winterObjectWithShapes setObject:star_cookieShapeArray forKey:@"star_cookie"];
         [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"star_cookie_2"];
+        
+        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"blue_star_gift"];
+        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"cordoroy_pants"];
+        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"green_triangle_gift"];
+        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"blueSquareJeans"];
+        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"pink_skirt_winter"];
+        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"purple_star_gift"];
+        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"purple_triangle_gift"];
+        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"red_star_gift"];
+        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"stripped_pants"];
+        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"winter_coat"];
+        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"winter_coat_purple"];
+        
+        
+        
 
     }
     return self;
@@ -160,7 +229,12 @@ int currentObject;
             [winterTriangleObjects addObject:@"green_umbrella"];
             [winterTriangleObjects addObject:@"hot_choclate"];
             [winterTriangleObjects addObject:@"purple_umbrella"];
-            size = 8;
+            [winterTriangleObjects addObject:@"green_triangle_gift"];
+            [winterTriangleObjects addObject:@"pink_skirt_winter"];
+            [winterTriangleObjects addObject:@"purple_triangle_gift"];
+            [winterTriangleObjects addObject:@"winter_coat"];
+            [winterTriangleObjects addObject:@"winter_coat_purple"];
+            size = 13;
         }
         currentObject =  arc4random()%size;
         objectName = [winterTriangleObjects objectAtIndex:currentObject];
@@ -197,7 +271,11 @@ int currentObject;
             [winterSquareObjects addObject:@"ornament"];
             [winterSquareObjects addObject:@"pink_sweater"];
             [winterSquareObjects addObject:@"shovel"];
-            size = 9;
+            [winterSquareObjects addObject:@"cordoroy_pants"];
+            [winterSquareObjects addObject:@"blueSquareJeans"];
+            [winterSquareObjects addObject:@"stripped_pants"];
+    
+            size = 12;
         }
         currentObject =  arc4random()%size;
         objectName = [winterSquareObjects objectAtIndex:currentObject];
@@ -215,7 +293,10 @@ int currentObject;
             [winterStarObjects addObject:@"snowflake_3"];
             [winterStarObjects addObject:@"star_cookie"];
             [winterStarObjects addObject:@"star_cookie_2"];
-            size = 8;
+            [winterStarObjects addObject:@"blue_star_gift"];
+            [winterStarObjects addObject:@"purple_star_gift"];
+            [winterStarObjects addObject:@"red_star_gift"];
+            size = 11;
         }
         currentObject =  arc4random()%size;
         objectName = [winterStarObjects objectAtIndex:currentObject];
@@ -1401,7 +1482,42 @@ int currentObject;
             soundFile = @"cookie_ita";
         }
         
-    }    
+    }
+    
+    else if ([winterObject isEqualToString:@"blue_star_gift"]) {
+        
+    }
+    else if ([winterObject isEqualToString:@"cordoroy_pants"]) {
+        
+    }
+    else if ([winterObject isEqualToString:@"green_triangle_gift"]) {
+        
+    }
+    else if ([winterObject isEqualToString:@"blueSquareJeans"]) {
+        
+    }
+    else if ([winterObject isEqualToString:@"pink_skirt_winter"]) {
+        
+    }
+    else if ([winterObject isEqualToString:@"purple_star_gift"]) {
+        
+    }
+    else if ([winterObject isEqualToString:@"purple_triangle_gift"]) {
+        
+    }
+    else if ([winterObject isEqualToString:@"red_star_gift"]) {
+        
+    }
+    else if ([winterObject isEqualToString:@"stripped_pants"]) {
+        
+    }
+    else if ([winterObject isEqualToString:@"winter_coat"]) {
+        
+    }
+    else if ([winterObject isEqualToString:@"winter_coat_purple"]) {
+        
+    }
+
     return soundFile;
 }
 
@@ -1892,6 +2008,117 @@ int currentObject;
         
     }else if([winterObject isEqualToString:@"star_cookie_2"] ) {
         
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+        
+    }
+    
+    else if ([winterObject isEqualToString:@"blue_star_gift"]) {
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+
+    }
+    else if ([winterObject isEqualToString:@"cordoroy_pants"]) {
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+        
+    }
+    else if ([winterObject isEqualToString:@"green_triangle_gift"]) {
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+        
+    }
+    else if ([winterObject isEqualToString:@"blueSquareJeans"]) {
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+        
+    }
+    else if ([winterObject isEqualToString:@"pink_skirt_winter"]) {
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+        
+    }
+    else if ([winterObject isEqualToString:@"purple_star_gift"]) {
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+        
+    }
+    else if ([winterObject isEqualToString:@"purple_triangle_gift"]) {
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+        
+    }
+    else if ([winterObject isEqualToString:@"red_star_gift"]) {
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+        
+    }
+    else if ([winterObject isEqualToString:@"stripped_pants"]) {
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+        
+    }
+    else if ([winterObject isEqualToString:@"winter_coat"]) {
+        int ranNo =arc4random()%2;
+        
+        if(ranNo == 0){
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+        }else if (ranNo == 1) {
+            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+        }
+        
+    }
+    else if ([winterObject isEqualToString:@"winter_coat_purple"]) {
         int ranNo =arc4random()%2;
         
         if(ranNo == 0){

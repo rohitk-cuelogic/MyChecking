@@ -483,8 +483,11 @@ static ServerController *sharedInstance = nil;
                                       JSONObjectWithData:[request responseData]
                                       options:kNilOptions
                                       error:nil];
-        
-        [_delegate iPadMiniDeviceVersionDataRetrived:responseDict];
+
+        if ([[responseDict valueForKey:@"result"] isEqualToString:@"Success"]) {
+            NSMutableArray *deviceArray = [responseDict valueForKey:@"mini_ipad_version"];
+            [[TigglyStampUtils sharedInstance] setiPadMiniDeviceVersion:deviceArray];
+        }
     }
 }
 

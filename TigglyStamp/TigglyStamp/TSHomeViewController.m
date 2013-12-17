@@ -139,9 +139,18 @@ NSArray *allImageFiles;
     
     
     if ([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
-    
-        
+        switchPlayWithShape.hidden = NO;
+        lblPlayWithShapes.hidden = NO;
+        lblPlayWithShapes.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPlaywithTigglyShapes"];
+        lblPlayWithShapes.font =  [UIFont fontWithName:APP_FONT_BOLD size:20.0];
+        if ([[TigglyStampUtils sharedInstance] getShapeMode] == YES) {
+            [switchPlayWithShape setOn:YES];
+        }else{
+            [switchPlayWithShape setOn:NO];
+        }
     }else{
+        switchPlayWithShape.hidden = YES;
+        lblPlayWithShapes.hidden = YES;
         float fontSize = 0.0;
         if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
             fontSize = 18.0f;
@@ -269,6 +278,8 @@ NSArray *allImageFiles;
     }
     forParentsBtn.titleLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
     [forParentsBtn setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kForParents"] forState:UIControlStateNormal];
+    
+     lblPlayWithShapes.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPlaywithTigglyShapes"];
 }
 #pragma mark -
 #pragma mark =======================================
@@ -587,6 +598,16 @@ NSArray *allImageFiles;
                          [self.view sendSubviewToBack:viewForNews];
                      }];
 }
+
+-(IBAction)actionTogglePlayWithShape:(id)sender{
+    DebugLog(@"");
+    if ([switchPlayWithShape isOn] == YES) {
+        [[TigglyStampUtils sharedInstance] setShapeMode:YES];
+    }else{
+        [[TigglyStampUtils sharedInstance] setShapeMode:NO];
+    }
+}
+
 #pragma mark -
 #pragma mark =======================================
 #pragma mark Touch Hnadling

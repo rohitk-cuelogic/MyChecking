@@ -51,8 +51,8 @@
 		<string>Rockwell-Bold.TTF</string>
 		<string>Rockwell-BoldItalic.TTF</string>
 		<string>Rockwell.TTF</string>
-		<string>Candara.TTF</string>
-		<string>Candarab.TTF</string>
+		<string>Candaraa.TTF</string>
+		<string>Candarabold.TTF</string>
 	</array>
 	<key>UIFileSharingEnabled</key>
 	<false/>

@@ -1468,6 +1468,20 @@
 		C0FD9BF8185B730800D5650D /* main_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0FD9BF6185B730800D5650D /* main_bg.jpg */; };
 		C0FD9BF9185B730800D5650D /* label.png in Resources */ = {isa = PBXBuildFile; fileRef = C0FD9BF7185B730800D5650D /* label.png */; };
 		EB060A5E185F3B0800EA8557 /* btn_learn_more@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EB060A5D185F3B0800EA8557 /* btn_learn_more@2x~ipad.png */; };
+		EB060A8B185F406400EA8557 /* draw.png in Resources */ = {isa = PBXBuildFile; fileRef = EB060A7D185F406300EA8557 /* draw.png */; };
+		EB060A8C185F406400EA8557 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = EB060A7E185F406300EA8557 /* play.png */; };
+		EB060A8D185F406400EA8557 /* Rockwell-Bold.TTF in Resources */ = {isa = PBXBuildFile; fileRef = EB060A7F185F406300EA8557 /* Rockwell-Bold.TTF */; };
+		EB060A8E185F406400EA8557 /* Rockwell.TTF in Resources */ = {isa = PBXBuildFile; fileRef = EB060A80185F406400EA8557 /* Rockwell.TTF */; };
+		EB060A8F185F406400EA8557 /* safari.html in Resources */ = {isa = PBXBuildFile; fileRef = EB060A81185F406400EA8557 /* safari.html */; };
+		EB060A90185F406400EA8557 /* safari.png in Resources */ = {isa = PBXBuildFile; fileRef = EB060A82185F406400EA8557 /* safari.png */; };
+		EB060A91185F406400EA8557 /* safari_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = EB060A83185F406400EA8557 /* safari_banner.png */; };
+		EB060A92185F406400EA8557 /* safari_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EB060A84185F406400EA8557 /* safari_icon.png */; };
+		EB060A93185F406400EA8557 /* stamp.png in Resources */ = {isa = PBXBuildFile; fileRef = EB060A85185F406400EA8557 /* stamp.png */; };
+		EB060A94185F406400EA8557 /* trans_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EB060A86185F406400EA8557 /* trans_bg.png */; };
+		EB060A95185F406400EA8557 /* x-mas.html in Resources */ = {isa = PBXBuildFile; fileRef = EB060A87185F406400EA8557 /* x-mas.html */; };
+		EB060A96185F406400EA8557 /* x-mas_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = EB060A88185F406400EA8557 /* x-mas_banner.png */; };
+		EB060A97185F406400EA8557 /* x-mas_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EB060A89185F406400EA8557 /* x-mas_icon.png */; };
+		EB060A98185F406400EA8557 /* xmas.png in Resources */ = {isa = PBXBuildFile; fileRef = EB060A8A185F406400EA8557 /* xmas.png */; };
 		EB1091BD185BB0ED0027F703 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = EB1091B3185BB0ED0027F703 /* ioapi.c */; };
 		EB1091BE185BB0ED0027F703 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = EB1091B5185BB0ED0027F703 /* mztools.c */; };
 		EB1091BF185BB0ED0027F703 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = EB1091B7185BB0ED0027F703 /* unzip.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -3134,6 +3148,20 @@
 		C0FD9BF6185B730800D5650D /* main_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main_bg.jpg; sourceTree = "<group>"; };
 		C0FD9BF7185B730800D5650D /* label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label.png; sourceTree = "<group>"; };
 		EB060A5D185F3B0800EA8557 /* btn_learn_more@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_learn_more@2x~ipad.png"; sourceTree = "<group>"; };
+		EB060A7D185F406300EA8557 /* draw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = draw.png; sourceTree = "<group>"; };
+		EB060A7E185F406300EA8557 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		EB060A7F185F406300EA8557 /* Rockwell-Bold.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rockwell-Bold.TTF"; sourceTree = "<group>"; };
+		EB060A80185F406400EA8557 /* Rockwell.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rockwell.TTF; sourceTree = "<group>"; };
+		EB060A81185F406400EA8557 /* safari.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = safari.html; sourceTree = "<group>"; };
+		EB060A82185F406400EA8557 /* safari.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = safari.png; sourceTree = "<group>"; };
+		EB060A83185F406400EA8557 /* safari_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = safari_banner.png; sourceTree = "<group>"; };
+		EB060A84185F406400EA8557 /* safari_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = safari_icon.png; sourceTree = "<group>"; };
+		EB060A85185F406400EA8557 /* stamp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stamp.png; sourceTree = "<group>"; };
+		EB060A86185F406400EA8557 /* trans_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trans_bg.png; sourceTree = "<group>"; };
+		EB060A87185F406400EA8557 /* x-mas.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "x-mas.html"; sourceTree = "<group>"; };
+		EB060A88185F406400EA8557 /* x-mas_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-mas_banner.png"; sourceTree = "<group>"; };
+		EB060A89185F406400EA8557 /* x-mas_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-mas_icon.png"; sourceTree = "<group>"; };
+		EB060A8A185F406400EA8557 /* xmas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xmas.png; sourceTree = "<group>"; };
 		EB1091B2185BB0ED0027F703 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		EB1091B3185BB0ED0027F703 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		EB1091B4185BB0ED0027F703 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -4210,6 +4238,7 @@
 		C027AE6117EAE3C40066632E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				EB060A7C185F406300EA8557 /* NEWS_HTML */,
 				B1FF3D98182B59360013DAD7 /* tiggly_converted.mov */,
 				C0A82D3917EC934900F85793 /* Rockwell-Bold.TTF */,
 				C0A82D3A17EC934900F85793 /* Rockwell-BoldItalic.TTF */,
@@ -5471,6 +5500,27 @@
 			name = HTML;
 			sourceTree = "<group>";
 		};
+		EB060A7C185F406300EA8557 /* NEWS_HTML */ = {
+			isa = PBXGroup;
+			children = (
+				EB060A7D185F406300EA8557 /* draw.png */,
+				EB060A7E185F406300EA8557 /* play.png */,
+				EB060A7F185F406300EA8557 /* Rockwell-Bold.TTF */,
+				EB060A80185F406400EA8557 /* Rockwell.TTF */,
+				EB060A81185F406400EA8557 /* safari.html */,
+				EB060A82185F406400EA8557 /* safari.png */,
+				EB060A83185F406400EA8557 /* safari_banner.png */,
+				EB060A84185F406400EA8557 /* safari_icon.png */,
+				EB060A85185F406400EA8557 /* stamp.png */,
+				EB060A86185F406400EA8557 /* trans_bg.png */,
+				EB060A87185F406400EA8557 /* x-mas.html */,
+				EB060A88185F406400EA8557 /* x-mas_banner.png */,
+				EB060A89185F406400EA8557 /* x-mas_icon.png */,
+				EB060A8A185F406400EA8557 /* xmas.png */,
+			);
+			path = NEWS_HTML;
+			sourceTree = "<group>";
+		};
 		EB1091B0185BB0ED0027F703 /* Zip Handler */ = {
 			isa = PBXGroup;
 			children = (
@@ -5990,6 +6040,7 @@
 				C0A1EC5A182C06470032D6FC /* Tiggly_Word_Hat_Var2_03.mp3 in Resources */,
 				C08E9F0C185F3BA000199DE7 /* Tiggly_Animal_Scarecrow_IsItStorytimeYet_02.mp3 in Resources */,
 				C08EA03B185F3DD100199DE7 /* Tiggly_Animal_Moose_GiveMeAnUmbrealla_02.mp3 in Resources */,
+				EB060A8F185F406400EA8557 /* safari.html in Resources */,
 				EB6F333B1781867900FC479F /* Default-568h@2x.png in Resources */,
 				C08EA07C185F3DD100199DE7 /* Tiggly_Word_Purplecoat_02.mp3 in Resources */,
 				EB6F335617818AF500FC479F /* circle2Data.plist in Resources */,
@@ -6066,6 +6117,7 @@
 				C08EA001185F3DD100199DE7 /* Tiggly_Animal_Bat_ImAFriendlyBat_01.mp3 in Resources */,
 				EBEDE4D717958903002151E5 /* purple_umbrella.png in Resources */,
 				EBEDE4E317958970002151E5 /* bear@2x~ipad.png in Resources */,
+				EB060A98185F406400EA8557 /* xmas.png in Resources */,
 				C08E9EDB185F3BA000199DE7 /* Tiggly_Animal_Bee_ItsFallIsntIt_01.mp3 in Resources */,
 				C08E9F1E185F3BA000199DE7 /* Tiggly_Animal_Turkey_LeavesAreFallingItsGottaBeFall_01.mp3 in Resources */,
 				C08E9EF6185F3BA000199DE7 /* Tiggly_Animal_Hamster_GiveMeAnApple_01.mp3 in Resources */,
@@ -6122,6 +6174,7 @@
 				C08E9F18185F3BA000199DE7 /* Tiggly_Animal_Turkey_GiveMeAnApple_01.mp3 in Resources */,
 				EBE3BBB81797CBFC0089D4A7 /* present@2x~ipad.png in Resources */,
 				C08EA07E185F3DD100199DE7 /* Tiggly_Word_Purplecoat_Var2_01.mp3 in Resources */,
+				EB060A92185F406400EA8557 /* safari_icon.png in Resources */,
 				EBE3BBB91797CBFC0089D4A7 /* sled@2x~ipad.png in Resources */,
 				EBE3BBBA1797CBFC0089D4A7 /* cup@2x~ipad.png in Resources */,
 				C08EA039185F3DD100199DE7 /* Tiggly_Animal_Moose_GiveMeACupOfHotChocolate_01.mp3 in Resources */,
@@ -6139,6 +6192,7 @@
 				63CEE1D517A14DB80060DC42 /* BackPageGradient.png in Resources */,
 				63CEE1D617A14DB80060DC42 /* BackVertexShader.glsl in Resources */,
 				63CEE1D717A14DB80060DC42 /* FrontFragmentShader.glsl in Resources */,
+				EB060A95185F406400EA8557 /* x-mas.html in Resources */,
 				63CEE1D817A14DB80060DC42 /* FrontVertexShader.glsl in Resources */,
 				63CEE1D917A14DB80060DC42 /* NextPageFragmentShader.glsl in Resources */,
 				63CEE1DA17A14DB80060DC42 /* NextPageNoTextureFragmentShader.glsl in Resources */,
@@ -6226,6 +6280,7 @@
 				C082921817A7CB230023F08A /* leaves@2x~ipad.png in Resources */,
 				C082921917A7CB230023F08A /* mushroom@2x~ipad.png in Resources */,
 				C023130E1823B2CC0094F5EC /* tiggly_french.html in Resources */,
+				EB060A97185F406400EA8557 /* x-mas_icon.png in Resources */,
 				C082921A17A7CB230023F08A /* pear@2x~ipad.png in Resources */,
 				C082921B17A7CB230023F08A /* raincoat@2x~ipad.png in Resources */,
 				C082921C17A7CB230023F08A /* three_color@2x~ipad.png in Resources */,
@@ -6405,6 +6460,7 @@
 				C08EA03A185F3DD100199DE7 /* Tiggly_Animal_Moose_GiveMeACupOfHotChocolate_02.mp3 in Resources */,
 				C08EA089185F3DD100199DE7 /* Tiggly_Word_Snowflake_Var2_03.mp3 in Resources */,
 				C02F442817D60CFC007AEA39 /* Tiggly_Word_Sled_Oh_01.mp3 in Resources */,
+				EB060A93185F406400EA8557 /* stamp.png in Resources */,
 				C02F442917D60CFC007AEA39 /* Tiggly_Word_Snow_01.mp3 in Resources */,
 				C02F442A17D60CFC007AEA39 /* Tiggly_Word_Snow_Ooh_01.mp3 in Resources */,
 				C08EA088185F3DD100199DE7 /* Tiggly_Word_Snowflake_Var2_02.mp3 in Resources */,
@@ -6504,6 +6560,7 @@
 				C02F446A17D60CFC007AEA39 /* Tiggly_GenGreeting_Donkey_05.mp3 in Resources */,
 				C02F446B17D60CFC007AEA39 /* Tiggly_GenGreeting_Donkey_06.mp3 in Resources */,
 				C02F446C17D60CFC007AEA39 /* Tiggly_GenGreeting_Duck_01.mp3 in Resources */,
+				EB060A8C185F406400EA8557 /* play.png in Resources */,
 				C02F446D17D60CFC007AEA39 /* Tiggly_GenGreeting_Duck_02.mp3 in Resources */,
 				C02F446E17D60CFC007AEA39 /* Tiggly_GenGreeting_Duck_03.mp3 in Resources */,
 				C02F446F17D60CFC007AEA39 /* Tiggly_GenGreeting_Fly_01.mp3 in Resources */,
@@ -6511,6 +6568,7 @@
 				C02F447117D60CFC007AEA39 /* Tiggly_GenGreeting_Fly_03.mp3 in Resources */,
 				C02F447217D60CFC007AEA39 /* Tiggly_GenGreeting_Fly_04.mp3 in Resources */,
 				C02F447317D60CFC007AEA39 /* Tiggly_GenGreeting_Fly_05.mp3 in Resources */,
+				EB060A8E185F406400EA8557 /* Rockwell.TTF in Resources */,
 				C08EA087185F3DD100199DE7 /* Tiggly_Word_Snowflake_Var2_01.mp3 in Resources */,
 				C02F447417D60CFC007AEA39 /* Tiggly_GenGreeting_Fly_06.mp3 in Resources */,
 				C08EA035185F3DD100199DE7 /* Tiggly_Animal_Girl_ItsWinterTimeAndItsSnowing_01.mp3 in Resources */,
@@ -6601,6 +6659,7 @@
 				C023130C1823B2CC0094F5EC /* tiggly_portuguese.html in Resources */,
 				C02F44B517D60CFC007AEA39 /* Tiggly_GenGreeting_Raccoon_05.mp3 in Resources */,
 				C02F44B617D60CFC007AEA39 /* Tiggly_GenGreeting_Raccoon_06.mp3 in Resources */,
+				EB060A94185F406400EA8557 /* trans_bg.png in Resources */,
 				C02F44B717D60CFC007AEA39 /* Tiggly_GenGreeting_Raccoon_07.mp3 in Resources */,
 				C02F44B817D60CFC007AEA39 /* Tiggly_GenGreeting_Raccoon_08.mp3 in Resources */,
 				C02F44B917D60CFC007AEA39 /* Tiggly_GenGreeting_Raccoon_09.mp3 in Resources */,
@@ -6735,6 +6794,7 @@
 				6304DD9117D9A6F00075DE97 /* chipmunk_breng.mp3 in Resources */,
 				6304DD9217D9A6F00075DE97 /* cookie_breng.mp3 in Resources */,
 				6304DD9317D9A6F00075DE97 /* cranberries_breng.mp3 in Resources */,
+				EB060A90185F406400EA8557 /* safari.png in Resources */,
 				C08E9F2D185F3BA000199DE7 /* Tiggly_Word_Orangeraincoat_01.mp3 in Resources */,
 				6304DD9417D9A6F00075DE97 /* cupcake_breng.mp3 in Resources */,
 				6304DD9517D9A6F00075DE97 /* Donkey_breng.mp3 in Resources */,
@@ -6916,6 +6976,7 @@
 				C08EA053185F3DD100199DE7 /* Tiggly_Animal_Penguin_YohoooWinterTime_01.mp3 in Resources */,
 				C08E9F32185F3BA000199DE7 /* Tiggly_Word_Pants_01.mp3 in Resources */,
 				C08EA068185F3DD100199DE7 /* Tiggly_Animal_Snowman_Hi_01.mp3 in Resources */,
+				EB060A8D185F406400EA8557 /* Rockwell-Bold.TTF in Resources */,
 				6304DE2017D9A6F00075DE97 /* bell_sp.mp3 in Resources */,
 				6304DE2117D9A6F00075DE97 /* bird_sp.mp3 in Resources */,
 				C037C232180BDA0000B2417C /* pinkRaincoat@2x~ipad.png in Resources */,
@@ -7130,6 +7191,7 @@
 				C021F7D617E8279A00EBD6B6 /* candy_gr.mp3 in Resources */,
 				C021F7D717E8279A00EBD6B6 /* cat_gr.mp3 in Resources */,
 				C08E9E36185F100700199DE7 /* winter_coat@2x~ipad.png in Resources */,
+				EB060A8B185F406400EA8557 /* draw.png in Resources */,
 				C021F7D817E8279A00EBD6B6 /* catch_me_gr.mp3 in Resources */,
 				C08EA082185F3DD100199DE7 /* Tiggly_Word_Skirt_Var2_02.mp3 in Resources */,
 				C08EA049185F3DD100199DE7 /* Tiggly_Animal_Penguin_ILoveItWhenItSnows_01.mp3 in Resources */,
@@ -7259,6 +7321,7 @@
 				C08E9E32185F100700199DE7 /* purple_star_gift@2x~ipad.png in Resources */,
 				C021F83517E8279A00EBD6B6 /* catchMe_fr.mp3 in Resources */,
 				C021F83617E8279A00EBD6B6 /* chicken_fr.mp3 in Resources */,
+				EB060A96185F406400EA8557 /* x-mas_banner.png in Resources */,
 				C021F83717E8279A00EBD6B6 /* chipmunk_fr.mp3 in Resources */,
 				C021F83817E8279A00EBD6B6 /* circle_fr.mp3 in Resources */,
 				C021F83917E8279A00EBD6B6 /* cookie_fr.mp3 in Resources */,
@@ -7499,6 +7562,7 @@
 				C055640617FDA3C700818639 /* r20.png in Resources */,
 				C055640717FDA3C700818639 /* r21.png in Resources */,
 				B1DA58B0185EE72B0081CC21 /* FL_time.png in Resources */,
+				EB060A91185F406400EA8557 /* safari_banner.png in Resources */,
 				C055640817FDA3C700818639 /* r22.png in Resources */,
 				C08EA076185F3DD100199DE7 /* Tiggly_Word_Bluecoat_Var1_01.mp3 in Resources */,
 				C055640917FDA3C700818639 /* r23.png in Resources */,

@@ -791,14 +791,20 @@ NSArray *allImageFiles;
 {
     NSString *filePth =[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"usercontent/index.html"];
     NSString* htmlString = [NSString stringWithContentsOfFile:filePth encoding:NSUTF8StringEncoding error:nil];
-    [_webView loadHTMLString:htmlString baseURL:[NSURL fileURLWithPath:filePth]];
+    if (htmlString==nil) {
+        NSString *htmlFileStatic = [[NSBundle mainBundle] pathForResource:@"x-mas" ofType:@"html" inDirectory:nil];
+        NSString* htmlStringStatic = [NSString stringWithContentsOfFile:htmlFileStatic encoding:NSUTF8StringEncoding error:nil];
+        [_webView loadHTMLString:htmlStringStatic baseURL:[[NSBundle mainBundle] bundleURL]];
+    }else{
+        [_webView loadHTMLString:htmlString baseURL:[NSURL fileURLWithPath:filePth]];
+    }
 }
 -(void)performBtnNewsAnimation
 {
     
     [UIView animateWithDuration:0.2
                      animations:^(void){
-                         btnNews.frame = CGRectMake(890, 0, 120, 120);
+                         btnNews.frame = CGRectMake(787, 0, 230, 229);
                      }
                      completion:^(BOOL finished){
                          

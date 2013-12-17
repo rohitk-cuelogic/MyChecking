@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<title>Tiggly</title>
+<style type="text/css">
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input, textarea, input[type="radio"], input[type="checkbox"] {
+	margin:0;
+	padding:0;
+	border:0;
+	outline:0;
+	background:transparent;
+	resize:none;
+	color:#fff;
+	font-family:regular;
+	font-size:13px;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	margin:0;
+}
+*, *:before, *:after {
+	-moz-box-sizing: border-box;
+}
+img {
+	max-width:100%
+}
+a, a:hover, a:focus {
+	text-decoration:none;
+	outline:0;
+}
+.reset {
+	list-style:none;
+	margin:0
+}
+@font-face {
+	font-family: 'regular';
+	src: url('Rockwell.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'bold';
+	src: url('Rockwell-Bold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+/* =============page ============= */
+body {
+	background: #fcfaed;
+	background-size:100% auto
+}
+.body-wrapper {
+	padding:20px 20px 40px;
+}
+.cover-photo {
+	display:block;
+	position:relative;
+	width:100%;
+	min-height:396px;
+	max-height:396px;
+	border-radius:36px;
+	-webkit-box-shadow: 0px 0px 14px 6px rgba(44,36,21,0.4);
+	-moz-box-shadow: 0px 0px 14px 6px rgba(44,36,21,0.4);
+	box-shadow: 0px 0px 14px 6px rgba(44,36,21,0.4);
+	overflow:hidden;
+	margin-bottom:20px;
+	text-align:center;
+}
+.cover-photo img {
+	border-radius:10px;
+}
+.cover-photo .app-icon {
+	display:block;
+	overflow:hidden;
+	position:absolute;
+	left:20px;
+	bottom:20px;
+	width:134px;
+	padding:2px;
+	z-index:2;
+}
+.cover-photo .app-icon img {
+	border-radius:6px;
+}
+.cover-photo .play-now {
+	display:block;
+	overflow:hidden;
+	position:absolute;
+	left:0;
+	bottom:0;
+	right:0;
+	border-radius:0 0 10px 10px;
+	height:112px;
+	background:url(trans_bg.png) repeat 0 0;
+	z-index:1;
+	overflow:hidden;
+}
+.cover-photo .play-now .play-btn {
+	float:right;
+	width:220px;
+	 margin: 12px 10px 0 0;
+}
+.app-list {
+
+}
+.app-list h2 {
+	font-size:26px;
+	text-align:center;
+	color:#fff;
+	text-shadow:0 2px 0 #627d42;
+	background:#9ec96b;
+	height:50px;
+	position:relative;
+	padding:8px 0 0;
+	margin: 0 -20px;
+-webkit-box-shadow: 0px 6px 10px 0px rgba(0,0,0,0.45);
+-moz-box-shadow: 0px 6px 10px 0px rgba(0,0,0,0.45);
+box-shadow: 0px 6px 10px 0px rgba(0,0,0,0.45);
+}
+.app-list ul {
+		 padding:50px 0 0;
+    text-align:center;
+}
+.app-list ul li {
+	display:inline-block;
+	position:relative;
+	width:142px;
+	margin-left:10px;
+	margin-right:10px;
+	margin-bottom:14px;
+	padding:10px;
+}
+@media (max-width:600px) {
+	.body-wrapper{padding: 10px 10px 40px;}
+	.cover-photo{min-height:80px; max-height:300px; border-radius: 18px;}
+	.cover-photo .play-now{height:70px;}
+	.cover-photo .play-now .play-btn{margin:8px 8px 0 0; width:150px;}
+}
+@media (max-width:480px) {
+.app-list ul li{width:120px;}
+}
+
+</style>
+</head>
+
+<body class="blue-bg">
+<!--Main wrapper-->
+<div class="body-wrapper">
+    <!--Body Container-->
+    <!--Cover photo Container-->
+        <div class="cover-photo">
+        	<img src="x-mas_banner.png" alt=""/>
+            <div class="app-icon">
+                <a href="https://itunes.apple.com/in/app/tiggly-christmas/id767642449?mt=8" target="_blank" style="display:block">
+                <img src="x-mas_icon.png" alt=""/>
+                </a>
+            </div>
+            <div class="play-now">
+                <a href="https://itunes.apple.com/in/app/tiggly-christmas/id767642449?mt=8" class="play-btn" target="_blank"><img src="play.png" alt=""/></a>
+            </div>
+        </div>
+     <!--Cover photo Container-->
+     
+     <!--App list-->
+     	<div class="app-list">
+        	<h2>Our exciting learning apps</h2>
+            <ul class="reset">
+            	<li>
+                	<div class="app-thumb">
+                        <a href="https://itunes.apple.com/us/app/tiggly-draw/id718952421?ls=1&mt=8" target="_blank">
+                    	<img src="draw.png" />
+                        </a>
+                    </div>
+                </li>
+                <li>
+                	<div class="app-thumb">
+                        <a href="https://itunes.apple.com/us/app/tiggly-safari/id716679050?ls=1&mt=8" target="_blank">
+                    	<img src="safari.png" />
+                        </a>
+                    </div>
+                </li>
+                <li>
+                	<div class="app-thumb">
+                        <a href="https://itunes.apple.com/us/app/tiggly-stamp/id716727860?ls=1&mt=8" target="_blank">
+                    	<img src="stamp.png" />
+                        </a>
+                    </div>
+                </li>
+                
+            </ul>
+        </div>
+     
+     <!--App list-->
+     
+     
+     
+    
+    <!--Body Container-->
+
+</div>
+<!--Main wrapper--> 
+
+
+</body>
+</html>

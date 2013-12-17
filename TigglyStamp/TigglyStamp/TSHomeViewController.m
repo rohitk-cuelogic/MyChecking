@@ -180,7 +180,7 @@ NSArray *allImageFiles;
     
     float fontSize = 0.0;
     if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
-        fontSize = 24.0f;
+        fontSize = 22.0f;
     }else{
         fontSize = 18.0f;
     }
@@ -531,7 +531,10 @@ NSArray *allImageFiles;
 }
 -(void) showConfirmationView{
     DebugLog(@"");
-   
+    if(gestureView != nil){
+        [gestureView removeFromSuperview];
+        gestureView = nil;
+    }
     gestureView = [[GestureConfirmationView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
     gestureView.delegate = self;
     gestureView.layer.zPosition = 1500;
@@ -541,6 +544,11 @@ NSArray *allImageFiles;
 
 -(void) showConfirmationViewWithLangSelOption{
     DebugLog(@"");
+    
+    if(gestureView != nil){
+        [gestureView removeFromSuperview];
+        gestureView = nil;
+    }
     
     gestureView = [[GestureConfirmationView alloc] initLoadLanguageOptionWithFrame:CGRectMake(0, 0, 1024, 768)];
     gestureView.delegate = self;

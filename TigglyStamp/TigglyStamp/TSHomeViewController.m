@@ -204,28 +204,38 @@ NSArray *allImageFiles;
         DebugLog(@"Email : %@",td.subscriptionEmailId);
     }
 
-    if([[TigglyStampUtils sharedInstance] isNetworkAvailable])
+    
+    if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes] == NO)
     {
-        [[ServerController sharedInstance] fetchNewsFeedCountWithService:self];
-        
-    }else{
-        
-        NSDictionary *dictResponse=[self readJsonDictFromDocumentDirectoryWithFileName:JSON_RESPONSE];
-        if(dictResponse != Nil)
+        btnNews.hidden = NO;
+        [btnNews setImage:[UIImage imageNamed:@"btn_learn_more.png"] forState:UIControlStateNormal];
+        [self performBtnNewsAnimation];
+    }
+    else
+    {
+        if([[TigglyStampUtils sharedInstance] isNetworkAvailable])
         {
+            [[ServerController sharedInstance] fetchNewsFeedCountWithService:self];
             
-            NSArray *arrData=[[dictResponse objectForKey:@"last_news_icon"] componentsSeparatedByString:@"/"];
-            NSString *filePth =[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"usercontent/%@",[arrData objectAtIndex:[arrData count] -1]]];//@"usercontent/index.html"
+        }else{
             
-            btnNews.hidden = NO;
-            NSData *data = [NSData dataWithContentsOfFile:filePth];
-            UIImage *image = [UIImage imageWithData:data];
-            [btnNews setImage:image forState:UIControlStateNormal];
-            [self performBtnNewsAnimation];
-        }
-        else
-        {
-            btnNews.hidden=YES;
+            NSDictionary *dictResponse=[self readJsonDictFromDocumentDirectoryWithFileName:JSON_RESPONSE];
+            if(dictResponse != Nil)
+            {
+                
+                NSArray *arrData=[[dictResponse objectForKey:@"last_news_icon"] componentsSeparatedByString:@"/"];
+                NSString *filePth =[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"usercontent/%@",[arrData objectAtIndex:[arrData count] -1]]];//@"usercontent/index.html"
+                
+                btnNews.hidden = NO;
+                NSData *data = [NSData dataWithContentsOfFile:filePth];
+                UIImage *image = [UIImage imageWithData:data];
+                [btnNews setImage:image forState:UIControlStateNormal];
+                [self performBtnNewsAnimation];
+            }
+            else
+            {
+                btnNews.hidden=YES;
+            }
         }
     }
 
@@ -495,44 +505,37 @@ NSArray *allImageFiles;
 {
     if (dict!=nil) {
         
-        //        int newsCount = [[dict objectForKey:@"unread_news_count"] integerValue];
-        //        if (newsCount!=0) {
-        //            [[TDGameUtils sharedManager] setNewsCount:newsCount];
-        //        }
-        //
-        //        if ([[TDGameUtils sharedManager] getNewsCount]!=0) {
-        //        }else{
-        //
-        //            [[TDGameUtils sharedManager] setNewsCount:0];
-        //
-        //        }
-        NSDictionary *storedDict=[self readJsonDictFromDocumentDirectoryWithFileName:JSON_RESPONSE];
-        
-        if (![[dict objectForKey:@"unread_news_count"] isEqualToString:[storedDict objectForKey:@"unread_news_count"]])
+        if ([[dict objectForKey:@"unread_news_count"] isEqualToString:@"4"])
         {
-            [self writeJsonInDocumentDirectory:dict saveFileWithName:JSON_RESPONSE];
-            
-            [[ServerController sharedInstance] downloadHTMLFileAtPath:[dict objectForKey:@"zip_path"] service:self];
-        }
-        else
-        {
-            
-            NSArray *arrData=[[dict objectForKey:@"last_news_icon"] componentsSeparatedByString:@"/"];
-            NSString *filePth =[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"usercontent/%@",[arrData objectAtIndex:[arrData count] -1]]];//@"usercontent/index.html"
-            
             btnNews.hidden = NO;
-            NSData *data = [NSData dataWithContentsOfFile:filePth];
-            UIImage *image = [UIImage imageWithData:data];
-            [btnNews setImage:image forState:UIControlStateNormal];
+            [btnNews setImage:[UIImage imageNamed:@"x-mas_iconHome.png"] forState:UIControlStateNormal];
             [self performBtnNewsAnimation];
+        }
+        else{
+            
+            NSDictionary *storedDict=[self readJsonDictFromDocumentDirectoryWithFileName:JSON_RESPONSE];
+            
+            if (![[dict objectForKey:@"unread_news_count"] isEqualToString:[storedDict objectForKey:@"unread_news_count"]])
+            {
+                [self writeJsonInDocumentDirectory:dict saveFileWithName:JSON_RESPONSE];
+                
+                [[ServerController sharedInstance] downloadHTMLFileAtPath:[dict objectForKey:@"zip_path"] service:self];
+            }
+            else
+            {
+                
+                NSArray *arrData=[[dict objectForKey:@"last_news_icon"] componentsSeparatedByString:@"/"];
+                NSString *filePth =[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"usercontent/%@",[arrData objectAtIndex:[arrData count] -1]]];//@"usercontent/index.html"
+                
+                btnNews.hidden = NO;
+                NSData *data = [NSData dataWithContentsOfFile:filePth];
+                UIImage *image = [UIImage imageWithData:data];
+                [btnNews setImage:image forState:UIControlStateNormal];
+                [self performBtnNewsAnimation];
+                
+            }
             
         }
-        
-        
-    }else{
-        
-        //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:APPLICATION_NAME message:@"News count are not available" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        //        [alert show];
     }
 }
 - (void) newsHTMLDownloadComplete:(NSDictionary*) dict

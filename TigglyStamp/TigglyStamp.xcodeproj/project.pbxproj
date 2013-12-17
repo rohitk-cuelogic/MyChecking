@@ -1192,6 +1192,7 @@
 		C0F85EC818005A3100045212 /* Tiggly_SFX_MAGIC_20.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0F85EC718005A3100045212 /* Tiggly_SFX_MAGIC_20.mp3 */; };
 		C0FD9BF8185B730800D5650D /* main_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0FD9BF6185B730800D5650D /* main_bg.jpg */; };
 		C0FD9BF9185B730800D5650D /* label.png in Resources */ = {isa = PBXBuildFile; fileRef = C0FD9BF7185B730800D5650D /* label.png */; };
+		EB060A5E185F3B0800EA8557 /* btn_learn_more@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EB060A5D185F3B0800EA8557 /* btn_learn_more@2x~ipad.png */; };
 		EB1091BD185BB0ED0027F703 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = EB1091B3185BB0ED0027F703 /* ioapi.c */; };
 		EB1091BE185BB0ED0027F703 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = EB1091B5185BB0ED0027F703 /* mztools.c */; };
 		EB1091BF185BB0ED0027F703 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = EB1091B7185BB0ED0027F703 /* unzip.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -2582,6 +2583,7 @@
 		C0F85EC718005A3100045212 /* Tiggly_SFX_MAGIC_20.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_MAGIC_20.mp3; sourceTree = "<group>"; };
 		C0FD9BF6185B730800D5650D /* main_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main_bg.jpg; sourceTree = "<group>"; };
 		C0FD9BF7185B730800D5650D /* label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label.png; sourceTree = "<group>"; };
+		EB060A5D185F3B0800EA8557 /* btn_learn_more@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_learn_more@2x~ipad.png"; sourceTree = "<group>"; };
 		EB1091B2185BB0ED0027F703 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		EB1091B3185BB0ED0027F703 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		EB1091B4185BB0ED0027F703 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -4586,6 +4588,7 @@
 			children = (
 				C08291B117A7CB220023F08A /* FallObjects */,
 				EBEDE4D817958970002151E5 /* bear@2x~ipad.png */,
+				EB060A5D185F3B0800EA8557 /* btn_learn_more@2x~ipad.png */,
 				63306ADA185980FF00A09F3D /* save_icon1@2x~ipad.png */,
 				EBEDE50A17958998002151E5 /* bells@2x~ipad.png */,
 				63306AD8185980E700A09F3D /* mail_icon@2x~ipad.png */,
@@ -5666,6 +5669,7 @@
 				C021F7C617E8279A00EBD6B6 /* turtle_ita.mp3 in Resources */,
 				C021F7C717E8279A00EBD6B6 /* umbrella_ita.mp3 in Resources */,
 				C021F7CC17E8279A00EBD6B6 /* Winter_ita.mp3 in Resources */,
+				EB060A5E185F3B0800EA8557 /* btn_learn_more@2x~ipad.png in Resources */,
 				C021F7CD17E8279A00EBD6B6 /* Zebra_ita.mp3 in Resources */,
 				C021F7CE17E8279A00EBD6B6 /* 3_2_1_GO_gr.mp3 in Resources */,
 				C021F7CF17E8279A00EBD6B6 /* Apple_gr.mp3 in Resources */,

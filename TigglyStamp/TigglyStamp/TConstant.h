@@ -14,6 +14,11 @@
 //#define IS_RUN_ON_SIMULATOR
 //#define TEST_MODE 1
 
+//live
+//#define SERVICE_URL @"http://api.tiggly.com/manageapi?f=tig."
+// Dev
+#define SERVICE_URL @"http://development.tiggly.com/version1.0/manageapi?f=tig."
+
 
 #ifdef IS_RUN_ON_SIMULATOR
 #else
@@ -83,11 +88,7 @@
 #define SERVICE_MAIN_URL @"http://api.tiggly.com/manageapi?"
 #define SERVICE_URL_PART @"&u=4a6cb8d9ef751088a25bb26a11446910&p="
 
-//live
-//#define SERVICE_URL @"http://api.tiggly.com/manageapi?f=tig."
 
-// Dev
-#define SERVICE_URL @"http://development.tiggly.com/version1.0/manageapi?f=tig."
 
 //Web Service names
 #define SERVICE_NAME_SUBSCRIPTION @"subscribe"

@@ -35,9 +35,8 @@ int sec= 0;
 #pragma mark =======================================
 #pragma mark Synthesize
 #pragma mark =======================================
-
+@synthesize shapeToDraw;
 @synthesize rainbowAnimationView;
-@synthesize shapes;
 @synthesize fruitObjectArray;
 @synthesize pointComparison;
 @synthesize multiTouchForFruitObject;
@@ -57,8 +56,7 @@ int sec= 0;
 #pragma mark Private Variables
 #pragma mark =======================================
 
-NSString *shapeToDraw;
-NSString * prevShape;
+
 bool shouldShapeDetected = YES;
 float centerX,centerY;
 int numOfTouchPts;
@@ -107,13 +105,13 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 -(void) nullifyAllData{
     DebugLog(@"");
     
-//    if(winterSceneObject != nil) {
-//        winterSceneObject = nil;
-//    }
-//    
-//    if(fallSceneObject != nil) {
-//        fallSceneObject = nil;
-//    }
+    if(winterSceneObject != nil) {
+        winterSceneObject = nil;
+    }
+    
+    if(fallSceneObject != nil) {
+        fallSceneObject = nil;
+    }
     
     if(introView != nil) {
         introView = nil;
@@ -275,12 +273,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     [touchView setDelegate:self];
     if(sceneType == kSceneWinter) {
         winterSceneObject = [[WinterScene alloc]init];
-        winterSceneObject.delegate = self;
         backViewImage.image =[UIImage imageNamed:@"Tiggly_stamp_Winter_BG" ];
         curlViewImage.image = [UIImage imageNamed:@"Tiggly_stamp_Winter_BG" ];
     }else if (sceneType == kSceneFall){
         fallSceneObject = [[FallScene alloc]init];
-        fallSceneObject.delegate = self;
         backViewImage.image =[UIImage imageNamed:@"fallView" ];
         curlViewImage.image = [UIImage imageNamed:@"fallView" ];
     }
@@ -667,8 +663,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         UIImageView *tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
         if (sceneType == kSceneWinter) {
             tempImgView.image = [UIImage imageNamed:@"Tiggly_stamp_Winter_BG.png"];
+            [winterSceneObject removeAllObjects];
         }else if (sceneType == kSceneFall){
              tempImgView.image = [UIImage imageNamed:@"fallView.png"];
+            [fallSceneObject removeAllObjects];
         }
         
         [self.mainView addSubview:tempImgView];
@@ -1634,27 +1632,6 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 }
 
 
-#pragma mark-
-#pragma mark======================
-#pragma mark FalScene Delegate
-#pragma mark======================
-
--(void)fallSceneDrawObjectForObjectName:(NSString *)objectName{
-    DebugLog(@"");
-    shapeToDraw = objectName;
-    prevShape = objectName;
-}
-
-#pragma mark-
-#pragma mark======================
-#pragma mark WinterScene Delegate
-#pragma mark======================
-
--(void)drawObjectForObjectName:(NSString *)objectName {
-    shapeToDraw = objectName;
-    prevShape = objectName;
-}
-
 #pragma mark -
 #pragma mark =======================================
 #pragma mark Shape Detection Handling
@@ -1664,8 +1641,6 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     DebugLog(@"");
     if(!isRecording ) {
         RigthTickButton.hidden = NO;
-//        videoButton.hidden = NO;
-//        cameraButton.hidden = NO;
         
         if (!homeButton.hidden) {
             homeButton.hidden = YES;
@@ -1706,7 +1681,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 -(void)reorientationOfShape:(NSString *)shape {
     DebugLog(@"");
     
-    NSString *shapeImage = shapeToDraw;
+    NSString *shapeImage = self.shapeToDraw;
     
     double angleDiff = 0.0;
     CGPoint midPoint;
@@ -1720,7 +1695,12 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     //Common code to all shapes
     CALayer * layer = [CALayer layer];
     layer.position = midPoint;
-    UIColor *color = [[TigglyStampUtils sharedInstance]getRGBValueForShape:shapeImage withBasicShape:shape];
+    UIColor *color =nil;
+    if(sceneType == kSceneWinter) {
+        color = [winterSceneObject getRGBValueForShape:self.shapeToDraw];
+    }else if (sceneType == kSceneFall){
+        color = [fallSceneObject getRGBValueForShape:self.shapeToDraw];
+    }
     UIImage *img= [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",shape]];
     if([shape isEqualToString:@"square"]){
         layer.frame = CGRectMake(((centerX/2) - (img.size.width/4)),((centerY/2) - (img.size.height/4)), img.size.width/2.8, img.size.height/2.8);
@@ -1811,7 +1791,6 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             continuityTimer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(playGreetingSoundForObject:) userInfo:objName repeats:NO];
             isGreetingSoundPlaying = YES;
             
-//            [self.mainView bringSubviewToFront:fruit];
             [self.mainView bringSubviewToFront:RigthTickButton];
             [self.mainView bringSubviewToFront:homeButton];
             [self.mainView bringSubviewToFront:videoButton];
@@ -1820,23 +1799,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             centerX = 0;
             centerY = 0;
             
-            if(sceneType == kSceneWinter) {
-                [winterSceneObject removeDrawnShapeObject:shape objectToRemove:shapeImage];
-            }else if (sceneType == kSceneFall){
-                [fallSceneObject removeDrawnShapeObject:shape objectToRemove:shapeImage];
-            }
-           
-        //            //Sachin
-        //            double delayInSeconds = [[TDSoundManager sharedManager] getSoundDuration];;
-        //            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        //            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        //
-        //                [fruit removeFromSuperview];
-        //                [fruitObjectArray removeObject:fruit];
-        //            });
-        //            //Sachin
-
-        
+       
         });
         
     });
@@ -1865,11 +1828,11 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     }
     
     
-    shapeToDraw = nil;
+    self.shapeToDraw = nil;
     if(sceneType == kSceneWinter) {
-        self.shapes = [[NSMutableArray alloc]initWithArray:[winterSceneObject shapeForObject:UIT.label]];
+       self.shapeToDraw = [winterSceneObject getObjectForShape:UIT.label];
     }else if (sceneType == kSceneFall){
-         self.shapes = [[NSMutableArray alloc]initWithArray:[fallSceneObject shapeForObject:UIT.label]];
+        self.shapeToDraw = [fallSceneObject getObjectForShape:UIT.label];
     }
     
     centerX = 0;
@@ -1913,191 +1876,26 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
 
 -(void)touchVerificationViewTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-//    
+
     DebugLog(@"TouchBegan");
     
     DebugLog(@"TouchBegan");
     CGPoint p = [[touches anyObject] locationInView:touchView];
     if(p.x > 950 && p.y < 75){
-//        boolIsPageCurled = YES;
-//        
-//        [self.view.layer removeAllAnimations];
-//        
-//        UIGraphicsBeginImageContext(CGSizeMake(1024, 768));
-//        [[UIColor whiteColor] set];
-//        UIRectFill(CGRectMake(0.0, 0.0,1024,768));
-//        [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-//        
-//        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//        UIGraphicsEndImageContext();
-//        self.mainView.hidden = YES;
-//        
-//        tempImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
-//        tempImgView.image = image;
-//        [self.viewForCurl addSubview:tempImgView];
-//        [self.view bringSubviewToFront:self.viewForCurl];
-//        
-//        boolIsTouchMoved = NO;
-//        
-//        
-//        
-//        return;
+
     }
 
-//
-//    if (event != nil) {
-//        // if touch count is greater than 1
-//        if ([touches count]>0) {
-//            DebugLog(@"touche count is greater than 1");
-//            isTouchesOnTouchLayer = YES;
-//        }
-//        
-//    }
-//    
-//    if (!isWithShape) {
-//        int randomNo = arc4random() % 4;
-//        NSString *shape;
-//        if (randomNo == 1) {
-//            shape = @"triangle";
-//        }else if (randomNo == 2){
-//            shape = @"square";
-//        }else if (randomNo == 3){
-//            shape = @"star";
-//        }else{
-//            shape = @"circle";
-//        }
-//        shapeSoundToPlay = shape;
-//        
-//        shapeToDraw = nil;
-//       
-//        if(sceneType == kSceneWinter) {
-//            self.shapes = [[NSMutableArray alloc]initWithArray:[winterSceneObject shapeForObject:shape]];
-//        }else if (sceneType == kSceneFall){
-//            self.shapes = [[NSMutableArray alloc]initWithArray:[fallSceneObject shapeForObject:shape]];
-//        }
-//        
-//        centerX = 0;
-//        centerY = 0;
-//        CGPoint point = [[touches anyObject] locationInView:touchView];
-//        centerX = point.x;
-//        centerY =  point.y;
-//        if(shouldShapeDetected){
-//            shouldShapeDetected = NO;
-//            
-//            [self buildShape:shape];
-//            
-//            if(sceneType == kSceneFall && isRecording) {
-//                
-//            }else{
-//                [self playShapeDetectedSound];
-//            }
-//        }
-//        
-//        shouldShapeDetected = YES;
-//        
-//        
-//    }else{
-//        
-//    }
+
 }
 
 -(void) touchVerificationViewTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     DebugLog(@"The layer to move %@",[currentLayer name]);
-//    CGPoint p = [[touches anyObject] locationInView:touchView];
-//    if(boolIsPageCurled){
-//        if(!boolIsTouchMoved){
-//            boolIsTouchMoved = YES;
-//            
-//            [pageCurlView drawViewOnFrontOfPage:self.viewForCurl];
-//            //            pageCurlView.cylinderPosition =bottomSnappingPoint.position;
-//            //            pageCurlView.cylinderAngle = bottomSnappingPoint.angle;
-//            //            pageCurlView.cylinderRadius = bottomSnappingPoint.radius;
-//            
-//            pageCurlView.hidden = NO;
-//            self.viewForCurl.hidden = YES;
-//            [pageCurlView startAnimating];
-//            
-//            [pageCurlView touchBeganAtPoint:p];
-//            
-//            curlConfirmedButton.hidden = YES;
-//            
-//        }else{
-//            [pageCurlView touchMovedToPoint:p];
-//        }
-//        return;
-//    }
+
 
 }
 
 -(void)touchVerificationViewTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     DebugLog(@"");
-////    isTouchesOnTouchLayer = NO;
-//    CGPoint p = [[touches anyObject] locationInView:touchView];
-//    if(boolIsPageCurled){
-//        boolIsPageCurled = NO;
-//        
-//        if(boolIsTouchMoved){
-//            
-//            [pageCurlView touchEndedAtPoint:p];
-//            
-//            float time = FLOAT_CURL_TIME;
-//            
-//            if(p.x < INT_X_LIMIT_TO_FULL_CURL && p.y > INT_Y_LIMIT_TO_FULL_CURL){
-//                
-//                time = FLOAT_FULL_CURL_TIME;
-//                for(FruitView *fruit in fruitObjectArray){
-//                    [fruit removeFromSuperview];
-//                }
-//                
-//                homeButton.hidden = YES;
-//                [self hideVideoCameraButtons];
-//                
-//                fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];
-//            }
-//            
-//            [tempImgView removeFromSuperview];
-//            
-//            double delayInSeconds = time + 0.2;
-//            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-//            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//                
-//                pageCurlView.hidden = YES;
-//                [pageCurlView removeFromSuperview];
-//                pageCurlView = nil;
-//                [self configureViewForCurl];
-//                
-//                self.viewForCurl.hidden = NO;
-//                [self.view bringSubviewToFront:self.viewForCurl];
-//                self.mainView.hidden = NO;
-//                [self.view bringSubviewToFront:self.mainView];
-//                
-//                [self addFlippedPageAnimation];
-//                
-//                curlConfirmedButton.hidden = NO;
-//                
-//            });
-//            
-//        }else{
-//            //flip the page corner and wait for 3 seconds for user action
-//            
-//            [pageCurlView drawViewOnFrontOfPage:self.viewForCurl];
-//            pageCurlView.cylinderPosition =bottomSnappingPoint.position;
-//            pageCurlView.cylinderAngle = bottomSnappingPoint.angle;
-//            pageCurlView.cylinderRadius = bottomSnappingPoint.radius;
-//            
-//            pageCurlView.hidden = NO;
-//            self.viewForCurl.hidden = YES;
-//            [pageCurlView startAnimating];
-//            pageCurlView.boolIsPageDragEnabled = YES;
-//            
-//            [unCurlTimer invalidate];
-//            unCurlTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(unCurl) userInfo:nil repeats:NO];
-//            
-//            curlConfirmedButton.hidden = NO;
-//        }
-//        return;
-//    }
-//    
     isTouchesOnTouchLayer = NO;
 
 }
@@ -2355,12 +2153,11 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         if(centerX < 175)
             return;
     
-        shapeToDraw = nil;
-
+        self.shapeToDraw = nil;
         if(sceneType == kSceneWinter) {
-            self.shapes = [[NSMutableArray alloc]initWithArray:[winterSceneObject shapeForObject:phyShapeView.shapeName]];
+            self.shapeToDraw = [winterSceneObject getObjectForShape:phyShapeView.shapeName];
         }else if (sceneType == kSceneFall){
-            self.shapes = [[NSMutableArray alloc]initWithArray:[fallSceneObject shapeForObject:phyShapeView.shapeName]];
+            self.shapeToDraw = [fallSceneObject getObjectForShape:phyShapeView.shapeName];
         }
 
         [tickBtnTimer invalidate];

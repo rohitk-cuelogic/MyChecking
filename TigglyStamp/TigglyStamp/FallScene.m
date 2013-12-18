@@ -9,18 +9,16 @@
 #import "FallScene.h"
 #import "TigglyStampUtils.h"
 
-@implementation FallScene
-@synthesize fallSquareObjects,fallTriangleObjects,fallCircleObjects,fallStarObjects,fallObjectWithShapes,delegate;
+@implementation FallScene {
+    
+    NSMutableArray *fallSquareObjects;
+    NSMutableArray *fallTriangleObjects;
+    NSMutableArray *fallStarObjects;
+    NSMutableArray *fallCircleObjects;
+    int currentObject;
+}
 
-@synthesize batShapeArray,blue_candyShapeArray,green_leafShapeArray,haybaleShapeArray,orange_candyShapeArray,orange_leafShapeArray,purple_spirderShapeArray,spiderShapeArray,yellow_candyShapeArray,pirateShapeArray,barn_2ShapeArray;
 
-@synthesize beeShapeArray,broomShapeArray,horseShapeArray,leavesShapeArray,mushroomShapeArray,pearShapeArray,raincoatShapeArray,three_colorShapeArray,witches_hat_purpleShapeArray,witches_hatShapeArray,zebra_2ShapeArray,duck_1ShapeArray,pinkRaincoatArray,orangeRaincoatArray,yellowRaincoatArray,roosterArray,blue_jeansArray,green_skirtArray,khakisArray,pinkSkirtArray,purplePantsArray,yellowSkirtArray;
-
-@synthesize apple_redShapeArray,blue_turkeyShapeArray,cranberries_leavesShapeArray,cranberriesShapeArray,green_appleShapeArray,greyish_catShapeArray,litepurple_racoonShapeArray,orange_turkeyShapeArray,pink_catShapeArray,pumkin_1ShapeArray,pumpkin_3ShapeArray,racoonShapeArray;
-
-@synthesize green_leaf_2ShapeArray,hampsterShapeArray,orange_leaf_2ShapeArray,pink_leafShapeArray,scare_crowShapeArray,yellow_leafShapeArray,chickenShapeArray;
-
-int currentObject;
 
 #pragma mark -
 #pragma mark =======================================
@@ -33,141 +31,66 @@ int currentObject;
     if (self) {
 
         fallSquareObjects = [[NSMutableArray alloc] initWithObjects:
-                             @"bat", @"blue_candy",@"green_leaf",@"haybale",@"orange_candy",@"orange_leaf",@"purple_spirder",@"spider",@"yellow_candy",@"pirate",@"barn_2",nil];
+                             @"bat",
+                             @"blue_candy",
+                             @"green_leaf",
+                             @"haybale",
+                             @"orange_candy",
+                             @"orange_leaf",
+                             @"purple_spirder",
+                             @"spider",
+                             @"yellow_candy",
+                             @"pirate",
+                             @"barn_2",nil];
         
         fallTriangleObjects = [[NSMutableArray alloc] initWithObjects:
-                               @"bee", @"broom", @"horse",@"leaves",@"mushroom",@"pear",@"raincoat",@"three_color",@"witches_hat_purple",@"witches_hat",@"zebra_2",@"duck_1",@"pinkRaincoat",@"orangeRaincoat",@"yellowRaincoat",@"rooster",@"blue_jeans",@"green_skirt",@"khakis",@"pink_skirt_fall",@"purple_pants",@"yellow_skirt",nil];
+                               @"bee",
+                               @"broom",
+                               @"horse",
+                               @"leaves",
+                               @"mushroom",
+                               @"pear",
+                               @"raincoat",
+                               @"three_color",
+                               @"witches_hat_purple",
+                               @"witches_hat",
+                               @"zebra_2",
+                               @"duck_1",
+                               @"pinkRaincoat",
+                               @"orangeRaincoat",
+                               @"yellowRaincoat",
+                               @"rooster",
+                               @"blue_jeans",
+                               @"green_skirt",
+                               @"khakis",
+                               @"pink_skirt_fall",
+                               @"purple_pants",
+                               @"yellow_skirt",nil];
         
-        fallCircleObjects = [[NSMutableArray alloc] initWithObjects:                             @"apple_red",@"blue_turkey",@"cranberries_leaves",@"cranberries",@"green_apple",@"greyish_cat",@"litepurple_racoon",@"orange_turkey",@"pink_cat",@"pumkin_1",@"pumpkin_3",@"racoon",nil];
+        fallCircleObjects = [[NSMutableArray alloc] initWithObjects:
+                             @"apple_red",
+                             @"blue_turkey",
+                             @"cranberries_leaves",
+                             @"cranberries",
+                             @"green_apple",
+                             @"greyish_cat",
+                             @"litepurple_racoon",
+                             @"orange_turkey",
+                             @"pink_cat",
+                             @"pumkin_1",
+                             @"pumpkin_3",
+                             @"racoon",nil];
         
         fallStarObjects = [[NSMutableArray alloc] initWithObjects:
-                           @"green_leaf_2",@"hampster",@"orange_leaf_2",@"pink_leaf",@"scare_crow",@"yellow_leaf",@"chicken",nil];
+                           @"green_leaf_2",
+                           @"hampster",
+                           @"orange_leaf_2",
+                           @"pink_leaf",
+                           @"scare_crow",
+                           @"yellow_leaf",
+                           @"chicken",nil];
         
-        batShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        blue_candyShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        green_leafShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        haybaleShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        orange_candyShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        purple_spirderShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        orange_leafShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];        
-        spiderShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        yellow_candyShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        pirateShapeArray=[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        barn_2ShapeArray = [[NSMutableArray alloc] initWithObjects:@"square", nil];
-
-        
-        beeShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        broomShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        horseShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        leavesShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        mushroomShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        pearShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        raincoatShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        three_colorShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        witches_hat_purpleShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        witches_hatShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        zebra_2ShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        duck_1ShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        pinkRaincoatArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        orangeRaincoatArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        yellowRaincoatArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        roosterArray =[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        blue_jeansArray=[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        green_skirtArray=[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        khakisArray=[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        pinkSkirtArray=[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        purplePantsArray=[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        yellowSkirtArray=[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        
-        
-        apple_redShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        blue_turkeyShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        cranberries_leavesShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        cranberriesShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        green_appleShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        greyish_catShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        litepurple_racoonShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        orange_turkeyShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        pink_catShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        pumkin_1ShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        pumpkin_3ShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        racoonShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        
-        //star
-        green_leaf_2ShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        hampsterShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        orange_leaf_2ShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        pink_leafShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        scare_crowShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        yellow_leafShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        chickenShapeArray= [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        
-        
-        fallObjectWithShapes = [[NSMutableDictionary alloc] init];
-        
-        //square
-        [fallObjectWithShapes setObject:batShapeArray forKey:@"bat"];
-        [fallObjectWithShapes setObject:blue_candyShapeArray forKey:@"blue_candy"];
-        [fallObjectWithShapes setObject:green_leafShapeArray forKey:@"green_leaf"];
-        [fallObjectWithShapes setObject:haybaleShapeArray forKey:@"haybale"];
-        [fallObjectWithShapes setObject:orange_candyShapeArray forKey:@"orange_candy"];
-        [fallObjectWithShapes setObject:orange_leafShapeArray forKey:@"orange_leaf"];
-        [fallObjectWithShapes setObject:purple_spirderShapeArray forKey:@"purple_spirder"];        
-        [fallObjectWithShapes setObject:spiderShapeArray forKey:@"spider"];
-        [fallObjectWithShapes setObject:yellow_candyShapeArray forKey:@"yellow_candy"];
-        [fallObjectWithShapes setObject:pirateShapeArray forKey:@"pirate"];
-        [fallObjectWithShapes setObject:barn_2ShapeArray forKey:@"barn_2"];
-        
-
-        //triangle
-        [fallObjectWithShapes setObject:beeShapeArray forKey:@"bee"];
-        [fallObjectWithShapes setObject:broomShapeArray forKey:@"broom"];
-        [fallObjectWithShapes setObject:horseShapeArray forKey:@"horse"];
-        [fallObjectWithShapes setObject:leavesShapeArray forKey:@"leaves"];
-        [fallObjectWithShapes setObject:mushroomShapeArray forKey:@"mushroom"];
-        [fallObjectWithShapes setObject:pearShapeArray forKey:@"pear"];
-        [fallObjectWithShapes setObject:raincoatShapeArray forKey:@"raincoat"];
-        [fallObjectWithShapes setObject:three_colorShapeArray forKey:@"three_color"];
-        [fallObjectWithShapes setObject:witches_hat_purpleShapeArray forKey:@"witches_hat_purple"];
-        [fallObjectWithShapes setObject:witches_hatShapeArray forKey:@"witches_hat"];
-        [fallObjectWithShapes setObject:zebra_2ShapeArray forKey:@"zebra_2"];
-        [fallObjectWithShapes setObject:duck_1ShapeArray forKey:@"duck_1"];
-        [fallObjectWithShapes setObject:pinkRaincoatArray forKey:@"pinkRaincoat"];
-        [fallObjectWithShapes setObject:orangeRaincoatArray forKey:@"orangeRaincoat"];
-        [fallObjectWithShapes setObject:yellowRaincoatArray forKey:@"yellowRaincoat"];
-        [fallObjectWithShapes setObject:roosterArray forKey:@"rooster"];
-        [fallObjectWithShapes setObject:blue_jeansArray forKey:@"blue_jeans"];
-        [fallObjectWithShapes setObject:green_skirtArray forKey:@"green_skirt"];
-        [fallObjectWithShapes setObject:khakisArray forKey:@"khakis"];
-        [fallObjectWithShapes setObject:pinkSkirtArray forKey:@"pink_skirt_fall"];
-        [fallObjectWithShapes setObject:purplePantsArray forKey:@"purple_pants"];
-        [fallObjectWithShapes setObject:yellowSkirtArray forKey:@"yellow_skirt"];
-    
-     
-        
-        //circle
-        [fallObjectWithShapes setObject:apple_redShapeArray forKey:@"apple_red"];
-        [fallObjectWithShapes setObject:blue_turkeyShapeArray forKey:@"blue_turkey"];
-        [fallObjectWithShapes setObject:cranberries_leavesShapeArray forKey:@"cranberries_leaves"];
-        [fallObjectWithShapes setObject:cranberriesShapeArray forKey:@"cranberries"];
-        [fallObjectWithShapes setObject:green_appleShapeArray forKey:@"green_apple"];
-        [fallObjectWithShapes setObject:greyish_catShapeArray forKey:@"greyish_cat"];
-        [fallObjectWithShapes setObject:litepurple_racoonShapeArray forKey:@"litepurple_racoon"];
-        [fallObjectWithShapes setObject:orange_turkeyShapeArray forKey:@"orange_turkey"];
-        [fallObjectWithShapes setObject:pink_catShapeArray forKey:@"pink_cat"];
-        [fallObjectWithShapes setObject:pumkin_1ShapeArray forKey:@"pumkin_1"];
-        [fallObjectWithShapes setObject:pumpkin_3ShapeArray forKey:@"pumpkin_3"];
-        [fallObjectWithShapes setObject:racoonShapeArray forKey:@"racoon"];
-        
-        //star
-        [fallObjectWithShapes setObject:green_leaf_2ShapeArray forKey:@"green_leaf_2"];
-        [fallObjectWithShapes setObject:hampsterShapeArray forKey:@"hampster"];
-        [fallObjectWithShapes setObject:orange_leaf_2ShapeArray forKey:@"orange_leaf_2"];
-        [fallObjectWithShapes setObject:pink_leafShapeArray forKey:@"pink_leaf"];
-        [fallObjectWithShapes setObject:scare_crowShapeArray forKey:@"care_crow"];
-        [fallObjectWithShapes setObject:yellow_leafShapeArray forKey:@"yellow_leaf"];
-        [fallObjectWithShapes setObject:chickenShapeArray forKey:@"chicken"];
-        
+      
     }
     return self;
 }
@@ -177,7 +100,7 @@ int currentObject;
 #pragma mark Helpers
 #pragma mark =======================================
 
--(NSMutableArray *)shapeForObject:(NSString *)shape {
+-(NSString *)getObjectForShape:(NSString *)shape {
     DebugLog(@"");
     NSString *objectName = nil;
     if([shape isEqualToString:@"triangle"]){
@@ -210,7 +133,7 @@ int currentObject;
         }
         currentObject =  arc4random()%size;
         objectName = [fallTriangleObjects objectAtIndex:currentObject];
-        DebugLog(@"Give array of shape %@", objectName);
+        DebugLog(@"fallTriangleObject: %@", objectName);
     }
     if([shape isEqualToString:@"circle"]){
         int size = [fallCircleObjects count];
@@ -231,7 +154,7 @@ int currentObject;
         }
         currentObject =  arc4random()%size;
         objectName = [fallCircleObjects objectAtIndex:currentObject];
-        DebugLog(@"Give array of shape %@", objectName);
+        DebugLog(@"fallCircleObject: %@", objectName);
         
     }
     if([shape isEqualToString:@"square"]){
@@ -252,7 +175,7 @@ int currentObject;
         }
         currentObject =  arc4random()%size;
         objectName = [fallSquareObjects objectAtIndex:currentObject];
-        DebugLog(@"Give array of shape %@", objectName);
+        DebugLog(@"fallSquareObject: %@", objectName);
         
     }
     if([shape isEqualToString:@"star"]){
@@ -269,28 +192,219 @@ int currentObject;
         }
         currentObject =  arc4random()%size;
         objectName = [fallStarObjects objectAtIndex:currentObject];
-        DebugLog(@"Give array of shape %@", objectName);
+        DebugLog(@"fallStarObject: %@", objectName);
         
     }
-    [self.delegate fallSceneDrawObjectForObjectName:objectName];
-    return [fallObjectWithShapes objectForKey:objectName];
+    [self removeDrawnObject:objectName forShape:shape];
+    return objectName;
 }
 
--(void)removeDrawnShapeObject:(NSString *)typeOfShape  objectToRemove:(NSString *)objectDrawn{
+-(void)removeDrawnObject:(NSString *)objectName forShape:(NSString *)shape{
+    DebugLog(@"");
     
-    if([typeOfShape isEqualToString:@"triangle"]){
-        [fallTriangleObjects removeObject:objectDrawn];
+    //NSLog(@"Remove Object: %@",objectName);
+    
+    if([shape isEqualToString:@"triangle"]){
+        //NSLog(@"Before: fallTriangleObjects: %@",fallTriangleObjects);
+        [fallTriangleObjects removeObject:objectName];
+        //NSLog(@"After: fallTriangleObjects: %@",fallTriangleObjects);
     }
-    if([typeOfShape isEqualToString:@"square"]){
-        [fallSquareObjects removeObject:objectDrawn];
+    if([shape isEqualToString:@"square"]){
+        //NSLog(@"Before: fallSquareObjects: %@",fallSquareObjects);
+        [fallSquareObjects removeObject:objectName];
+        //NSLog(@"After: fallSquareObjects: %@",fallSquareObjects);
     }
-    if([typeOfShape isEqualToString:@"star"]){
-        [fallStarObjects removeObject:objectDrawn];
+    if([shape isEqualToString:@"star"]){
+        //NSLog(@"Before: fallStarObjects: %@",fallStarObjects);
+        [fallStarObjects removeObject:objectName];
+        //NSLog(@"After: fallStarObjects: %@",fallStarObjects);
     }
-    if([typeOfShape isEqualToString:@"circle"]){
-        [fallCircleObjects removeObject:objectDrawn];
+    if([shape isEqualToString:@"circle"]){
+        //NSLog(@"Before: fallCircleObjects: %@",fallCircleObjects);
+        [fallCircleObjects removeObject:objectName];
+        //NSLog(@"After: fallCircleObjects: %@",fallCircleObjects);
     }
     
+}
+
+-(void)removeAllObjects{
+    DebugLog(@"");
+    [fallTriangleObjects removeAllObjects];
+    [fallSquareObjects removeAllObjects];
+    [fallStarObjects removeAllObjects];
+    [fallCircleObjects removeAllObjects];
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Color Handling
+#pragma mark =======================================
+
+-(UIColor *)getRGBValueForShape:(NSString *)shapeToDraw{
+    
+    UIColor *color = nil;
+    
+    if ([shapeToDraw isEqualToString:@"bat"]) {
+        color = [UIColor colorWithRed:153.0/255.0 green:144.0/255.0 blue:197.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"blue_candy"]) {
+        color = [UIColor colorWithRed:0.0/255.0 green:170.0/255.0 blue:226.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"green_leaf"]) {
+        color = [UIColor colorWithRed:95.0/255.0 green:129.0/255.0 blue:57.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"haybale"]) {
+        color = [UIColor colorWithRed:224.0/255.0 green:169.0/255.0 blue:17.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"orange_candy"]) {
+        color = [UIColor colorWithRed:241.0/255.0 green:128.0/255.0 blue:49.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"orange_leaf"]) {
+        color = [UIColor colorWithRed:241.0/255.0 green:89.0/255.0 blue:34.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"purple_spirder"]) {
+        color = [UIColor colorWithRed:217.0/255.0 green:215.0/255.0 blue:235.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"yellow_candy"]) {
+        color = [UIColor colorWithRed:255.0/255.0 green:197.0/255.0 blue:14.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"spider"]) {
+        color = [UIColor colorWithRed:125.0/255.0 green:107.0/255.0 blue:113.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"pirate"]) {
+        color = [UIColor colorWithRed:235.0/255.0 green:39.0/255.0 blue:60.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"barn_2"]) {
+        color = [UIColor colorWithRed:237.0/255.0 green:28.0/255.0 blue:36.0/255.0 alpha:1];
+    }
+
+    if ([shapeToDraw isEqualToString:@"bee"]) {
+        color = [UIColor colorWithRed:255.0/255.0 green:222.0/255.0 blue:3.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"broom"]) {
+        color = [UIColor colorWithRed:224.0/255.0 green:169.0/255.0 blue:17.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"horse"]) {
+        color = [UIColor colorWithRed:217.0/255.0 green:215.0/255.0 blue:235.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"mushroom"]) {
+        color = [UIColor colorWithRed:237.0/255.0 green:29.0/255.0 blue:36.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"leaves"]) {
+        color = [UIColor colorWithRed:209.0/255.0 green:51.0/255.0 blue:35.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"pear"]) {
+        color = [UIColor colorWithRed:255.0/255.0 green:175.0/255.0 blue:3.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"raincoat"]) {
+        color = [UIColor colorWithRed:255.0/255.0 green:197.0/255.0 blue:14.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"pinkRaincoat"]) {
+        color = [UIColor colorWithRed:255.0/255.0 green:103.0/255.0 blue:148.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"orangeRaincoat"]) {
+        color = [UIColor colorWithRed:248.0/255.0 green:147.0/255.0 blue:29.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"yellowRaincoat"]) {
+        color = [UIColor colorWithRed:248.0/255.0 green:235.0/255.0 blue:120.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"three_color"]) {
+        color = [UIColor colorWithRed:254.0/255.0 green:208.0/255.0 blue:10.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"witches_hat_purple"]) {
+        color = [UIColor colorWithRed:112.0/255.0 green:44.0/255.0 blue:143.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"witches_hat"]) {
+        color = [UIColor colorWithRed:145.0/255.0 green:192.0/255.0 blue:75.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"zebra_2"]) {
+        color = [UIColor colorWithRed:173.0/255.0 green:223.0/255.0 blue:234.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"duck_1"]) {
+        color = [UIColor colorWithRed:249.0/255.0 green:160.0/255.0 blue:28.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"rooster"]) {
+        color = [UIColor colorWithRed:234.0/255.0 green:109.0/255.0 blue:8.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"blue_jeans"]) {
+        color = [UIColor colorWithRed:37.0/255.0 green:205.0/255.0 blue:211.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"green_skirt"]) {
+        color = [UIColor colorWithRed:126.0/255.0 green:177.0/255.0 blue:2.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"khakis"]) {
+        color = [UIColor colorWithRed:230.0/255.0 green:189.0/255.0 blue:125.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"pink_skirt_fall"]) {
+        color = [UIColor colorWithRed:255.0/255.0 green:62.0/255.0 blue:126.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"purple_pants"]) {
+        color = [UIColor colorWithRed:148.0/255.0 green:150.0/255.0 blue:213.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"yellow_skirt"]) {
+        color = [UIColor colorWithRed:254.0/255.0 green:248.0/255.0 blue:212.0/255.0 alpha:1];
+    }
+    
+    if ([shapeToDraw isEqualToString:@"apple_red"]) {
+        color = [UIColor colorWithRed:237.0/255.0 green:28.0/255.0 blue:36.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"blue_turkey"]) {
+        color = [UIColor colorWithRed:0.0/255.0 green:174.0/255.0 blue:239.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"cranberries_leaves"]) {
+        color = [UIColor colorWithRed:215.0/255.0 green:26.0/255.0 blue:33.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"cranberries"]) {
+        color = [UIColor colorWithRed:215.0/255.0 green:26.0/255.0 blue:33.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"green_apple"]) {
+        color = [UIColor colorWithRed:145.0/255.0 green:192.0/255.0 blue:75.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"greyish_cat"]) {
+        color = [UIColor colorWithRed:217.0/255.0 green:215.0/255.0 blue:235.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"litepurple_racoon"]) {
+        color = [UIColor colorWithRed:153.0/255.0 green:144.0/255.0 blue:197.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"orange_turkey"]) {
+        color = [UIColor colorWithRed:249.0/255.0 green:160.0/255.0 blue:28.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"pink_cat"]) {
+        color = [UIColor colorWithRed:245.0/255.0 green:142.0/255.0 blue:129.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"pumkin_1"]) {
+        color = [UIColor colorWithRed:223.0/255.0 green:129.0/255.0 blue:38.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"pumpkin_3"]) {
+        color = [UIColor colorWithRed:223.0/255.0 green:129.0/255.0 blue:38.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"racoon"]) {
+        color = [UIColor colorWithRed:171.0/255.0 green:73.0/255.0 blue:155.0/255.0 alpha:1];
+    }
+    
+    if ([shapeToDraw isEqualToString:@"green_leaf_2"]) {
+        color = [UIColor colorWithRed:145.0/255.0 green:192.0/255.0 blue:75.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"hampster"]) {
+        color = [UIColor colorWithRed:247.0/255.0 green:148.0/255.0 blue:31.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"orange_leaf_2"]) {
+        color = [UIColor colorWithRed:231.0/255.0 green:139.0/255.0 blue:29.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"pink_leaf"]) {
+        color = [UIColor colorWithRed:245.0/255.0 green:142.0/255.0 blue:129.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"scare_crow"]) {
+        color = [UIColor colorWithRed:0.0/255.0 green:170.0/255.0 blue:226.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"yellow_leaf"]) {
+        color = [UIColor colorWithRed:255.0/255.0 green:222.0/255.0 blue:3.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"chicken"]) {
+        color = [UIColor colorWithRed:251.0/255.0 green:242.0/255.0 blue:195.0/255.0 alpha:1];
+    }
+
+    return color;
 }
 
 #pragma mark -

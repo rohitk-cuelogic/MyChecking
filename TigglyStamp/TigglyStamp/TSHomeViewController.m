@@ -207,6 +207,7 @@ NSArray *allImageFiles;
     
     isFirstTimePlay = YES;
     if (!_isWebViewLaunched) {
+        [playBtnTimer invalidate];
         playBtnTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(animatePlayButton) userInfo:nil repeats:YES];
     }
     
@@ -675,6 +676,8 @@ NSArray *allImageFiles;
 -(IBAction)crossActionForViewForWeb:(id)sender
 {
     _isWebViewLaunched = NO;
+    [playBtnTimer invalidate];
+    playBtnTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(animatePlayButton) userInfo:nil repeats:YES];
 
     [UIView animateWithDuration:0.5
                      animations:^(void){

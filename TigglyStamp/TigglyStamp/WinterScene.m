@@ -9,25 +9,16 @@
 #import "WinterScene.h"
 #import "TigglyStampUtils.h"
 
-@implementation WinterScene
+@implementation WinterScene{
+    
+    NSMutableArray *winterSquareObjects;
+    NSMutableArray *winterTriangleObjects;
+    NSMutableArray *winterStarObjects;
+    NSMutableArray *winterCircleObjects;
+    
+    int currentObject;
 
-
-@synthesize winterSquareObjects,winterTriangleObjects,winterCircleObjects,winterStarObjects,winterObjectWithShapes,delegate;
-
-@synthesize presentBoxShapeArray,cupShapeArray,sledShapeArray,chooShapeArray,fireplaceShapeArray,green_sweaterShapeArray,ornamentShapeArray,pink_hatShapeArray,
-pink_sweaterShapeArray,shovelShapeArray;
-
-@synthesize bellsShapeArray,blue_hatShapeArray,deerShapeArray,deer_2ShapeArray,green_umbrellaShapeArray,
-hot_choclateShapeArray,lightbulbShapeArray,purple_umbrellaShapeArray;
-
-@synthesize bearShapeArray,birdShapeArray,candyShapeArray,choclateShapeArray,girlShapeArray,iglooShapeArray,
-penguin_blueShapeArray,penguin_skateShapeArray,penguinShapeArray,snowglobeShapeArray,snowmanShapeArray;
-
-@synthesize chipmunkShapeArray,foxShapeArray,ornament_purpleShapeArray,snowflake_1ShapeArray,snowflake_2ShapeArray,snowflake_3ShapeArray,star_cookieShapeArray,star_cookie_2ShapeArray;
-
-@synthesize cordoroyPantsArray,blueSquareJeansArray,pinkSkirtWinterArray,strippedPantsShapeArray,winterCoatArray,winterCoatPurpleArray;
-
-int currentObject;
+}
 
 #pragma mark -
 #pragma mark =======================================
@@ -89,112 +80,7 @@ int currentObject;
                              @"star_cookie",
                              @"star_cookie_2",
                              nil];
-        
-        presentBoxShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        cupShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        sledShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        chooShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        fireplaceShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        green_sweaterShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        ornamentShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        cordoroyPantsArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        pink_sweaterShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        shovelShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        blueSquareJeansArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        strippedPantsShapeArray =[[NSMutableArray alloc] initWithObjects:@"square", nil];
-        
-        bellsShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        blue_hatShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        pink_hatShapeArray =[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        deerShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        deer_2ShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        green_umbrellaShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        hot_choclateShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        lightbulbShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        purple_umbrellaShapeArray = [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        pinkSkirtWinterArray= [[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        winterCoatArray =[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        winterCoatPurpleArray =[[NSMutableArray alloc] initWithObjects:@"triangle", nil];
-        
-        bearShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        birdShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        candyShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        choclateShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        girlShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        iglooShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        penguin_blueShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        penguin_skateShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        penguinShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        snowglobeShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        snowmanShapeArray =[[NSMutableArray alloc] initWithObjects:@"circle", nil];
-        
-        
-        chipmunkShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        foxShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        ornament_purpleShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        snowflake_1ShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        snowflake_2ShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        snowflake_3ShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        star_cookieShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        star_cookie_2ShapeArray = [[NSMutableArray alloc] initWithObjects:@"star", nil];
-        
-        
-        winterObjectWithShapes = [[NSMutableDictionary alloc] init];
-        
-        [winterObjectWithShapes setObject:presentBoxShapeArray forKey:@"present"];
-        [winterObjectWithShapes setObject:cupShapeArray forKey:@"cup"];
-        [winterObjectWithShapes setObject:sledShapeArray forKey:@"sled"];
-        [winterObjectWithShapes setObject:chooShapeArray forKey:@"choo"];
-        [winterObjectWithShapes setObject:fireplaceShapeArray forKey:@"fireplace"];
-        [winterObjectWithShapes setObject:green_sweaterShapeArray forKey:@"green_sweater"];
-        [winterObjectWithShapes setObject:ornamentShapeArray forKey:@"ornament"];
-        [winterObjectWithShapes setObject:pink_sweaterShapeArray forKey:@"pink_sweater"];
-        [winterObjectWithShapes setObject:shovelShapeArray forKey:@"shovel"];
-        
-        
-        [winterObjectWithShapes setObject:bellsShapeArray forKey:@"bells"];
-        [winterObjectWithShapes setObject:blue_hatShapeArray forKey:@"blue_hat"];
-        [winterObjectWithShapes setObject:pink_hatShapeArray forKey:@"pink_hat"];
-        [winterObjectWithShapes setObject:deerShapeArray forKey:@"deer"];
-        [winterObjectWithShapes setObject:deer_2ShapeArray forKey:@"deer_2"];
-        [winterObjectWithShapes setObject:green_umbrellaShapeArray forKey:@"green_umbrella"];
-        [winterObjectWithShapes setObject:hot_choclateShapeArray forKey:@"hot_choclate"];
-        [winterObjectWithShapes setObject:lightbulbShapeArray forKey:@"lightbulb"];
-        [winterObjectWithShapes setObject:purple_umbrellaShapeArray forKey:@"purple_umbrella"];
-        
-        
-        [winterObjectWithShapes setObject:bearShapeArray forKey:@"bear"];
-        [winterObjectWithShapes setObject:birdShapeArray forKey:@"bird"];
-        [winterObjectWithShapes setObject:candyShapeArray forKey:@"candy"];
-        [winterObjectWithShapes setObject:choclateShapeArray forKey:@"choclate"];
-        [winterObjectWithShapes setObject:girlShapeArray forKey:@"girl"];
-        [winterObjectWithShapes setObject:iglooShapeArray forKey:@"igloo"];
-        [winterObjectWithShapes setObject:penguin_blueShapeArray forKey:@"penguin_blue"];
-        [winterObjectWithShapes setObject:penguin_skateShapeArray forKey:@"penguin_skate"];
-        [winterObjectWithShapes setObject:penguinShapeArray forKey:@"penguin"];
-        [winterObjectWithShapes setObject:snowglobeShapeArray forKey:@"snowglobe"];
-        [winterObjectWithShapes setObject:snowmanShapeArray forKey:@"snowman"];
-        
-        
-        [winterObjectWithShapes setObject:chipmunkShapeArray forKey:@"chipmunk"];
-        [winterObjectWithShapes setObject:foxShapeArray forKey:@"fox"];
-        [winterObjectWithShapes setObject:ornament_purpleShapeArray forKey:@"ornament_purple"];
-        [winterObjectWithShapes setObject:snowflake_1ShapeArray forKey:@"snowflake_1"];
-        [winterObjectWithShapes setObject:snowflake_2ShapeArray forKey:@"snowflake_2"];
-        [winterObjectWithShapes setObject:snowflake_3ShapeArray forKey:@"snowflake_3"];
-        [winterObjectWithShapes setObject:star_cookieShapeArray forKey:@"star_cookie"];
-        [winterObjectWithShapes setObject:star_cookie_2ShapeArray forKey:@"star_cookie_2"];
-        
-        [winterObjectWithShapes setObject:cordoroyPantsArray forKey:@"cordoroy_pants"];
-        [winterObjectWithShapes setObject:blueSquareJeansArray forKey:@"blueSquareJeans"];
-        [winterObjectWithShapes setObject:pinkSkirtWinterArray forKey:@"pink_skirt_winter"];
-        [winterObjectWithShapes setObject:strippedPantsShapeArray forKey:@"stripped_pants"];
-        [winterObjectWithShapes setObject:winterCoatArray forKey:@"winter_coat"];
-        [winterObjectWithShapes setObject:winterCoatPurpleArray forKey:@"winter_coat_purple"];
-        
-        
-        
-        
+            
     }
     return self;
 }
@@ -205,7 +91,7 @@ int currentObject;
 #pragma mark =======================================
 
 
--(NSMutableArray *)shapeForObject:(NSString *)shape {
+-(NSString *) getObjectForShape:(NSString *)shape;{
     DebugLog(@"");
     NSString *objectName = nil;
     if([shape isEqualToString:@"triangle"]){
@@ -228,7 +114,7 @@ int currentObject;
         }
         currentObject =  arc4random()%size;
         objectName = [winterTriangleObjects objectAtIndex:currentObject];
-        DebugLog(@"Give array of shape %@", objectName);
+        DebugLog(@"winterTriangleObject: %@", objectName);
     }
     if([shape isEqualToString:@"circle"]){
         int size = [winterCircleObjects count];
@@ -248,7 +134,7 @@ int currentObject;
           }
         currentObject =  arc4random()%size;
         objectName = [winterCircleObjects objectAtIndex:currentObject];
-        DebugLog(@"Give array of shape %@", objectName);
+        DebugLog(@"winterCircleObject: %@", objectName);
         
     }
     if([shape isEqualToString:@"square"]){
@@ -271,7 +157,7 @@ int currentObject;
         }
         currentObject =  arc4random()%size;
         objectName = [winterSquareObjects objectAtIndex:currentObject];
-        DebugLog(@"Give array of shape %@", objectName);
+        DebugLog(@"winterSquareObject: %@", objectName);
         
     }
     if([shape isEqualToString:@"star"]){
@@ -289,32 +175,192 @@ int currentObject;
         }
         currentObject =  arc4random()%size;
         objectName = [winterStarObjects objectAtIndex:currentObject];
-        DebugLog(@"Give array of shape %@", objectName);
+        DebugLog(@"winterStarObject: %@", objectName);
         
     }
-    [self.delegate drawObjectForObjectName:objectName];
-    return [winterObjectWithShapes objectForKey:objectName];
+    [self removeDrawnObject:objectName forShape:shape];
+    return objectName;
 }
 
--(void)removeDrawnShapeObject:(NSString *)typeOfShape  objectToRemove:(NSString *)objectDrawn{
-    DebugLog(@"triangls=%@",winterTriangleObjects.description);
-    DebugLog(@"squr=%@",winterSquareObjects.description);
-    DebugLog(@"star=%@",winterStarObjects.description);
-    DebugLog(@"shape type %@, to remove %@",typeOfShape,objectDrawn);
-    
-    if([typeOfShape isEqualToString:@"triangle"]){
-        [winterTriangleObjects removeObject:objectDrawn];
+-(void)removeDrawnObject:(NSString *)objectName forShape:(NSString *)shape{
+    DebugLog(@"");
+    if([shape isEqualToString:@"triangle"]){
+        [winterTriangleObjects removeObject:objectName];
     }
-    if([typeOfShape isEqualToString:@"square"]){
-        [winterSquareObjects removeObject:objectDrawn];
+    if([shape isEqualToString:@"square"]){
+        [winterSquareObjects removeObject:objectName];
     }
-    if([typeOfShape isEqualToString:@"star"]){
-        [winterStarObjects removeObject:objectDrawn];
+    if([shape isEqualToString:@"star"]){
+        [winterStarObjects removeObject:objectName];
     }
-    if([typeOfShape isEqualToString:@"circle"]){
-        [winterCircleObjects removeObject:objectDrawn];
+    if([shape isEqualToString:@"circle"]){
+        [winterCircleObjects removeObject:objectName];
     }
     
+}
+
+-(void)removeAllObjects{
+    DebugLog(@"");
+    [winterCircleObjects removeAllObjects];
+    [winterStarObjects removeAllObjects];
+    [winterSquareObjects removeAllObjects];
+    [winterTriangleObjects removeAllObjects];
+}
+
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Color Handling
+#pragma mark =======================================
+
+-(UIColor *)getRGBValueForShape:(NSString *)shapeToDraw{
+    UIColor *color;
+    
+    if ([shapeToDraw isEqualToString:@"choo"]) {
+        color = [UIColor colorWithRed:255.0/255.0 green:235.0/255.0 blue:55.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"ornament"]) {
+        color = [UIColor colorWithRed:236.0/255.0 green:17.0/255.0 blue:99.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"shovel"]) {
+        color = [UIColor colorWithRed:171.0/255.0 green:73.0/255.0 blue:156.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"fireplace"]) {
+        color = [UIColor colorWithRed:247.0/255.0 green:147.0/255.0 blue:30.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"pink_sweater"]) {
+        color = [UIColor colorWithRed:235.0/255.0 green:19.0/255.0 blue:142.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"green_sweater"]) {
+        color = [UIColor colorWithRed:177.0/255.0 green:210.0/255.0 blue:53.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"present"]) {
+        color = [UIColor colorWithRed:32.0/255.0 green:87.0/255.0 blue:213.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"cup"]) {
+        color = [UIColor colorWithRed:228.0/255.0 green:51.0/255.0 blue:12.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"sled"]) {
+        color = [UIColor colorWithRed:228.0/255.0 green:51.0/255.0 blue:12.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"bells"]) {
+        color = [UIColor colorWithRed:255.0/255.0 green:235.0/255.0 blue:55.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"blue_hat"]) {
+        color = [UIColor colorWithRed:0.0/255.0 green:168.0/255.0 blue:222.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"pink_hat"]) {
+        color = [UIColor colorWithRed:235.0/255.0 green:19.0/255.0 blue:142.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"deer"]) {
+        color = [UIColor colorWithRed:197.0/255.0 green:105.0/255.0 blue:61.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"deer_2"]) {
+        color = [UIColor colorWithRed:247.0/255.0 green:147.0/255.0 blue:30.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"green_umbrella"]) {
+        color = [UIColor colorWithRed:145.0/255.0 green:189.0/255.0 blue:73.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"hot_choclate"]) {
+        color = [UIColor colorWithRed:176.0/255.0 green:134.0/255.0 blue:106.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"lightbulb"]) {
+        color = [UIColor colorWithRed:236.0/255.0 green:28.0/255.0 blue:35.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"purple_umbrella"]) {
+        color = [UIColor colorWithRed:169.0/255.0 green:103.0/255.0 blue:170.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"bear"]) {
+        color = [UIColor colorWithRed:250.0/255.0 green:184.0/255.0 blue:133.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"bird"]) {
+        color = [UIColor colorWithRed:246.0/255.0 green:149.0/255.0 blue:124.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"candy"]) {
+        color = [UIColor colorWithRed:234.0/255.0 green:21.0/255.0 blue:43.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"choclate"]) {
+        color = [UIColor colorWithRed:175.0/255.0 green:84.0/255.0 blue:28.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"girl"]) {
+        color = [UIColor colorWithRed:253.0/255.0 green:223.0/255.0 blue:192.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"igloo"]) {
+        color = [UIColor colorWithRed:199.0/255.0 green:234.0/255.0 blue:245.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"penguin_blue"]) {
+        color = [UIColor colorWithRed:0.0/255.0 green:131.0/255.0 blue:201.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"penguin_skate"]) {
+        color = [UIColor colorWithRed:169.0/255.0 green:103.0/255.0 blue:170.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"penguin"]) {
+        color = [UIColor colorWithRed:96.0/255.0 green:199.0/255.0 blue:208.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"snowglobe"]) {
+        color = [UIColor colorWithRed:173.0/255.0 green:223.0/255.0 blue:232.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"snowman"]) {
+        color = [UIColor colorWithRed:255.0/255.0 green:249.0/255.0 blue:241.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"chipmunk"]) {
+        color = [UIColor colorWithRed:250.0/255.0 green:180.0/255.0 blue:111.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"fox"]) {
+        color = [UIColor colorWithRed:248.0/255.0 green:159.0/255.0 blue:27.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"ornament_purple"]) {
+        color = [UIColor colorWithRed:171.0/255.0 green:73.0/255.0 blue:156.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"snowflake_1"]) {
+        color = [UIColor colorWithRed:255.0/255.0 green:197.0/255.0 blue:10.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"snowflake_2"]) {
+        color = [UIColor colorWithRed:0.0/255.0 green:173.0/255.0 blue:238.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"snowflake_3"]) {
+        color = [UIColor colorWithRed:0.0/255.0 green:173.0/255.0 blue:238.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"star_cookie"]) {
+        color = [UIColor colorWithRed:241.0/255.0 green:189.0/255.0 blue:126.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"star_cookie_2"]) {
+        color = [UIColor colorWithRed:171.0/255.0 green:247.0/255.0 blue:251.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"blue_star_gift"]) {
+        color = [UIColor colorWithRed:78.0/255.0 green:219.0/255.0 blue:249.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"cordoroy_pants"]) {
+        color = [UIColor colorWithRed:234.0/255.0 green:192.0/255.0 blue:80.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"green_triangle_gift"]) {
+        color = [UIColor colorWithRed:182.0/255.0 green:223.0/255.0 blue:16.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"blueSquareJeans"]) {
+        color = [UIColor colorWithRed:2.0/255.0 green:147.0/255.0 blue:229.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"pink_skirt_winter"]) {
+        color = [UIColor colorWithRed:237.0/255.0 green:2.0/255.0 blue:138.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"purple_star_gift"]) {
+        color = [UIColor colorWithRed:156.0/255.0 green:41.0/255.0 blue:140.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"purple_triangle_gift"]) {
+        color = [UIColor colorWithRed:154.0/255.0 green:1.0/255.0 blue:182.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"red_star_gift"]) {
+        color = [UIColor colorWithRed:255.0/255.0 green:66.0/255.0 blue:29.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"stripped_pants"]) {
+        color = [UIColor colorWithRed:229.0/255.0 green:2.0/255.0 blue:82.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"winter_coat"]) {
+        color = [UIColor colorWithRed:3.0/255.0 green:214.0/255.0 blue:217.0/255.0 alpha:1];
+    }
+    if ([shapeToDraw isEqualToString:@"winter_coat_purple"]) {
+        color = [UIColor colorWithRed:180.0/255.0 green:167.0/255.0 blue:224.0/255.0 alpha:1];
+    }
+
+    return color;
 }
 
 #pragma mark -

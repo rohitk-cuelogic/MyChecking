@@ -34,10 +34,12 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 
-@interface StampViewController : UIViewController<UITouchVerificationViewDelegate,ShapeToDrawProtocol,FruitViewProtocol,AVAudioRecorderDelegate,CapturedImageViewDelegate,ScreenCaptureViewDelegate,FallSceneShapeToDrawProtocol,PhysicalShapeViewProtocol,XBPageCurlViewDelegate,MFMailComposeViewControllerDelegate,FBSessionDelegate, FBRequestDelegate, FBDialogDelegate>{
+@interface StampViewController : UIViewController<UITouchVerificationViewDelegate,FruitViewProtocol,AVAudioRecorderDelegate,CapturedImageViewDelegate,ScreenCaptureViewDelegate,PhysicalShapeViewProtocol,XBPageCurlViewDelegate,MFMailComposeViewControllerDelegate,FBSessionDelegate, FBRequestDelegate, FBDialogDelegate>{
    
     WinterScene *winterSceneObject;
     FallScene *fallSceneObject;
+    
+    NSString *shapeToDraw;
     
     CGPoint touchLocation;
     CALayer *currentLayer;
@@ -95,7 +97,7 @@
 @property (nonatomic,strong) XBCurlView *curlView;
 @property (nonatomic,strong) ImageAnimatorView *rainbowAnimationView;
 
-@property (nonatomic,strong) NSMutableArray * shapes;
+@property (nonatomic,strong) NSString *shapeToDraw;
 @property (nonatomic,strong) NSMutableArray *fruitObjectArray;
 @property (nonatomic,strong) NSArray *pointComparison;
 @property (nonatomic,strong) NSMutableArray * multiTouchForFruitObject;

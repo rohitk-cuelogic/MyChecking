@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-//#define DEBUG_MODE
+#define DEBUG_MODE
 //#define IS_RUN_WITHOUT_SHAPE_FOR_TESTING 1
 //#define IS_RUN_ON_SIMULATOR
 //#define TEST_MODE 1
@@ -17,7 +17,7 @@
 //live
 //#define SERVICE_URL @"http://api.tiggly.com/manageapi?f=tig."
 // Dev
-#define SERVICE_URL @"http://development.tiggly.com/version1.0/manageapi?f=tig."
+#define SERVICE_URL @"http://development.tiggly.com/version1.1/manageapi?f=tig."
 
 
 #ifdef IS_RUN_ON_SIMULATOR

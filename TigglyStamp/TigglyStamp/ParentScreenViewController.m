@@ -397,9 +397,10 @@ UIActivityIndicatorView *activityIndicator;
    
                 [[ServerController sharedInstance] sendSubscriptionEmail:emailidTextField.text];
                 
-                TSTempData *tempData = [[TSTempData alloc] initWithEmailId:emailidTextField.text];
-                [[TigglyStampUtils sharedInstance] packTempData:tempData toFolder:FOLDER_SUBSCRIPTION_DATA];
-               
+                if(![[TigglyStampUtils sharedInstance] shouldRestrictSavingDataFile]){
+                    TSTempData *tempData = [[TSTempData alloc] initWithEmailId:emailidTextField.text];
+                    [[TigglyStampUtils sharedInstance] packTempData:tempData toFolder:FOLDER_SUBSCRIPTION_DATA];
+                }
                  [emailidTextField resignFirstResponder];
                 
                 float fontSize = 18.0;

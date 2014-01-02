@@ -214,10 +214,18 @@ NSArray *allImageFiles;
 
     
     NSArray *arr2 = [[TigglyStampUtils sharedInstance] getAllTempDataFromFolder:FOLDER_SUBSCRIPTION_DATA];
-    for(TSTempData *td in arr2){
-        DebugLog(@"Email : %@",td.subscriptionEmailId);
+    if(arr2 != nil){
+        for(TSTempData *td in arr2){
+            DebugLog(@"Email : %@",td.subscriptionEmailId);
+            if(td.subscriptionEmailId != nil){
+                [[ServerController sharedInstance] sendSubscriptionEmail:td.subscriptionEmailId];
+            }
+        }
+        //Delete the file
+        [[TigglyStampUtils sharedInstance] deleteTempFileDataFromFolder:FOLDER_SUBSCRIPTION_DATA];
+        [[TigglyStampUtils sharedInstance] setShouldRestrictSavingDataFile:YES];
     }
-
+    
     
     if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes] == NO)
     {

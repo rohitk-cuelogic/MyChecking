@@ -17,6 +17,7 @@
 #define KEY_SHAPE_STORE_KEY @"keyshapestore"
 #define KEY_FIRST_TIME_LAUNCH @"firsttimelaunch"
 #define KEY_CURRENT_LANGUAGE @"currentlang"
+#define KEY_SAVING_FILE_DATA @"saveFileData"
 
 
 @implementation TigglyStampUtils
@@ -501,6 +502,33 @@ static TigglyStampUtils *sharedInstance = nil;
     
     return arr;
 }
+
+-(void) deleteTempFileDataFromFolder:(NSString *) folder{
+    DebugLog(@"");
+    NSString *path = [self getDocumentDirPath];
+    NSString *directory = [path stringByAppendingPathComponent:folder];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+
+        [fileManager removeItemAtPath:directory error:&error];
+        if(error == nil){
+            DebugLog(@"File deleted successfully");
+        }else{
+            DebugLog(@"File deletion failed");
+        }
+
+}
+
+-(BOOL) shouldRestrictSavingDataFile{
+    
+    return [[NSUserDefaults standardUserDefaults] boolForKey:KEY_SAVING_FILE_DATA];
+}
+
+-(void)setShouldRestrictSavingDataFile:(BOOL) status{
+    
+    [[NSUserDefaults standardUserDefaults] setBool:status forKey:KEY_SAVING_FILE_DATA];
+}
+
 
 -(int) getTempFilesCountInFolder:(NSString *) folder {
     DebugLog(@"");

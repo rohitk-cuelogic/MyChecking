@@ -45,6 +45,9 @@
 
 -(BOOL) packTempData:(TSTempData *) pInfo toFolder:(NSString *) folder;
 - (NSMutableArray *) getAllTempDataFromFolder:(NSString *)folder;
+-(void) deleteTempFileDataFromFolder:(NSString *) folder;
+-(BOOL) shouldRestrictSavingDataFile;
+-(void) setShouldRestrictSavingDataFile:(BOOL) status;
 
 -(void) setMusicStatus:(NSString *) status;
 -(NSString *) getMusicStatus;

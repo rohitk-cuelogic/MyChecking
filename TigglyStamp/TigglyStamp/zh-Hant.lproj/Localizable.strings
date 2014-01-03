@@ -1,0 +1,71 @@
+/* 
+  Localizable.strings
+  TigglyStamp
+
+  Created by Sachin Patil on 30/07/13.
+  Copyright (c) 2013 cuelogic. All rights reserved.
+*/
+
+// Button texts
+"kLanguage" = "Language";
+"kTrymewithoutTigglyshapes" = "Try me without Tiggly shapes";
+"kUnlockwithTigglyshapes" = "Unlock with Tiggly shapes";
+"kForParents" ="For Parents";
+"kLearnmore" = "Learn more";
+"kPrivacyPolicy" = "Privacy Policy";
+"kSubscribe" = "Subscribe";
+"kSkip" = "Skip";
+"kEnter" = "Enter";
+"kSettings" = "Settings";
+"kReviewtheapp" = "Review the app";
+"kLetter" = "Letter";
+"kPlay" = "Play";
+"kLearningTips" = "Learning Tips";
+"kLearningPhilosophy" = "Learning Philosophy";
+"kUnder1year" = "Under 1 year";
+"k1-1.5year" = "1- 1.5 year";
+"kYear" = "year";
+"kDraw" = "Draw";
+"kStamp" = "Stamp";
+"kMusic" = "Music";
+"kSaveArt" = "Save Art";
+"kLimitGallery" = "Limit gallery to 60 items";
+"kPlaywithTigglyShapes" = "Play with Tiggly Shapes";
+"kBuyshapes" = "Buy Shapes";
+"kRestart" = "Restart......";
+"kEnterEmail" = "enter email";
+"kPleaseEnterEmail" = "Please enter email address";
+"kPleaseEnterValidEmail" = "Please enter valid email address";
+
+"kSwipeInstructionUp" = "To continue,\nswipe UP\nwith 2 fingers.";
+"kSwipeInstructionDown" = "To continue,\nswipe DOWN\nwith 2 fingers.";
+"kSwipeInstructionRight" = "To continue,\nswipe RIGHT\nwith 2 fingers.";
+"kSwipeInstructionLeft" = "To continue,\nswipe LEFT\nwith 2 fingers.";
+
+"kSaveImage"="Save Image";
+"kImageSaved"="Image Saved";
+"kSaveVideo"="Save Video";
+"kVideoSaved"="Video Saved";
+
+"kUnlockingInstructions" = "Unlocking Instructions :";
+"kUnlockingInstructionText" = "Tap the Tiggly shape on the screen that matches what you see. Once you match 4 shapes in a row, the app will be unlocked.";
+"kMatchedOutOfText" = "Matched %d out of 4.";
+"kCongratulationsText" = "Congratulations! You unlocked the full version of Tiggly Stamp. To play the app without the shapes, you can change the settings in the parents’ section.";
+"kAboutTigglyStamp" = "About Tiggly Stamp";
+"kAboutTigglyStampText" = "Tiggly Stamp is designed to interact with Tiggly shapes, a set of 4 geometric shapes that unlock the optimal learning experience for your child by combining the best of physical and digital play. Tiggly shapes are safe for your toddler and your tablet.";
+
+
+"kSubscriptionWindowTitle" = "We’d love to share learning tips with you. Sign up for our emails.";
+"kHowOldYourSon" = "Tell us how old are your children. It will help us personalized the content for them and improve their learning experience.";
+"kConfirmationMsgText" = "We sent an email for your confirmation.";
+
+"kMotorSkillHead"="Motor skills";
+"kMotorSkillBody"="Grabbing and holding the shapes, moving them, and placing them on the screen help your child enhance their fine motor skills.";
+"kLangDevHead"="Language Development";
+"kLangDevBody"="Children will hear the names of animals, fruits, and objects as they appear on screen and greet your child. They will also practice storytelling and producing language as part of their play.";
+"kSpatialThinkHead"="Creativity";
+"kSpatialThinkBody"="Tiggly Stamp encourages children to recognize and match basic shapes— circles, squares, triangles, and stars in various orientations. By manipulating real shapes, and grabbing, rotating, moving, and placing them on a target, children learn about spatial relations and transformations. Finally, by turning simple shapes into animals, they practice their ability to create complex images.";
+
+"kPrivacyPolicyHeading" = "Tiggly Privacy Policy";
+
+"kPrivacyPolicytext" = "Tiggly is committed to helping preschoolers learn in the most effective way possible. We believe the ideal way to achieve that goal is by combining physical play with digital tools, and by actively involving parents in the learning process.\n\nThis privacy policy has been created to provide you with information about how we collect and use information that you may provide through our apps, the circumstances under which we may disclose that information, as well as your choices concerning that information.\n\n1.	Effective Date: This Privacy Policy is effective 09/20/2013, and applies to any and all information that a user may have provided to Tiggly through our apps.  Tiggly reserves the right, at its discretion and/or in compliance with applicable law if needed, to change, modify, amend, add, or remove portions of its Privacy Policy at any time.  When required by law, we will advise you of such changes.  Modifications will be effective immediately, and will apply to your continuing use.\n\n2.	Your Consent: Please read this privacy policy carefully.  By accessing and using our apps, you acknowledge that you have read and understood this Privacy Policy, and agree to be legally bound by it. If you do not agree with the terms of this Privacy Policy, please refrain from using our apps.\n\n3.	Personal Information and Children: We do not knowingly collect personally identifiable information from children under the age of 13.  We do allow children to record their voice within the app; however, that recording is not collected on our servers, and instead is stored locally, only in the app and on the device.  We do not receive the voice recording.\n\nIf Tiggly learns that we have inadvertently gathered personal information from children under the age of 13 through our apps, we will take reasonable measures to promptly delete any such data from Tiggly’s records.\n\n4.	Personal Information and Adults: Through our apps, Tiggly may collect the following information from parents:\n-	Parent’s name or user name\n-	Email address\n-	Your child(ren)’s first name(s) or user name(s)\n-	Your child(ren)’s age(s)\n-	Your child(ren)’s gender(s)\n\nProviding the above information is optional. Your name/username, if provided, would be used for keeping track of your information and your child(ren)’s in-game data such as frequency of play, accuracy, mistakes and their strategies. This information will be used to prepare personalized reports to parents about their child(ren)’s progress and learning.  Your email address is collected only if you subscribe to our newsletter or for email updates and reports. We include information on how to unsubscribe from such communications within every email that we send.\n\nWe ask for your child(ren)’s first name(s), age(s) and gender(s) so that we may personalize communications sent to you related to your child(ren)’s progress within the app.  Such information is optional.\n\nYou can contact us by email to request to see or delete any personally identifiable information we have stored.  To make such a request, please email us at privacy@tiggly.com. If needed, we may ask for additional information to verify your identity prior to completing such a request.\n\n5.	Collection of Non-Personal Information: Tiggly collects certain non-personally identifiable information from our users, such as data about how our apps are used and device IDs.  We do not combine personal information with non-personal information.  Anonymous, non-personal data is used for internal operations, such as analyzing the effectiveness of our apps, improving our features, and for other, similar purposes.  For example, we collect anonymous data on in-game activities to analyze common paths of learning, mistakes, and strategies in order to better adopt the software activity to meet users’ needs.\n\n6.	Third Parties: Tiggly may use third parties to assist in the analysis of our apps, including analyzing the general behavior and characteristics of users participating in our app.  In doing so, we may share non-personal data, such as your device IDs with third parties.  That anonymous information provided to third parties is used for the purpose of measuring the performance of our app, page views, number of visitors, and similar statistical measures.  The anonymous information is collected through features of the apps and through cookies.\n\nA “cookie” is a small bit of record-keeping information that websites often store on a user's computer.  You can disable cookies or set your browser to alert you when cookies are being sent to your device.\n\nTiggly requires that any third party comply with this privacy policy.  In addition, we do not sell, rent, share or transfer any of the information collected to third parties in ways other than described in this policy.\n\n7.	Third Party Terms and Conditions: By using our App, you may be subject to third party terms and conditions and privacy policies, including but not limited to application stores, mobile software platforms, and social networking services.  Providing links to any such third parties does not constitute Tiggly’s sponsorship of, or affiliation with, such third parties.\n\nCertain features that Tiggly may offer, such as social networking, may use third party services to provide authentication with a social networking ID. In connection with such use, certain personally identifiable user and/or membership data may be transferred automatically to and from Tiggly’s apps.  Such features are only offered within the parent section of the apps.\n\nThe parent section of Tiggly apps contains links to Tiggly’s website, blog, and social media activities and pages.\n\n8.	Data Retention: Tiggly only retains the data collected pursuant to this Privacy Policy for the period of time necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law.   After such time, Tiggly deletes all such data within a time frame that is reasonable for our operating requirements.  When necessary, Tiggly may retain data to the extent needed to resolve disputes, enforce Tiggly user agreements, and comply with technical and legal requirements and constraints related to the security, integrity and operation of the apps.\n\n9.	Disclosure of Data: If needed in order to operate our apps, personal and non-personal information we collect may be shared with our service providers who support and administer the internal operations of our apps, such as maintaining user accounts and providing customer service.  All such service providers are required to agree to maintain the confidentiality, security and integrity of the data, and may not use it for any other purposes.\n\nWe also reserve the right to release personal information in connection with a lawsuit or legal claim, to comply with a judicial process or law enforcement investigation, or in connection with a corporate change or dissolution, including for example a merger, acquisition, reorganization, consolidation, bankruptcy, liquidation, sale of assets, wind-down of business or related due diligence. Any such release of data will be done in compliance with applicable law, and only if the receiving party agrees to maintain the confidentiality, security and integrity of that information.\n\n10.	Security: Tiggly follows reasonable and generally accepted industry standards regarding data security, and we maintain reasonable safeguards to attempt to ensure the confidentiality, security and integrity of the information in Tiggly’s possession in accordance with applicable law.  Only those persons with a need to process user data in connection with the fulfillment of their tasks in accordance with the purposes of this Privacy Policy and for the purposes of performing technical maintenance have access to user data in Tiggly’s possession.\n\nTiggly stores all data and information in secure operating environments and implements reasonable and generally accepted industry practices to prevent unauthorized access to the data.   Please note that Tiggly cannot and does not guarantee the security of materials or information transmitted to Tiggly by users over the Internet or through wireless connections.\n\n11.	Further Information: If you have any questions, comments or concerns regarding this Privacy Policy and/or our practices, please email us at: privacy@tiggly.com.\n\nTiggly maintains offices at 222 Broadway, 19th floor, New York, NY, 10038, and may also be contacted by mail should you wish to discuss this Privacy Policy or any other matter of interest or concern.\n\n12.	Special Notice to California Residents: Individuals who reside in California and have provided their Personally Identifiable Information may request information regarding disclosures of this information to third parties for direct marketing purposes. Such requests should be submitted to us at the following email address: privacy@tiggly.com or in writing at our offices.\n\n13.	Third Parties: The following third parties may be associated with the Tiggly apps:\n\nGoogle Analytics. Google Analytics uses cookies, to help us analyze how users use the Service. You may be able to opt-out of Google’s collection. Please visit Google’s Ads Preferences Manager or the Google Analytics opt-out browser add-on for more information.";

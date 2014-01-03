@@ -3244,6 +3244,7 @@
 		EB6F33981781AD0600FC479F /* TConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TConstant.h; sourceTree = "<group>"; };
 		EB6F339F1781B8C900FC479F /* WinterScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinterScene.h; sourceTree = "<group>"; };
 		EB6F33A01781B8CA00FC479F /* WinterScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinterScene.m; sourceTree = "<group>"; };
+		EB752D5318769040002E270F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		EBE3BBAF1797CBB20089D4A7 /* sled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sled.png; sourceTree = "<group>"; };
 		EBE3BBB01797CBB20089D4A7 /* present.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = present.png; sourceTree = "<group>"; };
 		EBE3BBB11797CBB20089D4A7 /* cup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cup.png; sourceTree = "<group>"; };
@@ -5967,6 +5968,7 @@
 				pt,
 				ru,
 				it,
+				"zh-Hant",
 			);
 			mainGroup = EB6F33151781867900FC479F;
 			productRefGroup = EB6F33211781867900FC479F /* Products */;
@@ -7606,6 +7608,7 @@
 				C0B7FC681817A3F90059D983 /* fr */,
 				C0B7FC691817A4020059D983 /* de */,
 				C0B7FC6A1817A40C0059D983 /* it */,
+				EB752D5318769040002E270F /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

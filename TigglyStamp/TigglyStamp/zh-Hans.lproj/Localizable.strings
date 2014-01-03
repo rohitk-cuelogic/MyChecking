@@ -49,7 +49,7 @@
 
 "kUnlockingInstructions" = "解锁指令：";
 "kUnlockingInstructionText" = "点击屏幕上的Tiggly形状匹配你所看到的。一旦你匹配4形状成一排，该应用程序将被解锁。";
-"kMatchedOutOfText" = "匹配的％D出4。";
+"kMatchedOutOfText" = "匹配的%d出4。";
 "kCongratulationsText" = "恭喜！你解锁完整版Tiggly邮票。要播放的应用程序没有形状，你可以改变在父母的部分中的设置。";
 "kAboutTigglyStamp" = "关于Tiggly邮票";
 "kAboutTigglyStampText" = "Tiggly邮票被设计成与Tiggly形状，一组解锁最佳的学习经验，为您的孩子通过将最佳的物理和数字打4的几何形状进行交互。 Tiggly形状是安全的，你的孩子和你的平板电脑。";

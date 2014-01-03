@@ -2704,14 +2704,13 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
         timeToPlayGettingReadySound = 1.51f;
         [[TDSoundManager sharedManager] playSound:@"Tell_us_a_story!_ita" withFormat:@"mp3"];
-    }
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
+        timeToPlayGettingReadySound = 1.51f;
+        [[TDSoundManager sharedManager] playSound:@"Tell_us_a_story!_ch" withFormat:@"mp3"];
+      }
     
     [NSTimer scheduledTimerWithTimeInterval:timeToPlayGettingReadySound + 0.2f target:self selector:@selector(startScreenRecording) userInfo:nil repeats:NO];
     
-    
-    // schedule playGettingReadyTotellStorySound method after timeToPlayGettingReadySound sec
-    
-    //    [NSTimer scheduledTimerWithTimeInterval:timeToPlayGettingReadySound + 0.4 target:self selector:@selector(playGettingReadyTotellStorySound) userInfo:nil repeats:NO];
 }
 
 -(void) playGettingReadyTotellStorySound{
@@ -2772,6 +2771,9 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         timeToStartVideoRecording = [[TDSoundManager sharedManager] getSoundDuration];
     }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
         [[TDSoundManager sharedManager] playSound:@"3_2_1_GO_ita" withFormat:@"mp3"];
+        timeToStartVideoRecording = [[TDSoundManager sharedManager] getSoundDuration];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
+        [[TDSoundManager sharedManager] playSound:@"321GO!_ch" withFormat:@"mp3"];
         timeToStartVideoRecording = [[TDSoundManager sharedManager] getSoundDuration];
     }
     

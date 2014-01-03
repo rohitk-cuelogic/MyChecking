@@ -449,7 +449,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"Apple_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"Apple_ch";
         }
         
        
@@ -483,7 +483,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"Apple_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"Apple_ch";
         }
         
         
@@ -515,7 +515,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"turkey_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"Turkey_01_ch";
         }
         
         
@@ -545,7 +545,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"cranberries_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"cranberries_ch";
         }
         
         
@@ -576,7 +576,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"cat_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"cat_ch";
         }
         
         
@@ -614,7 +614,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"racoon_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"racoon_ch";
         }
         
         
@@ -664,7 +664,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"pumkin_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"pumkin_ch";
         }
 
         
@@ -699,7 +699,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"barn_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"barn_ch";
         }
         
               
@@ -740,7 +740,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"bat_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"bat_ch";
         }
         
        
@@ -775,7 +775,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"candy_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"candy_ch";
         }
         
                
@@ -809,7 +809,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"leaf_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"leaf_ch";
         }
         
         
@@ -841,7 +841,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"haybale_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"haybale_ch";
         }
         
               
@@ -872,7 +872,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"shirt_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"shirt_ch";
         }
         
         
@@ -906,7 +906,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"spider_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"spider_ch";
         }
         
         
@@ -943,7 +943,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"spider_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"spider_ch";
         }
         
         
@@ -977,7 +977,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"hamster_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"hamster_ch";
         }
         
         
@@ -1011,7 +1011,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"rooster_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"rooster_ch";
         }
         
        
@@ -1031,7 +1031,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"chicken_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"chicken_ch";
         }
         
     }else if([fallObject isEqualToString:@"scare_crow"]) {
@@ -1066,7 +1066,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"scare_crow_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"scare_crow_ch";
         }
 
                 
@@ -1133,7 +1133,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"broom_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"broom_ch";
         }
         
         
@@ -1162,7 +1162,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"duck_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"duck_ch";
         }
         
         
@@ -1195,7 +1195,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"Donkey_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"Donkey_ch";
         }
         
         
@@ -1224,7 +1224,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"leaves_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"leaves_ch";
         }
         
         
@@ -1253,7 +1253,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"mushroom__ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"mushroom_ch";
         }
         
         
@@ -1281,7 +1281,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"pear_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"pear_ch";
         }
 
        
@@ -1310,7 +1310,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"rain_coat_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"raincoat_ch";
         }
         
         
@@ -1346,7 +1346,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"rain_coat_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"raincoat_ch";
         }
        
         
@@ -1380,7 +1380,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"rain_coat_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"raincoat_ch";
         }
         
         
@@ -1417,7 +1417,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"rain_coat_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"raincoat_ch";
         }
         
         
@@ -1455,7 +1455,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"Zebra_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"Zebra_ch";
         }
         
         
@@ -1485,7 +1485,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
             soundFile = @"hat_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"hat_ch";
         }
 
         
@@ -1508,12 +1508,15 @@
                 soundFile = @"Tiggly_Word_BluePants_Var2_03";
             }
             
+        }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
+            soundFile = @"Pants_ch";
         }
+        
     }
     else if ([fallObject isEqualToString:@"green_skirt"]) {
+        
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             int ranNo = arc4random()%5;
-            
             if(ranNo == 0){
                 soundFile = @"Tiggly_Word_Greenskirt_01";
             }else if (ranNo == 1) {
@@ -1525,14 +1528,14 @@
             }else if (ranNo == 4) {
                 soundFile = @"Tiggly_Word_Greenskirt_Var2_03";
             }
-            
+        }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
+            soundFile = @"Skirt_ch";
         }
 
     }
     else if ([fallObject isEqualToString:@"khakis"]) {
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             int ranNo = arc4random()%5;
-            
             if(ranNo == 0){
                 soundFile = @"Tiggly_Word_Pants_01";
             }else if (ranNo == 1) {
@@ -1544,14 +1547,14 @@
             }else if (ranNo == 4) {
                 soundFile = @"Tiggly_Word_Pants_Var2_03";
             }
-            
+        }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
+            soundFile = @"Pants_ch";
         }
 
     }
    else  if ([fallObject isEqualToString:@"pink_skirt_fall"]) {
        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
            int ranNo = arc4random()%5;
-           
            if(ranNo == 0){
                soundFile = @"Tiggly_Word_Pinkskirt_01";
            }else if (ranNo == 1) {
@@ -1563,8 +1566,10 @@
            }else if (ranNo == 4) {
                soundFile = @"Tiggly_Word_Pinkskirt_Var2_03";
            }
-           
+       }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
+           soundFile = @"Skirt_ch";
        }
+       
     }
     else if ([fallObject isEqualToString:@"purple_pants"]) {
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
@@ -1583,8 +1588,10 @@
             }else if (ranNo == 5) {
                 soundFile = @"Tiggly_Word_Purplepants_Var2_04";
             }
-            
+        }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
+            soundFile = @"Pants_ch";
         }
+        
     }
     else if ([fallObject isEqualToString:@"yellow_skirt"]) {
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
@@ -1603,11 +1610,11 @@
             }else if (ranNo == 5) {
                 soundFile = @"Tiggly_Word_Skirt_Var2_04";
             }
-            
+        }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
+            soundFile = @"Skirt_ch";
         }
+        
     }
-
-
     return soundFile;
 }
 

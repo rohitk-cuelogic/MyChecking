@@ -475,6 +475,7 @@
 		C02127DC187694CE00830F78 /* turkey_ch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0212798187694CE00830F78 /* turkey_ch.mp3 */; };
 		C02127DD187694CE00830F78 /* umbrella_ch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0212799187694CE00830F78 /* umbrella_ch.mp3 */; };
 		C02127DE187694CE00830F78 /* Zebra_ch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C021279A187694CE00830F78 /* Zebra_ch.mp3 */; };
+		C02127E01876C13900830F78 /* Ornoment_ch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02127DF1876C13900830F78 /* Ornoment_ch.mp3 */; };
 		C021F76A17E8279A00EBD6B6 /* 3_2_1_GO_ita.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C021F64E17E8279A00EBD6B6 /* 3_2_1_GO_ita.mp3 */; };
 		C021F76B17E8279A00EBD6B6 /* Apple_ita.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C021F64F17E8279A00EBD6B6 /* Apple_ita.mp3 */; };
 		C021F76C17E8279A00EBD6B6 /* barn_ita.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C021F65017E8279A00EBD6B6 /* barn_ita.mp3 */; };
@@ -2192,6 +2193,7 @@
 		C0212798187694CE00830F78 /* turkey_ch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = turkey_ch.mp3; sourceTree = "<group>"; };
 		C0212799187694CE00830F78 /* umbrella_ch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = umbrella_ch.mp3; sourceTree = "<group>"; };
 		C021279A187694CE00830F78 /* Zebra_ch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Zebra_ch.mp3; sourceTree = "<group>"; };
+		C02127DF1876C13900830F78 /* Ornoment_ch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Ornoment_ch.mp3; sourceTree = "<group>"; };
 		C021F64E17E8279A00EBD6B6 /* 3_2_1_GO_ita.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 3_2_1_GO_ita.mp3; sourceTree = "<group>"; };
 		C021F64F17E8279A00EBD6B6 /* Apple_ita.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Apple_ita.mp3; sourceTree = "<group>"; };
 		C021F65017E8279A00EBD6B6 /* barn_ita.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = barn_ita.mp3; sourceTree = "<group>"; };
@@ -3957,6 +3959,7 @@
 		C0212756187694CE00830F78 /* Chinese */ = {
 			isa = PBXGroup;
 			children = (
+				C02127DF1876C13900830F78 /* Ornoment_ch.mp3 */,
 				C0212757187694CE00830F78 /* 321GO!_ch.mp3 */,
 				C0212758187694CE00830F78 /* Apple_ch.mp3 */,
 				C0212759187694CE00830F78 /* barn_ch.mp3 */,
@@ -7352,6 +7355,7 @@
 				C021F7B717E8279A00EBD6B6 /* spider_ita.mp3 in Resources */,
 				C00559D9180D7C46001977A8 /* Tiggly_GenGreeting_Chicken_01.mp3 in Resources */,
 				C021F7B817E8279A00EBD6B6 /* Spring_ita.mp3 in Resources */,
+				C02127E01876C13900830F78 /* Ornoment_ch.mp3 in Resources */,
 				C021F7B917E8279A00EBD6B6 /* square_ita.mp3 in Resources */,
 				C021F7BA17E8279A00EBD6B6 /* squid_ita.mp3 in Resources */,
 				C021F7BB17E8279A00EBD6B6 /* Squirrel_ita.mp3 in Resources */,

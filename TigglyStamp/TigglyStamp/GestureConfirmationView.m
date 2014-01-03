@@ -257,7 +257,7 @@
     DebugLog(@"");
     _isLanguageScreenDisplayed = YES;
     
-    langArr =[[NSArray alloc] initWithObjects:@"English",@"Portuguese",@"Russian",@"Spanish",@"French",@"German",@"Italian", nil];
+    langArr =[[NSArray alloc] initWithObjects:@"English",@"Portuguese",@"Russian",@"Spanish",@"French",@"German",@"Italian",@"Chinese", nil];
     
     if(langView != nil){
         [langView removeFromSuperview];

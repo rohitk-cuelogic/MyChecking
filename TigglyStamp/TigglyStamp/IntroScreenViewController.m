@@ -156,7 +156,7 @@
     [btnWithoutShape setHidden:true];
     [btnWithShape setHidden:true];
         
-    arrLanguage = [[NSMutableArray alloc] initWithObjects:@"English",@"Portuguese",@"Russian",@"Spanish",@"French",@"German",@"Italian", nil];
+    arrLanguage = [[NSMutableArray alloc] initWithObjects:@"English",@"Portuguese",@"Russian",@"Spanish",@"French",@"German",@"Italian",@"Chinese", nil];
     
     tblView.layer.cornerRadius = 30;
     tblView.layer.masksToBounds = YES;

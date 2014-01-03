@@ -237,6 +237,8 @@ static TigglyStampUtils *sharedInstance = nil;
 		path = [[NSBundle mainBundle] pathForResource:@"de" ofType:@"lproj"];
     else if([selectedLanguage isEqualToString:@"Italian"])
 		path = [[NSBundle mainBundle] pathForResource:@"it" ofType:@"lproj"];
+    else if([selectedLanguage isEqualToString:@"Chinese"])
+		path = [[NSBundle mainBundle] pathForResource:@"zh-Hans" ofType:@"lproj"];
     else
         path = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"];
     

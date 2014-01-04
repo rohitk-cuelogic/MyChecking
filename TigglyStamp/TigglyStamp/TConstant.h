@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 //#define DEBUG_MODE
 //#define IS_RUN_WITHOUT_SHAPE_FOR_TESTING 1
 //#define IS_RUN_ON_SIMULATOR

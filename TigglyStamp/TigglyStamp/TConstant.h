@@ -74,7 +74,8 @@
 
 #define STR_WITH_BORDER @"Border"
 #define STR_WITH_MOVIE_BORDER @"BorderMovie"
-
+#define RATE_ME_COUNT @"rateMeCount"
+#define SHOW_RATE_ME_POP_UP @"showRateMePopUp"
 
 // Facebook sharing
 #define FACEBOOK_APP_KEY @"184233351778353"

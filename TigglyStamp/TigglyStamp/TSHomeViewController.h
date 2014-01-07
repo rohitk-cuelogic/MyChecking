@@ -12,8 +12,10 @@
 #import "ThumbnailView.h"
 #import "GestureConfirmationView.h"
 #import "ServerController.h"
+#import "TSRateMe.h"
 
-@interface TSHomeViewController : UIViewController<ThumbnailViewProtocol,GestireViewProtocol,ServiceControlerDelegate,UIWebViewDelegate>{
+
+@interface TSHomeViewController : UIViewController<ThumbnailViewProtocol,GestireViewProtocol,ServiceControlerDelegate,UIWebViewDelegate,rateMeDelegates>{
     IBOutlet UIButton *playBtn;
     IBOutlet UIButton *forParentsBtn;
     IBOutlet UIButton *newsBtn;
@@ -47,6 +49,8 @@
     IBOutlet UILabel *lblPlayWithShapes;
     IBOutlet UISwitch *switchPlayWithShape;
     IBOutlet UIImageView *imgBKG_PlaywithTigglyShape;
+    IBOutlet TSRateMe *rateMe;
+
 }
 
 @property(nonatomic, strong) UIScrollView *imgScrollView;

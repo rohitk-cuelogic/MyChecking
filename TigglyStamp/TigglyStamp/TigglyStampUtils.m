@@ -654,4 +654,46 @@ static TigglyStampUtils *sharedInstance = nil;
         //[za release];
     }
 }
+#pragma mark -
+#pragma mark =======================================
+#pragma mark Reset Rate Me and Get Rate Me Count
+#pragma mark =======================================
+-(void)setRateMeCount{
+    DebugLog(@"");
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setInteger:0 forKey:RATE_ME_COUNT];
+    
+}
+
+
+-(int)getRateMeCount{
+    DebugLog(@"");
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    int cnt = [userDefaults integerForKey:RATE_ME_COUNT];
+    
+    cnt++;
+    if(cnt == 5){
+        cnt = 0;
+    }
+    
+    [userDefaults setInteger:cnt forKey:RATE_ME_COUNT];
+    
+    return cnt;
+}
+-(void)setShouldStopShowingRateMePopUp:(BOOL)bShoulShow{
+    DebugLog(@"");
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:bShoulShow forKey:SHOW_RATE_ME_POP_UP];
+    
+}
+
+-(BOOL)shouldStopShowingRateMePopUp{
+    DebugLog(@"");
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults boolForKey:SHOW_RATE_ME_POP_UP];
+}
 @end

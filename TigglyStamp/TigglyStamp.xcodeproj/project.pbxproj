@@ -1537,6 +1537,9 @@
 		EB060A97185F406400EA8557 /* x-mas_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EB060A89185F406400EA8557 /* x-mas_icon.png */; };
 		EB060A98185F406400EA8557 /* xmas.png in Resources */ = {isa = PBXBuildFile; fileRef = EB060A8A185F406400EA8557 /* xmas.png */; };
 		EB060A9A185F49CE00EA8557 /* x-mas_iconHome@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EB060A99185F49CE00EA8557 /* x-mas_iconHome@2x~ipad.png */; };
+		EB0A5F7F187B00AC005CEBD5 /* TSRateMe.m in Sources */ = {isa = PBXBuildFile; fileRef = EB0A5F7D187B00AC005CEBD5 /* TSRateMe.m */; };
+		EB0A5F80187B00AC005CEBD5 /* TSRateMe.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB0A5F7E187B00AC005CEBD5 /* TSRateMe.xib */; };
+		EB0A5F82187B028F005CEBD5 /* RateMe.png in Resources */ = {isa = PBXBuildFile; fileRef = EB0A5F81187B028F005CEBD5 /* RateMe.png */; };
 		EB1091BD185BB0ED0027F703 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = EB1091B3185BB0ED0027F703 /* ioapi.c */; };
 		EB1091BE185BB0ED0027F703 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = EB1091B5185BB0ED0027F703 /* mztools.c */; };
 		EB1091BF185BB0ED0027F703 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = EB1091B7185BB0ED0027F703 /* unzip.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -3272,6 +3275,10 @@
 		EB060A89185F406400EA8557 /* x-mas_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-mas_icon.png"; sourceTree = "<group>"; };
 		EB060A8A185F406400EA8557 /* xmas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xmas.png; sourceTree = "<group>"; };
 		EB060A99185F49CE00EA8557 /* x-mas_iconHome@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-mas_iconHome@2x~ipad.png"; sourceTree = "<group>"; };
+		EB0A5F7C187B00AC005CEBD5 /* TSRateMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSRateMe.h; sourceTree = "<group>"; };
+		EB0A5F7D187B00AC005CEBD5 /* TSRateMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSRateMe.m; sourceTree = "<group>"; };
+		EB0A5F7E187B00AC005CEBD5 /* TSRateMe.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSRateMe.xib; sourceTree = "<group>"; };
+		EB0A5F81187B028F005CEBD5 /* RateMe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RateMe.png; sourceTree = "<group>"; };
 		EB1091B2185BB0ED0027F703 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		EB1091B3185BB0ED0027F703 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		EB1091B4185BB0ED0027F703 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -5909,6 +5916,9 @@
 				C0EDD064180E9376007051A8 /* ImageAnimatorView.m */,
 				C0F85EC41800588100045212 /* TSTempData.h */,
 				C0F85EC51800588100045212 /* TSTempData.m */,
+				EB0A5F7C187B00AC005CEBD5 /* TSRateMe.h */,
+				EB0A5F7D187B00AC005CEBD5 /* TSRateMe.m */,
+				EB0A5F7E187B00AC005CEBD5 /* TSRateMe.xib */,
 			);
 			path = TigglyStamp;
 			sourceTree = "<group>";
@@ -5975,6 +5985,7 @@
 			isa = PBXGroup;
 			children = (
 				631A51EF17EB0D4600D88E2C /* language_stamp_bg@2x~ipad.png */,
+				EB0A5F81187B028F005CEBD5 /* RateMe.png */,
 				631A51F017EB0D4600D88E2C /* or.png */,
 				631A51ED17EADD9300D88E2C /* btnBack.png */,
 				EBEDE494179588D0002151E5 /* bear.png */,
@@ -6206,6 +6217,7 @@
 				EB6F33371781867900FC479F /* Default.png in Resources */,
 				EB6F33391781867900FC479F /* Default@2x.png in Resources */,
 				C0A1EC5A182C06470032D6FC /* Tiggly_Word_Hat_Var2_03.mp3 in Resources */,
+				EB0A5F82187B028F005CEBD5 /* RateMe.png in Resources */,
 				C08E9F0C185F3BA000199DE7 /* Tiggly_Animal_Scarecrow_IsItStorytimeYet_02.mp3 in Resources */,
 				C08EA03B185F3DD100199DE7 /* Tiggly_Animal_Moose_GiveMeAnUmbrealla_02.mp3 in Resources */,
 				EB060A8F185F406400EA8557 /* safari.html in Resources */,
@@ -7579,6 +7591,7 @@
 				C021F85817E8279A00EBD6B6 /* mouse_fr.mp3 in Resources */,
 				C021F85917E8279A00EBD6B6 /* mug_fr.mp3 in Resources */,
 				C02127A6187694CE00830F78 /* chicken_ch.mp3 in Resources */,
+				EB0A5F80187B00AC005CEBD5 /* TSRateMe.xib in Resources */,
 				C0073BED1822307A00ED243E /* Tiggly_Word_Snowman_Var2_02.mp3 in Resources */,
 				C08E9F5A185F3BA000199DE7 /* Tiggly_Animal_Zebra_IWantPants_02.mp3 in Resources */,
 				C021F85A17E8279A00EBD6B6 /* mushroom_fr.mp3 in Resources */,
@@ -7852,6 +7865,7 @@
 				EB4885B5185734FC0077FA95 /* SBJsonParser.m in Sources */,
 				63CEE1E117A14DB80060DC42 /* XBPageDragView.m in Sources */,
 				EB4885AA185734FC0077FA95 /* ASIDownloadCache.m in Sources */,
+				EB0A5F7F187B00AC005CEBD5 /* TSRateMe.m in Sources */,
 				63CEE1E217A14DB80060DC42 /* XBSnappingPoint.m in Sources */,
 				63019DBA17A24FCE005B8CA3 /* ParentScreenViewController.m in Sources */,
 				63019DD317A2AA4C005B8CA3 /* TSThumbnailEditController.m in Sources */,

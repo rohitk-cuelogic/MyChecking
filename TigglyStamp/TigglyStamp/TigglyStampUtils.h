@@ -73,4 +73,11 @@
 -(BOOL)isNetworkAvailable;
 - (void)unzipAndSaveFile:(NSString *)strFileName;
 
+-(void)setRateMeCount;
+-(int)getRateMeCount;
+
+-(void)setShouldStopShowingRateMePopUp:(BOOL)bShoulShow;
+-(BOOL)shouldStopShowingRateMePopUp;
+
+
 @end

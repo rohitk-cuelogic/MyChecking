@@ -27,7 +27,7 @@
 @synthesize bkgImageView;
 @synthesize containerView,learnMoreBtn;
 
-BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail,readyToLearnMore,readyToWebNewsScreen,readyToPlayWithShapeOpt;
+BOOL readyToParentScreen, readyToNewsScreen,readyToDeleteThumbnail,readyToLearnMore,readyToWebNewsScreen,readyToPlayWithShapeOpt,readyToRateMe;
 NSArray *allImageFiles;
 
 #pragma mark -
@@ -520,6 +520,20 @@ NSArray *allImageFiles;
             [[TigglyStampUtils sharedInstance] setShapeMode:NO];
         }
     }
+    if(readyToRateMe)
+    {
+        readyToRateMe=NO;
+        [self launchiTunesForRateMe];
+    }
+}
+-(void)launchiTunesForRateMe{
+    DebugLog(@"");
+    
+    [rateMe hidePopUp];
+    [[TigglyStampUtils sharedInstance] setShouldStopShowingRateMePopUp:YES];
+    
+    NSURL *url = [NSURL URLWithString:@"https://itunes.apple.com/in/app/tiggly-safari/id716679050?mt=8"];
+    [[UIApplication sharedApplication] openURL:url];
     
 }
 -(void)launchNewsView{
@@ -650,6 +664,28 @@ NSArray *allImageFiles;
     
     [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
     [playBtnTimer invalidate];
+    if(![[TigglyStampUtils sharedInstance] shouldStopShowingRateMePopUp]){
+        
+        int iNewCnt = [[TigglyStampUtils sharedInstance] getRateMeCount];
+        
+        if(iNewCnt == 3){
+            
+            int iRandom = random() % 2;
+            if(iRandom == 1){
+                
+                [self showRateMeAlert];
+                return;
+                
+            }
+        }
+        if(iNewCnt == 4){
+            
+            [self showRateMeAlert];
+            return;
+            
+        }
+        
+    }
     SeasonSelectionViewController *hmView = [[SeasonSelectionViewController alloc]initWithNibName:@"SeasonSelectionViewController" bundle:nil withHomeView:self];
     [self.navigationController pushViewController:hmView animated:NO];
     [self nullifyAllData];
@@ -728,6 +764,10 @@ NSArray *allImageFiles;
         
         if(readyToLearnMore){
             readyToLearnMore = NO;
+        }
+        if(readyToRateMe)
+        {
+            readyToRateMe=NO;
         }
         
         if(readyToNewsScreen){
@@ -834,7 +874,10 @@ NSArray *allImageFiles;
     if(readyToLearnMore){
         readyToLearnMore = NO;
     }
-    
+    if(readyToRateMe)
+    {
+        readyToRateMe=NO;
+    }
     if(readyToNewsScreen){
         readyToNewsScreen = NO;
     }
@@ -851,6 +894,7 @@ NSArray *allImageFiles;
             [switchPlayWithShape setOn:YES];
         }
     }
+    
 }
 
 #pragma mark -
@@ -968,6 +1012,36 @@ NSArray *allImageFiles;
 {
     [activityIndicator stopAnimating];
     activityIndicator.hidden = YES;
+    
+}
+#pragma mark-
+#pragma mark======================
+#pragma mark Rate Me Delegates
+#pragma mark======================
+
+-(void)rateMeOkButtonClicked:(TSRateMe *)rateMeView{
+    DebugLog(@"");
+    
+    readyToRateMe=YES;
+    //confirmationViewType = kConfirmationViewRateMe;
+    [self showConfirmationView];
+    
+}
+
+-(void)rateMeCancelButtonCLicked:(TSRateMe *)rateMeView{
+    DebugLog(@"");
+    
+    [rateMe hidePopUp];
+    rateMe.delegate = nil;
+    
+}
+
+-(void)showRateMeAlert{
+    DebugLog(@"");
+    
+    [[TigglyStampUtils sharedInstance] setRateMeCount];
+    [rateMe showPopUp];
+    rateMe.delegate = self;
     
 }
 @end

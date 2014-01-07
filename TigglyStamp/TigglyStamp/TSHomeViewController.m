@@ -532,7 +532,7 @@ NSArray *allImageFiles;
     [rateMe hidePopUp];
     [[TigglyStampUtils sharedInstance] setShouldStopShowingRateMePopUp:YES];
     
-    NSURL *url = [NSURL URLWithString:@"https://itunes.apple.com/in/app/tiggly-safari/id716679050?mt=8"];
+    NSURL *url = [NSURL URLWithString:@"https://itunes.apple.com/in/app/tiggly-stamp/id716727860?mt=8"];
     [[UIApplication sharedApplication] openURL:url];
     
 }

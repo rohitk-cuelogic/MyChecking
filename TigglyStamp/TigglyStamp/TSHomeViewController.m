@@ -190,10 +190,36 @@ NSArray *allImageFiles;
     forParentsBtn.titleLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
     [forParentsBtn setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kForParents"] forState:UIControlStateNormal];
 }
-
+-(void)displayRateMeAlert
+{
+    if(![[TigglyStampUtils sharedInstance] shouldStopShowingRateMePopUp]){
+        
+        
+        
+        if(iNewCnt == 3){
+            
+            int iRandom = random() % 2;
+            if(iRandom == 1){
+                
+                //[self showRateMeAlert];
+                [self performSelectorOnMainThread:@selector(showRateMeAlert) withObject:Nil waitUntilDone:NO];
+                return;
+                
+            }
+        }
+        if(iNewCnt == 4){
+            
+            //[self showRateMeAlert];
+            [self performSelectorOnMainThread:@selector(showRateMeAlert) withObject:Nil waitUntilDone:NO];
+            return;
+            
+        }
+        
+    }
+}
 - (void)viewDidAppear:(BOOL)animated {
     DebugLog(@"");
-    
+    [self displayRateMeAlert];
     isThumbnailLongPressed = NO;
     allThumbnails = [[NSMutableArray alloc] initWithCapacity:1];
 
@@ -662,30 +688,10 @@ NSArray *allImageFiles;
 -(void)playGame:(id)sender{
     DebugLog(@"");
     
+    iNewCnt = [[TigglyStampUtils sharedInstance] getRateMeCount];
     [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
     [playBtnTimer invalidate];
-    if(![[TigglyStampUtils sharedInstance] shouldStopShowingRateMePopUp]){
-        
-        int iNewCnt = [[TigglyStampUtils sharedInstance] getRateMeCount];
-        
-        if(iNewCnt == 3){
-            
-            int iRandom = random() % 2;
-            if(iRandom == 1){
-                
-                [self showRateMeAlert];
-                return;
-                
-            }
-        }
-        if(iNewCnt == 4){
-            
-            [self showRateMeAlert];
-            return;
-            
-        }
-        
-    }
+    
     SeasonSelectionViewController *hmView = [[SeasonSelectionViewController alloc]initWithNibName:@"SeasonSelectionViewController" bundle:nil withHomeView:self];
     [self.navigationController pushViewController:hmView animated:NO];
     [self nullifyAllData];
@@ -1040,8 +1046,27 @@ NSArray *allImageFiles;
     DebugLog(@"");
     
     [[TigglyStampUtils sharedInstance] setRateMeCount];
-    [rateMe showPopUp];
-    rateMe.delegate = self;
+    iNewCnt=0;
+    //[rateMe showPopUp];
+    //rateMe.delegate = self;
+    UIAlertView* rateMeAlert=[[UIAlertView alloc] initWithTitle:APPLICATION_NAME message:@"If you enjoy using Tiggly Stamp,would you mind taking a moment to rate it?It won't take more than a minute.Thanks for your support!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Rate it",@"No, Thanks",nil];
+    rateMeAlert.tag=999;
+    [rateMeAlert show];
+
     
+}
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if(alertView.tag == 999)
+    {
+        if(buttonIndex == 0)
+        {
+            [self rateMeOkButtonClicked:Nil];
+        }
+        else if(buttonIndex ==1)
+        {
+            
+        }
+    }
 }
 @end

@@ -50,6 +50,7 @@
     IBOutlet UISwitch *switchPlayWithShape;
     IBOutlet UIImageView *imgBKG_PlaywithTigglyShape;
     IBOutlet TSRateMe *rateMe;
+    int iNewCnt;
 
 }
 

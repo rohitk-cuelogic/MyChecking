@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+            <title>Tiggly</title>
+            <style type="text/css">
+                html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd,q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center,dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr,th, td , input[type="radio"], input[type="checkbox"] {margin:0; padding:0; border:0; outline:0; font-size:100%; background:transparent; resize:none}
+                body {line-height:1}
+                a, a:hover {text-decoration:none; outline:none}
+                a:active, a:focus {outline:0} /* to avoid link borders on new browsers */
+                img {border:none; vertical-align:-2px; max-width:100%}
+                table {border-collapse:collapse; border-spacing:0}
+                textarea {resize:none}
+                a {color:#006699}
+                .clr{clear:both; min-height:1px;}
+                input:focus, textarea:focus {outline:none}
+                body{font-family:candara; color:#000}
+                /* Fonts */
+                @font-face {font-family:candara; src:url('Candaraa.TTF?#iefix')  format('truetype');}
+                @font-face {font-family:candara-bold; src:url('Candarabold.TTF?#iefix')  format('truetype');}
+                
+                .main_bg{background:#9cc869; padding:90px 40px 40px;}
+                .left_wrapper{width:644px; float:left}
+                .right_wrapper{width:296px; float:left}
+                .content_wrapper{position:relative; background:#fcfaed; border-radius:0 34px 0 34px; min-height:200px; padding:20px 24px;
+                    -webkit-box-shadow: 0px 0px 16px 2px rgba(0,0,0,0.3), inset 0px -2px 0px 2px rgba(181,188,164,0.59);
+                    -moz-box-shadow: 0px 0px 16px 2px rgba(0,0,0,0.3), inset 0px -2px 0px 2px rgba(181,188,164,0.59);
+                    box-shadow: 0px 0px 16px 2px rgba(0,0,0,0.3), inset 0px -2px 0px 2px rgba(181,188,164,0.59);
+                }
+            .title{background:#fcfaed; border-radius:34px 34px 0 0; text-align:center; font-size:25px; font-family:candara-bold; position:absolute; left:0; top:-56px; padding:16px 24px;
+                -webkit-box-shadow: 1px -3px 10px 1px rgba(0,0,0,0.3), inset 0px -2px 0px 2px rgba(181,188,164,0.59);
+                -moz-box-shadow: 1px -3px 10px 1px rgba(0,0,0,0.3), inset 0px -2px 0px 2px rgba(181,188,164,0.59);
+                box-shadow: 1px -3px 10px 1px rgba(0,0,0,0.3), inset 0px -2px 0px 2px rgba(181,188,164,0.59);}
+            .title:after{position:absolute; left:2px; bottom:-8px; right:2px; height:20px; background:#fcfaed; content:""}
+            .img_cont{list-style:none; margin:0 0 24px; padding:0; text-align:center}
+            .img_cont li{display:inline-block; width:126px; padding:0 24px 0 0;}
+            .img_cont li:last-child{padding:0}
+            .content_wrapper p{font-size:18px; line-height:20px; margin-bottom:24px;}
+            .video_cont{ overflow:hidden}
+            .video_cont .half_cont:first-child{width:55%; float:left;}
+            .video_cont .half_cont:last-child{width:45%; float:left;}
+            .time_cont{position:absolute; bottom:0; right:-282px; width:285px}
+            .time_cont .time{ width:166px; margin:0 auto; padding-bottom:16px;}
+            .time_cont .time_line{background:#fcfaed; -webkit-box-shadow: 1px -3px 10px 1px rgba(0,0,0,0.3), inset 0px -2px 0px 2px rgba(181,188,164,0.59);
+                -moz-box-shadow: 1px -3px 10px 1px rgba(0,0,0,0.3), inset 0px -2px 0px 2px rgba(181,188,164,0.59);
+                box-shadow: 1px -3px 10px 1px rgba(0,0,0,0.3), inset 0px -2px 0px 2px rgba(181,188,164,0.59); font-family:"Myriad Pro"; font-size:18px; font-weight:bold; font-style:italic; text-align:center;
+                border-radius:0 34px 34px 0; padding:16px 0; position:relative; margin:0;
+            }
+            .time_line:after{background:#fcfaed; left:-14px; top:0; bottom:4px; width:20px; position:absolute; content:""}
+            
+            .learn_more{position:relative; border-radius:48px; margin: 0 0 0 30px;
+                -webkit-box-shadow: 0px 0px 16px 2px rgba(0,0,0,0.3), inset 0px -2px 0px 2px rgba(181,188,164,0.59);
+                -moz-box-shadow: 0px 0px 16px 2px rgba(0,0,0,0.3), inset 0px -2px 0px 2px rgba(181,188,164,0.59);
+                box-shadow: 0px 0px 16px 2px rgba(0,0,0,0.3), inset 0px -2px 0px 2px rgba(181,188,164,0.59);
+            }
+            .learn_more h6{position: absolute;
+                top: 10px;
+                right: 0;
+                left: 0;
+                text-align: center;
+                font-size: 30px;
+                font-weight: normal;
+                color: #fff;}
+            .learn_shape{margin:50px 0 0 30px; border-radius:48px;
+                -webkit-box-shadow: 0px 0px 16px 2px rgba(0,0,0,0.3);
+                -moz-box-shadow: 0px 0px 16px 2px rgba(0,0,0,0.3);
+                box-shadow: 0px 0px 16px 2px rgba(0,0,0,0.3);
+                background:url(FL_img_3.png) no-repeat center center; background-size: 100% 100%;}
+            
+            .learn_shape{
+                text-align: center;
+                font-size: 30px;
+                font-weight: normal;
+                color: #fff;
+                padding: 24px 20px;
+                line-height: 36px;}
+            
+            @media (max-width:600px) {
+                .main_bg{background:#9cc869; padding:74px 20px 40px;}
+                .left_wrapper{width:70%; float:left}
+                .right_wrapper{width:30%; float:left}
+                .content_wrapper p{font-size: 16px; line-height:18px;}
+                .title{font-size:22px; line-height: 27px; padding: 12px 24px; top: -51px;}
+                .img_cont li{width:58px;}
+                .time_cont {right:-160px; width:200px;}
+                .time_cont .time{width:104px;}
+                .time_cont .time_line{font-size:16px;}
+                .learn_more{margin: 0 0 0 20px;}
+                .learn_shape{margin: 30px 0 0 20px;}
+                .video_cont .half_cont:first-child{width:65%}
+                .video_cont .half_cont:last-child{width:35%}
+            }
+            </style>
+    </head>
+    
+    
+    <body>
+        <div class="main_bg">
+            <div class="left_wrapper">
+                <div class="content_wrapper">
+                    <div class="title">What are Tiggly Shapes?</div>
+                    <ul class="img_cont">
+                        <li><img src="FL_star.png" alt="" /></li>
+                        <li><img src="FL_square.png" alt="" /></li>
+                        <li><img src="FL_triangle.png" alt="" /></li>
+                        <li><img src="FL_circle.png" alt="" /></li>
+                    </ul>
+                    <p>
+                    Learn with Tiggly! Help your preschooler develop spatial reasoning and motor skills by playing with Tiggly Shapes.
+                    </p>
+                    <p>
+                    Tiggly Shapes are rubberized toys that children between 18 months and 4 years old can use for learning and play with an iPad. The shapes have a soft plastic cover and silicone touch points that are recognized by our iPad apps.
+                    </p>
+                    <div class="video_cont">
+                        <div class="half_cont">
+                            <p>
+                            They are durable enough for toddler play-yet gentle enough for iPad screens.
+                            </p>
+                            <div>
+                                <embed src="tiggly_converted.mov" Pluginspage="http://www.apple.com/quicktime/" width="90%" height="166px" CONTROLLER="true" LOOP="false" AUTOPLAY="false" name="IBM Video"></embed>
+                            </div>
+                        </div>
+                        <div class="half_cont">
+                            <p>
+                            <img src="FL_img.png" alt="" />
+                            </p>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="time_cont">
+                        <p class="time"><img src="FL_time.png" alt="" /></p>
+                        <p class="time_line">
+                        One of TIME Magazine's <br>
+                        "Toys That Will Make Your <br>
+                        Kids Smarter"
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right_wrapper">
+                <div class="learn_more">
+                    <h6>Learn more...</h6>
+                    <p><img src="FL_learn_more.png"  alt="" onclick='window.location="callmycode:logoItem&var=myVar"'/></p>
+                </div>
+                
+                <p class="learn_shape" onclick='window.location="callmycode:playWihoutShp&var=myVar"'>
+                Играть без tiggly форм
+            	</p>
+                
+            </div>
+            
+            <div class="clr"></div>
+        </div>
+    </body>
+</html>

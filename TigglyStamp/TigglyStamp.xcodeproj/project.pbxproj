@@ -314,6 +314,14 @@
 		63CEE1E117A14DB80060DC42 /* XBPageDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CEE1D017A14DB80060DC42 /* XBPageDragView.m */; };
 		63CEE1E217A14DB80060DC42 /* XBSnappingPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CEE1D217A14DB80060DC42 /* XBSnappingPoint.m */; };
 		63CEE1E417A14EEF0060DC42 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63CEE1E317A14EEF0060DC42 /* OpenGLES.framework */; };
+		B119B149187D90500001DA4A /* learnMore_chinese.html in Resources */ = {isa = PBXBuildFile; fileRef = B119B141187D90500001DA4A /* learnMore_chinese.html */; };
+		B119B14A187D90500001DA4A /* learnMore_french.html in Resources */ = {isa = PBXBuildFile; fileRef = B119B142187D90500001DA4A /* learnMore_french.html */; };
+		B119B14B187D90500001DA4A /* learnMore_German.html in Resources */ = {isa = PBXBuildFile; fileRef = B119B143187D90500001DA4A /* learnMore_German.html */; };
+		B119B14C187D90500001DA4A /* learnMore_italian.html in Resources */ = {isa = PBXBuildFile; fileRef = B119B144187D90500001DA4A /* learnMore_italian.html */; };
+		B119B14D187D90500001DA4A /* learnMore_portuguese.html in Resources */ = {isa = PBXBuildFile; fileRef = B119B145187D90500001DA4A /* learnMore_portuguese.html */; };
+		B119B14E187D90500001DA4A /* learnMore_russian.html in Resources */ = {isa = PBXBuildFile; fileRef = B119B146187D90500001DA4A /* learnMore_russian.html */; };
+		B119B14F187D90500001DA4A /* learnMore_spanish.html in Resources */ = {isa = PBXBuildFile; fileRef = B119B147187D90500001DA4A /* learnMore_spanish.html */; };
+		B119B150187D90500001DA4A /* learnMore.html in Resources */ = {isa = PBXBuildFile; fileRef = B119B148187D90500001DA4A /* learnMore.html */; };
 		B1BCF65C185F477400132C96 /* Candaraa.TTF in Resources */ = {isa = PBXBuildFile; fileRef = B1BCF65A185F477400132C96 /* Candaraa.TTF */; };
 		B1BCF65D185F477400132C96 /* Candarabold.TTF in Resources */ = {isa = PBXBuildFile; fileRef = B1BCF65B185F477400132C96 /* Candarabold.TTF */; };
 		B1D4077117C3727600E26814 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D4077017C3727600E26814 /* MessageUI.framework */; };
@@ -2035,6 +2043,14 @@
 		63CEE1D117A14DB80060DC42 /* XBSnappingPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XBSnappingPoint.h; path = XBPageCurl/XBSnappingPoint.h; sourceTree = SOURCE_ROOT; };
 		63CEE1D217A14DB80060DC42 /* XBSnappingPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XBSnappingPoint.m; path = XBPageCurl/XBSnappingPoint.m; sourceTree = SOURCE_ROOT; };
 		63CEE1E317A14EEF0060DC42 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		B119B141187D90500001DA4A /* learnMore_chinese.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = learnMore_chinese.html; sourceTree = "<group>"; };
+		B119B142187D90500001DA4A /* learnMore_french.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = learnMore_french.html; sourceTree = "<group>"; };
+		B119B143187D90500001DA4A /* learnMore_German.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = learnMore_German.html; sourceTree = "<group>"; };
+		B119B144187D90500001DA4A /* learnMore_italian.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = learnMore_italian.html; sourceTree = "<group>"; };
+		B119B145187D90500001DA4A /* learnMore_portuguese.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = learnMore_portuguese.html; sourceTree = "<group>"; };
+		B119B146187D90500001DA4A /* learnMore_russian.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = learnMore_russian.html; sourceTree = "<group>"; };
+		B119B147187D90500001DA4A /* learnMore_spanish.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = learnMore_spanish.html; sourceTree = "<group>"; };
+		B119B148187D90500001DA4A /* learnMore.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = learnMore.html; sourceTree = "<group>"; };
 		B1BCF65A185F477400132C96 /* Candaraa.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = Candaraa.TTF; sourceTree = SOURCE_ROOT; };
 		B1BCF65B185F477400132C96 /* Candarabold.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = Candarabold.TTF; sourceTree = SOURCE_ROOT; };
 		B1D4077017C3727600E26814 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -5639,6 +5655,14 @@
 		C0A82D3017EC930500F85793 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
+				B119B141187D90500001DA4A /* learnMore_chinese.html */,
+				B119B142187D90500001DA4A /* learnMore_french.html */,
+				B119B143187D90500001DA4A /* learnMore_German.html */,
+				B119B144187D90500001DA4A /* learnMore_italian.html */,
+				B119B145187D90500001DA4A /* learnMore_portuguese.html */,
+				B119B146187D90500001DA4A /* learnMore_russian.html */,
+				B119B147187D90500001DA4A /* learnMore_spanish.html */,
+				B119B148187D90500001DA4A /* learnMore.html */,
 				C02312EB1823B2CC0094F5EC /* play_spanish.html */,
 				C02312EC1823B2CC0094F5EC /* play_russian.html */,
 				C02312ED1823B2CC0094F5EC /* play_italian.html */,
@@ -6239,6 +6263,7 @@
 				C0073BE91822307A00ED243E /* Tiggly_Instructions_Dragashapetomakeapicture_02.mp3 in Resources */,
 				EB6F336917818C1200FC479F /* StarData4.plist in Resources */,
 				EB6F336A17818C1200FC479F /* starData6.plist in Resources */,
+				B119B14E187D90500001DA4A /* learnMore_russian.html in Resources */,
 				EB6F336E17818C5400FC479F /* triangle2Data.plist in Resources */,
 				EB6F336F17818C5400FC479F /* triangleData.plist in Resources */,
 				C08E9F51185F3BA000199DE7 /* Tiggly_Word_Yellowraincoat_Var2_03.mp3 in Resources */,
@@ -6476,6 +6501,7 @@
 				C082921717A7CB230023F08A /* horse@2x~ipad.png in Resources */,
 				C082921817A7CB230023F08A /* leaves@2x~ipad.png in Resources */,
 				C082921917A7CB230023F08A /* mushroom@2x~ipad.png in Resources */,
+				B119B14C187D90500001DA4A /* learnMore_italian.html in Resources */,
 				C023130E1823B2CC0094F5EC /* tiggly_french.html in Resources */,
 				EB060A97185F406400EA8557 /* x-mas_icon.png in Resources */,
 				C082921A17A7CB230023F08A /* pear@2x~ipad.png in Resources */,
@@ -6908,6 +6934,7 @@
 				C02F44D417D60CFC007AEA39 /* Tiggly_GenGreeting_Scarecrow_10.mp3 in Resources */,
 				C08E9EED185F3BA000199DE7 /* Tiggly_Animal_Chicken_IsItFall_02.mp3 in Resources */,
 				C02F44D517D60CFC007AEA39 /* Tiggly_GenGreeting_Squirrel_01.mp3 in Resources */,
+				B119B14D187D90500001DA4A /* learnMore_portuguese.html in Resources */,
 				C02F44D617D60CFC007AEA39 /* Tiggly_GenGreeting_Squirrel_02.mp3 in Resources */,
 				C08E9EDF185F3BA000199DE7 /* Tiggly_Animal_Bee_ImTheBee_02.mp3 in Resources */,
 				C023130A1823B2CC0094F5EC /* tiggly_italian.html in Resources */,
@@ -7302,6 +7329,7 @@
 				C021F78817E8279A00EBD6B6 /* goose_ita.mp3 in Resources */,
 				C021F78917E8279A00EBD6B6 /* hamster_ita.mp3 in Resources */,
 				C021F78A17E8279A00EBD6B6 /* hat_ita.mp3 in Resources */,
+				B119B14B187D90500001DA4A /* learnMore_German.html in Resources */,
 				C021F78B17E8279A00EBD6B6 /* haybale_ita.mp3 in Resources */,
 				C021F78C17E8279A00EBD6B6 /* Hello_ita.mp3 in Resources */,
 				C021F78D17E8279A00EBD6B6 /* hippopotamus_ita.mp3 in Resources */,
@@ -7376,6 +7404,7 @@
 				C08EA031185F3DD100199DE7 /* Tiggly_Animal_Fox_ThatsAFashionistaFox_02.mp3 in Resources */,
 				B1DA58A8185EE72B0081CC21 /* close_FL.png in Resources */,
 				C00559E2180D8115001977A8 /* Tiggly_GenGreeting_Raccoon_14.mp3 in Resources */,
+				B119B14A187D90500001DA4A /* learnMore_french.html in Resources */,
 				C021F7BD17E8279A00EBD6B6 /* Summer_ita.mp3 in Resources */,
 				C0073BEF1822307A00ED243E /* Tiggly_Word_RedApple_Var2_03.mp3 in Resources */,
 				C021F7BE17E8279A00EBD6B6 /* sweater_ita.mp3 in Resources */,
@@ -7420,6 +7449,7 @@
 				C021F7DA17E8279A00EBD6B6 /* chipmunk_gr.mp3 in Resources */,
 				C021F7DB17E8279A00EBD6B6 /* circle_gr.mp3 in Resources */,
 				C021F7DC17E8279A00EBD6B6 /* cookie_gr.mp3 in Resources */,
+				B119B149187D90500001DA4A /* learnMore_chinese.html in Resources */,
 				C02127C4187694CE00830F78 /* rain_coat_ch.mp3 in Resources */,
 				C0073BF51822307A00ED243E /* Tiggly_Word_Greenapple_01.mp3 in Resources */,
 				C02127B3187694CE00830F78 /* hamster_ch.mp3 in Resources */,
@@ -7640,6 +7670,7 @@
 				C021F87C17E8279A00EBD6B6 /* turtle_fr.mp3 in Resources */,
 				C021F87D17E8279A00EBD6B6 /* umbrella_fr.mp3 in Resources */,
 				C021F88217E8279A00EBD6B6 /* Winter_fr.mp3 in Resources */,
+				B119B150187D90500001DA4A /* learnMore.html in Resources */,
 				C08E9EE8185F3BA000199DE7 /* Tiggly_Animal_Cat_IWantAPear_01.mp3 in Resources */,
 				C021F88317E8279A00EBD6B6 /* Zebra_fr.mp3 in Resources */,
 				C021F88717E86E4800EBD6B6 /* btnCommingSoon.png in Resources */,
@@ -7809,6 +7840,7 @@
 				C055640E17FDA3C700818639 /* r7.png in Resources */,
 				C055640F17FDA3C700818639 /* r8.png in Resources */,
 				C055641017FDA3C700818639 /* r9.png in Resources */,
+				B119B14F187D90500001DA4A /* learnMore_spanish.html in Resources */,
 				C0F85EC818005A3100045212 /* Tiggly_SFX_MAGIC_20.mp3 in Resources */,
 				C08E9EDD185F3BA000199DE7 /* Tiggly_Animal_Bee_StoryStory_01.mp3 in Resources */,
 				C0D8B04A180440EC0096448B /* color_splash.png in Resources */,

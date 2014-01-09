@@ -275,7 +275,29 @@ int swipeTxtCnt;
     //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://tiggly.com/shop"]];
     [self.view bringSubviewToFront:viewForWeb];
     
-    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"firstLaunch" ofType:@"html" inDirectory:nil];
+    NSString *fileNameBase = @"learnMore";
+    NSString *fileName = @"learnMore";
+    if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+        fileName   = [NSString stringWithFormat:@"%@",fileNameBase];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
+        fileName   = [NSString stringWithFormat:@"%@",fileNameBase];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Portuguese"]){
+        fileName   = [NSString stringWithFormat:@"%@_portuguese",fileNameBase];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
+        fileName   = [NSString stringWithFormat:@"%@_russian",fileNameBase];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Spanish"]){
+        fileName   = [NSString stringWithFormat:@"%@_spanish",fileNameBase];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"French"]){
+        fileName   = [NSString stringWithFormat:@"%@_french",fileNameBase];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"German"]){
+        fileName   = [NSString stringWithFormat:@"%@_German",fileNameBase];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
+        fileName   = [NSString stringWithFormat:@"%@_italian",fileNameBase];
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
+        fileName   = [NSString stringWithFormat:@"%@_chinese",fileNameBase];
+    }
+    
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:fileName ofType:@"html" inDirectory:nil];
     NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
     webViewFirstLaunch.scrollView.bounces = NO;
     webViewFirstLaunch.delegate = self;

@@ -267,6 +267,8 @@ static TigglyStampUtils *sharedInstance = nil;
 		languageCode = @"6";
     else if([selectedLanguage isEqualToString:@"Russian"])
 		languageCode = @"7";
+    else if([selectedLanguage isEqualToString:@"Chinese"])
+		languageCode = @"8";
     else
 		languageCode = @"1";
     

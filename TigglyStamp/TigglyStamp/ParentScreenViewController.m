@@ -585,6 +585,8 @@ UIActivityIndicatorView *activityIndicator;
         fileName   = @"tiggly_German";
     }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
         fileName   = @"tiggly_italian";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
+        fileName   = @"tiggly";
     }
     
     NSString *htmlFile = [[NSBundle mainBundle] pathForResource:fileName ofType:@"html" inDirectory:nil];
@@ -619,6 +621,8 @@ UIActivityIndicatorView *activityIndicator;
         fileName   = @"play_German";
     }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
         fileName   = @"play_italian";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
+        fileName   = @"play";
     }
     
     NSString *htmlFile = [[NSBundle mainBundle] pathForResource:fileName ofType:@"html" inDirectory:nil];
@@ -654,6 +658,8 @@ UIActivityIndicatorView *activityIndicator;
         fileName   = @"learning_tips_german";
     }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
         fileName   = @"learning_tips_italian";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
+        fileName   = @"learning";
     }
     
     NSString *htmlFile = [[NSBundle mainBundle] pathForResource:fileName ofType:@"html" inDirectory:nil];
@@ -689,6 +695,8 @@ UIActivityIndicatorView *activityIndicator;
         fileName   = @"learning_philoshophy_german";
     }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
         fileName   = @"learning_philoshophy_italian";
+    }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
+        fileName   = @"learning_philoshophy";
     }
     
     NSString *htmlFile = [[NSBundle mainBundle] pathForResource:fileName ofType:@"html" inDirectory:nil];

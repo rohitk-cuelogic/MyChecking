@@ -1122,7 +1122,7 @@ NSArray *allImageFiles;
     iNewCnt=0;
     //[rateMe showPopUp];
     //rateMe.delegate = self;
-    UIAlertView* rateMeAlert=[[UIAlertView alloc] initWithTitle:APPLICATION_NAME message:@"If you enjoy using Tiggly Stamp,would you mind taking a moment to rate it?It won't take more than a minute.Thanks for your support!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Rate it",@"No, Thanks",nil];
+    UIAlertView* rateMeAlert=[[UIAlertView alloc] initWithTitle:APPLICATION_NAME message:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kIfYouEnjoy"] delegate:self cancelButtonTitle:nil otherButtonTitles:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kRateIt"],[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kNoThanks"],nil];
     rateMeAlert.tag=999;
     [rateMeAlert show];
 

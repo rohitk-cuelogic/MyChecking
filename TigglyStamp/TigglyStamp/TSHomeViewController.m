@@ -219,7 +219,8 @@ NSArray *allImageFiles;
 {
     if(![[TigglyStampUtils sharedInstance] shouldStopShowingRateMePopUp]){
         
-        
+        iNewCnt = [[TigglyStampUtils sharedInstance] getRateMeCount];
+
         
         if(iNewCnt == 3){
             
@@ -755,7 +756,6 @@ NSArray *allImageFiles;
 -(void)playGame:(id)sender{
     DebugLog(@"");
     
-    iNewCnt = [[TigglyStampUtils sharedInstance] getRateMeCount];
     [[TDSoundManager sharedManager] playSound:@"Blop_Sound_effect" withFormat:@"mp3"];
     [playBtnTimer invalidate];
     

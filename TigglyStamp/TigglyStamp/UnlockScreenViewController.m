@@ -21,7 +21,8 @@
 
 @end
 
-@implementation UnlockScreenViewController
+@implementation UnlockScreenViewController {
+}
 
 @synthesize lblAboutTiggly,lblAboutTigglyText,lblRemainingShapes,lblInstructionHead,lblInstructionText;
 @synthesize btnBack,btnBuyShapes,btnLearnMore;

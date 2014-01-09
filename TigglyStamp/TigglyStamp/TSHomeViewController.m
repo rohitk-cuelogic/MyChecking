@@ -21,7 +21,7 @@
 @implementation TSHomeViewController
 {
     BOOL _isWebViewLaunched;
-
+ UILabel *lblLearnMoreNews;
 }
 @synthesize imgScrollView;
 @synthesize bkgImageView;
@@ -140,6 +140,31 @@ NSArray *allImageFiles;
     
     newsBtn.hidden = YES;
     newsBtn.userInteractionEnabled = NO;
+//    btnNews.frame = CGRectMake(787, -230, 230, 229);
+    float fSize = 20.0;
+    float fSizeLM = 20.0;
+    NSString *lang = [[TigglyStampUtils sharedInstance] getCurrentLanguage];
+    if ([lang isEqualToString:@"English"] ) {
+        fSize = 26.0;
+        fSizeLM = 28.0;
+    }
+    if([lang isEqualToString:@"Italian"]){
+        fSizeLM = 16.0;
+    }
+    if (lblLearnMoreNews!=NULL) {
+        [lblLearnMoreNews removeFromSuperview];
+        lblLearnMoreNews = NULL;
+    }
+    
+    lblLearnMoreNews = [[UILabel alloc ]initWithFrame:CGRectMake(btnNews.frame.size.width *0.1f, btnNews.frame.size.height *0.7f, btnNews.frame.size.width * 0.8f, btnNews.frame.size.height * 0.2f)];
+    lblLearnMoreNews.text =[NSString stringWithFormat:@"%@",[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLearnmore"]] ;
+    lblLearnMoreNews.textAlignment = UITextAlignmentCenter;
+    lblLearnMoreNews.font = [UIFont fontWithName:FONT_ROCKWELL_BOLD size:fSizeLM];
+    lblLearnMoreNews.backgroundColor = [UIColor clearColor];
+    lblLearnMoreNews.textColor = [UIColor colorWithRed:46.0f/255.0f green:116.0f/255.0f blue:210.0f/255.0f alpha:1 ];
+    //    lblLearnMoreNews.hidden = YES;
+    [btnNews addSubview:lblLearnMoreNews];
+    
     
     learnMoreBtn.hidden = YES;
     learnMoreBtn.userInteractionEnabled = NO;
@@ -256,6 +281,7 @@ NSArray *allImageFiles;
     if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes] == NO)
     {
         btnNews.hidden = NO;
+        lblLearnMoreNews.hidden = NO;
         [btnNews setImage:[UIImage imageNamed:@"btn_learn_more.png"] forState:UIControlStateNormal];
         [self performBtnNewsAnimation];
     }
@@ -277,6 +303,7 @@ NSArray *allImageFiles;
                 btnNews.hidden = NO;
                 NSData *data = [NSData dataWithContentsOfFile:filePth];
                 UIImage *image = [UIImage imageWithData:data];
+                lblLearnMoreNews.hidden = YES;
                 [btnNews setImage:image forState:UIControlStateNormal];
                 [self performBtnNewsAnimation];
             }
@@ -338,6 +365,20 @@ NSArray *allImageFiles;
     [forParentsBtn setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kForParents"] forState:UIControlStateNormal];
     
      lblPlayWithShapes.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPlaywithTigglyShapes"];
+    NSString *lang = [[TigglyStampUtils sharedInstance] getCurrentLanguage];
+
+    float fSize = 20.0;
+    float fSizeLM = 20.0;
+    if ([lang isEqualToString:@"English"] ) {
+        fSize = 26.0;
+        fSizeLM = 28.0;
+    }
+    if([lang isEqualToString:@"Italian"]){
+        fSizeLM = 16.0;
+    }
+    lblLearnMoreNews.text = @"";
+    lblLearnMoreNews.text =[NSString stringWithFormat:@"%@",[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLearnmore"]] ;
+    lblLearnMoreNews.font = [UIFont fontWithName:FONT_ROCKWELL_BOLD size:fSizeLM];
     
     [self playWithTigglyShapeSetDynamicBackgroundwidth ];
 }
@@ -661,6 +702,7 @@ NSArray *allImageFiles;
         if ([[dict objectForKey:@"unread_news_count"] isEqualToString:@"4"])
         {
             btnNews.hidden = NO;
+            lblLearnMoreNews.hidden = YES;
             [btnNews setImage:[UIImage imageNamed:@"x-mas_iconHome.png"] forState:UIControlStateNormal];
             [self performBtnNewsAnimation];
         }
@@ -681,6 +723,7 @@ NSArray *allImageFiles;
                 NSString *filePth =[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"usercontent/%@",[arrData objectAtIndex:[arrData count] -1]]];//@"usercontent/index.html"
                 
                 btnNews.hidden = NO;
+                lblLearnMoreNews.hidden = YES;
                 NSData *data = [NSData dataWithContentsOfFile:filePth];
                 UIImage *image = [UIImage imageWithData:data];
                 [btnNews setImage:image forState:UIControlStateNormal];
@@ -698,6 +741,7 @@ NSArray *allImageFiles;
     NSString *filePth =[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"usercontent/%@",[arrData objectAtIndex:[arrData count] -1]]];//@"usercontent/index.html"
     
     btnNews.hidden = NO;
+    lblLearnMoreNews.hidden = YES;
     NSData *data = [NSData dataWithContentsOfFile:filePth];
     UIImage *image = [UIImage imageWithData:data];
     [btnNews setImage:image forState:UIControlStateNormal];

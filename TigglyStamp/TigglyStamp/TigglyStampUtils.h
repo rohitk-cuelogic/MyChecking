@@ -79,5 +79,6 @@
 -(void)setShouldStopShowingRateMePopUp:(BOOL)bShoulShow;
 -(BOOL)shouldStopShowingRateMePopUp;
 
+-(NSString *)getStringNameForShapeType:(ShapeType)sType ;
 
 @end

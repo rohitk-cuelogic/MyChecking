@@ -322,6 +322,7 @@
 		B119B14E187D90500001DA4A /* learnMore_russian.html in Resources */ = {isa = PBXBuildFile; fileRef = B119B146187D90500001DA4A /* learnMore_russian.html */; };
 		B119B14F187D90500001DA4A /* learnMore_spanish.html in Resources */ = {isa = PBXBuildFile; fileRef = B119B147187D90500001DA4A /* learnMore_spanish.html */; };
 		B119B150187D90500001DA4A /* learnMore.html in Resources */ = {isa = PBXBuildFile; fileRef = B119B148187D90500001DA4A /* learnMore.html */; };
+		B119B153187DA0A50001DA4A /* ShapeDetectionLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = B119B152187DA0A50001DA4A /* ShapeDetectionLogic.m */; };
 		B1BCF65C185F477400132C96 /* Candaraa.TTF in Resources */ = {isa = PBXBuildFile; fileRef = B1BCF65A185F477400132C96 /* Candaraa.TTF */; };
 		B1BCF65D185F477400132C96 /* Candarabold.TTF in Resources */ = {isa = PBXBuildFile; fileRef = B1BCF65B185F477400132C96 /* Candarabold.TTF */; };
 		B1D4077117C3727600E26814 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D4077017C3727600E26814 /* MessageUI.framework */; };
@@ -1590,30 +1591,11 @@
 		EB6F33391781867900FC479F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6F33381781867900FC479F /* Default@2x.png */; };
 		EB6F333B1781867900FC479F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6F333A1781867900FC479F /* Default-568h@2x.png */; };
 		EB6F33501781879100FC479F /* IntroScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F334E1781879100FC479F /* IntroScreenViewController.m */; };
-		EB6F335617818AF500FC479F /* circle2Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F335317818AF500FC479F /* circle2Data.plist */; };
-		EB6F335717818AF500FC479F /* circleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F335417818AF500FC479F /* circleData.plist */; };
-		EB6F335817818AF500FC479F /* circleData3.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F335517818AF500FC479F /* circleData3.plist */; };
-		EB6F335C17818BB900FC479F /* square2Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F335917818BB900FC479F /* square2Data.plist */; };
-		EB6F335D17818BB900FC479F /* squareData.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F335A17818BB900FC479F /* squareData.plist */; };
-		EB6F335E17818BB900FC479F /* squareData3.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F335B17818BB900FC479F /* squareData3.plist */; };
-		EB6F336017818BD500FC479F /* squareTwoPointData.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F335F17818BD500FC479F /* squareTwoPointData.plist */; };
-		EB6F336617818C1200FC479F /* star5Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F336117818C1200FC479F /* star5Data.plist */; };
-		EB6F336717818C1200FC479F /* starData.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F336217818C1200FC479F /* starData.plist */; };
-		EB6F336817818C1200FC479F /* starData3.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F336317818C1200FC479F /* starData3.plist */; };
-		EB6F336917818C1200FC479F /* StarData4.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F336417818C1200FC479F /* StarData4.plist */; };
-		EB6F336A17818C1200FC479F /* starData6.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F336517818C1200FC479F /* starData6.plist */; };
-		EB6F336E17818C5400FC479F /* triangle2Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F336B17818C5400FC479F /* triangle2Data.plist */; };
-		EB6F336F17818C5400FC479F /* triangleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F336C17818C5400FC479F /* triangleData.plist */; };
-		EB6F337017818C5400FC479F /* triangleData3.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB6F336D17818C5400FC479F /* triangleData3.plist */; };
 		EB6F3386178198B700FC479F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6F3385178198B700FC479F /* AudioToolbox.framework */; };
 		EB6F3388178198BC00FC479F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6F3387178198BC00FC479F /* AVFoundation.framework */; };
 		EB6F338A178198D500FC479F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6F3389178198D500FC479F /* QuartzCore.framework */; };
 		EB6F338F17819B8100FC479F /* StampViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB6F338D17819B8100FC479F /* StampViewController.xib */; };
-		EB6F33961781AB4700FC479F /* UITouchShapeRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F337C17818CED00FC479F /* UITouchShapeRecognizer.m */; };
 		EB6F33971781AB4B00FC479F /* UITouchVerificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F337E17818CED00FC479F /* UITouchVerificationView.m */; };
-		EB6F339B1781AD6300FC479F /* UITouchRecognizerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F337A17818CED00FC479F /* UITouchRecognizerView.m */; };
-		EB6F339C1781AD6800FC479F /* UITouchGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F337817818CED00FC479F /* UITouchGroup.m */; };
-		EB6F339E1781AD7100FC479F /* CALayer+CALayer_Fade.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F337217818CAE00FC479F /* CALayer+CALayer_Fade.m */; };
 		EB6F33A11781B8CA00FC479F /* WinterScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EB6F33A01781B8CA00FC479F /* WinterScene.m */; };
 		EBE3BBB21797CBB20089D4A7 /* sled.png in Resources */ = {isa = PBXBuildFile; fileRef = EBE3BBAF1797CBB20089D4A7 /* sled.png */; };
 		EBE3BBB31797CBB20089D4A7 /* present.png in Resources */ = {isa = PBXBuildFile; fileRef = EBE3BBB01797CBB20089D4A7 /* present.png */; };
@@ -2051,6 +2033,8 @@
 		B119B146187D90500001DA4A /* learnMore_russian.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = learnMore_russian.html; sourceTree = "<group>"; };
 		B119B147187D90500001DA4A /* learnMore_spanish.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = learnMore_spanish.html; sourceTree = "<group>"; };
 		B119B148187D90500001DA4A /* learnMore.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = learnMore.html; sourceTree = "<group>"; };
+		B119B151187DA0A50001DA4A /* ShapeDetectionLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeDetectionLogic.h; sourceTree = "<group>"; };
+		B119B152187DA0A50001DA4A /* ShapeDetectionLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeDetectionLogic.m; sourceTree = "<group>"; };
 		B1BCF65A185F477400132C96 /* Candaraa.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = Candaraa.TTF; sourceTree = SOURCE_ROOT; };
 		B1BCF65B185F477400132C96 /* Candarabold.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = Candarabold.TTF; sourceTree = SOURCE_ROOT; };
 		B1D4077017C3727600E26814 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -3373,29 +3357,6 @@
 		EB6F333A1781867900FC479F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EB6F334D1781879100FC479F /* IntroScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroScreenViewController.h; sourceTree = "<group>"; };
 		EB6F334E1781879100FC479F /* IntroScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroScreenViewController.m; sourceTree = "<group>"; };
-		EB6F335317818AF500FC479F /* circle2Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = circle2Data.plist; sourceTree = "<group>"; };
-		EB6F335417818AF500FC479F /* circleData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = circleData.plist; sourceTree = "<group>"; };
-		EB6F335517818AF500FC479F /* circleData3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = circleData3.plist; sourceTree = "<group>"; };
-		EB6F335917818BB900FC479F /* square2Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = square2Data.plist; sourceTree = "<group>"; };
-		EB6F335A17818BB900FC479F /* squareData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = squareData.plist; sourceTree = "<group>"; };
-		EB6F335B17818BB900FC479F /* squareData3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = squareData3.plist; sourceTree = "<group>"; };
-		EB6F335F17818BD500FC479F /* squareTwoPointData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = squareTwoPointData.plist; sourceTree = "<group>"; };
-		EB6F336117818C1200FC479F /* star5Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = star5Data.plist; sourceTree = "<group>"; };
-		EB6F336217818C1200FC479F /* starData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = starData.plist; sourceTree = "<group>"; };
-		EB6F336317818C1200FC479F /* starData3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = starData3.plist; sourceTree = "<group>"; };
-		EB6F336417818C1200FC479F /* StarData4.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StarData4.plist; sourceTree = "<group>"; };
-		EB6F336517818C1200FC479F /* starData6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = starData6.plist; sourceTree = "<group>"; };
-		EB6F336B17818C5400FC479F /* triangle2Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = triangle2Data.plist; sourceTree = "<group>"; };
-		EB6F336C17818C5400FC479F /* triangleData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = triangleData.plist; sourceTree = "<group>"; };
-		EB6F336D17818C5400FC479F /* triangleData3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = triangleData3.plist; sourceTree = "<group>"; };
-		EB6F337117818CAE00FC479F /* CALayer+CALayer_Fade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+CALayer_Fade.h"; sourceTree = "<group>"; };
-		EB6F337217818CAE00FC479F /* CALayer+CALayer_Fade.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+CALayer_Fade.m"; sourceTree = "<group>"; };
-		EB6F337717818CED00FC479F /* UITouchGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITouchGroup.h; sourceTree = "<group>"; };
-		EB6F337817818CED00FC479F /* UITouchGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITouchGroup.m; sourceTree = "<group>"; };
-		EB6F337917818CED00FC479F /* UITouchRecognizerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITouchRecognizerView.h; sourceTree = "<group>"; };
-		EB6F337A17818CED00FC479F /* UITouchRecognizerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITouchRecognizerView.m; sourceTree = "<group>"; };
-		EB6F337B17818CED00FC479F /* UITouchShapeRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITouchShapeRecognizer.h; sourceTree = "<group>"; };
-		EB6F337C17818CED00FC479F /* UITouchShapeRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITouchShapeRecognizer.m; sourceTree = "<group>"; };
 		EB6F337D17818CED00FC479F /* UITouchVerificationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITouchVerificationView.h; sourceTree = "<group>"; };
 		EB6F337E17818CED00FC479F /* UITouchVerificationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITouchVerificationView.m; sourceTree = "<group>"; };
 		EB6F3385178198B700FC479F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -5976,31 +5937,10 @@
 		EB6F335217818A8600FC479F /* KTCore */ = {
 			isa = PBXGroup;
 			children = (
-				EB6F337117818CAE00FC479F /* CALayer+CALayer_Fade.h */,
-				EB6F337217818CAE00FC479F /* CALayer+CALayer_Fade.m */,
-				EB6F337717818CED00FC479F /* UITouchGroup.h */,
-				EB6F337817818CED00FC479F /* UITouchGroup.m */,
-				EB6F337917818CED00FC479F /* UITouchRecognizerView.h */,
-				EB6F337A17818CED00FC479F /* UITouchRecognizerView.m */,
-				EB6F337B17818CED00FC479F /* UITouchShapeRecognizer.h */,
-				EB6F337C17818CED00FC479F /* UITouchShapeRecognizer.m */,
+				B119B151187DA0A50001DA4A /* ShapeDetectionLogic.h */,
+				B119B152187DA0A50001DA4A /* ShapeDetectionLogic.m */,
 				EB6F337D17818CED00FC479F /* UITouchVerificationView.h */,
 				EB6F337E17818CED00FC479F /* UITouchVerificationView.m */,
-				EB6F336B17818C5400FC479F /* triangle2Data.plist */,
-				EB6F336C17818C5400FC479F /* triangleData.plist */,
-				EB6F336D17818C5400FC479F /* triangleData3.plist */,
-				EB6F336117818C1200FC479F /* star5Data.plist */,
-				EB6F336217818C1200FC479F /* starData.plist */,
-				EB6F336317818C1200FC479F /* starData3.plist */,
-				EB6F336417818C1200FC479F /* StarData4.plist */,
-				EB6F336517818C1200FC479F /* starData6.plist */,
-				EB6F335F17818BD500FC479F /* squareTwoPointData.plist */,
-				EB6F335917818BB900FC479F /* square2Data.plist */,
-				EB6F335A17818BB900FC479F /* squareData.plist */,
-				EB6F335B17818BB900FC479F /* squareData3.plist */,
-				EB6F335317818AF500FC479F /* circle2Data.plist */,
-				EB6F335417818AF500FC479F /* circleData.plist */,
-				EB6F335517818AF500FC479F /* circleData3.plist */,
 			);
 			name = KTCore;
 			sourceTree = "<group>";
@@ -6248,26 +6188,11 @@
 				EB6F333B1781867900FC479F /* Default-568h@2x.png in Resources */,
 				C08EA07C185F3DD100199DE7 /* Tiggly_Word_Purplecoat_02.mp3 in Resources */,
 				C02127A7187694CE00830F78 /* chipmunk_ch.mp3 in Resources */,
-				EB6F335617818AF500FC479F /* circle2Data.plist in Resources */,
 				C08EA08E185F3DD100199DE7 /* Tiggly_Word_Stripedpants_Var2_03.mp3 in Resources */,
-				EB6F335717818AF500FC479F /* circleData.plist in Resources */,
-				EB6F335817818AF500FC479F /* circleData3.plist in Resources */,
-				EB6F335C17818BB900FC479F /* square2Data.plist in Resources */,
-				EB6F335D17818BB900FC479F /* squareData.plist in Resources */,
-				EB6F335E17818BB900FC479F /* squareData3.plist in Resources */,
-				EB6F336017818BD500FC479F /* squareTwoPointData.plist in Resources */,
 				C08E9F12185F3BA000199DE7 /* Tiggly_Animal_Scarecrow_IsThatAYellowLeaf_02.mp3 in Resources */,
-				EB6F336617818C1200FC479F /* star5Data.plist in Resources */,
-				EB6F336717818C1200FC479F /* starData.plist in Resources */,
-				EB6F336817818C1200FC479F /* starData3.plist in Resources */,
 				C0073BE91822307A00ED243E /* Tiggly_Instructions_Dragashapetomakeapicture_02.mp3 in Resources */,
-				EB6F336917818C1200FC479F /* StarData4.plist in Resources */,
-				EB6F336A17818C1200FC479F /* starData6.plist in Resources */,
 				B119B14E187D90500001DA4A /* learnMore_russian.html in Resources */,
-				EB6F336E17818C5400FC479F /* triangle2Data.plist in Resources */,
-				EB6F336F17818C5400FC479F /* triangleData.plist in Resources */,
 				C08E9F51185F3BA000199DE7 /* Tiggly_Word_Yellowraincoat_Var2_03.mp3 in Resources */,
-				EB6F337017818C5400FC479F /* triangleData3.plist in Resources */,
 				EB6F338F17819B8100FC479F /* StampViewController.xib in Resources */,
 				EBF2841D17869F6900082F64 /* Tiggly_stamp_Winter_BG.png in Resources */,
 				C02127C3187694CE00830F78 /* racoon_ch.mp3 in Resources */,
@@ -7863,19 +7788,15 @@
 				EB4885A9185734FC0077FA95 /* ASIDataDecompressor.m in Sources */,
 				EB1091BD185BB0ED0027F703 /* ioapi.c in Sources */,
 				EB6F33501781879100FC479F /* IntroScreenViewController.m in Sources */,
-				EB6F33961781AB4700FC479F /* UITouchShapeRecognizer.m in Sources */,
 				EB6F33971781AB4B00FC479F /* UITouchVerificationView.m in Sources */,
-				EB6F339B1781AD6300FC479F /* UITouchRecognizerView.m in Sources */,
 				EB4885B7185734FC0077FA95 /* ActivityAlertView.m in Sources */,
 				EB4885BA185734FC0077FA95 /* Reachability.m in Sources */,
 				EB4885B4185734FC0077FA95 /* SBJsonBase.m in Sources */,
 				EB4885A8185734FC0077FA95 /* ASIDataCompressor.m in Sources */,
 				EB4885AE185734FC0077FA95 /* ASINetworkQueue.m in Sources */,
 				63306AEB1859816800A09F3D /* FBDialog.m in Sources */,
-				EB6F339C1781AD6800FC479F /* UITouchGroup.m in Sources */,
 				EB4885B8185734FC0077FA95 /* MBProgressHUD.m in Sources */,
 				63306AED1859816800A09F3D /* FBLoginDialog.m in Sources */,
-				EB6F339E1781AD7100FC479F /* CALayer+CALayer_Fade.m in Sources */,
 				EB6F33A11781B8CA00FC479F /* WinterScene.m in Sources */,
 				EB4885AC185734FC0077FA95 /* ASIHTTPRequest.m in Sources */,
 				63306AE91859816800A09F3D /* Facebook.m in Sources */,
@@ -7892,6 +7813,7 @@
 				63CEE1DE17A14DB80060DC42 /* XBAnimationManager.m in Sources */,
 				EB4885B0185734FC0077FA95 /* UIDevice+IdentifierAddition.m in Sources */,
 				63CEE1DF17A14DB80060DC42 /* XBCurlView.m in Sources */,
+				B119B153187DA0A50001DA4A /* ShapeDetectionLogic.m in Sources */,
 				63CEE1E017A14DB80060DC42 /* XBPageCurlView.m in Sources */,
 				EB4885C2185741BB0077FA95 /* ServerController.m in Sources */,
 				EB4885B5185734FC0077FA95 /* SBJsonParser.m in Sources */,

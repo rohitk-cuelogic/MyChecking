@@ -76,8 +76,10 @@
         homeViewController = nil;
     }
     
-    if(touchView != nil) {
-        touchView = nil;
+    if (self.touchView!=NULL) {
+        [self.touchView removeAllObjectsForTouchVerification];
+        [self.touchView removeFromSuperview];
+        self.touchView = NULL;
     }
     
 }
@@ -178,63 +180,9 @@
         self.touchView = [[UITouchVerificationView alloc]initWithFrame:CGRectMake(0 , 0, 1024, 768)];
         self.touchView.delegate =self;
         [self.view addSubview:self.touchView];
-        [self.view bringSubviewToFront:touchView];
+        [self.view bringSubviewToFront:self.touchView];
+        
     }
-    [self.touchView configure];
-    [self.touchView setDelegate:self];
-    
-    UITouchShapeRecognizer* squareRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"squareData"];
-    [squareRecognizer setLabel:@"square"];
-    
-    UITouchShapeRecognizer* square2Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"square2Data"];
-    [square2Recognizer setLabel:@"square"];
-    
-    UITouchShapeRecognizer* square3Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"squareTwoPointData"];
-    [square3Recognizer setLabel:@"square"];
-    
-    UITouchShapeRecognizer* starRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"starData"];
-    [starRecognizer setLabel:@"star"];
-    
-    UITouchShapeRecognizer* star3Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"star5Data"];
-    [star3Recognizer setLabel:@"star"];
-    
-    UITouchShapeRecognizer* starRecognizerNew = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"starData6"];
-    [starRecognizerNew setLabel:@"star"];
-    
-    UITouchShapeRecognizer* circleRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"circleData"];
-    [circleRecognizer setLabel:@"circle"];
-    //    UITouchShapeRecognizer* circle2Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"circle2Data"];
-    //    [circleRecognizer setLabel:@"circle"];
-    UITouchShapeRecognizer* circle3Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"circleData3"];
-    [circle3Recognizer setLabel:@"circle"];
-    
-    UITouchShapeRecognizer* triangle2Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"triangle2Data"];
-    [triangle2Recognizer setLabel:@"triangle"];
-    
-    UITouchShapeRecognizer* triangle3Recognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"triangleData3"];
-    [triangle3Recognizer setLabel:@"triangle"];
-    
-    UITouchShapeRecognizer* triangleRecognizer = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"triangleData"];
-    [triangleRecognizer setLabel:@"triangle"];
-    
-    // for old star
-    [self.touchView loadShape:starRecognizer];
-    [self.touchView loadShape:star3Recognizer];
-    
-    // for new star
-    [self.touchView loadShape:starRecognizerNew];
-    
-    [self.touchView loadShape:triangleRecognizer];
-    //[self.touchView loadShape:triangle2Recognizer];
-    [self.touchView loadShape:triangle3Recognizer];
-    
-    [self.touchView loadShape:circleRecognizer];
-    //[self.touchView loadShape:circle2Recognizer];
-    [self.touchView loadShape:circle3Recognizer];
-    
-    [self.touchView loadShape:squareRecognizer];
-    //[self.touchView loadShape:square2Recognizer];
-    [self.touchView loadShape:square3Recognizer];
 }
 
 
@@ -539,27 +487,26 @@
 #pragma mark TouchVerification View Delegates
 #pragma mark =======================================
 
--(void)shapeDetected:(UITouchShapeRecognizer*)UIT {
-    DebugLog(@"");
-    
-}
+-(void)shapeDetected:(ShapeType)shapeType inView:(id)view withTouchLocation:(NSArray *)touchLocations{
 
--(void)shapeDetected:(UITouchShapeRecognizer *)UIT inView:(UITouchVerificationView *)view {
+//-(void)shapeDetected:(UITouchShapeRecognizer *)UIT inView:(UITouchVerificationView *)view {
     DebugLog(@"");
-    DebugLog(@"Physical Shape: %@",UIT.label);
+    NSString *detectedShapeName = [[TigglyStampUtils sharedInstance]getStringNameForShapeType:shapeType];
+
+    DebugLog(@"Physical Shape: %@",detectedShapeName);
     
     BOOL isSuccess = YES;
-    for(UITouch *touch in view.detectedPoints){
-        CGPoint tochLocation = [touch locationInView:view];
+    for(NSString *strLocations in touchLocations){
+        CGPoint tochLocation =   CGPointFromString(strLocations);
         if(!CGRectContainsPoint(CGRectMake(90, 100, 655, 600), tochLocation)){
             isSuccess = NO;
         }
     }
     
-    if([self.shapeToBeDetected isEqualToString:UIT.label]) {
+    if([self.shapeToBeDetected isEqualToString:detectedShapeName]) {
         if(isPromptDisplayed) {
             if(isSuccess){
-                [self buildShape:UIT.label];
+                [self buildShape:detectedShapeName];
                 [self playShapeDetectedSound];
             }
              [promptTimer invalidate];
@@ -598,6 +545,9 @@
         [[TDSoundManager sharedManager] playSound:self.shapeToBeDetected withFormat:@"mp3"];
     }
 #endif
+    
+}
+-(void)touchVerificationViewTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     
 }
 

@@ -220,12 +220,17 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         // iOS 6
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
-    
+    touchView =NULL;
    
     isWithShape = [[TigglyStampUtils sharedInstance] getShapeMode];
     
-    touchView = [[UITouchVerificationView alloc]initWithFrame:CGRectMake(0, 0, 1024, 768)];
-    touchView.isWithShape = [self isWithShape];
+    if (touchView == NULL) {
+        touchView = [[UITouchVerificationView alloc]initWithFrame:CGRectMake(0 , 0, 1024, 768)];
+        touchView.delegate =self;
+        [self.mainView addSubview:touchView];
+        [self.mainView bringSubviewToFront:touchView];
+    }
+//    touchView.isWithShape = [self isWithShape];
 
     isBtnViewHidden = YES;
     videoButton.hidden = YES;
@@ -235,8 +240,6 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     countShapeSound = 1;
     isMoveObject = YES;
     _isVideo = NO;
-    [self.mainView addSubview:touchView];
-    [self.mainView bringSubviewToFront:touchView];
     [self.mainView bringSubviewToFront:cameraButton];
     [self.mainView bringSubviewToFront:videoButton];
     [self.mainView bringSubviewToFront:RigthTickButton];
@@ -249,28 +252,15 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
     self.mainView.backgroundColor = [UIColor clearColor];
     
-    [touchView configure];
     [touchView.layer setZPosition:1];
     
     [self.view bringSubviewToFront:self.mainView];
     
-   
-    UITouchShapeRecognizer* triangle1Dist = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"Dist1triangle"];
-    [triangle1Dist setLabel:@"triangle"];
-    UITouchShapeRecognizer* circle1Dist = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"Dist1circle"];
-    [circle1Dist setLabel:@"circle"];
-    UITouchShapeRecognizer* square1Dist = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"Dist1square"];
-    [square1Dist setLabel:@"square"];
-    UITouchShapeRecognizer* star1Dist = [[UITouchShapeRecognizer alloc]initWithPlistfile:@"Dist1star"];
-    [star1Dist setLabel:@"star"];
-    
-    [touchView loadShape:triangle1Dist];
-    [touchView loadShape:circle1Dist];
-    [touchView loadShape:square1Dist];
-    [touchView loadShape:star1Dist];
     
     
-    [touchView setDelegate:self];
+
+    
+    
     if(sceneType == kSceneWinter) {
         winterSceneObject = [[WinterScene alloc]init];
         backViewImage.image =[UIImage imageNamed:@"Tiggly_stamp_Winter_BG" ];
@@ -1290,10 +1280,10 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                 
                 switch (result) {
                     case SLComposeViewControllerResultCancelled:
-                        NSLog(@"Post Canceled");
+                        DebugLog(@"Post Canceled");
                         break;
                     case SLComposeViewControllerResultDone:
-                        NSLog(@"Post Sucessful");
+                        DebugLog(@"Post Sucessful");
                         break;
                         
                     default:
@@ -1439,7 +1429,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     else
     {
         // Show some error message here
-        NSLog(@"Mail Setup Error...");
+        DebugLog(@"Mail Setup Error...");
         UIAlertView *anAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No mail account setup on device" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
         [anAlert addButtonWithTitle:@"Ok"];
         [anAlert show];
@@ -1475,7 +1465,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 #pragma mark Facebook Delegates
 #pragma mark =======================================
 -(void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"received response:%@",response);
+    DebugLog(@"received response:%@",response);
     //    NSString *requestType =[request.url stringByReplacingOccurrencesOfString:@"https://graph.facebook.com/" withString:@""];
     //
     //    if ([requestType isEqualToString:@"me"])
@@ -1519,21 +1509,21 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
  */
 
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
-    NSLog(@"Request failed with error");
-    NSLog(@"%@",[error localizedDescription]);
-    NSLog(@"Err details: %@", [error description]);
-    NSLog(@"Err details: %@",    [error userInfo]);
+    DebugLog(@"Request failed with error");
+    DebugLog(@"%@",[error localizedDescription]);
+    DebugLog(@"Err details: %@", [error description]);
+    DebugLog(@"Err details: %@",    [error userInfo]);
     NSDictionary * codes=[error userInfo];
-    NSLog(@"codes is :%@",codes);
+    DebugLog(@"codes is :%@",codes);
     NSString * messages = [[codes valueForKey:@"error"]valueForKey:@"message"];
     
-    NSLog(@"message is :%@",messages);
+    DebugLog(@"message is :%@",messages);
     NSString * erro=@"";
     if(![messages rangeOfString:@")"].location ==NSNotFound){
         erro=[messages substringFromIndex:[messages rangeOfString:@")"].location];
     }
     
-    NSLog(@"FBRequest failed:request  %@ :error  %@",request.url, [error localizedRecoverySuggestion]);
+    DebugLog(@"FBRequest failed:request  %@ :error  %@",request.url, [error localizedRecoverySuggestion]);
 }
 
 -(void)fbDidLogin{
@@ -1573,7 +1563,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
 -(void)fbDidNotLogin:(BOOL)cancelled{
     // Keep this for testing purposes.
-    //NSLog(@"Did not login");
+    //DebugLog(@"Did not login");
     
     UIAlertView *al = [[UIAlertView alloc] initWithTitle:APPLICATION_NAME message:@"Login cancelled." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     [al show];
@@ -1621,7 +1611,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
-	NSLog(@"Mail delegate...");
+	DebugLog(@"Mail delegate...");
 	[self dismissModalViewControllerAnimated:YES];
 	
 	if(result==MFMailComposeResultSent)
@@ -1812,8 +1802,9 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 #pragma mark======================
 #pragma mark UITouchVerification TouchDelegate
 #pragma mark======================
-
--(void)shapeDetected:(UITouchShapeRecognizer *)UIT inView:(UITouchVerificationView*)view{
+-(void)shapeDetected:(ShapeType)shapeType inView:(id)view withTouchLocation:(NSArray *)touchLocations{
+//
+//-(void)shapeDetected:(UITouchShapeRecognizer *)UIT inView:(UITouchVerificationView*)view{
     DebugLog(@"");
     
     if(!isWithShape)
@@ -1826,22 +1817,22 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     if(!isBtnViewHidden){
         return;
     }
-    
+    NSString *detectedShapeName = [[TigglyStampUtils sharedInstance]getStringNameForShapeType:shapeType];
+
     
     self.shapeToDraw = nil;
     if(sceneType == kSceneWinter) {
-       self.shapeToDraw = [winterSceneObject getObjectForShape:UIT.label];
+       self.shapeToDraw = [winterSceneObject getObjectForShape:detectedShapeName];
     }else if (sceneType == kSceneFall){
-        self.shapeToDraw = [fallSceneObject getObjectForShape:UIT.label];
+        self.shapeToDraw = [fallSceneObject getObjectForShape:detectedShapeName];
     }
     
     centerX = 0;
     centerY = 0;
-    pointComparison = [[NSArray alloc]initWithArray:view.detectedPoints];
+    pointComparison = [[NSArray alloc]initWithArray:touchLocations];
     numOfTouchPts = pointComparison.count;
-    
-    for(UITouch *touch in view.detectedPoints){
-        CGPoint tochLocation = [touch locationInView:touchView];
+    for(NSString *strLocations in touchLocations){
+        CGPoint tochLocation =   CGPointFromString(strLocations);
         centerX = centerX + tochLocation.x;
         centerY = centerY + tochLocation.y;
     }
@@ -1854,15 +1845,15 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         }
         
         
-        shapeSoundToPlay = UIT.label;
+        shapeSoundToPlay = detectedShapeName;
         if ([shapeSoundTimer isValid]) {
             [shapeSoundTimer invalidate];
         }
         shapeSoundTimer = [NSTimer scheduledTimerWithTimeInterval:1.5f target:self selector:@selector(playSoundForShape) userInfo:nil repeats:NO];
         
-        [[ServerController sharedInstance] drawShapeWithIsVirtualShape:@"no" withShapeType:UIT.label withShapeCorrect:@"yes"];
+        [[ServerController sharedInstance] drawShapeWithIsVirtualShape:@"no" withShapeType:detectedShapeName withShapeCorrect:@"yes"];
 
-        [self buildShape:UIT.label];
+        [self buildShape:detectedShapeName];
     }
     int64_t delayInSecondsTodetect = 0.0f;
     dispatch_time_t popTimetoDetect = dispatch_time(DISPATCH_TIME_NOW, delayInSecondsTodetect * NSEC_PER_SEC);
@@ -1921,7 +1912,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
 #pragma mark======================
 
 -(void) onFruitView:(FruitView *)fruit touchesBegan:(NSSet *)touches {
-    DebugLog(@"");
+    DebugLog(@"onFruitView:(FruitView *)fruit touchesBegan:(NSSet *)touches");
     
     if (isWithShape) {
         [touchView touchesBegan:touches withEvent:nil];
@@ -2882,7 +2873,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
     float time = FLOAT_CURL_TIME;
     
     if(p.x < INT_X_LIMIT_TO_FULL_CURL && p.y > INT_Y_LIMIT_TO_FULL_CURL){
-        NSLog(@"Not OK");
+        DebugLog(@"Not OK");
         [pageCurlView touchEndedAtPoint:p];
         
         time = FLOAT_FULL_CURL_TIME;
@@ -2918,7 +2909,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         
     }else{
         //flip the page corner and wait for 3 seconds for user action
-        NSLog(@"OK");
+        DebugLog(@"OK");
         
         pageCurlView.cylinderPosition =bottomSnappingPoint.position;
         pageCurlView.cylinderAngle = bottomSnappingPoint.angle;

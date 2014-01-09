@@ -35,6 +35,10 @@
 #define APP_FONT_BOLD @"Rockwell-Bold"
 #define APP_FONT_BOLD_ITALIC @"Rockwell-BoldItalic"
 
+
+
+
+
 #define RECT_THUMBNAIL_EDITOR_FRAME CGRectMake(0, 0, 800, 600)
 #define RECT_MAIN_SCREEN_FRAME CGRectMake(0, 0, 1000, 750)
 
@@ -113,12 +117,15 @@
 #define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
-//Do not change the sequence
+
+
 typedef enum {
+    kShapeTypeNone,
     kShapeTypeCircle,
     kShapeTypeTriangle,
     kShapeTypeStar,
-    kShapeTypeSquare    
+    kShapeTypeSquare
+    
 } ShapeType;
 
 

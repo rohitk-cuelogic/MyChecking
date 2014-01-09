@@ -288,6 +288,33 @@ static TigglyStampUtils *sharedInstance = nil;
     return platform;
 }
 
+-(NSString *)getStringNameForShapeType:(ShapeType)sType {
+    NSString *shpName = NULL;
+    switch (sType) {
+        case kShapeTypeNone:
+            shpName = [NSString stringWithFormat:@"None"];
+            break;
+        case kShapeTypeCircle:
+            shpName = [NSString stringWithFormat:@"circle"];
+            break;
+        case kShapeTypeTriangle:
+            shpName = [NSString stringWithFormat:@"triangle"];
+            break;
+        case kShapeTypeSquare:
+            shpName = [NSString stringWithFormat:@"square"];
+            break;
+        case kShapeTypeStar:
+            shpName = [NSString stringWithFormat:@"star"];
+            break;
+        default:
+            shpName = [NSString stringWithFormat:@"None"];
+            
+            break;
+    }
+    return shpName;
+}
+
+
 #pragma mark -
 #pragma mark =============================================
 #pragma mark Debugging Shape Detection

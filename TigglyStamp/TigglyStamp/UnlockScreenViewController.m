@@ -481,8 +481,10 @@
 }
 -(IBAction)closeButtonWebClicked:(id)sender {
     DebugLog(@"");
-    
-    [webViewFirstLaunch stopLoading];
+    if (sender!=NULL) {
+        [webViewFirstLaunch stopLoading];
+        [webViewFirstLaunch loadHTMLString:@"" baseURL:[[NSBundle mainBundle] bundleURL]];
+    }
     CGRect rect = RECT_IPAD;
     rect.origin.y = rect.size.height;
     [UIView animateWithDuration:0.5
@@ -524,6 +526,8 @@
             }
             if ([methodName isEqualToString:@"playWihoutShp"] ) {
                 DebugLog(@"playWihoutShp");
+                    [webViewFirstLaunch stopLoading];
+                    [webViewFirstLaunch loadHTMLString:@"" baseURL:[[NSBundle mainBundle] bundleURL]];
                 [self launchHomeViewController];
             }
         }

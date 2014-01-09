@@ -446,8 +446,10 @@
 }
 -(IBAction)closeButtonWebClicked:(id)sender {
     DebugLog(@"");
-    
-    [webViewFirstLaunch stopLoading];
+    if (sender!=NULL) {
+        [webViewFirstLaunch stopLoading];
+        [webViewFirstLaunch loadHTMLString:@"" baseURL:[[NSBundle mainBundle] bundleURL]];
+    }
     TSHomeViewController *homeViewController = [[TSHomeViewController alloc]initWithNibName:@"TSHomeViewController" bundle:nil];
     [self.navigationController pushViewController:homeViewController animated:NO];
     CGRect rect = RECT_IPAD;
@@ -505,6 +507,8 @@
             }
             if ([methodName isEqualToString:@"playWihoutShp"] ) {
                 DebugLog(@"playWihoutShp");
+                    [webViewFirstLaunch stopLoading];
+                    [webViewFirstLaunch loadHTMLString:@"" baseURL:[[NSBundle mainBundle] bundleURL]];
                 [self closeButtonWebClicked:NULL];
             }
         }

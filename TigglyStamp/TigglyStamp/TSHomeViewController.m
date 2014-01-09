@@ -793,6 +793,10 @@ NSArray *allImageFiles;
 -(IBAction)crossActionForViewForWeb:(id)sender
 {
     _isWebViewLaunched = NO;
+    if (sender!=NULL) {
+        [_webView stopLoading];
+        [_webView loadHTMLString:@"" baseURL:[[NSBundle mainBundle] bundleURL]];
+    }
     [playBtnTimer invalidate];
     playBtnTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(animatePlayButton) userInfo:nil repeats:YES];
 
@@ -1075,6 +1079,8 @@ NSArray *allImageFiles;
             }
             if ([methodName isEqualToString:@"playWihoutShp"] ) {
                 NSLog(@"playWihoutShp");
+                    [_webView stopLoading];
+                    [_webView loadHTMLString:@"" baseURL:[[NSBundle mainBundle] bundleURL]];
                 [self crossActionForViewForWeb:NULL];
             }
         }

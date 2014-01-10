@@ -14,9 +14,9 @@
 //#define TEST_MODE 1
 
 //live
-//#define SERVICE_URL @"http://api.tiggly.com/manageapi?f=tig."
+#define SERVICE_URL @"http://api.tiggly.com/manageapi?f=tig."
 // Dev
-#define SERVICE_URL @"http://development.tiggly.com/version1.1/manageapi?f=tig."
+//#define SERVICE_URL @"http://development.tiggly.com/version1.1/manageapi?f=tig."
 
 
 #ifdef IS_RUN_ON_SIMULATOR

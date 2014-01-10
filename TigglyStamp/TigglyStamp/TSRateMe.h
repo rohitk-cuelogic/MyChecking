@@ -21,6 +21,10 @@
     IBOutlet UIView *view;
     IBOutlet UIView *viewRateMe;
     IBOutlet UIImageView *imgBkg;
+    IBOutlet UIButton *btnRateMe;
+    IBOutlet UIButton *btnLater;
+    IBOutlet UIButton *btnDismiss;
+    IBOutlet UILabel *lblHalpUs;
 
 }
 

@@ -1100,11 +1100,8 @@ NSArray *allImageFiles;
 
 -(void)rateMeOkButtonClicked:(TSRateMe *)rateMeView{
     DebugLog(@"");
-    
-    readyToRateMe=YES;
-    //confirmationViewType = kConfirmationViewRateMe;
-    [self showConfirmationView];
-    
+
+    [self launchiTunesForRateMe];
 }
 
 -(void)rateMeCancelButtonCLicked:(TSRateMe *)rateMeView{
@@ -1120,11 +1117,11 @@ NSArray *allImageFiles;
     
     [[TigglyStampUtils sharedInstance] setRateMeCount];
     iNewCnt=0;
-    //[rateMe showPopUp];
-    //rateMe.delegate = self;
-    UIAlertView* rateMeAlert=[[UIAlertView alloc] initWithTitle:APPLICATION_NAME message:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kIfYouEnjoy"] delegate:self cancelButtonTitle:nil otherButtonTitles:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kRateIt"],[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kNoThanks"],nil];
-    rateMeAlert.tag=999;
-    [rateMeAlert show];
+    [rateMe showPopUp];
+    rateMe.delegate = self;
+//    UIAlertView* rateMeAlert=[[UIAlertView alloc] initWithTitle:APPLICATION_NAME message:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kIfYouEnjoy"] delegate:self cancelButtonTitle:nil otherButtonTitles:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kRateIt"],[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kNoThanks"],nil];
+//    rateMeAlert.tag=999;
+//    [rateMeAlert show];
 
     
 }

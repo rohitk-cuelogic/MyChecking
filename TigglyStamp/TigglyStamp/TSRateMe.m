@@ -8,6 +8,7 @@
 
 #import "TSRateMe.h"
 #import "TConstant.h"
+#import "TigglyStampUtils.h"
 
 @implementation TSRateMe
 
@@ -44,13 +45,38 @@
     
     imgBkg.layer.opacity = 0.5;
     
-    
     viewRateMe.userInteractionEnabled  =YES;
-    viewRateMe.center = CGPointMake(512, 968);
-
+    viewRateMe.center = CGPointMake(512, 1068);
+    [self updateTextLabels];
+    
     [self addSubview:self.view];
 
 }
+
+-(void)updateTextLabels{
+    DebugLog(@"");
+    
+    
+    lblHalpUs.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kIfYouEnjoy"];
+    
+    
+   
+    
+    [btnRateMe setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kRateIt"] forState:UIControlStateNormal];
+    [btnRateMe setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kRateIt"] forState:UIControlStateSelected];
+     btnRateMe.titleLabel.adjustsFontSizeToFitWidth = YES;
+    
+    [btnLater setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kRemindMe"] forState:UIControlStateSelected];
+    [btnLater setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kRemindMe"] forState:UIControlStateNormal];
+    btnLater.titleLabel.adjustsFontSizeToFitWidth = YES;
+
+    
+    [btnDismiss setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kDismiss"] forState:UIControlStateNormal];
+    [btnDismiss setTitle:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kDismiss"] forState:UIControlStateSelected];
+    btnDismiss.titleLabel.adjustsFontSizeToFitWidth = YES;
+
+}
+
 - (IBAction)actionCancel:(id)sender {
     DebugLog(@"");
     
@@ -68,7 +94,8 @@
     DebugLog(@"");
     
     self.hidden = NO;
-    
+    [self updateTextLabels];
+
     [UIView animateWithDuration:1
                      animations:^(void){
                          
@@ -88,7 +115,7 @@
     [UIView animateWithDuration:1
                      animations:^(void){
                          
-                         viewRateMe.center = CGPointMake(512, 968);
+                         viewRateMe.center = CGPointMake(512, 1068);
                          
                      }
                      completion:^(BOOL finished){

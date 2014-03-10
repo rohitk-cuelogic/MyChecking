@@ -725,4 +725,21 @@ static TigglyStampUtils *sharedInstance = nil;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     return [userDefaults boolForKey:SHOW_RATE_ME_POP_UP];
 }
+
+-(void) setDateFromat:(NSString *) dateForm{
+    DebugLog(@"");
+    
+    [[NSUserDefaults standardUserDefaults] setObject:dateForm forKey:DATE_FORMAT];
+}
+
+-(NSString*)getDateFromat{
+    DebugLog(@"");
+    NSString *dateformat = [[NSUserDefaults standardUserDefaults] valueForKey:DATE_FORMAT];
+    
+    if (dateformat==NULL||[dateformat isEqualToString:@""] || dateformat ==  nil) {
+        dateformat = DATE_FORM_DD_MM_YYYY;
+    }
+    return dateformat;
+}
+
 @end

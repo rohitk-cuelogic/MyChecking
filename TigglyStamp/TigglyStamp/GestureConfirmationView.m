@@ -265,13 +265,14 @@
     }
     
     
-    langView = [[UIView alloc] initWithFrame:CGRectMake(230, 310, 275, 275)];
+    langView = [[UIView alloc] initWithFrame:CGRectMake(230, 310, 275, 355)];
     langView.layer.cornerRadius = 20.0f;
     langView.backgroundColor = [UIColor colorWithRed:240.0f/255.0f green:210.0f/255.0f blue:50.0f/255.0f alpha:1.0];
     [self addSubview:langView];
     
-    tblView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 235, 235)];
+    tblView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 235, 315)];
     tblView.separatorColor = [UIColor lightGrayColor];
+    [tblView setScrollEnabled:NO];
     tblView.backgroundColor = [UIColor whiteColor];
     tblView.delegate = self;
     tblView.dataSource = self;

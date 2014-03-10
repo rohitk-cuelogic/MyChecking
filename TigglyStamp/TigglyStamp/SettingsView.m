@@ -17,6 +17,10 @@
 #import "GAIFields.h"
 #else
 #endif
+
+#define TAG_LABEL_DATE_FORMAT 12
+#define TAG_BTN_DATE_FORMAT_PREVIEW 13
+
 @implementation SettingsView
 
 UISwitch *swtchMusic;
@@ -35,6 +39,7 @@ UILabel *lblSaveArt;
 UILabel *lblShape;
 UILabel *lblGallery;
 UILabel *lblBuyShapes;
+UILabel *lblDate;
 
 @synthesize delegate;
 
@@ -127,9 +132,36 @@ UILabel *lblBuyShapes;
         swtchGallery = [[UISwitch alloc] initWithFrame:CGRectMake(485,295,79,27)];
         [swtchGallery addTarget:self action:@selector(actionGallery) forControlEvents:UIControlEventValueChanged];
         [self addSubview:swtchGallery];
+        
+        lblDate= [[UILabel alloc] initWithFrame:CGRectMake(80, 350, 345, 32)];
+        lblDate.textAlignment = UITextAlignmentRight;
+        lblDate.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kDateFormat"];
+        lblDate.tag = TAG_LABEL_DATE_FORMAT;
+        lblDate.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+        lblDate.adjustsFontSizeToFitWidth = YES;
+        lblDate.backgroundColor = [UIColor clearColor];
+        lblDate.textColor = [UIColor whiteColor];
+        [self addSubview:lblDate];
+        
+        UIButton *btnDateFormat = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnDateFormat addTarget:self action:@selector(actionDateFormat)forControlEvents:UIControlEventTouchUpInside];
+        btnDateFormat.frame = CGRectMake(485, 350, 450, 32);
+        NSString *dateFormat = [[TigglyStampUtils sharedInstance] getDateFromat];
+        if([dateFormat isEqualToString:DATE_FORM_MM_DD_YYYY]){
+            dateFormat = @"mm/dd/yyyy";
+            [[TigglyStampUtils sharedInstance] setDateFromat:DATE_FORM_MM_DD_YYYY];
+        }else if([dateFormat isEqualToString:DATE_FORM_DD_MM_YYYY]){
+            dateFormat = @"dd/mm/yyyy";
+            [[TigglyStampUtils sharedInstance] setDateFromat:DATE_FORM_DD_MM_YYYY];
+        }
+        [btnDateFormat setTitle: dateFormat forState:UIControlStateNormal]; ;
+        btnDateFormat.titleLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+        btnDateFormat.tag = TAG_BTN_DATE_FORMAT_PREVIEW;
+        btnDateFormat.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [self addSubview:btnDateFormat];
   
         if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
-                lblBuyShapes = [[UILabel alloc] initWithFrame:CGRectMake(80, 350, 345, 32)];
+                lblBuyShapes = [[UILabel alloc] initWithFrame:CGRectMake(80, 405, 345, 32)];
                 lblBuyShapes.textAlignment = UITextAlignmentRight;
                 lblBuyShapes.backgroundColor = [UIColor clearColor];
                 lblBuyShapes.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kBuyshapes"];
@@ -142,7 +174,7 @@ UILabel *lblBuyShapes;
                 [btnBuyShapes setBackgroundImage:[UIImage imageNamed:@"btnNext.png"] forState:UIControlStateNormal];
                 [btnBuyShapes setBackgroundImage:[UIImage imageNamed:@"btnNext.png"] forState:UIControlStateSelected];
                 [btnBuyShapes addTarget:self action:@selector(actionBuyShapes)forControlEvents:UIControlEventTouchUpInside];
-                btnBuyShapes.frame = CGRectMake(485, 340, 50, 50);
+                btnBuyShapes.frame = CGRectMake(485, 405, 50, 50);
                 [self addSubview:btnBuyShapes];
         }
         
@@ -178,6 +210,36 @@ UILabel *lblBuyShapes;
 #pragma mark =======================================
 #pragma mark Action Handling
 #pragma mark =======================================
+
+-(void)actionDateFormat{
+    DebugLog(@"");
+    
+    UIButton *btnDateFormat = (UIButton *) [self viewWithTag:TAG_BTN_DATE_FORMAT_PREVIEW];
+    if (btnDateFormat != nil) {
+        
+        NSString *dateForm = [[TigglyStampUtils sharedInstance] getDateFromat];
+        if([dateForm isEqualToString:DATE_FORM_MM_DD_YYYY]){
+            
+            dateForm = @"dd/mm/yyyy";
+            [[TigglyStampUtils sharedInstance] setDateFromat:DATE_FORM_DD_MM_YYYY];
+            
+        }else if([dateForm isEqualToString:DATE_FORM_DD_MM_YYYY]){
+            
+            dateForm = @"mm/dd/yyyy";
+            [[TigglyStampUtils sharedInstance] setDateFromat:DATE_FORM_MM_DD_YYYY];
+            
+        }
+        
+        [btnDateFormat setTitle:dateForm forState:UIControlStateNormal];
+        btnDateFormat.titleLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
+    }
+    
+    if (btnClose != nil){
+        [btnClose setBackgroundImage:[UIImage imageNamed:@"green_check.png"] forState:UIControlStateNormal];
+        [btnClose setBackgroundImage:[UIImage imageNamed:@"green_check.png"] forState:UIControlStateSelected];
+    }
+    
+}
 
 -(void) actionClose {
     DebugLog(@"");
@@ -297,13 +359,14 @@ UILabel *lblBuyShapes;
     }
     
    
-    langView = [[UIView alloc] initWithFrame:CGRectMake(330, 115, 275, 275)];
+    langView = [[UIView alloc] initWithFrame:CGRectMake(330, 115, 275, 355)];
     langView.layer.cornerRadius = 20.0f;
     langView.backgroundColor = [UIColor colorWithRed:240.0f/255.0f green:210.0f/255.0f blue:50.0f/255.0f alpha:1.0];
     [self addSubview:langView];
     
-    tblView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 235, 235)];
+    tblView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 235, 315)];
     tblView.separatorColor = [UIColor lightGrayColor];
+    [tblView setScrollEnabled:NO];
     tblView.backgroundColor = [UIColor whiteColor];
     tblView.delegate = self;
     tblView.dataSource = self;
@@ -384,12 +447,21 @@ UILabel *lblBuyShapes;
 
     [self removeLanguageView];
     
+    [self resetAllLabels];
+    
+    [self.delegate settingViewOnLanguageSelected:self];
+}
+
+-(void) resetAllLabels{
+    DebugLog(@"");
+    
     lblLang.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLanguage"];
     lblMusic.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kMusic"];
     lblSaveArt.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kSaveArt"];
     lblShape.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kPlaywithTigglyShapes"];
     lblGallery.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLimitGallery"];
     lblBuyShapes.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kBuyshapes"];
+    lblDate.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kDateFormat"];
     
     float fontSize = 0.0;
     if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
@@ -404,8 +476,7 @@ UILabel *lblBuyShapes;
     lblShape.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
     lblGallery.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
     lblBuyShapes.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
-    
-    [self.delegate settingViewOnLanguageSelected:self];
+    lblDate.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
 }
 
 @end

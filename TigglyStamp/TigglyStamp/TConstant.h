@@ -11,7 +11,7 @@
 //#define DEBUG_MODE
 //#define IS_RUN_WITHOUT_SHAPE_FOR_TESTING 1
 //#define IS_RUN_ON_SIMULATOR
-//#define TEST_MODE 1
+#define TEST_MODE 1
 
 //live
 #define SERVICE_URL @"http://api.tiggly.com/manageapi?f=tig."
@@ -36,7 +36,9 @@
 #define APP_FONT_BOLD_ITALIC @"Rockwell-BoldItalic"
 
 
-
+#define DATE_FORMAT @"dateFormat"
+#define DATE_FORM_MM_DD_YYYY @"MM/dd/yyyy"
+#define DATE_FORM_DD_MM_YYYY @"dd/MM/yyyy"
 
 
 #define RECT_THUMBNAIL_EDITOR_FRAME CGRectMake(0, 0, 800, 600)

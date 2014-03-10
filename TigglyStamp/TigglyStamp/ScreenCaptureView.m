@@ -74,12 +74,7 @@
                                     atTime:kCMTimeZero error:nil];
     
     AVAssetExportSession* _assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetPassthrough];
-    
-//    NSDate* currentDate = [NSDate date];
-//    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-//    [dateFormat setDateFormat:@"MM-dd-yyyy_HH:mm:ss"];
-//    // convert it to a string
-//    NSString *dateString = [dateFormat stringFromDate:currentDate];
+
     NSString *videoName = [NSString stringWithFormat:@"TigglyStamp_%@.mov",self.movieString];
     DebugLog(@"Image Name : %@",videoName);
 
@@ -112,10 +107,7 @@
 //            UISaveVideoAtPathToSavedPhotosAlbum (path, nil, nil, nil);
 //        }
 //    }
-    
-
-
-    
+  
 }
 
 
@@ -168,38 +160,15 @@
         CGAffineTransform flipVertical =  CGAffineTransformMake(1, 0, 0, -1,0, self.frame.size.height);
         CGContextConcatCTM(context, flipVertical);
         
-        if ([UIScreen instancesRespondToSelector:@selector(scale)])
-        {
-            CGFloat scale = [[UIScreen mainScreen] scale];
-            
-            if (scale > 1.0)
-            {
-                // iPad retina
-                
-            }
-            else
-            {
-                //iPad screen                
-                
-            }
-        }
-        
         CGContextSetInterpolationQuality(context, kCGInterpolationNone);
         
         [[self.layer presentationLayer]  renderInContext:context];
         
         CGImageRef cgImage = CGBitmapContextCreateImage(context);
         UIImage* background = [UIImage imageWithCGImage: cgImage];
-        
-       // UIImage* background = [UIImage imageWithCGImage:cgImage scale:1.0f orientation:UIImagePickerControllerQualityTypeLow];
 
         CGImageRelease(cgImage);
-        
-        
-      
-        
-        
-        
+ 
         self.currentScreen = background;
         background = nil;
         
@@ -220,14 +189,14 @@
 
 //------------------------------------------------------------------------------------------------------------
 
-- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
-    //UIGraphicsBeginImageContext(newSize);
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
+//- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+//    //UIGraphicsBeginImageContext(newSize);
+//    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+//    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    return newImage;
+//}
 
 
 
@@ -251,20 +220,20 @@
 }
 
 
-- (NSURL*) tempFileURL {
-    DebugLog(@"");
-	NSString* outputPath = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"output.mov"];
-	NSURL* outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
-	NSFileManager* fileManager = [NSFileManager defaultManager];
-	if ([fileManager fileExistsAtPath:outputPath]) {
-		NSError* error;
-		if ([fileManager removeItemAtPath:outputPath error:&error] == NO) {
-			DebugLog(@"Could not delete old recording file at path:  %@", outputPath);
-		}
-	}
-    
-	return outputURL;
-}
+//- (NSURL*) tempFileURL {
+//    DebugLog(@"");
+//	NSString* outputPath = [[NSString alloc] initWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0], @"output.mov"];
+//	NSURL* outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
+//	NSFileManager* fileManager = [NSFileManager defaultManager];
+//	if ([fileManager fileExistsAtPath:outputPath]) {
+//		NSError* error;
+//		if ([fileManager removeItemAtPath:outputPath error:&error] == NO) {
+//			DebugLog(@"Could not delete old recording file at path:  %@", outputPath);
+//		}
+//	}
+//    
+//	return outputURL;
+//}
 
 - (void)setupAudio {
     DebugLog(@"");
@@ -285,7 +254,7 @@
                                   [NSNumber numberWithInt:16], AVEncoderBitRateKey,
                                   [NSNumber numberWithInt: 2], AVNumberOfChannelsKey,
                                   [NSNumber numberWithFloat:44100.0], AVSampleRateKey,
-                                   nil]; //[NSNumber numberWithInt:1], AVLinearPCMBitDepthKey,
+                                   nil];
     
     
     // Initialize the audio recorder
@@ -329,24 +298,11 @@
 	videoWriter = [[AVAssetWriter alloc] initWithURL:[NSURL  fileURLWithPath: videoPath] fileType:AVFileTypeQuickTimeMovie error:&error];
 	NSParameterAssert(videoWriter);
     
-    //    // Get the screen rect and scale
-    //    CGRect screenRect = [UIScreen mainScreen].bounds;
-    //    float scale = [UIScreen mainScreen].scale;
-    //
-    //    // iPad frame buffer is Landscape
-    //    int  _width = screenRect.size.height * scale;
-    //    int _height = screenRect.size.width * scale;
-	
 	//Configure video
 	NSDictionary* videoCompressionProps = [NSDictionary dictionaryWithObjectsAndKeys:
 										   [NSNumber numberWithDouble:1024.0*768.0], AVVideoAverageBitRateKey,
 										   nil ];
-    
-    //    NSMutableDictionary* videoCompressionProps = [NSMutableDictionary dictionary];
-    //    [videoCompressionProps setObject: [NSNumber numberWithInt: 1024 * 1024] forKey: AVVideoAverageBitRateKey];
-    ////    [videoCompressionProps setObject: [NSNumber numberWithInt: 24] forKey: AVVideoMaxKeyFrameIntervalKey];
-    ////    [videoCompressionProps setObject: AVVideoProfileLevelH264Main41 forKey: AVVideoProfileLevelKey];
-	
+
 	NSDictionary* videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:
 								   AVVideoCodecH264, AVVideoCodecKey,
 								   [NSNumber numberWithInt:self.frame.size.width], AVVideoWidthKey,

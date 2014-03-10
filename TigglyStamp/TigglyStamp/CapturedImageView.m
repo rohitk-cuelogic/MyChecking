@@ -47,7 +47,7 @@
             //Adding the date
             NSDate* currentDate = [NSDate date];
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-            [dateFormat setDateFormat:@"MM/dd/yyyy"];
+            [dateFormat setDateFormat:[[TigglyStampUtils sharedInstance] getDateFromat]];
             NSString *dateString = [dateFormat stringFromDate:currentDate];
             UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(20, 520, 180, 50)];
             lblDate.textAlignment = UITextAlignmentCenter;
@@ -141,7 +141,7 @@
             
             NSDate* currentDate = [NSDate date];
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-            [dateFormat setDateFormat:@"MM/dd/yyyy"];
+            [dateFormat setDateFormat:[[TigglyStampUtils sharedInstance] getDateFromat]];
             NSString *dateString = [dateFormat stringFromDate:currentDate];
             UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(40, 500, 180, 50)];
             lblDate.textAlignment = UITextAlignmentLeft;

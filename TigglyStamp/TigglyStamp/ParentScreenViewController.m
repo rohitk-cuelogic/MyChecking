@@ -210,9 +210,9 @@ UIActivityIndicatorView *activityIndicator;
     
     int height;
     if([[TigglyStampUtils sharedInstance] isAppUnlockedForShapes])
-        height = 390;
+        height = 420;
     else
-        height = 450;
+        height = 480;
 
     if(settingView != nil){
         [settingView removeFromSuperview];

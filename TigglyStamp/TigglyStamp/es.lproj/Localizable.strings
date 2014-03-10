@@ -69,5 +69,7 @@
 
 "kIfYouEnjoy"="Ayúdanos a hacer Tiggly Stamp aún mejor!";
 "kRateIt"="Valore 5 estrellas";
-"kRemindMe"="Recuérdame carta";
+"kRemindMe"="recuérdame después";
 "kDismiss"="despedir";
+
+"kDateFormat"="Formato de la fecha";

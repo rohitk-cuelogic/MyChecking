@@ -81,4 +81,7 @@
 
 -(NSString *)getStringNameForShapeType:(ShapeType)sType ;
 
+-(void) setDateFromat:(NSString *) dateForm;
+-(NSString*)getDateFromat;
+
 @end

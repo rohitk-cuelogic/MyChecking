@@ -265,10 +265,24 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
         winterSceneObject = [[WinterScene alloc]init];
         backViewImage.image =[UIImage imageNamed:@"Tiggly_stamp_Winter_BG" ];
         curlViewImage.image = [UIImage imageNamed:@"Tiggly_stamp_Winter_BG" ];
+#ifdef GOOGLE_ANALYTICS_START
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker set:kGAIScreenName
+               value:@"Winter Scene"];
+        [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+#endif
+
     }else if (sceneType == kSceneFall){
         fallSceneObject = [[FallScene alloc]init];
         backViewImage.image =[UIImage imageNamed:@"fallView" ];
         curlViewImage.image = [UIImage imageNamed:@"fallView" ];
+#ifdef GOOGLE_ANALYTICS_START
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker set:kGAIScreenName
+               value:@"Fall Scene"];
+        [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+#endif
+
     }
     
     fruitObjectArray = [[NSMutableArray alloc]initWithCapacity:1];

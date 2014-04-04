@@ -102,6 +102,10 @@ int swipeTxtCnt;
     [mSwpeRecognizer setNumberOfTouchesRequired:2];
     [self.view addGestureRecognizer:mSwpeRecognizer];
     
+#ifdef GOOGLE_ANALYTICS_START
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Scene Selection Screen"];
+#endif
 }
 
 -(void) viewDidDisappear:(BOOL)animated{
@@ -168,7 +172,7 @@ int swipeTxtCnt;
         NSMutableDictionary *event =
         [[GAIDictionaryBuilder createEventWithCategory:@"Game Scene"
                                                 action:@"Scene selected"
-                                                 label:@"Winter scene"
+                                                 label:@"Fall scene"
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];
         [[GAI sharedInstance] dispatch];
@@ -207,7 +211,7 @@ int swipeTxtCnt;
         NSMutableDictionary *event =
         [[GAIDictionaryBuilder createEventWithCategory:@"Game Scene"
                                                 action:@"Scene selected"
-                                                 label:@"Fall scene"
+                                                 label:@"Winter scene"
                                                  value:nil] build];
         [[GAI sharedInstance].defaultTracker send:event];
         [[GAI sharedInstance] dispatch];

@@ -245,6 +245,7 @@ NSArray *allImageFiles;
 }
 - (void)viewDidAppear:(BOOL)animated {
     DebugLog(@"");
+    
     [self displayRateMeAlert];
     isThumbnailLongPressed = NO;
     allThumbnails = [[NSMutableArray alloc] initWithCapacity:1];
@@ -314,6 +315,13 @@ NSArray *allImageFiles;
             }
         }
     }
+    
+#ifdef GOOGLE_ANALYTICS_START
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Home Screen"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+#endif
 
 }
 

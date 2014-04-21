@@ -40,6 +40,7 @@ UILabel *lblShape;
 UILabel *lblGallery;
 UILabel *lblBuyShapes;
 UILabel *lblDate;
+UILabel *lblLangOneVal;
 
 @synthesize delegate;
 
@@ -84,6 +85,14 @@ UILabel *lblDate;
         [btnLang addTarget:self action:@selector(actionLanguage)forControlEvents:UIControlEventTouchUpInside];
         btnLang.frame = CGRectMake(485, 65, 50, 50);
         [self addSubview:btnLang];
+        
+        lblLangOneVal = [[UILabel alloc] initWithFrame:CGRectMake(535, 75, 345, 32)];
+        lblLangOneVal.textAlignment = UITextAlignmentLeft;
+        lblLangOneVal.backgroundColor = [UIColor clearColor];
+        lblLangOneVal.text =  [[TigglyStampUtils sharedInstance] getCurrentLanguage];
+        lblLangOneVal.textColor = [UIColor whiteColor];
+        lblLangOneVal.font = [UIFont fontWithName:FONT_ROCKWELL_BOLD size:28.0f];
+        [self addSubview:lblLangOneVal];
         
         lblMusic = [[UILabel alloc] initWithFrame:CGRectMake(80, 130, 345, 32)];
         lblMusic.textAlignment = UITextAlignmentRight;
@@ -359,7 +368,7 @@ UILabel *lblDate;
     }
     
    
-    langView = [[UIView alloc] initWithFrame:CGRectMake(330, 115, 275, 355)];
+    langView = [[UIView alloc] initWithFrame:CGRectMake(330, 50, 275, 355)];
     langView.layer.cornerRadius = 20.0f;
     langView.backgroundColor = [UIColor colorWithRed:240.0f/255.0f green:210.0f/255.0f blue:50.0f/255.0f alpha:1.0];
     [self addSubview:langView];
@@ -441,6 +450,8 @@ UILabel *lblDate;
 #else
 #endif
 
+
+    lblLangOneVal.text =[langArr objectAtIndex:indexPath.row];;
     
     
     [[TigglyStampUtils sharedInstance] setCurrentLanguage:[langArr objectAtIndex:indexPath.row]];
@@ -463,6 +474,7 @@ UILabel *lblDate;
     lblBuyShapes.text =  [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kBuyshapes"];
     lblDate.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kDateFormat"];
     
+    
     float fontSize = 0.0;
     if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
         fontSize = 28.0f;
@@ -477,6 +489,7 @@ UILabel *lblDate;
     lblGallery.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
     lblBuyShapes.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
     lblDate.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+    lblLangOneVal.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
 }
 
 @end

@@ -1284,7 +1284,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
             
             SLComposeViewController *mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
             
-            [mySLComposerSheet setInitialText:@"My kid is loving #TigglyStamp. Check their masterpiece @Tiggly: the first iPad toy for toddlers"];
+            [mySLComposerSheet setInitialText:@"My kid is loving #TigglyStamp. Check their masterpiece @Tiggly"];
             
             UIImage *originalImage = [UIImage imageWithContentsOfFile:currentImagePath];
             
@@ -1551,7 +1551,7 @@ BOOL boolIsPageCurled, boolIsTouchMoved;
                                        videoData, @"video.mov",
                                        @"video/quicktime", @"contentType",
                                        @"Tiggly Stamp", @"title",
-                                       @"My kid is loving #TigglyStamp. Check their masterpiece @Tiggly: the first iPad toy for toddlers", @"description",
+                                       @"My kid is loving #TigglyStamp. Check their masterpiece @Tiggly", @"description",
                                        nil];
         [facebook requestWithGraphPath:@"me/videos"
                              andParams:params

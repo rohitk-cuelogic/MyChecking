@@ -58,6 +58,7 @@ static NSString *const kAllowTracking = @"allowTracking";
         [[ServerController sharedInstance] sessionDetailsWithType:@"0" VirtualShape:@"yes"];
     }
 
+     [[TigglyStampUtils sharedInstance] updateAppLaunchCount];
     
     return YES;
 }
@@ -93,6 +94,8 @@ static NSString *const kAllowTracking = @"allowTracking";
     }else{
         [[ServerController sharedInstance] sessionDetailsWithType:@"0" VirtualShape:@"yes"];
     }
+    
+    [[TigglyStampUtils sharedInstance] updateAppLaunchCount];
 }
 
 

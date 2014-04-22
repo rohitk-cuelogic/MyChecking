@@ -864,7 +864,7 @@
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Portuguese"]){
             soundFile = @"shirt_prtgs";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
-            soundFile = @"Tiggly_Word_Shirt_01";
+            soundFile = @"shirt_ru";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Spanish"]){
             soundFile = @"shirt_sp";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"French"]){
@@ -1026,6 +1026,8 @@
             if(ranNo == 0){
                 soundFile = @"Tiggly_GenGreeting_Chicken_00";
             }            
+        }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Portuguese"]){
+            soundFile = @"chicken_prtgs";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"French"]){
             soundFile = @"chicken_fr";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"German"]){
@@ -1494,9 +1496,7 @@
 
         
         
-    }
-    
-    else if ([fallObject isEqualToString:@"blue_jeans"]) {
+    }else if ([fallObject isEqualToString:@"blue_jeans"]) {
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             int ranNo = arc4random()%5;
             

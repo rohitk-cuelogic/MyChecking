@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-
+typedef enum{
+    kOptionMenuNone,
+    kOptionMenuLanguage,
+    kOptionMenuDateFormat,
+}OptionMenuType;
 
 @class SettingsView;
 

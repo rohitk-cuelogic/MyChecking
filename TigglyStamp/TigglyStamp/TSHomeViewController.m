@@ -218,27 +218,11 @@ NSArray *allImageFiles;
 -(void)displayRateMeAlert
 {
     if(![[TigglyStampUtils sharedInstance] shouldStopShowingRateMePopUp]){
-        
-        iNewCnt = [[TigglyStampUtils sharedInstance] getRateMeCount];
-
-        
-        if(iNewCnt == 3){
-            
-            int iRandom = random() % 2;
-            if(iRandom == 1){
-                
-                //[self showRateMeAlert];
-                [self performSelectorOnMainThread:@selector(showRateMeAlert) withObject:Nil waitUntilDone:NO];
-                return;
-                
-            }
-        }
-        if(iNewCnt == 4){
-            
-            //[self showRateMeAlert];
+        int appCount = [[TigglyStampUtils sharedInstance] getAppLaunchCount];
+        if(appCount ==  1 || appCount == 4){
             [self performSelectorOnMainThread:@selector(showRateMeAlert) withObject:Nil waitUntilDone:NO];
+            [[TigglyStampUtils sharedInstance] setAppLaunchCount:5];
             return;
-            
         }
         
     }

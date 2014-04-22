@@ -742,4 +742,23 @@ static TigglyStampUtils *sharedInstance = nil;
     return dateformat;
 }
 
+-(int) getAppLaunchCount{
+    int val = [[[NSUserDefaults standardUserDefaults] objectForKey:@"AppLaunchCount"] intValue];
+    NSLog(@"Appcount Value: %d",val);
+    return val;
+}
+
+-(void) updateAppLaunchCount{
+    int val = [self getAppLaunchCount];
+    int i = val;
+    if(i >= 4){
+        i = 1;
+    }
+    [[NSUserDefaults standardUserDefaults] setObject: [NSNumber numberWithInt:++i] forKey:@"AppLaunchCount"];
+}
+
+-(void) setAppLaunchCount:(int) count{
+    [[NSUserDefaults standardUserDefaults] setObject: [NSNumber numberWithInt:count] forKey:@"AppLaunchCount"];
+}
+
 @end

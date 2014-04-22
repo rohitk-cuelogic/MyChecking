@@ -84,4 +84,7 @@
 -(void) setDateFromat:(NSString *) dateForm;
 -(NSString*)getDateFromat;
 
+-(int) getAppLaunchCount;
+-(void) updateAppLaunchCount;
+-(void) setAppLaunchCount:(int) count;
 @end

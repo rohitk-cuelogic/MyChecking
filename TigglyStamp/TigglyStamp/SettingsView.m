@@ -41,6 +41,9 @@ UILabel *lblGallery;
 UILabel *lblBuyShapes;
 UILabel *lblDate;
 UILabel *lblLangOneVal;
+UILabel *lblDateVal;
+
+OptionMenuType menuType;
 
 @synthesize delegate;
 
@@ -152,9 +155,14 @@ UILabel *lblLangOneVal;
         lblDate.textColor = [UIColor whiteColor];
         [self addSubview:lblDate];
         
-        UIButton *btnDateFormat = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btnDateFormat addTarget:self action:@selector(actionDateFormat)forControlEvents:UIControlEventTouchUpInside];
-        btnDateFormat.frame = CGRectMake(485, 350, 450, 32);
+        UIButton *btnDate = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnDate setBackgroundImage:[UIImage imageNamed:@"btnNext.png"] forState:UIControlStateNormal];
+        [btnDate setBackgroundImage:[UIImage imageNamed:@"btnNext.png"] forState:UIControlStateSelected];
+        [btnDate addTarget:self action:@selector(actionDateFormat)forControlEvents:UIControlEventTouchUpInside];
+        btnDate.frame = CGRectMake(485, 350, 50, 50);
+        [self addSubview:btnDate];
+        
+        lblDateVal = [[UILabel alloc] initWithFrame:CGRectMake(535, 355, 450, 32)];
         NSString *dateFormat = [[TigglyStampUtils sharedInstance] getDateFromat];
         if([dateFormat isEqualToString:DATE_FORM_MM_DD_YYYY]){
             dateFormat = @"mm/dd/yyyy";
@@ -163,11 +171,13 @@ UILabel *lblLangOneVal;
             dateFormat = @"dd/mm/yyyy";
             [[TigglyStampUtils sharedInstance] setDateFromat:DATE_FORM_DD_MM_YYYY];
         }
-        [btnDateFormat setTitle: dateFormat forState:UIControlStateNormal]; ;
-        btnDateFormat.titleLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
-        btnDateFormat.tag = TAG_BTN_DATE_FORMAT_PREVIEW;
-        btnDateFormat.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [self addSubview:btnDateFormat];
+        lblDateVal.textAlignment = UITextAlignmentLeft;
+        lblDateVal.backgroundColor = [UIColor clearColor];
+        lblDateVal.text =  dateFormat;
+        lblDateVal.textColor = [UIColor whiteColor];
+        lblDateVal.font = [UIFont fontWithName:FONT_ROCKWELL_BOLD size:28.0f];
+        [self addSubview:lblDateVal];
+
   
         if(![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
                 lblBuyShapes = [[UILabel alloc] initWithFrame:CGRectMake(80, 405, 345, 32)];
@@ -223,26 +233,10 @@ UILabel *lblLangOneVal;
 -(void)actionDateFormat{
     DebugLog(@"");
     
-    UIButton *btnDateFormat = (UIButton *) [self viewWithTag:TAG_BTN_DATE_FORMAT_PREVIEW];
-    if (btnDateFormat != nil) {
-        
-        NSString *dateForm = [[TigglyStampUtils sharedInstance] getDateFromat];
-        if([dateForm isEqualToString:DATE_FORM_MM_DD_YYYY]){
-            
-            dateForm = @"dd/mm/yyyy";
-            [[TigglyStampUtils sharedInstance] setDateFromat:DATE_FORM_DD_MM_YYYY];
-            
-        }else if([dateForm isEqualToString:DATE_FORM_DD_MM_YYYY]){
-            
-            dateForm = @"mm/dd/yyyy";
-            [[TigglyStampUtils sharedInstance] setDateFromat:DATE_FORM_MM_DD_YYYY];
-            
-        }
-        
-        [btnDateFormat setTitle:dateForm forState:UIControlStateNormal];
-        btnDateFormat.titleLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
-    }
+    menuType = kOptionMenuDateFormat;
     
+    [self launchLanguageView];
+   
     if (btnClose != nil){
         [btnClose setBackgroundImage:[UIImage imageNamed:@"green_check.png"] forState:UIControlStateNormal];
         [btnClose setBackgroundImage:[UIImage imageNamed:@"green_check.png"] forState:UIControlStateSelected];
@@ -266,7 +260,7 @@ UILabel *lblLangOneVal;
 
 -(void)actionLanguage {
     DebugLog(@"");
-    
+    menuType = kOptionMenuLanguage;
     if(isLanguageScreenDisplayed){
         [self removeLanguageView];
     }else{
@@ -359,21 +353,32 @@ UILabel *lblLangOneVal;
 -(void) launchLanguageView {
     DebugLog(@"");
      isLanguageScreenDisplayed = YES;
-    
-    langArr =[[NSArray alloc] initWithObjects:@"English",@"Portuguese",@"Russian",@"Spanish",@"French",@"German",@"Italian",@"Chinese", nil];
-    
+   
     if(langView != nil){
         [langView removeFromSuperview];
         langView = nil;
     }
     
-   
-    langView = [[UIView alloc] initWithFrame:CGRectMake(330, 50, 275, 355)];
+    
+    if(menuType == kOptionMenuLanguage){
+        langArr =[[NSArray alloc] initWithObjects:@"English",@"Portuguese",@"Russian",@"Spanish",@"French",@"German",@"Italian",@"Chinese", nil];
+        langView = [[UIView alloc] initWithFrame:CGRectMake(330, 50, 275, 355)];
+        tblView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 235, 315)];
+        langView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+    }else if(menuType == kOptionMenuDateFormat){
+        langArr =[[NSArray alloc] initWithObjects:@"dd/mm/yyyy",@"mm/dd/yyyy", nil];
+        langView = [[UIView alloc] initWithFrame:CGRectMake(330, 300, 275, 110)];
+        tblView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 235, 80)];
+        langView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+    }
+    
+  
+    
     langView.layer.cornerRadius = 20.0f;
     langView.backgroundColor = [UIColor colorWithRed:240.0f/255.0f green:210.0f/255.0f blue:50.0f/255.0f alpha:1.0];
     [self addSubview:langView];
     
-    tblView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 235, 315)];
+    
     tblView.separatorColor = [UIColor lightGrayColor];
     [tblView setScrollEnabled:NO];
     tblView.backgroundColor = [UIColor whiteColor];
@@ -439,28 +444,52 @@ UILabel *lblLangOneVal;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     DebugLog(@"");
-#ifdef GOOGLE_ANALYTICS_START
-    NSMutableDictionary *event =
-    [[GAIDictionaryBuilder createEventWithCategory:@"Language"
-                                            action:@"Language Selected"
-                                             label:[langArr objectAtIndex:indexPath.row]
-                                             value:nil] build];
-    [[GAI sharedInstance].defaultTracker send:event];
-    [[GAI sharedInstance] dispatch];
-#else
-#endif
+    
+    if(menuType == kOptionMenuLanguage){
+    
+        #ifdef GOOGLE_ANALYTICS_START
+            NSMutableDictionary *event =
+            [[GAIDictionaryBuilder createEventWithCategory:@"Language"
+                                                    action:@"Language Selected"
+                                                     label:[langArr objectAtIndex:indexPath.row]
+                                                     value:nil] build];
+            [[GAI sharedInstance].defaultTracker send:event];
+            [[GAI sharedInstance] dispatch];
+        #else
+        #endif
 
 
-    lblLangOneVal.text =[langArr objectAtIndex:indexPath.row];;
-    
-    
-    [[TigglyStampUtils sharedInstance] setCurrentLanguage:[langArr objectAtIndex:indexPath.row]];
+            lblLangOneVal.text =[langArr objectAtIndex:indexPath.row];;
+            
+            
+            [[TigglyStampUtils sharedInstance] setCurrentLanguage:[langArr objectAtIndex:indexPath.row]];
 
-    [self removeLanguageView];
+            [self removeLanguageView];
+            
+            [self resetAllLabels];
+            
+            [self.delegate settingViewOnLanguageSelected:self];
     
-    [self resetAllLabels];
-    
-    [self.delegate settingViewOnLanguageSelected:self];
+    }else if (menuType == kOptionMenuDateFormat){
+
+        NSString *dateForm =[langArr objectAtIndex:indexPath.row];
+        if([dateForm isEqualToString:@"dd/mm/yyyy"]){
+            [[TigglyStampUtils sharedInstance] setDateFromat:DATE_FORM_DD_MM_YYYY];
+        }else if([dateForm isEqualToString:@"mm/dd/yyyy"]){
+            [[TigglyStampUtils sharedInstance] setDateFromat:DATE_FORM_MM_DD_YYYY];
+        }
+        float fontSize = 0.0;
+        if([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]){
+            fontSize = 28.0f;
+        }else{
+            fontSize = 20.0f;
+        }
+        lblDateVal.text = dateForm;
+        lblDateVal.font = [UIFont fontWithName:APP_FONT_BOLD size:fontSize];
+        
+         [self removeLanguageView];
+    }
+
 }
 
 -(void) resetAllLabels{

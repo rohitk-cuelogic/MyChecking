@@ -1125,6 +1125,7 @@
 		C02FAADE19069BF2007938A6 /* snowman_prtgs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02FAA8A190698D0007938A6 /* snowman_prtgs.mp3 */; };
 		C02FAADF19069BF2007938A6 /* snowman_ru.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02FAA8B190698D0007938A6 /* snowman_ru.mp3 */; };
 		C02FAAE019069BF2007938A6 /* snowman_sp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C02FAA8C190698D0007938A6 /* snowman_sp.mp3 */; };
+		C0372F341908060500295497 /* Tiggly_Animal_Bee.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0372F331908060500295497 /* Tiggly_Animal_Bee.mp3 */; };
 		C037C232180BDA0000B2417C /* pinkRaincoat@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C037C22F180BDA0000B2417C /* pinkRaincoat@2x~ipad.png */; };
 		C037C233180BDA0000B2417C /* orangeRaincoat@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C037C230180BDA0000B2417C /* orangeRaincoat@2x~ipad.png */; };
 		C037C234180BDA0000B2417C /* yellowRaincoat@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C037C231180BDA0000B2417C /* yellowRaincoat@2x~ipad.png */; };
@@ -2875,6 +2876,7 @@
 		C02FAA8A190698D0007938A6 /* snowman_prtgs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snowman_prtgs.mp3; sourceTree = "<group>"; };
 		C02FAA8B190698D0007938A6 /* snowman_ru.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snowman_ru.mp3; sourceTree = "<group>"; };
 		C02FAA8C190698D0007938A6 /* snowman_sp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snowman_sp.mp3; sourceTree = "<group>"; };
+		C0372F331908060500295497 /* Tiggly_Animal_Bee.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Animal_Bee.mp3; sourceTree = "<group>"; };
 		C037C22F180BDA0000B2417C /* pinkRaincoat@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinkRaincoat@2x~ipad.png"; sourceTree = "<group>"; };
 		C037C230180BDA0000B2417C /* orangeRaincoat@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orangeRaincoat@2x~ipad.png"; sourceTree = "<group>"; };
 		C037C231180BDA0000B2417C /* yellowRaincoat@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellowRaincoat@2x~ipad.png"; sourceTree = "<group>"; };
@@ -5100,6 +5102,7 @@
 		C08E9E3D185F3BA000199DE7 /* bee */ = {
 			isa = PBXGroup;
 			children = (
+				C0372F331908060500295497 /* Tiggly_Animal_Bee.mp3 */,
 				C08E9E3E185F3BA000199DE7 /* drop */,
 				C08E9E42185F3BA000199DE7 /* greetings */,
 			);
@@ -7399,6 +7402,7 @@
 				C0760FA417DA031200D5E93D /* Tiggly_SFX_DragNDrop_DRAG_04.mp3 in Resources */,
 				C0258D9917E18B4F0072FA52 /* Tiggly_SFX_BELL.mp3 in Resources */,
 				C0258D9A17E18B4F0072FA52 /* Tiggly_SFX_TRAIN_01.mp3 in Resources */,
+				C0372F341908060500295497 /* Tiggly_Animal_Bee.mp3 in Resources */,
 				C021F76A17E8279A00EBD6B6 /* 3_2_1_GO_ita.mp3 in Resources */,
 				C08E9F50185F3BA000199DE7 /* Tiggly_Word_Yellowraincoat_Var2_02.mp3 in Resources */,
 				C021F76B17E8279A00EBD6B6 /* Apple_ita.mp3 in Resources */,

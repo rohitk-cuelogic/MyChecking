@@ -2127,9 +2127,9 @@
             int ranNo = arc4random()%2;
             
             if(ranNo == 0){
-                soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+                soundFile = @"Tiggly_Animal_Bee";
             }else if (ranNo == 1) {
-                soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+                soundFile = @"Tiggly_Animal_Bee";
             }
         }
     }else if([fallObject isEqualToString:@"broom"]) {

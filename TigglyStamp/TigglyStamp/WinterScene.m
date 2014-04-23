@@ -2271,55 +2271,71 @@
         }
         
     }else if([winterObject isEqualToString:@"penguin_blue"] ) {
-        int ranNo =arc4random()%22;
-        
-        if(ranNo == 0){
-            soundFile = @"Tiggly_GenGreeting_Penguin_03";
-        }else if (ranNo == 1) {
-            soundFile = @"Tiggly_GenGreeting_Penguin_04";
-        }else if (ranNo == 2) {
-            soundFile = @"Tiggly_GenGreeting_Penguin_05";
-        }else if (ranNo == 3) {
-            soundFile = @"Tiggly_GenGreeting_Penguin_07";
-        }else if(ranNo == 4){
-            soundFile = @"Tiggly_GenGreeting_Penguin_08";
-        }else if (ranNo == 5) {
-            soundFile = @"Tiggly_Animal_Penguin_CanIPleaseHaveACupcake_01";
-        }else if (ranNo == 6) {
-            soundFile = @"Tiggly_Animal_Penguin_DoYouKnowAnyStoriesAboutPenguinsTheyreMyFavorite_01";
-        }else if (ranNo == 7) {
-            soundFile = @"Tiggly_Animal_Penguin_GiveMeACandyPlease_01";
-        }else if(ranNo == 8){
-            soundFile = @"Tiggly_Animal_Penguin_HuhTheOrnamentsNeedToGoOnTheTree_01";
-        }else if (ranNo == 9) {
-            soundFile = @"Tiggly_Animal_Penguin_ILoveItWhenItSnows_01";
-        }else if (ranNo == 10) {
-            soundFile = @"Tiggly_Animal_Penguin_ILoveTheSnow_01";
-        }else if (ranNo == 11) {
-            soundFile = @"Tiggly_Animal_Penguin_ILoveToSkateOnTheIce_01";
-        }else if(ranNo == 12){
-            soundFile = @"Tiggly_Animal_Penguin_ImMuchObligedToYou_01";
-        }else if (ranNo == 13) {
-            soundFile = @"Tiggly_Animal_Penguin_IWantACupOfHotChocolate_01";
-        }else if (ranNo == 14) {
-            soundFile = @"Tiggly_Animal_Penguin_IWantaCupOfHotCocoa_01";
-        }else if (ranNo == 15) {
-            soundFile = @"Tiggly_Animal_Penguin_IWantAHat_01";
-        }else if(ranNo == 16){
-            soundFile = @"Tiggly_Animal_Penguin_PrettyPleaseGiveMeACookie_01";
-        }else if (ranNo == 17) {
-            soundFile = @"Tiggly_Animal_Penguin_TellMeAStoryAboutMe_01";
-        }else if (ranNo == 18) {
-            soundFile = @"Tiggly_Animal_Penguin_TellMeAStoryAboutMe_02";
-        }else if (ranNo == 19) {
-            soundFile = @"Tiggly_Animal_Penguin_YohoooWinterTime_01";
-        }else if(ranNo == 20){
-            soundFile = @"Tiggly_Animal_Penguin_YouAreTheAbsoluteBest_01";
-        }else if(ranNo == 21){
-            soundFile = @"Tiggly_Animal_Penguin_YourePrettyAwesome_01";
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+                int ranNo =arc4random()%22;
+                
+                if(ranNo == 0){
+                    soundFile = @"Tiggly_GenGreeting_Penguin_03";
+                }else if (ranNo == 1) {
+                    soundFile = @"Tiggly_GenGreeting_Penguin_04";
+                }else if (ranNo == 2) {
+                    soundFile = @"Tiggly_GenGreeting_Penguin_05";
+                }else if (ranNo == 3) {
+                    soundFile = @"Tiggly_GenGreeting_Penguin_07";
+                }else if(ranNo == 4){
+                    soundFile = @"Tiggly_GenGreeting_Penguin_08";
+                }else if (ranNo == 5) {
+                    soundFile = @"Tiggly_Animal_Penguin_CanIPleaseHaveACupcake_01";
+                }else if (ranNo == 6) {
+                    soundFile = @"Tiggly_Animal_Penguin_DoYouKnowAnyStoriesAboutPenguinsTheyreMyFavorite_01";
+                }else if (ranNo == 7) {
+                    soundFile = @"Tiggly_Animal_Penguin_GiveMeACandyPlease_01";
+                }else if(ranNo == 8){
+                    soundFile = @"Tiggly_Animal_Penguin_HuhTheOrnamentsNeedToGoOnTheTree_01";
+                }else if (ranNo == 9) {
+                    soundFile = @"Tiggly_Animal_Penguin_ILoveItWhenItSnows_01";
+                }else if (ranNo == 10) {
+                    soundFile = @"Tiggly_Animal_Penguin_ILoveTheSnow_01";
+                }else if (ranNo == 11) {
+                    soundFile = @"Tiggly_Animal_Penguin_ILoveToSkateOnTheIce_01";
+                }else if(ranNo == 12){
+                    soundFile = @"Tiggly_Animal_Penguin_ImMuchObligedToYou_01";
+                }else if (ranNo == 13) {
+                    soundFile = @"Tiggly_Animal_Penguin_IWantACupOfHotChocolate_01";
+                }else if (ranNo == 14) {
+                    soundFile = @"Tiggly_Animal_Penguin_IWantaCupOfHotCocoa_01";
+                }else if (ranNo == 15) {
+                    soundFile = @"Tiggly_Animal_Penguin_IWantAHat_01";
+                }else if(ranNo == 16){
+                    soundFile = @"Tiggly_Animal_Penguin_PrettyPleaseGiveMeACookie_01";
+                }else if (ranNo == 17) {
+                    soundFile = @"Tiggly_Animal_Penguin_TellMeAStoryAboutMe_01";
+                }else if (ranNo == 18) {
+                    soundFile = @"Tiggly_Animal_Penguin_TellMeAStoryAboutMe_02";
+                }else if (ranNo == 19) {
+                    soundFile = @"Tiggly_Animal_Penguin_YohoooWinterTime_01";
+                }else if(ranNo == 20){
+                    soundFile = @"Tiggly_Animal_Penguin_YouAreTheAbsoluteBest_01";
+                }else if(ranNo == 21){
+                    soundFile = @"Tiggly_Animal_Penguin_YourePrettyAwesome_01";
+                }
+        }else{
+                int ranNo =arc4random()%5;
+                if(ranNo == 0){
+                    soundFile = @"Tiggly_GenGreeting_Penguin_03";
+                }else if (ranNo == 1) {
+                    soundFile = @"Tiggly_GenGreeting_Penguin_04";
+                }else if (ranNo == 2) {
+                    soundFile = @"Tiggly_GenGreeting_Penguin_05";
+                }else if (ranNo == 3) {
+                    soundFile = @"Tiggly_GenGreeting_Penguin_07";
+                }else if(ranNo == 4){
+                    soundFile = @"Tiggly_GenGreeting_Penguin_08";
+                }
         }
         
     }else if([winterObject isEqualToString:@"penguin_skate"] ) {
+      if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
         int ranNo =arc4random()%22;
         
         if(ranNo == 0){
@@ -2367,140 +2383,198 @@
         }else if(ranNo == 21){
             soundFile = @"Tiggly_Animal_Penguin_YourePrettyAwesome_01";
         }
+      }else{
+          int ranNo =arc4random()%5;
+          if(ranNo == 0){
+              soundFile = @"Tiggly_GenGreeting_Penguin_03";
+          }else if (ranNo == 1) {
+              soundFile = @"Tiggly_GenGreeting_Penguin_04";
+          }else if (ranNo == 2) {
+              soundFile = @"Tiggly_GenGreeting_Penguin_05";
+          }else if (ranNo == 3) {
+              soundFile = @"Tiggly_GenGreeting_Penguin_07";
+          }else if(ranNo == 4){
+              soundFile = @"Tiggly_GenGreeting_Penguin_08";
+          }
+      }
         
     }else if([winterObject isEqualToString:@"penguin"] ) {
-        int ranNo =arc4random()%22;
-        
-        if(ranNo == 0){
-            soundFile = @"Tiggly_GenGreeting_Penguin_03";
-        }else if (ranNo == 1) {
-            soundFile = @"Tiggly_GenGreeting_Penguin_04";
-        }else if (ranNo == 2) {
-            soundFile = @"Tiggly_GenGreeting_Penguin_05";
-        }else if (ranNo == 3) {
-            soundFile = @"Tiggly_GenGreeting_Penguin_07";
-        }else if(ranNo == 4){
-            soundFile = @"Tiggly_GenGreeting_Penguin_08";
-        }else if (ranNo == 5) {
-            soundFile = @"Tiggly_Animal_Penguin_CanIPleaseHaveACupcake_01";
-        }else if (ranNo == 6) {
-            soundFile = @"Tiggly_Animal_Penguin_DoYouKnowAnyStoriesAboutPenguinsTheyreMyFavorite_01";
-        }else if (ranNo == 7) {
-            soundFile = @"Tiggly_Animal_Penguin_GiveMeACandyPlease_01";
-        }else if(ranNo == 8){
-            soundFile = @"Tiggly_Animal_Penguin_HuhTheOrnamentsNeedToGoOnTheTree_01";
-        }else if (ranNo == 9) {
-            soundFile = @"Tiggly_Animal_Penguin_ILoveItWhenItSnows_01";
-        }else if (ranNo == 10) {
-            soundFile = @"Tiggly_Animal_Penguin_ILoveTheSnow_01";
-        }else if (ranNo == 11) {
-            soundFile = @"Tiggly_Animal_Penguin_ILoveToSkateOnTheIce_01";
-        }else if(ranNo == 12){
-            soundFile = @"Tiggly_Animal_Penguin_ImMuchObligedToYou_01";
-        }else if (ranNo == 13) {
-            soundFile = @"Tiggly_Animal_Penguin_IWantACupOfHotChocolate_01";
-        }else if (ranNo == 14) {
-            soundFile = @"Tiggly_Animal_Penguin_IWantaCupOfHotCocoa_01";
-        }else if (ranNo == 15) {
-            soundFile = @"Tiggly_Animal_Penguin_IWantAHat_01";
-        }else if(ranNo == 16){
-            soundFile = @"Tiggly_Animal_Penguin_PrettyPleaseGiveMeACookie_01";
-        }else if (ranNo == 17) {
-            soundFile = @"Tiggly_Animal_Penguin_TellMeAStoryAboutMe_01";
-        }else if (ranNo == 18) {
-            soundFile = @"Tiggly_Animal_Penguin_TellMeAStoryAboutMe_02";
-        }else if (ranNo == 19) {
-            soundFile = @"Tiggly_Animal_Penguin_YohoooWinterTime_01";
-        }else if(ranNo == 20){
-            soundFile = @"Tiggly_Animal_Penguin_YouAreTheAbsoluteBest_01";
-        }else if(ranNo == 21){
-            soundFile = @"Tiggly_Animal_Penguin_YourePrettyAwesome_01";
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+            int ranNo =arc4random()%22;
+            
+            if(ranNo == 0){
+                soundFile = @"Tiggly_GenGreeting_Penguin_03";
+            }else if (ranNo == 1) {
+                soundFile = @"Tiggly_GenGreeting_Penguin_04";
+            }else if (ranNo == 2) {
+                soundFile = @"Tiggly_GenGreeting_Penguin_05";
+            }else if (ranNo == 3) {
+                soundFile = @"Tiggly_GenGreeting_Penguin_07";
+            }else if(ranNo == 4){
+                soundFile = @"Tiggly_GenGreeting_Penguin_08";
+            }else if (ranNo == 5) {
+                soundFile = @"Tiggly_Animal_Penguin_CanIPleaseHaveACupcake_01";
+            }else if (ranNo == 6) {
+                soundFile = @"Tiggly_Animal_Penguin_DoYouKnowAnyStoriesAboutPenguinsTheyreMyFavorite_01";
+            }else if (ranNo == 7) {
+                soundFile = @"Tiggly_Animal_Penguin_GiveMeACandyPlease_01";
+            }else if(ranNo == 8){
+                soundFile = @"Tiggly_Animal_Penguin_HuhTheOrnamentsNeedToGoOnTheTree_01";
+            }else if (ranNo == 9) {
+                soundFile = @"Tiggly_Animal_Penguin_ILoveItWhenItSnows_01";
+            }else if (ranNo == 10) {
+                soundFile = @"Tiggly_Animal_Penguin_ILoveTheSnow_01";
+            }else if (ranNo == 11) {
+                soundFile = @"Tiggly_Animal_Penguin_ILoveToSkateOnTheIce_01";
+            }else if(ranNo == 12){
+                soundFile = @"Tiggly_Animal_Penguin_ImMuchObligedToYou_01";
+            }else if (ranNo == 13) {
+                soundFile = @"Tiggly_Animal_Penguin_IWantACupOfHotChocolate_01";
+            }else if (ranNo == 14) {
+                soundFile = @"Tiggly_Animal_Penguin_IWantaCupOfHotCocoa_01";
+            }else if (ranNo == 15) {
+                soundFile = @"Tiggly_Animal_Penguin_IWantAHat_01";
+            }else if(ranNo == 16){
+                soundFile = @"Tiggly_Animal_Penguin_PrettyPleaseGiveMeACookie_01";
+            }else if (ranNo == 17) {
+                soundFile = @"Tiggly_Animal_Penguin_TellMeAStoryAboutMe_01";
+            }else if (ranNo == 18) {
+                soundFile = @"Tiggly_Animal_Penguin_TellMeAStoryAboutMe_02";
+            }else if (ranNo == 19) {
+                soundFile = @"Tiggly_Animal_Penguin_YohoooWinterTime_01";
+            }else if(ranNo == 20){
+                soundFile = @"Tiggly_Animal_Penguin_YouAreTheAbsoluteBest_01";
+            }else if(ranNo == 21){
+                soundFile = @"Tiggly_Animal_Penguin_YourePrettyAwesome_01";
+            }
+        }else{
+            int ranNo =arc4random()%5;
+            if(ranNo == 0){
+                soundFile = @"Tiggly_GenGreeting_Penguin_03";
+            }else if (ranNo == 1) {
+                soundFile = @"Tiggly_GenGreeting_Penguin_04";
+            }else if (ranNo == 2) {
+                soundFile = @"Tiggly_GenGreeting_Penguin_05";
+            }else if (ranNo == 3) {
+                soundFile = @"Tiggly_GenGreeting_Penguin_07";
+            }else if(ranNo == 4){
+                soundFile = @"Tiggly_GenGreeting_Penguin_08";
+            }
         }
-        
     }else if([winterObject isEqualToString:@"snowglobe"] ) {
-        
-        int ranNo =arc4random()%2;
-        
-        if(ranNo == 0){
-            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
-        }else if (ranNo == 1) {
-            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
-        }
+         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+            int ranNo =arc4random()%2;
+            
+            if(ranNo == 0){
+                soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+            }else if (ranNo == 1) {
+                soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+            }
+         }else{
+             int ranNo =arc4random()%2;
+             
+             if(ranNo == 0){
+                 soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+             }else if (ranNo == 1) {
+                 soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+             }
+         }
         
     }else if([winterObject isEqualToString:@"snowman"] ) {
-        
-        int ranNo =arc4random()%11;
-        
-        if(ranNo == 0){
-            soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
-        }else if (ranNo == 1) {
-            soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
-        }else if(ranNo == 2){
-            soundFile = @"Tiggly_Animal_Snowman_HahLookAtMyhat_01";
-        }else if (ranNo == 3) {
-            soundFile = @"Tiggly_Animal_Snowman_Hi_01";
-        }else if(ranNo == 4){
-            soundFile = @"Tiggly_Animal_Snowman_ILoveTheWinterTimeThatsWhenIExist_01";
-        }else if (ranNo == 5) {
-            soundFile = @"Tiggly_Animal_Snowman_IsThatACarrotAsMyNose_01";
-        }else if(ranNo == 6){
-            soundFile = @"Tiggly_Animal_Snowman_NowThisIsThetimeOfYearImTalkingAboutWinterTime_01";
-        }else if (ranNo == 7) {
-            soundFile = @"Tiggly_Animal_Snowman_OhILoveTheSnow_01";
-        }else if(ranNo == 8){
-            soundFile = @"Tiggly_Animal_Snowman_OhILoveTheSnow_02";
-        }else if (ranNo == 9) {
-            soundFile = @"Tiggly_Animal_Snowman_YouveGottaMakeItSnow_01";
-        }else if (ranNo == 10) {
-            soundFile = @"Tiggly_Animal_Snowman_YouveGottaMakeItSnow_02";
+        if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+            int ranNo =arc4random()%11;
+            
+            if(ranNo == 0){
+                soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+            }else if (ranNo == 1) {
+                soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+            }else if(ranNo == 2){
+                soundFile = @"Tiggly_Animal_Snowman_HahLookAtMyhat_01";
+            }else if (ranNo == 3) {
+                soundFile = @"Tiggly_Animal_Snowman_Hi_01";
+            }else if(ranNo == 4){
+                soundFile = @"Tiggly_Animal_Snowman_ILoveTheWinterTimeThatsWhenIExist_01";
+            }else if (ranNo == 5) {
+                soundFile = @"Tiggly_Animal_Snowman_IsThatACarrotAsMyNose_01";
+            }else if(ranNo == 6){
+                soundFile = @"Tiggly_Animal_Snowman_NowThisIsThetimeOfYearImTalkingAboutWinterTime_01";
+            }else if (ranNo == 7) {
+                soundFile = @"Tiggly_Animal_Snowman_OhILoveTheSnow_01";
+            }else if(ranNo == 8){
+                soundFile = @"Tiggly_Animal_Snowman_OhILoveTheSnow_02";
+            }else if (ranNo == 9) {
+                soundFile = @"Tiggly_Animal_Snowman_YouveGottaMakeItSnow_01";
+            }else if (ranNo == 10) {
+                soundFile = @"Tiggly_Animal_Snowman_YouveGottaMakeItSnow_02";
+            }
+        }else{
+            int ranNo =arc4random()%2;
+            
+            if(ranNo == 0){
+                soundFile = @"Tiggly_SFX_DragNDrop_DROP_02";
+            }else if (ranNo == 1) {
+                soundFile = @"Tiggly_SFX_DragNDrop_DROP_03";
+            }
         }
-        
         
     }else if([winterObject isEqualToString:@"chipmunk"] ) {
-        int ranNo =arc4random()%20;
-        
-        if(ranNo == 0){
-            soundFile = @"Tiggly_GenGreeting_Chipmunk_03";
-        }else if (ranNo == 1) {
-            soundFile = @"Tiggly_GenGreeting_Chipmunk_07";
-        }else if (ranNo == 2) {
-            soundFile = @"Tiggly_GenGreeting_Chipmunk_08";
-        }else if (ranNo == 3) {
-            soundFile = @"Tiggly_GenGreeting_Chipmunk_09";
-        }else if(ranNo == 4){
-            soundFile = @"Tiggly_Animal_Chipmunk_AmIFunnyOrWhat_02";
-        }else if (ranNo == 5) {
-            soundFile = @"Tiggly_Animal_Chipmunk_GiveMeACookie_01";
-        }else if (ranNo == 6) {
-            soundFile = @"Tiggly_Animal_Chipmunk_GiveMeACupOfHotChocolate_01";
-        }else if (ranNo == 7) {
-            soundFile = @"Tiggly_Animal_Chipmunk_GiveMeAnShovel_01";
-        }else if(ranNo == 8){
-            soundFile = @"Tiggly_Animal_Chipmunk_HeyDontILookMarvelous_01";
-        }else if (ranNo == 9) {
-            soundFile = @"Tiggly_Animal_Chipmunk_HohIThinkImFunny_01";
-        }else if (ranNo == 10) {
-            soundFile = @"Tiggly_Animal_Chipmunk_INeedACoat_02";
-        }else if (ranNo == 11) {
-            soundFile = @"Tiggly_Animal_Chipmunk_INeedACoat_03";
-        }else if(ranNo == 12){
-            soundFile = @"Tiggly_Animal_Chipmunk_INeedAHat_01";
-        }else if (ranNo == 13) {
-            soundFile = @"Tiggly_Animal_Chipmunk_INeedASweater_01";
-        }else if (ranNo == 14) {
-            soundFile = @"Tiggly_Animal_Chipmunk_INeedSomePants_01";
-        }else if (ranNo == 15) {
-            soundFile = @"Tiggly_Animal_Chipmunk_OkHowDoILook_02";
-        }else if(ranNo == 16){
-            soundFile = @"Tiggly_Animal_Chipmunk_TheyCallMeSillyTheChipmunk_01";
-        }else if (ranNo == 17) {
-            soundFile = @"Tiggly_Animal_Chipmunk_TheyCallMeSillyTheChipmunk_03";
-        }else if (ranNo == 18) {
-            soundFile = @"Tiggly_Animal_Chipmunk_YouCanCallMeAnythingYouWant_01";
-        }else if (ranNo == 19) {
-            soundFile = @"Tiggly_Animal_Chipmunk_YouGottaTellAStoryAboutMe_01";
-        }
-        
+       if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
+            int ranNo =arc4random()%20;
+            
+            if(ranNo == 0){
+                soundFile = @"Tiggly_GenGreeting_Chipmunk_03";
+            }else if (ranNo == 1) {
+                soundFile = @"Tiggly_GenGreeting_Chipmunk_07";
+            }else if (ranNo == 2) {
+                soundFile = @"Tiggly_GenGreeting_Chipmunk_08";
+            }else if (ranNo == 3) {
+                soundFile = @"Tiggly_GenGreeting_Chipmunk_09";
+            }else if(ranNo == 4){
+                soundFile = @"Tiggly_Animal_Chipmunk_AmIFunnyOrWhat_02";
+            }else if (ranNo == 5) {
+                soundFile = @"Tiggly_Animal_Chipmunk_GiveMeACookie_01";
+            }else if (ranNo == 6) {
+                soundFile = @"Tiggly_Animal_Chipmunk_GiveMeACupOfHotChocolate_01";
+            }else if (ranNo == 7) {
+                soundFile = @"Tiggly_Animal_Chipmunk_GiveMeAnShovel_01";
+            }else if(ranNo == 8){
+                soundFile = @"Tiggly_Animal_Chipmunk_HeyDontILookMarvelous_01";
+            }else if (ranNo == 9) {
+                soundFile = @"Tiggly_Animal_Chipmunk_HohIThinkImFunny_01";
+            }else if (ranNo == 10) {
+                soundFile = @"Tiggly_Animal_Chipmunk_INeedACoat_02";
+            }else if (ranNo == 11) {
+                soundFile = @"Tiggly_Animal_Chipmunk_INeedACoat_03";
+            }else if(ranNo == 12){
+                soundFile = @"Tiggly_Animal_Chipmunk_INeedAHat_01";
+            }else if (ranNo == 13) {
+                soundFile = @"Tiggly_Animal_Chipmunk_INeedASweater_01";
+            }else if (ranNo == 14) {
+                soundFile = @"Tiggly_Animal_Chipmunk_INeedSomePants_01";
+            }else if (ranNo == 15) {
+                soundFile = @"Tiggly_Animal_Chipmunk_OkHowDoILook_02";
+            }else if(ranNo == 16){
+                soundFile = @"Tiggly_Animal_Chipmunk_TheyCallMeSillyTheChipmunk_01";
+            }else if (ranNo == 17) {
+                soundFile = @"Tiggly_Animal_Chipmunk_TheyCallMeSillyTheChipmunk_03";
+            }else if (ranNo == 18) {
+                soundFile = @"Tiggly_Animal_Chipmunk_YouCanCallMeAnythingYouWant_01";
+            }else if (ranNo == 19) {
+                soundFile = @"Tiggly_Animal_Chipmunk_YouGottaTellAStoryAboutMe_01";
+            }
+       }else{
+           int ranNo =arc4random()%4;
+           
+           if(ranNo == 0){
+               soundFile = @"Tiggly_GenGreeting_Chipmunk_03";
+           }else if (ranNo == 1) {
+               soundFile = @"Tiggly_GenGreeting_Chipmunk_07";
+           }else if (ranNo == 2) {
+               soundFile = @"Tiggly_GenGreeting_Chipmunk_08";
+           }else if (ranNo == 3) {
+               soundFile = @"Tiggly_GenGreeting_Chipmunk_09";
+           }
+       }
     }else if([winterObject isEqualToString:@"fox"] ) {
         if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English"]) {
             int ranNo =arc4random()%21;

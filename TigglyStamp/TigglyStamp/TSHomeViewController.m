@@ -803,8 +803,20 @@ NSArray *allImageFiles;
 
 -(IBAction)actionTogglePlayWithShape:(id)sender{
     DebugLog(@"");
-    readyToPlayWithShapeOpt = YES;
-    [self showConfirmationViewWithLangSelOption];
+//    readyToPlayWithShapeOpt = YES;
+//    [self showConfirmationViewWithLangSelOption];
+    
+    if ([switchPlayWithShape isOn] == YES) {
+        if (![[TigglyStampUtils sharedInstance] isAppUnlockedForShapes]) {
+            UnlockScreenViewController *unlockScreen = [[UnlockScreenViewController alloc] initWithNibName:@"UnlockScreenViewController" bundle:nil entryFrom:kScreenEntryFromHomeView withHomeView:self];
+            [self.navigationController pushViewController:unlockScreen animated:NO];
+            [self nullifyAllData];
+        }else{
+            [[TigglyStampUtils sharedInstance] setShapeMode:YES];
+        }
+    }else{
+        [[TigglyStampUtils sharedInstance] setShapeMode:NO];
+    }
 
 }
 

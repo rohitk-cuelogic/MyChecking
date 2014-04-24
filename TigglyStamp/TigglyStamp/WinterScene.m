@@ -1731,21 +1731,21 @@
             }
             
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"English UK"]){
-            soundFile = @"";
+            soundFile = @"rain_coat_breng";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Portuguese"]){
-            soundFile = @"";
+            soundFile = @"rain coat_prtgs";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Russian"]){
-            soundFile = @"";
+            soundFile = @"rain coat_ru";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Spanish"]){
-            soundFile = @"";
+            soundFile = @"rain coat_sp";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"French"]){
-            soundFile = @"";
+            soundFile = @"raincoat_fr";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"German"]){
-            soundFile = @"";
+            soundFile = @"rain_coat_gr";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Italian"]){
-            soundFile = @"";
+            soundFile = @"rain_coat_ita";
         }else if ([[[TigglyStampUtils sharedInstance] getCurrentLanguage] isEqualToString:@"Chinese"]){
-            soundFile = @"";
+            soundFile = @"raincoat_ch";
         }
     
     }

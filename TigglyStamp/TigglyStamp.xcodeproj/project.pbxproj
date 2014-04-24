@@ -680,6 +680,7 @@
 		C02313201823DA460094F5EC /* Tiggly_Word_Bluehat_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C023131D1823DA460094F5EC /* Tiggly_Word_Bluehat_01.mp3 */; };
 		C0258D9917E18B4F0072FA52 /* Tiggly_SFX_BELL.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0258D9717E18B4F0072FA52 /* Tiggly_SFX_BELL.mp3 */; };
 		C0258D9A17E18B4F0072FA52 /* Tiggly_SFX_TRAIN_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0258D9817E18B4F0072FA52 /* Tiggly_SFX_TRAIN_01.mp3 */; };
+		C0279B561908E17200667AC6 /* Tiggly_GenGreeting_Duck_24.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0279B551908E17200667AC6 /* Tiggly_GenGreeting_Duck_24.mp3 */; };
 		C027AE5217EAD6FB0066632E /* btnLock.png in Resources */ = {isa = PBXBuildFile; fileRef = C027AE5017EAD6FB0066632E /* btnLock.png */; };
 		C027AE5317EAD6FB0066632E /* btnLock@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C027AE5117EAD6FB0066632E /* btnLock@2x~ipad.png */; };
 		C027AE5717EAD8920066632E /* UnlockScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C027AE5517EAD8920066632E /* UnlockScreenViewController.m */; };
@@ -2557,6 +2558,7 @@
 		C023131D1823DA460094F5EC /* Tiggly_Word_Bluehat_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_Word_Bluehat_01.mp3; sourceTree = "<group>"; };
 		C0258D9717E18B4F0072FA52 /* Tiggly_SFX_BELL.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_BELL.mp3; sourceTree = "<group>"; };
 		C0258D9817E18B4F0072FA52 /* Tiggly_SFX_TRAIN_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_SFX_TRAIN_01.mp3; sourceTree = "<group>"; };
+		C0279B551908E17200667AC6 /* Tiggly_GenGreeting_Duck_24.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tiggly_GenGreeting_Duck_24.mp3; sourceTree = "<group>"; };
 		C027AE5017EAD6FB0066632E /* btnLock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnLock.png; sourceTree = "<group>"; };
 		C027AE5117EAD6FB0066632E /* btnLock@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnLock@2x~ipad.png"; sourceTree = "<group>"; };
 		C027AE5417EAD8920066632E /* UnlockScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnlockScreenViewController.h; sourceTree = "<group>"; };
@@ -4639,6 +4641,7 @@
 				C02F437617D60CFC007AEA39 /* Tiggly_GenGreeting_Duck_01.mp3 */,
 				C02F437717D60CFC007AEA39 /* Tiggly_GenGreeting_Duck_02.mp3 */,
 				C02F437817D60CFC007AEA39 /* Tiggly_GenGreeting_Duck_03.mp3 */,
+				C0279B551908E17200667AC6 /* Tiggly_GenGreeting_Duck_24.mp3 */,
 				C02F437917D60CFC007AEA39 /* Tiggly_GenGreeting_Fly_01.mp3 */,
 				C02F437A17D60CFC007AEA39 /* Tiggly_GenGreeting_Fly_02.mp3 */,
 				C02F437B17D60CFC007AEA39 /* Tiggly_GenGreeting_Fly_03.mp3 */,
@@ -7740,6 +7743,7 @@
 				C021F89417E88E5000EBD6B6 /* red_bg@2x~ipad.png in Resources */,
 				C021F89517E88E5000EBD6B6 /* play_bg@2x~ipad.png in Resources */,
 				C021F8A817E8928600EBD6B6 /* shape_3.png in Resources */,
+				C0279B561908E17200667AC6 /* Tiggly_GenGreeting_Duck_24.mp3 in Resources */,
 				C021F8A917E8928600EBD6B6 /* star_1.png in Resources */,
 				C021F8AA17E8928600EBD6B6 /* triangle_1.png in Resources */,
 				C021F8AB17E8928600EBD6B6 /* square_1.png in Resources */,

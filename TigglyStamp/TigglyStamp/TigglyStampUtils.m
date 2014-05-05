@@ -744,7 +744,7 @@ static TigglyStampUtils *sharedInstance = nil;
 
 -(int) getAppLaunchCount{
     int val = [[[NSUserDefaults standardUserDefaults] objectForKey:@"AppLaunchCount"] intValue];
-    NSLog(@"Appcount Value: %d",val);
+    //NSLog(@"Appcount Value: %d",val);
     return val;
 }
 

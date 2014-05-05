@@ -1545,6 +1545,15 @@
 		C0A82D5017EC935B00F85793 /* pic_3.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A82D4617EC935B00F85793 /* pic_3.png */; };
 		C0A82D5117EC935B00F85793 /* spatialthinking.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A82D4717EC935B00F85793 /* spatialthinking.png */; };
 		C0A82D5217EC935B00F85793 /* TigglyShapes.png in Resources */ = {isa = PBXBuildFile; fileRef = C0A82D4817EC935B00F85793 /* TigglyShapes.png */; };
+		C0B6EE8A19175DF4004A6AA4 /* Chinese_Flag.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B6EE8219175DF4004A6AA4 /* Chinese_Flag.png */; };
+		C0B6EE8B19175DF4004A6AA4 /* English_Flag.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B6EE8319175DF4004A6AA4 /* English_Flag.png */; };
+		C0B6EE8C19175DF4004A6AA4 /* French_Flag.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B6EE8419175DF4004A6AA4 /* French_Flag.png */; };
+		C0B6EE8D19175DF4004A6AA4 /* German_Flag.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B6EE8519175DF4004A6AA4 /* German_Flag.png */; };
+		C0B6EE8E19175DF4004A6AA4 /* Italian_Flag.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B6EE8619175DF4004A6AA4 /* Italian_Flag.png */; };
+		C0B6EE8F19175DF4004A6AA4 /* Portuguese_Flag.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B6EE8719175DF4004A6AA4 /* Portuguese_Flag.png */; };
+		C0B6EE9019175DF4004A6AA4 /* Russian_Flag.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B6EE8819175DF4004A6AA4 /* Russian_Flag.png */; };
+		C0B6EE9119175DF4004A6AA4 /* Spanish_Flag.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B6EE8919175DF4004A6AA4 /* Spanish_Flag.png */; };
+		C0B6EE9419175E32004A6AA4 /* LanguageCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0B6EE9219175E32004A6AA4 /* LanguageCustomCell.m */; };
 		C0B7FC5F1816ACCC0059D983 /* close@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C0B7FC5E1816ACCC0059D983 /* close@2x~ipad.png */; };
 		C0C3E3FB17F3152000BD3B29 /* privacypolicy.html in Resources */ = {isa = PBXBuildFile; fileRef = C0C3E3FA17F3152000BD3B29 /* privacypolicy.html */; };
 		C0C3E3FD17F3203000BD3B29 /* list_dotblack.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C3E3FC17F3203000BD3B29 /* list_dotblack.png */; };
@@ -3302,6 +3311,16 @@
 		C0A82D4617EC935B00F85793 /* pic_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_3.png; sourceTree = SOURCE_ROOT; };
 		C0A82D4717EC935B00F85793 /* spatialthinking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spatialthinking.png; sourceTree = SOURCE_ROOT; };
 		C0A82D4817EC935B00F85793 /* TigglyShapes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TigglyShapes.png; sourceTree = SOURCE_ROOT; };
+		C0B6EE8219175DF4004A6AA4 /* Chinese_Flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chinese_Flag.png; sourceTree = "<group>"; };
+		C0B6EE8319175DF4004A6AA4 /* English_Flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = English_Flag.png; sourceTree = "<group>"; };
+		C0B6EE8419175DF4004A6AA4 /* French_Flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = French_Flag.png; sourceTree = "<group>"; };
+		C0B6EE8519175DF4004A6AA4 /* German_Flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = German_Flag.png; sourceTree = "<group>"; };
+		C0B6EE8619175DF4004A6AA4 /* Italian_Flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Italian_Flag.png; sourceTree = "<group>"; };
+		C0B6EE8719175DF4004A6AA4 /* Portuguese_Flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Portuguese_Flag.png; sourceTree = "<group>"; };
+		C0B6EE8819175DF4004A6AA4 /* Russian_Flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Russian_Flag.png; sourceTree = "<group>"; };
+		C0B6EE8919175DF4004A6AA4 /* Spanish_Flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spanish_Flag.png; sourceTree = "<group>"; };
+		C0B6EE9219175E32004A6AA4 /* LanguageCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageCustomCell.m; sourceTree = "<group>"; };
+		C0B6EE9319175E32004A6AA4 /* LanguageCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageCustomCell.h; sourceTree = "<group>"; };
 		C0B7FC5E1816ACCC0059D983 /* close@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close@2x~ipad.png"; sourceTree = "<group>"; };
 		C0B7FC651817A3370059D983 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		C0B7FC661817A3440059D983 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -4903,6 +4922,7 @@
 		C05D9001182CCC8C0058A775 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C0B6EE8119175DF4004A6AA4 /* Flags */,
 				C08E9E0D185F100700199DE7 /* Assets */,
 				C021F88417E86E4700EBD6B6 /* NewImages */,
 				C01E525D17C738B800B749F3 /* NavigationImages */,
@@ -5782,6 +5802,21 @@
 			name = HTML;
 			sourceTree = "<group>";
 		};
+		C0B6EE8119175DF4004A6AA4 /* Flags */ = {
+			isa = PBXGroup;
+			children = (
+				C0B6EE8219175DF4004A6AA4 /* Chinese_Flag.png */,
+				C0B6EE8319175DF4004A6AA4 /* English_Flag.png */,
+				C0B6EE8419175DF4004A6AA4 /* French_Flag.png */,
+				C0B6EE8519175DF4004A6AA4 /* German_Flag.png */,
+				C0B6EE8619175DF4004A6AA4 /* Italian_Flag.png */,
+				C0B6EE8719175DF4004A6AA4 /* Portuguese_Flag.png */,
+				C0B6EE8819175DF4004A6AA4 /* Russian_Flag.png */,
+				C0B6EE8919175DF4004A6AA4 /* Spanish_Flag.png */,
+			);
+			path = Flags;
+			sourceTree = "<group>";
+		};
 		EB060A7C185F406300EA8557 /* NEWS_HTML */ = {
 			isa = PBXGroup;
 			children = (
@@ -6028,6 +6063,8 @@
 				EB0A5F7C187B00AC005CEBD5 /* TSRateMe.h */,
 				EB0A5F7D187B00AC005CEBD5 /* TSRateMe.m */,
 				EB0A5F7E187B00AC005CEBD5 /* TSRateMe.xib */,
+				C0B6EE9319175E32004A6AA4 /* LanguageCustomCell.h */,
+				C0B6EE9219175E32004A6AA4 /* LanguageCustomCell.m */,
 			);
 			path = TigglyStamp;
 			sourceTree = "<group>";
@@ -6457,6 +6494,7 @@
 				C08EA07E185F3DD100199DE7 /* Tiggly_Word_Purplecoat_Var2_01.mp3 in Resources */,
 				EB060A92185F406400EA8557 /* safari_icon.png in Resources */,
 				EBE3BBB91797CBFC0089D4A7 /* sled@2x~ipad.png in Resources */,
+				C0B6EE8F19175DF4004A6AA4 /* Portuguese_Flag.png in Resources */,
 				EBE3BBBA1797CBFC0089D4A7 /* cup@2x~ipad.png in Resources */,
 				C08EA039185F3DD100199DE7 /* Tiggly_Animal_Moose_GiveMeACupOfHotChocolate_01.mp3 in Resources */,
 				EBF351FD179D2DBD004A1C14 /* camera@2x~ipad.png in Resources */,
@@ -6544,6 +6582,7 @@
 				C082920017A7CB230023F08A /* orange_leaf@2x~ipad.png in Resources */,
 				C082920117A7CB230023F08A /* pirate@2x~ipad.png in Resources */,
 				C082920217A7CB230023F08A /* pumkin_bag@2x~ipad.png in Resources */,
+				C0B6EE8D19175DF4004A6AA4 /* German_Flag.png in Resources */,
 				C082920317A7CB230023F08A /* purple_spirder@2x~ipad.png in Resources */,
 				C082920417A7CB230023F08A /* spider@2x~ipad.png in Resources */,
 				C082920517A7CB230023F08A /* squirrel@2x~ipad.png in Resources */,
@@ -6604,6 +6643,7 @@
 				C08EA07B185F3DD100199DE7 /* Tiggly_Word_Purplecoat_01.mp3 in Resources */,
 				C00D920217C5EB1400FECBAF /* language_block.png in Resources */,
 				C00D920E17C618F000FECBAF /* square.png in Resources */,
+				C0B6EE8E19175DF4004A6AA4 /* Italian_Flag.png in Resources */,
 				C08E9F58185F3BA000199DE7 /* Tiggly_Animal_Zebra_IWantAShirt_02.mp3 in Resources */,
 				C01E527C17C738B800B749F3 /* camera_btn_1.png in Resources */,
 				C01E527D17C738B800B749F3 /* camera_btn_2.png in Resources */,
@@ -7142,6 +7182,7 @@
 				C028607417D7685A001EAE9E /* Tiggly_Word_Spider_Ooh_01.mp3 in Resources */,
 				C028607517D7685A001EAE9E /* Tiggly_Word_Hat_Gasp_01.mp3 in Resources */,
 				C028607617D7685A001EAE9E /* Tiggly_Word_Hat_Ooh_01.mp3 in Resources */,
+				C0B6EE8C19175DF4004A6AA4 /* French_Flag.png in Resources */,
 				C028607717D7685A001EAE9E /* Tiggly_Word_Hat_Wow_01.mp3 in Resources */,
 				C028607817D7685A001EAE9E /* Tiggly_Word_Hat_Wow_02.mp3 in Resources */,
 				C028607917D7685A001EAE9E /* Tiggly_Word_SnowMan_DaDaa_01.mp3 in Resources */,
@@ -7208,6 +7249,7 @@
 				6304DDA817D9A6F00075DE97 /* racoon_breng.mp3 in Resources */,
 				6304DDA917D9A6F00075DE97 /* rain_coat_breng.mp3 in Resources */,
 				6304DDAA17D9A6F00075DE97 /* rooster_breng.mp3 in Resources */,
+				C0B6EE8A19175DF4004A6AA4 /* Chinese_Flag.png in Resources */,
 				6304DDAB17D9A6F00075DE97 /* scare_crow_breng.mp3 in Resources */,
 				6304DDAC17D9A6F00075DE97 /* shirt_breng.mp3 in Resources */,
 				6304DDAD17D9A6F00075DE97 /* Snow_breng.mp3 in Resources */,
@@ -7361,6 +7403,7 @@
 				C08E9E34185F100700199DE7 /* red_star_gift@2x~ipad.png in Resources */,
 				C02FAAD119069BF2007938A6 /* reindeer_ru.mp3 in Resources */,
 				6304DE3117D9A6F00075DE97 /* haybale_sp.mp3 in Resources */,
+				C0B6EE9019175DF4004A6AA4 /* Russian_Flag.png in Resources */,
 				6304DE3217D9A6F00075DE97 /* Hello_sp.mp3 in Resources */,
 				6304DE3317D9A6F00075DE97 /* hot chocolate_sp.mp3 in Resources */,
 				6304DE3417D9A6F00075DE97 /* igloo_sp.mp3 in Resources */,
@@ -7462,6 +7505,7 @@
 				C08EA03E185F3DD100199DE7 /* Tiggly_Animal_Moose_INeedACoat_02.mp3 in Resources */,
 				63306AD7185980C000A09F3D /* airdrop_icon@2x~ipad.png in Resources */,
 				C021F78E17E8279A00EBD6B6 /* hot_chocolate_ita.mp3 in Resources */,
+				C0B6EE8B19175DF4004A6AA4 /* English_Flag.png in Resources */,
 				C02FAADF19069BF2007938A6 /* snowman_ru.mp3 in Resources */,
 				C02313141823B2CC0094F5EC /* learning_philoshophy_spanish.html in Resources */,
 				C021F78F17E8279A00EBD6B6 /* igloo_ita.mp3 in Resources */,
@@ -7671,6 +7715,7 @@
 				C021F85117E8279A00EBD6B6 /* leaf_fr.mp3 in Resources */,
 				C021F85217E8279A00EBD6B6 /* leaves_fr.mp3 in Resources */,
 				C02FAA34190681D9007938A6 /* bell_ru.mp3 in Resources */,
+				C0B6EE9119175DF4004A6AA4 /* Spanish_Flag.png in Resources */,
 				C08E9F38185F3BA000199DE7 /* Tiggly_Word_Pinkraincoat_Var1_01.mp3 in Resources */,
 				C021F85317E8279A00EBD6B6 /* lights_fr.mp3 in Resources */,
 				C021F85417E8279A00EBD6B6 /* Lion_fr.mp3 in Resources */,
@@ -7996,6 +8041,7 @@
 				C00B875B17AA33E500823454 /* ThumbnailView.m in Sources */,
 				EB1091BE185BB0ED0027F703 /* mztools.c in Sources */,
 				63306AEE1859816800A09F3D /* FBRequest.m in Sources */,
+				C0B6EE9419175E32004A6AA4 /* LanguageCustomCell.m in Sources */,
 				C060B41F17CDF643000AD202 /* TDSoundManager.m in Sources */,
 				EB4885B3185734FC0077FA95 /* SBJSON.m in Sources */,
 				C03989C217DF51D90079EB90 /* StampViewController.m in Sources */,

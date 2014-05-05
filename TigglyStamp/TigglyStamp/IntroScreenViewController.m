@@ -13,6 +13,7 @@
 #import "TSHomeViewController.h"
 #import "TDSoundManager.h"
 #import "UnlockScreenViewController.h"
+#import "LanguageCustomCell.h"
 
 #define TAG_BTN_WITHSHAPE 1
 #define TAG_BTN_WITHOUTSHAPE 2
@@ -725,15 +726,27 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //DebugLog(@"");
     NSString *reuseIdentifier = @"cell";
-    UITableViewCell *cell;
-   
+//    UITableViewCell *cell;
+//   
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+//    }
+//    
+//    cell.textLabel.text = [self.arrLanguage objectAtIndex:indexPath.row];
+//    cell.textLabel.textAlignment = UITextAlignmentCenter;
+//    cell.textLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:22.0f];
+    
+    LanguageCustomCell *cell =(LanguageCustomCell *) [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+        cell = [[LanguageCustomCell alloc]  initWithStyle: UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
     
-    cell.textLabel.text = [self.arrLanguage objectAtIndex:indexPath.row];
-    cell.textLabel.textAlignment = UITextAlignmentCenter;
-    cell.textLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:22.0f];
+    
+    cell.textLabel.text = [arrLanguage objectAtIndex:indexPath.row];
+    cell.imgViewCell.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_Flag",[arrLanguage objectAtIndex:indexPath.row]]];
+    
+    return cell;
     
     return cell;
 }

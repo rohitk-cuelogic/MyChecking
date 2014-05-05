@@ -9,6 +9,7 @@
 #import "GestureConfirmationView.h"
 #import "TConstant.h"
 #import "TigglyStampUtils.h"
+#import "LanguageCustomCell.h"
 
 #ifdef GOOGLE_ANALYTICS_START
 #import "GAITrackedViewController.h"
@@ -25,7 +26,7 @@
     NSArray *langArr;
     UILabel *lblLang;
     UIButton *btnLang;
-    
+    UIImageView *imgViewFlag;
 }
 @synthesize swipeTxtCnt;
 
@@ -118,7 +119,7 @@
     lblLang.adjustsFontSizeToFitWidth = YES;
     lblLang.backgroundColor = [UIColor clearColor];
     lblLang.textColor = [UIColor whiteColor];
-    [self addSubview:lblLang];
+   // [self addSubview:lblLang];
     
     lblLang.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLanguage"];
     lblLang.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
@@ -132,7 +133,10 @@
     btnLang.frame = CGRectMake(340, 256, 50, 50);
     [self addSubview:btnLang];
     
-    
+    imgViewFlag = [[UIImageView alloc] initWithFrame:CGRectMake(240, 260, 70, 40)];
+    imgViewFlag.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_Flag",[[TigglyStampUtils sharedInstance] getCurrentLanguage]]];
+    [self addSubview:imgViewFlag];
+    [self bringSubviewToFront:imgViewFlag];
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -265,12 +269,12 @@
     }
     
     
-    langView = [[UIView alloc] initWithFrame:CGRectMake(230, 310, 275, 355)];
+    langView = [[UIView alloc] initWithFrame:CGRectMake(230, 310, 275, 360)];
     langView.layer.cornerRadius = 20.0f;
     langView.backgroundColor = [UIColor colorWithRed:240.0f/255.0f green:210.0f/255.0f blue:50.0f/255.0f alpha:1.0];
     [self addSubview:langView];
     
-    tblView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 235, 315)];
+    tblView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 235, 320)];
     tblView.separatorColor = [UIColor lightGrayColor];
     [tblView setScrollEnabled:NO];
     tblView.backgroundColor = [UIColor whiteColor];
@@ -298,6 +302,8 @@
     
     lblLang.text = [[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kLanguage"];
     lblLang.font = [UIFont fontWithName:APP_FONT_BOLD size:28.0f];
+    
+     imgViewFlag.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_Flag",lang]];
     
     [self showTextView];
     
@@ -332,18 +338,29 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //DebugLog(@"");
     NSString *reuseIdentifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+//    
+//    
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc]  initWithStyle: UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+//    }
+//    
+//    cell.textLabel.text = [langArr objectAtIndex:indexPath.row];
+//    cell.textLabel.textAlignment = UITextAlignmentCenter;
+//    cell.textLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:20.0f];
+
+    LanguageCustomCell *cell =(LanguageCustomCell *) [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]  initWithStyle: UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+        cell = [[LanguageCustomCell alloc]  initWithStyle: UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
     
+    
     cell.textLabel.text = [langArr objectAtIndex:indexPath.row];
-    cell.textLabel.textAlignment = UITextAlignmentCenter;
-    cell.textLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:20.0f];
+    cell.imgViewCell.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_Flag",[langArr objectAtIndex:indexPath.row]]];
     
     return cell;
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

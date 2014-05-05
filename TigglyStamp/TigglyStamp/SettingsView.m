@@ -9,6 +9,7 @@
 #import "SettingsView.h"
 #import "TConstant.h"
 #import "TigglyStampUtils.h"
+#import "LanguageCustomCell.h"
 
 #ifdef GOOGLE_ANALYTICS_START
 #import "GAITrackedViewController.h"
@@ -362,8 +363,8 @@ OptionMenuType menuType;
     
     if(menuType == kOptionMenuLanguage){
         langArr =[[NSArray alloc] initWithObjects:@"English",@"Portuguese",@"Russian",@"Spanish",@"French",@"German",@"Italian",@"Chinese", nil];
-        langView = [[UIView alloc] initWithFrame:CGRectMake(330, 50, 275, 355)];
-        tblView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 235, 315)];
+        langView = [[UIView alloc] initWithFrame:CGRectMake(200, 20, 275, 360)];
+        tblView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 235, 320)];
         langView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     }else if(menuType == kOptionMenuDateFormat){
         langArr =[[NSArray alloc] initWithObjects:@"dd/mm/yyyy",@"mm/dd/yyyy", nil];
@@ -428,18 +429,25 @@ OptionMenuType menuType;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //DebugLog(@"");
     NSString *reuseIdentifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]  initWithStyle: UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    if (menuType == kOptionMenuDateFormat){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc]  initWithStyle: UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+        }
+        cell.textLabel.text = [langArr objectAtIndex:indexPath.row];
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        cell.textLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:20.0f];
+        return cell;
+    }else {
+        LanguageCustomCell *cell =(LanguageCustomCell *) [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        if (cell == nil) {
+            cell = [[LanguageCustomCell alloc]  initWithStyle: UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+        }
+        cell.textLabel.text = [langArr objectAtIndex:indexPath.row];
+        cell.imgViewCell.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_Flag",[langArr objectAtIndex:indexPath.row]]];
+        return cell;
     }
     
-    cell.textLabel.text = [langArr objectAtIndex:indexPath.row];
-    cell.textLabel.textAlignment = UITextAlignmentCenter;
-    cell.textLabel.font = [UIFont fontWithName:APP_FONT_BOLD size:20.0f];
-    
-    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

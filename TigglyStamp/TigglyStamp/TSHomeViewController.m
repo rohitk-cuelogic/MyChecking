@@ -217,15 +217,15 @@ NSArray *allImageFiles;
 }
 -(void)displayRateMeAlert
 {
-    if(![[TigglyStampUtils sharedInstance] shouldStopShowingRateMePopUp]){
-        int appCount = [[TigglyStampUtils sharedInstance] getAppLaunchCount];
-        if(appCount ==  1 || appCount == 4){
-            [self performSelectorOnMainThread:@selector(showRateMeAlert) withObject:Nil waitUntilDone:NO];
-            [[TigglyStampUtils sharedInstance] setAppLaunchCount:5];
-            return;
-        }
-        
-    }
+//    if(![[TigglyStampUtils sharedInstance] shouldStopShowingRateMePopUp]){
+//        int appCount = [[TigglyStampUtils sharedInstance] getAppLaunchCount];
+//        if(appCount ==  1 || appCount == 4){
+//            [self performSelectorOnMainThread:@selector(showRateMeAlert) withObject:Nil waitUntilDone:NO];
+//            [[TigglyStampUtils sharedInstance] setAppLaunchCount:5];
+//            return;
+//        }
+//        
+//    }
 }
 - (void)viewDidAppear:(BOOL)animated {
     DebugLog(@"");
@@ -1111,21 +1111,19 @@ NSArray *allImageFiles;
 -(void)rateMeCancelButtonCLicked:(TSRateMe *)rateMeView{
     DebugLog(@"");
     
-    [rateMe hidePopUp];
-    rateMe.delegate = nil;
+//    [rateMe hidePopUp];
+//    rateMe.delegate = nil;
     
 }
 
 -(void)showRateMeAlert{
     DebugLog(@"");
     
-    [[TigglyStampUtils sharedInstance] setRateMeCount];
-    iNewCnt=0;
-    [rateMe showPopUp];
-    rateMe.delegate = self;
-//    UIAlertView* rateMeAlert=[[UIAlertView alloc] initWithTitle:APPLICATION_NAME message:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kIfYouEnjoy"] delegate:self cancelButtonTitle:nil otherButtonTitles:[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kRateIt"],[[TigglyStampUtils sharedInstance] getLocalisedStringForKey:@"kNoThanks"],nil];
-//    rateMeAlert.tag=999;
-//    [rateMeAlert show];
+//    [[TigglyStampUtils sharedInstance] setRateMeCount];
+//    iNewCnt=0;
+//    [rateMe showPopUp];
+//    rateMe.delegate = self;
+
 
     
 }
